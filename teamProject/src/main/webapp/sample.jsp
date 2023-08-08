@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-안녕하세요 샘플입니다.
+안녕하세요 샘플입니다. 
+샘플 수정 - GNANI - COMMIT AND PUSH
 </body>
 </html>
