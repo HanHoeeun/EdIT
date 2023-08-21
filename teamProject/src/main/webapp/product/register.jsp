@@ -17,6 +17,7 @@
 		<p>가격 : <input type="text" name="price"> 원
 		<p>가격 : <input type="text" name="price"> 원
 		<p>가격 : <input type="text" name="price"> 원
+		<p>가격 : <input type="text" name="price"> 원
 	
 	
 	
