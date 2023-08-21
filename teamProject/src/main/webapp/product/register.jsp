@@ -14,6 +14,7 @@
 
 	<form name="fileform" method="post" enctype="multipart/form-data" action="">
 		<p>가격 : <input type="text" name="price"> 원
+		<p>가격 : <input type="text" name="price"> 원
 	
 	
 	
