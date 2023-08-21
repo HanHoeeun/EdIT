@@ -4,10 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
+<titl>shopPage.jsp</title>
 <body>
-commit push test<br>
-왜안대노
+
 </body>
-</html>
+</html> 
