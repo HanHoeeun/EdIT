@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/bottom.css">
 
-<title>Insert title here</title>
+<title>Insert title here.</title> 
 </head>
 <body>
 <div class="footer">
