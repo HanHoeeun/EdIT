@@ -6,19 +6,19 @@
 <meta charset="UTF-8">
 <title>product/register.jsp</title>
 <link href= "../css/top.css" rel= "stylesheet" type="text/css">
-<link href= "../css/.css" rel= "stylesheet" type="text/css">
+<link href= "../css/bottom.css" rel= "stylesheet" type="text/css">
 
 </head>
 
 <body>
 
-<div id="">
+
 <!— 헤더 들어가는 곳  —>
 <jsp:include page="../top.jsp"></jsp:include>
 <!— 헤더 들어가는 곳  —>
 	
 
-<div style="text-align:left; overflow-y: auto; height: 800px;">
+<div style="text-align:left; height: 800px;">
 <h1 style="font-family: 'TheJamsil5Bold';" align="center">상 품 등 록</h1>
 <hr style="border: 0; height: 3px; background-color: black;">
 
@@ -75,7 +75,9 @@
 	
   <button type="submit" class="btn1" style="display: inline-block;">상품 등록</button>
   <button type="reset" class="btn2" style="display: inline-block;">초기화</button>
-  
+ 
+
+<jsp:include page="../bottom.jsp"></jsp:include>
   
 </form>
 
