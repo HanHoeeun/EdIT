@@ -20,7 +20,10 @@
 <!-- 본문 들어가는 곳  -->
 <!-- 서브페이지 메인페이지  -->
 <!-- 왼쪽 메뉴  -->
+<jsp:include page="../product/subMenu.jsp"></jsp:include>
 
-
+<!-- 푸터 들어가는 곳! -->
+<jsp:include page="../bottom.jsp"></jsp:include>
+<!-- 푸터 들어가는 곳! -->
 </body>
 </html>
