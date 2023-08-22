@@ -180,7 +180,7 @@
 /*.category * {*/
 /*  box-sizing: border-box;*/
 /*}*/
-.submenu {
+.category {
   background: var(--gray-00, #ffffff);
 /*  padding: 16px 300px 16px 300px;*/
   display: flex;
@@ -191,7 +191,7 @@
   position: relative;
   box-shadow: inset 0px -1px 0px 0px rgba(228, 231, 233, 1);
 }
-.submenu2 {
+.category2 {
   background: #ffffff;
   display: flex;
   flex-direction: row;
