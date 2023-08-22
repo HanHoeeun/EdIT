@@ -11,6 +11,8 @@
 </head>
 <body>
 
+<!-- 아니 수정했는데 왜 푸시가 안되냐고 -->
+
 <!-- <div id="test1"> -->
 <!-- 헤더 들어가는 곳  -->
 <jsp:include page="../top.jsp"></jsp:include>
