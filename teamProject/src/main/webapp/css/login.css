@@ -1,10 +1,11 @@
 @charset "UTF-8";
+
 .frame-395,
 .frame-395 * {
   box-sizing: border-box;
 }
 .frame-395 {
-  padding: 100px 748px 100px 600px;
+  padding: 100px 748px 100px 748px;
   display: flex;
   flex-direction: row;
   gap: 10px;
@@ -42,13 +43,13 @@
   width: 360px;
   position: relative;
 }
-.test1{
-  color: var(--gray-900, #191c1f);
-  text-align: left;
-  font: var(--body-small-400, 400 14px/20px "Public Sans", sans-serif);
-  position: relative;
-  align-self: stretch;
-}
+/* .test1{ */
+/*   color: var(--gray-900, #191c1f); */
+/*   text-align: left; */
+/*   font: var(--body-small-400, 400 14px/20px "Public Sans", sans-serif); */
+/*   position: relative; */
+/*   align-self: stretch; */
+/* } */
 .input-field {
   background: var(--gray-00, #ffffff);
   border-radius: 2px;
@@ -103,7 +104,7 @@
   left: 27px;
   top: 295px;
 }
-.test3 {
+.search {
   color: var(--secondary-500, #2da5f3);
   text-align: left;
   font: var(--body-small-500, 500 14px/20px "Public Sans", sans-serif);
@@ -175,21 +176,11 @@
   left: calc(50% - 15px);
   top: calc(50% - 10px);
 }
-/* .or { */
-/*   color: var(--gray-500, #77878f); */
-/*   text-align: left; */
-/*   font: var(--body-small-400, 400 14px/20px "Public Sans", sans-serif); */
-/*   position: relative; */
-/* } */
-.line-29 {
-  border-style: solid;
-  border-color: var(--gray-600, #5f6c72);
-  border-width: 1px 0 0 0;
-  width: 424px;
-  height: 0px;
-  position: absolute;
-  left: 0px;
-  top: 60px;
+.or {
+  color: var(--gray-500, #77878f);
+  text-align: left;
+  font: var(--body-small-400, 400 14px/20px "Public Sans", sans-serif);
+  position: relative;
 }
 .tab {
   width: 412px;
@@ -218,8 +209,8 @@
   left: 0px;
   top: 0px;
   box-shadow: inset 0px -3px 0px 0px rgba(250, 130, 50, 1),
-    inset 0px 1px 0px 0px rgba(228, 231, 233, 1),
-    inset 1px 0px 0px 0px rgba(228, 231, 233, 1);
+    inset 0px 1px 0px 0px #ffffff,
+    inset 1px 0px 0px 0px #ffffff;
 }
 .login2 {
   color: var(--gray-900, #191c1f);
@@ -252,7 +243,7 @@
   left: calc(50% - 60px);
   top: calc(50% - 10px);
 }
-.google {
+.naver {
   border-radius: 10px;
   width: 20px;
   height: 20px;
@@ -273,7 +264,7 @@
   left: 26px;
   top: 543px;
 }
-.google2 {
+.kakao {
   width: 20px;
   height: 20px;
   position: absolute;

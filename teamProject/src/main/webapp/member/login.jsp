@@ -11,15 +11,10 @@
 </head>
 <body>
 
-<div id="test1">
+<!-- <div id="test1"> -->
 <!-- 헤더 들어가는 곳  -->
 <jsp:include page="../top.jsp"></jsp:include>
 <!-- 헤더 들어가는 곳  -->
-
-<hr>
-<!-- 본문 들어가는 곳  -->
-<!-- 서브페이지 메인페이지  -->
-<!-- 왼쪽 메뉴  -->
 
 <div class="frame-395">
   <div class="login">
@@ -34,7 +29,7 @@
       <div class="test2">비밀번호</div>
     </div>
     <div class="input-field2"></div>
-    <div class="test3">아이디/비밀번호 찾기</div>
+    <div class="search">아이디/비밀번호 찾기</div>
     <div class="button">
       <div class="label">로그인</div>
       <svg
@@ -65,11 +60,10 @@
       <div class="don-t-have-account">
         <div class="line-20"></div>
         <div class="label2">
-<!--           <div class="or">or</div> -->
+          <div class="or">or</div>
         </div>
       </div>
     </div>
-    <div class="line-29"></div>
     <div class="tab">
       <div class="frame-533">
         <div class="tab2">
@@ -79,11 +73,11 @@
     </div>
     <div class="login-register-with">
       <div class="login-with-kakao">네이버로 로그인하기</div>
-      <img class="google" src="google.png" />
+      <img class="naver" src="../img/naver.png" />
     </div>
     <div class="login-register-with2">
       <div class="login-with-kakao">카카오로 로그인하기</div>
-      <img class="google2" src="google2.png" />
+      <img class="kakao" src="../img/kakao.png" />
     </div>
   </div>
 </div>
