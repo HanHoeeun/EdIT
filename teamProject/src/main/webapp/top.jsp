@@ -16,12 +16,12 @@
 				<form action="test.jsp" id="search_form">
 					<div class="logo">
 					<a href="test.jsp">
-					<img class="logo_img" src="img/logo.png" width="245px" height="63px" />
+					<img class="logo_img" src="../img/logo.png" width="245px" height="63px" />
 					</a>						
 					</div>
 					<div class="search">
 						<input type="text" placeholder="검색어 입력" onkeyup="enterKey();">
-						<img class="search_img" src="img/search.png" onclick="fun1()">
+						<img class="search_img" src="../img/search.png" onclick="fun1()">
 					</div>
 				</form>
 			</div>
@@ -37,11 +37,11 @@
 			if (id == null) {
 			%>
 			<div id="login">
-				<img src="img/user1.png" width="20px" height="20px"><a href="login.me">LOGIN</a> 
-				<img src="img/join.png" width="20px" height="20px"><a href="login.me">JOIN US</a>
-				<img src="img/mypage.png" width="20px" height="20px"><a href="login.me">MY PAGE</a> 
-				<img src="img/wishlist.png" width="20px" height="20px"><a href="login.me">WISHLIST</a> 
-				<img src="img/chat.png" width="20px" height="20px"><a href="login.me">1:1 CHAT</a>
+				<img src="../img/user1.png" width="20px" height="20px"><a href="login.me">LOGIN</a> 
+				<img src="../img/join.png" width="20px" height="20px"><a href="login.me">JOIN US</a>
+				<img src="../img/mypage.png" width="20px" height="20px"><a href="login.me">MY PAGE</a> 
+				<img src="../img/wishlist.png" width="20px" height="20px"><a href="login.me">WISHLIST</a> 
+				<img src="../img/chat.png" width="20px" height="20px"><a href="login.me">1:1 CHAT</a>
 			</div>
 			<%
 			} else {
