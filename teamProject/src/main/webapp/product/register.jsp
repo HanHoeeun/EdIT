@@ -18,7 +18,7 @@
 <!— 헤더 들어가는 곳  —>
 	
 
-<div style="text-align:left; height: 800px;">
+<div style="text-align:left; overflow-y: pause; height: 800px;" >
 <h1 style="font-family: 'TheJamsil5Bold';" align="center">상 품 등 록</h1>
 <hr style="border: 0; height: 3px; background-color: black;">
 
