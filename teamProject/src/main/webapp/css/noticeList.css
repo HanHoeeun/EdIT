@@ -94,6 +94,7 @@
   position: absolute;
   left: 56px;
   top: calc(50% - 10px);
+}
 /* <!-- ============================== 본문 헤딩 ==================================--> */
 .heading {
   padding: 0px 0px 0px 43px;
@@ -107,15 +108,230 @@
   left: 935.5px;
   top: 72px;
 }
+
 .heading_name {
+	
   color: var(--gray-900, #191c1f);
   text-align: left;
   font: var(--heading-03, 600 24px/32px "Public Sans", sans-serif);
   position: relative;
   width: 691px;
 }
-/* <!-- ============================== 일반공지 목록 ==================================--> */
 
+/* <!-- ============================== 일반공지 목록 ==================================--> */
+.notice_board {
+  background: var(--gray-00, #ffffff);
+  border-radius: 4px;
+  border-style: solid;
+  border-color: var(--gray-100, #e4e7e9);
+  border-width: 1px;
+  padding: 0px 0px 24px 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  align-items: center;
+  justify-content: center;
+  height: 435px;
+  position: absolute;
+  left: 934px;
+  top: 174px;
+}
+.notice_board_heading {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+}
+.sub_heading {
+  background: var(--gray-50, #f2f4f5);
+  border-style: solid;
+  border-color: var(--gray-100, #e4e7e9);
+  border-width: 1px;
+  padding: 10px 24px 10px 24px;
+  display: flex;
+  flex-direction: row;
+  gap: 242px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  width: 984px;
+  position: relative;
+}
+.sub_num {
+  color: var(--gray-700, #475156);
+  text-align: center;
+  font: var(--label-04, 500 12px/150% "Public Sans", sans-serif);
+  text-transform: uppercase;
+  position: relative;
+  width: 124px;
+}
+.sub_title {
+  color: var(--gray-700, #475156);
+  text-align: center;
+  font: var(--label-04, 500 12px/150% "Public Sans", sans-serif);
+  text-transform: uppercase;
+  position: relative;
+  width: 152px;
+}
+.sub_date {
+  color: var(--gray-700, #475156);
+  text-align: center;
+  font: var(--label-04, 500 12px/150% "Public Sans", sans-serif);
+  text-transform: uppercase;
+  position: relative;
+  width: 200px;
+}
+.notice_list {
+  padding: 12px 0px 24px 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  height: 65px;
+  position: relative;
+}
+.notice_list_list {
+  padding: 12px 24px 12px 24px;
+  display: flex;
+  flex-direction: row;
+  gap: 64px;
+  align-items: center;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  width: 988px;
+  position: relative;
+}
+.num {
+  color: #000000;
+  text-align: center;
+  font: var(--body-small-500, 500 14px/20px "Public Sans", sans-serif);
+  position: relative;
+  width: 122px;
+}
+.title {
+  color: #141414;
+  text-align: left;
+  font: var(--body-small-600, 600 14px/20px "Public Sans", sans-serif);
+  position: relative;
+  width: 480px;
+}
+.date {
+  color: #000000;
+  text-align: center;
+  font: var(--body-small-400, 400 14px/20px "Public Sans", sans-serif);
+  position: relative;
+  width: 268px;
+}
+.num2 {
+  color: #000000;
+  text-align: center;
+  font: var(--body-small-500, 500 14px/20px "Public Sans", sans-serif);
+  position: relative;
+  width: 122px;
+}
+.title2 {
+  color: #141414;
+  text-align: left;
+  font: var(--body-small-600, 600 14px/20px "Public Sans", sans-serif);
+  position: relative;
+  width: 480px;
+}
+.date2 {
+  color: #000000;
+  text-align: center;
+  font: var(--body-small-400, 400 14px/20px "Public Sans", sans-serif);
+  position: relative;
+  width: 268px;
+}
+.pagination {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  height: 193px;
+  position: relative;
+}
+.arrow_btn {
+  border-radius: 100px;
+  border-style: solid;
+  border-color: var(--primary-500, #fa8232);
+  border-width: 1.5px;
+  padding: 8px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+}
+.page_left {
+  flex-shrink: 0;
+  position: relative;
+  overflow: visible;
+}
+.pages {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+}
+.pagination-item {
+  background: var(--primary-500, #fa8232);
+  border-radius: 100px;
+  padding: 10px 0px 10px 0px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+}
+._01 {
+  color: var(--gray-00, #ffffff);
+  text-align: center;
+  font: var(--body-small-600, 600 14px/20px "Public Sans", sans-serif);
+  position: relative;
+  width: 40px;
+}
+.pagination-item2 {
+  background: var(--gray-00, #ffffff);
+  border-radius: 100px;
+  border-style: solid;
+  border-color: var(--gray-100, #e4e7e9);
+  border-width: 1px;
+  padding: 10px 0px 10px 0px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+}
+._012 {
+  color: var(--gray-900, #191c1f);
+  text-align: center;
+  font: var(--body-small-400, 400 14px/20px "Public Sans", sans-serif);
+  position: relative;
+  width: 40px;
+}
+.page_right {
+  flex-shrink: 0;
+  position: relative;
+  overflow: visible;
+}
   
 /* <!-- ============================== 작성 버튼 ==================================-->   */
  .btn {

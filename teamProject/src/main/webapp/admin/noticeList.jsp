@@ -90,7 +90,100 @@
     <div class="heading_name">일반공지</div>
   </div>
 <!-- ============================== 일반공지 목록 ==================================-->
-
+  <div class="notice_board">
+    <div class="notice_board_heading">
+      <div class="sub_heading">
+        <div class="sub_num">번호</div>
+        <div class="sub_title">제목</div>
+        <div class="sub_date">등록일</div>
+      </div>
+    </div>
+    <div class="notice_list">
+      <div class="notice_list_list">
+        <div class="num">1</div>
+        <div class="title">거래 시 유의사항</div>
+        <div class="date">2023-08-20</div>
+      </div>
+    </div>
+    <div class="notice_list">
+      <div class="notice_list_list">
+        <div class="num2">2</div>
+        <div class="title2">신고 누적 3회 이상 회원 계정 정지됨을 알려드립니다</div>
+        <div class="date2">2023-08-07</div>
+      </div>
+    </div>
+    <div class="pagination">
+      <div class="arrow_btn">
+        <svg
+          class="page_left"
+          width="24"
+          height="25"
+          viewBox="0 0 24 25"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M20.25 12.5H3.75"
+            stroke="#FA8232"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M10.5 5.75L3.75 12.5L10.5 19.25"
+            stroke="#FA8232"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </div>
+      <div class="pages">
+        <div class="pagination-item">
+          <div class="_01">01</div>
+        </div>
+        <div class="pagination-item2">
+          <div class="_012">02</div>
+        </div>
+        <div class="pagination-item2">
+          <div class="_012">03</div>
+        </div>
+        <div class="pagination-item2">
+          <div class="_012">04</div>
+        </div>
+        <div class="pagination-item2">
+          <div class="_012">05</div>
+        </div>
+        <div class="pagination-item2">
+          <div class="_012">06</div>
+        </div>
+      </div>
+      <div class="arrow_button">
+        <svg
+          class="page_right"
+          width="24"
+          height="25"
+          viewBox="0 0 24 25"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M3.75 12.5H20.25"
+            stroke="#FA8232"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M13.5 5.75L20.25 12.5L13.5 19.25"
+            stroke="#FA8232"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </div>
+    </div>
   
 <!-- ============================== 작성 버튼 ==================================-->  
      <div class="btn">
