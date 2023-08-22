@@ -7,6 +7,7 @@
 <title>shopPage.jsp</title>
 <link href= "../css/top.css" rel= "stylesheet" type="text/css">
 <link href= "../css/.css" rel= "stylesheet" type="text/css">
+<link href= "../css/bottom.css" rel= "stylesheet" type="text/css">
 
 </head>
 <body>
@@ -22,5 +23,8 @@
 
 </nav>
 </div>
+<!-- 푸터 들어가는 곳 -->
+<jsp:include page="../bottom.jsp"></jsp:include>
+<!-- 푸터 들어가는 곳 -->
 </body>
 </html>
