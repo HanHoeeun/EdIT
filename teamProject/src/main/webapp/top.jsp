@@ -54,8 +54,8 @@
 			}
 			%>
 		</div>
-		<div class="category">
-			<div class="category2">
+		<div class="submenu">
+			<div class="submenu2">
 				<div class="need-help">
 					<a href="">노트북</a>
 				</div>
