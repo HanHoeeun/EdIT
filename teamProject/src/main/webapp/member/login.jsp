@@ -10,6 +10,7 @@
 <link href= "../css/bottom.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+<!-- 왜 안되냐고 -->
 <div id="test1">
 <!-- 헤더 들어가는 곳  -->
 <jsp:include page="../top.jsp"></jsp:include>
