@@ -45,7 +45,7 @@
     <input type="text" placeholder="글 제목을 입력하세요." name="title" id="title"  class="form-control" style="width:400px" maxlength="40" required>
     <i class="fa fa-exclamation-triangle"></i>
     
-    <br>     
+    <br>      
 
 	<label for="pprice">가격 : </label>
     <input type="text" name="pprice" placeholder="가격을 입력해주세요." id="pprice"  class="form-control" onkeyup="inputNumberFormat(this);"  style="width: 200px" required > 원

@@ -50,7 +50,7 @@
 	<label for="pprice">가격 : </label>
     <input type="text" name="pprice" placeholder="가격을 입력해주세요." id="pprice"  class="form-control" onkeyup="inputNumberFormat(this);"  style="width: 200px" required > 원
      
-    <br>    
+    <br>     
 
     <label for="pdetail"></label>
     <textarea name="pdetail" placeholder="상품설명을 입력하세요. " id="pdetail"  class="form-control" rows="10" cols="50" style="width: 488px" maxlength="400" required></textarea>
