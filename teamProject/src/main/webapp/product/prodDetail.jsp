@@ -92,7 +92,7 @@
           
       <!--  버튼 -->
       <div class="_2content">
-          <a href="" class="_2add-to-wishlist2">wishlist 추가</a>
+          <a href="../product/wishlist.jsp" class="_2add-to-wishlist2">wishlist 추가</a>
           <a href="" class="_2commit">구매확정</a>
           <a href="" class="_2report">신고</a>
           <a href="" class="_2list">목록</a>
