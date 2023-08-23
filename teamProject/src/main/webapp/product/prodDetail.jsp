@@ -89,7 +89,7 @@
 			<a class="_2label" href="">1:1 chat</a>
         </div>
       </div>
-        
+         
       <!--  버튼 -->
       <div class="_2content">
           <a href="" class="_2add-to-wishlist2">wishlist 추가</a>
