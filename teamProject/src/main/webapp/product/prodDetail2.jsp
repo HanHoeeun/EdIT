@@ -109,7 +109,7 @@
         </div>
       </div>
       
-      
+         
       <!--  버튼 -->
       <div class="_2content">
           <a href="../product/update.jsp" class="_2update">수정</a>
