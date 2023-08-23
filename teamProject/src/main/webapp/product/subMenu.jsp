@@ -19,13 +19,13 @@
 <div class="filter">
   <div class="category">
     <div class="category2">Category</div>
-         <div> <input type="radio" name="computer&laptop" value="category"> Computer &amp; Laptop <br>
+         <div> <input type="radio" value="computer&laptop" name="category"> Computer &amp; Laptop <br>
         </div>
         <div>
-        <input type="radio" name="smart-phone" value="category"> SmartPhone<br>
+        <input type="radio" value="smart-phone" name="category"> SmartPhone<br>
         </div>
         <div>
-        <input type="radio" name="tablet" value="category"> Tablet</div>
+        <input type="radio" value="tablet" name="category"> Tablet</div>
       </div>
   
   <div class="line-13"></div>
@@ -42,28 +42,28 @@
       </div>
     </div>
 		<div class="all-price">
-        <input type="radio" name="all-price" value="priceRange">전체 보기
+        <input type="radio" value="all-price" name="priceRange">전체 보기
         </div>
         <div class="_0">
-        <input type="radio" name="_0" value="priceRange">0원 ~ 5만원
+        <input type="radio" value="_0" name="priceRange">0원 ~ 5만원
         </div>
         <div class="_5-10">
-		<input type="radio" name="_5-10" value="priceRange">5만원 ~ 10만원
+		<input type="radio" value="_5-10" name="priceRange">5만원 ~ 10만원
 		</div>
         <div class="_10-20">
-		<input type="radio" name="_10-20" value="priceRange">10만원 ~ 20만원
+		<input type="radio" value="_10-20" name="priceRange">10만원 ~ 20만원
 		</div>
         <div class="_20-30">
-        <input type="radio" name="_20-30" value="priceRange">20만원 ~ 30만원
+        <input type="radio" value="_20-30" name="priceRange">20만원 ~ 30만원
         </div>
         <div class="_30-50">
-        <input type="radio" name="_30-50" value="priceRange">30만원 ~ 50만원
+        <input type="radio" value="_30-50" name="priceRange">30만원 ~ 50만원
         </div>
         <div class="_50-100">
-        <input type="radio" name="_50-100" value="priceRange">50만원 ~ 100만원
+        <input type="radio" value="_50-100" name="priceRange">50만원 ~ 100만원
         </div>
         <div class="_over-100">
-        <input type="radio" name="_over-100" value="priceRange">100만원 이상
+        <input type="radio" value="_over-100" name="priceRange">100만원 이상
         </div>
         </div>
     </div>
