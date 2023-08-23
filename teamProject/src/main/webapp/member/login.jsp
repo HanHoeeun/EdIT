@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<!-- <div id="test1"> -->
+<div id="test1">
 <!-- 헤더 들어가는 곳  -->
 <jsp:include page="../top.jsp"></jsp:include>
 <!-- 헤더 들어가는 곳  -->
@@ -73,15 +73,16 @@
     </div>
     <div class="login-register-with">
       <div class="login-with-kakao">네이버로 로그인하기</div>
-      <img class="naver" src="../img/naver.png" />
+      <img class="naver" src="../img/naver.png" >
     </div>
     <div class="login-register-with2">
       <div class="login-with-kakao">카카오로 로그인하기</div>
-      <img class="kakao" src="../img/kakao.png" />
+      <img class="kakao" src="../img/kakao.png" >
     </div>
   </div>
-</div>
-
+  </div>
+ </div>
+<hr>
 <!-- 푸터 들어가는 곳! -->
 <jsp:include page="../bottom.jsp"></jsp:include>
 <!-- 푸터 들어가는 곳! -->
