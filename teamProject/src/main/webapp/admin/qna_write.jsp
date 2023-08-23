@@ -53,7 +53,7 @@
 				<tr>
 				<td class="_1q_query_tab_5">내용</td>
 				<td>
-					<div class="_1q_query_tab_10"><label for="imgfile"><img src="img/picture.png" width="25px" height="25px">파일 업로드</label></div>
+					<div class="_1q_query_tab_10"><label for="imgfile"><img src="../img/picture.png" width="25px" height="25px">파일 업로드</label></div>
 					<input type="file" name="imgfile" id="imgfile" accept="image/*">
 				</td>
 				</tr>
