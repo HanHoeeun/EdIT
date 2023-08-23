@@ -3,18 +3,24 @@
 .frame-395,
 .frame-395 * {
   box-sizing: border-box;
+/*   padding: 100px auto 100px auto; */
+/*   align-content: center; */
+/*   position: relative; */
 }
+/* ㅂㄷㅂㄷ */
 .frame-395 {
-  padding: 100px 748px 100px 748px;
+  padding: 20px 300px 20px 300px;
   display: flex;
   flex-direction: row;
   gap: 10px;
   align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: center;
   flex-shrink: 0;
   position: relative;
+  align-content: center;
 }
 .login {
+ float: none;
   background: var(--gray-00, #ffffff);
   border-radius: 4px;
   flex-shrink: 0;
@@ -43,13 +49,13 @@
   width: 360px;
   position: relative;
 }
-/* .test1{ */
-/*   color: var(--gray-900, #191c1f); */
-/*   text-align: left; */
-/*   font: var(--body-small-400, 400 14px/20px "Public Sans", sans-serif); */
-/*   position: relative; */
-/*   align-self: stretch; */
-/* } */
+.test1{
+  color: var(--gray-900, #191c1f);
+  text-align: left;
+  font: var(--body-small-400, 400 14px/20px "Public Sans", sans-serif);
+  position: relative;
+  align-self: stretch;
+}
 .input-field {
   background: var(--gray-00, #ffffff);
   border-radius: 2px;
