@@ -242,46 +242,8 @@
   width: 312px;
 }
 
-._2buttons {
-  padding: 12px 0px 0px 0px;
-  display: flex;
-  flex-direction: row;
-  gap: 16px;
-  align-items: flex-start;
-  justify-content: flex-start;
-  flex-shrink: 0;
-  width: 646px;
-  height: 68px;
-  position: relative;
-}
-._2button {
-  border-radius: 3px;
-  border-style: solid;
-  border-color: var(--primary-500, #fa8232);
-  border-width: 2px;
-  padding: 0px 32px 0px 32px;
-  display: flex;
-  flex-direction: row;
-  gap: 12px;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  width: 646px;
-  height: 48px;
-  position: relative;
-}
-._2label {
-  color: var(--primary-500, #fa8232);
-  text-align: left;
-  font: var(--heading-06, 700 16px/56px "Public Sans", sans-serif);
-  text-transform: uppercase;
-  position: relative;
-  text-decoration: none;
-  line-height: 54px;
-  outline: none;
-}
 
-._2content {
+._2content2 {
   padding: 0px 0px 8px 0px;
   display: flex;
   flex-direction: row;
@@ -292,7 +254,7 @@
   position: relative;
 }
 
-._2add-to-wishlist2 {
+._2update {
   display: inline-block;
     position: relative;
     padding: 10px 20px;
@@ -303,7 +265,7 @@
     text-decoration: none;
 
 }
-._2report {
+._2delete {
   display: inline-block;
     position: relative;
     padding: 10px 20px;
@@ -314,7 +276,7 @@
     text-decoration: none;
 
 }
-._2commit {
+._2list {
   display: inline-block;
     position: relative;
     padding: 10px 20px;
