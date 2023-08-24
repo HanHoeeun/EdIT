@@ -163,7 +163,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											<div class="row">
 												<div class="multi-gd-img">
 													<ul class="multi-column-dropdown">
-														<h6>Baby Care</h6>
+														<h6>Baby</h6>
 														<li><a href="personalcare.html">Baby Soap</a></li>
 														<li><a href="personalcare.html">Baby Care Accessories</a></li>
 														<li><a href="personalcare.html">Baby Oil & Shampoos</a></li>
