@@ -8,6 +8,7 @@
 </head>
 <body>
 <!--
+
 author: W3layouts
 author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
@@ -55,11 +56,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="agileits_header">
 		<div class="container">
 			<div class="w3l_offers">
-				<p>SALE UP TO 70% OFF. USE CODE "SALE70%" . <a href="products.html">SHOP NOW</a></p>
+				<p><a href="../product/products.jsp">쇼핑하기</a></p>
 			</div>
 			<div class="agile-login">
 				<ul>
-					<li><a href="registered.html"> Create Account </a></li>
+					<li><a href="registered.html"> 가입하기 </a></li>
 					<li><a href="login.html">Login</a></li>
 					<li><a href="contact.html">Help</a></li>
 					
@@ -163,7 +164,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											<div class="row">
 												<div class="multi-gd-img">
 													<ul class="multi-column-dropdown">
-														<h6>Baby Care</h6>
+														<h6>Baby</h6>
 														<li><a href="personalcare.html">Baby Soap</a></li>
 														<li><a href="personalcare.html">Baby Care Accessories</a></li>
 														<li><a href="personalcare.html">Baby Oil & Shampoos</a></li>
@@ -229,8 +230,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="breadcrumbs">
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
-				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-				<li class="active">Products</li>
+				<li><a href="../index.jsp"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+				<li class="active">전체 상품 보기</li>
 			</ol>
 		</div>
 	</div>
@@ -242,37 +243,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="categories">
 					<h2>Categories</h2>
 					<ul class="cate">
-						<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Fruits And Vegetables</a></li>
-							<ul>
-								<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Cuts & Sprouts</a></li>
-								<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Flowers</a></li>
-								<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Fresh Herbs & Seasonings</a></li>
-								<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Fresh Vegetables</a> </li>
-								<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>International Vegetables</a> </li>
-								<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Organic Fruits & Vegetables</a></li>
-							</ul>
-						<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Grocery & Staples</a></li>
-							<ul>
-								<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Dals & Pulses</a> </li>
-								<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Dry Fruits</a> </li>
-								<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Edible Oils & Ghee</a> </li>
-								<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Flours & Sooji</a> </li>
-								<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Masalas & Spices</a> </li>
-								<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Organic Staples</a> </li>
-								<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Rice & Rice Products</a> </li>
-								<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Salt, Sugar & Jaggery</a></li>
-							</ul>
-						<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>PersonalCare</a></li>
-							<ul>
-								<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Baby Care</a> </li>
-								<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Cosmetics</a> </li>
-								<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Deos & Perfumes</a> </li>
-								<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Skin Care</a> </li>
-								<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Sanitary Needs</a> </li>
-								<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Oral Care</a> </li>
-								<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Personal Hygiene</a> </li>
-								<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Shaving Needs</a></li>
-							</ul>
+						<li><a href="../product/groceries.jsp"><i class="fa fa-arrow-right" aria-hidden="true"></i>노트북</a></li>
+						<li><a href="../product/household.jsp"><i class="fa fa-arrow-right" aria-hidden="true"></i>휴대폰</a></li>
+						<li><a href="../product/personalcare.jsp"><i class="fa fa-arrow-right" aria-hidden="true"></i>태블릿</a></li>
 					</ul>
 				</div>																																												
 			</div>
@@ -281,20 +254,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="products-right-grids">
 						<div class="sorting">
 							<select id="country" onchange="change_country(this.value)" class="frm-field required sect">
-								<option value="null"><i class="fa fa-arrow-right" aria-hidden="true"></i>Default sorting</option>
-								<option value="null"><i class="fa fa-arrow-right" aria-hidden="true"></i>Sort by popularity</option> 
-								<option value="null"><i class="fa fa-arrow-right" aria-hidden="true"></i>Sort by average rating</option>					
-								<option value="null"><i class="fa fa-arrow-right" aria-hidden="true"></i>Sort by price</option>								
+								<option value="null"><i class="fa fa-arrow-right" aria-hidden="true"></i>최신순</option>
+								<option value="null"><i class="fa fa-arrow-right" aria-hidden="true"></i>인기순</option> 
+								<option value="null"><i class="fa fa-arrow-right" aria-hidden="true"></i>가격 높은 순</option>					
+								<option value="null"><i class="fa fa-arrow-right" aria-hidden="true"></i>가격 낮은 순</option>								
 							</select>
 						</div>
-						<div class="sorting-left">
-							<select id="country1" onchange="change_country(this.value)" class="frm-field required sect">
-								<option value="null"><i class="fa fa-arrow-right" aria-hidden="true"></i>Item on page 9</option>
-								<option value="null"><i class="fa fa-arrow-right" aria-hidden="true"></i>Item on page 18</option> 
-								<option value="null"><i class="fa fa-arrow-right" aria-hidden="true"></i>Item on page 32</option>					
-								<option value="null"><i class="fa fa-arrow-right" aria-hidden="true"></i>All</option>								
-							</select>
-						</div>
+						
 						<div class="clearfix"> </div>
 					</div>
 				</div>
@@ -303,15 +269,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="hover14 column">
 							<div class="agile_top_brand_left_grid">
 								<div class="agile_top_brand_left_grid_pos">
-									<img src="../images/offer.png" alt=" " class="img-responsive">
+									
 								</div>
 								<div class="agile_top_brand_left_grid1">
 									<figure>
 										<div class="snipcart-item block">
 											<div class="snipcart-thumb">
-												<a href="single.html"><img title=" " alt=" " src="../images/pf4.png"></a>		
-												<p>Sampann-toor-dal</p>
-												<h4>$35.99 <span>$55.00</span></h4>
+												<a href="single.html"><img title=" " alt=" " src="../proImg/img1_07.png" width= "150px" height="150px"></a>		
+												<p>안쓰는 애플워치 팔아요 </p>
+												<h4>₩250,000 </h4>
 											</div>
 											<div class="snipcart-details top_brand_home_details">
 												<form action="#" method="post">
@@ -321,11 +287,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 														<input type="hidden" name="business" value=" ">
 														<input type="hidden" name="item_name" value="Fortune Sunflower Oil">
 														<input type="hidden" name="amount" value="35.99">
-														<input type="hidden" name="discount_amount" value="1.00">
-														<input type="hidden" name="currency_code" value="USD">
+														<!--<input type="hidden" name="discount_amount" value="1.00">-->
+														<input type="hidden" name="currency_code" value="KRW">
 														<input type="hidden" name="return" value=" ">
 														<input type="hidden" name="cancel_return" value=" ">
-														<input type="submit" name="submit" value="Add to cart" class="button">
+														<input type="submit" name="submit" value="찜" class="button">
 													</fieldset>
 												</form>
 											</div>
@@ -347,7 +313,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											<div class="snipcart-thumb">
 												<a href="single.html"><img title=" " alt=" " src="../images/bv3.png"></a>		
 												<p>Parryss-sugar</p>
-												<h4>$30.99 <span>$45.00</span></h4>
+												<h4>₩30,000</h4>
 											</div>
 											<div class="snipcart-details top_brand_home_details">
 												<form action="#" method="post">
@@ -357,8 +323,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 														<input type="hidden" name="business" value=" ">
 														<input type="hidden" name="item_name" value="basmati rise">
 														<input type="hidden" name="amount" value="30.99">
-														<input type="hidden" name="discount_amount" value="1.00">
-														<input type="hidden" name="currency_code" value="USD">
+														<!--  <input type="hidden" name="discount_amount" value="1.00"> -->
+														<input type="hidden" name="currency_code" value="KRW">
 														<input type="hidden" name="return" value=" ">
 														<input type="hidden" name="cancel_return" value=" ">
 														<input type="submit" name="submit" value="Add to cart" class="button">
