@@ -259,11 +259,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						
 <!-- sns로그인 -->
 					<div class="_5login-naver">
-						<a href="#"><img class="_5naver" src="images/_5naver.png">네이버로 로그인하기</a>
+						<a href="#"><img class="_5naver" src="images/naver_5.png">네이버로 로그인하기</a>
 					</div>
 					
 					<div class="_5login-kakao">	
-						<a href="#"><img class="_5kakao" src="images/_5kakao.png">카카오로 로그인하기</a>
+						<a href="#"><img class="_5kakao" src="images/kakao_5.png">카카오로 로그인하기</a>
 					</div>
 					 
 					

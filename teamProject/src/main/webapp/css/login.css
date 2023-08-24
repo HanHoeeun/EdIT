@@ -26,3 +26,13 @@
     display: block;
     width: 60%;
 }
+._5naver{
+    width: 20px;
+    height: 20px;
+    position: relative;
+}
+._5kakao{
+    width: 20px;
+    height: 20px;
+    position: relative;
+}
