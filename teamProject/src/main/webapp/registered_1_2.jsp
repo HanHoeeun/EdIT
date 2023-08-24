@@ -46,59 +46,44 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</ol>
 		</div>
 	</div>
-	
+<!-- <!-- -================================= 사이드 메뉴 ====================================-
+	<div class="products">
+		<div class="container">
+			<div class="col-md-4 products-left">
+				<div class="categories">
+					<h2>고객센터</h2>
+					<ul class="cate">
+						<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>자주 하는 질문</a></li>
+						<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>1 : 1 문의</a></li>
+							<ul>
+								<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>문의하기</a></li>
+								<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>문의 내역</a></li>
+							</ul>	 --> 
 	
 <!--==================================== 바디 ==================================-->
 <!-- 문의글 -->
-
-	<div class="answer">
-		<!-- <div class="container"> -->
+<div class="register">
+	<div class="container">
 			<h2>1 : 1 문의 답변</h2>
-		<div class="login-form-grids">
-			<h6>아이디</h6>
-			<input type="text" value="hong12" required=" " readonly><br>
-			<h6>제목</h6>
-			<input type="text" value="사기당했는데요;;" required=" " readonly><br>
-			<h6>문의내용</h6><br>
-			<textarea name="text" placeholder="아이패드 샀는데 벽돌보냈어요ㅡㅡ" required="" readonly></textarea><br><br>
-			<h6>답변내용</h6><br>
-			<textarea name="text" placeholder="내용을 입력하세요" required=""></textarea><br><br>
+			<form class="login-form-grids">		
+			<p>아이디</p>
+			<input type="text" value="hong12" readonly="readonly"><br>
+			<p>제목</p>
+			<input type="text" value="사기당했는데요;;" readonly="readonly"><br>
+			<p>첨부파일</p>
+			<input type="text" value="빈박스.jpg" readonly="readonly"><br>
+			<p>문의내용</p>
+			<textarea name="textarea" placeholder="아이패드 샀는데 벽돌보냈어요ㅡㅡ" readonly="readonly"></textarea><br><br>
+			<p>답변내용</p>
+			<textarea name="textarea" placeholder="내용을 입력하세요"></textarea><br><br>
 			<input type="submit" value="답변"> 
 			<input type="submit" value="취소">
-		</div>
+			</form>
 	</div>
+</div>
+
 			
-	<!-- <div class="about">
-		<div class="w3_agileits_contact_grids">
 	
-			<div class="col-md-6 w3_agileits_contact_grid_right">
-				<h2 class="w3_agile_header">답변하기</h2> 
-
-				<form action="#" method="post">
-					<span class="input input--ichiro">
-						<input class="input__field input__field--ichiro" type="text" id="input-25" name="Name" placeholder=" " required="" />
-						<label class="input__label input__label--ichiro" for="input-25">
-							<span class="input__label-content input__label-content--ichiro">제목</span>
-						</label>
-					</span>
-					<span class="input input--ichiro">
-						<input class="input__field input__field--ichiro" type="email" id="input-26" name="Email" placeholder=" " required="" />
-						<label class="input__label input__label--ichiro" for="input-26">
-							<span class="input__label-content input__label-content--ichiro">아이디</span>
-						</label>
-					</span>
-					<textarea name="text" placeholder="문의내용" required="" readonly></textarea>
-					<textarea name="text" placeholder="내용을 입력하세요" required="" ></textarea>
-					<input type="submit" value="작성">
-					<input type="submit" value="취소">
-				</form>
-			</div>
-			<div class="clearfix"> </div>
-		</div>
-	</div> -->
-<!-- contact -->
-
-
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>
 <!-- top-header and slider -->
@@ -143,7 +128,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			
 		});
 </script>	
-<!-- //main slider-banner --> 
+
 
 </body>
 </html>
