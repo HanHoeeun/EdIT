@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>로그인화면</title>
+<title>아이디찾기</title>
 <link href= "css/login.css" rel= "stylesheet" type="text/css">
 <!-- <link href= "css/style.css" rel= "stylesheet" type="text/css"> -->
 </head>
@@ -237,44 +237,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 <!-- //breadcrumbs -->
 
-<!-- 로그인 화면 -->
+<!-- 아이디찾기 -->
 	<div class="login">
 		<div class="container">
-			<h2>로그인</h2>
+			<h2>아이디찾기</h2>
+				<p>회원가입시 등록하신 이름과 이메일을 입력해 주세요.</p>
 		
 			<div class="login-form-grids animated wow slideInUp" data-wow-delay=".5s">
+			
 				<form>
-					<input type="text" placeholder="아이디" required=" " >
-					<input type="password" placeholder="패스워드" required=" " >
-					<input type="submit" value="로그인">
-					
+				
 
-					
-					<div class="forgot">
-						<a href="#">아이디</a>
-						/
-						<a href="#">비밀번호 찾기</a>
-					</div>	
-					
-						
-<!-- sns로그인 -->
-					<div class="_5login-naver">
-						<a href="#"><img class="_5naver" src="images/naver_5.png">네이버로 로그인하기</a>
-					</div>
-					
-					<div class="_5login-kakao">	
-						<a href="#"><img class="_5kakao" src="images/kakao_5.png">카카오로 로그인하기</a>
-					</div>
-					 
-					
-					
+<!-- 				질문 -->
+<!-- 아이디찾기 화면을 log.jsp 를 복사해서 가져왔는데 그러면 여기서 class명을 다 바꾸어주는게 맞는지..?? -->
+					<input type="text" placeholder="이름" required=" " >  
+					<input type="email" placeholder="이메일" required=" " >
+						<p><a href="#">확인</a> <a href="login.jsp">취소<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></p>
+				
 				</form>
 			</div>
-			<h4>삭제</h4>
-			<p><a href="registered.html">회원가입</a> <a href="index.html">홈<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></p>
 		</div>
 	</div>
-<!-- //로그인 화면 -->
+<!-- //아이디찾기 -->
 
 <!-- //footer -->
 <div class="footer">
