@@ -125,7 +125,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<li class="dropdown">
 										<a href="../product/groceries.jsp">노트북</a>
 									</li>
-									<!-- // 휴대폰 -->
+									<!-- // 노트북 -->
 									
 									<!-- 태블릿 -->
 									<li class="dropdown">
@@ -172,23 +172,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 				<div class="col-md-8 agileinfo_single_right">
 				
-					<!-- 관심도(별) -->
-					<div class="rating1">
-						<span class="starRating">
-							<input id="rating5" type="radio" name="rating" value="5">
-							<label for="rating5">5</label>
-							<input id="rating4" type="radio" name="rating" value="4">
-							<label for="rating4">4</label>
-							<input id="rating3" type="radio" name="rating" value="3" checked="">
-							<label for="rating3">3</label>
-							<input id="rating2" type="radio" name="rating" value="2">
-							<label for="rating2">2</label>
-							<input id="rating1" type="radio" name="rating" value="1">
-							<label for="rating1">1</label>
-						</span>
-					</div>
-					<!-- // 관심도(별) -->
-					
 					<!-- 상품제목 -->
 					<h2>미트리 소프트닭가슴살</h2>
 					<!-- // 상품제목 -->
@@ -216,23 +199,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 					<!-- // 상품설명 -->
 					
-					<!-- 위시리스트 추가 -->
-					<div class="snipcart-item block">
-						<div class="snipcart-details agileinfo_single_right_details">
-							<table>
-								<fieldset>
-									<input type="button" name="btn" value="위시리스트 추가" class="button" onclick="location.href='../product/checkout.jsp'">
-								</fieldset>
-							</table>	
-						</div>
-					</div>
-					<!-- // 위시리스트 추가버튼 -->
-					
 					<!-- 채팅, 신고하기, 상품목록 버튼 -->
 					<div class="checkout-right-basket">
-					<a href=""><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>1:1 채팅</a>
-					<a href=""><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>구매확정</a>
-					<a href=""><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>신고하기</a>
+					<a href=""><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>상품수정</a>
+					<a href=""><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>상품삭제</a>
 					<a href="../product/products.jsp"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>상품목록</a>
 					</div>
 					<!-- // 채팅, 신고하기, 상품목록 버튼 -->
