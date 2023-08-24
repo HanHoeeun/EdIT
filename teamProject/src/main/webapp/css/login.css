@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+/* 추가함(jin) */
+._5login-naver{
+	margin: 2em 0 0.5em;
+    font-size: 1em;
+    color: #212121;
+    text-align: center;
+    text-transform: uppercase; 
+}
+._5login-kakao{
+	margin: 2em 0 0.5em;
+    font-size: 1em;
+    color: #212121;
+    text-align: center;
+    text-transform: uppercase;
+}
