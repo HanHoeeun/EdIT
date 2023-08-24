@@ -4,11 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>product/single.jsp</title>
+<title>product/checkout.jsp</title>
 </head>
 <body>
-
-<!--
+<!--  찜리스트 
 author: W3layouts
 author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
@@ -17,7 +16,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
-<title>Super Market an Ecommerce Online Shopping Category Flat Bootstrap Responsive Website Template | Single Page :: w3layouts</title>
+<title>Super Market an Ecommerce Online Shopping Category Flat Bootstrap Responsive Website Template | Checkout :: w3layouts</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -49,14 +48,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 <!-- start-smoth-scrolling -->
 </head>
+	
 <body>
 
 <!-- header -->
 	<div class="agileits_header">
 		<div class="container">
+		
 			<div class="w3l_offers">
 				<p><a href="../product/products.jsp">쇼핑하기</a></p>
 			</div>
+			
 			<div class="agile-login">
 				<ul>
 					<li><a href="registered.html"> Create Account </a></li>
@@ -74,7 +76,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<div class="clearfix"> </div>
 		</div>
-		
 	</div>
 
 	<div class="logo_products">
@@ -82,11 +83,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="w3ls_logo_products_left1">
 				<ul class="phone_email">
 					<li><i class="fa fa-phone" aria-hidden="true"></i>Order online or call us : (+0123) 234 567</li>
+					
 				</ul>
 			</div>
+			
 			<div class="w3ls_logo_products_left">
 				<h1><a href="index.html">EdIT</a></h1>
 			</div>
+			
 		<div class="w3l_search">
 			<form action="#" method="post">
 				<input type="search" name="Search" placeholder="Search for a Product..." required="">
@@ -125,7 +129,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<li class="dropdown">
 										<a href="../product/groceries.jsp">노트북</a>
 									</li>
-									<!-- // 휴대폰 -->
+									<!-- // 노트북 -->
 									
 									<!-- 태블릿 -->
 									<li class="dropdown">
@@ -143,7 +147,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<li><a href="contact.html">Contact</a></li>
 								</ul>
 							</div>
-				</nav>
+							</nav>
 			</div>
 		</div>
 		
@@ -153,99 +157,153 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- breadcrumbs -->
 	<div class="breadcrumbs">
 		<div class="container">
-			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
-				<li><a href="../index.jsp"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>홈</a></li>
-				<li class="active">상품 상세페이지</li>
+			<ol class="breadcrumb breadcrumb1">
+				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>홈</a></li>
+				<li class="active">위시리스트</li>
 			</ol>
 		</div>
 	</div>
 <!-- //breadcrumbs -->
 
 
-<!-- 상품그림,제목,설명,관심도 등 -->
-	<div class="products">
+<!-- 위시리스트 -->
+	<div class="checkout">
 		<div class="container">
-			<div class="agileinfo_single">
-				
-				<div class="col-md-4 agileinfo_single_left">
-					<img id="example" src="../images/si1.jpg" alt=" " class="img-responsive">
+			<h2>나의 위시리스트</h2>
+			<div class="checkout-right">
+				<table class="timetable_sub">
+					<thead>
+						<tr>
+							<th>찜 번호</th>	
+							<th>Product</th>
+							<th>상품 이름</th>
+						
+							<th>가격</th>
+							<th>삭제</th>
+						</tr>
+					</thead>
+					<tr class="rem1">
+						<td class="invert">1</td>
+						<td class="invert-image"><a href="single.html"><img src="../images/1.png" alt=" " class="img-responsive" /></a></td>
+						<td class="invert">
+							 <div class="quantity"> 
+								<div class="quantity-select">                           
+									<div class="entry value-minus">&nbsp;</div>
+									<div class="entry value"><span>1</span></div>
+									<div class="entry value-plus active">&nbsp;</div>
+								</div>
+							</div>
+						</td>
+						<td class="invert">Tata Salt</td>
+						
+						<td class="invert">$290.00</td>
+						<td class="invert">
+							<div class="rem">
+								<div class="close1"> </div>
+							</div>
+							<script>$(document).ready(function(c) {
+								$('.close1').on('click', function(c){
+									$('.rem1').fadeOut('slow', function(c){
+										$('.rem1').remove();
+									});
+									});	  
+								});
+						   </script>
+						</td>
+					</tr>
+					<tr class="rem2">
+						<td class="invert">2</td>
+						<td class="invert-image"><a href="single.html"><img src="images/2.png" alt=" " class="img-responsive" /></a></td>
+						<td class="invert">
+							 <div class="quantity"> 
+								<div class="quantity-select">                           
+									<div class="entry value-minus">&nbsp;</div>
+									<div class="entry value"><span>1</span></div>
+									<div class="entry value-plus active">&nbsp;</div>
+								</div>
+							</div>
+						</td>
+						<td class="invert">Fortune oil</td>
+					
+						<td class="invert">$250.00</td>
+						<td class="invert">
+							<div class="rem">
+								<div class="close2"> </div>
+							</div>
+							<script>$(document).ready(function(c) {
+								$('.close2').on('click', function(c){
+									$('.rem2').fadeOut('slow', function(c){
+										$('.rem2').remove();
+									});
+									});	  
+								});
+						   </script>
+						</td>
+					</tr>
+					<tr class="rem3">
+						<td class="invert">3</td>
+						<td class="invert-image"><a href="single.html"><img src="images/3.png" alt=" " class="img-responsive" /></a></td>
+						<td class="invert">
+							 <div class="quantity"> 
+								<div class="quantity-select">                           
+									<div class="entry value-minus">&nbsp;</div>
+									<div class="entry value"><span>1</span></div>
+									<div class="entry value-plus active">&nbsp;</div>
+								</div>
+							</div>
+						</td>
+						<td class="invert">Aashirvaad atta</td>
+						
+						<td class="invert">$15.00</td>
+						<td class="invert">
+							<div class="rem">
+								<div class="close3"> </div>
+							</div>
+							<script>$(document).ready(function(c) {
+								$('.close3').on('click', function(c){
+									$('.rem3').fadeOut('slow', function(c){
+										$('.rem3').remove();
+									});
+									});	  
+								});
+						   </script>
+						</td>
+					</tr>
+								<!--quantity-->
+									<script>
+									$('.value-plus').on('click', function(){
+										var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10)+1;
+										divUpd.text(newVal);
+									});
+
+									$('.value-minus').on('click', function(){
+										var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10)-1;
+										if(newVal>=1) divUpd.text(newVal);
+									});
+									</script>
+								<!--quantity-->
+				</table>
+			</div>
+			<div class="checkout-left">	
+				<div class="checkout-left-basket">
+					<h4>Continue to basket</h4>
+					<ul>
+						<li>Product1 <i>-</i> <span>$15.00 </span></li>
+						<li>Product2 <i>-</i> <span>$25.00 </span></li>
+						<li>Product3 <i>-</i> <span>$29.00 </span></li>
+						<li>Total Service Charges <i>-</i> <span>$15.00</span></li>
+						<li>Total <i>-</i> <span>$84.00</span></li>
+					</ul>
 				</div>
-				<div class="col-md-8 agileinfo_single_right">
-				
-					<!-- 관심도(별) -->
-					<div class="rating1">
-						<span class="starRating">
-							<input id="rating5" type="radio" name="rating" value="5">
-							<label for="rating5">5</label>
-							<input id="rating4" type="radio" name="rating" value="4">
-							<label for="rating4">4</label>
-							<input id="rating3" type="radio" name="rating" value="3" checked="">
-							<label for="rating3">3</label>
-							<input id="rating2" type="radio" name="rating" value="2">
-							<label for="rating2">2</label>
-							<input id="rating1" type="radio" name="rating" value="1">
-							<label for="rating1">1</label>
-						</span>
-					</div>
-					<!-- // 관심도(별) -->
-					
-					<!-- 상품제목 -->
-					<h2>미트리 소프트닭가슴살</h2>
-					<!-- // 상품제목 -->
-					
-					<!-- 가격 -->	
-					<div class="snipcart-thumb agileinfo_single_right_snipcart">
-						<h4 class="m-sing">10000원</h4>
-					</div>
-					<!-- // 가격 -->
-					
-					<!-- 판매ID,상품상태,등록날짜 -->
-					<div class="w3agile_description">
-						<p>판매ID : asgg123</p>
-						<p>상품상태 : 판매중</p>
-						<p>등록날짜 : </p>
-					</div>
-					<!-- 판매ID,상품상태,등록날짜 -->
-					
-					<!-- 상품설명 -->
-					<div class="w3agile_description">
-						<h4>상품 상세설명 :</h4>
-						<p>
-						다른 제조사 닭가슴살보다 가격이 저렴하고 염분도 적고 부드럽다.
-						</p>
-					</div>
-					<!-- // 상품설명 -->
-					
-					<!-- 위시리스트 추가 -->
-					<div class="snipcart-item block">
-						<div class="snipcart-details agileinfo_single_right_details">
-							<table>
-								<fieldset>
-									<input type="button" name="btn" value="위시리스트 추가" class="button" onclick="location.href='../product/checkout.jsp'">
-								</fieldset>
-							</table>	
-						</div>
-					</div>
-					<!-- // 위시리스트 추가버튼 -->
-					
-					<!-- 채팅, 신고하기, 상품목록 버튼 -->
-					<div class="checkout-right-basket">
-					<a href=""><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>1:1 채팅</a>
-					<a href=""><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>구매확정</a>
-					<a href=""><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>신고하기</a>
-					<a href="../product/products.jsp"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>상품목록</a>
-					</div>
-					<!-- // 채팅, 신고하기, 상품목록 버튼 -->
-					
+				<div class="checkout-right-basket">
+					<a href="single.html"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>Continue Shopping</a>
 				</div>
 				<div class="clearfix"> </div>
 			</div>
 		</div>
 	</div>
-<!-- // 상품그림,제목,설명,관심도 등 -->
-	
-	
-<!-- footer -->
+<!-- //checkout -->
+<!-- //footer -->
 <div class="footer">
 		<div class="container">
 			<div class="w3_footer_grids">
@@ -312,7 +370,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</ul>
 				</div>
 				<div class="payment-w3ls">	
-					<img src="../images/card.png" alt=" " class="img-responsive">
+					<img src="images/card.png" alt=" " class="img-responsive">
 				</div>
 				<div class="clearfix"> </div>
 			</div>
@@ -350,7 +408,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	}
 </script>
 <!-- main slider-banner -->
-<script src="../js/skdslider.min.js"></script>
+<script src="js/skdslider.min.js"></script>
 <link href="../css/skdslider.css" rel="stylesheet">
 <script type="text/javascript">
 		jQuery(document).ready(function(){
