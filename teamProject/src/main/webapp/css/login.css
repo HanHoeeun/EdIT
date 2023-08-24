@@ -2,16 +2,27 @@
 
 /* 추가함(jin) */
 ._5login-naver{
-	margin: 2em 0 0.5em;
-    font-size: 1em;
-    color: #212121;
+	margin: 2em auto 0.5em;
+/*     color: #212121; */
     text-align: center;
-    text-transform: uppercase; 
+/*     text-transform: uppercase;  */
+/*     outline: none; */
+    border: 1px solid #DBDBDB;
+    padding: 10px 10px 10px 10px;
+    font-size: 14px;
+    color: #999;
+/*     display: block; */
+    width: 60%;
 }
 ._5login-kakao{
-	margin: 2em 0 0.5em;
-    font-size: 1em;
-    color: #212121;
+	margin: 0em auto 0.5em;
     text-align: center;
     text-transform: uppercase;
+    /*     outline: none; */
+    border: 1px solid #DBDBDB;
+    padding: 10px 10px 10px 10px;
+    font-size: 14px;
+    color: #999;
+    display: block;
+    width: 60%;
 }

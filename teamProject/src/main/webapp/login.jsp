@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>login</title>
 <link href= "css/login.css" rel= "stylesheet" type="text/css">
+<!-- <link href= "css/style.css" rel= "stylesheet" type="text/css"> -->
 </head>
 <body>
 <!--
@@ -236,7 +237,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 <!-- //breadcrumbs -->
 
-<!-- login -->
+<!-- 로그인 화면임 -->
 	<div class="login">
 		<div class="container">
 			<h2>로그인</h2>
@@ -246,12 +247,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<input type="email" placeholder="아이디" required=" " >
 					<input type="password" placeholder="패스워드" required=" " >
 					<input type="submit" value="로그인">
+					
+
+					
 					<div class="forgot">
 						<a href="#">아이디</a>
 						/
 						<a href="#">비밀번호 찾기</a>
 					</div>	
+					
 						
+<!-- sns로그인 -->
 					<div class="_5login-naver">
 						<a href="#"><img class="_5naver" src="images/_5naver.png">네이버로 로그인하기</a>
 					</div>
