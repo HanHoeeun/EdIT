@@ -2873,7 +2873,7 @@ ul.faq {
     margin-bottom: 3%;
 }
 .snipcart-details input.button {
-    width: 54%;
+    width: 100%;
 }
 .agile_top_brands_grids {
     margin-top: 2em;
@@ -2959,7 +2959,7 @@ ul.faq {
 	max-height: 100px !important;
 }
 .snipcart-details input.button {
-    width: 64%;
+    width: 80%;
 }
 .agile-login {
     width: 43%;
