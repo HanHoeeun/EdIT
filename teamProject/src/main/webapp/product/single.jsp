@@ -125,6 +125,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<li class="dropdown">
 										<a href="../product/groceries.jsp">노트북</a>
 									</li>
+									<!-- // 노트북 -->
+									
+									<!-- 휴대폰 -->
+									<li class="dropdown">
+										<a href="../product/household.jsp">휴대폰</a>
+									</li>
 									<!-- // 휴대폰 -->
 									
 									<!-- 태블릿 -->
@@ -133,11 +139,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									</li>
 									<!-- // 태블릿 -->
 									
-									<!-- 휴대폰 -->
-									<li class="dropdown">
-										<a href="../product/household.jsp">휴대폰</a>
-									</li>
-									<!-- // 휴대폰 -->
 									<!-- //Mega Menu -->
 									
 									<li><a href="contact.html">Contact</a></li>
@@ -190,12 +191,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<!-- // 관심도(별) -->
 					
 					<!-- 상품제목 -->
-					<h2>미트리 소프트닭가슴살</h2>
+					<h2>사과 노트북</h2>
 					<!-- // 상품제목 -->
 					
 					<!-- 가격 -->	
 					<div class="snipcart-thumb agileinfo_single_right_snipcart">
-						<h4 class="m-sing">10000원</h4>
+						<h4 class="m-sing">200만원</h4>
 					</div>
 					<!-- // 가격 -->
 					
@@ -211,7 +212,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="w3agile_description">
 						<h4>상품 상세설명 :</h4>
 						<p>
-						다른 제조사 닭가슴살보다 가격이 저렴하고 염분도 적고 부드럽다.
+						노트북이 빠르고 디자인도 깔끔하게 잘 뽑혔다. 성능이 죽입니다!!!!1
 						</p>
 					</div>
 					<!-- // 상품설명 -->
@@ -221,7 +222,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="snipcart-details agileinfo_single_right_details">
 							<table>
 								<fieldset>
-									<input type="button" name="btn" value="위시리스트 추가" class="button" onclick="location.href='../product/checkout.jsp'">
+									<input type="button" name="btn" value="찜리스트 추가" class="button" onclick="location.href='../product/checkout.jsp'">
 								</fieldset>
 							</table>	
 						</div>
