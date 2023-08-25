@@ -4,10 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>product/single.jsp</title>
+<title>Insert title here</title>
 </head>
 <body>
-
 <!--
 author: W3layouts
 author URL: http://w3layouts.com
@@ -156,105 +155,39 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
 				<li><a href="../index.jsp"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>홈</a></li>
-				<li class="active">상품 상세페이지</li>
+				<li class="active">상품 삭제</li>
 			</ol>
 		</div>
 	</div>
 <!-- //breadcrumbs -->
 
 
-<!-- 상품그림,제목,설명,관심도 등 -->
-	<div class="products">
+<!-- 로그인 화면 -->
+	<div class="login">
 		<div class="container">
-			<div class="agileinfo_single">
-				
-				<div class="col-md-4 agileinfo_single_left">
-					<img id="example" src="../images/si1.jpg" alt=" " class="img-responsive">
-				</div>
-				<div class="col-md-8 agileinfo_single_right">
-				
-					<!-- 조회수 -->
-					<div style="float: right;">
-					<img src="../images/readcountimg.png" width="20" height=20" alt="조회수"><i> : 236</i>
-					</div>
-					<!-- 조회수 -->
-				
-					<!-- 관심도(별) -->
-					<div class="rating1">
-						<span class="starRating">
-							<input id="rating5" type="radio" name="rating" value="5">
-							<label for="rating5">5</label>
-							<input id="rating4" type="radio" name="rating" value="4">
-							<label for="rating4">4</label>
-							<input id="rating3" type="radio" name="rating" value="3" checked="">
-							<label for="rating3">3</label>
-							<input id="rating2" type="radio" name="rating" value="2">
-							<label for="rating2">2</label>
-							<input id="rating1" type="radio" name="rating" value="1">
-							<label for="rating1">1</label>
-						</span>
-					</div>
-					<!-- // 관심도(별) -->
-					
-					<!-- 상품제목 -->
-					<h2>사과 노트북</h2>
-					<!-- // 상품제목 -->
-					
-					<!-- 가격 -->	
-					<div class="snipcart-thumb agileinfo_single_right_snipcart">
-						<h4 class="m-sing">200만원</h4>
-					</div>
-					<!-- // 가격 -->
-					
-					<hr>
-					
-					<!-- 판매ID,상품상태,등록날짜 -->
-					<div class="w3agile_description">
-						<p>판매ID : asgg123</p>
-						<p>상품상태 : 판매중</p>
-						<p>등록날짜 : </p>
-					</div>
-					<!-- 판매ID,상품상태,등록날짜 -->
-					
-					<!-- 상품설명 -->
-					<div class="w3agile_description">
-						<h4>상품 상세설명 :</h4>
-						<p>
-						노트북이 빠르고 디자인도 깔끔하게 잘 뽑혔다. 성능이 죽입니다!!!!1
-						</p>
-					</div>
-					<!-- // 상품설명 -->
-					
-					<!-- 위시리스트 추가 -->
-					<div class="snipcart-item block">
-						<div class="snipcart-details agileinfo_single_right_details">
-							<table>
-								<fieldset>
-									<input type="button" name="btn" value="찜리스트 추가" class="button" onclick="location.href='../product/checkout.jsp'">
-								</fieldset>
-							</table>	
-						</div>
-					</div>
-					<!-- // 위시리스트 추가버튼 -->
-					
-					<!-- 채팅, 신고하기, 상품목록 버튼 -->
-					<div class="checkout-right-basket">
-					<a href=""><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>1:1 채팅</a>
-					<a href=""><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>구매확정</a>
-					<a href=""><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>신고하기</a>
-					<a href="../product/products.jsp"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>상품목록</a>
-					</div>
-					<!-- // 채팅, 신고하기, 상품목록 버튼 -->
-					
-				</div>
-				<div class="clearfix"> </div>
+			<h2>상품삭제</h2>
+		
+			<div class="login-form-grids animated wow slideInUp" data-wow-delay=".5s">
+				<form action="" method="post">
+					<!-- 아이디, 패스워드 일치시 삭제 -->
+					<input type="text" placeholder="아이디" required=" " >
+					<input type="password" placeholder="패스워드" required=" " >
+					<input type="submit" value="삭제하기">
+					<!-- // 아이디, 패스워드 일치시 삭제 -->
+				</form>
 			</div>
+			
+			<!-- 뒤로가기 버튼 -->
+			<div class="register-home">
+				<a href="javascript:history.back();">뒤로가기</a>
+			</div>
+			<!-- // 뒤로가기 버튼 -->
+			
 		</div>
 	</div>
-<!-- // 상품그림,제목,설명,관심도 등 -->
-	
-	
-<!-- footer -->
+<!-- //로그인 화면 -->
+
+<!-- //footer -->
 <div class="footer">
 		<div class="container">
 			<div class="w3_footer_grids">
@@ -321,7 +254,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</ul>
 				</div>
 				<div class="payment-w3ls">	
-					<img src="../images/card.png" alt=" " class="img-responsive">
+					<img src="images/card.png" alt=" " class="img-responsive">
 				</div>
 				<div class="clearfix"> </div>
 			</div>
@@ -359,8 +292,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	}
 </script>
 <!-- main slider-banner -->
-<script src="../js/skdslider.min.js"></script>
-<link href="../css/skdslider.css" rel="stylesheet">
+<script src="js/skdslider.min.js"></script>
+<link href="css/skdslider.css" rel="stylesheet">
 <script type="text/javascript">
 		jQuery(document).ready(function(){
 			jQuery('#demo1').skdslider({'delay':5000, 'animationSpeed': 2000,'showNextPrev':true,'showPlayButton':true,'autoSlide':true,'animationType':'fading'});

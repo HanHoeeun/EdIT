@@ -159,44 +159,50 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1">
 				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>홈</a></li>
-				<li class="active">위시리스트</li>
+				<li class="active">찜리스트</li>
 			</ol>
 		</div>
 	</div>
 <!-- //breadcrumbs -->
 
 
-<!-- 위시리스트 -->
+<!-- 찜리스트 -->
 	<div class="checkout">
 		<div class="container">
-			<h2>나의 위시리스트</h2>
+			<h2>나의 찜리스트</h2>
 			<div class="checkout-right">
 				<table class="timetable_sub">
+				
 					<thead>
 						<tr>
 							<th>찜 번호</th>	
-							<th>Product</th>
+							<th>상품 이미지</th>
 							<th>상품 이름</th>
-						
 							<th>가격</th>
 							<th>삭제</th>
 						</tr>
 					</thead>
+					
+					<!-- 1번상품 -->
 					<tr class="rem1">
+					
+						<!-- 찜 번호 -->
 						<td class="invert">1</td>
-						<td class="invert-image"><a href="single.html"><img src="../images/1.png" alt=" " class="img-responsive" /></a></td>
-						<td class="invert">
-							 <div class="quantity"> 
-								<div class="quantity-select">                           
-									<div class="entry value-minus">&nbsp;</div>
-									<div class="entry value"><span>1</span></div>
-									<div class="entry value-plus active">&nbsp;</div>
-								</div>
-							</div>
-						</td>
-						<td class="invert">Tata Salt</td>
+						<!-- // 찜 번호 -->
 						
-						<td class="invert">$290.00</td>
+						<!-- 상품 이미지 -->
+						<td class="invert-image"><a href="../product/single.jsp"><img src="../images/1.png" alt=" " class="img-responsive" /></a></td>
+						<!-- // 상품 이미지 -->
+						
+						<!-- 상품 이름 -->
+						<td class="invert"><a href="../product/single.jsp">태블릿</a></td>
+						<!-- // 상품 이름 -->
+						
+						<!-- 상품 가격 -->
+						<td class="invert">200만원</td>
+						<!-- // 상품 가격 -->
+						
+						<!-- 삭제하기 -->
 						<td class="invert">
 							<div class="rem">
 								<div class="close1"> </div>
@@ -210,22 +216,31 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								});
 						   </script>
 						</td>
+						<!-- // 삭제하기 -->
+						
 					</tr>
-					<tr class="rem2">
-						<td class="invert">2</td>
-						<td class="invert-image"><a href="single.html"><img src="images/2.png" alt=" " class="img-responsive" /></a></td>
-						<td class="invert">
-							 <div class="quantity"> 
-								<div class="quantity-select">                           
-									<div class="entry value-minus">&nbsp;</div>
-									<div class="entry value"><span>1</span></div>
-									<div class="entry value-plus active">&nbsp;</div>
-								</div>
-							</div>
-						</td>
-						<td class="invert">Fortune oil</td>
+					<!-- // 1번상품 -->
 					
-						<td class="invert">$250.00</td>
+					<!-- 2번상품 -->
+					<tr class="rem2">
+					
+						<!-- 찜 번호 -->
+						<td class="invert">2</td>
+						<!-- // 찜 번호 -->
+						
+						<!-- 상품이미지 -->
+						<td class="invert-image"><a href="../product/single.jsp"><img src="../images/2.png" alt=" " class="img-responsive" /></a></td>
+						<!-- // 상품이미지 -->
+						
+						<!-- 상품 이름 -->
+						<td class="invert"><a href="../product/single.jsp">노트북</a></td>
+						<!-- // 상품 이름 -->
+						
+						<!-- 가격 -->
+						<td class="invert">202만원</td>
+						<!-- // 가격 -->
+						
+						<!-- 삭제하기 -->
 						<td class="invert">
 							<div class="rem">
 								<div class="close2"> </div>
@@ -239,22 +254,31 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								});
 						   </script>
 						</td>
-					</tr>
-					<tr class="rem3">
-						<td class="invert">3</td>
-						<td class="invert-image"><a href="single.html"><img src="images/3.png" alt=" " class="img-responsive" /></a></td>
-						<td class="invert">
-							 <div class="quantity"> 
-								<div class="quantity-select">                           
-									<div class="entry value-minus">&nbsp;</div>
-									<div class="entry value"><span>1</span></div>
-									<div class="entry value-plus active">&nbsp;</div>
-								</div>
-							</div>
-						</td>
-						<td class="invert">Aashirvaad atta</td>
+						<!-- // 삭제하기 -->
 						
-						<td class="invert">$15.00</td>
+					</tr>
+					<!-- // 2번상품 -->
+					
+					<!-- 3번상품 -->
+					<tr class="rem3">
+						
+						<!-- 찜 번호 -->
+						<td class="invert">3</td>
+						<!-- // 찜 번호 -->
+						
+						<!-- 상품이미지 -->
+						<td class="invert-image"><a href="../product/single.jsp"><img src="../images/3.png" alt=" " class="img-responsive" /></a></td>
+						<!-- // 상품이미지 -->
+						
+						<!-- 상품 이름 -->
+						<td class="invert"><a href="../product/single.jsp">휴대폰</a></td>
+						<!-- // 상품 이름 -->
+						
+						<!-- 가격 -->
+						<td class="invert">150만원</td>
+						<!-- 가격 -->
+						
+						<!-- 삭제하기 -->
 						<td class="invert">
 							<div class="rem">
 								<div class="close3"> </div>
@@ -268,41 +292,50 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								});
 						   </script>
 						</td>
+						<!-- 삭제하기 -->
+						
 					</tr>
-								<!--quantity-->
-									<script>
-									$('.value-plus').on('click', function(){
-										var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10)+1;
-										divUpd.text(newVal);
-									});
-
-									$('.value-minus').on('click', function(){
-										var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10)-1;
-										if(newVal>=1) divUpd.text(newVal);
-									});
-									</script>
-								<!--quantity-->
+					<!-- // 3번상품 -->
+					
 				</table>
 			</div>
-			<div class="checkout-left">	
-				<div class="checkout-left-basket">
-					<h4>Continue to basket</h4>
-					<ul>
-						<li>Product1 <i>-</i> <span>$15.00 </span></li>
-						<li>Product2 <i>-</i> <span>$25.00 </span></li>
-						<li>Product3 <i>-</i> <span>$29.00 </span></li>
-						<li>Total Service Charges <i>-</i> <span>$15.00</span></li>
-						<li>Total <i>-</i> <span>$84.00</span></li>
+			
+			<!-- 페이지 목록 -->
+			<nav class="numbering">
+					<ul class="pagination paging">
+						<li>
+							<a href="#" aria-label="Previous">
+								<span aria-hidden="true">&laquo;</span>
+							</a>
+						</li>
+						<li class="active"><a href="#">1<span class="sr-only">(current)</span></a></li>
+						<li><a href="#">2</a></li>
+						<li><a href="#">3</a></li>
+						<li><a href="#">4</a></li>
+						<li><a href="#">5</a></li>
+						<li>
+							<a href="#" aria-label="Next">
+							<span aria-hidden="true">&raquo;</span>
+							</a>
+						</li>
 					</ul>
-				</div>
+			</nav>
+			<!-- // 페이지 목록 -->	
+			
+			<!-- 쇼핑계속하기 버튼 -->
+			<div class="checkout-left">	
 				<div class="checkout-right-basket">
-					<a href="single.html"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>Continue Shopping</a>
+					<a href="../product/single.jsp"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>쇼핑 계속하기</a>
 				</div>
 				<div class="clearfix"> </div>
 			</div>
+			<!-- // 쇼핑계속하기 버튼 -->
+			
 		</div>
 	</div>
-<!-- //checkout -->
+<!-- 찜리스트 -->
+
+
 <!-- //footer -->
 <div class="footer">
 		<div class="container">
@@ -370,14 +403,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</ul>
 				</div>
 				<div class="payment-w3ls">	
-					<img src="images/card.png" alt=" " class="img-responsive">
+					<img src="../images/card.png" alt=" " class="img-responsive">
 				</div>
 				<div class="clearfix"> </div>
 			</div>
 		</div>
 <!-- //footer -->	
 <!-- Bootstrap Core JavaScript -->
-<script src="js/bootstrap.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
 <!-- top-header and slider -->
 <!-- here stars scrolling icon -->
 	<script type="text/javascript">
@@ -396,7 +429,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			});
 	</script>
 <!-- //here ends scrolling icon -->
-<script src="js/minicart.min.js"></script>
+<script src="../js/minicart.min.js"></script>
 <script>
 	// Mini Cart
 	paypal.minicart.render({
@@ -408,7 +441,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	}
 </script>
 <!-- main slider-banner -->
-<script src="js/skdslider.min.js"></script>
+<script src="../js/skdslider.min.js"></script>
 <link href="../css/skdslider.css" rel="stylesheet">
 <script type="text/javascript">
 		jQuery(document).ready(function(){

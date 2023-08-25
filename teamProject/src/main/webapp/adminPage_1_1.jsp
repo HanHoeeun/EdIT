@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!--
 author: W3layouts
 author URL: http://w3layouts.com
@@ -7,7 +9,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
-<title>Super Market an Ecommerce Online Shopping Category Flat Bootstrap Responsive Website Template | Contact :: w3layouts</title>
+<title>Super Market an Ecommerce Online Shopping Category Flat Bootstrap Responsive Website Template | Faq :: w3layouts</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -20,6 +22,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 <!-- font-awesome icons -->
 <link href="css/font-awesome.css" rel="stylesheet"> 
+<link href="css/faq_1.css" rel="stylesheet"> 
 <!-- //font-awesome icons -->
 <!-- js -->
 <script src="js/jquery-1.11.1.min.js"></script>
@@ -215,66 +218,166 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 		
 <!-- //navigation -->
-<!-- breadcrumbs -->
+	<!-- breadcrumbs -->
 	<div class="breadcrumbs">
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
 				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-				<li class="active">Contact</li>
+				<li class="active">AdminPage</li>
 			</ol>
 		</div>
 	</div>
-<!-- //breadcrumbs -->
-<!-- contact -->
-	<div class="about">
-		<div class="w3_agileits_contact_grids">
-			<!-- <div class="col-md-6 w3_agileits_contact_grid_left">
-				<div class="agile_map">
-					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3950.3905851087434!2d-34.90500565012194!3d-8.061582082752993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7ab18d90992e4ab%3A0x8e83c4afabe39a3a!2sSport+Club+Do+Recife!5e0!3m2!1sen!2sin!4v1478684415917" style="border:0"></iframe>
-				</div>
-				<div class="agileits_w3layouts_map_pos">
-					<div class="agileits_w3layouts_map_pos1">
-						<h3>Contact Info</h3>
-						<p>1234k Avenue, 4th block, New York City.</p>
-						<ul class="wthree_contact_info_address">
-							<li><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:info@example.com">info@example.com</a></li>
-							<li><i class="fa fa-phone" aria-hidden="true"></i>+(0123) 232 232</li>
-						</ul>
-						<div class="w3_agile_social_icons w3_agile_social_icons_contact">
-							<ul>
-								<li><a href="#" class="icon icon-cube agile_facebook"></a></li>
-								<li><a href="#" class="icon icon-cube agile_rss"></a></li>
-								<li><a href="#" class="icon icon-cube agile_t"></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div> -->
-			<div class="col-md-6 w3_agileits_contact_grid_right">
-				<h2 class="w3_agile_header">Leave a<span> Message</span></h2>
-
-				<form action="#" method="post">
-					<span class="input input--ichiro">
-						<input class="input__field input__field--ichiro" type="text" id="input-25" name="Name" placeholder=" " required="" />
-						<label class="input__label input__label--ichiro" for="input-25">
-							<span class="input__label-content input__label-content--ichiro">Your Name</span>
-						</label>
-					</span>
-					<span class="input input--ichiro">
-						<input class="input__field input__field--ichiro" type="email" id="input-26" name="Email" placeholder=" " required="" />
-						<label class="input__label input__label--ichiro" for="input-26">
-							<span class="input__label-content input__label-content--ichiro">Your Email</span>
-						</label>
-					</span>
-					<textarea name="Message" placeholder="Your message here..." required=""></textarea>
-					<input type="submit" value="Submit">
-				</form>
+	<!-- //breadcrumbs -->
+	<!-- top-brands -->
+	
+	<div class="top-brands">
+		<h2>관리자 페이지</h2>
+		<div class="container_1_1">
+			<div class="container_2_1">
+<!-- 				상단 탭 리스트 -->
+				<ul class="tabs">
+					<li class="tab-link current" data-tab="tab-1">신고내역</li>
+					<li class="tab-link" data-tab="tab-2">회원관리</li>
+					
+				</ul>
 			</div>
-			<div class="clearfix"> </div>
-		</div>
-	</div>
-<!-- contact -->
+			<div class="container_3_1">
+				<div id="tab-1" class="tab-content current">
+<!-- 				신고내역 테이블 -->
+				<table class="_1qna_board">
+						<tr>
+							<th class="_1qna_board_border">신고번호</th>
+							<th class="_1qna_board_border">회원번호</th>
+							<th class="_1qna_board_border">제목</th>
+							<th class="_1qna_board_border">작성자</th>
+							<th class="_1qna_board_border">작성시간</th>
+							<th>확인여부</th>
+						</tr>
+						<tr onclick="location.href='index.html'">
+							<td class="_1qna_board_border">3</td>
+							<td class="_1qna_board_border">002</td>
+							<td class="_1qna_board_subject">사장나와</td>
+							<td class="_1qna_board_border">kkm</td>
+							<td class="_1qna_board_border">11:13</td>
+							<td>x</td>
+						</tr>
+						<tr>
+							<td class="_1qna_board_border">2</td>
+							<td class="_1qna_board_border">002</td>
+							<td class="_1qna_board_subject">사기당했어요</td>
+							<td class="_1qna_board_border">kkm</td>
+							<td class="_1qna_board_border">11:13</td>
+							<td>x</td>
+						</tr>
+						<tr>
+							<td class="_1qna_board_border">1</td>
+							<td class="_1qna_board_border">002</td>
+							<td class="_1qna_board_subject">비밀번호 변경 문의</td>
+							<td class="_1qna_board_border">kkm</td>
+							<td class="_1qna_board_border">11:13</td>
+							<td>x</td>
+						</tr>
+						
+					</table>
+<!-- 				신고내역 페이징 -->
+				    <div class="_1qna_paging">
+        				<ul>
+				           <li onclick="location.href='index.html'">prev</li>
+				           <li onclick="location.href='about.html'">1</li>
+				           <li onclick="location.href='login.html'">2</li>
+				           <li onclick="location.href='faq.html'">3</li>
+				           <li onclick="location.href='gourmet.html'">4</li>
+				           <li onclick="location.href='login.html'">5</li>
+				           <li onclick="location.href='products.html'">next</li>
+						</ul>
+   					 </div>
+			
+			<!-- script for tabs -->
+				</div>
+				<div id="tab-2" class="tab-content">
+<!-- 				2탭 문의글 작성 -->
+					<table class="_1qna_board">
+						<tr>
+							<th class="_1qna_board_border">회원번호</th>
+							<th class="_1qna_board_border">아이디</th>
+							<th class="_1qna_board_border">닉네임</th>
+							<th class="_1qna_board_border">이름</th>
+							<th>신고횟수</th>
+						</tr>
+						<tr onclick="location.href='index.html'">
+							<td class="_1qna_board_border">002</td>
+							<td class="_1qna_board_border">kkm</td>
+							<td class="_1qna_board_border">kkm</td>
+							<td class="_1qna_board_border">권광민</td>
+							<td>2</td>
+						</tr>
+					</table>
+<!-- 					검색테이블  -->
+					<form action="index.html" method="get" id="_1admin_search_form">
+						<table class="_1admin_search">
+						<tr>
+							<td>
+								<select>
+									<option value="">회원번호</option>
+									<option value="">아이디</option>
+									<option value="">닉네임</option>
+									<option value="">신고횟수</option>
+								</select>
+							</td>
+							<td>
+								<input type="text" onkeyup="enterKey();"> 
+							</td>
+							<td>
+								<input type="submit" value="검색">
+							</td>
+						</tr>
+						</table>
+					</form>
+					<script type="text/javascript">
+						function enterKey(){
+							if(window.event.keyCode == 13){ // Enter 키 코드값 13
+								document.getElementById('_1admin_search_form').submit();
+							}
+						}
+					</script>
+<!-- 				신고내역 페이징 -->
+				    <div class="_1qna_paging">
+        				<ul>
+				           <li onclick="location.href='index.html'">prev</li>
+				           <li onclick="location.href='about.html'">1</li>
+				           <li onclick="location.href='login.html'">2</li>
+				           <li onclick="location.href='faq.html'">3</li>
+				           <li onclick="location.href='gourmet.html'">4</li>
+				           <li onclick="location.href='login.html'">5</li>
+				           <li onclick="location.href='products.html'">next</li>
+						</ul>
+   					 </div>
+				<div id="tab-3" class="tab-content">
+<!-- 				3탭 게시판 테이블  -->
+					
+				</div>
+			</div>
+<!-- 			탭 jquery -->
+			<script type="text/javascript">
+			$(document).ready(function(){
+				
+				$('ul.tabs li').click(function(){
+					var tab_id = $(this).attr('data-tab');
 
+					$('ul.tabs li').removeClass('current');
+					$('.tab-content').removeClass('current');
+
+					$(this).addClass('current');
+					$("#"+tab_id).addClass('current');
+				})
+
+			})
+			</script>
+			
+		</div>
+			<div class="clearfix_1_1"> </div>
+	</div>
+<!-- //top-brands -->
 <!-- //footer -->
 <div class="footer">
 		<div class="container">
@@ -316,15 +419,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="login.html">Login</a></li>
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="registered.html">Create Account</a></li>
 					</ul>
-					
-					
 				</div>
 				<div class="clearfix"> </div>
 			</div>
 		</div>
-		
 		<div class="footer-copy">
-			
 			<div class="container">
 				<p>© 2017 Super Market. All rights reserved | Design by <a href="http://w3layouts.com/">W3layouts</a></p>
 			</div>
@@ -393,6 +492,5 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		});
 </script>	
 <!-- //main slider-banner --> 
-
 </body>
 </html>

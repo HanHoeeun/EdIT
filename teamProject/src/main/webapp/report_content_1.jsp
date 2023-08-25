@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!--
 author: W3layouts
 author URL: http://w3layouts.com
@@ -7,7 +9,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
-<title>Super Market an Ecommerce Online Shopping Category Flat Bootstrap Responsive Website Template | Contact :: w3layouts</title>
+<title>Super Market an Ecommerce Online Shopping Category Flat Bootstrap Responsive Website Template | Faq :: w3layouts</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -20,6 +22,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 <!-- font-awesome icons -->
 <link href="css/font-awesome.css" rel="stylesheet"> 
+<link href="css/faq_1.css" rel="stylesheet"> 
 <!-- //font-awesome icons -->
 <!-- js -->
 <script src="js/jquery-1.11.1.min.js"></script>
@@ -215,66 +218,73 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 		
 <!-- //navigation -->
-<!-- breadcrumbs -->
+	<!-- breadcrumbs -->
 	<div class="breadcrumbs">
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
 				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-				<li class="active">Contact</li>
+				<li class="active">AdminPage</li>
 			</ol>
 		</div>
 	</div>
-<!-- //breadcrumbs -->
-<!-- contact -->
-	<div class="about">
-		<div class="w3_agileits_contact_grids">
-			<!-- <div class="col-md-6 w3_agileits_contact_grid_left">
-				<div class="agile_map">
-					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3950.3905851087434!2d-34.90500565012194!3d-8.061582082752993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7ab18d90992e4ab%3A0x8e83c4afabe39a3a!2sSport+Club+Do+Recife!5e0!3m2!1sen!2sin!4v1478684415917" style="border:0"></iframe>
-				</div>
-				<div class="agileits_w3layouts_map_pos">
-					<div class="agileits_w3layouts_map_pos1">
-						<h3>Contact Info</h3>
-						<p>1234k Avenue, 4th block, New York City.</p>
-						<ul class="wthree_contact_info_address">
-							<li><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:info@example.com">info@example.com</a></li>
-							<li><i class="fa fa-phone" aria-hidden="true"></i>+(0123) 232 232</li>
-						</ul>
-						<div class="w3_agile_social_icons w3_agile_social_icons_contact">
-							<ul>
-								<li><a href="#" class="icon icon-cube agile_facebook"></a></li>
-								<li><a href="#" class="icon icon-cube agile_rss"></a></li>
-								<li><a href="#" class="icon icon-cube agile_t"></a></li>
-							</ul>
-						</div>
+	<!-- //breadcrumbs -->
+	<!-- top-brands -->
+	
+	<div class="top-brands_1">
+			<h2>회원정보 상세페이지</h2>
+		<div class="_1container_1_1">
+			<form class="_1report_content_form">		
+			<table class="_1report_content_board">
+				<tr>
+				<td class="_1report_content_border">회원번호</td><td></td>
+				</tr>				
+				<tr>
+				<td class="_1report_content_border">아이디</td><td></td>
+				</tr>				
+				<tr>
+				<td class="_1report_content_border">이름</td><td></td>
+				</tr>				
+				<tr>
+				<td class="_1report_content_border">닉네임</td><td></td>
+				</tr>				
+				<tr>
+				<td class="_1report_content_border">생년월일</td><td></td>
+				</tr>				
+				<tr>
+				<td class="_1report_content_border">성별</td><td></td>
+				</tr>				
+				<tr>
+				<td class="_1report_content_border">전화번호</td><td></td>
+				</tr>				
+				<tr>
+				<td class="_1report_content_border">주소</td><td></td>
+				</tr>				
+				<tr>
+				<td class="_1report_content_border">이메일</td><td></td>
+				</tr>				
+				<tr>
+				<td class="_1report_content_border">가입날짜</td><td></td>
+				</tr>				
+				<tr>
+				<td class="_1report_content_border">이벤트</td><td></td>
+				</tr>				
+				<tr>
+				<td class="_1report_content_border">회원레벨</td><td></td>
+				</tr>				
+				<tr>
+				<td class="_1report_content_border">회원벌점</td><td></td>
+				</tr>				
+					
+			</table>
+					<div class="_1q_query_btn">
+							<button type="submit">수정</button>
+							<button type="button" onclick="location.href='faq.html'">목록</button>
 					</div>
-				</div>
-			</div> -->
-			<div class="col-md-6 w3_agileits_contact_grid_right">
-				<h2 class="w3_agile_header">Leave a<span> Message</span></h2>
-
-				<form action="#" method="post">
-					<span class="input input--ichiro">
-						<input class="input__field input__field--ichiro" type="text" id="input-25" name="Name" placeholder=" " required="" />
-						<label class="input__label input__label--ichiro" for="input-25">
-							<span class="input__label-content input__label-content--ichiro">Your Name</span>
-						</label>
-					</span>
-					<span class="input input--ichiro">
-						<input class="input__field input__field--ichiro" type="email" id="input-26" name="Email" placeholder=" " required="" />
-						<label class="input__label input__label--ichiro" for="input-26">
-							<span class="input__label-content input__label-content--ichiro">Your Email</span>
-						</label>
-					</span>
-					<textarea name="Message" placeholder="Your message here..." required=""></textarea>
-					<input type="submit" value="Submit">
-				</form>
-			</div>
-			<div class="clearfix"> </div>
+			</form>
 		</div>
+	<div class="clearfix_1_1"> </div>
 	</div>
-<!-- contact -->
-
+<!-- //top-brands -->
 <!-- //footer -->
 <div class="footer">
 		<div class="container">
@@ -316,15 +326,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="login.html">Login</a></li>
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="registered.html">Create Account</a></li>
 					</ul>
-					
-					
 				</div>
 				<div class="clearfix"> </div>
 			</div>
 		</div>
-		
 		<div class="footer-copy">
-			
 			<div class="container">
 				<p>© 2017 Super Market. All rights reserved | Design by <a href="http://w3layouts.com/">W3layouts</a></p>
 			</div>
@@ -393,6 +399,5 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		});
 </script>	
 <!-- //main slider-banner --> 
-
 </body>
 </html>

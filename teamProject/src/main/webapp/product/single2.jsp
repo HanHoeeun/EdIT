@@ -127,17 +127,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									</li>
 									<!-- // 노트북 -->
 									
+									<!-- 휴대폰 -->
+									<li class="dropdown">
+										<a href="../product/household.jsp">휴대폰</a>
+									</li>
+									<!-- // 휴대폰 -->
+									
 									<!-- 태블릿 -->
 									<li class="dropdown">
 										<a href="../product/personalcare.jsp">태블릿</a>
 									</li>
 									<!-- // 태블릿 -->
 									
-									<!-- 휴대폰 -->
-									<li class="dropdown">
-										<a href="../product/household.jsp">휴대폰</a>
-									</li>
-									<!-- // 휴대폰 -->
 									<!-- //Mega Menu -->
 									
 									<li><a href="contact.html">Contact</a></li>
@@ -171,16 +172,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<img id="example" src="../images/si1.jpg" alt=" " class="img-responsive">
 				</div>
 				<div class="col-md-8 agileinfo_single_right">
+					
+					<!-- 조회수 -->
+					<div style="float: right;">
+					<img src="../images/readcountimg.png" width="20" height=20" alt="조회수"><i> : 236</i>
+					</div>
+					<!-- 조회수 -->
 				
 					<!-- 상품제목 -->
-					<h2>미트리 소프트닭가슴살</h2>
+					<h2>사과 노트북</h2>
 					<!-- // 상품제목 -->
 					
 					<!-- 가격 -->	
 					<div class="snipcart-thumb agileinfo_single_right_snipcart">
-						<h4 class="m-sing">10000원</h4>
+						<h4 class="m-sing">200만원</h4>
 					</div>
 					<!-- // 가격 -->
+					
+					<hr>
 					
 					<!-- 판매ID,상품상태,등록날짜 -->
 					<div class="w3agile_description">
@@ -194,15 +203,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="w3agile_description">
 						<h4>상품 상세설명 :</h4>
 						<p>
-						다른 제조사 닭가슴살보다 가격이 저렴하고 염분도 적고 부드럽다.
+						노트북이 빠르고 디자인도 깔끔하게 잘 뽑혔다. 성능이 죽입니다!!!!1
 						</p>
 					</div>
 					<!-- // 상품설명 -->
 					
 					<!-- 채팅, 신고하기, 상품목록 버튼 -->
 					<div class="checkout-right-basket">
-					<a href=""><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>상품수정</a>
-					<a href=""><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>상품삭제</a>
+					<a href="../product/productUpdate.jsp"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>상품수정</a>
+					<a href="../product/productDelete.jsp"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>상품삭제</a>
 					<a href="../product/products.jsp"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>상품목록</a>
 					</div>
 					<!-- // 채팅, 신고하기, 상품목록 버튼 -->

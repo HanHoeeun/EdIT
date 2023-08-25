@@ -1,3 +1,14 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>아이디찾기</title>
+<link href= "css/login.css" rel= "stylesheet" type="text/css">
+<!-- <link href= "css/style.css" rel= "stylesheet" type="text/css"> -->
+</head>
+<body>
 <!--
 author: W3layouts
 author URL: http://w3layouts.com
@@ -7,7 +18,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
-<title>Super Market an Ecommerce Online Shopping Category Flat Bootstrap Responsive Website Template | Contact :: w3layouts</title>
+<title>Super Market an Ecommerce Online Shopping Category Flat Bootstrap Responsive Website Template | Login :: w3layouts</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -220,60 +231,34 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
 				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-				<li class="active">Contact</li>
+				<li class="active">Login Page</li>
 			</ol>
 		</div>
 	</div>
 <!-- //breadcrumbs -->
-<!-- contact -->
-	<div class="about">
-		<div class="w3_agileits_contact_grids">
-			<!-- <div class="col-md-6 w3_agileits_contact_grid_left">
-				<div class="agile_map">
-					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3950.3905851087434!2d-34.90500565012194!3d-8.061582082752993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7ab18d90992e4ab%3A0x8e83c4afabe39a3a!2sSport+Club+Do+Recife!5e0!3m2!1sen!2sin!4v1478684415917" style="border:0"></iframe>
-				</div>
-				<div class="agileits_w3layouts_map_pos">
-					<div class="agileits_w3layouts_map_pos1">
-						<h3>Contact Info</h3>
-						<p>1234k Avenue, 4th block, New York City.</p>
-						<ul class="wthree_contact_info_address">
-							<li><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:info@example.com">info@example.com</a></li>
-							<li><i class="fa fa-phone" aria-hidden="true"></i>+(0123) 232 232</li>
-						</ul>
-						<div class="w3_agile_social_icons w3_agile_social_icons_contact">
-							<ul>
-								<li><a href="#" class="icon icon-cube agile_facebook"></a></li>
-								<li><a href="#" class="icon icon-cube agile_rss"></a></li>
-								<li><a href="#" class="icon icon-cube agile_t"></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div> -->
-			<div class="col-md-6 w3_agileits_contact_grid_right">
-				<h2 class="w3_agile_header">Leave a<span> Message</span></h2>
 
-				<form action="#" method="post">
-					<span class="input input--ichiro">
-						<input class="input__field input__field--ichiro" type="text" id="input-25" name="Name" placeholder=" " required="" />
-						<label class="input__label input__label--ichiro" for="input-25">
-							<span class="input__label-content input__label-content--ichiro">Your Name</span>
-						</label>
-					</span>
-					<span class="input input--ichiro">
-						<input class="input__field input__field--ichiro" type="email" id="input-26" name="Email" placeholder=" " required="" />
-						<label class="input__label input__label--ichiro" for="input-26">
-							<span class="input__label-content input__label-content--ichiro">Your Email</span>
-						</label>
-					</span>
-					<textarea name="Message" placeholder="Your message here..." required=""></textarea>
-					<input type="submit" value="Submit">
+<!-- 아이디찾기 -->
+	<div class="login">
+		<div class="container">
+			<h2>아이디찾기</h2>
+				<p>회원가입시 등록하신 이름과 이메일을 입력해 주세요.</p>
+		
+			<div class="login-form-grids animated wow slideInUp" data-wow-delay=".5s">
+			
+				<form>
+				
+
+<!-- 				질문 -->
+<!-- 아이디찾기 화면을 log.jsp 를 복사해서 가져왔는데 그러면 여기서 class명을 다 바꾸어주는게 맞는지..?? -->
+					<input type="text" placeholder="이름" required=" " >  
+					<input type="email" placeholder="이메일" required=" " >
+						<p><a href="#">확인</a> <a href="login.jsp">취소<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></p>
+				
 				</form>
 			</div>
-			<div class="clearfix"> </div>
 		</div>
 	</div>
-<!-- contact -->
+<!-- //아이디찾기 -->
 
 <!-- //footer -->
 <div class="footer">
@@ -394,5 +379,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>	
 <!-- //main slider-banner --> 
 
+</body>
+</html>
 </body>
 </html>
