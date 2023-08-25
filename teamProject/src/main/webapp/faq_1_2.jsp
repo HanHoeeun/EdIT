@@ -131,9 +131,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</script>
 			<!-- script for tabs -->
 				</div>
-				<div id="tab-2" class="tab-content">
+				
 				
 <!--======================================== 2탭 이벤트 ===================================================-->			
+			<div id="tab-2" class="tab-content">
 			<div class="container_3_1">
 				<div id="tab-1" class="tab-content current">
 					<table class="_1qna_board">
@@ -158,7 +159,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<td>2023.08.25</td>
 						</tr>
 					</table>
-					<!--=================== 1탭 일반공지 페이지 =====================-->	
+					<!--=================== 2탭 이벤트 페이지 =====================-->	
 				    <div class="_1qna_paging">
         				<ul>
 				           <li onclick="location.href='index.html'">◀</li>
@@ -197,14 +198,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</script>
 			<!-- script for tabs -->
 				</div>
-				<div id="tab-2" class="tab-content">
-								
+												
 <!--============================================= 3탭 작성 =====================================================  -->
+				<%if(1 == 1){ %>
+				<div id="tab-3" class="tab-2">
 					<form action="writePro.bo" method="post" enctype="multipart/form-data">
 						<table class="_1q_query_tab">
 							<tr>
 							<td class="_1q_query_tab_1">
 								<select class="_1q_query_tab_sel" style="border:none;">
+									<option value="">유형</option>
 									<option value="">일반공지</option>
 									<option value="">이벤트</option>
 								</select>
@@ -234,68 +237,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 				</form>
 				</div>
-				<%if(1 == 1){ %>
-				<div id="tab-3" class="tab-content">
-<!-- 				3탭 게시판 테이블  -->
-					<table class="_1qna_board">
-						<tr>
-							<th class="_1qna_board_border">번호</th>
-							<th class="_1qna_board_border">제목</th>
-							<th class="_1qna_board_border">작성자</th>
-							<th class="_1qna_board_border">작성시간</th>
-						</tr>
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_subject">2</td>
-							<td class="_1qna_board_border">3</td>
-							<td>4</td>
-						</tr>
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_subject">2</td>
-							<td class="_1qna_board_border">3</td>
-							<td>4</td>
-						</tr>
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_subject">2</td>
-							<td class="_1qna_board_border">3</td>
-							<td>4</td>
-						</tr>
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_subject">2</td>
-							<td class="_1qna_board_border">3</td>
-							<td>4</td>
-						</tr>
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_subject">2</td>
-							<td class="_1qna_board_border">3</td>
-							<td>4</td>
-						</tr>
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_subject">2</td>
-							<td class="_1qna_board_border">3</td>
-							<td>4</td>
-						</tr>
-					</table>
-<!-- 				3탭 페이징  -->
-				    <div class="_1qna_paging">
-        				<ul>
-				            <a href="index.html"><li>prev</li></a>
-				            <a href="about.html"><li>1</li></a>
-				            <a href="contact.html"><li>2</li></a>
-				            <a href="faq.html"><li>3</li></a>
-				            <a href="gourmet.html"><li>4</li></a>
-				            <a href="login.html"><li>5</li></a>
-				            <a href="products.html"><li>next</li></a>
-						    </ul>
-   					 </div>
-				</div>
 				<%} %>
-			</div>
+				</div>
+				
 <!-- 			탭 jquery -->
 			<script type="text/javascript">
 			$(document).ready(function(){
@@ -316,76 +260,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 			<div class="clearfix_1_1"> </div>
 	</div>
-<!-- //top-brands -->
-<!-- //footer -->
-<div class="footer">
-		<div class="container">
-			<div class="w3_footer_grids">
-				<div class="col-md-3 w3_footer_grid">
-					<h3>Contact</h3>
-					
-					<ul class="address">
-						<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>1234k Avenue, 4th block, <span>New York City.</span></li>
-						<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@example.com">info@example.com</a></li>
-						<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+1234 567 567</li>
-					</ul>
-				</div>
-				<div class="col-md-3 w3_footer_grid">
-					<h3>Information</h3>
-					<ul class="info"> 
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="about.html">About Us</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="contact.html">Contact Us</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="short-codes.html">Short Codes</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="faq.html">FAQ's</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="products.html">Special Products</a></li>
-					</ul>
-				</div>
-				<div class="col-md-3 w3_footer_grid">
-					<h3>Category</h3>
-					<ul class="info"> 
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="groceries.html">Groceries</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="household.html">Household</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="personalcare.html">Personal Care</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="packagedfoods.html">Packaged Foods</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="beverages.html">Beverages</a></li>
-					</ul>
-				</div>
-				<div class="col-md-3 w3_footer_grid">
-					<h3>Profile</h3>
-					<ul class="info"> 
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="products.html">Store</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="checkout.html">My Cart</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="login.html">Login</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="registered.html">Create Account</a></li>
-					</ul>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-		</div>
-		<div class="footer-copy">
-			<div class="container">
-				<p>© 2017 Super Market. All rights reserved | Design by <a href="http://w3layouts.com/">W3layouts</a></p>
-			</div>
-		</div>
-		
-	</div>	
-	<div class="footer-botm">
-			<div class="container">
-				<div class="w3layouts-foot">
-					<ul>
-						<li><a href="#" class="w3_agile_facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-						<li><a href="#" class="agile_twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-						<li><a href="#" class="w3_agile_dribble"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
-						<li><a href="#" class="w3_agile_vimeo"><i class="fa fa-vimeo" aria-hidden="true"></i></a></li>
-					</ul>
-				</div>
-				<div class="payment-w3ls">	
-					<img src="images/card.png" alt=" " class="img-responsive">
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-		</div>
-<!-- //footer -->	
+
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>
 <!-- top-header and slider -->

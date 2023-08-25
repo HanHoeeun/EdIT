@@ -21,10 +21,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 <link href="css/style_1_2.css" rel="stylesheet" type="text/css" media="all" />
-<link href="css/faq_1.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/faq_1_2.css" rel="stylesheet" type="text/css" media="all" />
 <!-- font-awesome icons -->
 <link href="css/font-awesome.css" rel="stylesheet"> 
-<link href="css/faq_1.css" rel="stylesheet"> 
+<!-- <link href="css/faq_1.css" rel="stylesheet">  -->
 <!-- //font-awesome icons -->
 <!-- js -->
 <script src="js/jquery-1.11.1.min.js"></script>
@@ -50,27 +50,29 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
 				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>홈</a></li>
-				<li class="active">신고하기</li>
+				<li class="active">공지사항</li>
 			</ol>
 		</div>
 	</div>
 <!--================================================= 바디 ===============================================-->	
-	<div class="top-brands">
-		<h2>공지사항</h2>
+	<div class="top-brands_1">
+		<h2>고객센터</h2>
 		<div class="container_1_1">
 			<div class="container_2_1">
-<!-- ===============================================상단 탭 리스트 ===================================================-->
+<!-- 				상단 탭 리스트 -->
 				<ul class="tabs">
-					<li class="tab-link current" data-tab="tab-3">일반공지</li>
-					<li class="tab-link" data-tab="tab-3">이벤트</li>
+					<li class="tab-link current" data-tab="tab-1">자주묻는 질문</li>
+					<li class="tab-link" data-tab="tab-2">문의 하기</li>
 					<%if(1==1){ %>
-					<li class="tab-link" data-tab="tab-2">글 작성</li>
+					<li class="tab-link" data-tab="tab-3">내 문의 내역</li>
 					<%} %>
 				</ul>
 			</div>
-<!-- =============================================== 1탭 일반공지 ===================================================-->			
-			<div id="tab-3" class="tab-content">
-
+			<div class="container_3_1">
+				<div id="tab-1" class="tab-content current">
+					
+					<div id="tab-2" class="tab-content">
+<!-- 				3탭 게시판 테이블  -->
 					<table class="_1qna_board">
 						<tr>
 							<th class="_1qna_board_border">번호</th>
@@ -128,11 +130,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</ul>
    					 </div>
 				</div>
-				
 			
-<!--================================================ 2탭 이벤트 ===========================================-->				
-				<div id="tab-3" class="tab-content">
-
+			<!-- script for tabs -->
+				</div>
+				<div id="tab-2" class="tab-content">
+<!-- 				2탭 문의글 작성 -->
 					<table class="_1qna_board">
 						<tr>
 							<th class="_1qna_board_border">번호</th>
@@ -190,12 +192,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</ul>
    					 </div>
 				</div>
-
-<!--===============================================3탭 게시글 작성 =======================================-->				
-				<%if(1 == 1){ %>	
-				<div id="tab-2" class="tab-content">
-
-					<form action="writePro.bo" method="post" enctype="multipart/form-data">
+				</div>
+				<%if(1 == 1){ %>
+				<form action="writePro.bo" method="post" enctype="multipart/form-data">
 						<table class="_1q_query_tab">
 							<tr>
 							<td class="_1q_query_tab_1">
@@ -230,8 +229,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<button type="reset">취소</button>
 						</div>
 				</form>
-		</div>
-				
 				<%} %>
 			</div>
 <!-- 			탭 jquery -->
@@ -250,7 +247,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 			})
 			</script>
-			
+			</div>
 		</div>
 			<div class="clearfix_1_1"> </div>
 	
