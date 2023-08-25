@@ -324,7 +324,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 				<div id="tab-2" class="tab-content">
 <!-- 				2탭 문의글 작성 -->
-					<form action="writePro.bo" method="post" enctype="multipart/form-data">
+					<form action="index.html" method="post" enctype="multipart/form-data">
 						<table class="_1q_query_tab">
 							<tr>
 							<td class="_1q_query_tab_1">
