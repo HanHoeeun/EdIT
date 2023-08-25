@@ -251,7 +251,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<th class="_1qna_board_border">제목</th>
 							<th class="_1qna_board_border">작성자</th>
 							<th class="_1qna_board_border">작성시간</th>
-							<th class="_1qna_board_border">확인여부</th>
+							<th>확인여부</th>
 						</tr>
 						<tr onclick="location.href='index.html'">
 							<td class="_1qna_board_border">3</td>
@@ -302,14 +302,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<th class="_1qna_board_border">아이디</th>
 							<th class="_1qna_board_border">닉네임</th>
 							<th class="_1qna_board_border">이름</th>
-							<th class="_1qna_board_border">신고횟수</th>
+							<th>신고횟수</th>
 						</tr>
 						<tr onclick="location.href='index.html'">
 							<td class="_1qna_board_border">002</td>
 							<td class="_1qna_board_border">kkm</td>
 							<td class="_1qna_board_border">kkm</td>
 							<td class="_1qna_board_border">권광민</td>
-							<td class="_1qna_board_border">2</td>
+							<td>2</td>
 						</tr>
 					</table>
 <!-- 					검색테이블  -->
