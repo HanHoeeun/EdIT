@@ -410,14 +410,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- 				3탭 페이징  -->
 				    <div class="_1qna_paging">
         				<ul>
-				            <a href="index.html"><li>prev</li></a>
-				            <a href="about.html"><li>1</li></a>
-				            <a href="contact.html"><li>2</li></a>
-				            <a href="faq.html"><li>3</li></a>
-				            <a href="gourmet.html"><li>4</li></a>
-				            <a href="login.html"><li>5</li></a>
-				            <a href="products.html"><li>next</li></a>
-						    </ul>
+				           <li onclick="location.href='index.html'">prev</li>
+				           <li onclick="location.href='about.html'">1</li>
+				           <li onclick="location.href='login.html'">2</li>
+				           <li onclick="location.href='faq.html'">3</li>
+				           <li onclick="location.href='gourmet.html'">4</li>
+				           <li onclick="location.href='login.html'">5</li>
+				           <li onclick="location.href='products.html'">next</li>
+						</ul>
    					 </div>
 				</div>
 				<%} %>

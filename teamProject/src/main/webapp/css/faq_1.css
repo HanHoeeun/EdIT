@@ -230,23 +230,17 @@ ul.faq_1 {
     justify-content: center;
 }
 
-._1qna_paging>ul>a>li {
+._1qna_paging>ul>li {
     padding: 8px;
     background: rgba(254,145,38,0.7);
     font-size: 12px;
     margin-left: 10px;
     border-radius: 10px;
-}
-._1qna_paging>ul>a{
-	text-decoration: none;
 	color: #fff;
 }
-._1qna_paging>ul>a>li:hover {
+._1qna_paging>ul>li:hover {
     cursor: pointer;
     background: #333;
-}
-._1qna_paging>ul>a>li a:hover{
-	color: #fff;
 }
  
  
