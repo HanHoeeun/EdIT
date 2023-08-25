@@ -242,7 +242,19 @@ ul.faq_1 {
     cursor: pointer;
     background: #333;
 }
- 
+
+#_1admin_search_form {
+	padding: 20px 0;
+	margin: 0 auto;
+	width: 60%;
+}
+._1admin_search{
+	margin: 0 auto;
+}
+
+._1admin_search td{
+	padding : 5px;
+}
  
 /*테이블 테두리 둥글게*/
 /*.q_query_tab_1 {*/
