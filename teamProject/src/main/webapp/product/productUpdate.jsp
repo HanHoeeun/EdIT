@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>product/checkout.jsp</title>
+<title>Insert title here</title>
 </head>
 <body>
-<!--  찜리스트 
+<!--
 author: W3layouts
 author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
@@ -16,7 +16,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
-<title>Super Market an Ecommerce Online Shopping Category Flat Bootstrap Responsive Website Template | Checkout :: w3layouts</title>
+<title>Super Market an Ecommerce Online Shopping Category Flat Bootstrap Responsive Website Template | Single Page :: w3layouts</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -48,17 +48,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 <!-- start-smoth-scrolling -->
 </head>
-	
 <body>
 
 <!-- header -->
 	<div class="agileits_header">
 		<div class="container">
-		
 			<div class="w3l_offers">
 				<p><a href="../product/products.jsp">쇼핑하기</a></p>
 			</div>
-			
 			<div class="agile-login">
 				<ul>
 					<li><a href="registered.html"> Create Account </a></li>
@@ -76,6 +73,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<div class="clearfix"> </div>
 		</div>
+		
 	</div>
 
 	<div class="logo_products">
@@ -83,14 +81,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="w3ls_logo_products_left1">
 				<ul class="phone_email">
 					<li><i class="fa fa-phone" aria-hidden="true"></i>Order online or call us : (+0123) 234 567</li>
-					
 				</ul>
 			</div>
-			
 			<div class="w3ls_logo_products_left">
 				<h1><a href="index.html">EdIT</a></h1>
 			</div>
-			
 		<div class="w3l_search">
 			<form action="#" method="post">
 				<input type="search" name="Search" placeholder="Search for a Product..." required="">
@@ -131,23 +126,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									</li>
 									<!-- // 노트북 -->
 									
+									<!-- 휴대폰 -->
+									<li class="dropdown">
+										<a href="../product/household.jsp">휴대폰</a>
+									</li>
+									<!-- // 휴대폰 -->
+									
 									<!-- 태블릿 -->
 									<li class="dropdown">
 										<a href="../product/personalcare.jsp">태블릿</a>
 									</li>
 									<!-- // 태블릿 -->
 									
-									<!-- 휴대폰 -->
-									<li class="dropdown">
-										<a href="../product/household.jsp">휴대폰</a>
-									</li>
-									<!-- // 휴대폰 -->
 									<!-- //Mega Menu -->
 									
 									<li><a href="contact.html">Contact</a></li>
 								</ul>
 							</div>
-							</nav>
+				</nav>
 			</div>
 		</div>
 		
@@ -157,186 +153,76 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- breadcrumbs -->
 	<div class="breadcrumbs">
 		<div class="container">
-			<ol class="breadcrumb breadcrumb1">
-				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>홈</a></li>
-				<li class="active">찜리스트</li>
+			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+				<li><a href="../index.jsp"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>홈</a></li>
+				<li class="active">상품 수정</li>
 			</ol>
 		</div>
 	</div>
 <!-- //breadcrumbs -->
 
 
-<!-- 찜리스트 -->
-	<div class="checkout">
+<!-- register -->
+	<div class="register">
 		<div class="container">
-			<h2>나의 찜리스트</h2>
-			<div class="checkout-right">
-				<table class="timetable_sub">
+		
+			<h2>상품수정</h2>
+			
+			<div class="login-form-grids">
+				<h5>상품 정보</h5>
 				
-					<thead>
-						<tr>
-							<th>찜 번호</th>	
-							<th>상품 이미지</th>
-							<th>상품 이름</th>
-							<th>가격</th>
-							<th>삭제</th>
-						</tr>
-					</thead>
-					
-					<!-- 1번상품 -->
-					<tr class="rem1">
-					
-						<!-- 찜 번호 -->
-						<td class="invert">1</td>
-						<!-- // 찜 번호 -->
+				<!-- 상품 제목, 가격, 상품설명 -->
+				<form action="#" method="post">
+					<input type="text" name="_title" placeholder="제목을 입력하세요..." required=" " >
+					<input type="text" name="_2price" placeholder="가격을 입력하세요..." required=" " >
+					<textarea name="_2detail" placeholder="상품설명을 입력하세요... " id="_2detail" rows="10" cols="50" style="width: 428px" maxlength="400" required=" "></textarea>
+				<!-- // 상품 제목, 가격, 상품설명 -->
+
+				<!-- 상품카테고리, 상품상태 -->
+				<div class="register-check-box">
+					<div style="display: flex;">
+						<select name="_2type" id="_2type" required style="width: 122px; height: 38px; padding: 10px 10px 10px 10px;  margin: 1em 0;">
+						    <option value="">카테고리</option>
+						    <option value="1">노트북</option>
+						    <option value="2">테블릿</option>
+						    <option value="3">휴대폰</option>
+						</select>
 						
-						<!-- 상품 이미지 -->
-						<td class="invert-image"><a href="../product/single.jsp"><img src="../images/1.png" alt=" " class="img-responsive" /></a></td>
-						<!-- // 상품 이미지 -->
-						
-						<!-- 상품 이름 -->
-						<td class="invert"><a href="../product/single.jsp">태블릿</a></td>
-						<!-- // 상품 이름 -->
-						
-						<!-- 상품 가격 -->
-						<td class="invert">200만원</td>
-						<!-- // 상품 가격 -->
-						
-						<!-- 삭제하기 -->
-						<td class="invert">
-							<div class="rem">
-								<div class="close1"> </div>
-							</div>
-							<script>$(document).ready(function(c) {
-								$('.close1').on('click', function(c){
-									$('.rem1').fadeOut('slow', function(c){
-										$('.rem1').remove();
-									});
-									});	  
-								});
-						   </script>
-						</td>
-						<!-- // 삭제하기 -->
-						
-					</tr>
-					<!-- // 1번상품 -->
-					
-					<!-- 2번상품 -->
-					<tr class="rem2">
-					
-						<!-- 찜 번호 -->
-						<td class="invert">2</td>
-						<!-- // 찜 번호 -->
-						
-						<!-- 상품이미지 -->
-						<td class="invert-image"><a href="../product/single.jsp"><img src="../images/2.png" alt=" " class="img-responsive" /></a></td>
-						<!-- // 상품이미지 -->
-						
-						<!-- 상품 이름 -->
-						<td class="invert"><a href="../product/single.jsp">노트북</a></td>
-						<!-- // 상품 이름 -->
-						
-						<!-- 가격 -->
-						<td class="invert">202만원</td>
-						<!-- // 가격 -->
-						
-						<!-- 삭제하기 -->
-						<td class="invert">
-							<div class="rem">
-								<div class="close2"> </div>
-							</div>
-							<script>$(document).ready(function(c) {
-								$('.close2').on('click', function(c){
-									$('.rem2').fadeOut('slow', function(c){
-										$('.rem2').remove();
-									});
-									});	  
-								});
-						   </script>
-						</td>
-						<!-- // 삭제하기 -->
-						
-					</tr>
-					<!-- // 2번상품 -->
-					
-					<!-- 3번상품 -->
-					<tr class="rem3">
-						
-						<!-- 찜 번호 -->
-						<td class="invert">3</td>
-						<!-- // 찜 번호 -->
-						
-						<!-- 상품이미지 -->
-						<td class="invert-image"><a href="../product/single.jsp"><img src="../images/3.png" alt=" " class="img-responsive" /></a></td>
-						<!-- // 상품이미지 -->
-						
-						<!-- 상품 이름 -->
-						<td class="invert"><a href="../product/single.jsp">휴대폰</a></td>
-						<!-- // 상품 이름 -->
-						
-						<!-- 가격 -->
-						<td class="invert">150만원</td>
-						<!-- 가격 -->
-						
-						<!-- 삭제하기 -->
-						<td class="invert">
-							<div class="rem">
-								<div class="close3"> </div>
-							</div>
-							<script>$(document).ready(function(c) {
-								$('.close3').on('click', function(c){
-									$('.rem3').fadeOut('slow', function(c){
-										$('.rem3').remove();
-									});
-									});	  
-								});
-						   </script>
-						</td>
-						<!-- 삭제하기 -->
-						
-					</tr>
-					<!-- // 3번상품 -->
-					
-				</table>
-			</div>
-			
-			<!-- 페이지 목록 -->
-			<nav class="numbering">
-					<ul class="pagination paging">
-						<li>
-							<a href="#" aria-label="Previous">
-								<span aria-hidden="true">&laquo;</span>
-							</a>
-						</li>
-						<li class="active"><a href="#">1<span class="sr-only">(current)</span></a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#">5</a></li>
-						<li>
-							<a href="#" aria-label="Next">
-							<span aria-hidden="true">&raquo;</span>
-							</a>
-						</li>
-					</ul>
-			</nav>
-			<!-- // 페이지 목록 -->	
-			
-			<!-- 쇼핑계속하기 버튼 -->
-			<div class="checkout-left">	
-				<div class="checkout-right-basket">
-					<a href="../product/single.jsp"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>쇼핑 계속하기</a>
+						<select name="_2status" id="_2status" required style="width: 122px; height: 38px; margin: 1em 10px;">
+						    <option value="">상품상태</option>
+						    <option value="1" selected>판매중</option>
+						    <option value="2">거래완료</option>
+						</select>
+					</div>
 				</div>
-				<div class="clearfix"> </div>
+				<!-- // 상품카테고리, 상품상태 -->
+					
+
+					<br>
+					<b>★상품이미지 첨부</b>
+					<br>
+					<input type="file" name="_2iname" id="_2iname" maxlength="4000" style="padding: 10px 10px 10px 10px;">
+				
+					<!-- 수정하기 버튼 -->
+					<input type="submit" value="수정하기">
+					<!-- //수정하기 버튼 -->
+					
+				</form>
+				
 			</div>
-			<!-- // 쇼핑계속하기 버튼 -->
+			
+			<!-- 뒤로가기 버튼 -->
+			<div class="register-home">
+				<a href="javascript:history.back();">뒤로가기</a>
+			</div>
+			<!-- // 뒤로가기 버튼 -->
 			
 		</div>
 	</div>
-<!-- 찜리스트 -->
+<!-- //register -->
 
 
-<!-- //footer -->
+<!-- footer -->
 <div class="footer">
 		<div class="container">
 			<div class="w3_footer_grids">
@@ -410,7 +296,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 <!-- //footer -->	
 <!-- Bootstrap Core JavaScript -->
-<script src="../js/bootstrap.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <!-- top-header and slider -->
 <!-- here stars scrolling icon -->
 	<script type="text/javascript">
@@ -429,7 +315,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			});
 	</script>
 <!-- //here ends scrolling icon -->
-<script src="../js/minicart.min.js"></script>
+<script src="js/minicart.min.js"></script>
 <script>
 	// Mini Cart
 	paypal.minicart.render({

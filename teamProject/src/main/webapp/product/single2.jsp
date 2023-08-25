@@ -202,8 +202,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					
 					<!-- 채팅, 신고하기, 상품목록 버튼 -->
 					<div class="checkout-right-basket">
-					<a href=""><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>상품수정</a>
-					<a href=""><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>상품삭제</a>
+					<a href="../product/productUpdate.jsp"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>상품수정</a>
+					<a href="../product/productDelete.jsp"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>상품삭제</a>
 					<a href="../product/products.jsp"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>상품목록</a>
 					</div>
 					<!-- // 채팅, 신고하기, 상품목록 버튼 -->
