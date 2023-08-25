@@ -173,6 +173,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 				<div class="col-md-8 agileinfo_single_right">
 				
+					<!-- 조회수 -->
+					<div style="float: right;">
+					<img src="../images/readcountimg.png" width="20" height=20" alt="조회수"><i> : 236</i>
+					</div>
+					<!-- 조회수 -->
+				
 					<!-- 관심도(별) -->
 					<div class="rating1">
 						<span class="starRating">

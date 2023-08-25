@@ -172,6 +172,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<img id="example" src="../images/si1.jpg" alt=" " class="img-responsive">
 				</div>
 				<div class="col-md-8 agileinfo_single_right">
+					
+					<!-- 조회수 -->
+					<div style="float: right;">
+					<img src="../images/readcountimg.png" width="20" height=20" alt="조회수"><i> : 236</i>
+					</div>
+					<!-- 조회수 -->
 				
 					<!-- 상품제목 -->
 					<h2>사과 노트북</h2>
