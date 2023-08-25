@@ -22,7 +22,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 <!-- font-awesome icons -->
 <link href="css/font-awesome.css" rel="stylesheet"> 
-<link href="css/style_1_2.css" rel="stylesheet"> 
+<link href="css/faq_1.css" rel="stylesheet"> 
 <!-- //font-awesome icons -->
 <!-- js -->
 <script src="js/jquery-1.11.1.min.js"></script>
@@ -218,42 +218,72 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 		
 <!-- //navigation -->
-<!--==================================== 상단 네비 ==================================-->
+	<!-- breadcrumbs -->
 	<div class="breadcrumbs">
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
-				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>홈</a></li>
-				<li class="active">신고하기</li>
+				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+				<li class="active">AdminPage</li>
 			</ol>
 		</div>
 	</div>
+	<!-- //breadcrumbs -->
+	<!-- top-brands -->
 	
-<!--============================== 바디 ============================================-->
-<div class="report">
-	<div class="container">
-			<h2>신고하기</h2>
-			<form class="report-form-grids">		
-			<p>신고대상자 아이디</p>
-			<input class="readonly" type="text" value="hong12" readonly="readonly"><br>
-			<p>신고자 아이디</p>
-			<input class="readonly" type="text" value="lovely7" readonly="readonly"><br>
-			<p>제목</p>
-			<input class="title" type="text" placeholder="제목을 입력하세요" required=" " ><br>
-			<p>첨부파일</p>
-			<div action="insertPro.jsp" method="post" enctype="multipart/form-data">
-  			 <input type="file" name="imgfile" accept="image/*">
-			</div><br>
-			<p>신고내용</p>
-			<textarea name="textarea" placeholder="내용을 입력하세요" required=" "></textarea><br><br>
-			<div class="reportbtn">
-			<input type="submit" value="신고">
-			<input type="reset" value="취소">
-			</div>
+	<div class="top-brands_1">
+			<h2>회원정보 상세페이지</h2>
+		<div class="_1container_1_1">
+			<form class="_1report_content_form">		
+			<table class="_1report_content_board">
+				<tr>
+				<td class="_1report_content_border">회원번호</td><td></td>
+				</tr>				
+				<tr>
+				<td class="_1report_content_border">아이디</td><td></td>
+				</tr>				
+				<tr>
+				<td class="_1report_content_border">이름</td><td></td>
+				</tr>				
+				<tr>
+				<td class="_1report_content_border">닉네임</td><td></td>
+				</tr>				
+				<tr>
+				<td class="_1report_content_border">생년월일</td><td></td>
+				</tr>				
+				<tr>
+				<td class="_1report_content_border">성별</td><td></td>
+				</tr>				
+				<tr>
+				<td class="_1report_content_border">전화번호</td><td></td>
+				</tr>				
+				<tr>
+				<td class="_1report_content_border">주소</td><td></td>
+				</tr>				
+				<tr>
+				<td class="_1report_content_border">이메일</td><td></td>
+				</tr>				
+				<tr>
+				<td class="_1report_content_border">가입날짜</td><td></td>
+				</tr>				
+				<tr>
+				<td class="_1report_content_border">이벤트</td><td></td>
+				</tr>				
+				<tr>
+				<td class="_1report_content_border">회원레벨</td><td></td>
+				</tr>				
+				<tr>
+				<td class="_1report_content_border">회원벌점</td><td></td>
+				</tr>				
+					
+			</table>
+					<div class="_1q_query_btn">
+							<button type="submit">수정</button>
+							<button type="button" onclick="location.href='faq.html'">목록</button>
+					</div>
 			</form>
+		</div>
+	<div class="clearfix_1_1"> </div>
 	</div>
-</div>
-
-<div class="clearfix_1_1"> </div>
 <!-- //top-brands -->
 <!-- //footer -->
 <div class="footer">

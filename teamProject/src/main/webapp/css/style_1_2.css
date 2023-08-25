@@ -14,7 +14,7 @@
     padding: 10px 10px 10px 10px;
     font-size: 14px;
     color: #999;
-    display: block;
+    display: inline;
     width: 100%;
 }
 .title{
@@ -1769,4 +1769,9 @@ td.invert-image a img {
 .w3agile_description p {
     font-size: 13px;
 }
+
+report_content_form{
+	
+	background-color: skyblue;
 }
+

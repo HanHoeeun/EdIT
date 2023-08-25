@@ -4,10 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>product/single.jsp</title>
+<title>Insert title here</title>
 </head>
 <body>
-
 <!--
 author: W3layouts
 author URL: http://w3layouts.com
@@ -156,104 +155,73 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
 				<li><a href="../index.jsp"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>홈</a></li>
-				<li class="active">상품 상세페이지</li>
+				<li class="active">상품 등록</li>
 			</ol>
 		</div>
 	</div>
 <!-- //breadcrumbs -->
 
 
-<!-- 상품그림,제목,설명,관심도 등 -->
-	<div class="products">
+<!-- register -->
+	<div class="register">
 		<div class="container">
-			<div class="agileinfo_single">
+		
+			<h2>상품등록</h2>
+			
+			<div class="login-form-grids">
+				<h5>상품 정보</h5>
 				
-				<div class="col-md-4 agileinfo_single_left">
-					<img id="example" src="../images/si1.jpg" alt=" " class="img-responsive">
+				<!-- 상품 제목, 가격, 상품설명 -->
+				<form action="#" method="post">
+					<input type="text" name="_title" placeholder="제목을 입력하세요..." required=" " >
+					<input type="text" name="_2price" placeholder="가격을 입력하세요..." required=" " >
+					<textarea name="_2detail" placeholder="상품설명을 입력하세요... " id="_2detail" rows="10" cols="50" style="width: 428px" maxlength="400" required=" "></textarea>
+				<!-- // 상품 제목, 가격, 상품설명 -->
+
+				<!-- 상품카테고리, 상품상태 -->
+				<div class="register-check-box">
+					<div style="display: flex;">
+						<select name="_2type" id="_2type" required style="width: 122px; height: 38px; padding: 10px 10px 10px 10px;  margin: 1em 0;">
+						    <option value="">카테고리</option>
+						    <option value="1">노트북</option>
+						    <option value="2">테블릿</option>
+						    <option value="3">휴대폰</option>
+						</select>
+						
+						<select name="_2status" id="_2status" required style="width: 122px; height: 38px; margin: 1em 10px;">
+						    <option value="">상품상태</option>
+						    <option value="1" selected>판매중</option>
+						    <option value="2">거래완료</option>
+						</select>
+					</div>
 				</div>
-				<div class="col-md-8 agileinfo_single_right">
+				<!-- // 상품카테고리, 상품상태 -->
+					
+
+					<br>
+					<b>★상품이미지 첨부</b>
+					<br>
+					<input type="file" name="_2iname" id="_2iname" maxlength="4000" style="padding: 10px 10px 10px 10px;">
 				
-					<!-- 조회수 -->
-					<div style="float: right;">
-					<img src="../images/readcountimg.png" width="20" height=20" alt="조회수"><i> : 236</i>
-					</div>
-					<!-- 조회수 -->
+					<!-- 등록하기 버튼 -->
+					<input type="submit" value="등록하기">
+					<!-- //등록하기 버튼 -->
+					
+				</form>
 				
-					<!-- 관심도(별) -->
-					<div class="rating1">
-						<span class="starRating">
-							<input id="rating5" type="radio" name="rating" value="5">
-							<label for="rating5">5</label>
-							<input id="rating4" type="radio" name="rating" value="4">
-							<label for="rating4">4</label>
-							<input id="rating3" type="radio" name="rating" value="3" checked="">
-							<label for="rating3">3</label>
-							<input id="rating2" type="radio" name="rating" value="2">
-							<label for="rating2">2</label>
-							<input id="rating1" type="radio" name="rating" value="1">
-							<label for="rating1">1</label>
-						</span>
-					</div>
-					<!-- // 관심도(별) -->
-					
-					<!-- 상품제목 -->
-					<h2>사과 노트북</h2>
-					<!-- // 상품제목 -->
-					
-					<!-- 가격 -->	
-					<div class="snipcart-thumb agileinfo_single_right_snipcart">
-						<h4 class="m-sing">200만원</h4>
-					</div>
-					<!-- // 가격 -->
-					
-					<hr>
-					
-					<!-- 판매ID,상품상태,등록날짜 -->
-					<div class="w3agile_description">
-						<p>판매ID : asgg123</p>
-						<p>상품상태 : 판매중</p>
-						<p>등록날짜 : </p>
-					</div>
-					<!-- 판매ID,상품상태,등록날짜 -->
-					
-					<!-- 상품설명 -->
-					<div class="w3agile_description">
-						<h4>상품 상세설명 :</h4>
-						<p>
-						노트북이 빠르고 디자인도 깔끔하게 잘 뽑혔다. 성능이 죽입니다!!!!1
-						</p>
-					</div>
-					<!-- // 상품설명 -->
-					
-					<!-- 위시리스트 추가 -->
-					<div class="snipcart-item block">
-						<div class="snipcart-details agileinfo_single_right_details">
-							<table>
-								<fieldset>
-									<input type="button" name="btn" value="찜리스트 추가" class="button" onclick="location.href='../product/checkout.jsp'">
-								</fieldset>
-							</table>	
-						</div>
-					</div>
-					<!-- // 위시리스트 추가버튼 -->
-					
-					<!-- 채팅, 신고하기, 상품목록 버튼 -->
-					<div class="checkout-right-basket">
-					<a href=""><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>1:1 채팅</a>
-					<a href=""><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>구매확정</a>
-					<a href=""><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>신고하기</a>
-					<a href="../product/products.jsp"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>상품목록</a>
-					</div>
-					<!-- // 채팅, 신고하기, 상품목록 버튼 -->
-					
-				</div>
-				<div class="clearfix"> </div>
 			</div>
+			
+			<!-- 메인으로 버튼 -->
+			<div class="register-home">
+				<a href="../index.jsp">메인으로</a>
+			</div>
+			<!-- // 메인으로 버튼 -->
+			
 		</div>
 	</div>
-<!-- // 상품그림,제목,설명,관심도 등 -->
-	
-	
+<!-- //register -->
+
+
 <!-- footer -->
 <div class="footer">
 		<div class="container">

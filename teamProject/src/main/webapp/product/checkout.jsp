@@ -195,7 +195,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<!-- // 상품 이미지 -->
 						
 						<!-- 상품 이름 -->
-						<td class="invert">태블릿</td>
+						<td class="invert"><a href="../product/single.jsp">태블릿</a></td>
 						<!-- // 상품 이름 -->
 						
 						<!-- 상품 가격 -->
@@ -233,7 +233,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<!-- // 상품이미지 -->
 						
 						<!-- 상품 이름 -->
-						<td class="invert">노트북</td>
+						<td class="invert"><a href="../product/single.jsp">노트북</a></td>
 						<!-- // 상품 이름 -->
 						
 						<!-- 가격 -->
@@ -271,7 +271,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<!-- // 상품이미지 -->
 						
 						<!-- 상품 이름 -->
-						<td class="invert">휴대폰</td>
+						<td class="invert"><a href="../product/single.jsp">휴대폰</a></td>
 						<!-- // 상품 이름 -->
 						
 						<!-- 가격 -->

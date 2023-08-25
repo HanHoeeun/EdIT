@@ -172,6 +172,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<img id="example" src="../images/si1.jpg" alt=" " class="img-responsive">
 				</div>
 				<div class="col-md-8 agileinfo_single_right">
+					
+					<!-- 조회수 -->
+					<div style="float: right;">
+					<img src="../images/readcountimg.png" width="20" height=20" alt="조회수"><i> : 236</i>
+					</div>
+					<!-- 조회수 -->
 				
 					<!-- 상품제목 -->
 					<h2>사과 노트북</h2>
@@ -182,6 +188,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<h4 class="m-sing">200만원</h4>
 					</div>
 					<!-- // 가격 -->
+					
+					<hr>
 					
 					<!-- 판매ID,상품상태,등록날짜 -->
 					<div class="w3agile_description">
@@ -202,8 +210,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					
 					<!-- 채팅, 신고하기, 상품목록 버튼 -->
 					<div class="checkout-right-basket">
-					<a href=""><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>상품수정</a>
-					<a href=""><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>상품삭제</a>
+					<a href="../product/productUpdate.jsp"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>상품수정</a>
+					<a href="../product/productDelete.jsp"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>상품삭제</a>
 					<a href="../product/products.jsp"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>상품목록</a>
 					</div>
 					<!-- // 채팅, 신고하기, 상품목록 버튼 -->
