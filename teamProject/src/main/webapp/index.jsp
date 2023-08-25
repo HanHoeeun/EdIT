@@ -227,23 +227,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!-- main-slider -->
 		<ul id="demo1">
 			<li>
-				<img src="images/11.jpg" alt="" />
+				<img src="images/11.png" width="1260px" height="600px" alt="" />
 				<!--Slider Description example-->
 				<div class="slide-desc">
-					<h3>Buy Rice Products Are Now On Line With Us</h3>
+					<h3></h3>
 				</div>
 			</li>
 			<li>
-				<img src="images/22.jpg" alt="" />
+				<img src="images/22.png" width="1260px" height="600px"alt="" />
 				  <div class="slide-desc">
-					<h3>Whole Spices Products Are Now On Line With Us</h3>
+					<h3>즐거운 거래 똑똑한 거래</h3>
 				</div>
 			</li>
 			
 			<li>
-				<img src="images/44.jpg" alt="" />
+				<img src="images/44.png" width="1260px" height="600px" alt="" />
 				<div class="slide-desc">
-					<h3>Whole Spices Products Are Now On Line With Us</h3>
+					<h3></h3>
 				</div>
 			</li>
 		</ul>
@@ -252,7 +252,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!-- top-brands -->
 	<div class="top-brands">
 		<div class="container">
-		<h2>Top selling offers</h2>
+		<h2>Top selling offer</h2>
 			<div class="grid_3 grid_5">
 				<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
 					<ul id="myTab" class="nav nav-tabs" role="tablist">
@@ -262,7 +262,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div id="myTabContent" class="tab-content">
 						<div role="tabpanel" class="tab-pane fade in active" id="expeditions" aria-labelledby="expeditions-tab">
 							<div class="agile-tp">
-								<h5>Advertised this week</h5>
+								<h5>최신 상품 </h5>
 								<p class="w3l-ad">We've pulled together all our advertised offers into one place, so you won't miss out on a great deal.</p>
 							</div>
 							<div class="agile_top_brands_grids">
