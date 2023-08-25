@@ -13,6 +13,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- //for-mobile-apps -->
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/style_1_2.css" rel="stylesheet" type="text/css" media="all" />
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 <!-- font-awesome icons -->
 <link href="css/font-awesome.css" rel="stylesheet"> 
@@ -36,26 +37,37 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 	
 <body>
-
+<!--==================================== 상단 네비 ==================================-->
+	<div class="breadcrumbs">
+		<div class="container">
+			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>홈</a></li>
+				<li class="active">신고하기</li>
+			</ol>
+		</div>
+	</div>
+	
 <!--============================== 바디 ============================================-->
-<div class="register">
+<div class="report">
 	<div class="container">
 			<h2>신고하기</h2>
-			<form class="login-form-grids">		
+			<form class="report-form-grids">		
 			<p>신고대상자 아이디</p>
-			<input type="text" value="hong12" readonly="readonly"><br>
+			<input class="readonly" type="text" value="hong12" readonly="readonly"><br>
 			<p>신고자 아이디</p>
-			<input type="text" value="lovely7" readonly="readonly"><br>
+			<input class="readonly" type="text" value="lovely7" readonly="readonly"><br>
 			<p>제목</p>
-			<input type="text" value="" ><br>
+			<input class="title" type="text" placeholder="제목을 입력하세요" required=" " ><br>
 			<p>첨부파일</p>
 			<div action="insertPro.jsp" method="post" enctype="multipart/form-data">
   			 <input type="file" name="imgfile" accept="image/*">
 			</div><br>
 			<p>신고내용</p>
-			<textarea name="textarea" placeholder=""></textarea><br><br>
-			<input type="submit" value="신고"> 
-			<input type="submit" value="취소">
+			<textarea name="textarea" placeholder="내용을 입력하세요" required=" "></textarea><br><br>
+			<div class="reportbtn">
+			<input type="submit" value="신고">
+			<input type="reset" value="취소">
+			</div>
 			</form>
 	</div>
 </div>

@@ -13,6 +13,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- //for-mobile-apps -->
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/style_1_2.css" rel="stylesheet" type="text/css" media="all" />
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 <!-- font-awesome icons -->
 <link href="css/font-awesome.css" rel="stylesheet"> 
@@ -46,45 +47,36 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</ol>
 		</div>
 	</div>
-<!-- <!-- -================================= 사이드 메뉴 ====================================-
-	<div class="products">
-		<div class="container">
-			<div class="col-md-4 products-left">
-				<div class="categories">
-					<h2>고객센터</h2>
-					<ul class="cate">
-						<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>자주 하는 질문</a></li>
-						<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>1 : 1 문의</a></li>
-							<ul>
-								<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>문의하기</a></li>
-								<li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>문의 내역</a></li>
-							</ul>	 --> 
 	
 <!--==================================== 바디 ==================================-->
-<!-- 문의글 -->
-<div class="register">
+<div class="answer">
 	<div class="container">
 			<h2>1 : 1 문의 답변</h2>
-			<form class="login-form-grids">		
+			<form class="answer-form-grids">		
 			<p>아이디</p>
-			<input type="text" value="hong12" readonly="readonly"><br>
+			<input class="readonly" type="text" value="hong12" readonly="readonly"><br>
 			<p>제목</p>
-			<input type="text" value="사기당했는데요;;" readonly="readonly"><br>
+			<input class="readonly" type="text" value="사기를 당했는데요.." readonly="readonly"><br>
 			<p>첨부파일</p>
-			<input type="text" value="빈박스.jpg" readonly="readonly"><br>
+			<div action="insertPro.jsp" method="post" enctype="multipart/form-data">
+  			 <input type="file" name="imgfile" accept="image/*">
+			</div><br>
 			<p>문의내용</p>
-			<textarea name="textarea" placeholder="아이패드 샀는데 벽돌보냈어요ㅡㅡ" readonly="readonly"></textarea><br><br>
+			<textarea name="textarea" placeholder="아이패드 샀는데 벽돌보냈어요ㅡㅡ" readonly=" "></textarea><br><br>
 			<p>답변내용</p>
-			<textarea name="textarea" placeholder="내용을 입력하세요"></textarea><br><br>
+			<textarea name="textarea" placeholder="내용을 입력하세요" required=" "></textarea><br><br>
+			<div class="answertbtn">
 			<input type="submit" value="답변"> 
-			<input type="submit" value="취소">
+			<input type="reset" value="취소">
+			</div>
 			</form>
 	</div>
 </div>
 
-			
-	
-<!-- Bootstrap Core JavaScript -->
+
+
+
+	<!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>
 <!-- top-header and slider -->
 <!-- here stars scrolling icon -->
