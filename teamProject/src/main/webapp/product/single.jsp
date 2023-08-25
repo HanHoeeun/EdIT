@@ -200,6 +200,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 					<!-- // 가격 -->
 					
+					<hr>
+					
 					<!-- 판매ID,상품상태,등록날짜 -->
 					<div class="w3agile_description">
 						<p>판매ID : asgg123</p>
