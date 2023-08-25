@@ -78,6 +78,7 @@ ul.tabs li.current{
 }
 
 .faq_1 {
+	width: 800px;
 	list-style-type: decimal;
 	text-align: left;
 	margin-top: auto;
@@ -86,7 +87,7 @@ ul.tabs li.current{
 ul.faq_1 {
     margin-top: 2em;
     padding: 0 1em;
-    padding-left: 15%;
+   	margin: 0 auto;
 }
 .faq_1 li {
     margin-top: 1em;
@@ -242,6 +243,7 @@ ul.faq_1 {
 ._1qna_paging {
     padding: 20px 0;
     width: 800px;
+    margin: 0 auto;
 }
 ._1qna_paging ul li{
     list-style: none;
