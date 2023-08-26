@@ -78,17 +78,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="logo_products">
 		<div class="container">
 		<div class="w3ls_logo_products_left1">
-				<ul class="phone_email">
-					<li><i class="fa fa-phone" aria-hidden="true"></i></li>
+				<!-- <ul class="phone_email">
+					<li><i class="fa fa-phone" aria-hidden="true">051-809-0909</i></li>
 					
-				</ul>
+				</ul> -->
 			</div>
 			<div class="w3ls_logo_products_left">
 				<h1><a href="index_07.jsp">EdIT</a></h1>
 			</div>
 		<div class="w3l_search">
 			<form action="#" method="post">
-				<input type="search" name="Search" placeholder="Search for a Product..." required="">
+				<input type="search" name="Search" placeholder="찾으시는 상품을 검색하세요" required="">
 				<button type="submit" class="btn btn-default search" aria-label="Left Align">
 					<i class="fa fa-search" aria-hidden="true"> </i>
 				</button>
