@@ -238,6 +238,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<ul class="tabs">
 					<li class="tab-link current" data-tab="tab-1">신고내역</li>
 					<li class="tab-link" data-tab="tab-2">회원관리</li>
+					<li class="tab-link" data-tab="tab-3">블랙리스트</li>
 					
 				</ul>
 			</div>
@@ -253,7 +254,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<th class="_1qna_board_border">작성시간</th>
 							<th>확인여부</th>
 						</tr>
-						<tr onclick="location.href='index.html'">
+						<tr onclick="window.open('report_content_1_1.jsp','신고상세페이지','width=800, height=700, scrollbars=yes')">
 							<td class="_1qna_board_border">3</td>
 							<td class="_1qna_board_border">002</td>
 							<td class="_1qna_board_subject">사장나와</td>
@@ -294,8 +295,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			
 			<!-- script for tabs -->
 				</div>
+<!-- 				2번째 탭 -->
 				<div id="tab-2" class="tab-content">
-<!-- 				2탭 문의글 작성 -->
 					<table class="_1qna_board">
 						<tr>
 							<th class="_1qna_board_border">회원번호</th>
@@ -304,7 +305,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<th class="_1qna_board_border">이름</th>
 							<th>신고횟수</th>
 						</tr>
-						<tr onclick="location.href='index.html'">
+						<tr onclick="location.href='user_content_1.jsp'">
 							<td class="_1qna_board_border">002</td>
 							<td class="_1qna_board_border">kkm</td>
 							<td class="_1qna_board_border">kkm</td>
@@ -352,9 +353,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				           <li onclick="location.href='products.html'">next</li>
 						</ul>
    					 </div>
+   					 </div>
+   					 
 				<div id="tab-3" class="tab-content">
 <!-- 				3탭 게시판 테이블  -->
-					
+					<table class="_1qna_board">
+						<tr>
+							<th class="_1qna_board_border">아이디</th>
+							<th class="_1qna_board_border">이름</th>
+							<th class="_1qna_board_border">이메일</th>
+							<th class="_1qna_board_border">전화번호</th>
+						</tr>
+						<tr onclick="location.href='user_content_1.jsp'">
+							<td class="_1qna_board_border">002</td>
+							<td class="_1qna_board_border">kkm</td>
+							<td class="_1qna_board_border">kkm</td>
+							<td class="_1qna_board_border">권광민</td>
+						</tr>
+					</table>
 				</div>
 			</div>
 <!-- 			탭 jquery -->
@@ -373,7 +389,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 			})
 			</script>
-			
 		</div>
 			<div class="clearfix_1_1"> </div>
 	</div>
