@@ -257,7 +257,70 @@
     margin: 0.3em 0 0;
 }
 /*============================================ faq_1_2.jsp 공지사항=====================================  */
+/*============================================= 페이징 ================================================*/
+._1qna_paging {
+    padding: 20px 0;
+    width: 800px;
+}
+._1qna_paging ul li{
+    list-style: none;
+}
+._1qna_paging>ul {
+    display: flex;
+    justify-content: center;
+}
 
+._1qna_paging>ul>li {
+    padding: 8px;
+    background: rgba(254,145,38,0.7);
+    font-size: 12px;
+    margin-left: 10px;
+    border-radius: 10px;
+	color: #fff;
+}
+._1qna_paging>ul>li:hover {
+    cursor: pointer;
+    background: #333;
+}
+ 
+ 
+/*테이블 테두리 둥글게*/
+/*.q_query_tab_1 {*/
+/*    border-top-left-radius: 15px;*/
+/*}*/
+
+/*.q_query_tab_2 {*/
+/*    border-top-right-radius: 15px;*/
+/*}*/
+
+/*.q_query_tab_8 {*/
+/*    border-bottom-left-radius: 15px;*/
+/*    border-bottom-right-radius: 15px;*/
+/*}*/
+/*.q_query_tab_top_radius{*/
+/*	border-top-left-radius: 15px;*/
+/*	border-top-right-radius: 15px;*/
+/*}*/
+/*.q_query_tab_bottom_radius{*/
+/*    border-bottom-left-radius: 15px;*/
+/*    border-bottom-right-radius: 15px;*/
+/*}*/
+/*textarea, button, input 선택시 외각줄 제거*/
+textarea:focus {
+  outline: none;
+}
+button:focus {
+  outline: none;
+}
+input:focus {
+  outline: none;
+}
+
+
+
+.clearfix_1_1 {
+	clear:both;
+}
 /*====================================================== 폰트 ===================================================  */
 html, body{
     font-size: 100%;

@@ -47,7 +47,8 @@
     padding: 20px;
     position: absolute;
     bottom: 28%;
-    width: 100%;
+    width: 1920px;
+    height: 650px;
     display: inline-block;
 	text-align:center;
 }
