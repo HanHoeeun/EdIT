@@ -188,15 +188,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       </ol>
       <div class="carousel-inner" role="listbox">
         <div class="item active">
-         <img class="first-slide" src="images/roleEdit_7.png"  alt="First slide"></a>
+         <img class="center-slide" src="images/roleEdit_7.png"  alt="First slide"></a>
        
         </div>
         <div class="item">
-         <img class="second-slide " src="images/aboutEdit_7.png" alt="Second slide"></a>
+         <img class="center-slide " src="images/aboutEdit_7.png" alt="Second slide"></a>
          
         </div>
         <div class="item">
-          <img class="third-slide " src="images/editedit_7.png" alt="Third slide"></a>
+          <img class="center-slide " src="images/editedit_7.png" alt="Third slide"></a>
           
         </div>
       </div>
@@ -209,7 +209,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="container">
 					<div class="col-md-6 ban-bottom3">
 							<div class="ban-top">
-								<img src="images/onebyone_7.png" class="img-responsive" alt=""/>
+								<img src="images/onebyone.png" class="img-responsive" alt=""/>
 							</div>
 							<div class="ban-img">
 								<div class=" ban-bottom1">
