@@ -89,9 +89,9 @@
 }
 /* // or 표시 */
 
-/* 아이디/비밀번호 찾기 */
+/* 아이디/비밀번호 찾기/회원가입 */
 ._5forgot {
-    margin: 10px auto 0px auto;
+    margin: 15px auto 0px auto;
     text-align: center;
     color: #777;
 }
@@ -103,4 +103,4 @@
 ._5forgot a:hover{
 	color:#d8703f;
 }
-/* //아이디/비밀번호 찾기 */
+/* //아이디/비밀번호 찾기/회원가입 */

@@ -265,7 +265,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<input type="submit" value="확인" class="#">	
 					<hr style="width:100%;height:1px;border:none;background-color:#999;">
 					</div>
-					<span onclick = "location.href='./index.jsp'" style = "cursor:pointer;">홈으로</span>
+					
+					
+<!-- 홈/아이디 찾기/회원가입 -->					
+					<div class="_5forgot">
+						<a href="index.jsp">홈</a>
+						|   
+						<a href="findid_3.jsp">아이디 찾기</a>
+						|   
+						<a href="registered_3.jsp">회원가입</a>
+					</div>	
+<!-- // 홈/아이디 찾기/회원가입 -->	
+					
+					
+<!-- 					이거 삭제해되 될듯 -->
+<!-- 					<span onclick = "location.href='./index.jsp'" style = "cursor:pointer;">홈으로</span> -->
 					
 				</form>
 			</div>

@@ -265,7 +265,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- 						왜 어떤거는 css로 하고 어떤거는 바로 jsp 여기다가 하는거지..??? -->
 					<hr style="width:100%;height:1px;border:none;background-color:#999;">
 					</div>
-					<span onclick = "location.href='./findpw_3.jsp'" style = "cursor:pointer;">비밀번호 찾기</span>
+					
+					
+<!-- 홈/비밀번호 찾기/회원가입 -->					
+					<div class="_5forgot">
+						<a href="index.jsp">홈</a>
+						|
+						<a href="findpw_3.jsp">비밀번호 찾기</a>
+						|
+						<a href="registered_3.jsp">회원가입</a>
+					</div>	
+<!-- // 홈/비밀번호 찾기/회원가입 -->	
+					
+<!-- 					위에거 or 아래거인데 위에거가 더 나은듯?? -->
+<!-- 					<span onclick = "location.href='./findpw_3.jsp'" style = "cursor:pointer;">비밀번호 찾기</span> -->
 					
 				</form>
 			</div>

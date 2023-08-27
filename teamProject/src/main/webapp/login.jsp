@@ -248,13 +248,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<input type="password" placeholder="비밀번호" required=" " >
 					<input type="submit" value="로그인">
 					
-<!-- 아이디/비밀번호 찾기 -->					
+<!-- 아이디/비밀번호 찾기/회원가입 -->					
 					<div class="_5forgot">
 						<a href="findid_3.jsp">아이디</a>
-						/
+						|
 						<a href="findpw_3.jsp">비밀번호 찾기</a>
+						|
+						<a href="registered_3.jsp">회원가입</a>
 					</div>	
-<!-- // 아이디/비밀번호 찾기 -->		
+<!-- // 아이디/비밀번호 찾기/회원가입 -->		
 				
 <!-- or 표시 -->				
 					<div class="_5or-login-with">
