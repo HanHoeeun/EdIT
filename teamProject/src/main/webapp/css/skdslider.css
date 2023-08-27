@@ -175,7 +175,7 @@ text-decoration:underline;
 		font-size: 14px;
 	}
 	.skdslider .slide-desc {
-    bottom: 27%;
+    bottom: 0%;
 }
 }
 @media (max-width: 1080px){
@@ -231,6 +231,16 @@ text-decoration:underline;
     width: none;
 }
 }
+@media screen and (max-width: 768px) {
+  .skdslider li img {
+    max-width: 100%;
+    height: auto;
+  }
+  .skdslider {
+    height: auto;
+  }
+}
+
 @media (max-width: 800px){
 	.skdslider .slide-desc > h3 {
 		font-size: 26px;

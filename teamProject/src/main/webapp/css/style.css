@@ -730,18 +730,21 @@ i.gray-star {
     text-align: center;
 	width: 18%;
 }
-/*--causel--*/
+/*--carousel--*/
+
+
 .carousel-indicators {
     position: absolute;
     bottom: -45px;
     left: 48%;
     z-index: 15;
-	width: auto;
+	width: 100%;
     padding-left: 0;
     margin: 0;
     text-align: center;
     list-style: none;
 }
+
 
 
 .carousel-indicators li {
