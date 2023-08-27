@@ -1113,6 +1113,113 @@ a.w3_agile_vimeo:hover{
 }
 
 
+/* -----------------------_6 추가 시작----------------------------- */
+._6join-form-grids{
+	width: 45%;
+    padding: 3em;
+	background:#F7F7F9;
+	margin:3em auto 0;
+}
+._6join-form-grids input[type="email"],._6join-form-grids input[type="password"],._6join-form-grids input[type="text"]{
+	outline: none;
+    border: 1px solid #DBDBDB;
+    padding: 10px 10px 10px 10px;
+    font-size: 14px;
+    color: #999;
+    display: block;
+    width: 80%;
+}
+
+._6join-form-grids input[type="password"]{
+	margin:1em 0 0;
+}
+
+._6join-form-grids input[name="submit1"]{
+	outline: none;
+    border: none;
+    padding: 10px 0;
+    font-size: 1em;
+    color: #fff;
+    display: block;
+    width: 20%;
+    background:#fe9126;
+    margin: 1.5em 0 0;
+}
+._6join-form-grids input[name="submit1"]:hover{
+	background: #3399cc;
+}
+._6join-form-grids input[name="submit2"]{
+	outline: none;
+    border: none;
+    padding: 10px 0;
+    font-size: 1em;
+    color: #fff;
+    display: block;
+    width: 100%;
+    background:#3399cc;
+    margin: 1.5em 0 0;
+}
+._6join-form-grids input[name="submit2"]:hover{
+	background:#fe9126;
+}
+
+._6clearfix{
+	width: 100%;
+/* 	background:#F7F7F9; */
+	padding: 3em; 
+	position: relative;
+}
+
+._6clearfix input[type="email"],._6clearfix input[type="text"]{
+	outline: none;
+    border: 1px solid #DBDBDB;
+    padding: 10px 10px 10px 10px;
+    font-size: 14px;
+    color: #999;
+    display: block;
+    width: 60%;
+}
+
+._6clearfix input[type="text1"]{
+	outline: none;
+	border: 1px solid #ffffff;
+    padding: 10px 10px 10px 10px;
+    font-size: 14px;
+    display: block;
+    width: 60%;
+}
+
+._6clearfix a{
+	text-align: left;
+	color:#999;
+	text-decoration:none;
+}
+
+
+._6clearfix input[type="password"]{
+	margin:1em 0 0;
+}
+
+._6clearfix input[name="submit1"]{
+	outline: none;
+    border: none;
+    padding: 10px 0;
+    font-size: 0.8em;
+    color: #fff;
+    display: block;
+    width: 15%;
+    background:#fe9126;
+    margin: 1.5em 0 0;
+}
+._6clearfix input[name="submit1"]:hover{
+	background: #3399cc;
+}
+
+
+
+/* -----------------------_6 추가 끝----------------------------- */
+
+
 /*-- //register --*/
 /*-- checkout --*/
 .checkout h2{
