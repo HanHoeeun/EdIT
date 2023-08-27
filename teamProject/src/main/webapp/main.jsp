@@ -770,7 +770,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
          
         </div>
         <div class="item">
-          <!-- <a href="household.html"> --><img class="third-slide " src="images/b1.jpg" alt="Third slide"></a>
+          <!-- <a href="household.html"> --><img class="third-slide " src="images/editedit_7.png" alt="Third slide"></a>
           
         </div>
       </div>
@@ -781,7 +781,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="container">
 					<div class="col-md-6 ban-bottom3">
 							<div class="ban-top">
-								<img src="images/p2.jpg" class="img-responsive" alt=""/>
+								<img src="images/p2.jpeg" class="img-responsive" alt=""/>
 								
 							</div>
 							<div class="ban-img">
