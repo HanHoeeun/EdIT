@@ -135,7 +135,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<!-- 태블릿 -->
 									<li class="dropdown">
 										<a href="../product/personalcare.jsp">태블릿</a>
-									</li>
+									</li>  
 									<!-- // 태블릿 -->
 									
 									<!-- //Mega Menu -->
