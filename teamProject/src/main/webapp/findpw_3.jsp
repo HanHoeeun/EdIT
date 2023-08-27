@@ -246,6 +246,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- ================================ 비밀번호찾기 ================================ -->
 	<div class="login">
 		<div class="container">
+		<div class="container">
+		<div style="text-align : center;">
+     		<img src="images/find_5_1.png"><br><br><br>
+		</div>
 			<h2>비밀번호찾기</h2>
 				<p>회원가입 시 등록하신 아이디, 이메일 주소를 입력해 주세요.</p>
 				<p>해당 이메일로 비밀번호 정보를 보내드립니다.</p>
@@ -259,7 +263,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					
 					<div class="_5center">
 						<input type="submit" value="확인" class="#">	
-					<hr style="width:100%;height:2px;border:none;background-color:#999;">
+					<hr style="width:100%;height:1px;border:none;background-color:#999;">
 					</div>
 					<span onclick = "location.href='./index.jsp'" style = "cursor:pointer;">홈으로</span>
 					

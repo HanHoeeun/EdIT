@@ -276,12 +276,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					
 					<div class="_5login-kakao">	
 						<a href="#"><img class="_5kakao" src="images/kakao_5.png">카카오로 로그인하기</a>
-					</div>
-					 
-					
+					</div>				
 				</form>
 			</div>
-			<p><a href="registered.jsp">회원가입</a> <a href="index.jsp">홈<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></p>
+<!-- 			이거는 넣을지 말지 고민 좀... -->
+<!-- 			<p><a href="registered.jsp">회원가입</a> <a href="index.jsp">홈<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></p> -->
 		</div>
 	</div>
 <!-- ================================ // 로그인 화면 ================================ -->

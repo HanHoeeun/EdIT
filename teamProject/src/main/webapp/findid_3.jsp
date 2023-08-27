@@ -246,6 +246,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- ================================ 아이디찾기 ================================ -->
 	<div class="login">
 		<div class="container">
+		<div style="text-align : center;">
+     		<img src="images/find_5_1.png"><br><br><br>
+		</div>
 			<h2>아이디찾기</h2>
 				<p>회원가입시 등록하신 이름과 이메일을 입력해 주세요.</p>
 		
@@ -260,7 +263,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<input type="submit" value="확인" class="#">		
 						<input type="submit" value="취소" class="login.jsp">
 <!-- 						왜 어떤거는 css로 하고 어떤거는 바로 jsp 여기다가 하는거지..??? -->
-					<hr style="width:100%;height:2px;border:none;background-color:#999;">
+					<hr style="width:100%;height:1px;border:none;background-color:#999;">
 					</div>
 					<span onclick = "location.href='./findpw_3.jsp'" style = "cursor:pointer;">비밀번호 찾기</span>
 					
