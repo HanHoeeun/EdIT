@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>아이디찾기</title>
+<title>비밀번호찾기</title>
 <link href= "css/login.css" rel= "stylesheet" type="text/css">
 <!-- <link href= "css/style.css" rel= "stylesheet" type="text/css"> -->
 </head>
@@ -236,39 +236,38 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
 				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>홈</a></li>
-				<li class="active">아이디찾기</li>
+				<li class="active">비밀번호찾기</li>
 			</ol>
 		</div>
 	</div>
 <!-- //breadcrumbs -->
 
 
-<!-- ================================ 아이디찾기 ================================ -->
+<!-- ================================ 비밀번호찾기 ================================ -->
 	<div class="login">
 		<div class="container">
-			<h2>아이디찾기</h2>
-				<p>회원가입시 등록하신 이름과 이메일을 입력해 주세요.</p>
+			<h2>비밀번호찾기</h2>
+				<p>회원가입 시 등록하신 아이디, 이메일 주소를 입력해 주세요.</p>
+				<p>해당 이메일로 비밀번호 정보를 보내드립니다.</p>
 		
 			<div class="login-form-grids animated wow slideInUp" data-wow-delay=".5s">
 			
 				<form>			
 
-					<input type="text" placeholder="이름" required=" " >  
+					<input type="text" placeholder="아이디" required=" " >  
 					<input type="email" placeholder="이메일" required=" " >
 					
 					<div class="_5center">
-						<input type="submit" value="확인" class="#">		
-						<input type="submit" value="취소" class="login.jsp">
-<!-- 						왜 어떤거는 css로 하고 어떤거는 바로 jsp 여기다가 하는거지..??? -->
+						<input type="submit" value="확인" class="#">	
 					<hr style="width:100%;height:2px;border:none;background-color:#999;">
 					</div>
-					<span onclick = "location.href='./findpw_3.jsp'" style = "cursor:pointer;">비밀번호 찾기</span>
+					<span onclick = "location.href='./index.jsp'" style = "cursor:pointer;">홈으로</span>
 					
 				</form>
 			</div>
 		</div>
 	</div>
-<!-- ================================ // 아이디찾기 ================================ -->
+<!-- ================================ // 비밀번호찾기 ================================ -->
 
 <!-- //footer -->
 <div class="footer">

@@ -2,7 +2,7 @@
 
 /* 추가함(jin) */
 ._5login-naver{
-	margin: 2em auto 0.5em;
+	margin: 3em auto 0.5em;
 /*     color: #212121; */
     text-align: center;
 /*     text-transform: uppercase;  */
@@ -12,7 +12,7 @@
     font-size: 14px;
     color: #999;
 /*     display: block; */
-    width: 60%;
+    width: auto;
 }
 ._5login-kakao{
 	margin: 0em auto 0.5em;
@@ -24,15 +24,83 @@
     font-size: 14px;
     color: #999;
     display: block;
-    width: 60%;
+    width: auto;
 }
 ._5naver{
     width: 20px;
     height: 20px;
     position: relative;
+    right: 100px;
+
 }
 ._5kakao{
     width: 20px;
     height: 20px;
     position: relative;
+    right: 100px;
 }
+
+/* or 표시 */
+._5or-login-with,
+._5or-login-with * {
+  box-sizing: border-box;
+}
+._5or-login-with {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: relative;
+}
+._5don-t-have-account {
+  flex-shrink: 0;
+  width: 360px;
+  height: 20px;
+  position: static;
+}
+._5line-20 {
+  border-style: solid;
+  border-color: gray;
+  border-width: 1px 0 0 0;
+  width: 100%;
+  height: 0px;
+  position: absolute;
+  left: 0px;
+  top: 40px;
+}
+._5label {
+  background: #f5f5f5;
+  padding: 8px 8px 8px 8px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: absolute;
+  left: calc(50% - 15px);
+  top: 20px;
+}
+._5or {
+  color: var(--gray-500, #77878f);
+  text-align: left;
+  font: var(--body-small-400, 400 14px/20px "Public Sans", sans-serif);
+  position: relative;
+}
+/* // or 표시 */
+
+/* 아이디/비밀번호 찾기 */
+._5forgot {
+    margin: 10px auto 0px auto;
+    text-align: center;
+    color: #777;
+}
+._5forgot a {
+    color: #777;
+    font-size: 13px;
+    text-decoration: none;
+}
+._5forgot a:hover{
+	color:#d8703f;
+}
+/* //아이디/비밀번호 찾기 */

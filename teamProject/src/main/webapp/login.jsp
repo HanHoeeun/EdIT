@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>로그인화면</title>
 <link href= "css/login.css" rel= "stylesheet" type="text/css">
-<!-- <link href= "css/style.css" rel= "stylesheet" type="text/css"> -->
+<link href= "css/style.css" rel= "stylesheet" type="text/css">
 </head>
 <body>
 <!--
@@ -230,33 +230,45 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="breadcrumbs">
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
-				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-				<li class="active">Login Page</li>
+				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>홈</a></li>
+				<li class="active">로그인</li>
 			</ol>
 		</div>
 	</div>
 <!-- //breadcrumbs -->
 
-<!-- 로그인 화면 -->
+<!-- ================================ 로그인 화면 ================================ -->
 	<div class="login">
 		<div class="container">
 			<h2>로그인</h2>
-		
+
 			<div class="login-form-grids animated wow slideInUp" data-wow-delay=".5s">
 				<form>
 					<input type="text" placeholder="아이디" required=" " >
-					<input type="password" placeholder="패스워드" required=" " >
+					<input type="password" placeholder="비밀번호" required=" " >
 					<input type="submit" value="로그인">
 					
-
-					
-					<div class="forgot">
-						<a href="#">아이디</a>
+<!-- 아이디/비밀번호 찾기 -->					
+					<div class="_5forgot">
+						<a href="findid_3.jsp">아이디</a>
 						/
-						<a href="#">비밀번호 찾기</a>
+						<a href="findpw_3.jsp">비밀번호 찾기</a>
 					</div>	
+<!-- // 아이디/비밀번호 찾기 -->		
+				
+<!-- or 표시 -->				
+					<div class="_5or-login-with">
+  						<div class="_5don-t-have-account">
+    					<div class="_5line-20"></div>
+    					<div class="_5label">
+      					<div class="_5or">or</div>
+    				</div>
+  					</div>
+					</div>
 					
-						
+<!-- // or 표시 -->			
+
+		
 <!-- sns로그인 -->
 					<div class="_5login-naver">
 						<a href="#"><img class="_5naver" src="images/naver_5.png">네이버로 로그인하기</a>
@@ -267,14 +279,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 					 
 					
-					
 				</form>
 			</div>
-			<h4>삭제</h4>
-			<p><a href="registered.html">회원가입</a> <a href="index.html">홈<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></p>
+			<p><a href="registered.jsp">회원가입</a> <a href="index.jsp">홈<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></p>
 		</div>
 	</div>
-<!-- //로그인 화면 -->
+<!-- ================================ // 로그인 화면 ================================ -->
 
 <!-- //footer -->
 <div class="footer">
