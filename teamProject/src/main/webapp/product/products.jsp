@@ -230,7 +230,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="breadcrumbs">
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
-				<li><a href="../index.jsp"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+				<li><a href="main.jsp"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
 				<li class="active">전체 상품 보기</li>
 			</ol>
 		</div>
@@ -241,8 +241,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="container">
 			<div class="col-md-4 products-left">
 				<div class="categories">
-					<h2>Categories</h2>
+					<h2>카테고리</h2>
 					<ul class="cate">
+						<li><a href="../product/products.jsp"><i class="fa fa-arrow-right" aria-hidden="true"></i>전체 상품 보기</a></li>
 						<li><a href="../product/groceries.jsp"><i class="fa fa-arrow-right" aria-hidden="true"></i>노트북</a></li>
 						<li><a href="../product/household.jsp"><i class="fa fa-arrow-right" aria-hidden="true"></i>휴대폰</a></li>
 						<li><a href="../product/personalcare.jsp"><i class="fa fa-arrow-right" aria-hidden="true"></i>태블릿</a></li>
@@ -276,7 +277,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <figure>
                         <div class="snipcart-item block">
                             <div class="snipcart-thumb">
-                                <a href="single.html"><img title=" " alt=" " src="../proImg/img1_07.png" width="150px" height="150px"></a>
+                                <a href="single.jsp"><img title=" " alt=" " src="../proImg/img1_07.png" width="150px" height="150px"></a>
                                 <p>안쓰는 애플워치 팔아요</p>
                                 <h4>₩250,000</h4>
                             </div>
@@ -291,7 +292,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <input type="hidden" name="currency_code" value="KRW">
                                         <input type="hidden" name="return" value=" ">
                                         <input type="hidden" name="cancel_return" value=" ">
-                                        <input type="submit" name="submit" value="찜" class="button">
+                                        <input type="submit" name="submit" value="찜 추가하기" class="button">
                                     </fieldset>
                                 </form>
                             </div>
