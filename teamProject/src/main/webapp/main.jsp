@@ -7,14 +7,15 @@
 <title>main.jsp</title>
 
 </head>
-<body>
+<body>    
+
 <!--
 author: W3layouts
 author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
-<!DOCTYPE html>
+<!DOCTYPE html>   
 <html>
 <head>
 <title>main.jsp</title>
