@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>EdIT update</title>
+<title>buylist</title>
 <link href= "css/login.css" rel= "stylesheet" type="text/css">
 <link href= "css/style.css" rel= "stylesheet" type="text/css">
+<link href= "css/faq_1_9.css" rel= "stylesheet" type="text/css">
 </head>
 <body>
 <!--
@@ -18,7 +19,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>   
 <html>
 <head>
-<title>update.jsp</title>
+<title>buylist.jsp</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -61,12 +62,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
 				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>홈</a></li>
-				<li class="active">내정보수정</li>
+				<li class="active">구매내역</li>
 			</ol>
 		</div>
 	</div>
 <!-- //breadcrumbs -->
-<!--- --------------------------------------------------회원정보 수정 ---------------------------------------------------------->
+
+<!--- --------------------------------------------------구매내역 ---------------------------------------------------------->
 	<div class="products">
 		<div class="container">
 			<div class="col-md-4 products-left">
@@ -83,50 +85,59 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</ul>
 				</div>											
 			</div>		
-							
+			
+				
 			<div class="col-md-8 products-right">
-						
-					<div class="products-right-grid">
-						<div class="products-right-grids">
-							<div class="clearfix">
-								<div class="categories">
-									<h2>나의정보수정</h2>
-								</div>		
-					 		</div>
-						</div>
+			
+			
+				<div class="products-right-grid">
+					<div class="products-right-grids">
+						<div class="clearfix">
+							<div class="categories">
+								<h2>구매내역</h2>
+							</div>		
+				 		</div>
 					</div>
-					
-	
-	
-					
-				<form action="updatePro.me" method="post">
+				</div>
+				
+				
+				
+				<form action="update.jsp" method="post">
 					<div class="hover14 column">
 						<div class="_6clearfix1"> 
-							<div class="_6clearfix"> 
 								<div align="center">
-									<input type="text" placeholder="아이디가 나타날것임 고정" required=" " id="_6id" readonly="readonly"><br>
-									<input type="text" placeholder="현재비밀번호" required=" " id="_6pass1"><br>
-									<input type="text" placeholder="새비밀번호" required=" "  id="_6pass2"> <br>
-									<input type="text" placeholder="새비밀번호 확인" required=" "  id="_6pass2"><br> 
-									<input type="text" placeholder="이름 (최소 2자 이상 입력)" required=" " id="_6name"><br>
-									<input type="text" placeholder="변경 할 닉네임 (최소 2자 이상 입력)" required=" " id="_6nick"><br>
-									<input type="email" placeholder="변경 할 이메일" required=" " id="_6mail"><br>
-									<input type="tel" placeholder="변경 할 전화번호" required=" " id="_6tel">
-								</div>	
-							</div>
+		
+		
+					<table class="_1qna_board">
+						<tr>
+							<th class="_1qna_board_border">번호</th>
+							<th class="_1qna_board_border">상품이름</th>
+							<th class="_1qna_board_border">가격</th>
+							<th class="_1qna_board_border">구매시간</th>
+						</tr>
+						<tr>
+							<td class="_1qna_board_border">1</td>
+							<td class="_1qna_board_subject">2</td>
+							<td class="_1qna_board_border">3</td>
+							<td>4</td>
+						</tr>
+		</table>
+		</div>
 						</div>
 					</div>
 								
 					<div class="snipcart-details top_brand_home_details">
 						<fieldset>
-							<input type="button" name="submit" value="수정" class="button">
+				
+				
+				---
+				
+				
 						</fieldset>
 						</div>
 				</form>
 			</div> <br><br>
-				
-						
-		
+							
 					
 						<div class="clearfix"> </div>
 				</div>
@@ -135,7 +146,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 
-<!--- --------------------------------------------------회원정보 수정 ---------------------------------------------------------->
+<!--- --------------------------------------------------구매내역 ---------------------------------------------------------->
 
 
 
