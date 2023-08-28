@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>로그인화면</title>
+<title>login.jsp</title>
 <link href= "css/login.css" rel= "stylesheet" type="text/css">
 <link href= "css/style.css" rel= "stylesheet" type="text/css">
 </head>

@@ -71,7 +71,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<li><a href="login.jsp"><i class="fa fa-user" aria-hidden="true"> 로그인</i></a></li>
 
 					<li><a href="contact.jsp"><i class="fa fa-question-circle-o" aria-hidden="true"> 문의하기</i></a></li>
-					<li><a href="productReg.po"><i class="fa fa-plus-circle" aria-hidden="true"> 상품등록</i></a></li>=======
+					<li><a href="productReg.po"><i class="fa fa-plus-circle" aria-hidden="true"> 상품등록</i></a></li>
 					<%} %> 
 					
 					<%if(2==1){ %>

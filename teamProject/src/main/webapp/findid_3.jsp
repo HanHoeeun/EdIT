@@ -18,7 +18,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>   
 <html>
 <head>
-<title>login.jsp</title>
+<title>findid.jsp</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -61,7 +61,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
 				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>홈</a></li>
-				<li class="active">로그인</li>
+				<li class="active">아이디찾기</li>
 			</ol>
 		</div>
 	</div>
@@ -87,7 +87,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="_5center">
 						<input type="submit" value="확인" class="#">		
 						<input type="submit" value="취소" class="login.jsp">
-<!-- 						왜 어떤거는 css로 하고 어떤거는 바로 jsp 여기다가 하는거지..??? -->
 					<hr style="width:100%;height:1px;border:none;background-color:#999;">
 					</div>
 					
