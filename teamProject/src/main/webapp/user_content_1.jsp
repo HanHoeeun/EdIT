@@ -45,7 +45,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 <body>
 <!-- header -->
-<jsp:include page="top.jsp"></jsp:include>
+<jsp:include page="../inc/top.jsp"></jsp:include>
 		
 <!-- //navigation -->
 	<!-- breadcrumbs -->
@@ -116,7 +116,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 <!-- //top-brands -->
 <!-- //footer -->
-<jsp:include page="bottom.jsp"></jsp:include>
+<jsp:include page="../inc/bottom.jsp"></jsp:include>
 <!-- //footer -->	
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>

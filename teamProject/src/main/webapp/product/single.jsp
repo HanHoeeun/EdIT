@@ -52,7 +52,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
 
 <!-- 헤더 들어가는 곳! -->
-<jsp:include page="../top.jsp"></jsp:include>
+<jsp:include page="../inc/top.jsp"></jsp:include>
 <!-- 헤더 들어가는 곳! -->
 
 <!-- breadcrumbs -->
@@ -159,7 +159,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 <!-- 푸터 들어가는 곳! -->
 <div class="clearfix">
-<jsp:include page="../bottom.jsp"></jsp:include>
+<jsp:include page="../inc/bottom.jsp"></jsp:include>
 </div>
 <!-- 푸터 들어가는 곳! -->
 	
