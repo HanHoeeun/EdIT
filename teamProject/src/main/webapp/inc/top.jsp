@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>main.jsp</title>
-
+ 
 </head>
 <body>    
 
@@ -65,6 +65,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<%if(1==2){ %>
 					<li><a href="registered.jsp"><i class="fa fa-sign-in" aria-hidden="true"> 회원가입</i></a></li>
 					<li><a href="login.jsp"><i class="fa fa-user" aria-hidden="true"> 로그인</i></a></li>
+
+					<li><a href="contact.jsp"><i class="fa fa-question-circle-o" aria-hidden="true"> 문의하기</i></a></li>
+					<li><a href="productReg.po"><i class="fa fa-plus-circle" aria-hidden="true"> 상품등록</i></a></li>=======
 					<%} %>
 					
 					<%if(1==2){ %>
@@ -75,12 +78,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<%} %>
 					<li><a href="faq.ad"><i class="fa fa-question-circle-o" aria-hidden="true"> 문의하기</i></a></li>
 					<li><a href="../product/productReg.jsp"><i class="fa fa-plus-circle" aria-hidden="true"> 상품등록</i></a></li>
+
 					<!-- <li><a href="../product/checkout.jsp"><i class="fa fa-heart" aria-hidden="true"> 찜리스트 </i></a></li> -->
 				</ul>
 			</div>
 			<!-- <!-- 얘도 그냥 위에 처럼 리스트 내에 내장 시켜서 하이퍼링크 거는건 어떤지..? -->
 			 <div class="product_list_header">   
-					<form action="product/checkout.jsp" method="post" class="last"> 
+					<form action="checkout.po" method="post" class="last"> 
 						<input type="hidden" name="cmd" value="_cart">
 						<input type="hidden" name="display" value="1">
 						<button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-heart" aria-hidden="true"></i></button>
@@ -136,19 +140,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<!-- Mega Menu -->
 									<!-- 노트북 -->
 									<li class="dropdown">
-										<a href="../product/groceries.jsp">노트북</a>
+										<a href="groceries.po">노트북</a>
 									</li>
 									<!-- // 노트북 -->
 									
 									<!-- 휴대폰 -->
 									<li class="dropdown">
-										<a href="../product/household.jsp">휴대폰</a>
+										<a href="household.po">휴대폰</a>
 									</li>
 									<!-- // 휴대폰 -->
 									
 									<!-- 태블릿 -->
 									<li class="dropdown">
-										<a href="../product/personalcare.jsp">태블릿</a>
+										<a href="personalcare.po">태블릿</a>
 									</li>
 									<!-- // 태블릿 -->
 									
@@ -160,4 +164,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</nav>
 			</div>
 		</div>
+</body>
+</html>
 		

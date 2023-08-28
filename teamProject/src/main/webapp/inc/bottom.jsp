@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html> 
 <head>
 <title>bottom</title>
 <!-- for-mobile-apps -->
@@ -57,22 +57,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="contact.jsp">문의하기</a></li>
 						<!-- <li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="short-codes.jsp">Short Codes</a></li> -->
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="faq.jsp">FAQ</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="../product/products.jsp">쇼핑하기</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="products.po">쇼핑하기</a></li>
 					</ul>
 				</div>
 				<div class="col-md-3 w3_footer_grid">
 					<h3>카테고리</h3>
 					<ul class="info"> 
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="../main.jsp">홈페이지</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="../product/groceries.jsp">노트북</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="../product/household.jsp">휴대폰</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="../product/personalcare.jsp">태블릿</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="groceries.po">노트북</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="household.po">휴대폰</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="personalcare.po">태블릿</a></li>
 					</ul>
 				</div>
 				<div class="col-md-3 w3_footer_grid">
 					<h3>프로필</h3>
 					<ul class="info"> 
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="../product/checkout.jsp">찜리스트</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="checkout.po">찜리스트</a></li>
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="login.jsp">로그인</a></li>
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="registered.jsp">회원가입</a></li>
 					</ul>

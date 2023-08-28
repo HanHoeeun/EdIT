@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-<head>
+<html> 
+<head>   
 <meta charset="UTF-8">
 <title>product/single.jsp</title>
 </head>
@@ -54,7 +54,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- 헤더 들어가는 곳! -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
 <!-- 헤더 들어가는 곳! -->
-
+      
 
 <!-- breadcrumbs -->
 	<div class="breadcrumbs">
@@ -115,9 +115,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					
 					<!-- 채팅, 신고하기, 상품목록 버튼 -->
 					<div class="checkout-right-basket">
-					<a href="../product/productUpdate.jsp"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>상품수정</a>
-					<a href="../product/productDelete.jsp"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>상품삭제</a>
-					<a href="../product/products.jsp"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>상품목록</a>
+					<a href="productUpdate.po"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>상품수정</a>
+					<a href="productDelete.po"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>상품삭제</a>
+					<a href="products.po"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>상품목록</a>
 					</div>
 					<!-- // 채팅, 신고하기, 상품목록 버튼 -->
 					

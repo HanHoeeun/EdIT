@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html> 
 <head>
 <meta charset="UTF-8">
 <title>product/groceries.jsp</title>
 </head>
 <body>
-
+ 
 <!--
 author: W3layouts
 author URL: http://w3layouts.com
@@ -15,7 +15,7 @@ License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <!DOCTYPE html>
-<html>
+<html> 
 <head>
 <title>Super Market an Ecommerce Online Shopping Category Flat Bootstrap Responsive Website Template | Single Page :: w3layouts</title>
 <!-- for-mobile-apps -->
@@ -72,10 +72,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="categories">
 					<h2>카테고리</h2>
 					<ul class="cate">
-						<li><a href="../product/products.jsp"><i class="fa fa-arrow-right" aria-hidden="true"></i>전체 상품 보기</a></li>
-						<li><a href="../product/groceries.jsp"><i class="fa fa-arrow-right" aria-hidden="true"></i>노트북</a></li>
-						<li><a href="../product/household.jsp"><i class="fa fa-arrow-right" aria-hidden="true"></i>휴대폰</a></li>
-						<li><a href="../product/personalcare.jsp"><i class="fa fa-arrow-right" aria-hidden="true"></i>태블릿</a></li>
+						<li><a href="products.po"><i class="fa fa-arrow-right" aria-hidden="true"></i>전체 상품 보기</a></li>
+						<li><a href="groceries.po"><i class="fa fa-arrow-right" aria-hidden="true"></i>노트북</a></li>
+						<li><a href="household.po"><i class="fa fa-arrow-right" aria-hidden="true"></i>휴대폰</a></li>
+						<li><a href="personalcare.po"><i class="fa fa-arrow-right" aria-hidden="true"></i>태블릿</a></li>
 					</ul>
 				</div>																																												
 			</div>
@@ -106,7 +106,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <figure>
                         <div class="snipcart-item block">
 											<div class="snipcart-thumb">
-												<a href="single.jsp"><img title=" " alt=" " src="" width = "150px" height="150px"></a>		
+												<a href="single.po"><img title=" " alt=" " src="" width = "150px" height="150px"></a>		
 												<p>LG gram 2020년형</p>
 												<h4>₩850,000 </h4>
 											</div>
