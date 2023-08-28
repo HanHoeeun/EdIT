@@ -94,7 +94,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					
 <!-- 홈/아이디 찾기/회원가입 -->					
 					<div class="_5forgot">
-						<a href="index.jsp">홈</a>
+						<a href="../main.jsp">홈</a>
 						|   
 						<a href="findid_3.jsp">아이디 찾기</a>
 						|   

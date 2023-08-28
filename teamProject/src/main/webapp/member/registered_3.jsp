@@ -109,7 +109,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</form>
 			</div>
 			<div class="register-home">
-				<a href="index.jsp">Home</a>
+				<a href="../main.jsp">Home</a>
 			</div>
 		</div>
 	</div>
