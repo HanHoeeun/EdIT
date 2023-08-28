@@ -97,7 +97,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<!-- // 상품 이미지 -->
 						
 						<!-- 상품 이름 -->
-						<td class="invert"><a href="../product/single.jsp">태블릿</a></td>
+						<td class="invert"><a href="single.po">태블릿</a></td>
 						<!-- // 상품 이름 -->
 						
 						<!-- 상품 가격 -->

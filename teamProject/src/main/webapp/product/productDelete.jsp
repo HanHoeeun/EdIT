@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
+<body> 
 <!--
 author: W3layouts
 author URL: http://w3layouts.com

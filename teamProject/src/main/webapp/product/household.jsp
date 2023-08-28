@@ -7,7 +7,7 @@
 <title>product/household.jsp</title>
 </head>
 <body>
-
+ 
 <!--
 author: W3layouts
 author URL: http://w3layouts.com
