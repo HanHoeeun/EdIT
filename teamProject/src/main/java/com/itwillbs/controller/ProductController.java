@@ -46,7 +46,6 @@ public class ProductController extends HttpServlet{
 		
 		
 		if(sPath.equals("/productReg.po")) {
-			
 			dispatcher 
 			    = request.getRequestDispatcher("product/productReg.jsp");
 			dispatcher.forward(request, response);
