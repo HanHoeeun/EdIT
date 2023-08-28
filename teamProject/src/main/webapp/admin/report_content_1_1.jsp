@@ -14,12 +14,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- //for-mobile-apps -->
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-<link href="css/style_1_1.css" rel="stylesheet" type="text/css" media="all" />
+<link href="../css/style_1_1.css" rel="stylesheet" type="text/css" media="all" />
 <!-- font-awesome icons -->
 <link href="css/font-awesome.css" rel="stylesheet"> 
 <!-- //font-awesome icons -->
 <!-- js -->
-<script src="js/jquery-1.11.1.min.js"></script>
+<script src="../js/jquery-1.11.1.min.js"></script>
 <!-- //js -->
 <link href='//fonts.googleapis.com/css?family=Raleway:400,100,100italic,200,200italic,300,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic' rel='stylesheet' type='text/css'>
 <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
@@ -50,7 +50,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<input class="title" type="text" placeholder="제목을 입력하세요" required=" " ><br>
 			<p>첨부파일</p>
 			<div action="insertPro.jsp" method="post" enctype="multipart/form-data">
-				<img src="images/picture.png" width="200px" height="200px" onclick="window.open('images/picture.png','이미지','width=500, height=700, scrollbars=yes')">
+				<img src="../images/picture.png" width="200px" height="200px" onclick="window.open('../images/picture.png','이미지','width=500, height=700, scrollbars=yes')">
 			</div><br>
 			<p>신고내용</p>
 			<textarea name="textarea" placeholder="내용을 입력하세요" required=" " readonly></textarea><br>
