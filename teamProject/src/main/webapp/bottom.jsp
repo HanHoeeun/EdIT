@@ -63,10 +63,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="col-md-3 w3_footer_grid">
 					<h3>카테고리</h3>
 					<ul class="info"> 
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="main.jsp">홈페이지</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="../prodct/groceries.jsp">노트북</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="../main.jsp">홈페이지</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="../product/groceries.jsp">노트북</a></li>
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="../product/household.jsp">휴대폰</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="../personalcare.jsp">태블릿</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="../product/personalcare.jsp">태블릿</a></li>
 					</ul>
 				</div>
 				<div class="col-md-3 w3_footer_grid">
