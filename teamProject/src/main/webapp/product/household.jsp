@@ -71,10 +71,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="categories">
 					<h2>카테고리</h2>
 					<ul class="cate">
-						<li><a href="../product/products.jsp"><i class="fa fa-arrow-right" aria-hidden="true"></i>전체 상품 보기</a></li>
-						<li><a href="../product/groceries.jsp"><i class="fa fa-arrow-right" aria-hidden="true"></i>노트북</a></li>
-						<li><a href="../product/household.jsp"><i class="fa fa-arrow-right" aria-hidden="true"></i>휴대폰</a></li>
-						<li><a href="../product/personalcare.jsp"><i class="fa fa-arrow-right" aria-hidden="true"></i>태블릿</a></li>
+						<li><a href="products.po"><i class="fa fa-arrow-right" aria-hidden="true"></i>전체 상품 보기</a></li>
+						<li><a href="groceries.po"><i class="fa fa-arrow-right" aria-hidden="true"></i>노트북</a></li>
+						<li><a href="household.po"><i class="fa fa-arrow-right" aria-hidden="true"></i>휴대폰</a></li>
+						<li><a href="personalcare.po"><i class="fa fa-arrow-right" aria-hidden="true"></i>태블릿</a></li>
 					</ul>
 				</div>																																												
 			</div>
@@ -105,7 +105,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <figure>
                         <div class="snipcart-item block">
 											<div class="snipcart-thumb">
-												<a href="single.jsp"><img title=" " alt=" " src="" width = "150px" height="150px"></a>		
+												<a href="single.po"><img title=" " alt=" " src="" width = "150px" height="150px"></a>		
 												<p>공기계 필요하신분</p>
 												<h4>₩80,000 </h4>
 											</div>

@@ -93,7 +93,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<!-- // 찜 번호 -->
 						
 						<!-- 상품 이미지 -->
-						<td class="invert-image"><a href="../product/single.jsp"><img src="../images/1.png" alt=" " class="img-responsive" /></a></td>
+						<td class="invert-image"><a href="single.po"><img src="../images/1.png" alt=" " class="img-responsive" /></a></td>
 						<!-- // 상품 이미지 -->
 						
 						<!-- 상품 이름 -->
@@ -131,11 +131,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<!-- // 찜 번호 -->
 						
 						<!-- 상품이미지 -->
-						<td class="invert-image"><a href="../product/single.jsp"><img src="../images/2.png" alt=" " class="img-responsive" /></a></td>
+						<td class="invert-image"><a href="single.po"><img src="../images/2.png" alt=" " class="img-responsive" /></a></td>
 						<!-- // 상품이미지 -->
 						
 						<!-- 상품 이름 -->
-						<td class="invert"><a href="../product/single.jsp">노트북</a></td>
+						<td class="invert"><a href="single.po">노트북</a></td>
 						<!-- // 상품 이름 -->
 						
 						<!-- 가격 -->
@@ -169,11 +169,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<!-- // 찜 번호 -->
 						
 						<!-- 상품이미지 -->
-						<td class="invert-image"><a href="../product/single.jsp"><img src="../images/3.png" alt=" " class="img-responsive" /></a></td>
+						<td class="invert-image"><a href="single.po"><img src="../images/3.png" alt=" " class="img-responsive" /></a></td>
 						<!-- // 상품이미지 -->
 						
 						<!-- 상품 이름 -->
-						<td class="invert"><a href="../product/single.jsp">휴대폰</a></td>
+						<td class="invert"><a href="single.po">휴대폰</a></td>
 						<!-- // 상품 이름 -->
 						
 						<!-- 가격 -->
@@ -227,7 +227,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<!-- 쇼핑계속하기 버튼 -->
 			<div class="checkout-left">	
 				<div class="checkout-right-basket">
-					<a href="../product/products.jsp"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>쇼핑 계속하기</a>
+					<a href="products.po"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>쇼핑 계속하기</a>
 				</div>
 				<div class="clearfix"> </div>
 			</div>
