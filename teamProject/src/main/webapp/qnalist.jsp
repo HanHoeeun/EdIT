@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>findid.jsp</title>
+<title>EdIT mypage</title>
 <link href= "css/login.css" rel= "stylesheet" type="text/css">
 <link href= "css/style.css" rel= "stylesheet" type="text/css">
+<link href= "css/faq_1_9.css" rel= "stylesheet" type="text/css">
 </head>
 <body>
 <!--
@@ -18,7 +19,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>   
 <html>
 <head>
-<title>findid.jsp</title>
+<title>mypage.jsp</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -61,54 +62,118 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
 				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>홈</a></li>
-				<li class="active">아이디찾기</li>
+				<li class="active">마이페이지</li>
 			</ol>
 		</div>
 	</div>
 <!-- //breadcrumbs -->
 
-
-<!-- ================================ 아이디찾기 ================================ -->
-	<div class="login">
+<!--- --------------------------------------------------마이페이지 ---------------------------------------------------------->
+	<div class="products">
 		<div class="container">
-		<div style="text-align : center;">
-     		<img src="images/find_5_1.png"><br><br><br>
-		</div>
-			<h2>아이디찾기</h2>
-				<p>회원가입시 등록하신 이름과 이메일을 입력해 주세요.</p>
-		
-			<div class="login-form-grids animated wow slideInUp" data-wow-delay=".5s">
+			<div class="col-md-4 products-left">
+				<div class="categories">
+					<h2>마이페이지</h2>
+					<ul class="cate"> <br>
+						<li><a href="mypage.jsp"><i class="fa fa-arrow-right" ></i>나의 정보</a></li>
+						<li><a href="buylist.jsp"><i class="fa fa-arrow-right"></i>구매 내역</a></li>
+						<li><a href="salelist.jsp"><i class="fa fa-arrow-right"></i>판매 내역</a></li>
+						<li><a href="product/checkout.jsp"><i class="fa fa-arrow-right"></i>찜♥</a></li>
+						<li><a href="qnalist.jsp"><i class="fa fa-arrow-right"></i>문의 내역</a></li>
+						<li><a href="delete.jsp"><i class="fa fa-arrow-right"></i>회원 탈퇴</a></li>
+ 						<li><a href="#"><i class="fa fa-arrow-right"></i>회원 관리</a></li>  
+					</ul>
+				</div>											
+			</div>		
 			
-				<form>			
-
-					<input type="text" placeholder="이름" required=" " >  
-					<input type="email" placeholder="이메일" required=" " >
-					
-					<div class="_5center">
-						<input type="submit" value="확인" class="#">		
-						<input type="submit" value="취소" class="login.jsp">
-					<hr style="width:100%;height:1px;border:none;background-color:#999;">
+				
+			<div class="col-md-8 products-right">
+			
+			
+				<div class="products-right-grid">
+					<div class="products-right-grids">
+						<div class="clearfix">
+							<div class="categories">
+								<h2>문의내역</h2>
+							</div>		
+				 		</div>
 					</div>
-					
-					
-<!-- 홈/비밀번호 찾기/회원가입 -->					
-					<div class="_5forgot">
-						<a href="index.jsp">홈</a>
-						|
-						<a href="findpw_3.jsp">비밀번호 찾기</a>
-						|
-						<a href="registered_3.jsp">회원가입</a>
-					</div>	
-<!-- // 홈/비밀번호 찾기/회원가입 -->	
-					
-<!-- 					위에거 or 아래거인데 위에거가 더 나은듯?? -->
-<!-- 					<span onclick = "location.href='./findpw_3.jsp'" style = "cursor:pointer;">비밀번호 찾기</span> -->
-					
+				</div>
+				
+				
+				
+				<form action="update.jsp" method="post">
+					<div class="hover14 column">
+						<div class="_6clearfix1"> 
+						
+								<div align="center">
+					<table class="_1qna_board">
+						<tr>
+							<th class="_1qna_board_border">번호</th>
+							<th class="_1qna_board_border">제목</th>
+							<th class="_1qna_board_border">작성자</th>
+							<th class="_1qna_board_border">작성시간</th>
+						</tr>
+						<tr>
+							<td class="_1qna_board_border">1</td>
+							<td class="_1qna_board_subject">2</td>
+							<td class="_1qna_board_border">3</td>
+							<td>4</td>
+						</tr>
+						<tr>
+							<td class="_1qna_board_border">1</td>
+							<td class="_1qna_board_subject">2</td>
+							<td class="_1qna_board_border">3</td>
+							<td>4</td>
+						</tr>
+						<tr>
+							<td class="_1qna_board_border">1</td>
+							<td class="_1qna_board_subject">2</td>
+							<td class="_1qna_board_border">3</td>
+							<td>4</td>
+						</tr>
+						</table>
+
+
+
+
+
+								</div>	
+				
+						</div>
+					</div>
+								
+					<div class="snipcart-details top_brand_home_details">
+						<fieldset>
+						<!-- 뷰페징 -->
+				    <div class="_1qna_paging">
+        				<ul>
+				           <li onclick="location.href='index.html'">prev</li>
+				           <li onclick="location.href='about.html'">1</li>
+				           <li onclick="location.href='login.html'">2</li>
+				           <li onclick="location.href='faq.html'">3</li>
+				           <li onclick="location.href='gourmet.html'">4</li>
+				           <li onclick="location.href='login.html'">5</li>
+				           <li onclick="location.href='products.html'">next</li>
+						</ul>
+   					 </div>
+					</fieldset>
+						</div>
 				</form>
+			</div> <br><br>
+							
+					
+						<div class="clearfix"> </div>
+				</div>
 			</div>
+
 		</div>
 	</div>
-<!-- ================================ // 아이디찾기 ================================ -->
+
+<!--- --------------------------------------------------마이페이지 ---------------------------------------------------------->
+
+
+
 
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>

@@ -1,5 +1,5 @@
 package com.itwillbs.controller;
 
-public class memberController {
+public class MemberController {
 
 }
