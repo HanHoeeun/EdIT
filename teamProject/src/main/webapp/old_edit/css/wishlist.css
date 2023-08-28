@@ -1,0 +1,281 @@
+@charset "UTF-8";
+.wishlist,
+.wishlist * {
+  box-sizing: border-box;
+}
+.wishlist {
+  background: var(--gray-00, #ffffff);
+  border-radius: 4px;
+  border-style: solid;
+  border-color: var(--gray-100, #e4e7e9);
+  border-width: -10px;
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+}
+.heading {
+  padding: 20px 24px 20px 24px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+}
+.wishlist2 {
+  color: var(--gray-900, #191c1f);
+  text-align: left;
+  font: var(--body-large-500, 500 18px/24px "Public Sans", sans-serif);
+  position: relative;
+  width: 1272px;
+}
+.sub-heading {
+  background: var(--gray-50, #f2f4f5);
+  border-style: solid;
+  border-color: var(--gray-100, #e4e7e9);
+  border-width: 1px;
+  padding: 10px 24px 10px 24px;
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  align-items: center;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+}
+.products {
+  color: var(--gray-700, #475156);
+  text-align: left;
+  font: var(--label-04, 500 12px/150% "Public Sans", sans-serif);
+  text-transform: uppercase;
+  position: relative;
+  width: 100px;
+}
+.title {
+  color: var(--gray-700, #475156);
+  text-align: left;
+  font: var(--label-04, 500 12px/150% "Public Sans", sans-serif);
+  text-transform: uppercase;
+  position: relative;
+  width: 472px;
+}
+.price {
+  color: var(--gray-700, #475156);
+  text-align: left;
+  font: var(--label-04, 500 12px/150% "Public Sans", sans-serif);
+  text-transform: uppercase;
+  position: relative;
+  width: 180px;
+}
+.stock-status {
+  color: var(--gray-700, #475156);
+  text-align: left;
+  font: var(--label-04, 500 12px/150% "Public Sans", sans-serif);
+  text-transform: uppercase;
+  position: relative;
+  width: 200px;
+}
+.products2 {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+}
+.product {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+}
+.product2 {
+  padding: 0px 72px 0px 0px;
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: center;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+}
+.image {
+  border-radius: 2px;
+  flex-shrink: 0;
+  width: 72px;
+  height: 72px;
+  position: relative;
+}
+.bose-sport-earbuds-wireless-earphones-bluetooth-in-ear-headphones-for-workouts-and-running-triple-black {
+  color: var(--gray-700, #475156);
+  text-align: left;
+  font: var(--body-small-400, 400 14px/20px "Public Sans", sans-serif);
+  position: relative;
+  width: 419px;
+}
+.frame-411 {
+  flex-shrink: 0;
+  width: 200px;
+  height: 20px;
+  position: relative;
+}
+._999 {
+  color: var(--gray-900, #191c1f);
+  text-align: left;
+  font: var(--body-small-500, 500 14px/20px "Public Sans", sans-serif);
+  position: absolute;
+  width: 200px;
+  left: 10px;
+  top: 0px;
+}
+.in-stock {
+  color: var(--success-500, #2db224);
+  text-align: left;
+  font: var(--body-small-600, 600 14px/20px "Public Sans", sans-serif);
+  position: relative;
+  width: 200px;
+}
+.shopping-cart-simple {
+  flex-shrink: 0;
+  position: relative;
+  overflow: visible;
+}
+.regular-x-circle {
+  flex-shrink: 0;
+  position: relative;
+  overflow: visible;
+}
+.simple-mobile-5-g-lte-galexy-12-mini-512-gb-gaming-phone {
+  color: var(--gray-700, #475156);
+  text-align: left;
+  font: var(--body-small-400, 400 14px/20px "Public Sans", sans-serif);
+  position: relative;
+  width: 419px;
+}
+._2-300-00 {
+  color: var(--gray-900, #191c1f);
+  text-align: left;
+  font: var(--body-small-500, 500 14px/20px "Public Sans", sans-serif);
+  position: relative;
+  width: 200px;
+  left: 10px;
+  top: 0px;
+}
+.shopping-cart-simple2 {
+  flex-shrink: 0;
+  position: relative;
+  overflow: visible;
+}
+.regular-x-circle2 {
+  flex-shrink: 0;
+  position: relative;
+  overflow: visible;
+}
+.portable-wshing-machine-11-lbs-capacity-model-18-nmfiam {
+  color: var(--gray-700, #475156);
+  text-align: left;
+  font: var(--body-small-400, 400 14px/20px "Public Sans", sans-serif);
+  position: relative;
+  width: 419px;
+}
+._70-00 {
+  color: var(--gray-900, #191c1f);
+  text-align: left;
+  font: var(--body-small-500, 500 14px/20px "Public Sans", sans-serif);
+  position: relative;
+  width: 200px;
+  left: 10px;
+  top: 0px;
+}
+.shopping-cart-simple3 {
+  flex-shrink: 0;
+  position: relative;
+  overflow: visible;
+}
+.regular-x-circle3 {
+  flex-shrink: 0;
+  position: relative;
+  overflow: visible;
+}
+.tozo-t-6-true-wireless-earbuds-bluetooth-headphones-touch-control-with-wireless-charging-case-ipx-8-waterproof-stereo-earphones-in-ear {
+  color: var(--gray-700, #475156);
+  text-align: left;
+  font: var(--body-small-400, 400 14px/20px "Public Sans", sans-serif);
+  position: relative;
+  width: 419px;
+}
+
+._220-00 {
+  color: var(--gray-900, #191c1f);
+  text-align: left;
+  font: var(--body-small-500, 500 14px/20px "Public Sans", sans-serif);
+  position: absolute;
+  width: 200px;
+  left: 10px;
+  top: 0px;
+}
+.out-of-stock {
+  color: var(--danger-500, #ee5858);
+  text-align: left;
+  font: var(--body-small-600, 600 14px/20px "Public Sans", sans-serif);
+  position: relative;
+  width: 200px;
+}
+.button2 {
+  background: var(--gray-300, #adb7bc);
+  border-radius: 2px;
+  padding: 0px 24px 0px 24px;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+}
+.shopping-cart-simple4 {
+  flex-shrink: 0;
+  position: relative;
+  overflow: visible;
+}
+.regular-x-circle4 {
+  flex-shrink: 0;
+  position: relative;
+  overflow: visible;
+}
+.wyze-cam-pan-v-2-1080-p-pan-tilt-zoom-wi-fi-indoor-smart-home-camera-with-color-night-vision-2-way-audio {
+  color: var(--gray-700, #475156);
+  text-align: left;
+  font: var(--body-small-400, 400 14px/20px "Public Sans", sans-serif);
+  position: relative;
+  width: 419px;
+}
+._1-499-99 {
+  color: var(--gray-900, #191c1f);
+  text-align: left;
+  font: var(--body-small-500, 500 14px/20px "Public Sans", sans-serif);
+  position: relative;
+  width: 200px;
+  left: 10px;
+  top: 0px;
+}
+.shopping-cart-simple5 {
+  flex-shrink: 0;
+  position: relative;
+  overflow: visible;
+}
+.regular-x-circle5 {
+  flex-shrink: 0;
+  position: relative;
+  overflow: visible;
+}
