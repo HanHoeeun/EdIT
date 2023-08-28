@@ -34,6 +34,11 @@ public class AdminController extends HttpServlet{
 			dispatcher.forward(request, response);
 				
 		}
+		if(sPath.equals("/adminPage.ad")) {
+			dispatcher = request.getRequestDispatcher("admin/adminPage_1_1.jsp");
+			dispatcher.forward(request, response);
+			
+		}
 	}
 
 	
