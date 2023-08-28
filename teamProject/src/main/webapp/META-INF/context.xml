@@ -4,7 +4,7 @@
 	          auth="Container"
 	          type="javax.sql.DataSource"
 	          driverClassName="com.mysql.cj.jdbc.Driver"
-	          url="jdbc:mysql://itwillbs.com:3306/c1d2304t4?serverTimezone=Asia/Seoul"
+	          url="jdbc:mysql://localhost:3306/c1d2304t4?serverTimezone=Asia/Seoul"
 	          username="c1d2304t4"
 	          password="1234"
 	/>

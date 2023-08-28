@@ -61,21 +61,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<div class="agile-login">
 				<ul>
+<!-- <<<<<<< HEAD >>>>>> -->
+					<li><a href="registered_3.jsp"><i class="fa fa-sign-in" aria-hidden="true"> 회원가입</i></a></li>
 				
+<<<<<<< HEAD
 					<%if(1==2){ %>
+					<li><a href="registered.jsp"><i class="fa fa-sign-in" aria-hidden="true"> 회원가입</i></a></li>
+=======
+					<%if(1==1){ %>
 					<li><a href="registered.jsp"><i class="fa fa-sign-in" aria-hidden="true"> 회원가입</i></a></li>
 					<li><a href="login.jsp"><i class="fa fa-user" aria-hidden="true"> 로그인</i></a></li>
 
 					<li><a href="contact.jsp"><i class="fa fa-question-circle-o" aria-hidden="true"> 문의하기</i></a></li>
 					<li><a href="productReg.po"><i class="fa fa-plus-circle" aria-hidden="true"> 상품등록</i></a></li>=======
-					<%} %>
+>>>>>>> branch 'master' of https://github.com/HanHoeeun/EdIT.git
+					<%} %> 
 					
 					<%if(1==2){ %>
 					<li><a href="adminPage.ad"><i class="fa fa-user" aria-hidden="true"> 마이 페이지</i></a></li>
+					<li><a href="../product/productReg.jsp"><i class="fa fa-plus-circle" aria-hidden="true"> 상품등록</i></a></li>
+					
 					<%} %>
 					<%if(1==1){ %>
 					<li><a href="adminPage.ad"><i class="fa fa-user" aria-hidden="true"> 관리자 페이지</i></a></li>
-					<%} %>
+					<%} }%>
 					<li><a href="faq.ad"><i class="fa fa-question-circle-o" aria-hidden="true"> 문의하기</i></a></li>
 					<li><a href="../product/productReg.jsp"><i class="fa fa-plus-circle" aria-hidden="true"> 상품등록</i></a></li>
 
