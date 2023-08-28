@@ -75,11 +75,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="categories">
 					<h2>마이페이지</h2>
 					<ul class="cate"> <br>
-						<li><a href="#"><i class="fa fa-arrow-right" ></i>나의 정보</a></li>
-						<li><a href="#"><i class="fa fa-arrow-right"></i>구매 내역</a></li>
-						<li><a href="#"><i class="fa fa-arrow-right"></i>판매 내역</a></li>
-						<li><a href="#"><i class="fa fa-arrow-right"></i>찜♥</a></li>
-						<li><a href="#"><i class="fa fa-arrow-right"></i>문의 내역</a></li>
+						<li><a href="mypage.jsp"><i class="fa fa-arrow-right" ></i>나의 정보</a></li>
+						<li><a href="buylist.jsp"><i class="fa fa-arrow-right"></i>구매 내역</a></li>
+						<li><a href="salelist.jsp"><i class="fa fa-arrow-right"></i>판매 내역</a></li>
+						<li><a href="product/checkout.jsp"><i class="fa fa-arrow-right"></i>찜♥</a></li>
+						<li><a href="qnalist.jsp"><i class="fa fa-arrow-right"></i>문의 내역</a></li>
 						<li><a href="delete.me"><i class="fa fa-arrow-right"></i>회원 탈퇴</a></li>
  						<li><a href="#"><i class="fa fa-arrow-right"></i>회원 관리</a></li>  
 					</ul>
@@ -98,6 +98,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 				</div>
 					
+			<form action="deletePro.me" method="post">
 				<div class="hover14 column">
 						<div class="_6clearfix1"> 
 							<div class="_6clearfix"> 
@@ -112,11 +113,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 				
 				<div class="snipcart-details top_brand_home_details">
-					<form action="deletePro.me" method="post">
 						<fieldset>
 							<input type="button" name="submit" value="회원탈퇴" class="button">
 						</fieldset>
-					</form>
+						</div>
+			</form>
 				</div> <br><br>
 		
 				

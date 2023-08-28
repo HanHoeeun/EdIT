@@ -77,7 +77,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<h2>회원가입</h2>
 			<div class="login-form-grids">
 				<h5>회원정보등록</h5>
-				<form action="#" method="post">
+				<form action="insertPro.me" method="post">
 					<input type="text" placeholder="아이디 (영문/숫자, 6~20자)" required=" " id="_6id">
 					<input type="text" placeholder="비밀번호 (영문+숫자+특수문자, 8~20자)" required=" " id="_6pass1">
 					<input type="text" placeholder="비밀번호 확인" required=" "  id="_6pass2"> <br>
@@ -109,7 +109,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</form>
 			</div>
 			<div class="register-home">
-				<a href="index.html">Home</a>
+				<a href="index.jsp">Home</a>
 			</div>
 		</div>
 	</div>
