@@ -10,11 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.itwillbs.service.AdminService;
-
 public class AdminController extends HttpServlet{
 	RequestDispatcher dispatcher = null;
-	AdminService adminService = null;
+	
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -36,12 +34,6 @@ public class AdminController extends HttpServlet{
 			dispatcher.forward(request, response);
 				
 		}
-		if(sPath.equals("/adminPage.ad")) {
-			dispatcher = request.getRequestDispatcher("admin/adminPage_1_1.jsp");
-			dispatcher.forward(request, response);
-			
-		}
-		
 	}
 
 	

@@ -37,7 +37,7 @@ public class ProductController extends HttpServlet{
 		System.out.println("뽑은 가상주소 :  " + sPath);
 		// 뽑은 가상주소 비교하기 => 실제 페이지 연결
 		
-		if (sPath.equals("/products.me")) {
+		if (sPath.equals("/product.po")) {
 			// product/products.jsp 주소변경 없이 연결
 			dispatcher
 			= request.getRequestDispatcher("product/products.jsp");
