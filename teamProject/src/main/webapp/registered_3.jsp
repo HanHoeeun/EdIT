@@ -117,6 +117,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-----------------------------------------------------------회원가입 끝------------------------------------------------------------------ -->
 
 
+<!-- --------------------제이쿼리------------------- -->
+
+
+
+
 
 
 
@@ -124,7 +129,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="js/bootstrap.min.js"></script>
 <!-- top-header and slider -->
 <!-- here stars scrolling icon -->
-	<script type="text/javascript">
+	<script type="text/javascript" >
 		$(document).ready(function() {
 			/*
 				var defaults = {
