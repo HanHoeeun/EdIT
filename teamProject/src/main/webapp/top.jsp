@@ -56,7 +56,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="agileits_header">
 		<div class="container">
 			<div class="w3l_offers">
-				<p><a href="../product/products.jsp"><i class="fa-shopping-cart">쇼핑하기</i></a></p>
+				<p><a href="../product/products.jsp"><i class="fa fa-shopping-bag" aria-hidden="true"> 쇼핑하기 </i></a></p>
 			</div>
 			<div class="agile-login">
 				<ul>
@@ -64,17 +64,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<li><a href="login.jsp"><i class="fa fa-user" aria-hidden="true"> 로그인</i></a></li>
 					<li><a href="contact.jsp"><i class="fa fa-question-circle-o" aria-hidden="true"> 문의하기</i></a></li>
 					<li><a href="../product/productReg.jsp"><i class="fa fa-plus-circle" aria-hidden="true"> 상품등록</i></a></li>
+					<!-- <li><a href="../product/checkout.jsp"><i class="fa fa-heart" aria-hidden="true"> 찜리스트 </i></a></li> -->
 				</ul>
 			</div>
-			<!-- 얘도 그냥 위에 처럼 리스트 내에 내장 시켜서 하이퍼링크 거는건 어떤지..? -->
-			<div class="product_list_header">  
-					<form action="../product/checkout.jsp" method="post" class="last"> 
+			<!-- <!-- 얘도 그냥 위에 처럼 리스트 내에 내장 시켜서 하이퍼링크 거는건 어떤지..? -->
+			 <div class="product_list_header">   
+					<form action="product/checkout.jsp" method="post" class="last"> 
 						<input type="hidden" name="cmd" value="_cart">
 						<input type="hidden" name="display" value="1">
 						<button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-heart" aria-hidden="true"></i></button>
 					</form>  
 
-			</div>
+			</div>  
 			<div class="clearfix"> </div>
 		</div>
 	</div>
