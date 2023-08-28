@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>findid.jsp</title>
+<title>EdIT join</title>
 <link href= "css/login.css" rel= "stylesheet" type="text/css">
 <link href= "css/style.css" rel= "stylesheet" type="text/css">
 </head>
@@ -18,7 +18,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>   
 <html>
 <head>
-<title>login.jsp</title>
+<title>register_3.jsp</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -61,7 +61,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
 				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>홈</a></li>
-				<li class="active">로그인</li>
+				<li class="active">회원가입</li>
 			</ol>
 		</div>
 	</div>
@@ -71,64 +71,55 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 
-<!-- !!!!!!!!!!!!!!!!!!회원가입!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-	<div class="register">
+<!-----------------------------------------------------------회원가입 시작------------------------------------------------------------------ -->
+		<div class="register">
 		<div class="container">
 			<h2>회원가입</h2>
-			<div class="_6join-form-grids">
-				<h5>회원정보등록</h5><br>
+			<div class="login-form-grids">
+				<h5>회원정보등록</h5>
 				<form action="#" method="post">
-					아이디
-					<input type="text" placeholder="영문/숫자, 6~20자" required=" " >
-					<input type="submit" name="submit1" value="중복확인" class="button"><br><br>
-					
-					비밀번호
-					<input type="text" placeholder="영문+숫자+특수문자, 8~20자" required=" " ><br>
-					
-					비밀번호 확인
-					<input type="text" placeholder="영문+숫자+특수문자, 8~20자" required=" " ><br>
-					이름
-					<input type="text" placeholder="최소 2자 이상 입력" required=" " ><br>
-					닉네임
-					<input type="text" placeholder="최소 2자 이상 입력" required=" " >
-					<input type="submit" name="submit1" value="중복확인" class="button"><br><br>
-					이메일
-					<input type="email" placeholder="Email Address" required=" " >
-					<input type="submit" name="submit1" value="중복확인" class="button"><br><br>
-					전화번호
-					<input type="text" placeholder="Password" required=" " >
-					<input type="submit" name="submit1" value="인증" class="button"><br>
-					<input type="password" placeholder="Password Confirmation" required=" " >
-					<input type="submit" name="submit1" value="확인" class="button"><br><br>
-				 <br>
-			
-				<div class="register-check-box">
-					<div class="check">
-					<p type="text" class="_6marketing">마케팅 수신  동의 	
-						<label class="checkbox"><input type="checkbox" name="checkbox" id="emailcheck"> <i> </i>이메일</label>
-						<label class="checkbox"><input type="checkbox" name="checkbox" id="smscheck"> <i> </i>SMS</label>
-					</div>
-				</div> <br>
+					<input type="text" placeholder="아이디 (영문/숫자, 6~20자)" required=" " id="_6id">
+					<input type="text" placeholder="비밀번호 (영문+숫자+특수문자, 8~20자)" required=" " id="_6pass1">
+					<input type="text" placeholder="비밀번호 확인" required=" "  id="_6pass2"> <br>
+					<input type="text" placeholder="이름 (최소 2자 이상 입력)" required=" " id="_6name"><br>
+					<input type="text" placeholder="닉네임 (최소 2자 이상 입력)" required=" " id="_6nick"><br>
+					<input type="email" placeholder="이메일" required=" " id="_6mail"><br>
+					<input type="tel" placeholder="전화번호" required=" " id="_6tel"><br><br>
+
+
+
+
 					<div class="register-check-box">
 						<div class="check">
-							<label class="checkbox"><input type="checkbox" name="checkbox"><i> </i>EdIT의 <span>이용약관 동의</span>하기</label>
+							<label class="checkbox"><input type="checkbox" name="checkbox"><i> </i>이메일로 소식 받기</label>
 						</div>
 					</div>
-					<input type="submit" name="submit2"value="회원가입">
+					<div class="register-check-box">
+						<div class="check">
+							<label class="checkbox"><input type="checkbox" name="checkbox"><i> </i>SMS로 소식 받기</label>
+						</div>
+					</div>
+					
+					<div class="register-check-box">
+						<div class="check">
+							<label class="checkbox"><input type="checkbox" name="checkbox"><i> </i>EdIT의 <span>이용약관 동의</span>하기</label><br>
+						</div>
+					</div>
+					<input type="submit" value="회원가입">
 				</form>
 			</div>
 			<div class="register-home">
-			
-				<a href="index.html">홈</a>
+				<a href="index.html">Home</a>
 			</div>
 		</div>
 	</div>
-<!-- //register -->
-<!-- //footer -->
+	
+<!-----------------------------------------------------------회원가입 끝------------------------------------------------------------------ -->
 
 
 
-<!-- //footer -->	
+
+
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>
 <!-- top-header and slider -->
@@ -174,9 +165,56 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		});
 </script>	
 <!-- //main slider-banner --> 
+<!-- //footer -->
+<jsp:include page="/inc/bottom.jsp"></jsp:include>
+<!-- //footer -->	
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
 
+<!-- top-header and slider -->
+<!-- here stars scrolling icon -->
+	<script type="text/javascript">
+		$(document).ready(function() {
+			/*
+				var defaults = {
+				containerID: 'toTop', // fading element id
+				containerHoverID: 'toTopHover', // fading element hover id
+				scrollSpeed: 1200,
+				easingType: 'linear' 
+				};
+			*/
+								
+			$().UItoTop({ easingType: 'easeOutQuart' });
+								
+			});
+	</script>
+<!-- //here ends scrolling icon -->
+<script src="js/minicart.min.js"></script>
+<script>
+	// Mini Cart
+	paypal.minicart.render({
+		action: '#'
+	});
+
+	if (~window.location.search.indexOf('reset=true')) {
+		paypal.minicart.reset();
+	}
+</script>
+<!-- main slider-banner -->
+<script src="js/skdslider.min.js"></script>
+<link href="css/skdslider.css" rel="stylesheet">
+<script type="text/javascript">
+		jQuery(document).ready(function(){
+			jQuery('#demo1').skdslider({'delay':5000, 'animationSpeed': 2000,'showNextPrev':true,'showPlayButton':true,'autoSlide':true,'animationType':'fading'});
+						
+			jQuery('#responsive').change(function(){
+			  $('#responsive_wrapper').width(jQuery(this).val());
+			});
+			
+		});
+</script>	
+<!-- //main slider-banner --> 
 </body>
 </html>
-
 </body>
 </html>

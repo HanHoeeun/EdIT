@@ -915,7 +915,7 @@ a.w3_agile_vimeo:hover{
 	background:#F7F7F9;
 	margin:3em auto 0;
 }
-.login-form-grids input[type="email"],.login-form-grids input[type="password"],.login-form-grids input[type="text"]{
+.login-form-grids input[type="email"],.login-form-grids input[type="password"],.login-form-grids input[type="text"], .login-form-grids input[type="tel"]{
 	outline: none;
     border: 1px solid #DBDBDB;
     padding: 10px 10px 10px 10px;
@@ -1017,7 +1017,12 @@ a.w3_agile_vimeo:hover{
 	color:#999;
 	margin: 1.5em 0 0 0em;
 }
-
+.register-check-box span{
+	font-size:14px;
+	font-weight:500;
+	color:#FE9126;
+	margin: 1.5em 0 0 0em;
+}
 .checkbox {
     position: relative;
 	padding-left: 38px !important;
@@ -1120,7 +1125,7 @@ a.w3_agile_vimeo:hover{
 	background:#F7F7F9;
 	margin:3em auto 0;
 }
-._6join-form-grids input[type="email"],._6join-form-grids input[type="password"],._6join-form-grids input[type="text"]{
+._6join-form-grids input[type="email"],._6join-form-grids input[type="password"],._6join-form-grids input[type="text"] {
 	outline: none;
     border: 1px solid #DBDBDB;
     padding: 10px 10px 10px 10px;
@@ -1170,7 +1175,7 @@ a.w3_agile_vimeo:hover{
 	position: relative;
 }
 
-._6clearfix input[type="email"],._6clearfix input[type="text"]{
+._6clearfix input[type="email"],._6clearfix input[type="text"], ._6clearfix input[type="tel"]{
 	outline: none;
     border: 1px solid #DBDBDB;
     padding: 10px 10px 10px 10px;
