@@ -151,7 +151,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 <!-- //new -->
 <!-- //footer -->
-<jsp:include page="../inc/bottom.jsp"></jsp:include>
+<jsp:include page="inc/bottom.jsp"></jsp:include>
 <!-- //footer -->	
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>

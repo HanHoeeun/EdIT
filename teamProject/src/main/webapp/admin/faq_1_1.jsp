@@ -46,11 +46,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 <body>
 <!-- header -->
-<<<<<<< HEAD
-<jsp:include page="../top.jsp"></jsp:include>
-=======
 <jsp:include page="../inc/top.jsp"></jsp:include>
->>>>>>> branch 'master' of https://github.com/HanHoeeun/EdIT.git
 <!-- //navigation -->
 	<!-- breadcrumbs -->
 	<div class="breadcrumbs">
@@ -277,11 +273,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="clearfix_1_1"> </div>
 <!-- //top-brands -->
 <!-- //footer -->
-<<<<<<< HEAD
-<jsp:include page="../bottom.jsp"></jsp:include>
-=======
 <jsp:include page="../inc/bottom.jsp"></jsp:include>
->>>>>>> branch 'master' of https://github.com/HanHoeeun/EdIT.git
 <!-- //footer -->	
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>
