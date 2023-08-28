@@ -4,7 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>EdIT delete</title>
+<title>findid.jsp</title>
+<link href= "css/login.css" rel= "stylesheet" type="text/css">
+<link href= "css/style.css" rel= "stylesheet" type="text/css">
 </head>
 <body>
 <!--
@@ -13,11 +15,18 @@ author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
-<!DOCTYPE html>
+<!DOCTYPE html>   
 <html>
 <head>
-<title>Super Market an Ecommerce Online Shopping Category Flat Bootstrap Responsive Website Template | Beverages :: w3layouts</title>
-
+<title>login.jsp</title>
+<!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Super Market Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //for-mobile-apps -->
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 <!-- font-awesome icons -->
@@ -41,26 +50,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </script>
 <!-- start-smoth-scrolling -->
 </head>
+	
 <body>
 <!-- header -->
-	
-	
-	
-	
-<!-- //header -->
-<!-- navigation -->
-	
-	
-	
-	
-	
-<!-- //navigation -->
+		<jsp:include page="/inc/top.jsp"></jsp:include>
+<!-- header -->
+
 <!-- breadcrumbs -->
 	<div class="breadcrumbs">
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
-				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-				<li class="active">회원탈퇴</li>
+				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>홈</a></li>
+				<li class="active">로그인</li>
 			</ol>
 		</div>
 	</div>
