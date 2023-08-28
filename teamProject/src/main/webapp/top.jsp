@@ -56,7 +56,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="agileits_header">
 		<div class="container">
 			<div class="w3l_offers">
-				<p><a href="../product/products.jsp">쇼핑하기</a></p>
+				<p><a href="../product/products.jsp"><i class="fa-shopping-cart">쇼핑하기</i></a></p>
 			</div>
 			<div class="agile-login">
 				<ul>
