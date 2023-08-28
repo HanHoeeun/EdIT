@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>product/single.jsp</title>
 </head>
-<body> 
+<body>  
 
 <!--
 author: W3layouts

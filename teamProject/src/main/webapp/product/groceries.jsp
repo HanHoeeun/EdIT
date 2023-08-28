@@ -7,7 +7,7 @@
 <title>product/groceries.jsp</title>
 </head>
 <body>
-
+ 
 <!--
 author: W3layouts
 author URL: http://w3layouts.com
