@@ -6,7 +6,8 @@
 <meta charset="UTF-8">
 <title>shopPage.jsp</title>
 <link href= "../css/top.css" rel= "stylesheet" type="text/css">
-<link href= "../css/.css" rel= "stylesheet" type="text/css">
+<link href= "../css/shopPage.css" rel= "stylesheet" type="text/css">
+
 
 </head>
 <body>
