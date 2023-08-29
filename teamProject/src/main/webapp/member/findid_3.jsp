@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>login.jsp</title>
-<link href= "css/login.css" rel= "stylesheet" type="text/css">
-<link href= "css/style.css" rel= "stylesheet" type="text/css">
+<title>findid.jsp</title>
+<link href= "../css/login.css" rel= "stylesheet" type="text/css">
+<link href= "../css/style.css" rel= "stylesheet" type="text/css">
 </head>
 <body>
 <!--
@@ -18,7 +18,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>   
 <html>
 <head>
-<title>login.jsp</title>
+<title>findid.jsp</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -27,10 +27,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- //for-mobile-apps -->
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="../css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="../css/style.css" rel="stylesheet" type="text/css" media="all" />
 <!-- font-awesome icons -->
-<link href="css/font-awesome.css" rel="stylesheet"> 
+<link href="../css/font-awesome.css" rel="stylesheet"> 
 <!-- //font-awesome icons -->
 <!-- js -->
 <script src="js/jquery-1.11.1.min.js"></script>
@@ -61,61 +61,54 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
 				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>홈</a></li>
-				<li class="active">로그인</li>
+				<li class="active">아이디찾기</li>
 			</ol>
 		</div>
 	</div>
 <!-- //breadcrumbs -->
 
-<!-- ================================ 로그인 화면 ================================ -->
+
+<!-- ================================ 아이디찾기 ================================ -->
 	<div class="login">
 		<div class="container">
-			<h2>로그인</h2>
-
+		<div style="text-align : center;">
+     		<img src="../images/find_5_1.png"><br><br><br>
+		</div>
+			<h2>아이디찾기</h2>
+				<p>회원가입시 등록하신 이름과 이메일을 입력해 주세요.</p>
+		
 			<div class="login-form-grids animated wow slideInUp" data-wow-delay=".5s">
-				<form>
-					<input type="text" placeholder="아이디" required=" " >
-					<input type="password" placeholder="비밀번호" required=" " >
-					<input type="submit" value="로그인">
+			
+				<form>			
+
+					<input type="text" placeholder="이름" required=" " >  
+					<input type="email" placeholder="이메일" required=" " >
 					
-<!-- 아이디/비밀번호 찾기/회원가입 -->					
+					<div class="_5center">
+						<input type="submit" value="확인" class="#">		
+						<input type="submit" value="취소" class="login.jsp">
+					<hr style="width:100%;height:1px;border:none;background-color:#999;">
+					</div>
+					
+					
+<!-- 홈/비밀번호 찾기/회원가입 -->					
 					<div class="_5forgot">
-						<a href="findid_3.jsp">아이디</a>
+						<a href="../main.jsp">홈</a>
 						|
 						<a href="findpw_3.jsp">비밀번호 찾기</a>
 						|
 						<a href="registered_3.jsp">회원가입</a>
 					</div>	
-<!-- // 아이디/비밀번호 찾기/회원가입 -->		
-				
-<!-- or 표시 -->				
-					<div class="_5or-login-with">
-  						<div class="_5don-t-have-account">
-    					<div class="_5line-20"></div>
-    					<div class="_5label">
-      					<div class="_5or">or</div>
-    				</div>
-  					</div>
-					</div>
+<!-- // 홈/비밀번호 찾기/회원가입 -->	
 					
-<!-- // or 표시 -->			
-
-		
-<!-- sns로그인 -->
-					<div class="_5login-naver">
-						<a href="#"><img class="_5naver" src="images/naver_5.png">네이버로 로그인하기</a>
-					</div>
+<!-- 					위에거 or 아래거인데 위에거가 더 나은듯?? -->
+<!-- 					<span onclick = "location.href='./findpw_3.jsp'" style = "cursor:pointer;">비밀번호 찾기</span> -->
 					
-					<div class="_5login-kakao">	
-						<a href="#"><img class="_5kakao" src="images/kakao_5.png">카카오로 로그인하기</a>
-					</div>				
 				</form>
 			</div>
-<!-- 			이거는 넣을지 말지 고민 좀... -->
-<!-- 			<p><a href="registered.jsp">회원가입</a> <a href="index.jsp">홈<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></p> -->
 		</div>
 	</div>
-<!-- ================================ // 로그인 화면 ================================ -->
+<!-- ================================ // 아이디찾기 ================================ -->
 
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>
@@ -150,7 +143,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 <!-- main slider-banner -->
 <script src="js/skdslider.min.js"></script>
-<link href="css/skdslider.css" rel="stylesheet">
+<link href="../css/skdslider.css" rel="stylesheet">
 <script type="text/javascript">
 		jQuery(document).ready(function(){
 			jQuery('#demo1').skdslider({'delay':5000, 'animationSpeed': 2000,'showNextPrev':true,'showPlayButton':true,'autoSlide':true,'animationType':'fading'});
@@ -199,7 +192,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 <!-- main slider-banner -->
 <script src="js/skdslider.min.js"></script>
-<link href="css/skdslider.css" rel="stylesheet">
+<link href="../css/skdslider.css" rel="stylesheet">
 <script type="text/javascript">
 		jQuery(document).ready(function(){
 			jQuery('#demo1').skdslider({'delay':5000, 'animationSpeed': 2000,'showNextPrev':true,'showPlayButton':true,'autoSlide':true,'animationType':'fading'});

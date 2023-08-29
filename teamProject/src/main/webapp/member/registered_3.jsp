@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>EdIT join</title>
-<link href= "css/login.css" rel= "stylesheet" type="text/css">
-<link href= "css/style.css" rel= "stylesheet" type="text/css">
+<link href= "../css/login.css" rel= "stylesheet" type="text/css">
+<link href= "../css/style.css" rel= "stylesheet" type="text/css">
 </head>
 <body>
 <!--
@@ -27,10 +27,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- //for-mobile-apps -->
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="../css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="../css/style.css" rel="stylesheet" type="text/css" media="all" />
 <!-- font-awesome icons -->
-<link href="css/font-awesome.css" rel="stylesheet"> 
+<link href="../css/font-awesome.css" rel="stylesheet"> 
 <!-- //font-awesome icons -->
 <!-- js -->
 <script src="js/jquery-1.11.1.min.js"></script>
@@ -109,17 +109,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</form>
 			</div>
 			<div class="register-home">
-				<a href="index.jsp">Home</a>
+				<a href="../main.jsp">Home</a>
 			</div>
 		</div>
 	</div>
 	
 <!-----------------------------------------------------------회원가입 끝------------------------------------------------------------------ -->
-
-
-<!-- --------------------제이쿼리------------------- -->
-
-
 
 
 
@@ -129,7 +124,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="js/bootstrap.min.js"></script>
 <!-- top-header and slider -->
 <!-- here stars scrolling icon -->
-	<script type="text/javascript" >
+	<script type="text/javascript">
 		$(document).ready(function() {
 			/*
 				var defaults = {
@@ -158,7 +153,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 <!-- main slider-banner -->
 <script src="js/skdslider.min.js"></script>
-<link href="css/skdslider.css" rel="stylesheet">
+<link href="../css/skdslider.css" rel="stylesheet">
 <script type="text/javascript">
 		jQuery(document).ready(function(){
 			jQuery('#demo1').skdslider({'delay':5000, 'animationSpeed': 2000,'showNextPrev':true,'showPlayButton':true,'autoSlide':true,'animationType':'fading'});
@@ -207,7 +202,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 <!-- main slider-banner -->
 <script src="js/skdslider.min.js"></script>
-<link href="css/skdslider.css" rel="stylesheet">
+<link href="../css/skdslider.css" rel="stylesheet">
 <script type="text/javascript">
 		jQuery(document).ready(function(){
 			jQuery('#demo1').skdslider({'delay':5000, 'animationSpeed': 2000,'showNextPrev':true,'showPlayButton':true,'autoSlide':true,'animationType':'fading'});
