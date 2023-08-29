@@ -66,6 +66,29 @@ public class MemberService {
 		
 	}
 
+
+	public MemberDTO getMember(String id) {
+		System.out.println("MemberService getMember()");
+		
+		MemberDTO memberDTO = null;
+		
+		try {
+			
+			memberDAO = new MemberDAO();
+			memberDTO = memberDAO.getMember(id);
+			
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return memberDTO;
+	}
+
+	
+	
+
 	
 	
 	

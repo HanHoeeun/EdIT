@@ -108,6 +108,39 @@ public class MemberDAO {
 
 
 
+	public MemberDTO getMember(String id) {
+		System.out.println("MemberDAO getMember()");
+		
+		MemberDTO memberDTO = null;
+		
+		try {
+			
+			con = getConnection();
+			String sql = "select * from members where id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next() == true) {
+				memberDTO = new MemberDTO();
+				memberDTO.setM_id(rs.getString("_6id"));
+				memberDTO.setM_name(rs.getString("_6name"));
+				memberDTO.setM_nick(rs.getString("_6nick"));
+				memberDTO.setM_email(rs.getString("_6maile"));
+				memberDTO.setM_phone(rs.getInt("_6phone"));
+				
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return memberDTO;
+	}
+
+
+
+
 
 	
 	
