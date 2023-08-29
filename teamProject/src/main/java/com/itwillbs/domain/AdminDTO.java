@@ -55,3 +55,4 @@ public class AdminDTO {
 		this.a_cs_type = a_cs_type;
 	}
 }
+
