@@ -10,6 +10,8 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import com.itwillbs.domain.MemberDTO;
+
 public class MemberDAO {
 
 	
@@ -25,6 +27,7 @@ public class MemberDAO {
 		Context init = new InitialContext();
 		DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/c1d2304t4");
 		Connection con = ds.getConnection();
+		System.out.println("MemberDAO DB연결성공!" + con);
 		return con;
 	}
 	
@@ -36,6 +39,76 @@ public class MemberDAO {
 		if (con != null) { try { con.close(); } catch (SQLException e) { e.printStackTrace();	} }
 		if (rs != null) { try { rs.close(); } catch (SQLException e) { e.printStackTrace();	} }
 	}
+
+
+	
+	
+	public int getMaxNum() {
+		System.out.println("MemberDAO getMaxNum()");
+		
+		int num = 0;
+		
+		try {
+			
+			con = getConnection();
+			
+			String sql = "select max(num) from members";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			if (rs.next() == true) {
+				num = rs.getInt("max(num)");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dblClose();
+		}
+		
+		return num;
+		
+	}	// getMaxNum ()
+	
+	
+	
+
+	public void insertMember(MemberDTO memberDTO) {
+		System.out.println("MemberDAO insertMember()");
+		
+		try {
+			
+			con = getConnection();
+			String sql 
+			= "insert into members(m_id, m_pass, m_name, m_nick, m_phone, m_email, m_date, m_event) "
+					+ "values(?, ?, ?, ?, ?, ?, ?, ?)";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, memberDTO.getM_id());
+			pstmt.setString(2, memberDTO.getM_pass());
+			pstmt.setString(3, memberDTO.getM_name());
+			pstmt.setString(4, memberDTO.getM_nick());
+			pstmt.setInt(5, memberDTO.getM_phone());
+			pstmt.setString(6, memberDTO.getM_email());
+			pstmt.setTimestamp(7, memberDTO.getM_date());
+			pstmt.setString(8, memberDTO.getM_event());
+			
+			pstmt.executeUpdate();
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dblClose();
+		}
+		
+	}	// insertMember()
+
+
+
+
 	
 	
 	
@@ -51,4 +124,21 @@ public class MemberDAO {
 	
 	
 	
-}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}	// insertMember()
