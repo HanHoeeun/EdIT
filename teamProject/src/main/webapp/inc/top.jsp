@@ -61,16 +61,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<div class="agile-login">
 				<ul>
+<!-- <<<<<<< HEAD >>>>>> -->
+					<li><a href="registered_3.me"><i class="fa fa-sign-in" aria-hidden="true"> 회원가입</i></a></li>
 				
-					<%if(2==1){ %>
+					<li><a href="registered.jsp"><i class="fa fa-sign-in" aria-hidden="true"> 회원가입</i></a></li>
 					<li><a href="registered.jsp"><i class="fa fa-sign-in" aria-hidden="true"> 회원가입</i></a></li>
 					<li><a href="login.jsp"><i class="fa fa-user" aria-hidden="true"> 로그인</i></a></li>
 
 					<li><a href="contact.jsp"><i class="fa fa-question-circle-o" aria-hidden="true"> 문의하기</i></a></li>
-					<li><a href="productReg.po"><i class="fa fa-plus-circle" aria-hidden="true"> 상품등록</i></a></li>
-					<%} %> 
+					<li><a href="productReg.po"><i class="fa fa-plus-circle" aria-hidden="true"> 상품등록</i></a></li>=======
 					
-					<%if(2==1){ %>
+					<%if(1==2){ %>
 					<li><a href="adminPage.ad"><i class="fa fa-user" aria-hidden="true"> 마이 페이지</i></a></li>
 					<li><a href="../product/productReg.jsp"><i class="fa fa-plus-circle" aria-hidden="true"> 상품등록</i></a></li>
 					
@@ -135,7 +136,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div> 
 							<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
 								<ul class="nav navbar-nav">
-									<li class="active"><a href="main.jsp" class="act">Home</a></li>	
+									<li class="active"><a href="../main.jsp" class="act">Home</a></li>	
 									<!-- Mega Menu -->
 									<!-- Mega Menu -->
 									<!-- 노트북 -->

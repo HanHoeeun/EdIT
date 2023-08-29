@@ -2,6 +2,7 @@ package com.itwillbs.domain;
 
 import java.sql.Timestamp;
 
+
 public class AdminDTO {
 	private int a_num; // 게시물 번호
 	private String a_m_nick; //작성자
@@ -55,3 +56,4 @@ public class AdminDTO {
 		this.a_cs_type = a_cs_type;
 	}
 }
+

@@ -52,12 +52,15 @@ public class MemberController extends HttpServlet{
 			
 //			MemberService 객체생성
 //			insertMember(request) 호출
+			memberService = new MemberService();
+			memberService.insertMember(request);
 			
 //			로그인 화면 이동 -> 주소 변경 하면서 이동
 			response.sendRedirect("login.me");
 			
 		}
 		
+
 		
 		if (sPath.equals("/idCheck.me")) {
 			System.out.println("뽑은 가상주소 비교 : /idCheck.me");
