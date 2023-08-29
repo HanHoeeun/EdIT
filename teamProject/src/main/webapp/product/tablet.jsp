@@ -4,7 +4,7 @@
 <html> 
 <head> 
 <meta charset="UTF-8">
-<title>product/personalcare.jsp</title>
+<title>product/tablet.jsp</title>
 </head>
 <body>
   
@@ -65,7 +65,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 <!-- //breadcrumbs -->
-<!--- personalcare --->
+<!--- tablet --->
 <div class="products">
 		<div class="container">
 			<div class="col-md-4 products-left">
@@ -73,9 +73,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<h2>카테고리</h2>
 					<ul class="cate">
 						<li><a href="products.po"><i class="fa fa-arrow-right" aria-hidden="true"></i>전체 상품 보기</a></li>
-						<li><a href="groceries.po"><i class="fa fa-arrow-right" aria-hidden="true"></i>노트북</a></li>
-						<li><a href="household.po"><i class="fa fa-arrow-right" aria-hidden="true"></i>휴대폰</a></li>
-						<li><a href="personalcare.po"><i class="fa fa-arrow-right" aria-hidden="true"></i>태블릿</a></li>
+						<li><a href="laptop.po"><i class="fa fa-arrow-right" aria-hidden="true"></i>노트북</a></li>
+						<li><a href="phone.po"><i class="fa fa-arrow-right" aria-hidden="true"></i>휴대폰</a></li>
+						<li><a href="tablet.po"><i class="fa fa-arrow-right" aria-hidden="true"></i>태블릿</a></li>
 					</ul>
 				</div>																																												
 			</div>

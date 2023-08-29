@@ -52,12 +52,23 @@ public class MemberController extends HttpServlet{
 			
 //			MemberService 객체생성
 //			insertMember(request) 호출
+			memberService = new MemberService();
+			memberService.insertMember(request);
 			
 //			로그인 화면 이동 -> 주소 변경 하면서 이동
 			response.sendRedirect("login.me");
 			
 		}
 		
+		// 내가 추가함
+		if(sPath.equals("/login.me")) {
+			// member/login.jsp 주소변경 없이 이동
+		dispatcher = request.getRequestDispatcher("member/login.jsp");
+		dispatcher.forward(request, response);
+					}//
+
+		
+
 		
 		if (sPath.equals("/idCheck.me")) {
 			System.out.println("뽑은 가상주소 비교 : /idCheck.me");
@@ -67,7 +78,13 @@ public class MemberController extends HttpServlet{
 			
 		}
 		
-		
+		if (sPath.equals("/main.me")) {
+			
+			dispatcher = request.getRequestDispatcher("main/main.jsp");
+			dispatcher.forward(request, response);
+			
+			
+		}
 		
 		
 		

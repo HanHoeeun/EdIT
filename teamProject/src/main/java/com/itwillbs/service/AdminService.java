@@ -1,11 +1,13 @@
 package com.itwillbs.service;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import com.itwillbs.dao.AdminDAO;
 import com.itwillbs.domain.AdminDTO;
+import com.itwillbs.domain.AdminPageDTO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -62,6 +64,45 @@ public class AdminService {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public List<AdminDTO> getBoardListSearch(AdminPageDTO pageDTO) {
+		List<AdminDTO> adminList = null;
+		try {
+//			시박하는 행부터 10개 뽑아오기
+//			페이지 번호 	한화면에 보여줄 글개수 => 			시작하는 행번호
+//			currentPage		pageSize	=>		 	startRow
+//			1				10			=> 0*10 +1	 1 ~ 10
+//			2				10			=> 1*10 +1 	11 ~ 20
+//			3				10			=> 2*10 +1 	21 ~ 30
+//			((currentPage-1)*10)+1
+			int startRow = (pageDTO.getCurrentPage()-1)*pageDTO.getPageSize()+1;
+			int endRos = startRow + pageDTO.getPageSize() -1;
+			
+			pageDTO.setStartRow(startRow);
+			pageDTO.setEndRow(endRos);
+			
+//			AdminDAO 객체 생성
+			adminDAO = new AdminDAO();
+//			adminList = getBoardList() 메서드 호출
+			adminList =  adminDAO.getBoardListSearch(pageDTO);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return adminList;
+		
+	}
+
+	public int getBoardCountSearch(AdminPageDTO pageDTO) {
+		int count = 0;
+		try {
+			adminDAO = new AdminDAO();
+			count = adminDAO.getBoardCountSearch(pageDTO);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return count;
 	}
 
 }
