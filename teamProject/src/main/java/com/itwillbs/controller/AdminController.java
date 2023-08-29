@@ -32,13 +32,22 @@ public class AdminController extends HttpServlet{
 		String sPath=request.getServletPath();
 		System.out.println("뽑은 가상주소 :  " + sPath);
 		if(sPath.equals("/faq.ad")) {
+			
+			
+			
+			
 			dispatcher = request.getRequestDispatcher("admin/faq_1_1.jsp");
-			dispatcher.forward(request, response);
-				
+			dispatcher.forward(request, response);	
 		}
-		if(sPath.equals("admin/test123.ad")) {
+		if(sPath.equals("/adminPro.ad")) {
+//			faq 고객센터 문의
 			adminService = new AdminService();
-			adminService.testSave(request);
+			
+			adminService.faqBoardInsert(request);
+			
+			
+			
+			response.sendRedirect("faq.ad");
 			
 		}
 	}
