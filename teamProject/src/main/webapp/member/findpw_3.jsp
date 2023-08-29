@@ -4,10 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>buylist</title>
-<link href= "css/login.css" rel= "stylesheet" type="text/css">
-<link href= "css/style.css" rel= "stylesheet" type="text/css">
-<link href= "css/faq_1_9.css" rel= "stylesheet" type="text/css">
+<title>findpw.jsp</title>
+<link href= "../css/login.css" rel= "stylesheet" type="text/css">
+<link href= "../css/style.css" rel= "stylesheet" type="text/css">
 </head>
 <body>
 <!--
@@ -19,7 +18,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>   
 <html>
 <head>
-<title>buylist.jsp</title>
+<title>findpw.jsp</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -28,10 +27,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- //for-mobile-apps -->
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="../css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="../css/style.css" rel="stylesheet" type="text/css" media="all" />
 <!-- font-awesome icons -->
-<link href="css/font-awesome.css" rel="stylesheet"> 
+<link href="../css/font-awesome.css" rel="stylesheet"> 
 <!-- //font-awesome icons -->
 <!-- js -->
 <script src="js/jquery-1.11.1.min.js"></script>
@@ -62,94 +61,52 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
 				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>홈</a></li>
-				<li class="active">구매내역</li>
+				<li class="active">비밀번호찾기</li>
 			</ol>
 		</div>
 	</div>
 <!-- //breadcrumbs -->
 
-<!--- --------------------------------------------------구매내역 ---------------------------------------------------------->
-	<div class="products">
-		<div class="container">
-			<div class="col-md-4 products-left">
-				<div class="categories">
-					<h2>마이페이지</h2>
-					<ul class="cate"> <br>
-						<li><a href="mypage.jsp"><i class="fa fa-arrow-right" ></i>나의 정보</a></li>
-						<li><a href="buylist.jsp"><i class="fa fa-arrow-right"></i>구매 내역</a></li>
-						<li><a href="salelist.jsp"><i class="fa fa-arrow-right"></i>판매 내역</a></li>
-						<li><a href="product/checkout.jsp"><i class="fa fa-arrow-right"></i>찜♥</a></li>
-						<li><a href="qnalist.jsp"><i class="fa fa-arrow-right"></i>문의 내역</a></li>
-						<li><a href="delete.jsp"><i class="fa fa-arrow-right"></i>회원 탈퇴</a></li>
- 						<li><a href="#"><i class="fa fa-arrow-right"></i>회원 관리</a></li>  
-					</ul>
-				</div>											
-			</div>		
-			
-				
-			<div class="col-md-8 products-right">
-			
-			
-				<div class="products-right-grid">
-					<div class="products-right-grids">
-						<div class="clearfix">
-							<div class="categories">
-								<h2>구매내역</h2>
-							</div>		
-				 		</div>
-					</div>
-				</div>
-				
-				
-				
-				<form action="update.jsp" method="post">
-					<div class="hover14 column">
-						<div class="_6clearfix1"> 
-								<div align="center">
-		
-		
-					<table class="_1qna_board">
-						<tr>
-							<th class="_1qna_board_border">번호</th>
-							<th class="_1qna_board_border">상품이름</th>
-							<th class="_1qna_board_border">가격</th>
-							<th class="_1qna_board_border">구매시간</th>
-						</tr>
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_subject">2</td>
-							<td class="_1qna_board_border">3</td>
-							<td>4</td>
-						</tr>
-		</table>
-		</div>
-						</div>
-					</div>
-								
-					<div class="snipcart-details top_brand_home_details">
-						<fieldset>
-				
-				
-				---
-				
-				
-						</fieldset>
-						</div>
-				</form>
-			</div> <br><br>
-							
-					
-						<div class="clearfix"> </div>
-				</div>
-			</div>
 
+<!-- ================================ 비밀번호찾기 ================================ -->
+	<div class="login">
+		<div class="container">
+		<div class="container">
+		<div style="text-align : center;">
+     		<img src="../images/find_5_1.png"><br><br><br>
+		</div>
+			<h2>비밀번호찾기</h2><br><br>
+				<p>회원가입 시 등록하신 아이디, 이메일 주소를 입력해 주세요.</p>
+				<p>해당 이메일로 비밀번호 정보를 보내드립니다.</p>
+		
+			<div class="login-form-grids animated wow slideInUp" data-wow-delay=".5s">
+			
+				<form>			
+
+					<input type="text" placeholder="아이디" required=" " >  
+					<input type="email" placeholder="이메일" required=" " >
+					
+					<div class="_5center">
+						<input type="submit" value="확인" class="#">	
+					<hr style="width:100%;height:1px;border:none;background-color:#999;">
+					</div>
+					
+					
+<!-- 홈/아이디 찾기/회원가입 -->					
+					<div class="_5forgot">
+						<a href="../main.jsp">홈</a>
+						|   
+						<a href="findid_3.jsp">아이디 찾기</a>
+						|   
+						<a href="registered_3.jsp">회원가입</a>
+					</div>	
+<!-- // 홈/아이디 찾기/회원가입 -->	
+							
+				</form>
+			</div>
 		</div>
 	</div>
-
-<!--- --------------------------------------------------구매내역 ---------------------------------------------------------->
-
-
-
+<!-- ================================ // 비밀번호찾기 ================================ -->
 
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>
@@ -184,7 +141,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 <!-- main slider-banner -->
 <script src="js/skdslider.min.js"></script>
-<link href="css/skdslider.css" rel="stylesheet">
+<link href="../css/skdslider.css" rel="stylesheet">
 <script type="text/javascript">
 		jQuery(document).ready(function(){
 			jQuery('#demo1').skdslider({'delay':5000, 'animationSpeed': 2000,'showNextPrev':true,'showPlayButton':true,'autoSlide':true,'animationType':'fading'});
@@ -233,7 +190,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 <!-- main slider-banner -->
 <script src="js/skdslider.min.js"></script>
-<link href="css/skdslider.css" rel="stylesheet">
+<link href="../css/skdslider.css" rel="stylesheet">
 <script type="text/javascript">
 		jQuery(document).ready(function(){
 			jQuery('#demo1').skdslider({'delay':5000, 'animationSpeed': 2000,'showNextPrev':true,'showPlayButton':true,'autoSlide':true,'animationType':'fading'});

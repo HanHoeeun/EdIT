@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>EdIT delete</title>
-<link href= "css/login.css" rel= "stylesheet" type="text/css">
-<link href= "css/style.css" rel= "stylesheet" type="text/css">
+<title>buylist</title>
+<link href= "../css/login.css" rel= "stylesheet" type="text/css">
+<link href= "../css/style.css" rel= "stylesheet" type="text/css">
+<link href= "../css/faq_1_9.css" rel= "stylesheet" type="text/css">
 </head>
 <body>
 <!--
@@ -18,7 +19,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>   
 <html>
 <head>
-<title>delete.jsp</title>
+<title>buylist.jsp</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -27,10 +28,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- //for-mobile-apps -->
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="../css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="../css/style.css" rel="stylesheet" type="text/css" media="all" />
 <!-- font-awesome icons -->
-<link href="css/font-awesome.css" rel="stylesheet"> 
+<link href="../css/font-awesome.css" rel="stylesheet"> 
 <!-- //font-awesome icons -->
 <!-- js -->
 <script src="js/jquery-1.11.1.min.js"></script>
@@ -61,16 +62,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
 				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>홈</a></li>
-				<li class="active">회원탈퇴</li>
+				<li class="active">구매내역</li>
 			</ol>
 		</div>
 	</div>
 <!-- //breadcrumbs -->
-<!--- --------------------------------------------------회원탈퇴---------------------------------------------------------->
+
+<!--- --------------------------------------------------구매내역 ---------------------------------------------------------->
 	<div class="products">
 		<div class="container">
-		
-		
 			<div class="col-md-4 products-left">
 				<div class="categories">
 					<h2>마이페이지</h2>
@@ -80,47 +80,65 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li><a href="salelist.jsp"><i class="fa fa-arrow-right"></i>판매 내역</a></li>
 						<li><a href="product/checkout.jsp"><i class="fa fa-arrow-right"></i>찜♥</a></li>
 						<li><a href="qnalist.jsp"><i class="fa fa-arrow-right"></i>문의 내역</a></li>
-						<li><a href="delete.me"><i class="fa fa-arrow-right"></i>회원 탈퇴</a></li>
+						<li><a href="delete.jsp"><i class="fa fa-arrow-right"></i>회원 탈퇴</a></li>
  						<li><a href="#"><i class="fa fa-arrow-right"></i>회원 관리</a></li>  
 					</ul>
 				</div>											
 			</div>		
-					
+			
+				
 			<div class="col-md-8 products-right">
-		
+			
+			
 				<div class="products-right-grid">
 					<div class="products-right-grids">
 						<div class="clearfix">
 							<div class="categories">
-								<h2>회원탈퇴</h2>
+								<h2>구매내역</h2>
 							</div>		
 				 		</div>
 					</div>
 				</div>
-					
-			<form action="deletePro.me" method="post">
-				<div class="hover14 column">
-						<div class="_6clearfix1"> 
-							<div class="_6clearfix"> 
-								<div align="center">
-									<input type="text1" placeholder="아이디"  readonly>
-									<input type="text" readonly>
-									<input type="text1" placeholder="비밀번호"  readonly>
-									<input type="text" > <br>
-								</div>	
-							</div>
-						</div>
-				</div>
 				
-				<div class="snipcart-details top_brand_home_details">
+				
+				
+				<form action="update.jsp" method="post">
+					<div class="hover14 column">
+						<div class="_6clearfix1"> 
+								<div align="center">
+		
+		
+					<table class="_1qna_board">
+						<tr>
+							<th class="_1qna_board_border">번호</th>
+							<th class="_1qna_board_border">상품이름</th>
+							<th class="_1qna_board_border">가격</th>
+							<th class="_1qna_board_border">구매시간</th>
+						</tr>
+						<tr>
+							<td class="_1qna_board_border">1</td>
+							<td class="_1qna_board_subject">2</td>
+							<td class="_1qna_board_border">3</td>
+							<td>4</td>
+						</tr>
+		</table>
+		</div>
+						</div>
+					</div>
+								
+					<div class="snipcart-details top_brand_home_details">
 						<fieldset>
-							<input type="button" name="submit" value="회원탈퇴" class="button">
+				
+				
+				---
+				
+				
 						</fieldset>
 						</div>
-			</form>
-				</div> <br><br>
-		
-				
+				</form>
+			</div> <br><br>
+							
+					
 						<div class="clearfix"> </div>
 				</div>
 			</div>
@@ -128,7 +146,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 
-<!--- --------------------------------------------------회원탈퇴 ---------------------------------------------------------->
+<!--- --------------------------------------------------구매내역 ---------------------------------------------------------->
+
 
 
 
@@ -165,7 +184,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 <!-- main slider-banner -->
 <script src="js/skdslider.min.js"></script>
-<link href="css/skdslider.css" rel="stylesheet">
+<link href="../css/skdslider.css" rel="stylesheet">
 <script type="text/javascript">
 		jQuery(document).ready(function(){
 			jQuery('#demo1').skdslider({'delay':5000, 'animationSpeed': 2000,'showNextPrev':true,'showPlayButton':true,'autoSlide':true,'animationType':'fading'});
@@ -214,7 +233,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 <!-- main slider-banner -->
 <script src="js/skdslider.min.js"></script>
-<link href="css/skdslider.css" rel="stylesheet">
+<link href="../css/skdslider.css" rel="stylesheet">
 <script type="text/javascript">
 		jQuery(document).ready(function(){
 			jQuery('#demo1').skdslider({'delay':5000, 'animationSpeed': 2000,'showNextPrev':true,'showPlayButton':true,'autoSlide':true,'animationType':'fading'});
