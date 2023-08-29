@@ -12,6 +12,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import com.itwillbs.domain.NoticeDTO;
+import com.itwillbs.domain.NoticePageDTO;
 
 public class NoticeDAO {
 	Connection con = null;
@@ -34,7 +35,7 @@ public class NoticeDAO {
 		if(con != null) {try {con.close();} catch (SQLException e) {	}}
 	}//dbClose
 	
-	public List<NoticeDTO> getNoticeList(PageDTO pageDTO){
+	public List<NoticeDTO> getNoticeList(NoticePageDTO pageDTO){
 		System.out.println("Notice getNoticeList()");
 		List<NoticeDTO> noticeList = null;
 		try {
@@ -52,18 +53,22 @@ public class NoticeDAO {
 			//5 결과 행접근 => BoardDTO객체생성 => set호출(열접근저장)
 			// => 배열 한칸에 저장
 			while(rs.next()) {
+				
+			
 				NoticeDTO noticeDTO =new NoticeDTO();
-				NoticeDTO.setA_num(rs.getInt("a_num"));
-				NoticeDTO.setA_title(rs.getString("a_title"));
-				NoticeDTO.setA_content(rs.getString("a_content"));
-				NoticeDTO.setA_date(rs.getTimestamp("a_date"));
+				noticeDTO.setA_num(rs.getInt("a_num"));
+				noticeDTO.setA_title(rs.getString("a_title"));
+				noticeDTO.setA_content(rs.getString("a_content"));
+				noticeDTO.setA_date(rs.getTimestamp("a_date"));
 				// => 배열 한칸에 저장
 				noticeList.add(noticeDTO);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
 			dbClose();
 		}return noticeList;
+		
 	}//getNoticeList()
 	
 		

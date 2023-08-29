@@ -1,10 +1,14 @@
 package com.itwillbs.service;
 
+import java.util.List;
+
 import com.itwillbs.dao.NoticeDAO;
+import com.itwillbs.domain.NoticeDTO;
+import com.itwillbs.domain.NoticePageDTO;
 
 public class NoticeService {
 	NoticeDAO noticeDAO = null;
-	public List<NoticeDTO> getNoticeList(PageDTO pageDTO){
+	public List<NoticeDTO> getNoticeList(NoticePageDTO pageDTO){
 		System.out.println("NoticeService getNoticeList()");
 		List<NoticeDTO> noticeList = null;
 		try {
@@ -17,14 +21,16 @@ public class NoticeService {
 			pageDTO.setStartRow(startRow);
 			pageDTO.setEndRow(endRow);
 			
-			// BoardDAO 객체생성
+			// NoticeDAO 객체생성
 			NoticeDAO noticeDAO = new NoticeDAO();
-			// boardList = getBoardList() 메서드 호출
+			// noticeList = getnoticeList() 메서드 호출
 			noticeList = noticeDAO.getNoticeList(pageDTO);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}return noticeList;
 	}//getNoticeList
+	
+	
 	
 	
 	

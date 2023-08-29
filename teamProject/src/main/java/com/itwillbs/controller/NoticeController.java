@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.itwillbs.domain.NoticeDTO;
+import com.itwillbs.domain.NoticePageDTO;
 import com.itwillbs.service.NoticeService;
 
 public class NoticeController extends HttpServlet{
@@ -49,7 +50,7 @@ public class NoticeController extends HttpServlet{
 			// 페이지 번호를 => 정수형으로 변경
 			int currentPage = Integer.parseInt(pageNum);
 			
-			PageDTO pageDTO = new PageDTO();
+			NoticePageDTO pageDTO = new NoticePageDTO();
 			pageDTO.setPageSize(pageSize);
 			pageDTO.setPageNum(pageNum);
 			pageDTO.setCurrentPage(currentPage);
@@ -59,25 +60,25 @@ public class NoticeController extends HttpServlet{
 			// List<NoticeDTO> noticeList = getnoticeList(); 메서드 호출
 			List<NoticeDTO> noticeList=noticeService.getNoticeList(pageDTO);
 			// 게시판 전체 글 개수 구하기 
-			int count = noticeService.getNoticeCount();
-			// 한화면에 보여줄 페이지개수 설정
-			int pageBlock = 10;
-			// 시작 페이지
-			int startPage=(currentPage-1)/pageBlock*pageBlock+1;
-			// 마지막 페이지
-			int endPage=startPage+pageBlock-1;
-			// 전체 페이지
-			int pageCount = count / pageSize + (count % pageSize==0?0:1);
-			if(endPage > pageCount) {
-				endPage = pageCount;
-			}
-			
-			//pageDTO 저장
-			pageDTO.setCount(count);
-			pageDTO.setPageBlock(pageBlock);
-			pageDTO.setStartPage(startPage);
-			pageDTO.setEndPage(endPage);
-			pageDTO.setPageCount(pageCount);
+//			int count = noticeService.getNoticeCount();
+//			// 한화면에 보여줄 페이지개수 설정
+//			int pageBlock = 10;
+//			// 시작 페이지
+//			int startPage=(currentPage-1)/pageBlock*pageBlock+1;
+//			// 마지막 페이지
+//			int endPage=startPage+pageBlock-1;
+//			// 전체 페이지
+//			int pageCount = count / pageSize + (count % pageSize==0?0:1);
+//			if(endPage > pageCount) {
+//				endPage = pageCount;
+//			}
+//			
+//			//pageDTO 저장
+//			pageDTO.setCount(count);
+//			pageDTO.setPageBlock(pageBlock);
+//			pageDTO.setStartPage(startPage);
+//			pageDTO.setEndPage(endPage);
+//			pageDTO.setPageCount(pageCount);
 
 			// request에 "noticeList",noticeList 저장
 			request.setAttribute("noticeList", noticeList);
@@ -91,6 +92,8 @@ public class NoticeController extends HttpServlet{
 		if(sPath.equals("/writePro.no")) {
 			System.out.println("뽑은 가상주소 비교 : /writePro.no");
 			// 주소변경없이 이동 center/write.jsp
+			dispatcher = request.getRequestDispatcher("admin/notice.jsp");
+			dispatcher.forward(request, response);
 		}//write.no
 		
 		
