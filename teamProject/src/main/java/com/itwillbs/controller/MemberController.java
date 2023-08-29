@@ -70,7 +70,13 @@ public class MemberController extends HttpServlet{
 			
 		}
 		
-		
+		if (sPath.equals("/main.me")) {
+			
+			dispatcher = request.getRequestDispatcher("main/main.jsp");
+			dispatcher.forward(request, response);
+			
+			
+		}
 		
 		
 		
