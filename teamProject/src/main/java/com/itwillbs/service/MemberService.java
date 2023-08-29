@@ -66,6 +66,30 @@ public class MemberService {
 		
 	}
 
+
+	public MemberDTO userCheck(HttpServletRequest request) {
+		System.out.println("MemberService userCheck()");
+		MemberDTO memberDTO = null;
+		try {
+			// 한글처리
+			request.setCharacterEncoding("utf-8");
+			// id,pass 파라미터 값 가져오기
+			String id = request.getParameter("_6id");
+			String pass = request.getParameter("_6pass");
+			// MemberDTO 저장
+			MemberDTO memberDTO2 = new MemberDTO();
+			memberDTO2.setM_id(id);
+			memberDTO2.setM_pass(pass);
+			// MemberDAO 객체생성
+			memberDAO = new MemberDAO();
+			// MemberDTO = userCheck(memberDTO2) 메서드 호출
+			memberDTO = memberDAO.userCheck(memberDTO2);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return memberDTO;
+	} // userCheck()
+
 	
 	
 	
