@@ -56,7 +56,7 @@ public class MemberController extends HttpServlet{
 			memberService.insertMember(request);
 			
 //			로그인 화면 이동 -> 주소 변경 하면서 이동
-			response.sendRedirect("main.me");
+			response.sendRedirect("login.me");
 			
 		}
 		
