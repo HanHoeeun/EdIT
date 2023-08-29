@@ -11,7 +11,7 @@ public class MemberDTO {
 	private String m_pass;
 	private String m_name;
 	private String m_nick;
-	private int m_phone;
+	private String m_phone;
 	private String m_email;
 	private Timestamp m_date;
 	private String m_event;
@@ -68,10 +68,10 @@ public class MemberDTO {
 	public void setM_nick(String m_nick) {
 		this.m_nick = m_nick;
 	}
-	public int getM_phone() {
+	public String getM_phone() {
 		return m_phone;
 	}
-	public void setM_phone(int m_phone) {
+	public void setM_phone(String m_phone) {
 		this.m_phone = m_phone;
 	}
 	public String getM_email() {

@@ -51,13 +51,9 @@ public class MemberDAO {
 		try {
 			
 			con = getConnection();
-			
 			String sql = "select max(num) from members";
-			
 			pstmt = con.prepareStatement(sql);
-			
 			rs = pstmt.executeQuery();
-			
 			if (rs.next() == true) {
 				num = rs.getInt("max(num)");
 			}
@@ -71,7 +67,6 @@ public class MemberDAO {
 		return num;
 		
 	}	// getMaxNum ()
-	
 	
 	
 
@@ -90,13 +85,12 @@ public class MemberDAO {
 			pstmt.setString(2, memberDTO.getM_pass());
 			pstmt.setString(3, memberDTO.getM_name());
 			pstmt.setString(4, memberDTO.getM_nick());
-			pstmt.setInt(5, memberDTO.getM_phone());
+			pstmt.setString(5, memberDTO.getM_phone());
 			pstmt.setString(6, memberDTO.getM_email());
 			pstmt.setTimestamp(7, memberDTO.getM_date());
 			pstmt.setString(8, memberDTO.getM_event());
 			
 			pstmt.executeUpdate();
-			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -127,7 +121,7 @@ public class MemberDAO {
 				memberDTO.setM_name(rs.getString("_6name"));
 				memberDTO.setM_nick(rs.getString("_6nick"));
 				memberDTO.setM_email(rs.getString("_6maile"));
-				memberDTO.setM_phone(rs.getInt("_6phone"));
+				memberDTO.setM_phone(rs.getString("_6phone"));
 				
 			}
 			
@@ -138,6 +132,8 @@ public class MemberDAO {
 		return memberDTO;
 	}
 
+	
+	
 	public MemberDTO userCheck(MemberDTO memberDTO2) {
 		MemberDTO memberDTO = null;
 		try {
@@ -164,6 +160,56 @@ public class MemberDAO {
 		}
 		return memberDTO;
 	}  // userCheck()
+
+
+
+//	마케팅 수신동의 체크는 어떻게 해야하나.....
+	public void updateMember(MemberDTO memberDTO) {
+		System.out.println("MemberDAO updateMember()");
+		
+		try {
+			
+			con = getConnection();
+			String sql = "update members set m_pass = ?, m_name = ?, m_nick = ?, m_email = ?, m_phone = ? "
+					+ "where m_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, memberDTO.getM_pass());
+			pstmt.setString(2, memberDTO.getM_name());
+			pstmt.setString(3, memberDTO.getM_nick());
+			pstmt.setString(4, memberDTO.getBl_m_email());
+			pstmt.setString(5, memberDTO.getM_phone());
+			
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dblClose();
+		}
+		
+	}
+
+
+
+	public void deleteMember(MemberDTO memberDTO) {
+		System.out.println("MemberDAO deleteMember()");
+		
+		try {
+			
+			con = getConnection();
+			String sql = "delete from members where id = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, memberDTO.getM_id());
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dblClose();
+		}
+		
+	}
 
 
 

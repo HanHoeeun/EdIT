@@ -18,7 +18,7 @@ public class MemberService {
 		System.out.println("MemberService insertMember()");
 		
 		try {
-//			회원번호 불러와야하는데 이거 보드num 참고해서 해야함.... 맥스 어쩌구 추가해줘야함
+
 //			한글처리
 			request.setCharacterEncoding("utf-8");
 			
@@ -28,8 +28,8 @@ public class MemberService {
 			String pass2 = request.getParameter("_6pass2");
 			String name = request.getParameter("_6name");
 			String nick = request.getParameter("_6nick");
-			String email = request.getParameter("_6mail");
-			int phone = Integer.parseInt(request.getParameter("_6phone"));
+			String email = request.getParameter("_6email");
+			String phone = request.getParameter("_6phone");
 			Timestamp date = new Timestamp(System.currentTimeMillis());
 			String event = request.getParameter("_6check");
 			
@@ -54,19 +54,16 @@ public class MemberService {
 			memberDTO.setM_date(date);
 			memberDTO.setM_event(event);
 			
-			
 //			insertMember() 호출
 			memberDAO.insertMember(memberDTO);
-			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
 	}
 
 
+	
 	public MemberDTO getMember(String id) {
 		System.out.println("MemberService getMember()");
 		
@@ -111,7 +108,72 @@ public class MemberService {
 		return memberDTO;
 	} // userCheck()
 
-	
+
+
+	public void updateMember(HttpServletRequest request) {
+		System.out.println("MemberService getMember()" );
+		
+		try {
+//			한글처리
+			request.setCharacterEncoding("utf-8");
+			
+			String id = request.getParameter("_6id");
+			String pass1 = request.getParameter("_6pass1");
+			String pass2 = request.getParameter("_6pass2");
+			String name = request.getParameter("_6name");
+			String nick = request.getParameter("_6nick");
+			String email = request.getParameter("_6email");
+			String phone = request.getParameter("_6phone");
+			String event = request.getParameter("_6check");
+			
+			
+			MemberDTO memberDTO = new MemberDTO();
+			
+			memberDTO.setM_id(id);
+			memberDTO.setM_pass(pass1);
+			memberDTO.setM_pass(pass2);
+			memberDTO.setM_name(name);
+			memberDTO.setM_nick(nick);
+			memberDTO.setM_email(email);
+			memberDTO.setM_phone(phone);
+			memberDTO.setM_event(event);
+			
+			memberDAO = new MemberDAO();
+			memberDAO.updateMember(memberDTO);
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+
+
+	public void deleteMember(HttpServletRequest request) {
+		System.out.println("MemberService deleteMember()" );
+		
+		try {
+			
+			String id = request.getParameter("_6id");
+			String pass = request.getParameter("_6pass");
+			
+			MemberDTO memberDTO = new MemberDTO();
+			
+			memberDTO.setM_id(id);
+			memberDTO.setM_pass(pass);
+			
+			memberDAO = new MemberDAO();
+			memberDAO.deleteMember(memberDTO);
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+
+
 	
 	
 	
