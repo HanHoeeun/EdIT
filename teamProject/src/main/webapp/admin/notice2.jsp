@@ -81,7 +81,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<th class="_1qna_board_border">제목</th>
 							<th class="_1qna_board_border">작성일</th>
 						</tr>
-
+						
 						<tr>
 							<td class="_1qna_board_border">1</td>
 							<td class="_1qna_board_subject">거래 시 유의사항 안내드립니다</td>

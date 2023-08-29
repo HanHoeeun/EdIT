@@ -55,7 +55,15 @@
 </servlet>
 
 
+<servlet-mapping>
+	<servlet-name>NoticeController</servlet-name>
+	<url-pattern>*.no</url-pattern>
+</servlet-mapping>
 
+<servlet>
+	<servlet-name>NoticeController</servlet-name>
+	<servlet-class>com.itwillbs.controller.NoticeController</servlet-class>
+</servlet>
 
 
 <servlet-mapping>
