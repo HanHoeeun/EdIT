@@ -105,7 +105,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <figure>
                         <div class="snipcart-item block">
                             <div class="snipcart-thumb">
-                                <a href="single.po"><img title=" " alt=" " src="../proImg/img1_07.png" width="150px" height="150px"></a>
+                                <a href="single.po"><img title=" " alt=" " src="./proImg/img1_07.png" width="150px" height="150px"></a>
                                 <p>안쓰는 애플워치 팔아요</p>
                                 <h4>₩250,000</h4>
                             </div>

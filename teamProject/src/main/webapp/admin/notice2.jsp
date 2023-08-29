@@ -1,7 +1,3 @@
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="com.itwillbs.domain.NoticePageDTO"%>
-<%@page import="java.util.List"%>
-<%@page import="com.itwillbs.domain.NoticeDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!--
@@ -60,7 +56,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</ol>
 		</div>
 	</div><br><br>
-<!--=========================== 본문 헤더 =========================================== -->	
+<!--=========================== 본문 헤더 ==================\'========================= -->	
+	
 	<div class="../top-brands_1">
 		<h2>공지사항</h2>
 		<div class="container_1_1">
@@ -76,10 +73,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</ul>
 			</div>
 <!--================================== 1탭 일반공지==================================== -->
-<%
-List<NoticeDTO> noticeList = (List<NoticeDTO>)request.getAttribute("noticeList");
-NoticePageDTO pageDTO=(NoticePageDTO)request.getAttribute("pageDTO");
-%>	
 			<div class="container_3_1">
 				<div id="tab-1" class="tab-content current">
 				<table class="_1qna_board">
@@ -88,57 +81,26 @@ NoticePageDTO pageDTO=(NoticePageDTO)request.getAttribute("pageDTO");
 							<th class="_1qna_board_border">제목</th>
 							<th class="_1qna_board_border">작성일</th>
 						</tr>
- <%
-SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
-    for(int i=0;i<noticeList.size();i++){
-    	NoticeDTO noticeDTO=noticeList.get(i);   
-    	%>	
-						 <tr onclick="location.href='content.no?num=<%=noticeDTO.getA_num()%>'">
-							<td class="_1qna_board_border"><%=noticeDTO.getA_num() %></td>
-							<td class="_1qna_board_subject"><%=noticeDTO.getA_title() %></td>
-							<td class="_1qna_board_border"><%=format.format(noticeDTO.getA_date()) %></td>
+						
+						<tr>
+							<td class="_1qna_board_border">1</td>
+							<td class="_1qna_board_subject">거래 시 유의사항 안내드립니다</td>
+							<td class="_1qna_board_border">2023.08.25</td>
 						</tr>
-						<%
-    }
-    %>
 					</table>
 					<!--============= 1탭 일반공지 페이징 ==================== -->
-					<div class="_1qna_paging">
-						<% if(pageDTO.getStartPage() > pageDTO.getPageBlock()){ %>
-						<a
-							href="list.no?pageNum=<%=pageDTO.getStartPage()-pageDTO.getPageBlock()%>">◀</a>
-						<%
-}
-%>
-
-						<%
-for(int i=pageDTO.getStartPage();i<=pageDTO.getEndPage();i++){
-	%>
-						<a href="list.no?pageNum=<%=i%>"><%=i %></a>
-						<%
-}
-%>
-
-						<%
-//끝페이지번호  전체페이지수 비교 => 전체페이지수 크면 => Next보임
-if(pageDTO.getEndPage() < pageDTO.getPageCount()){
-	%>
-						<a
-							href="list.no?pageNum=<%=pageDTO.getStartPage()+pageDTO.getPageBlock()%>">▶</a>
-						<%
-}
-%>
-						<!-- <ul>
-							<li onclick="location.href='index.html'">◀</li>
-							<li onclick="location.href='about.html'">1</li>
-							<li onclick="location.href='login.html'">2</li>
-							<li onclick="location.href='faq.html'">3</li>
-							<li onclick="location.href='gourmet.html'">4</li>
-							<li onclick="location.href='login.html'">5</li>
-							<li onclick="location.href='products.html'">▶</li>
-						</ul> -->
-					</div>
-
+				    <div class="_1qna_paging">
+        				<ul>
+				           <li onclick="location.href='index.html'">◀</li>
+				           <li onclick="location.href='about.html'">1</li>
+				           <li onclick="location.href='login.html'">2</li>
+				           <li onclick="location.href='faq.html'">3</li>
+				           <li onclick="location.href='gourmet.html'">4</li>
+				           <li onclick="location.href='login.html'">5</li>
+				           <li onclick="location.href='products.html'">▶</li>
+						</ul>
+   					 </div>
+				
 				</div>
 <!--================================== 2탭 이벤트 ==================================== -->				
 				<div id="tab-2" class="tab-content">
@@ -157,31 +119,7 @@ if(pageDTO.getEndPage() < pageDTO.getPageCount()){
 					</table>
 					<!--============= 2탭 이벤트 페이징 ==================== -->
 				    <div class="_1qna_paging">
-				    <% if(pageDTO.getStartPage() > pageDTO.getPageBlock()){ %>
-						<a
-							href="list.no?pageNum=<%=pageDTO.getStartPage()-pageDTO.getPageBlock()%>">◀</a>
-						<%
-}
-%>
-
-						<%
-for(int i=pageDTO.getStartPage();i<=pageDTO.getEndPage();i++){
-	%>
-						<a href="list.no?pageNum=<%=i%>"><%=i %></a>
-						<%
-}
-%>
-
-						<%
-//끝페이지번호  전체페이지수 비교 => 전체페이지수 크면 => Next보임
-if(pageDTO.getEndPage() < pageDTO.getPageCount()){
-	%>
-						<a
-							href="list.no?pageNum=<%=pageDTO.getStartPage()+pageDTO.getPageBlock()%>">▶</a>
-						<%
-}
-%>
-        				<!-- <ul>
+        				<ul>
 				           <li onclick="location.href='index.html'">◀</li>
 				           <li onclick="location.href='about.html'">1</li>
 				           <li onclick="location.href='login.html'">2</li>
@@ -189,14 +127,11 @@ if(pageDTO.getEndPage() < pageDTO.getPageCount()){
 				           <li onclick="location.href='gourmet.html'">4</li>
 				           <li onclick="location.href='login.html'">5</li>
 				           <li onclick="location.href='products.html'">▶</li>
-						</ul> -->
+						</ul>
    					 </div>
 				</div>
 <!--================================== 3탭 글작성 ==================================== -->
-				<%
-String a_m_num = (String)session.getAttribute("a_m_num");
-if(a_m_num != null){
-	%>
+				<%if(1 == 1){ %>
 				<div id="tab-3" class="tab-content">
 					<form action="index.html" method="post" enctype="multipart/form-data">
 						<table class="_1q_query_tab">

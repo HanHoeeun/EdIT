@@ -107,11 +107,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<tr>
 					<td class="_1q_query_tab_5" colspan="3"><textarea
 							name="content" style="border: none;" cols="110" rows="20"
-							class="noresize"
-							placeholder="EDIT는 통신판매의 당사자가 아닌 통신판매중개자로서 상품, 상품정보, 거래에 대한 책임이 제한될 수 있으므로,
+							class="noresize" 
+							value="EDIT는 통신판매의 당사자가 아닌 통신판매중개자로서 상품, 상품정보, 거래에 대한 책임이 제한될 수 있으므로,
 각 상품 페이지에서 구체적인 내용을 확인하시기 바랍니다.
 본사에 등록된 모든 광고와 저작권 및 법적책임은 자료제공사(또는 회원)에게 있으므로 본사는광고에 대한 책임을 지지 않습니다."
-							readonly="readonly"></textarea></td>
+							></textarea></td>
 				</tr>
 			</table>
 			<%

@@ -38,6 +38,13 @@ public class MemberController extends HttpServlet{
 		String sPath = request.getServletPath();
 		System.out.println("뽑은 가상주소 : " + sPath);
 		
+
+
+
+		if (sPath.equals("/main.me")) {
+			dispatcher = request.getRequestDispatcher("main/main.jsp");
+			dispatcher.forward(request, response);
+		}
 		
 		
 		
@@ -67,6 +74,45 @@ public class MemberController extends HttpServlet{
 			response.sendRedirect("login.me");
 			
 		}
+		
+		
+		
+		// 진유정 수정중
+		if(sPath.equals("/login.me")) {
+			// memeber/login.jsp 주소변경 없이 이동
+			dispatcher = request.getRequestDispatcher("member/login.jsp");
+			dispatcher.forward(request, response);
+	}
+		
+		
+		if(sPath.equals("/loginPro.me")) {
+			System.out.println("뽑은 가상주소 비교 : /insertPro.me");
+		// MemberService 객체생성
+			memberService = new MemberService();
+	// MemberDTO memberDTO = userCheck(request) 메서드 호출
+	MemberDTO memberDTO = memberService.userCheck(request);
+
+	if(memberDTO != null) {
+		// memberDTO != null 아이디 비밀번호 일치=> 세션값 저장=>main.me
+		HttpSession session = request.getSession();
+		session.setAttribute("id", memberDTO.getM_id());
+		response.sendRedirect("main.me");
+	}else {
+		// memberDTO == null 아이디 비밀번호 틀림=> member/msg.jsp
+		dispatcher 
+	    = request.getRequestDispatcher("member/msg.jsp");   // msg.jsp는 -> 아이디/비밀번호 틀림 창 뜨게
+	dispatcher.forward(request, response);
+	}
+	
+	}//	if
+
+	// 수정중 //	
+		
+		
+		
+		
+		
+		
 		
 		
 		
@@ -107,17 +153,6 @@ public class MemberController extends HttpServlet{
 		
 		
 		
-		
-		
-		
-		
-		
-		// 내가 추가함
-		if(sPath.equals("/login.me")) {
-			// member/login.jsp 주소변경 없이 이동
-		dispatcher = request.getRequestDispatcher("member/login.jsp");
-		dispatcher.forward(request, response);
-		}//
 
 		
 
@@ -154,6 +189,7 @@ public class MemberController extends HttpServlet{
 			
 			
 		}
+
 		
 		
 		

@@ -138,6 +138,32 @@ public class MemberDAO {
 		return memberDTO;
 	}
 
+	public MemberDTO userCheck(MemberDTO memberDTO2) {
+		MemberDTO memberDTO = null;
+		try {
+			// 디비연결
+			con = getConnection();
+			// sql
+			String sql = "select * from members where m_id=? and m_pass=?";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, memberDTO2.getM_id());
+			pstmt.setString(1, memberDTO2.getM_pass());
+			// 데이터있으면 memberDTO 객체생성, set메서드 호출 rs열데이터 저장
+			if(rs.next()) {
+				memberDTO = new MemberDTO();
+				memberDTO.setM_id(rs.getString("_6id"));
+				memberDTO.setM_pass(rs.getString("_6pass"));
+				memberDTO.setM_name(rs.getString("_6name"));
+				memberDTO.setM_date(rs.getTimestamp("_6date"));
+			}
+			// 아이디, 비밀번호 틀리면 => 초기값 null => 리턴
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dblClose();
+		}
+		return memberDTO;
+	}  // userCheck()
 
 
 

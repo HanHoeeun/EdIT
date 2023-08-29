@@ -92,6 +92,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 		
 	</div>	
-	
+	 <!-- 이미지 출력 -->
+    <img src="${imagePath}" alt="Image">
+    <!--  이미지 출력  -->
 </body>
 </html>
