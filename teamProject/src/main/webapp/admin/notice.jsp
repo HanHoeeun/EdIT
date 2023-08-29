@@ -18,22 +18,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- //for-mobile-apps -->
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-<link href="css/style_1_2.css" rel="stylesheet" type="text/css" media="all" />
-<link href="css/faq_1_2.css" rel="stylesheet" type="text/css" media="all" />
+<link href="../css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="../css/style.css" rel="stylesheet" type="text/css" media="all" />
 <!-- font-awesome icons -->
-<link href="css/font-awesome.css" rel="stylesheet"> 
-<!-- <link href="css/faq_1.css" rel="stylesheet">  -->
+<link href="../css/font-awesome.css" rel="stylesheet"> 
+<link href="../css/faq_1_9.css" rel="stylesheet"> 
 <!-- //font-awesome icons -->
 <!-- js -->
-<script src="js/jquery-1.11.1.min.js"></script>
+<script src="../js/jquery-1.11.1.min.js"></script>
 <!-- //js -->
 <link href='//fonts.googleapis.com/css?family=Raleway:400,100,100italic,200,200italic,300,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic' rel='stylesheet' type='text/css'>
 <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
 <!-- start-smoth-scrolling -->
-<script type="text/javascript" src="js/move-top.js"></script>
-<script type="text/javascript" src="js/easing.js"></script>
+<script type="text/javascript" src="../js/move-top.js"></script>
+<script type="text/javascript" src="../js/easing.js"></script>
 <script type="text/javascript">
 	jQuery(document).ready(function($) {
 		$(".scroll").click(function(event){		
@@ -42,10 +40,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		});
 	});
 </script>
+<!-- start-smoth-scrolling -->
 </head>
 	
 <body>
-<!--================================================ 상단 네비 ============================================-->
+<!--================================== 헤더 ==================================== -->
+<jsp:include page="../inc/top.jsp"></jsp:include>
+	
+<!--=========================== 상단 네비 ============================================ -->
 	<div class="breadcrumbs">
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
@@ -53,156 +55,92 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<li class="active">공지사항</li>
 			</ol>
 		</div>
-	</div>
-<!--================================================= 바디 ===============================================-->	
-	<div class="top-brands_1">
-		<h2>고객센터</h2>
+	</div><br><br>
+<!--=========================== 본문 헤더 ==================\'========================= -->	
+	
+	<div class="../top-brands_1">
+		<h2>공지사항</h2>
 		<div class="container_1_1">
 			<div class="container_2_1">
-<!-- 				상단 탭 리스트 -->
+
+<!--=========================== 상단 탭 리스트============================================ -->
 				<ul class="tabs">
-					<li class="tab-link current" data-tab="tab-1">자주묻는 질문</li>
-					<li class="tab-link" data-tab="tab-2">문의 하기</li>
+					<li class="tab-link current" data-tab="tab-1">일반공지</li>
+					<li class="tab-link" data-tab="tab-2">이벤트</li>
 					<%if(1==1){ %>
-					<li class="tab-link" data-tab="tab-3">내 문의 내역</li>
+					<li class="tab-link" data-tab="tab-3">글 작성</li>
 					<%} %>
 				</ul>
 			</div>
+<!--================================== 1탭 일반공지==================================== -->
 			<div class="container_3_1">
 				<div id="tab-1" class="tab-content current">
-					
-					<div id="tab-2" class="tab-content">
-<!-- 				3탭 게시판 테이블  -->
-					<table class="_1qna_board">
+				<table class="_1qna_board">
 						<tr>
 							<th class="_1qna_board_border">번호</th>
 							<th class="_1qna_board_border">제목</th>
-							<th class="_1qna_board_border">작성자</th>
-							<th class="_1qna_board_border">작성시간</th>
+							<th class="_1qna_board_border">작성일</th>
 						</tr>
+						
 						<tr>
 							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_subject">2</td>
-							<td class="_1qna_board_border">3</td>
-							<td>4</td>
-						</tr>
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_subject">2</td>
-							<td class="_1qna_board_border">3</td>
-							<td>4</td>
-						</tr>
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_subject">2</td>
-							<td class="_1qna_board_border">3</td>
-							<td>4</td>
-						</tr>
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_subject">2</td>
-							<td class="_1qna_board_border">3</td>
-							<td>4</td>
-						</tr>
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_subject">2</td>
-							<td class="_1qna_board_border">3</td>
-							<td>4</td>
-						</tr>
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_subject">2</td>
-							<td class="_1qna_board_border">3</td>
-							<td>4</td>
+							<td class="_1qna_board_subject">거래 시 유의사항 안내드립니다</td>
+							<td class="_1qna_board_border">2023.08.25</td>
 						</tr>
 					</table>
-<!-- 				3탭 페이징  -->
+					<!--============= 1탭 일반공지 페이징 ==================== -->
 				    <div class="_1qna_paging">
         				<ul>
-				           <li onclick="location.href='index.html'">prev</li>
+				           <li onclick="location.href='index.html'">◀</li>
 				           <li onclick="location.href='about.html'">1</li>
 				           <li onclick="location.href='login.html'">2</li>
 				           <li onclick="location.href='faq.html'">3</li>
 				           <li onclick="location.href='gourmet.html'">4</li>
 				           <li onclick="location.href='login.html'">5</li>
-				           <li onclick="location.href='products.html'">next</li>
+				           <li onclick="location.href='products.html'">▶</li>
 						</ul>
    					 </div>
+				
 				</div>
-			
-			<!-- script for tabs -->
-				</div>
+<!--================================== 2탭 이벤트 ==================================== -->				
 				<div id="tab-2" class="tab-content">
-<!-- 				2탭 문의글 작성 -->
 					<table class="_1qna_board">
 						<tr>
 							<th class="_1qna_board_border">번호</th>
 							<th class="_1qna_board_border">제목</th>
-							<th class="_1qna_board_border">작성자</th>
-							<th class="_1qna_board_border">작성시간</th>
+							<th class="_1qna_board_border">작성일</th>
 						</tr>
 						<tr>
 							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_subject">2</td>
-							<td class="_1qna_board_border">3</td>
-							<td>4</td>
+							<td class="_1qna_board_subject">신규가입 회원 혜택이 빵빵! (~09/30)</td>
+							<td class="_1qna_board_border">2023.09.01</td>
 						</tr>
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_subject">2</td>
-							<td class="_1qna_board_border">3</td>
-							<td>4</td>
-						</tr>
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_subject">2</td>
-							<td class="_1qna_board_border">3</td>
-							<td>4</td>
-						</tr>
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_subject">2</td>
-							<td class="_1qna_board_border">3</td>
-							<td>4</td>
-						</tr>
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_subject">2</td>
-							<td class="_1qna_board_border">3</td>
-							<td>4</td>
-						</tr>
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_subject">2</td>
-							<td class="_1qna_board_border">3</td>
-							<td>4</td>
-						</tr>
+						
 					</table>
-<!-- 				3탭 페이징  -->
+					<!--============= 2탭 이벤트 페이징 ==================== -->
 				    <div class="_1qna_paging">
         				<ul>
-				           <li onclick="location.href='index.html'">prev</li>
+				           <li onclick="location.href='index.html'">◀</li>
 				           <li onclick="location.href='about.html'">1</li>
 				           <li onclick="location.href='login.html'">2</li>
 				           <li onclick="location.href='faq.html'">3</li>
 				           <li onclick="location.href='gourmet.html'">4</li>
 				           <li onclick="location.href='login.html'">5</li>
-				           <li onclick="location.href='products.html'">next</li>
+				           <li onclick="location.href='products.html'">▶</li>
 						</ul>
    					 </div>
 				</div>
-				</div>
+<!--================================== 3탭 글작성 ==================================== -->
 				<%if(1 == 1){ %>
-				<form action="writePro.bo" method="post" enctype="multipart/form-data">
+				<div id="tab-3" class="tab-content">
+					<form action="index.html" method="post" enctype="multipart/form-data">
 						<table class="_1q_query_tab">
 							<tr>
 							<td class="_1q_query_tab_1">
 								<select class="_1q_query_tab_sel" style="border:none;">
-									<option value="">문의선택</option>
-									<option value="">계정</option>
-									<option value="">중고거래</option>
-									<option value="">기타</option>
+									<option value="">유형</option>
+									<option value="">일반공지</option>
+									<option value="">이벤트</option>
 								</select>
 							</td>
 							<td class="_1q_query_tab_2"><input type="text" name="id" value="작성자" style="border:none;" readonly="readonly"></td>
@@ -230,7 +168,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 				</form>
 				<%} %>
-			</div>
+				</div>
 <!-- 			탭 jquery -->
 			<script type="text/javascript">
 			$(document).ready(function(){
@@ -250,9 +188,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 		</div>
 			<div class="clearfix_1_1"> </div>
-	
-<!-- Bootstrap Core JavaScript -->
-<script src="js/bootstrap.min.js"></script>
+<!--================================== 푸터 ==================================== -->
+<div class="clearfix">
+<jsp:include page="../inc/bottom.jsp"></jsp:include>
+</div>	
+<!--========================= Bootstrap Core JavaScript =========================-->
+<script src="../js/bootstrap.min.js"></script>
 <!-- top-header and slider -->
 <!-- here stars scrolling icon -->
 	<script type="text/javascript">
@@ -271,7 +212,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			});
 	</script>
 <!-- //here ends scrolling icon -->
-<script src="js/minicart.min.js"></script>
+<script src="../js/minicart.min.js"></script>
 <script>
 	// Mini Cart
 	paypal.minicart.render({
@@ -283,8 +224,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	}
 </script>
 <!-- main slider-banner -->
-<script src="js/skdslider.min.js"></script>
-<link href="css/skdslider.css" rel="stylesheet">
+<script src="../js/skdslider.min.js"></script>
+<link href="../css/skdslider.css" rel="stylesheet">
 <script type="text/javascript">
 		jQuery(document).ready(function(){
 			jQuery('#demo1').skdslider({'delay':5000, 'animationSpeed': 2000,'showNextPrev':true,'showPlayButton':true,'autoSlide':true,'animationType':'fading'});

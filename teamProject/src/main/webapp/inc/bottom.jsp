@@ -73,8 +73,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<h3>프로필</h3>
 					<ul class="info"> 
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="checkout.po">찜리스트</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="member/login.jsp">로그인</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="member/registered_3.jsp">회원가입</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="<%=request.getContextPath() %>/member/login.jsp">로그인</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="<%=request.getContextPath() %>/member/registered_3.jsp">회원가입</a></li>
 					</ul>
 				</div>
 				<div class="clearfix"> </div>
