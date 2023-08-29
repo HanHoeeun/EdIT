@@ -1,6 +1,6 @@
 package com.itwillbs.domain;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 public class AdminDTO {
 	private int a_num; // 게시물 번호

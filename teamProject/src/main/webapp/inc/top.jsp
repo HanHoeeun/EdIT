@@ -61,12 +61,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<div class="agile-login">
 				<ul>
-<!-- <<<<<<< HEAD >>>>>> -->
-					<li><a href="registered_3.jsp"><i class="fa fa-sign-in" aria-hidden="true"> 회원가입</i></a></li>
 				
-					<%if(1==2){ %>
-					<li><a href="registered.jsp"><i class="fa fa-sign-in" aria-hidden="true"> 회원가입</i></a></li>
-					<%if(1==2){ %>
+					<%if(2==1){ %>
 					<li><a href="registered.jsp"><i class="fa fa-sign-in" aria-hidden="true"> 회원가입</i></a></li>
 					<li><a href="login.jsp"><i class="fa fa-user" aria-hidden="true"> 로그인</i></a></li>
 
@@ -81,11 +77,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<%} %>
 					<%if(1==1){ %>
 					<li><a href="adminPage.ad"><i class="fa fa-user" aria-hidden="true"> 관리자 페이지</i></a></li>
-					<%} }%>
+					<%} %>
 					<li><a href="faq.ad"><i class="fa fa-question-circle-o" aria-hidden="true"> 문의하기</i></a></li>
-					<li><a href="../product/productReg.jsp"><i class="fa fa-plus-circle" aria-hidden="true"> 상품등록</i></a></li>
 
-					<!-- <li><a href="../product/checkout.jsp"><i class="fa fa-heart" aria-hidden="true"> 찜리스트 </i></a></li> -->
 				</ul>
 			</div>
 			<!-- <!-- 얘도 그냥 위에 처럼 리스트 내에 내장 시켜서 하이퍼링크 거는건 어떤지..? -->
