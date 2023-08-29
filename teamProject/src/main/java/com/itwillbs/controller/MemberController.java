@@ -60,6 +60,14 @@ public class MemberController extends HttpServlet{
 			
 		}
 		
+		// 내가 추가함
+		if(sPath.equals("/login.me")) {
+			// member/login.jsp 주소변경 없이 이동
+		dispatcher = request.getRequestDispatcher("member/login.jsp");
+		dispatcher.forward(request, response);
+					}//
+
+		
 
 		
 		if (sPath.equals("/idCheck.me")) {
