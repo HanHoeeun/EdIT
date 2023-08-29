@@ -38,6 +38,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 	
 <body>
+<!--================================== 헤더 ==================================== -->
+<jsp:include page="inc/top.jsp"></jsp:include>
+
 <!--==================================== 상단 네비 ==================================-->
 	<div class="breadcrumbs">
 		<div class="container">
@@ -73,7 +76,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</form>
 	</div>
 </div>
-
+<!--================================== 푸터 ==================================== -->
+<div class="clearfix">
+<jsp:include page="inc/bottom.jsp"></jsp:include>
+</div>	
 
 
 
