@@ -91,7 +91,7 @@ NoticePageDTO pageDTO=(NoticePageDTO)request.getAttribute("pageDTO");
  <%
 SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
     for(int i=0;i<noticeList.size();i++){
-    	NoticeDTO noticeDTO=noticeList.get(i);
+    	NoticeDTO noticeDTO=noticeList.get(i);   
     	%>	
 						 <tr onclick="location.href='content.no?num=<%=noticeDTO.getA_num()%>'">
 							<td class="_1qna_board_border"><%=noticeDTO.getA_num() %></td>
