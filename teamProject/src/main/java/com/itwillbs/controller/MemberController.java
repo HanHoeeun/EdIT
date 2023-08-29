@@ -37,6 +37,10 @@ public class MemberController extends HttpServlet{
 		System.out.println("뽑은 가상주소 : " + sPath);
 		
 		
+		
+		
+		
+		
 		if (sPath.equals("/insert.me")) {
 			System.out.println("뽑은 가상주소 비교 : /insert.me");
 			
@@ -45,6 +49,7 @@ public class MemberController extends HttpServlet{
 			dispatcher.forward(request, response);
 			
 		}
+		
 		
 		
 		if (sPath.equals("/insertPro.me")) {
