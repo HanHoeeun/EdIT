@@ -39,6 +39,8 @@ public class ProductController extends HttpServlet{
 		String sPath=request.getServletPath();
 		System.out.println("뽑은 가상주소 :  " + sPath);
 		// 뽑은 가상주소 비교하기 => 실제 페이지 연결
+		
+		
 		if (sPath.equals("/products.po")) {
 			System.out.println("뽑은 가상주소 비교 : /products.po");
 			// 한페이지에서 보여지는 글개수 설정
@@ -59,7 +61,7 @@ public class ProductController extends HttpServlet{
 			
 			// ProductService 객체생성
 			productService = new ProductService();
-// List<ProductDTO> productList = getProductList(); 메서드 호출
+// 			List<ProductDTO> productList = getProductList(); 메서드 호출
 			List<ProductDTO> productList=productService.getProductList(ppageDTO);
 			
 			// 게시판 전체 글 개수 구하기 
@@ -114,7 +116,12 @@ public class ProductController extends HttpServlet{
 		
 		if(sPath.equals("/productRegPro.po")) {
 			System.out.println("뽑은 가상주소 비교 : /productRegPro.po");
-			// Pro
+			// ProductService 객체생성
+			productService = new ProductService();
+			// 리턴할형없음 registerProduct(request) 메서드 호출 
+			productService.registerProduct(request);
+			// products.po 주소 변경되면서 이동
+			response.sendRedirect("products.po");
 		}
 		
 		
