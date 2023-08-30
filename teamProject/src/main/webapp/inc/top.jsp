@@ -62,10 +62,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="agile-login">
 				<ul>
 <!-- <<<<<<< HEAD >>>>>> -->
-					<li><a href="registered_3.me"><i class="fa fa-sign-in" aria-hidden="true"> 회원가입</i></a></li>
+					<li><a href="insert.me"><i class="fa fa-sign-in" aria-hidden="true"> 회원가입</i></a></li>
 				
-					<li><a href="registered_3.me"><i class="fa fa-sign-in" aria-hidden="true"> 회원가입</i></a></li>
-					<li><a href="registered_3.me"><i class="fa fa-sign-in" aria-hidden="true"> 회원가입</i></a></li>
+					<li><a href="insert.me"><i class="fa fa-sign-in" aria-hidden="true"> 회원가입</i></a></li>
+					<li><a href="insert.me"><i class="fa fa-sign-in" aria-hidden="true"> 회원가입</i></a></li>
 					<li><a href="login.me"><i class="fa fa-user" aria-hidden="true"> 로그인</i></a></li>
 
 					<li><a href="contact.jsp"><i class="fa fa-question-circle-o" aria-hidden="true"> 문의하기</i></a></li>

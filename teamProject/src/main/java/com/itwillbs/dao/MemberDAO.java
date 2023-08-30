@@ -41,8 +41,7 @@ public class MemberDAO {
 	}
 
 
-	
-	
+
 	public int getMaxNum() {
 		System.out.println("MemberDAO getMaxNum()");
 		
@@ -51,12 +50,16 @@ public class MemberDAO {
 		try {
 			
 			con = getConnection();
-			String sql = "select max(num) from members";
+			String sql = "select max(m_num) from members";
+			
 			pstmt = con.prepareStatement(sql);
+			
 			rs = pstmt.executeQuery();
+			
 			if (rs.next() == true) {
-				num = rs.getInt("max(num)");
+				num = rs.getInt("max(m_num)");
 			}
+				
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -65,180 +68,46 @@ public class MemberDAO {
 		}
 		
 		return num;
-		
-	}	// getMaxNum ()
-	
-	
+	}
+
+
 
 	public void insertMember(MemberDTO memberDTO) {
-		System.out.println("MemberDAO insertMember()");
-		
+		System.out.println("MemberDAO getMaxNum()");
+
 		try {
 			
 			con = getConnection();
-			String sql 
-			= "insert into members(m_id, m_pass, m_name, m_nick, m_phone, m_email, m_date, m_event) "
-					+ "values(?, ?, ?, ?, ?, ?, ?, ?)";
+			
+			String sql = "insert into members(m_num, m_id, m_pass, m_name, m_nick, m_phone, m_email, m_date, m_event) "
+					+ "values(?,?,?,?,?,?,?,?,?)";
 			
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, memberDTO.getM_id());
-			pstmt.setString(2, memberDTO.getM_pass());
-			pstmt.setString(3, memberDTO.getM_name());
-			pstmt.setString(4, memberDTO.getM_nick());
-			pstmt.setString(5, memberDTO.getM_phone());
-			pstmt.setString(6, memberDTO.getM_email());
-			pstmt.setTimestamp(7, memberDTO.getM_date());
-			pstmt.setString(8, memberDTO.getM_event());
+			pstmt.setInt(1, memberDTO.getM_num());
+			pstmt.setString(2, memberDTO.getM_id());
+			pstmt.setString(3, memberDTO.getM_pass());
+			pstmt.setString(4, memberDTO.getM_name());
+			pstmt.setString(5, memberDTO.getM_nick());
+			pstmt.setString(6, memberDTO.getM_phone());
+			pstmt.setString(7, memberDTO.getM_email());
+			pstmt.setTimestamp(8, memberDTO.getM_date());
+			pstmt.setString(9, memberDTO.getM_event());
 			
 			pstmt.executeUpdate();
 			
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			dblClose();
-		}
-		
-	}	// insertMember()
-
-
-
-	public MemberDTO getMember(String id) {
-		System.out.println("MemberDAO getMember()");
-		
-		MemberDTO memberDTO = null;
-		
-		try {
-			
-			con = getConnection();
-			String sql = "select * from members where id = ?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, id);
-			rs = pstmt.executeQuery();
-			
-			if (rs.next() == true) {
-				memberDTO = new MemberDTO();
-				memberDTO.setM_id(rs.getString("_6id"));
-				memberDTO.setM_name(rs.getString("_6name"));
-				memberDTO.setM_nick(rs.getString("_6nick"));
-				memberDTO.setM_email(rs.getString("_6maile"));
-				memberDTO.setM_phone(rs.getString("_6phone"));
-				
-			}
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return memberDTO;
-	}
-
-	
-	
-	public MemberDTO userCheck(MemberDTO memberDTO2) {
-		MemberDTO memberDTO = null;
-		try {
-			// 디비연결
-			con = getConnection();
-			// sql
-			String sql = "select * from members where m_id=? and m_pass=?";
-			PreparedStatement pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, memberDTO2.getM_id());
-			pstmt.setString(1, memberDTO2.getM_pass());
-			// 데이터있으면 memberDTO 객체생성, set메서드 호출 rs열데이터 저장
-			if(rs.next()) {
-				memberDTO = new MemberDTO();
-				memberDTO.setM_id(rs.getString("_6id"));
-				memberDTO.setM_pass(rs.getString("_6pass"));
-				memberDTO.setM_name(rs.getString("_6name"));
-				memberDTO.setM_date(rs.getTimestamp("_6date"));
-			}
-			// 아이디, 비밀번호 틀리면 => 초기값 null => 리턴
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			dblClose();
-		}
-		return memberDTO;
-	}  // userCheck()
-
-
-
-//	마케팅 수신동의 체크는 어떻게 해야하나.....
-	public void updateMember(MemberDTO memberDTO) {
-		System.out.println("MemberDAO updateMember()");
-		
-		try {
-			
-			con = getConnection();
-			String sql = "update members set m_pass = ?, m_name = ?, m_nick = ?, m_email = ?, m_phone = ? "
-					+ "where m_id = ?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, memberDTO.getM_pass());
-			pstmt.setString(2, memberDTO.getM_name());
-			pstmt.setString(3, memberDTO.getM_nick());
-			pstmt.setString(4, memberDTO.getBl_m_email());
-			pstmt.setString(5, memberDTO.getM_phone());
-			
-			pstmt.executeUpdate();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			dblClose();
 		}
+		
+		
+		
 		
 	}
 
 
-
-	public void deleteMember(MemberDTO memberDTO) {
-		System.out.println("MemberDAO deleteMember()");
-		
-		try {
-			
-			con = getConnection();
-			String sql = "delete from members where id = ?";
-			
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, memberDTO.getM_id());
-			pstmt.executeUpdate();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			dblClose();
-		}
-		
-	}
-
-
-
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	

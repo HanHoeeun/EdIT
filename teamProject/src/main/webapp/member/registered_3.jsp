@@ -83,9 +83,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<input type="text" placeholder="비밀번호 (영문+숫자+특수문자, 8~20자)" required=" " id="_6pass1" name="_6pass1">
 					<input type="text" placeholder="비밀번호 확인" required=" "  id="_6pass2" name="_6pass2"> <br>
 					<input type="text" placeholder="이름 (최소 2자 이상 입력)" required=" " id="_6name" name="_6name"><br>
-					<input type="text" placeholder="닉네임 (최소 2자 이상 입력)" required=" " id="_6nick" name="_nick"><br>
+					<input type="text" placeholder="닉네임 (최소 2자 이상 입력)" required=" " id="_6nick" name="_6nick"><br>
 					<input type="email" placeholder="이메일" required=" " id="_6mail" name="_6email"><br>
-					<input type="tel" placeholder="전화번호" required=" " id="_6tel" name="_6phone]"><br><br>
+					<input type="tel" placeholder="전화번호" required=" " id="_phone" name="_6phone"><br><br>
 
 					<label></label>
 					<div class="divdup"></div>
@@ -93,12 +93,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 					<div class="register-check-box">
 						<div class="check">
-							<label class="checkbox"><input type="checkbox" name="_6check" value="email"><i> </i>이메일로 소식 받기</label>
+							<label class="checkbox"><input type="checkbox" name="_6event" value="email"><i> </i>이메일로 소식 받기</label>
 						</div>
 					</div>
 					<div class="register-check-box">
 						<div class="check">
-							<label class="checkbox"><input type="checkbox" name="_6check" value="sms"><i> </i>SMS로 소식 받기</label>
+							<label class="checkbox"><input type="checkbox" name="_6event" value="sms"><i> </i>SMS로 소식 받기</label>
 						</div>
 					</div>
 					
@@ -111,7 +111,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</form>
 			</div>
 			<div class="register-home">
-				<a href="../main.jsp">Home</a>
+				<a href="main.me">Home</a>
 			</div>
 		</div>
 	</div>
