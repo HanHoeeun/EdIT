@@ -73,18 +73,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<h2>로그인</h2>
 
 			<div class="login-form-grids animated wow slideInUp" data-wow-delay=".5s">
-				<form>
-					<input type="text" placeholder="아이디" required=" " >
-					<input type="password" placeholder="비밀번호" required=" " >
+			
+				<form action="loginPro.me" method="post">
+					<input type="text" placeholder="아이디" required=" " id="_5id" name="_5id">
+					<input type="password" placeholder="비밀번호" required=" " id="_5pass" name="_5pass">
 					<input type="submit" value="로그인">
-					
+				</form>
+				
+				
+				
+				
 <!-- 아이디/비밀번호 찾기/회원가입 -->					
 					<div class="_5forgot">
-						<a href="findid_3.jsp">아이디</a>
+						<a href="findid.me">아이디</a>
 						|
-						<a href="findpw_3.jsp">비밀번호 찾기</a>
+						<a href="findpw.me">비밀번호 찾기</a>
 						|
-						<a href="registered_3.jsp">회원가입</a>
+						<a href="insert.me">회원가입</a>
 					</div>	
 <!-- // 아이디/비밀번호 찾기/회원가입 -->		
 				
@@ -109,7 +114,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="_5login-kakao">	
 						<a href="#"><img class="_5kakao" src="../images/kakao_5.png">카카오로 로그인하기</a>
 					</div>				
-				</form>
+				
 			</div>
 <!-- 			이거는 넣을지 말지 고민 좀... -->
 <!-- 			<p><a href="registered.jsp">회원가입</a> <a href="index.jsp">홈<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></p> -->

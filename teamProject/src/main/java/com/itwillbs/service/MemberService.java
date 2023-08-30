@@ -63,20 +63,28 @@ public class MemberService {
 		
 	}
 
+	
+//	로그인 유저체크
 	public MemberDTO userCheck(HttpServletRequest request) {
 		System.out.println("MemberService userCheck()");
 		
+		MemberDTO memberDTO = null;
+		
 		try {
 			
+//			한글처리
 			request.setCharacterEncoding("utf-8");
 			
-			String id = request.getParameter("_6id");
-			String pass = request.getParameter("_6pass");
 			
+			String id = request.getParameter("_5id");
+			String pass = request.getParameter("_5pass");
 			
+			MemberDTO memberDTO2 = new MemberDTO();
+			memberDTO2.setM_id(id);
+			memberDTO2.setM_pass(pass);
 			
-			
-			
+			memberDAO = new MemberDAO();
+			memberDTO = memberDAO.userCheck(memberDTO2);
 			
 			
 		} catch (Exception e) {

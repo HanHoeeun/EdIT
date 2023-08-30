@@ -101,13 +101,65 @@ public class MemberDAO {
 		} finally {
 			dblClose();
 		}
-		
-		
-		
-		
 	}
 
 
+
+//	로그인 유저체크
+	public MemberDTO userCheck(MemberDTO memberDTO2) {
+		System.out.println("MemberDAO userCheck()");
+		
+		MemberDTO memberDTO = null;
+		
+		try {
+			
+			con = getConnection();
+			String sql = "select * from members where m_id = ? and m_pass = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, memberDTO2.getM_id());
+			pstmt.setString(2, memberDTO2.getM_pass());
+			
+			rs = pstmt.executeQuery();
+			
+//			첫번째 행으로 데이터 있으면 memberDTO 객체생성, set 메서드 호출,rs열 데이터 저장
+			if (rs.next() == true) {
+				memberDTO = new MemberDTO();
+				
+				memberDTO.setM_id(rs.getString("m_id"));
+				memberDTO.setM_pass(rs.getString("m_pass"));
+
+				System.out.println("로그인 성공!");
+				
+			} else {
+//				아이디, 비밀번호 불일치 -> 초기값 null -> 리턴
+				memberDTO = null;
+				
+				System.out.println("로그인 실패");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dblClose();
+		}
+		
+		return memberDTO;
+	}
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
