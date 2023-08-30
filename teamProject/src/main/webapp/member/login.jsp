@@ -48,8 +48,59 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		});
 	});
 </script>
+
+
+
+
+<!-- 카카오 로그인 연동  -->
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script>
+Kakao.init('d024657e59f07ee69d6d1407441dfe53'); //js토큰키 사용
+console.log(Kakao.isInitialized()); // sdk초기화 여부 판단
+//카카오로그인
+function kakaoLogin() {
+    Kakao.Auth.login({
+      success: function (res) {
+        Kakao.API.request({
+          url: '/v2/user/me',
+          success: function (res) {
+        	  sessionStorage.setItem("id",res.id); //session에 카카오로그인 아이디 담음
+        	  var id = sessionStorage.getItem("id");
+        	  $.ajax({
+				  url : "./AjaxAction.aj",
+				  data: {"id": id},
+				  success:function(data){
+					  const result = $.trim(data);
+					  if(result=="yes"){
+						alert('회원정보가 없습니다. 회원가입페이지로 이동합니다.');
+						location.href="./MemberJoin.me?id="+id;
+					  
+					  }else if ( result=="no"){
+					 	alert('코드리스 회원입니다.');
+					 	location.href="./KakaoLogin.me?id="+id; //페이지 이동해서 데이터(db에서 id값만 갖고와도 로그인 성공하도록 해야함!!)
+				
+					  }
+				  }//success 
+			  });// ajax
+        	  
+          },
+          fail: function (error) {
+            console.log(error)
+          },
+        })
+      },
+      fail: function (error) {
+        console.log(error)
+      },
+    })
+  }
+</script>
+<!-- // 카카오 로그인 연동  -->
+
+
 <!-- start-smoth-scrolling -->
 </head>
+	
 	
 <body>
 <!-- header -->
@@ -66,6 +117,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 <!-- //breadcrumbs -->
+
+
 
 <!-- ================================ 로그인 화면 ================================ -->
 	<div class="login">
@@ -100,17 +153,44 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					
 <!-- // or 표시 -->			
 
+<!-- <div class="_5login-kakao">	 -->
+
+
+<!-- 카카오 로그인 버튼 -->
+	<div class="_5login-kakao">
+	<a href="javascript:void(0)">
+      <img onclick="kakaoLogin();" src="//k.kakaocdn.net/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg"  
+      width="100%;" height="50%;"  style="margin-top: 15px; padding-inline: 50px;" />
+      </a>
+</div>			
+</div>
+</form>		
+</div>
+</div>
+		
+		
+	
 		
 <!-- sns로그인 -->
-					<div class="_5login-naver">
-						<a href="#"><img class="_5naver" src="../images/naver_5.png">네이버로 로그인하기</a>
-					</div>
+<!-- 					<div class="_5login-naver"> -->
+<!-- 						<a href="#"><img class="_5naver" src="../images/naver_5.png">네이버로 로그인하기</a> -->
+<!-- 					</div> -->
 					
-					<div class="_5login-kakao">	
-						<a href="#"><img class="_5kakao" src="../images/kakao_5.png">카카오로 로그인하기</a>
-					</div>				
-				</form>
-			</div>
+<!-- 					<div class="_5login-kakao">	 -->
+<!-- 						<a href="#"><img class="_5kakao" src="../images/kakao_5.png">카카오로 로그인하기</a> -->
+<!-- 					</div>				 -->
+<!-- 				</form> -->
+<!-- 			</div> -->
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 <!-- 			이거는 넣을지 말지 고민 좀... -->
 <!-- 			<p><a href="registered.jsp">회원가입</a> <a href="index.jsp">홈<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></p> -->
 		</div>
