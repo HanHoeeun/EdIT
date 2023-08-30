@@ -143,6 +143,24 @@ public class ProductService {
 		return lowPriceList;
 	}
 
+	public List<ProductDTO> getLaptopList(ProductPageDTO ppageDTO) {
+		System.out.println("productService getLaptopList()");
+		List<ProductDTO> laptopList = null;
+		try {
+			int p_startRow = (ppageDTO.getP_currentPage()-1)*ppageDTO.getP_pageSize()+1;
+			int p_endRow = p_startRow+ppageDTO.getP_pageSize()-1;
+			ppageDTO.setP_startRow(p_startRow);
+			ppageDTO.setP_endRow(p_endRow);
+			productDAO = new ProductDAO();
+			laptopList = productDAO.getlaptopList(ppageDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return laptopList;
+	}
+
+
+
 	
 
 

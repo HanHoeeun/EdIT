@@ -478,9 +478,44 @@ public class ProductDAO {
 	}
 
 
-	
-		
-
+	public List<ProductDTO> getlaptopList(ProductPageDTO ppageDTO) {
+		System.out.println("ProductDAO getLaptopList()");
+		List<ProductDTO> laptopList = new ArrayList<>();
+		int size = laptopList.size();
+		try {
+			//1,2 단계 디비 연결 
+			con = getConnection();
+			//3 sql  => mysql 제공 => limit 시작행-1, 몇개
+			//String sql="select * from products order by num desc";
+			String sql="select * from products where p_type=? order by p_num desc limit ?, ?";
+			pstmt = con.prepareStatement(sql);
+			//pstmt.setString(1,  );
+			pstmt.setInt(2, ppageDTO.getP_startRow()-1);//시작행-1
+			pstmt.setInt(3, ppageDTO.getP_pageSize());//몇개
+			//4 실행 => 결과 저장
+			rs = pstmt.executeQuery();
+			// boardList 객체생성
+			laptopList = new ArrayList<>();
+			size = laptopList.size();
+			//5 결과 행접근 => BoardDTO객체생성 => set호출(열접근저장)
+			while(rs.next()) {
+				ProductDTO productDTO = new ProductDTO();
+				productDTO.setP_num(rs.getInt("p_num"));
+				productDTO.setP_title(rs.getString("p_title"));
+				productDTO.setP_type(rs.getString("p_type"));
+				productDTO.setP_price(rs.getInt("p_price"));
+				productDTO.setP_status(rs.getString("p_status"));
+				productDTO.setP_file(rs.getString("p_file"));
+			// => 배열 한칸에 저장
+				laptopList.add(productDTO); 
+		}
+		}catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		return laptopList;
+	}
 
 
 } // class
