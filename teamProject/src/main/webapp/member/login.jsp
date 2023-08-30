@@ -50,52 +50,99 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 
 
-
-
-<!-- 카카오 로그인 연동  -->
-<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-<script>
-Kakao.init('abe7984fd16d1fc768372dce3dec7c60'); //js토큰키 사용(내 고유 토큰키)
-console.log(Kakao.isInitialized()); // sdk초기화 여부 판단
-//카카오로그인
-function kakaoLogin() {
+<!-- 카카오 테스트1 -->
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script type="text/javascript">
+kakao.init('abe7984fd16d1fc768372dce3dec7c60');
+$("#kakao-login-btn").on("click", function(){
+    //1. 로그인 시도
     Kakao.Auth.login({
-      success: function (res) {
-        Kakao.API.request({
-          url: '/v2/user/me',
-          success: function (res) {
-        	  sessionStorage.setItem("id",res.id); //session에 카카오로그인 아이디 담음
-        	  var id = sessionStorage.getItem("id");
-        	  $.ajax({
-				  url : "./AjaxAction.aj",
-				  data: {"id": id},
-				  success:function(data){
-					  const result = $.trim(data);
-					  if(result=="yes"){
-						alert('회원정보가 없습니다. 회원가입페이지로 이동합니다.');
-						location.href="./registered3.me?id="+id;
+        success: function(authObj) {
+         
+          //2. 로그인 성공시, API 호출
+          Kakao.API.request({
+            url: '/v2/user/me',
+            success: function(res) {
+              console.log(res);
+              var id = res.id;
+			  scope : 'account_email';
+			alert('로그인성공');
+              location.href="main.me";
+		
+
+            
+        }
+          })
+          console.log(authObj);
+          var token = authObj.access_token;
+        },
+        fail: function(err) {
+          alert(JSON.stringify(err));
+        }
+      });
+        
+}) //
+
+
+
+
+
+</script>
+
+
+
+
+<!-- 카카오 로그인 테스트 중입니다. -->
+<!-- 카카오 로그인 연동  -->
+<!-- 둘 중 뭐를 써야하지..?? -->
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<!-- <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script> -->
+
+<script>
+// Kakao.init('abe7984fd16d1fc768372dce3dec7c60'); //js토큰키 사용(내 고유 토큰키)
+// console.log(Kakao.isInitialized()); // sdk초기화 여부 판단
+// //카카오로그인
+// function kakaoLogin() {
+//     Kakao.Auth.login({
+//       success: function (res) {
+//         Kakao.API.request({
+//           url: '/v2/user/me',
+//           success: function (res) {
+//         	  sessionStorage.setItem("id",res.id); //session에 카카오로그인 아이디 담음
+//         	  var id = sessionStorage.getItem("id");
+//         	  $.ajax({
+// 				  url : "./AjaxAction.aj",
+// 				  data: {"id": id},
+// 				  success:function(data){
+// 					  const result = $.trim(data);
+// 					  if(result=="yes"){
+// 						alert('회원정보가 없습니다. 회원가입페이지로 이동합니다.');
+// 						location.href="./registered3.me?id="+id;
 					  
-					  }else if ( result=="no"){
-					 	alert('코드리스 회원입니다.');
-					 	location.href="./KakaoLogin.me?id="+id; //페이지 이동해서 데이터(db에서 id값만 갖고와도 로그인 성공하도록 해야함!!)
+// 					  }else if ( result=="no"){
+// 					 	alert('코드리스 회원입니다.');
+// 					 	location.href="./KakaoLogin.me?id="+id; //페이지 이동해서 데이터(db에서 id값만 갖고와도 로그인 성공하도록 해야함!!)
 				
-					  }
-				  }//success 
-			  });// ajax
+// 					  }
+// 				  }//success 
+// 			  });// ajax
         	  
-          },
-          fail: function (error) {
-            console.log(error)
-          },
-        })
-      },
-      fail: function (error) {
-        console.log(error)
-      },
-    })
-  }
+//           },
+//           fail: function (error) {
+//             console.log(error)
+//           },
+//         })
+//       },
+//       fail: function (error) {
+//         console.log(error)
+//       },
+//     })
+//   }
 </script>
 <!-- // 카카오 로그인 연동  -->
+<!-- 카카오로그인 테스트중입니다. -->
+
+
 
 
 <!-- start-smoth-scrolling -->
