@@ -245,6 +245,39 @@ public class MemberController extends HttpServlet{
 		
 		
 		
+
+//		진유정 - 아이디찾기 화면
+		if(sPath.equals("/findid.me")) {
+		   System.out.println("뽑은 가상주소 비교 : findid.me" );
+		   // member/findid_3.jsp 주소변경 없이 연결
+		   dispatcher = request.getRequestDispatcher("member/findid_3.jsp");
+		   dispatcher.forward(request, response);
+		} // 
+		
+		
+//		진유정 - 아이디찾기로 이동(수정중...)
+//		if(sPath.equals("/findidPro.me")) {
+//			System.out.println("뽑은 가상주소 비교 : findidPro.me");
+//			// MemberService 객체생성
+//			memberService = new MemberService();
+//			// findidMember() 호출
+//			memberService.findidMember(request);
+//			// 아이디찾기 이동 => 주소변경하면서 이동
+//			response.sendRedirect("findid_3.me");
+//		} //
+//		
+		
+//		진유정 - 비밀번호찾기 화면
+		if(sPath.equals("/findpw.me")) {
+		   System.out.println("뽑은 가상주소 비교 : findpw.me" );
+		   // member/findid_3.jsp 주소변경 없이 연결
+		   dispatcher = request.getRequestDispatcher("member/findpw_3.jsp");
+		   dispatcher.forward(request, response);
+		} //		
+			
+
+	
+		
 		
 		
 		

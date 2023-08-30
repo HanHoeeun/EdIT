@@ -187,11 +187,24 @@ public class MemberService {
 		
 		
 	}
-	
+
+
+//	// 진 - 아이디 찾기
+//	public void findidMember(HttpServletRequest request) {
+//		// 이름 , 이메일 들어가야함
+//		try {
+//			
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		
+//		
+//	}
+//	
 
 	
 	
 	
 	
 	
-}
+} // MemberService()
