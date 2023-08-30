@@ -67,10 +67,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 <!-- //breadcrumbs -->
 
-
-
-
-
 <!-----------------------------------------------------------회원가입 시작------------------------------------------------------------------ -->
 		<div class="register">
 		<div class="container">

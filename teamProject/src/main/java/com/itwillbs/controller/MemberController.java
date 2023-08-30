@@ -72,10 +72,10 @@ public class MemberController extends HttpServlet{
 		dispatcher = request.getRequestDispatcher("member/login.jsp");
 		dispatcher.forward(request, response);
 		
-		
 	}
 		
-//		
+		
+//		로그인 하기 -- 로그인 성공은 뜨는데... 메인화면으로 이동 안함
 		if (sPath.equals("/loginPro.me")) {
 			System.out.println("뽑은 가상주소 비교 : loginPro.me");
 			
@@ -86,18 +86,48 @@ public class MemberController extends HttpServlet{
 			if (memberDTO != null) {
 				
 				HttpSession session = request.getSession();
-				session.setAttribute("id", memberDTO.getM_id());
+				session.setAttribute("m_id", memberDTO.getM_id());
 				
+				response.sendRedirect("main.me");
+				
+			} else {
+				dispatcher = request.getRequestDispatcher("member/login.jsp");
+				dispatcher.forward(request, response);
 			}
-			
-			
-			
 			
 		}
 		
 		
 		
+//		메인
+		if (sPath.equals("/main.me")) {
+			System.out.println("뽑은 가상주소 비교 : main.me");
+			
+			dispatcher = request.getRequestDispatcher("main/main.jsp");
+			dispatcher.forward(request, response);
+			
+		}
 		
+		
+//		로그아웃
+		if (sPath.equals("/logout.me")) {
+			System.out.println("뽑은 가상주소 비교 : main.me");
+			
+			HttpSession session = request.getSession();
+			session.invalidate();
+			
+			response.sendRedirect("main.me");
+			
+		}
+		
+		
+		
+		if (sPath.equals("/update.me")) {
+			System.out.println("뽑은 가상주소 비교 : update.me");
+			
+			
+			
+		}
 		
 		
 		

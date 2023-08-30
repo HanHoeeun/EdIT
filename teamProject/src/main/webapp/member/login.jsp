@@ -55,7 +55,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- 카카오 로그인 연동  -->
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script>
-Kakao.init('d024657e59f07ee69d6d1407441dfe53'); //js토큰키 사용
+Kakao.init('abe7984fd16d1fc768372dce3dec7c60'); //js토큰키 사용(내 고유 토큰키)
 console.log(Kakao.isInitialized()); // sdk초기화 여부 판단
 //카카오로그인
 function kakaoLogin() {
@@ -73,7 +73,7 @@ function kakaoLogin() {
 					  const result = $.trim(data);
 					  if(result=="yes"){
 						alert('회원정보가 없습니다. 회원가입페이지로 이동합니다.');
-						location.href="./MemberJoin.me?id="+id;
+						location.href="./registered3.me?id="+id;
 					  
 					  }else if ( result=="no"){
 					 	alert('코드리스 회원입니다.');
@@ -126,18 +126,23 @@ function kakaoLogin() {
 			<h2>로그인</h2>
 
 			<div class="login-form-grids animated wow slideInUp" data-wow-delay=".5s">
-				<form>
-					<input type="text" placeholder="아이디" required=" " >
-					<input type="password" placeholder="비밀번호" required=" " >
+			
+				<form action="loginPro.me" method="post">
+					<input type="text" placeholder="아이디" required=" " id="_5id" name="_5id">
+					<input type="password" placeholder="비밀번호" required=" " id="_5pass" name="_5pass">
 					<input type="submit" value="로그인">
-					
+				</form>
+				
+				
+				
+				
 <!-- 아이디/비밀번호 찾기/회원가입 -->					
 					<div class="_5forgot">
-						<a href="findid_3.jsp">아이디</a>
+						<a href="findid.me">아이디</a>
 						|
-						<a href="findpw_3.jsp">비밀번호 찾기</a>
+						<a href="findpw.me">비밀번호 찾기</a>
 						|
-						<a href="registered_3.jsp">회원가입</a>
+						<a href="insert.me">회원가입</a>
 					</div>	
 <!-- // 아이디/비밀번호 찾기/회원가입 -->		
 				
@@ -175,26 +180,18 @@ function kakaoLogin() {
 <!-- 					<div class="_5login-naver"> -->
 <!-- 						<a href="#"><img class="_5naver" src="../images/naver_5.png">네이버로 로그인하기</a> -->
 <!-- 					</div> -->
-					
+		
 <!-- 					<div class="_5login-kakao">	 -->
 <!-- 						<a href="#"><img class="_5kakao" src="../images/kakao_5.png">카카오로 로그인하기</a> -->
 <!-- 					</div>				 -->
 <!-- 				</form> -->
 <!-- 			</div> -->
 			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+	
+
 <!-- 			이거는 넣을지 말지 고민 좀... -->
 <!-- 			<p><a href="registered.jsp">회원가입</a> <a href="index.jsp">홈<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></p> -->
-		</div>
-	</div>
+	
 <!-- ================================ // 로그인 화면 ================================ -->
 
 <!-- 푸터 들어가는 곳! -->
