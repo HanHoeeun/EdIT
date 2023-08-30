@@ -227,15 +227,15 @@ SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
 					// 시작페이지 1페이지 Prev 없음
 					// 시작페이지 11,21,31 Prev가 보이게
 						if(pageDTO.getStartPage() > pageDTO.getPageBlock()){%>
-							<li onclick="location.href='faq.ad?pageNum=<%=pageDTO.getStartPage()-pageDTO.getPageBlock()%>&search=<%=id%>'">Prev</li>
+							<li onclick="location.href='faq.ad?pageNum=<%=pageDTO.getStartPage()-pageDTO.getPageBlock()%>&search=<%=id%>&tab=tab-3'">Prev</li>
 							
 						<% } 
 						for(int i= pageDTO.getStartPage(); i<=pageDTO.getEndPage(); i++){%>
-							<li onclick="location.href='faq.ad?pageNum=<%=i%>&search=<%=id%>'"><%=i %></li>
+							<li onclick="location.href='faq.ad?pageNum=<%=i%>&search=<%=id%>&tab=tab-3'"><%=i %></li>
 						<%}
 						// 끝페이지 번호 전체페이지수 비교 => 전체페이지 수 크면 => next보임
 						if(pageDTO.getEndPage() < pageDTO.getPageCount()){%>
-							<li onclick="location.href='faq.ad?pageNum=<%=pageDTO.getStartPage() + pageDTO.getPageBlock() %>&search=<%=id%>'">Next</li>
+							<li onclick="location.href='faq.ad?pageNum=<%=pageDTO.getStartPage() + pageDTO.getPageBlock() %>&search=<%=id%>&tab=tab-3'">Next</li>
 						<%}%>
 				    </ul>
 					</div>
@@ -244,19 +244,42 @@ SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
 			</div>
 <!-- 			탭 jquery -->
 			<script type="text/javascript">
-			$(document).ready(function(){
-				
-				$('ul.tabs li').click(function(){
-					var tab_id = $(this).attr('data-tab');
+		    $(document).ready(function(){
+	            $('ul.tabs li').click(function(){
+	                var tab_id = $(this).attr('data-tab');
 
-					$('ul.tabs li').removeClass('current');
-					$('.tab-content').removeClass('current');
+	                $('ul.tabs li').removeClass('current');
+	                $('.tab-content').removeClass('current');
 
-					$(this).addClass('current');
-					$("#"+tab_id).addClass('current');
-				})
+	                $(this).addClass('current');
+	                $("#"+tab_id).addClass('current');
 
-			})
+	                // Add parameter to URL
+	                var url = window.location.href.split('?')[0];
+	                history.pushState(null, null, url + '?tab=' + tab_id);
+	            });
+
+	            // Check URL for tab parameter on page load
+	            var urlParams = new URLSearchParams(window.location.search);
+	            if (urlParams.has('tab')) {
+	                var tabParam = urlParams.get('tab');
+	                $('.tabs li').removeClass('current');
+	                $('.tab-content').removeClass('current');
+	                $('[data-tab="' + tabParam + '"]').addClass('current');
+	                $('#' + tabParam).addClass('current');
+	            }
+	        });
+// 				$('ul.tabs li').click(function(){
+// 					var tab_id = $(this).attr('data-tab');
+
+// 					$('ul.tabs li').removeClass('current');
+// 					$('.tab-content').removeClass('current');
+
+// 					$(this).addClass('current');
+// 					$("#"+tab_id).addClass('current');
+// 				})
+
+			
 			</script>
 			</div>
 		</div>

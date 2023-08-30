@@ -115,7 +115,7 @@ public class AdminController extends HttpServlet{
 			
 			
 			
-			response.sendRedirect("faq.ad");
+			response.sendRedirect("faq.ad?tab=tab-3");
 			
 		}
 	}
