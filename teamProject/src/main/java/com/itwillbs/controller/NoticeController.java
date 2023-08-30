@@ -84,9 +84,9 @@ public class NoticeController extends HttpServlet{
 			// request에 "noticeList",noticeList 저장
 			request.setAttribute("noticeList", noticeList);
 			request.setAttribute("pageDTO", pageDTO);			
-
-			// 주소변경 이동 notice.no?tab=tab-1
-			response.sendRedirect("notice.no?tab=tab-1");			
+			
+			dispatcher = request.getRequestDispatcher("/admin/notice_copy.jsp");
+			dispatcher.forward(request, response);	
 		}//list.no
 		
 		//=============================================== 공지글 작성 ================================================

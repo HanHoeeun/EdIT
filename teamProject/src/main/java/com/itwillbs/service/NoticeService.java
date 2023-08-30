@@ -14,6 +14,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 public class NoticeService {
 	NoticeDAO noticeDAO = null;
+	
 	public List<NoticeDTO> getNoticeList(NoticePageDTO pageDTO){
 		System.out.println("NoticeService getNoticeList()");
 		List<NoticeDTO> noticeList = null;
@@ -28,7 +29,7 @@ public class NoticeService {
 			pageDTO.setEndRow(endRow);
 			
 			// NoticeDAO 객체생성
-			NoticeDAO noticeDAO = new NoticeDAO();
+			noticeDAO = new NoticeDAO();
 			// noticeList = getnoticeList() 메서드 호출
 			noticeList = noticeDAO.getNoticeList(pageDTO);
 		}catch (Exception e) {
