@@ -54,26 +54,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 <body>
 <!-- header -->
-	<jsp:include page="../inc/top.jsp"></jsp:include>
+	<jsp:include page="./inc/top.jsp"></jsp:include>
 <!-- header -->
 	<!-- main-slider -->
 		<ul id="demo1">
 			<li>
-				<img src="../images/11.png" width="1260px" height="800px"  alt="" />
+				<img src="./images/11.png" width="1260px" height="800px"  alt="" />
 				<!--Slider Description example-->
 				<div class="slide-desc">
 					<h3></h3>
 				</div>
 			</li>
 			<li>
-				<img src="../images/22.png" width="1260px" height="800px"alt="" />
+				<img src="./images/22.png" width="1260px" height="800px"alt="" />
 				  <div class="slide-desc">
 					<h3></h3>
 				</div>
 			</li>
 			
 			<li>
-				<img src="../images/44.png" width="1260px" height="800px" alt="" />
+				<img src="./images/44.png" width="1260px" height="800px" alt="" />
 				<div class="slide-desc">
 					<h3></h3>
 				</div>
@@ -94,15 +94,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       </ol>
       <div class="carousel-inner" role="listbox">
         <div class="item active">
-         <img class="center-slide" src="../images/roleEdit_7.png"  alt="First slide"></a>
+         <img class="center-slide" src="./images/roleEdit_7.png"  alt="First slide"></a>
        
         </div>
         <div class="item">
-         <img class="center-slide " src="../images/aboutEdit_7.png" alt="Second slide"></a>
+         <img class="center-slide " src="./images/aboutEdit_7.png" alt="Second slide"></a>
          
         </div>
         <div class="item">
-          <img class="center-slide " src="../images/editedit_7.png" alt="Third slide"></a>
+          <img class="center-slide " src="./images/editedit_7.png" alt="Third slide"></a>
           
         </div>
       </div>
@@ -115,20 +115,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="container">
 					<div class="col-md-6 ban-bottom3">
 							<div class="ban-top">
-								<img src="../images/onebyone.png" class="img-responsive" alt=""/>
+								<img src="./images/onebyone.png" class="img-responsive" alt=""/>
 							</div>
 							<div class="ban-img">
 								<div class=" ban-bottom1">
 									<div class="ban-top">
 										
-										<img src="../images/p2.jpeg" class="img-responsive" alt=""/>
+										<img src="./images/p2.jpeg" class="img-responsive" alt=""/>
 										
 									</div>
 								</div>
 								<hr>
 								<div class="ban-bottom2">
 									<div class="ban-top">
-										<img src="../images/commerce.jpg" class="img-responsive" alt=""/>
+										<img src="./images/commerce.jpg" class="img-responsive" alt=""/>
 										
 									</div>
 								</div>
@@ -137,7 +137,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 						<div class="col-md-6 ban-bottom">
 							<div class="ban-top">
-								<img src="../images/social.png" class="img-responsive" alt=""/>
+								<img src="./images/social.png" class="img-responsive" alt=""/>
 								
 								
 							</div>
