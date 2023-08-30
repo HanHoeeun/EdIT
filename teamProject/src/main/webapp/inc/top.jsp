@@ -162,8 +162,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<!-- // 태블릿 -->
 									
 									<!-- //Mega Menu -->
-									
-									<li><a href="faq.ad">Contact</a></li>
+									<li><a href="notice.no">공지사항</a></li>
+									<li><a href="faq.ad">고객센터</a></li>
 								</ul>			
 							</div>
 							</nav>
