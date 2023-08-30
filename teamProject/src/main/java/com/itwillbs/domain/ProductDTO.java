@@ -6,6 +6,10 @@ public class ProductDTO {
 	private int p_num;
 	private String p_title;
 	private String p_m_id;
+<<<<<<< HEAD
+	private int p_m_num;
+=======
+>>>>>>> branch 'master' of https://github.com/HanHoeeun/EdIT.git
 	private String p_type;
 	private int p_price;
 	private String p_detail;
@@ -19,16 +23,40 @@ public class ProductDTO {
 	public String toString() {
 		return "ProductDTO [p_num=" + p_num + ", p_title= "+ p_title + ",p_m_id=" + p_m_id +
 							", p_type= "+ p_type + ", p_price= " + p_price + ", p_detail=" + p_detail +
+<<<<<<< HEAD
+							", p_date= " + p_date + ", p_readcount= "+ p_readcount + ",p_status=" +p_status + "]";
+		
+=======
 							", p_date= " + p_date + ", p_readcount= "+ p_readcount +
 							",p_status=" +p_status +",p_file="+ p_file+ "]";
+>>>>>>> branch 'master' of https://github.com/HanHoeeun/EdIT.git
 	}
+	
 	// getter & setter 
+<<<<<<< HEAD
+	public int getP_m_num() {
+		return p_m_num;
+	}
+	
+	public void setP_m_num(int p_m_num) {
+		this.p_m_num = p_m_num;
+	}
+	
 	public String getP_file() {
 		return p_file;
 	}
 	public void setP_file(String p_file) {
 		this.p_file = p_file;
 	}
+	
+=======
+	public String getP_file() {
+		return p_file;
+	}
+	public void setP_file(String p_file) {
+		this.p_file = p_file;
+	}
+>>>>>>> branch 'master' of https://github.com/HanHoeeun/EdIT.git
 	public int getP_num() {
 		return p_num;
 	}
