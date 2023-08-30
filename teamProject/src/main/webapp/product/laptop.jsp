@@ -127,14 +127,14 @@ String orderBy = (String) request.getAttribute("orderBy");
  <!-- 상품 리스트 -->
             <%
             List<ProductDTO> laptopList 
-            = (List<ProductDTO>)request.getAttribute("productList");
+            = (List<ProductDTO>)request.getAttribute("laptopList");
             ProductPageDTO ppageDTO
             = (ProductPageDTO)request.getAttribute("ppageDTO");
             
             %>
             
               <div class="agile_top_brands_grids">
-    <% for (int i = 0; i < productList.size(); i++) {
+    <% for (int i = 0; i < laptopList.size(); i++) {
        ProductDTO productDTO = laptopList.get(i);%>
     <div class="col-md-4 top_brand_left">
         <div class="hover14 column">
@@ -150,6 +150,7 @@ String orderBy = (String) request.getAttribute("orderBy");
                                 <p><%=productDTO.getP_title() %></p>
                                 <h4><%= productDTO.getP_price() %>원</h4>
                                 <h4><%= productDTO.getP_status() %></h4>
+                                <h4><%= productDTO.getP_type() %></h4>
                             </div>
                             <div class="snipcart-details top_brand_home_details">
                                 <form action="#" method="post">
