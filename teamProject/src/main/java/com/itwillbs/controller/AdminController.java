@@ -113,10 +113,24 @@ public class AdminController extends HttpServlet{
 			
 			adminService.faqBoardInsert(request);
 			
-			
-			
 			response.sendRedirect("faq.ad?tab=tab-3");
+		}
+		if(sPath.equals("/registered.ad")) {
+			adminService = new AdminService();
+			AdminDTO adminDTO = adminService.getBoardContent(request);
+//			엔터(\r\n) -> <br> 로 바꾼다
+//			adminDTO.setA_content(adminDTO.getA_content().replaceAll("\r\n","<br>"));
+			adminDTO.setA_content(adminDTO.getA_content().replaceAll("\r\n","&#10;"));
 			
+			request.setAttribute("adminDTO", adminDTO);
+			dispatcher = request.getRequestDispatcher("admin/registered_1_1.jsp");
+			dispatcher.forward(request, response);
+		}
+		
+		
+		if(sPath.equals("/adminPage.ad")) {
+			dispatcher = request.getRequestDispatcher("admin/adminPage_1_1.jsp");
+			dispatcher.forward(request, response);	
 		}
 	}
 

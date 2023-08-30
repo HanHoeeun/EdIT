@@ -105,4 +105,23 @@ public class AdminService {
 		return count;
 	}
 
+	public AdminDTO getBoardContent(HttpServletRequest request) {
+		AdminDTO adminDTO = null;
+		
+		try {
+			request.setCharacterEncoding("utf-8");
+			
+			int num = Integer.parseInt(request.getParameter("a_num"));
+			
+			adminDAO = new AdminDAO();
+			adminDTO = new AdminDTO();
+			
+			adminDTO = adminDAO.getBoardContent(num);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return adminDTO;
+	}
+
 }

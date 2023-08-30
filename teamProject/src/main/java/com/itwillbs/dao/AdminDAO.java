@@ -42,17 +42,18 @@ public class AdminDAO {
 			String sql = "";
 //			번호(자동) 작성자 제목 내용 시간 타입 파일 
 			if(adminDTO.getA_cs_type() == 1) {
-				sql = "insert into test_1 values (default,?,?,?,default,'계정',?)";
+				sql = "insert into test_1 values (default,?,?,?,default,'계정',?,?)";
 			}else if(adminDTO.getA_cs_type() == 2) {
-				sql = "insert into test_1 values (default,?,?,?,default,'중고거래',?)";
+				sql = "insert into test_1 values (default,?,?,?,default,'중고거래',?,?)";
 			}else {
-				sql = "insert into test_1 values (default,?,?,?,default,'기타',?)";
+				sql = "insert into test_1 values (default,?,?,?,default,'기타',?,?)";
 			}
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, adminDTO.getA_m_nick());
 			pstmt.setString(2, adminDTO.getA_title());
 			pstmt.setString(3, adminDTO.getA_content());
 			pstmt.setString(4, adminDTO.getA_file());
+			pstmt.setString(5, "");
 			
 			pstmt.executeUpdate();
 			
@@ -100,7 +101,7 @@ public class AdminDAO {
 		
 	}
 	public int getBoardCountSearch(AdminPageDTO pageDTO) {
-int count = 0;
+		int count = 0;
 		
 		try {
 			con = this.getConnection();
@@ -117,5 +118,32 @@ int count = 0;
 			e.printStackTrace();
 		}
 		return count;
+	}
+	public AdminDTO getBoardContent(int num) {
+		AdminDTO adminDTO = null;
+		try {
+			con = this.getConnection();
+			
+			String sql = "select * from test_1 where a_num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1,num);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				adminDTO = new AdminDTO();
+				adminDTO.setA_num(rs.getInt("a_num"));
+				adminDTO.setA_m_nick(rs.getString("a_m_nick"));
+				adminDTO.setA_title(rs.getString("a_title"));
+				adminDTO.setA_file(rs.getString("a_file"));
+				adminDTO.setA_content(rs.getString("a_content"));
+				adminDTO.setA_answer(rs.getString("a_answer"));
+			}
+			
+		} catch (Exception e) {
+			
+		}finally {
+			this.dbClose();
+		}
+		
+		return adminDTO;
 	}
 }

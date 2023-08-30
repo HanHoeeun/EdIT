@@ -212,7 +212,7 @@ SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
 							<th class="_1qna_board_border">작성시간</th>
 						</tr>
 						<%for(AdminDTO adminDTO : adminList){ %>
-						<tr>
+						<tr onclick="window.open('registered.ad?a_num=<%=adminDTO.getA_num() %>','문의상세페이지','width=800, height=700, scrollbars=yes')">
 							<td class="_1qna_board_border"><%=adminDTO.getA_num() %></td>
 							<td class="_1qna_board_subject"><%=adminDTO.getA_title() %></td>
 							<td class="_1qna_board_border"><%=adminDTO.getA_m_nick() %></td>
