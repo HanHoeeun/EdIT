@@ -12,15 +12,23 @@ public class ProductDTO {
 	private Timestamp p_date;
 	private int p_readcount;
 	private String p_status;
+	private String p_file;
 	
 	
 	@Override
 	public String toString() {
 		return "ProductDTO [p_num=" + p_num + ", p_title= "+ p_title + ",p_m_id=" + p_m_id +
 							", p_type= "+ p_type + ", p_price= " + p_price + ", p_detail=" + p_detail +
-							", p_date= " + p_date + ", p_readcount= "+ p_readcount + ",p_status=" +p_status + "]";
+							", p_date= " + p_date + ", p_readcount= "+ p_readcount +
+							",p_status=" +p_status +",p_file="+ p_file+ "]";
 	}
 	// getter & setter 
+	public String getP_file() {
+		return p_file;
+	}
+	public void setP_file(String p_file) {
+		this.p_file = p_file;
+	}
 	public int getP_num() {
 		return p_num;
 	}

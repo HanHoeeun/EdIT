@@ -1,3 +1,6 @@
+<%@page import="com.itwillbs.domain.ProductPageDTO"%>
+<%@page import="com.itwillbs.domain.ProductDTO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -64,7 +67,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 <!-- //breadcrumbs -->
-<!--- products --->
+<!--- products 본문 내용 --->
+<%
+List<ProductDTO> productList
+= (List<ProductDTO>)request.getAttribute("productList"); 
+
+ProductPageDTO ppageDTO = (ProductPageDTO)request.getAttribute("ppageDTO");
+%>
 	<div class="products">
 		<div class="container">
 			<div class="col-md-4 products-left">
@@ -94,7 +103,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 				</div>
 				<div class="agile_top_brands_grids">
-    <% for (int i = 0; i < 3; i++) { %>
+    <% for (int i = 0;i<productList.size(); i++) { 
+    	ProductDTO productDTO = productList.get(i);
+    %>
     <div class="col-md-4 top_brand_left">
         <div class="hover14 column">
             <div class="agile_top_brand_left_grid">
@@ -106,20 +117,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <div class="snipcart-item block">
                             <div class="snipcart-thumb">
                                 <a href="single.po"><img title=" " alt=" " src="./proImg/img1_07.png" width="150px" height="150px"></a>
-                                <p>안쓰는 애플워치 팔아요</p>
-                                <h4>₩250,000</h4>
+                                <p>제목 : <%= productDTO.getP_title() %></p>
+                                <h4>가격: <%=productDTO.getP_price() %> </h4>
+                                <p><%=productDTO.getP_status() %></p>
                             </div>
                             <div class="snipcart-details top_brand_home_details">
                                 <form action="#" method="post">
                                     <fieldset>
-                                        <input type="hidden" name="cmd" value="_cart">
+                                       <!--  <input type="hidden" name="cmd" value="_cart">
                                         <input type="hidden" name="add" value="1">
                                         <input type="hidden" name="business" value=" ">
                                         <input type="hidden" name="item_name" value="Fortune Sunflower Oil">
                                         <input type="hidden" name="amount" value="35.99">
                                         <input type="hidden" name="currency_code" value="KRW">
                                         <input type="hidden" name="return" value=" ">
-                                        <input type="hidden" name="cancel_return" value=" ">
+                                        <input type="hidden" name="cancel_return" value=" "> -->
                                         <input type="submit" name="submit" value="찜 추가하기" class="button">
                                     </fieldset>
                                 </form>
@@ -133,30 +145,44 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <% } %>
     <div class="clearfix"> </div>
 </div>
-
-				<nav class="numbering">
+<%
+if(ppageDTO.getP_startPage()>ppageDTO.getP_pageBlock()){
+%>
+<nav class="numbering">
 					<ul class="pagination paging">
 						<li>
-							<a href="#" aria-label="Previous">
+							<a href="products.po?p_pageNum=<%=ppageDTO.getP_startPage()-ppageDTO.getP_pageBlock() %>" aria-label="Previous">
 								<span aria-hidden="true">&laquo;</span>
 							</a>
 						</li>
-						<li class="active"><a href="#">1<span class="sr-only">(current)</span></a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#">5</a></li>
+						<% 	
+						}
+						%>
+						<%
+						for(int i= ppageDTO.getP_startPage();i<=ppageDTO.getP_endPage();i++){
+						%>
+						<li class="active"><a href="products.po?p_pageNum=<%=i %>"><%=i %></i><span class="sr-only">(current)</span></a></li>
+						<%
+						}
+						%>
+						<%
+						if(ppageDTO.getP_endPage()<ppageDTO.getP_count()){
+						%>
 						<li>
-							<a href="#" aria-label="Next">
+							<a href="products.po?p_pageNum=<%=ppageDTO.getP_startPage()+ppageDTO.getP_pageBlock() %>" aria-label="Next">
 							<span aria-hidden="true">&raquo;</span>
 							</a>
 						</li>
+						<%
+						}
+						%>
 					</ul>
 				</nav>
 			</div>
 			<div class="clearfix"> </div>
 		</div>
 	</div>
+		 
 <!--- products --->
 <!-- //footer -->
 <div class="footer">
@@ -225,7 +251,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</ul>
 				</div>
 				<div class="payment-w3ls">	
-					<img src="../images/card.png" alt=" " class="img-responsive">
+					<img src="./images/card.png" alt=" " class="img-responsive">
 				</div>
 				<div class="clearfix"> </div>
 			</div>

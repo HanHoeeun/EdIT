@@ -2,6 +2,8 @@ package com.itwillbs.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.itwillbs.dao.ProductDAO;
 import com.itwillbs.domain.ProductDTO;
 import com.itwillbs.domain.ProductPageDTO;
@@ -43,7 +45,28 @@ public class ProductService {
 		return productList;
 	}
 	
-	// registerProduct 넣기
+	public void registerProduct(HttpServletRequest request) {
+		try {
+			System.out.println("ProductService registerProduct");
+			// request 한글처리 
+			request.setCharacterEncoding("utf-8");
+			// requset 파라미터 값 가져오기
+			String p_title = request.getParameter("p_title");
+			int p_price = Integer.parseInt(request.getParameter("p_price"));
+			// ProductDAO 객체생성
+			productDAO = new ProductDAO();
+			// productDTO 객체생성
+			ProductDTO productDTO = new ProductDTO();
+			// set 메서드 호출 파라미터 값 저장  
+			productDTO.setP_title(p_title);
+			productDTO.setP_price(p_price);
+			// 리할형 없음 registerProduct(productDTO) 호출
+			productDAO.registerProduct(productDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
 
 	public int getProductCount() {
 		System.out.println("ProductService getProductCount()");
@@ -58,6 +81,7 @@ public class ProductService {
 		}
 		return count;
 	}
+
 	
 	
 }
