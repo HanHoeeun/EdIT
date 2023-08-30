@@ -44,7 +44,7 @@ public class ProductController extends HttpServlet{
 		if (sPath.equals("/products.po")) {
 			System.out.println("뽑은 가상주소 비교 : /products.po");
 			// 한페이지에서 보여지는 글개수 설정
-			int p_pageSize=3;
+			int p_pageSize=10;
 			// 페이지번호 
 			String p_pageNum=request.getParameter("p_pageNum");
 			// 페이지번호가 없으면 1페이지 설정
@@ -67,7 +67,7 @@ public class ProductController extends HttpServlet{
 			// 게시판 전체 글 개수 구하기 
 			int p_count = productService.getProductCount();
 			// 한화면에 보여줄 페이지개수 설정
-			int p_pageBlock = 3;
+			int p_pageBlock = 10;
 			// 시작하는 페이지번호
 			// currentPage  pageBlock  => startPage
 			//   1~10(0~9)      10     =>  (0~9)/10*10+1=>0*10+1=> 0+1=> 1 
