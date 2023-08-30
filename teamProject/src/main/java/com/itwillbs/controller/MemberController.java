@@ -111,7 +111,7 @@ public class MemberController extends HttpServlet{
 		
 //		로그아웃
 		if (sPath.equals("/logout.me")) {
-			System.out.println("뽑은 가상주소 비교 : main.me");
+			System.out.println("뽑은 가상주소 비교 : logout.me");
 			
 			HttpSession session = request.getSession();
 			session.invalidate();
@@ -140,9 +140,40 @@ public class MemberController extends HttpServlet{
 			dispatcher = request.getRequestDispatcher("member/mypage.jsp");
 			dispatcher.forward(request, response);
 			
+		}
+		
+		
+		
+//		회원정보 수정
+		if (sPath.equals("/updatePro.me")) {
+			System.out.println("뽑은 가상주소 비교 : updatePro.me");
+
+			memberService = new MemberService();
+			
+//			아이디, 비밀번호 일치하는지 확인
+			MemberDTO memberDTO = memberService.userCheck(request);
+			
+			
+//			일치하면 updateMember 호출
+			if (memberDTO != null) {
+				
+				memberService.updateMember(request);
+				
+				response.sendRedirect("main.me");
+				
+			} else {
+//				불일치면 경고 메시지 화면에 띄우기
+				dispatcher = request.getRequestDispatcher("member/mypage.jsp");
+				dispatcher.forward(request, response);
+				
+			}
+			
+			
 			
 			
 		}
+		
+		
 		
 		
 		
