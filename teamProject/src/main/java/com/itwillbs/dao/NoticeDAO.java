@@ -70,6 +70,91 @@ public class NoticeDAO {
 		}return noticeList;
 		
 	}//getNoticeList()
+
+	public void insertNotice(NoticeDTO noticeDTO) {
+		System.out.println("NoticeDAO insertNotice()");
+		// board테이블 file 열추가
+		// mysql -uroot -p1234 jspdb
+		// file컬럼 추가
+		// alter table board
+		// add file varchar(100);
+		try {
+			//1,2 디비연결
+			con=getConnection();
+			//3 sql insert
+			String sql="";
+//			제목 내용 시간 분류 파일명
+			if(noticeDTO.getA_notice_type()==1) {
+				sql = "insert into notice1 values (default,?, ?, default,'일반공지', null)";
+			}else {
+				sql = "insert into notice1 values (default,?, ?, default,'이벤트', null)";
+			}
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, noticeDTO.getA_title());
+			pstmt.setString(2, noticeDTO.getA_content());
+			//파일추가
+			pstmt.setString(3, noticeDTO.getA_file());
+			//4 실행 
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbClose();
+		}
+	}//insertNotice()
+
+	public NoticeDTO getNotice(int a_num) {
+		NoticeDTO noticeDTO = null;
+		try {
+			//1,2 디비연결
+			con = getConnection();
+			//3 sql select * from notice where a_num = ?
+			String sql="select * from notice where a_num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, a_num);
+			//4 실행 => 결과 저장
+			rs = pstmt.executeQuery();
+			//5 결과 행접근 => noticeDTO 객체생성 
+			//        => set메서드 호출 => 열접근 데이터 저장
+			if(rs.next()) {
+				noticeDTO = new NoticeDTO();
+				noticeDTO.setA_num(rs.getInt("a_num"));
+//				noticeDTO.setA_notice_type(rs.getString("a_notice_type"));
+				noticeDTO.setA_title(rs.getString("a_title"));
+				noticeDTO.setA_content(rs.getString("a_content"));
+				noticeDTO.setA_date(rs.getTimestamp("a_date"));
+				//첨부파일
+				noticeDTO.setA_file(rs.getString("a_file"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbClose();
+		}
+		return noticeDTO;
+	}//getNotice(int a_num)
+
+	public int getNoticeCount() {
+		int count = 0;
+		try {
+			//1,2 디비연결
+			con=getConnection();
+			//3 sql select count(*) from notice
+			String sql = "select count(*) from notice;";
+			pstmt=con.prepareStatement(sql);
+			//4 실행 => 결과저장
+			rs = pstmt.executeQuery();
+			//5 결과 행접근 => 열접근 => count변수 저장
+			if(rs.next()) {
+				count = rs.getInt("count(*)");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbClose();
+		}
+		return count;
+	}//getNoticeCount()
 	
 		
 		

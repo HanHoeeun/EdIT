@@ -9,7 +9,7 @@ public class NoticeDTO {
 	private String a_title; //제목
 	private String a_content; //내용
 	private Timestamp a_date; //작성일
-	private String a_notice_type; //1유형 2일반공지 3이벤트 
+	private int a_notice_type; //1유형 2일반공지 3이벤트 
 	
 	private String a_file; //파일명
 
@@ -62,11 +62,12 @@ public class NoticeDTO {
 		this.a_date = a_date;
 	}
 
-	public String getA_notice_type() {
+
+	public int getA_notice_type() {
 		return a_notice_type;
 	}
 
-	public void setA_notice_type(String a_notice_type) {
+	public void setA_notice_type(int a_notice_type) {
 		this.a_notice_type = a_notice_type;
 	}
 
