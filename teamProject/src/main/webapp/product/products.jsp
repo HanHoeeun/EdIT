@@ -115,6 +115,8 @@ String orderBy = (String) request.getAttribute("orderBy");
                     <option value="popular" <% if (orderBy != null && orderBy.equals("popular")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>인기순</option> 
                     <option value="highPrice" <% if (orderBy != null && orderBy.equals("highPrice")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>가격 높은 순</option>               
                     <option value="lowPrice" <% if (orderBy != null && orderBy.equals("lowPrice")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>가격 낮은 순</option>                        
+                	<option value="sell" <% if (orderBy != null && orderBy.equals("sell")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>판매중</option>                        
+                    <option value="sold" <% if (orderBy != null && orderBy.equals("sold")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>판매완료</option>
                 </select>
             </div>
            
@@ -150,6 +152,7 @@ String orderBy = (String) request.getAttribute("orderBy");
                                 <p><%=productDTO.getP_title() %></p>
                                 <h4><%= productDTO.getP_price() %>원</h4>
                                 <h4><%= productDTO.getP_status() %></h4>
+                                <h4><%= productDTO.getP_type() %></h4>
                             </div>
                             <div class="snipcart-details top_brand_home_details">
                                 <form action="#" method="post">
