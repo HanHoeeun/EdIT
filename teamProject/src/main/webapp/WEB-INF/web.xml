@@ -9,6 +9,9 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
+
+
+
   
   <!--   가상주소에 해당하는 처리담당자(서블릿파일)=> 주소매핑 -->
 <!-- http://localhost:8080/FunWeb/insert.me -->
@@ -22,9 +25,12 @@
 	<servlet-class>com.itwillbs.controller.MemberController</servlet-class>
 </servlet>
 
+
+
+
   <!--   가상주소에 해당하는 처리담당자(서블릿파일)=> 주소매핑 -->
 <!-- http://localhost:8080/FunWeb/list.bo -->
-<servlet-mapping>
+<!-- <servlet-mapping>
 	<servlet-name>BoardController</servlet-name>
 	<url-pattern>*.bo</url-pattern>
 </servlet-mapping>
@@ -32,7 +38,11 @@
 <servlet>
 	<servlet-name>BoardController</servlet-name>
 	<servlet-class>com.itwillbs.controller.BoardController</servlet-class>
-</servlet>
+</servlet> -->
+
+
+
+
 
 <servlet-mapping>
 	<servlet-name>AdminController</servlet-name>
@@ -44,5 +54,39 @@
 	<servlet-class>com.itwillbs.controller.AdminController</servlet-class>
 </servlet>
 
+
+<servlet-mapping>
+	<servlet-name>NoticeController</servlet-name>
+	<url-pattern>*.no</url-pattern>
+</servlet-mapping>
+
+<servlet>
+	<servlet-name>NoticeController</servlet-name>
+	<servlet-class>com.itwillbs.controller.NoticeController</servlet-class>
+</servlet>
+
+
+<servlet-mapping>
+	<servlet-name>ProductController</servlet-name>
+	<url-pattern>*.po</url-pattern>
+</servlet-mapping>
+
+<servlet>
+	<servlet-name>ProductController</servlet-name>
+	<servlet-class>com.itwillbs.controller.ProductController</servlet-class>
+</servlet>
+
+  
+  
+<!-- <servlet-mapping>
+	<servlet-name>MainController</servlet-name>
+	<url-pattern>*.ma</url-pattern>
+</servlet-mapping>
+
+
+<servlet>
+	<servlet-name>MainController</servlet-name>
+	<servlet-class>com.itwillbs.controller.MainController</servlet-class>
+</servlet> -->
   
 </web-app>

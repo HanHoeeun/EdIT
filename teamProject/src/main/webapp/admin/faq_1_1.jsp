@@ -1,3 +1,7 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="com.itwillbs.domain.AdminDTO"%>
+<%@page import="java.util.List"%>
+<%@page import="com.itwillbs.domain.AdminPageDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!--
@@ -45,6 +49,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 	
 <body>
+<% 
+String id = "권광민";
+List<AdminDTO> adminList = (List<AdminDTO>)request.getAttribute("adminList");
+AdminPageDTO pageDTO = (AdminPageDTO)request.getAttribute("pageDTO");
+SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
+%>
+
 <!-- header -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
 <!-- //navigation -->
@@ -154,18 +165,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 				<div id="tab-2" class="tab-content">
 <!-- 				2탭 문의글 작성 -->
-					<form action="index.html" method="post" enctype="multipart/form-data">
+					<form action="adminPro.ad" method="post" enctype="multipart/form-data">
 						<table class="_1q_query_tab">
 							<tr>
 							<td class="_1q_query_tab_1">
-								<select class="_1q_query_tab_sel" style="border:none;">
-									<option value="">문의선택</option>
-									<option value="">계정</option>
-									<option value="">중고거래</option>
-									<option value="">기타</option>
+								<select class="_1q_query_tab_sel" name="faq_select"style="border:none;">
+									<option value="0">문의선택</option>
+									<option value="1">계정</option>
+									<option value="2">중고거래</option>
+									<option value="3">기타</option>
 								</select>
 							</td>
-							<td class="_1q_query_tab_2"><input type="text" name="id" value="작성자" style="border:none;" readonly="readonly"></td>
+							<td class="_1q_query_tab_2"><input type="text" name="name" value="권광민" style="border:none;" readonly="readonly"></td>
 							<td>
 								<div class="_1q_query_tab_3"><label for="imgfile"><img src="images/picture.png" width="25px" height="25px">파일 업로드</label></div>
 								<input type="file" name="imgfile" id="imgfile" accept="image/*">
@@ -175,13 +186,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div><br></div>
 						<table class="_1q_query_tab">
 							<tr>
-							<td class="_1q_query_tab_4" colspan="3" ><input type="text" name="subject" placeholder="제목을 작성 해주세요" style="border:none;"></td>
+							<td class="_1q_query_tab_4" colspan="3" ><input type="text" name="subject" placeholder="제목을 작성 해주세요" required="required" style="border:none;"></td>
 							</tr>
 						</table>
 						<div><br></div>
 						<table class="_1q_query_tab">
 							<tr>
-							<td class="_1q_query_tab_5" colspan="3"><textarea name="content" style="border:none;" cols="110" rows="20" class="noresize" placeholder="내용을 작성 해주세요" ></textarea></td>
+							<td class="_1q_query_tab_5" colspan="3"><textarea name="content" style="border:none;" cols="110" rows="20" class="noresize" placeholder="내용을 작성 해주세요" required="required"></textarea></td>
 							</tr>
 						</table>
 						<div class="_1q_query_btn">
@@ -200,55 +211,34 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<th class="_1qna_board_border">작성자</th>
 							<th class="_1qna_board_border">작성시간</th>
 						</tr>
+						<%for(AdminDTO adminDTO : adminList){ %>
 						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_subject">2</td>
-							<td class="_1qna_board_border">3</td>
-							<td>4</td>
+							<td class="_1qna_board_border"><%=adminDTO.getA_num() %></td>
+							<td class="_1qna_board_subject"><%=adminDTO.getA_title() %></td>
+							<td class="_1qna_board_border"><%=adminDTO.getA_m_nick() %></td>
+							<td><%=format.format(adminDTO.getA_date()) %></td>
 						</tr>
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_subject">2</td>
-							<td class="_1qna_board_border">3</td>
-							<td>4</td>
-						</tr>
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_subject">2</td>
-							<td class="_1qna_board_border">3</td>
-							<td>4</td>
-						</tr>
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_subject">2</td>
-							<td class="_1qna_board_border">3</td>
-							<td>4</td>
-						</tr>
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_subject">2</td>
-							<td class="_1qna_board_border">3</td>
-							<td>4</td>
-						</tr>
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_subject">2</td>
-							<td class="_1qna_board_border">3</td>
-							<td>4</td>
-						</tr>
+						<%} %>
 					</table>
 <!-- 				3탭 페이징  -->
 				    <div class="_1qna_paging">
-        				<ul>
-				           <li onclick="location.href='index.html'">prev</li>
-				           <li onclick="location.href='about.html'">1</li>
-				           <li onclick="location.href='login.html'">2</li>
-				           <li onclick="location.href='faq.html'">3</li>
-				           <li onclick="location.href='gourmet.html'">4</li>
-				           <li onclick="location.href='login.html'">5</li>
-				           <li onclick="location.href='products.html'">next</li>
-						</ul>
-   					 </div>
+				    <ul>
+					<%
+					// 시작페이지 1페이지 Prev 없음
+					// 시작페이지 11,21,31 Prev가 보이게
+						if(pageDTO.getStartPage() > pageDTO.getPageBlock()){%>
+							<li onclick="location.href='faq.ad?pageNum=<%=pageDTO.getStartPage()-pageDTO.getPageBlock()%>&search=<%=id%>'">Prev</li>
+							
+						<% } 
+						for(int i= pageDTO.getStartPage(); i<=pageDTO.getEndPage(); i++){%>
+							<li onclick="location.href='faq.ad?pageNum=<%=i%>&search=<%=id%>'"><%=i %></li>
+						<%}
+						// 끝페이지 번호 전체페이지수 비교 => 전체페이지 수 크면 => next보임
+						if(pageDTO.getEndPage() < pageDTO.getPageCount()){%>
+							<li onclick="location.href='faq.ad?pageNum=<%=pageDTO.getStartPage() + pageDTO.getPageBlock() %>&search=<%=id%>'">Next</li>
+						<%}%>
+				    </ul>
+					</div>
 				</div>
 				<%} %>
 			</div>
