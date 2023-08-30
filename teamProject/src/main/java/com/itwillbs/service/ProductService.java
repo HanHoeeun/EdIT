@@ -26,20 +26,16 @@ public class ProductService {
 //			    1                 10        => (1-1)*10+1=>0*10+1=> 0+1=>1        ~ 10
 //			    2                 10        => (2-1)*10+1=>1*10+1=>10+1=>11       ~ 20
 //		        3                 10        => (3-1)*10+1=>2*10+1=>20+1=>21       ~ 30			
-			
-			
 			int p_startRow = (ppageDTO.getP_currentPage()-1)*ppageDTO.getP_pageSize()+1;
 			// 시작하는 행부터 끝나는 행까지 뽑아오기
 //			startRow  pageSize => endRow
 //			    1         10   =>   1+10-1 =>10
 //			    11        10   =>   11+10-1 =>20
 //		        21        10   =>   21+10-1 =>30
-			    		
 			int p_endRow = p_startRow+ppageDTO.getP_pageSize()-1;
 			//pageDTO 저장 <= startRow, endRow
 			ppageDTO.setP_startRow(p_startRow);
 			ppageDTO.setP_endRow(p_endRow);
-			
 			// BoardDAO 객체생성
 			productDAO = new ProductDAO();
 			// boardList = getBoardList() 메서드 호출
@@ -50,28 +46,6 @@ public class ProductService {
 		return productList;
 	}
 	
-	public void registerProduct(HttpServletRequest request) {
-		try {
-			System.out.println("ProductService registerProduct");
-			// request 한글처리 
-			request.setCharacterEncoding("utf-8");
-			// requset 파라미터 값 가져오기
-			String p_title = request.getParameter("p_title");
-			int p_price = Integer.parseInt(request.getParameter("p_price"));
-			// ProductDAO 객체생성
-			productDAO = new ProductDAO();
-			// productDTO 객체생성
-			ProductDTO productDTO = new ProductDTO();
-			// set 메서드 호출 파라미터 값 저장  
-			productDTO.setP_title(p_title);
-			productDTO.setP_price(p_price);
-			// 리할형 없음 registerProduct(productDTO) 호출
-			productDAO.registerProduct(productDTO);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-	}
 
 	public int getProductCount() {
 		System.out.println("ProductService getProductCount()");
@@ -159,8 +133,8 @@ public class ProductService {
 		return laptopList;
 	}
 
+	//-----------------------------------------------------------------------------------
 
-// -----------------------------------------------------------------------------------
 	public void insertProduct(HttpServletRequest request) {
 		
 		try {

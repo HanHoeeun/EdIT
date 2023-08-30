@@ -1,3 +1,7 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="com.itwillbs.domain.NoticePageDTO"%>
+<%@page import="com.itwillbs.domain.NoticeDTO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!--
@@ -18,14 +22,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- //for-mobile-apps -->
-<link href="../css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-<link href="../css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 <!-- font-awesome icons -->
-<link href="../css/font-awesome.css" rel="stylesheet"> 
-<link href="../css/faq_1_9.css" rel="stylesheet"> 
+<link href="css/font-awesome.css" rel="stylesheet"> 
+<link href="css/faq_1_9.css" rel="stylesheet"> 
 <!-- //font-awesome icons -->
 <!-- js -->
-<script src="../js/jquery-1.11.1.min.js"></script>
+<script src="js/jquery-1.11.1.min.js"></script>
 <!-- //js -->
 <link href='//fonts.googleapis.com/css?family=Raleway:400,100,100italic,200,200italic,300,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic' rel='stylesheet' type='text/css'>
 <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
@@ -56,7 +60,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</ol>
 		</div>
 	</div><br><br>
-<!--=========================== 본문 헤더 ==================\'========================= -->	
+<!--=========================== 본문 헤더 ========================================= -->	
 	
 	<div class="../top-brands_1">
 		<h2>공지사항</h2>
@@ -65,42 +69,76 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <!--=========================== 상단 탭 리스트============================================ -->
 				<ul class="tabs">
-					<li class="tab-link current" data-tab="tab-1">일반공지</li>
+					<li class="tab-link" data-tab="tab-1">일반공지</li>
 					<li class="tab-link" data-tab="tab-2">이벤트</li>
 					<%if(1==1){ %>
-					<li class="tab-link" data-tab="tab-3">글 작성</li>
+					<li class="tab-link current" data-tab="tab-3">글 작성</li>
 					<%} %>
 				</ul>
 			</div>
 <!--================================== 1탭 일반공지==================================== -->
+<%
+List<NoticeDTO> noticeList = (List<NoticeDTO>)request.getAttribute("noticeList");
+NoticePageDTO pageDTO=(NoticePageDTO)request.getAttribute("pageDTO");
+%>	
 			<div class="container_3_1">
-				<div id="tab-1" class="tab-content current">
+				<div id="tab-1" class="tab-content">
 				<table class="_1qna_board">
 						<tr>
 							<th class="_1qna_board_border">번호</th>
 							<th class="_1qna_board_border">제목</th>
 							<th class="_1qna_board_border">작성일</th>
 						</tr>
-						
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_subject">거래 시 유의사항 안내드립니다</td>
-							<td class="_1qna_board_border">2023.08.25</td>
+ <%
+SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
+    for(int i=0;i<noticeList.size();i++){
+    	NoticeDTO noticeDTO=noticeList.get(i);   
+    	%>							
+						<tr onclick="location.href='content.no?num=<%=noticeDTO.getA_num()%>'">
+						<td class="_1qna_board_border"><%=noticeDTO.getA_num() %></td>
+						<td class="_1qna_board_subject"><%=noticeDTO.getA_title() %></td>
+						<td class="_1qna_board_border"><%=format.format(noticeDTO.getA_date()) %></td>
 						</tr>
+						<%
+    }
+    %>
 					</table>
 					<!--============= 1탭 일반공지 페이징 ==================== -->
 				    <div class="_1qna_paging">
-        				<ul>
-				           <li onclick="location.href='index.html'">◀</li>
-				           <li onclick="location.href='about.html'">1</li>
-				           <li onclick="location.href='login.html'">2</li>
-				           <li onclick="location.href='faq.html'">3</li>
-				           <li onclick="location.href='gourmet.html'">4</li>
-				           <li onclick="location.href='login.html'">5</li>
-				           <li onclick="location.href='products.html'">▶</li>
-						</ul>
-   					 </div>
-				
+        				<% if(pageDTO.getStartPage() > pageDTO.getPageBlock()){ %>
+						<a
+							href="list.no?pageNum=<%=pageDTO.getStartPage()-pageDTO.getPageBlock()%>">◀</a>
+						<%
+}
+%>
+
+						<%
+for(int i=pageDTO.getStartPage();i<=pageDTO.getEndPage();i++){
+	%>
+						<a href="list.no?pageNum=<%=i%>"><%=i %></a>
+						<%
+}
+%>
+
+						<%
+//끝페이지번호  전체페이지수 비교 => 전체페이지수 크면 => Next보임
+if(pageDTO.getEndPage() < pageDTO.getPageCount()){
+	%>
+						<a
+							href="list.no?pageNum=<%=pageDTO.getStartPage()+pageDTO.getPageBlock()%>">▶</a>
+						<%
+}
+%>
+						<!-- <ul>
+							<li onclick="location.href='index.html'">◀</li>
+							<li onclick="location.href='about.html'">1</li>
+							<li onclick="location.href='login.html'">2</li>
+							<li onclick="location.href='faq.html'">3</li>
+							<li onclick="location.href='gourmet.html'">4</li>
+							<li onclick="location.href='login.html'">5</li>
+							<li onclick="location.href='products.html'">▶</li>
+						</ul> -->
+					</div>
 				</div>
 <!--================================== 2탭 이벤트 ==================================== -->				
 				<div id="tab-2" class="tab-content">
@@ -132,18 +170,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 <!--================================== 3탭 글작성 ==================================== -->
 				<%if(1 == 1){ %>
-				<div id="tab-3" class="tab-content">
-					<form action="index.html" method="post" enctype="multipart/form-data">
+				<div id="tab-3" class="tab-content current">
+					<form action="write.no" method="post" >
 						<table class="_1q_query_tab">
 							<tr>
 							<td class="_1q_query_tab_1">
-								<select class="_1q_query_tab_sel" style="border:none;">
-									<option value="">유형</option>
-									<option value="">일반공지</option>
-									<option value="">이벤트</option>
+								<select class="_1q_query_tab_sel" name="a_notice_type" style="border:none;">
+									<option value="1">일반공지</option>
+									<option value="2">이벤트</option>
 								</select>
 							</td>
-							<td class="_1q_query_tab_2"><input type="text" name="id" value="작성자" style="border:none;" readonly="readonly"></td>
 							<td>
 								<div class="_1q_query_tab_3"><label for="imgfile"><img src="images/picture.png" width="25px" height="25px">파일 업로드</label></div>
 								<input type="file" name="imgfile" id="imgfile" accept="image/*">
@@ -165,26 +201,49 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="_1q_query_btn">
 								<button type="submit">작성</button>
 								<button type="reset">취소</button>
-						</div>
+						</div>						
 				</form>
 				<%} %>
 				</div>
 <!-- 			탭 jquery -->
 			<script type="text/javascript">
-			$(document).ready(function(){
-				
-				$('ul.tabs li').click(function(){
-					var tab_id = $(this).attr('data-tab');
+            $(document).ready(function(){
+                $('ul.tabs li').click(function(){
+                    var tab_id = $(this).attr('data-tab');
 
-					$('ul.tabs li').removeClass('current');
-					$('.tab-content').removeClass('current');
+                    $('ul.tabs li').removeClass('current');
+                    $('.tab-content').removeClass('current');
 
-					$(this).addClass('current');
-					$("#"+tab_id).addClass('current');
-				})
+                    $(this).addClass('current');
+                    $("#"+tab_id).addClass('current');
 
-			})
-			</script>
+                    // Add parameter to URL
+                    var url = window.location.href.split('?')[0];
+                    history.pushState(null, null, url + '?tab=' + tab_id);
+                });
+
+                // Check URL for tab parameter on page load
+                var urlParams = new URLSearchParams(window.location.search);
+                if (urlParams.has('tab')) {
+                    var tabParam = urlParams.get('tab');
+                    $('.tabs li').removeClass('current');
+                    $('.tab-content').removeClass('current');
+                    $('[data-tab="' + tabParam + '"]').addClass('current');
+                    $('#' + tabParam).addClass('current');
+                }
+            });
+//                 $('ul.tabs li').click(function(){
+//                     var tab_id = $(this).attr('data-tab');
+
+//                     $('ul.tabs li').removeClass('current');
+//                     $('.tab-content').removeClass('current');
+
+//                     $(this).addClass('current');
+//                     $("#"+tab_id).addClass('current');
+//                 })
+
+
+            </script>
 			</div>
 		</div>
 			<div class="clearfix_1_1"> </div>

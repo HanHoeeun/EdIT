@@ -401,30 +401,6 @@ public class ProductDAO {
 		
 	}
 	
-
-	public int getMaxP_num() {
-		System.out.println("ProductDAO getMaxP_num()");
-		int p_num = 0;
-		try {
-			//1,2 디비연결
-			con=getConnection();
-			//3 sql select max(num) from members
-			String sql = "select max(num) from products;";
-			pstmt=con.prepareStatement(sql);
-			//4 실행 => 결과저장
-			rs =pstmt.executeQuery();
-			//5 if 다음행  => 열데이터 가져와서 => num저장
-			if(rs.next()) {
-				p_num = rs.getInt("max(p_num)");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			dbClose();
-		}
-		return p_num;
-	}//getMaxNum()
-	
 	public void registerProduct(ProductDTO productDTO) {
 		System.out.println("productDAO registerProduct()");
 		try {

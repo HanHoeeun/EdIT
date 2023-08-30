@@ -3,6 +3,7 @@ package com.itwillbs.service;
 
 
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Member;
 import java.sql.Timestamp;
 
 import javax.servlet.http.HttpServletRequest;
@@ -112,6 +113,79 @@ public class MemberService {
 		}
 		
 		return memberDTO;
+	}
+
+
+	
+//	회원정보 수정
+	public void updateMember(HttpServletRequest request) {
+		System.out.println("MemberService updateMember()");
+		
+		try {
+//			한글처리
+			request.setCharacterEncoding("utf-8");
+			
+			String id = request.getParameter("_6id");
+			String pass1 = request.getParameter("_6pass1");
+			String pass2 = request.getParameter("_6pass2");
+			String pass3 = request.getParameter("_6pass3");
+			String name = request.getParameter("_6name");
+			String nick = request.getParameter("_6nick");
+			String email = request.getParameter("_6email");
+			String phone = request.getParameter("_6phone");
+			
+			MemberDTO memberDTO = new MemberDTO();
+			memberDTO.setM_id(id);
+			memberDTO.setM_pass(pass1);
+			memberDTO.setM_pass(pass2);
+			memberDTO.setM_pass(pass3);
+			memberDTO.setM_name(name);
+			memberDTO.setM_nick(nick);
+			memberDTO.setM_email(email);
+			memberDTO.setM_phone(phone);
+			
+			memberDAO = new MemberDAO();
+			memberDAO.updateMember(memberDTO);
+			
+			
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+
+	
+	
+	
+	
+	public void deleteMember(HttpServletRequest request) {
+		System.out.println("MemberService deleteMember()");
+
+		
+		try {
+			
+			String id = request.getParameter("_6id");
+			String pass = request.getParameter("_6pass");
+	
+			
+			MemberDTO memberDTO = new MemberDTO();
+			memberDTO.setM_id(id);
+			memberDTO.setM_pass(pass);
+			
+			memberDAO = new MemberDAO();
+			memberDAO.deleteMember(memberDTO);
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		
 	}
 	
 

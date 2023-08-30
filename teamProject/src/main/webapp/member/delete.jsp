@@ -1,3 +1,4 @@
+<%@page import="com.itwillbs.domain.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -75,11 +76,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="categories">
 					<h2>마이페이지</h2>
 					<ul class="cate"> <br>
-						<li><a href="mypage.jsp"><i class="fa fa-arrow-right" ></i>나의 정보</a></li>
-						<li><a href="buylist.jsp"><i class="fa fa-arrow-right"></i>구매 내역</a></li>
-						<li><a href="salelist.jsp"><i class="fa fa-arrow-right"></i>판매 내역</a></li>
+						<li><a href="mypage.me"><i class="fa fa-arrow-right" ></i>나의 정보</a></li>
+						<li><a href="buylist.me"><i class="fa fa-arrow-right"></i>구매 내역</a></li>
+						<li><a href="salelist.me"><i class="fa fa-arrow-right"></i>판매 내역</a></li>
 						<li><a href="product/checkout.jsp"><i class="fa fa-arrow-right"></i>찜♥</a></li>
-						<li><a href="qnalist.jsp"><i class="fa fa-arrow-right"></i>문의 내역</a></li>
+						<li><a href="qnalist.me"><i class="fa fa-arrow-right"></i>문의 내역</a></li>
 						<li><a href="delete.me"><i class="fa fa-arrow-right"></i>회원 탈퇴</a></li>
  						<li><a href="#"><i class="fa fa-arrow-right"></i>회원 관리</a></li>  
 					</ul>
@@ -98,15 +99,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 				</div>
 					
+<% 
+			String id = (String)session.getAttribute("m_id");
+%>					
+					
+					
 			<form action="deletePro.me" method="post">
 				<div class="hover14 column">
 						<div class="_6clearfix1"> 
 							<div class="_6clearfix"> 
 								<div align="center">
-									<input type="text1" placeholder="아이디"  readonly>
-									<input type="text" readonly>
-									<input type="text1" placeholder="비밀번호"  readonly>
-									<input type="text" > <br>
+									<input type="text1" placeholder="아이디" readonly="readonly"readonly>
+									<input type="text" value="<%=id%>"name="_6id"  readonly="readonly"readonly>
+									<input type="text1" placeholder="비밀번호" readonly="readonly"readonly >
+									<input type="text" name="_6pass"> <br>
 								</div>	
 							</div>
 						</div>
