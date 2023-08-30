@@ -191,6 +191,60 @@ public class MemberDAO {
 	}
 
 
+
+//	회원정보 변경
+	public void updateMember(MemberDTO memberDTO) {
+		System.out.println("MemberDAO updateMember()");
+
+		try {
+			
+			con = getConnection();
+			
+			String sql = "update members set m_pass = ?, m_nick = ?, m_email = ?, m_phone = ? where m_id = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, memberDTO.getM_pass());
+			pstmt.setString(2, memberDTO.getM_nick());
+			pstmt.setString(3, memberDTO.getM_email());
+			pstmt.setString(4, memberDTO.getM_phone());
+			pstmt.setString(5, memberDTO.getM_id());
+			
+			pstmt.executeUpdate();
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dblClose();
+		}
+	}
+
+
+
+	public void deleteMember(MemberDTO memberDTO) {
+		System.out.println("MemberDAO deleteMember()");
+		
+		try {
+
+			con = getConnection();
+			
+			String sql = "delete from members where m_id = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, memberDTO.getM_id());
+			
+			pstmt.executeUpdate();
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dblClose();
+		}
+		
+	}
+
+
 	
 	
 	
