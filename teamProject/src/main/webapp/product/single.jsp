@@ -1,3 +1,5 @@
+<%@page import="com.itwillbs.domain.MemberDTO"%>
+<%@page import="com.itwillbs.domain.ProductDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -65,6 +67,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 <!-- //breadcrumbs -->
+
+<%
+String m_id = (String)session.getAttribute("m_id");
+ProductDTO productDTO = (ProductDTO)request.getAttribute("productDTO");
+MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
+%>
+
 
 
 <!-- 상품그림,제목,설명,관심도 등 -->
@@ -140,6 +149,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 					</div>
 					<!-- // 위시리스트 추가버튼 -->
+					
+					<%				
+					if(m_id!=null){
+						if(m_id.equals(memberDTO.getM_id())){
+							%>
+					<input type="button" value="상품수정" class="glyphicon glyphicon-menu-left"
+					onclick="location.href='productUpdate.po?p_num=<%=productDTO.getP_num()%>'">
+					
+					<input type="button" value="상품삭제" class="glyphicon glyphicon-menu-left"
+					onclick="location.href='delete.po?p_num=<%=productDTO.getP_num()%>'">
+					
+							<%
+						}
+					}
+					%>
 					
 					<!-- 채팅, 신고하기, 상품목록 버튼 -->
 					<div class="checkout-right-basket">
