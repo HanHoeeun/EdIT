@@ -93,11 +93,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					
 <!-- 홈/비밀번호 찾기/회원가입 -->					
 					<div class="_5forgot">
-						<a href="../main.jsp">홈</a>
+						<a href="main.me">홈</a>
 						|
-						<a href="findpw_3.jsp">비밀번호 찾기</a>
+						<a href="findpw.me">비밀번호 찾기</a>
 						|
-						<a href="registered_3.jsp">회원가입</a>
+						<a href="insert.me">회원가입</a>
 					</div>	
 <!-- // 홈/비밀번호 찾기/회원가입 -->	
 					

@@ -138,7 +138,6 @@ if(pageDTO.getEndPage() < pageDTO.getPageCount()){
 							<li onclick="location.href='products.html'">▶</li>
 						</ul> -->
 					</div>
-
 				</div>
 <!--================================== 2탭 이벤트 ==================================== -->				
 				<div id="tab-2" class="tab-content">
@@ -198,14 +197,14 @@ String a_m_num = (String)session.getAttribute("a_m_num");
 if(a_m_num != null){
 	%>
 				<div id="tab-3" class="tab-content">
-					<form action="index.html" method="post" enctype="multipart/form-data">
+					<form action="write.no" method="post" enctype="multipart/form-data">
 						<table class="_1q_query_tab">
 							<tr>
 							<td class="_1q_query_tab_1">
 								<select class="_1q_query_tab_sel" style="border:none;">
-									<option value="">유형</option>
-									<option value="">일반공지</option>
-									<option value="">이벤트</option>
+									<option value="0">유형</option>
+									<option value="1">일반공지</option>
+									<option value="2">이벤트</option>
 								</select>
 							</td>
 							<td class="_1q_query_tab_2"><input type="text" name="id" value="작성자" style="border:none;" readonly="readonly"></td>
@@ -235,24 +234,33 @@ if(a_m_num != null){
 				<%} %>
 				</div>
 <!-- 			탭 jquery -->
-			<script type="text/javascript">
-			$(document).ready(function(){
-				
-				$('ul.tabs li').click(function(){
-					var tab_id = $(this).attr('data-tab');
+<script type="text/javascript">
+$(document).ready(function(){
+   $('ul.tabs li').click(function(){
+      var tab_id = $(this).attr('data-tab');
+      $('ul.tabs li').removeClass('current');
+      $('.tab-content').removeClass('current');
+	  $(this).addClass('current');
+      $("#"+tab_id).addClass('current');
+      // Add parameter to URL
+      var url = window.location.href.split('?')[0];
+      history.pushState(null, null, url + '?tab=' + tab_id);
+   });
 
-					$('ul.tabs li').removeClass('current');
-					$('.tab-content').removeClass('current');
-
-					$(this).addClass('current');
-					$("#"+tab_id).addClass('current');
-				})
-
-			})
-			</script>
-			</div>
-		</div>
-			<div class="clearfix_1_1"> </div>
+      // Check URL for tab parameter on page load
+      var urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.has('tab')) {
+      	var tabParam = urlParams.get('tab');
+      	$('.tabs li').removeClass('current');
+     	$('.tab-content').removeClass('current');
+     	$('[data-tab="' + tabParam + '"]').addClass('current');
+    	$('#' + tabParam).addClass('current');
+      }
+});
+</script>
+</div>
+</div>
+<div class="clearfix_1_1"> </div>
 <!--================================== 푸터 ==================================== -->
 <div class="clearfix">
 <jsp:include page="../inc/bottom.jsp"></jsp:include>

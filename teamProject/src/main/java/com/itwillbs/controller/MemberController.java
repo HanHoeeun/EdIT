@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.itwillbs.dao.MemberDAO;
 import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.service.MemberService;
 
@@ -72,10 +73,10 @@ public class MemberController extends HttpServlet{
 		dispatcher = request.getRequestDispatcher("member/login.jsp");
 		dispatcher.forward(request, response);
 		
-		
 	}
 		
-//		
+		
+//		로그인 하기 -- 로그인 성공은 뜨는데... 메인화면으로 이동 안함
 		if (sPath.equals("/loginPro.me")) {
 			System.out.println("뽑은 가상주소 비교 : loginPro.me");
 			
@@ -86,14 +87,160 @@ public class MemberController extends HttpServlet{
 			if (memberDTO != null) {
 				
 				HttpSession session = request.getSession();
-				session.setAttribute("id", memberDTO.getM_id());
+				session.setAttribute("m_id", memberDTO.getM_id());
+				
+				response.sendRedirect("main.me");
+				
+			} else {
+				dispatcher = request.getRequestDispatcher("member/login.jsp");
+				dispatcher.forward(request, response);
+			}
+			
+		}
+		
+		
+		
+//		메인
+		if (sPath.equals("/main.me")) {
+			System.out.println("뽑은 가상주소 비교 : main.me");
+			
+			dispatcher = request.getRequestDispatcher("main/main.jsp");
+			dispatcher.forward(request, response);
+			
+		}
+		
+		
+//		로그아웃
+		if (sPath.equals("/logout.me")) {
+			System.out.println("뽑은 가상주소 비교 : logout.me");
+			
+			HttpSession session = request.getSession();
+			session.invalidate();
+			
+			response.sendRedirect("main.me");
+			
+		}
+		
+		
+		
+//		회원정보확인
+		if (sPath.equals("/mypage.me")) {
+			System.out.println("뽑은 가상주소 비교 : mypage.me");
+			
+//			DB의 나의 정보 조회
+			HttpSession session = request.getSession();
+			String id = (String)session.getAttribute("m_id");
+			
+
+			memberService = new MemberService();
+			MemberDTO memberDTO =  memberService.getMember(id);
+			
+			request.setAttribute("memberDTO", memberDTO);
+			
+			
+			dispatcher = request.getRequestDispatcher("member/mypage.jsp");
+			dispatcher.forward(request, response);
+			
+		}
+		
+		
+		
+		
+		
+		
+//		회원정보 수정	---------------------------------------------------------------수정해야함
+		if (sPath.equals("/updatePro.me")) {
+			System.out.println("뽑은 가상주소 비교 : updatePro.me");
+
+			memberService = new MemberService();
+			
+//			아이디, 비밀번호 일치하는지 확인
+			MemberDTO memberDTO = memberService.userCheck(request);
+			
+			
+//			일치하면 updateMember 호출
+			if (memberDTO != null) {
+				
+				memberService.updateMember(request);
+				
+				response.sendRedirect("main.me");
+				
+			} else {
+//				불일치면 경고 메시지 화면에 띄우기 나중에 고치기
+				dispatcher = request.getRequestDispatcher("member/mypage.jsp");
+				dispatcher.forward(request, response);
 				
 			}
 			
+		}
+		
+		
+//		회원탈퇴 화면
+		if (sPath.equals("/delete.me")) {
+			System.out.println("뽑은 가상주소 비교 : delete.me");
 			
-			
+			dispatcher = request.getRequestDispatcher("member/delete.jsp");
+			dispatcher.forward(request, response);
 			
 		}
+		
+		
+//		회원탈퇴하기
+		if (sPath.equals("/deletePro.me")) {
+			System.out.println("뽑은 가상주소 비교 : deletePro.me");
+			
+			memberService = new MemberService();
+			
+			MemberDTO memberDTO = memberService.userCheck(request);
+					
+			if (memberDTO != null) {
+				memberService.deleteMember(request);
+				
+				HttpSession session = request.getSession();
+				session.invalidate();
+				
+				response.sendRedirect("main.me");
+				
+			} else {
+//				아이디, 비밀번호 불일치 -> 경고 메시지다 -------------------------------수정
+				dispatcher = request.getRequestDispatcher("member/war.jsp");
+				dispatcher.forward(request, response);
+			}
+			
+		}
+		
+		
+//		아이디 중복체크
+		if (sPath.equals("/idCheck.me")) {
+			System.out.println("뽑은 가상주소 비교 : idCheck.me");
+			
+			
+			String id = request.getParameter("_6id");
+			System.out.println("받은 아이디 : " +id);
+			
+			memberService = new MemberService();
+			memberService.getMember(id);
+			
+			MemberDTO memberDTO = memberService.getMember(id);
+			
+			String result = "";
+			if (memberDTO != null) {
+				System.out.println("아이디 중복");
+				result = "아이디 중복입니다";
+			} else {
+				System.out.println("아이디 사용가능!");
+				result = "아이디 사용가능 합니다";
+			}
+			
+//			이동하지 않고 결과를 웹 화면에 출력
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter printWriter = response.getWriter();
+			printWriter.print(result);
+			printWriter.close();
+			
+		}
+		
+		
 		
 		
 		

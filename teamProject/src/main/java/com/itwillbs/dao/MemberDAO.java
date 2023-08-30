@@ -101,13 +101,162 @@ public class MemberDAO {
 		} finally {
 			dblClose();
 		}
+	}
+
+
+
+//	로그인 유저체크
+	public MemberDTO userCheck(MemberDTO memberDTO2) {
+		System.out.println("MemberDAO userCheck()");
 		
+		MemberDTO memberDTO = null;
 		
+		try {
+			
+			con = getConnection();
+			String sql = "select * from members where m_id = ? and m_pass = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, memberDTO2.getM_id());
+			pstmt.setString(2, memberDTO2.getM_pass());
+			
+			rs = pstmt.executeQuery();
+			
+//			첫번째 행으로 데이터 있으면 memberDTO 객체생성, set 메서드 호출,rs열 데이터 저장
+			if (rs.next() == true) {
+				memberDTO = new MemberDTO();
+				
+				memberDTO.setM_id(rs.getString("m_id"));
+				memberDTO.setM_pass(rs.getString("m_pass"));
+
+				System.out.println("로그인 성공!");
+				
+			} else {
+//				아이디, 비밀번호 불일치 -> 초기값 null -> 리턴
+				memberDTO = null;
+				
+				System.out.println("로그인 실패");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dblClose();
+		}
 		
+		return memberDTO;
+	}
+
+
+
+	
+//	
+	public MemberDTO getMember(String id) {
+		System.out.println("MemberDAO getMember()");
+		
+		MemberDTO memberDTO = null;
+		
+		try {
+			
+			con = getConnection();
+			
+			String sql = "select * from members where m_id = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			
+			rs = pstmt.executeQuery();
+			
+			if (rs.next() == true) {
+				memberDTO = new MemberDTO();
+				memberDTO.setM_num(rs.getInt("m_num"));
+				memberDTO.setM_id(rs.getString("m_id"));
+				memberDTO.setM_name(rs.getString("m_name"));
+				memberDTO.setM_nick(rs.getString("m_nick"));
+				memberDTO.setM_email(rs.getString("m_email"));
+				memberDTO.setM_phone(rs.getString("m_phone"));
+				memberDTO.setM_pass(rs.getString("m_pass"));
+				memberDTO.setM_date(rs.getTimestamp("m_date"));
+				memberDTO.setM_event(rs.getString("m_event"));
+				
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dblClose();
+		}
+		
+		return memberDTO;
+	}
+
+
+
+//	회원정보 변경
+	public void updateMember(MemberDTO memberDTO) {
+		System.out.println("MemberDAO updateMember()");
+
+		try {
+			
+			con = getConnection();
+			
+			String sql = "update members set m_pass = ?, m_nick = ?, m_email = ?, m_phone = ? where m_id = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, memberDTO.getM_pass());
+			pstmt.setString(2, memberDTO.getM_nick());
+			pstmt.setString(3, memberDTO.getM_email());
+			pstmt.setString(4, memberDTO.getM_phone());
+			pstmt.setString(5, memberDTO.getM_id());
+			
+			pstmt.executeUpdate();
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dblClose();
+		}
+	}
+
+
+
+	public void deleteMember(MemberDTO memberDTO) {
+		System.out.println("MemberDAO deleteMember()");
+		
+		try {
+
+			con = getConnection();
+			
+			String sql = "delete from members where m_id = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, memberDTO.getM_id());
+			
+			pstmt.executeUpdate();
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dblClose();
+		}
 		
 	}
 
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

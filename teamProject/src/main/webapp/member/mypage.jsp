@@ -75,12 +75,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="categories">
 					<h2>마이페이지</h2>
 					<ul class="cate"> <br>
-						<li><a href="mypage.jsp"><i class="fa fa-arrow-right" ></i>나의 정보</a></li>
-						<li><a href="buylist.jsp"><i class="fa fa-arrow-right"></i>구매 내역</a></li>
-						<li><a href="salelist.jsp"><i class="fa fa-arrow-right"></i>판매 내역</a></li>
+						<li><a href="mypage.me"><i class="fa fa-arrow-right" ></i>나의 정보</a></li>
+						<li><a href="buylist.me"><i class="fa fa-arrow-right"></i>구매 내역</a></li>
+						<li><a href="salelist.me"><i class="fa fa-arrow-right"></i>판매 내역</a></li>
 						<li><a href="product/checkout.jsp"><i class="fa fa-arrow-right"></i>찜♥</a></li>
-						<li><a href="qnalist.jsp"><i class="fa fa-arrow-right"></i>문의 내역</a></li>
-						<li><a href="delete.jsp"><i class="fa fa-arrow-right"></i>회원 탈퇴</a></li>
+						<li><a href="qnalist.me"><i class="fa fa-arrow-right"></i>문의 내역</a></li>
+						<li><a href="delete.me"><i class="fa fa-arrow-right"></i>회원 탈퇴</a></li>
  						<li><a href="#"><i class="fa fa-arrow-right"></i>회원 관리</a></li>  
 					</ul>
 				</div>											
@@ -109,11 +109,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="_6clearfix1"> 
 							<div class="_6clearfix"> 
 								<div align="center">
-									<input type="text" value=<%=memberDTO.getM_id() %> id="_6id" readonly="readonly"><br>
-									<input type="text" value=<%=memberDTO.getM_name() %> id="_6name" readonly="readonly"><br>
-									<input type="text" placeholder="닉네임 고정" required=" " id="_6nick" readonly="readonly"><br>
-									<input type="email" placeholder="이메일 고정" required=" " id="_6mail" readonly="readonly"><br>
-									<input type="tel" placeholder="전화번호 고정" required=" " id="_6phone" readonly="readonly">
+									<input type="text" value="<%=memberDTO.getM_id() %>" id="_6id" readonly="readonly"><br>
+									<input type="text" value="<%=memberDTO.getM_name() %>" id="_6name" readonly="readonly"><br>
+									<input type="text" value="<%=memberDTO.getM_nick() %>" id="_6nick" readonly="readonly"><br>
+									<input type="email" value="<%=memberDTO.getM_email()%>" id="_6mail" readonly="readonly"><br>
+									<input type="tel" value="<%=memberDTO.getM_phone() %>" id="_6phone" readonly="readonly">
 								</div>	
 							</div>
 						</div>
@@ -121,7 +121,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								
 					<div class="snipcart-details top_brand_home_details">
 						<fieldset>
-							<input type="button" name="submit" value="회원정보수정" class="button" onclick="location.href='update.jsp'">
+							<input type="button" name="submit" value="회원정보수정" class="button" onclick="location.href='updatePro.me'">
 						</fieldset>
 						</div>
 				</form>

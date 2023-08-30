@@ -65,6 +65,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 <!-- //breadcrumbs -->
 
+<%
+String m_id = (String)session.getAttribute("m_id");
+%>
+
+
 
 <!-- 로그인 화면 -->
 	<div class="login">

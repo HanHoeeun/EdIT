@@ -48,8 +48,106 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		});
 	});
 </script>
+
+
+<!-- 카카오 테스트1 -->
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script type="text/javascript">
+kakao.init('abe7984fd16d1fc768372dce3dec7c60');
+$("#kakao-login-btn").on("click", function(){
+    //1. 로그인 시도
+    Kakao.Auth.login({
+        success: function(authObj) {
+         
+          //2. 로그인 성공시, API 호출
+          Kakao.API.request({
+            url: '/v2/user/me',
+            success: function(res) {
+              console.log(res);
+              var id = res.id;
+			  scope : 'account_email';
+			alert('로그인성공');
+              location.href="main.me";
+		
+
+            
+        }
+          })
+          console.log(authObj);
+          var token = authObj.access_token;
+        },
+        fail: function(err) {
+          alert(JSON.stringify(err));
+        }
+      });
+        
+}) //
+
+
+
+
+
+</script>
+
+
+
+
+<!-- 카카오 로그인 테스트 중입니다. -->
+<!-- 카카오 로그인 연동  -->
+<!-- 둘 중 뭐를 써야하지..?? -->
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<!-- <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script> -->
+
+<script>
+// Kakao.init('abe7984fd16d1fc768372dce3dec7c60'); //js토큰키 사용(내 고유 토큰키)
+// console.log(Kakao.isInitialized()); // sdk초기화 여부 판단
+// //카카오로그인
+// function kakaoLogin() {
+//     Kakao.Auth.login({
+//       success: function (res) {
+//         Kakao.API.request({
+//           url: '/v2/user/me',
+//           success: function (res) {
+//         	  sessionStorage.setItem("id",res.id); //session에 카카오로그인 아이디 담음
+//         	  var id = sessionStorage.getItem("id");
+//         	  $.ajax({
+// 				  url : "./AjaxAction.aj",
+// 				  data: {"id": id},
+// 				  success:function(data){
+// 					  const result = $.trim(data);
+// 					  if(result=="yes"){
+// 						alert('회원정보가 없습니다. 회원가입페이지로 이동합니다.');
+// 						location.href="./registered3.me?id="+id;
+					  
+// 					  }else if ( result=="no"){
+// 					 	alert('코드리스 회원입니다.');
+// 					 	location.href="./KakaoLogin.me?id="+id; //페이지 이동해서 데이터(db에서 id값만 갖고와도 로그인 성공하도록 해야함!!)
+				
+// 					  }
+// 				  }//success 
+// 			  });// ajax
+        	  
+//           },
+//           fail: function (error) {
+//             console.log(error)
+//           },
+//         })
+//       },
+//       fail: function (error) {
+//         console.log(error)
+//       },
+//     })
+//   }
+</script>
+<!-- // 카카오 로그인 연동  -->
+<!-- 카카오로그인 테스트중입니다. -->
+
+
+
+
 <!-- start-smoth-scrolling -->
 </head>
+	
 	
 <body>
 <!-- header -->
@@ -67,24 +165,31 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 <!-- //breadcrumbs -->
 
+
+
 <!-- ================================ 로그인 화면 ================================ -->
 	<div class="login">
 		<div class="container">
 			<h2>로그인</h2>
 
 			<div class="login-form-grids animated wow slideInUp" data-wow-delay=".5s">
-				<form>
-					<input type="text" placeholder="아이디" required=" " >
-					<input type="password" placeholder="비밀번호" required=" " >
+			
+				<form action="loginPro.me" method="post">
+					<input type="text" placeholder="아이디" required=" " id="_5id" name="_5id">
+					<input type="password" placeholder="비밀번호" required=" " id="_5pass" name="_5pass">
 					<input type="submit" value="로그인">
-					
+				</form>
+				
+				
+				
+				
 <!-- 아이디/비밀번호 찾기/회원가입 -->					
 					<div class="_5forgot">
-						<a href="findid_3.jsp">아이디</a>
+						<a href="findid.me">아이디</a>
 						|
-						<a href="findpw_3.jsp">비밀번호 찾기</a>
+						<a href="findpw.me">비밀번호 찾기</a>
 						|
-						<a href="registered_3.jsp">회원가입</a>
+						<a href="insert.me">회원가입</a>
 					</div>	
 <!-- // 아이디/비밀번호 찾기/회원가입 -->		
 				
@@ -100,21 +205,40 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					
 <!-- // or 표시 -->			
 
+<!-- <div class="_5login-kakao">	 -->
+
+
+<!-- 카카오 로그인 버튼 -->
+	<div class="_5login-kakao">
+	<a href="javascript:void(0)">
+      <img onclick="kakaoLogin();" src="//k.kakaocdn.net/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg"  
+      width="100%;" height="50%;"  style="margin-top: 15px; padding-inline: 50px;" />
+      </a>
+</div>			
+</div>
+</form>		
+</div>
+</div>
+		
+		
+	
 		
 <!-- sns로그인 -->
-					<div class="_5login-naver">
-						<a href="#"><img class="_5naver" src="../images/naver_5.png">네이버로 로그인하기</a>
-					</div>
-					
-					<div class="_5login-kakao">	
-						<a href="#"><img class="_5kakao" src="../images/kakao_5.png">카카오로 로그인하기</a>
-					</div>				
-				</form>
-			</div>
+<!-- 					<div class="_5login-naver"> -->
+<!-- 						<a href="#"><img class="_5naver" src="../images/naver_5.png">네이버로 로그인하기</a> -->
+<!-- 					</div> -->
+		
+<!-- 					<div class="_5login-kakao">	 -->
+<!-- 						<a href="#"><img class="_5kakao" src="../images/kakao_5.png">카카오로 로그인하기</a> -->
+<!-- 					</div>				 -->
+<!-- 				</form> -->
+<!-- 			</div> -->
+			
+	
+
 <!-- 			이거는 넣을지 말지 고민 좀... -->
 <!-- 			<p><a href="registered.jsp">회원가입</a> <a href="index.jsp">홈<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></p> -->
-		</div>
-	</div>
+	
 <!-- ================================ // 로그인 화면 ================================ -->
 
 <!-- 푸터 들어가는 곳! -->
