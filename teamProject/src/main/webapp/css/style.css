@@ -5,6 +5,19 @@ License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 --*/ */
 
+/* Breadcrumbs 스타일 */
+.breadcrumbs {
+    padding: 20px 0; /* 위아래로 20px의 여백 추가 */
+    background-color: #f5f5f5;
+}
+
+/* 카테고리 스타일 */
+.categories {
+    margin-top: 20px; /* 위쪽으로 20px의 여백 추가 */
+    border: 1px solid #999;
+    padding: 10px;
+}
+
 .container_100{
 	width: 100%;
 }

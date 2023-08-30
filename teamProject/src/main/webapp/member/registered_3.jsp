@@ -67,49 +67,47 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 <!-- //breadcrumbs -->
 
-
-
-
-
 <!-----------------------------------------------------------회원가입 시작------------------------------------------------------------------ -->
 		<div class="register">
 		<div class="container">
 			<h2>회원가입</h2>
 			<div class="login-form-grids">
 				<h5>회원정보등록</h5>
-				<form action="insertPro.me" method="post">
-					<input type="text" placeholder="아이디 (영문/숫자, 6~20자)" required=" " id="_6id">
-					<input type="text" placeholder="비밀번호 (영문+숫자+특수문자, 8~20자)" required=" " id="_6pass1">
-					<input type="text" placeholder="비밀번호 확인" required=" "  id="_6pass2"> <br>
-					<input type="text" placeholder="이름 (최소 2자 이상 입력)" required=" " id="_6name"><br>
-					<input type="text" placeholder="닉네임 (최소 2자 이상 입력)" required=" " id="_6nick"><br>
-					<input type="email" placeholder="이메일" required=" " id="_6mail"><br>
-					<input type="tel" placeholder="전화번호" required=" " id="_6tel"><br><br>
+				
+				<form action="insertPro.me" method="post" id="_6join">
+					<input type="text" placeholder="아이디 (영문/숫자, 6~20자)" required=" " id="_6id" name="_6id">
+					<input type="text" placeholder="비밀번호 (영문+숫자+특수문자, 8~20자)" required=" " id="_6pass1" name="_6pass1">
+					<input type="text" placeholder="비밀번호 확인" required=" "  id="_6pass2" name="_6pass2"> <br>
+					<input type="text" placeholder="이름 (최소 2자 이상 입력)" required=" " id="_6name" name="_6name"><br>
+					<input type="text" placeholder="닉네임 (최소 2자 이상 입력)" required=" " id="_6nick" name="_6nick"><br>
+					<input type="email" placeholder="이메일" required=" " id="_6mail" name="_6email"><br>
+					<input type="tel" placeholder="전화번호" required=" " id="_phone" name="_6phone"><br><br>
 
-
-
+					<label></label>
+					<div class="divdup"></div>
+					<br>
 
 					<div class="register-check-box">
 						<div class="check">
-							<label class="checkbox"><input type="checkbox" name="checkbox"><i> </i>이메일로 소식 받기</label>
+							<label class="checkbox"><input type="checkbox" name="_6event" value="email"><i> </i>이메일로 소식 받기</label>
 						</div>
 					</div>
 					<div class="register-check-box">
 						<div class="check">
-							<label class="checkbox"><input type="checkbox" name="checkbox"><i> </i>SMS로 소식 받기</label>
+							<label class="checkbox"><input type="checkbox" name="_6event" value="sms"><i> </i>SMS로 소식 받기</label>
 						</div>
 					</div>
 					
 					<div class="register-check-box">
 						<div class="check">
-							<label class="checkbox"><input type="checkbox" name="checkbox"><i> </i>EdIT의 <span>이용약관 동의</span>하기</label><br>
+							<label class="checkbox"><input type="checkbox" name="_6check"><i> </i>EdIT의 <span>이용약관 동의</span>하기</label><br>
 						</div>
 					</div>
 					<input type="submit" value="회원가입">
 				</form>
 			</div>
 			<div class="register-home">
-				<a href="../main.jsp">Home</a>
+				<a href="main.me">Home</a>
 			</div>
 		</div>
 	</div>
@@ -117,6 +115,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-----------------------------------------------------------회원가입 끝------------------------------------------------------------------ -->
 
 
+<!-- 제이쿼리 -->
+<script type="text/javascript" src="script/jquery-3.7.0.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#_6id').keyup(function() {
+			$.ajax({
+				url:'idCheck.me',
+				data:{'_6id':$('._6id').val() },
+				success:function (result) {
+					$('.divdup').html(result);
+				}
+			}) //$.ajax
+		}) // $('#_6id').keyup
+	}) // $(document)
+	
+
+</script>
 
 
 

@@ -63,18 +63,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="col-md-3 w3_footer_grid">
 					<h3>카테고리</h3>
 					<ul class="info"> 
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="main.jsp">홈페이지</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="groceries.po">노트북</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="household.po">휴대폰</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="personalcare.po">태블릿</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="main.me">홈페이지</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="laptop.po">노트북</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="phone.po">휴대폰</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="tablet.po">태블릿</a></li>
 					</ul>
 				</div>
 				<div class="col-md-3 w3_footer_grid">
 					<h3>프로필</h3>
 					<ul class="info"> 
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="checkout.po">찜리스트</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="<%=request.getContextPath() %>/member/login.jsp">로그인</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="<%=request.getContextPath() %>/member/registered_3.jsp">회원가입</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="wishlist.po">찜리스트</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="login.me">로그인</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="insert.me">회원가입</a></li>
 					</ul>
 				</div>
 				<div class="clearfix"> </div>
@@ -92,6 +92,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 		
 	</div>	
-	
+	 <!-- 이미지 출력 -->
+    <img src="${imagePath}" alt="Image">
+    <!--  이미지 출력  -->
 </body>
 </html>

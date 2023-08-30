@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -11,6 +13,7 @@ import javax.sql.DataSource;
 
 
 import com.itwillbs.domain.AdminDTO;
+import com.itwillbs.domain.AdminPageDTO;
 
 public class AdminDAO {
 	Connection con = null;
@@ -61,5 +64,58 @@ public class AdminDAO {
 		}finally {
 			this.dbClose();
 		}
+	}
+	public List<AdminDTO> getBoardListSearch(AdminPageDTO pageDTO) {
+		List<AdminDTO> adminList = null;
+		try {
+			con = this.getConnection();
+//			limit start, pagesize; 	start 에서 시작해서 pagesize 개수만큼 출력 
+			String sql = "select * from test_1 where a_m_nick like ? order by a_num desc limit ?, ?";
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, "%"+pageDTO.getSearch()+"%");
+			
+			pstmt.setInt(2, pageDTO.getStartRow()-1); // 시작하는 행 -1 
+			pstmt.setInt(3, pageDTO.getPageSize()); // 몇개
+			
+			rs = pstmt.executeQuery();
+			adminList = new ArrayList<>();
+			while(rs.next()) {
+				AdminDTO adminDTO = new AdminDTO();
+				adminDTO.setA_num(rs.getInt("a_num"));
+				adminDTO.setA_title(rs.getString("a_title"));
+				adminDTO.setA_m_nick(rs.getString("a_m_nick"));
+				adminDTO.setA_date(rs.getTimestamp("a_date"));
+				
+				adminList.add(adminDTO);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			this.dbClose();
+		}
+		
+		return adminList;
+		
+	}
+	public int getBoardCountSearch(AdminPageDTO pageDTO) {
+int count = 0;
+		
+		try {
+			con = this.getConnection();
+			String sql = "select count(*) as count from test_1 where a_m_nick like ? ";
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, "%"+pageDTO.getSearch()+"%");
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt("count");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return count;
 	}
 }

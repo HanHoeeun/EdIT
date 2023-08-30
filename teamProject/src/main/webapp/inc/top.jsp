@@ -62,35 +62,52 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="agile-login">
 				<ul>
 <!-- <<<<<<< HEAD >>>>>> -->
-					<li><a href="registered_3.jsp"><i class="fa fa-sign-in" aria-hidden="true"> 회원가입</i></a></li>
-				
-					<%if(1==2){ %>
-					<li><a href="registered.jsp"><i class="fa fa-sign-in" aria-hidden="true"> 회원가입</i></a></li>
-					<%if(1==2){ %>
-					<li><a href="registered.jsp"><i class="fa fa-sign-in" aria-hidden="true"> 회원가입</i></a></li>
-					<li><a href="login.jsp"><i class="fa fa-user" aria-hidden="true"> 로그인</i></a></li>
-
+<% 
+					String id = (String)session.getAttribute("m_id"); 
+					if (id == null) { %>
+					<li><a href="insert.me"><i class="fa fa-sign-in" aria-hidden="true"> 회원가입</i></a></li>
+					<li><a href="login.me"><i class="fa fa-user" aria-hidden="true"> 로그인</i></a></li>
+<%					
+					} else { %>
 					<li><a href="contact.jsp"><i class="fa fa-question-circle-o" aria-hidden="true"> 문의하기</i></a></li>
 					<li><a href="productReg.po"><i class="fa fa-plus-circle" aria-hidden="true"> 상품등록</i></a></li>
-					<%} %> 
-					
-					<%if(2==1){ %>
+									
 					<li><a href="adminPage.ad"><i class="fa fa-user" aria-hidden="true"> 마이 페이지</i></a></li>
 					<li><a href="../product/productReg.jsp"><i class="fa fa-plus-circle" aria-hidden="true"> 상품등록</i></a></li>
 					
-					<%} %>
-					<%if(1==1){ %>
 					<li><a href="adminPage.ad"><i class="fa fa-user" aria-hidden="true"> 관리자 페이지</i></a></li>
-					<%} }%>
 					<li><a href="faq.ad"><i class="fa fa-question-circle-o" aria-hidden="true"> 문의하기</i></a></li>
-					<li><a href="../product/productReg.jsp"><i class="fa fa-plus-circle" aria-hidden="true"> 상품등록</i></a></li>
 
-					<!-- <li><a href="../product/checkout.jsp"><i class="fa fa-heart" aria-hidden="true"> 찜리스트 </i></a></li> -->
+					<li><a href="../product/wishlist.jsp"><i class="fa fa-heart" aria-hidden="true"> 찜리스트 </i></a></li>
+					
+					
+<% 					
+					}
+%>
+
+<!-- 	---------------혹시 몰라 복사 해놓고 주석처리 -------- -->
+					
+<%-- 					<%if(1==2){ %> --%>
+<!-- 					<li><a href="adminPage.ad"><i class="fa fa-user" aria-hidden="true"> 마이 페이지</i></a></li> -->
+<!-- 					<li><a href="../product/productReg.jsp"><i class="fa fa-plus-circle" aria-hidden="true"> 상품등록</i></a></li> -->
+					
+<%-- 					<%} %> --%>
+<%-- 					<%if(1==1){ %> --%>
+<!-- 					<li><a href="adminPage.ad"><i class="fa fa-user" aria-hidden="true"> 관리자 페이지</i></a></li> -->
+<%-- 					<%} %> --%>
+<!-- 					<li><a href="faq.ad"><i class="fa fa-question-circle-o" aria-hidden="true"> 문의하기</i></a></li> -->
+
+					<!-- <li><a href="../product/wishlist.jsp"><i class="fa fa-heart" aria-hidden="true"> 찜리스트 </i></a></li> -->
+					
+<!-- 	---------------혹시 몰라 복사 해놓고 주석처리 -------- -->
+					
+					
+					
 				</ul>
 			</div>
 			<!-- <!-- 얘도 그냥 위에 처럼 리스트 내에 내장 시켜서 하이퍼링크 거는건 어떤지..? -->
 			 <div class="product_list_header">   
-					<form action="checkout.po" method="post" class="last"> 
+					<form action="wishlist.po" method="post" class="last"> 
 						<input type="hidden" name="cmd" value="_cart">
 						<input type="hidden" name="display" value="1">
 						<button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-heart" aria-hidden="true"></i></button>
@@ -141,30 +158,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div> 
 							<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
 								<ul class="nav navbar-nav">
-									<li class="active"><a href="main.jsp" class="act">Home</a></li>	
+									<li class="active"><a href="main.me" class="act">Home</a></li>	
 									<!-- Mega Menu -->
 									<!-- Mega Menu -->
 									<!-- 노트북 -->
 									<li class="dropdown">
-										<a href="groceries.po">노트북</a>
+										<a href="laptop.po">노트북</a>
 									</li>
 									<!-- // 노트북 -->
 									
 									<!-- 휴대폰 -->
 									<li class="dropdown">
-										<a href="household.po">휴대폰</a>
+										<a href="phone.po">휴대폰</a>
 									</li>
 									<!-- // 휴대폰 -->
 									
 									<!-- 태블릿 -->
 									<li class="dropdown">
-										<a href="personalcare.po">태블릿</a>
+										<a href="tablet.po">태블릿</a>
 									</li>
 									<!-- // 태블릿 -->
 									
 									<!-- //Mega Menu -->
-									
-									<li><a href="faq.ad">Contact</a></li>
+									<li><a href="notice.no">공지사항</a></li>
+									<li><a href="faq.ad">고객센터</a></li>
 								</ul>			
 							</div>
 							</nav>

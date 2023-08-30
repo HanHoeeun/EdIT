@@ -1,3 +1,4 @@
+<%@page import="com.itwillbs.domain.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -74,12 +75,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="categories">
 					<h2>마이페이지</h2>
 					<ul class="cate"> <br>
-						<li><a href="mypage.jsp"><i class="fa fa-arrow-right" ></i>나의 정보</a></li>
-						<li><a href="buylist.jsp"><i class="fa fa-arrow-right"></i>구매 내역</a></li>
-						<li><a href="salelist.jsp"><i class="fa fa-arrow-right"></i>판매 내역</a></li>
+						<li><a href="mypage.me"><i class="fa fa-arrow-right" ></i>나의 정보</a></li>
+						<li><a href="buylist.me"><i class="fa fa-arrow-right"></i>구매 내역</a></li>
+						<li><a href="salelist.me"><i class="fa fa-arrow-right"></i>판매 내역</a></li>
 						<li><a href="product/checkout.jsp"><i class="fa fa-arrow-right"></i>찜♥</a></li>
-						<li><a href="qnalist.jsp"><i class="fa fa-arrow-right"></i>문의 내역</a></li>
-						<li><a href="delete.jsp"><i class="fa fa-arrow-right"></i>회원 탈퇴</a></li>
+						<li><a href="qnalist.me"><i class="fa fa-arrow-right"></i>문의 내역</a></li>
+						<li><a href="delete.me"><i class="fa fa-arrow-right"></i>회원 탈퇴</a></li>
  						<li><a href="#"><i class="fa fa-arrow-right"></i>회원 관리</a></li>  
 					</ul>
 				</div>											
@@ -99,18 +100,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 				</div>
 				
+<% 
+			MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
+%>				
 				
-				
-				<form action="update.jsp" method="post">
+				<form action="update.me" method="post">
 					<div class="hover14 column">
 						<div class="_6clearfix1"> 
 							<div class="_6clearfix"> 
 								<div align="center">
-									<input type="text" placeholder="아이디 고정" required=" " id="_6id" readonly="readonly"><br>
-									<input type="text" placeholder="이름 고정" required=" " id="_6name" readonly="readonly"><br>
-									<input type="text" placeholder="닉네임 고정" required=" " id="_6nick" readonly="readonly"><br>
-									<input type="email" placeholder="이메일 고정" required=" " id="_6mail" readonly="readonly"><br>
-									<input type="tel" placeholder="전화번호 고정" required=" " id="_6tel" readonly="readonly">
+									<input type="text" value="<%=memberDTO.getM_id() %>" id="_6id" readonly="readonly"><br>
+									<input type="text" value="<%=memberDTO.getM_name() %>" id="_6name" readonly="readonly"><br>
+									<input type="text" value="<%=memberDTO.getM_nick() %>" id="_6nick" readonly="readonly"><br>
+									<input type="email" value="<%=memberDTO.getM_email()%>" id="_6mail" readonly="readonly"><br>
+									<input type="tel" value="<%=memberDTO.getM_phone() %>" id="_6phone" readonly="readonly">
 								</div>	
 							</div>
 						</div>

@@ -1,3 +1,4 @@
+<%@page import="com.itwillbs.domain.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -96,7 +97,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 					</div>
 					
-	
+<%
+	MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
+%>
 	
 					
 				<form action="updatePro.me" method="post">
@@ -104,7 +107,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="_6clearfix1"> 
 							<div class="_6clearfix"> 
 								<div align="center">
-									<input type="text" placeholder="아이디가 나타날것임 고정" required=" " id="_6id" readonly="readonly"><br>
+									<input type="text" value="<%=memberDTO.getM_id() %>" id="_6id" readonly="readonly"><br>
 									<input type="text" placeholder="현재비밀번호" required=" " id="_6pass1"><br>
 									<input type="text" placeholder="새비밀번호" required=" "  id="_6pass2"> <br>
 									<input type="text" placeholder="새비밀번호 확인" required=" "  id="_6pass2"><br> 
