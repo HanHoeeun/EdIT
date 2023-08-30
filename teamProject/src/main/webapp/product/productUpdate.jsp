@@ -1,3 +1,4 @@
+<%@page import="com.itwillbs.domain.ProductDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -65,6 +66,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 <!-- //breadcrumbs -->
 
+<%
+String m_id = (String)session.getAttribute("m_id");
+ProductDTO productDTO=(ProductDTO)request.getAttribute("productDTO");
+%>
+
 
 <!-- register -->
 	<div class="register">
@@ -76,26 +82,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<h5>상품 정보</h5>
 				
 				<!-- 상품 제목, 가격, 상품설명 -->
-				<form action="#" method="post">
-					<input type="text" name="_title" placeholder="제목을 입력하세요..." required=" " >
-					<input type="text" name="_2price" placeholder="가격을 입력하세요..." required=" " >
-					<textarea name="_2detail" placeholder="상품설명을 입력하세요... " id="_2detail" rows="10" cols="50" style="width: 428px" maxlength="400" required=" "></textarea>
+				<form action="productUpdatePro.po" method="post" enctype="multipart/form-data">
+					<input type="hidden" value="2" name="p_num">
+					<input type="text" name="p_title" placeholder="제목을 입력하세요..." value="<%=productDTO.getP_title()%>">
+					<input type="text" name="p_price" placeholder="가격을 입력하세요..." value="<%=productDTO.getP_price()%>">
+					<textarea name="p_detail" placeholder="상품설명을 입력하세요..." id="p_detail" rows="10" cols="50" style="width: 428px" maxlength="400" ><%=productDTO.getP_detail()%></textarea>
 				<!-- // 상품 제목, 가격, 상품설명 -->
 
 				<!-- 상품카테고리, 상품상태 -->
 				<div class="register-check-box">
 					<div style="display: flex;">
-						<select name="_2type" id="_2type" required style="width: 122px; height: 38px; padding: 10px 10px 10px 10px;  margin: 1em 0;">
-						    <option value="">카테고리</option>
-						    <option value="1">노트북</option>
-						    <option value="2">테블릿</option>
-						    <option value="3">휴대폰</option>
+						<select name="p_type" id="p_type"  style="width: 122px; height: 38px; padding: 10px 10px 10px 10px;  margin: 1em 0;">
+						    <option value="laptop">노트북</option>
+						    <option value="tablet">테블릿</option>
+						    <option value="phone">휴대폰</option>
 						</select>
 						
-						<select name="_2status" id="_2status" required style="width: 122px; height: 38px; margin: 1em 10px;">
-						    <option value="">상품상태</option>
-						    <option value="1" selected>판매중</option>
-						    <option value="2">거래완료</option>
+						<select name="p_status" id="p_status"  style="width: 122px; height: 38px; margin: 1em 10px;">
+						    <option value="sell">판매중</option>
+						    <option value="selled">거래완료</option>
 						</select>
 					</div>
 				</div>
@@ -105,7 +110,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<br>
 					<b>★상품이미지 첨부</b>
 					<br>
-					<input type="file" name="_2iname" id="_2iname" maxlength="4000" style="padding: 10px 10px 10px 10px;">
+					<input type="file" name="p_file" id="p_file" maxlength="4000" style="padding: 10px 10px 10px 10px;">
+					<input type="hidden" name="oldfile" value="<%=productDTO.getP_file()%>">
+					<%=productDTO.getP_file()%>
 				
 					<!-- 수정하기 버튼 -->
 					<input type="submit" value="수정하기">
