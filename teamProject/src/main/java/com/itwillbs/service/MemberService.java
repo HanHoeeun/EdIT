@@ -92,7 +92,26 @@ public class MemberService {
 		}
 		
 		
-		return null;
+		return memberDTO;
+	}
+
+
+	public MemberDTO getMember(String id) {
+		System.out.println("MemberService userCheck()");
+		
+		MemberDTO memberDTO = null;
+		
+		try {
+			
+			memberDAO = new MemberDAO();
+			memberDTO = memberDAO.getMember(id);
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return memberDTO;
 	}
 	
 

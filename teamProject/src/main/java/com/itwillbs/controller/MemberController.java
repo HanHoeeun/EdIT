@@ -122,8 +122,23 @@ public class MemberController extends HttpServlet{
 		
 		
 		
-		if (sPath.equals("/update.me")) {
-			System.out.println("뽑은 가상주소 비교 : update.me");
+//		회원정보확인
+		if (sPath.equals("/mypage.me")) {
+			System.out.println("뽑은 가상주소 비교 : mypage.me");
+			
+//			DB의 나의 정보 조회
+			HttpSession session = request.getSession();
+			String id = (String)session.getAttribute("m_id");
+			
+
+			memberService = new MemberService();
+			MemberDTO memberDTO =  memberService.getMember(id);
+			
+			request.setAttribute("memberDTO", memberDTO);
+			
+			
+			dispatcher = request.getRequestDispatcher("member/mypage.jsp");
+			dispatcher.forward(request, response);
 			
 			
 			

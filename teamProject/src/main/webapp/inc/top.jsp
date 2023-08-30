@@ -62,29 +62,47 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="agile-login">
 				<ul>
 <!-- <<<<<<< HEAD >>>>>> -->
-					<li><a href="insert.me"><i class="fa fa-sign-in" aria-hidden="true"> 회원가입</i></a></li>
-				
-					<li><a href="insert.me"><i class="fa fa-sign-in" aria-hidden="true"> 회원가입</i></a></li>
+<% 
+					String id = (String)session.getAttribute("m_id"); 
+					if (id == null) { %>
 					<li><a href="insert.me"><i class="fa fa-sign-in" aria-hidden="true"> 회원가입</i></a></li>
 					<li><a href="login.me"><i class="fa fa-user" aria-hidden="true"> 로그인</i></a></li>
-
+<%					
+					} else { %>
 					<li><a href="contact.jsp"><i class="fa fa-question-circle-o" aria-hidden="true"> 문의하기</i></a></li>
-					<li><a href="productReg.po"><i class="fa fa-plus-circle" aria-hidden="true"> 상품등록</i></a></li>=======
-					
-					<%if(1==2){ %>
+					<li><a href="productReg.po"><i class="fa fa-plus-circle" aria-hidden="true"> 상품등록</i></a></li>
+									
 					<li><a href="adminPage.ad"><i class="fa fa-user" aria-hidden="true"> 마이 페이지</i></a></li>
 					<li><a href="../product/productReg.jsp"><i class="fa fa-plus-circle" aria-hidden="true"> 상품등록</i></a></li>
 					
-					<%} %>
-					<%if(1==1){ %>
 					<li><a href="adminPage.ad"><i class="fa fa-user" aria-hidden="true"> 관리자 페이지</i></a></li>
-					<%} %>
 					<li><a href="faq.ad"><i class="fa fa-question-circle-o" aria-hidden="true"> 문의하기</i></a></li>
 
-<<<<<<< HEAD
+					<li><a href="../product/wishlist.jsp"><i class="fa fa-heart" aria-hidden="true"> 찜리스트 </i></a></li>
+					
+					
+<% 					
+					}
+%>
+
+<!-- 	---------------혹시 몰라 복사 해놓고 주석처리 -------- -->
+					
+<%-- 					<%if(1==2){ %> --%>
+<!-- 					<li><a href="adminPage.ad"><i class="fa fa-user" aria-hidden="true"> 마이 페이지</i></a></li> -->
+<!-- 					<li><a href="../product/productReg.jsp"><i class="fa fa-plus-circle" aria-hidden="true"> 상품등록</i></a></li> -->
+					
+<%-- 					<%} %> --%>
+<%-- 					<%if(1==1){ %> --%>
+<!-- 					<li><a href="adminPage.ad"><i class="fa fa-user" aria-hidden="true"> 관리자 페이지</i></a></li> -->
+<%-- 					<%} %> --%>
+<!-- 					<li><a href="faq.ad"><i class="fa fa-question-circle-o" aria-hidden="true"> 문의하기</i></a></li> -->
+
 					<!-- <li><a href="../product/wishlist.jsp"><i class="fa fa-heart" aria-hidden="true"> 찜리스트 </i></a></li> -->
-=======
->>>>>>> branch 'master' of https://github.com/HanHoeeun/EdIT.git
+					
+<!-- 	---------------혹시 몰라 복사 해놓고 주석처리 -------- -->
+					
+					
+					
 				</ul>
 			</div>
 			<!-- <!-- 얘도 그냥 위에 처럼 리스트 내에 내장 시켜서 하이퍼링크 거는건 어떤지..? -->
