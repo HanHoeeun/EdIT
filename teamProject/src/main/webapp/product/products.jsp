@@ -117,7 +117,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <figure>
                         <div class="snipcart-item block">
                             <div class="snipcart-thumb">
-                                <a href="single.po"><img title=" " alt=" " src="./proImg/img1_07.png" width="150px" height="150px"></a>
+                                <a href="single.po"><img title=" " alt=" " src="upload/<%=productDTO.getP_file() %>"  width="150px" height="150px" download><%= productDTO.getP_file() %></a>
                                 <p><%=productDTO.getP_title() %></p>
                                 <h4><%= productDTO.getP_price() %></h4>
                                 <h6><%= productDTO.getP_status() %></h6>
