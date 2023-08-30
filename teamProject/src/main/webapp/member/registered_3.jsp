@@ -78,15 +78,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="login-form-grids">
 				<h5>회원정보등록</h5>
 				
-				<form action="insertPro.me" method="post">
+				<form action="insertPro.me" method="post" id="_6join">
 					<input type="text" placeholder="아이디 (영문/숫자, 6~20자)" required=" " id="_6id" name="_6id">
 					<input type="text" placeholder="비밀번호 (영문+숫자+특수문자, 8~20자)" required=" " id="_6pass1" name="_6pass1">
 					<input type="text" placeholder="비밀번호 확인" required=" "  id="_6pass2" name="_6pass2"> <br>
 					<input type="text" placeholder="이름 (최소 2자 이상 입력)" required=" " id="_6name" name="_6name"><br>
 					<input type="text" placeholder="닉네임 (최소 2자 이상 입력)" required=" " id="_6nick" name="_nick"><br>
-					<input type="email" placeholder="이메일" required=" " id="_6mail" name="_6mail"><br>
+					<input type="email" placeholder="이메일" required=" " id="_6mail" name="_6email"><br>
 					<input type="tel" placeholder="전화번호" required=" " id="_6tel" name="_6phone]"><br><br>
 
+					<label></label>
+					<div class="divdup"></div>
+					<br>
 
 					<div class="register-check-box">
 						<div class="check">
@@ -116,6 +119,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-----------------------------------------------------------회원가입 끝------------------------------------------------------------------ -->
 
 
+<!-- 제이쿼리 -->
+<script type="text/javascript" src="script/jquery-3.7.0.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#_6id').keyup(function() {
+			$.ajax({
+				url:'idCheck.me',
+				data:{'_6id':$('._6id').val() },
+				success:function (result) {
+					$('.divdup').html(result);
+				}
+			}) //$.ajax
+		}) // $('#_6id').keyup
+	}) // $(document)
+	
+
+</script>
 
 
 

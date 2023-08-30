@@ -20,10 +20,9 @@ public class ProductDAO {
 	ResultSet rs = null;
 	
 	//1,2 단계 디비 연결 메서드  정의 => 필요로 할때 호출 사용
-	public Connection getConnection () throws Exception{
+	public Connection getConnection() throws Exception {
 		Context init = new InitialContext();
-		DataSource ds=
-		(DataSource)init.lookup ("java:comp/env/jdbc/cld2304t4");
+		DataSource ds= (DataSource)init.lookup("java:comp/env/jdbc/c1d2304t4");
 		con=ds.getConnection();
 		return con;
 	}
@@ -38,13 +37,14 @@ public class ProductDAO {
 
 	public List<ProductDTO> getProductList(ProductPageDTO ppageDTO) {
 		System.out.println("ProductDAO getProductList()");
-		List<ProductDTO> productList = null;
+		List<ProductDTO> productList = new ArrayList<>(); 
+		int size = productList.size();
 		try {
 			//1,2 단계 디비 연결 
 			con = getConnection();
 			//3 sql  => mysql 제공 => limit 시작행-1, 몇개
 //			String sql="select * from board order by num desc";
-			String sql="select * from products order by num desc limit ?, ?";
+			String sql="select * from products order by p_num desc limit ?, ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, ppageDTO.getP_startRow()-1);//시작행-1
 			pstmt.setInt(2, ppageDTO.getP_pageSize());//몇개
@@ -52,15 +52,17 @@ public class ProductDAO {
 			rs = pstmt.executeQuery();
 			// boardList 객체생성
 			productList = new ArrayList<>();
+			size = productList.size();
 			//5 결과 행접근 => BoardDTO객체생성 => set호출(열접근저장)
-			// => 배열 한칸에 저장
 			while(rs.next()) {
-				ProductDTO productDTO =new ProductDTO();
+				ProductDTO productDTO = new ProductDTO();
+				productDTO.setP_num(rs.getInt("p_num"));
 				productDTO.setP_title(rs.getString("p_title"));
 				productDTO.setP_type(rs.getString("p_type"));
 				productDTO.setP_price(rs.getInt("p_price"));
-			
-				// => 배열 한칸에 저장
+				productDTO.setP_status(rs.getString("p_status"));
+				productDTO.setP_file(rs.getString("p_file"));
+			// => 배열 한칸에 저장
 				productList.add(productDTO); 
 		}
 		}catch (Exception e) {
