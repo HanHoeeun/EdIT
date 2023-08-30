@@ -116,6 +116,8 @@ public class MemberService {
 	}
 
 
+	
+//	회원정보 수정
 	public void updateMember(HttpServletRequest request) {
 		System.out.println("MemberService updateMember()");
 		
@@ -133,10 +135,48 @@ public class MemberService {
 			String phone = request.getParameter("_6phone");
 			
 			MemberDTO memberDTO = new MemberDTO();
+			memberDTO.setM_id(id);
+			memberDTO.setM_pass(pass1);
+			memberDTO.setM_pass(pass2);
+			memberDTO.setM_pass(pass3);
+			memberDTO.setM_name(name);
+			memberDTO.setM_nick(nick);
+			memberDTO.setM_email(email);
+			memberDTO.setM_phone(phone);
+			
+			memberDAO = new MemberDAO();
+			memberDAO.updateMember(memberDTO);
 			
 			
 			
 			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+
+	
+	
+	
+	
+	public void deleteMember(HttpServletRequest request) {
+		System.out.println("MemberService deleteMember()");
+
+		
+		try {
+			
+			String id = request.getParameter("_6id");
+			String pass = request.getParameter("_6pass");
+	
+			
+			MemberDTO memberDTO = new MemberDTO();
+			memberDTO.setM_id(id);
+			memberDTO.setM_pass(pass);
+			
+			memberDAO = new MemberDAO();
+			memberDAO.deleteMember(memberDTO);
 			
 			
 		} catch (Exception e) {

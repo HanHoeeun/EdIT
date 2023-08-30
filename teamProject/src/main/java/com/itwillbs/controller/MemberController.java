@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.itwillbs.dao.MemberDAO;
 import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.service.MemberService;
 
@@ -144,7 +145,10 @@ public class MemberController extends HttpServlet{
 		
 		
 		
-//		회원정보 수정
+		
+		
+		
+//		회원정보 수정	---------------------------------------------------------------수정해야함
 		if (sPath.equals("/updatePro.me")) {
 			System.out.println("뽑은 가상주소 비교 : updatePro.me");
 
@@ -162,16 +166,83 @@ public class MemberController extends HttpServlet{
 				response.sendRedirect("main.me");
 				
 			} else {
-//				불일치면 경고 메시지 화면에 띄우기
+//				불일치면 경고 메시지 화면에 띄우기 나중에 고치기
 				dispatcher = request.getRequestDispatcher("member/mypage.jsp");
 				dispatcher.forward(request, response);
 				
 			}
 			
+		}
+		
+		
+//		회원탈퇴 화면
+		if (sPath.equals("/delete.me")) {
+			System.out.println("뽑은 가상주소 비교 : delete.me");
 			
-			
+			dispatcher = request.getRequestDispatcher("member/delete.jsp");
+			dispatcher.forward(request, response);
 			
 		}
+		
+		
+//		회원탈퇴하기
+		if (sPath.equals("/deletePro.me")) {
+			System.out.println("뽑은 가상주소 비교 : deletePro.me");
+			
+			memberService = new MemberService();
+			
+			MemberDTO memberDTO = memberService.userCheck(request);
+					
+			if (memberDTO != null) {
+				memberService.deleteMember(request);
+				
+				HttpSession session = request.getSession();
+				session.invalidate();
+				
+				response.sendRedirect("main.me");
+				
+			} else {
+//				아이디, 비밀번호 불일치 -> 경고 메시지다 -------------------------------수정
+				dispatcher = request.getRequestDispatcher("member/war.jsp");
+				dispatcher.forward(request, response);
+			}
+			
+		}
+		
+		
+//		아이디 중복체크
+		if (sPath.equals("/idCheck.me")) {
+			System.out.println("뽑은 가상주소 비교 : idCheck.me");
+			
+			
+			String id = request.getParameter("_6id");
+			System.out.println("받은 아이디 : " +id);
+			
+			memberService = new MemberService();
+			memberService.getMember(id);
+			
+			MemberDTO memberDTO = memberService.getMember(id);
+			
+			String result = "";
+			if (memberDTO != null) {
+				System.out.println("아이디 중복");
+				result = "아이디 중복입니다";
+			} else {
+				System.out.println("아이디 사용가능!");
+				result = "아이디 사용가능 합니다";
+			}
+			
+//			이동하지 않고 결과를 웹 화면에 출력
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter printWriter = response.getWriter();
+			printWriter.print(result);
+			printWriter.close();
+			
+		}
+		
+		
+		
+		
 		
 		
 		

@@ -121,7 +121,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								
 					<div class="snipcart-details top_brand_home_details">
 						<fieldset>
-							<input type="button" name="submit" value="회원정보수정" class="button" onclick="location.href='update.jsp'">
+							<input type="button" name="submit" value="회원정보수정" class="button" onclick="location.href='updatePro.me'">
 						</fieldset>
 						</div>
 				</form>
