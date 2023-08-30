@@ -1,5 +1,6 @@
 package com.itwillbs.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -81,6 +82,65 @@ public class ProductService {
 		}
 		return count;
 	}
+
+	public List<ProductDTO> getLatestProducts(ProductPageDTO productDTO) {
+		List<ProductDTO> latestList = null;
+		System.out.println("ProductService getLatestProducts()");
+		try {
+			// productDAO 객체생성
+			productDAO = new ProductDAO();	
+			// DAO에서 데이터 가져오기
+			latestList =productDAO.getLatestProducts(productDTO); 
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return latestList;
+	}
+
+	public List<ProductDTO> getPopularProducts(ProductPageDTO ppageDTO) {
+		System.out.println("ProductService getPopularProducts()");
+		List<ProductDTO> popluarList = null;
+		try {
+			// productDAO 객체생성
+			productDAO = new ProductDAO();	
+			// DAO에서 데이터 가져오기
+			popluarList=productDAO.getPopularProducts(ppageDTO); 
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return popluarList;
+	}
+
+	public List<ProductDTO> getHighPriceProducts(ProductPageDTO ppageDTO) {
+		System.out.println("ProductService getHighPriceProducts()");
+		List<ProductDTO> highPriceList = null;
+		try {
+			// productDAO 객체생성
+			productDAO = new ProductDAO();
+			// DAO에서 데이터 가져오기
+			highPriceList=productDAO.getHighPriceProducts(ppageDTO); 
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return highPriceList;
+	}
+
+	public List<ProductDTO> getLowPriceProducts(ProductPageDTO ppageDTO) {
+		System.out.println("ProductService getLowPriceProducts()");
+		List<ProductDTO> lowPriceList = null;
+		try {
+			// productDAO 객체생성
+			productDAO = new ProductDAO();
+			// DAO에서 데이터 가져오기
+			lowPriceList=productDAO.getLowPriceProducts(ppageDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return lowPriceList;
+	}
+
+	
+
 
 	
 	

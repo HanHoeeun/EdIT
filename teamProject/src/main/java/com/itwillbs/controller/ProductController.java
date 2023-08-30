@@ -44,7 +44,7 @@ public class ProductController extends HttpServlet{
 		if (sPath.equals("/products.po")) {
 			System.out.println("뽑은 가상주소 비교 : /products.po");
 			// 한페이지에서 보여지는 글개수 설정
-			int p_pageSize=10;
+			int p_pageSize=9;
 			// 페이지번호 
 			String p_pageNum=request.getParameter("p_pageNum");
 			// 페이지번호가 없으면 1페이지 설정
@@ -63,6 +63,25 @@ public class ProductController extends HttpServlet{
 			productService = new ProductService();
 // 			List<ProductDTO> productList = getProductList(); 메서드 호출
 			List<ProductDTO> productList=productService.getProductList(ppageDTO);
+			
+			// orderBy 파라미터를 받아와서 옵션 값 확인
+		    String orderBy = request.getParameter("ord");
+		    System.out.println("orderBy"+ orderBy);
+		    if(orderBy != null) {
+
+		    if ("latest".equals(orderBy)) {
+		        productList = productService.getLatestProducts(ppageDTO);
+		    } else if ("popular".equals(orderBy)) {
+		        productList = productService.getPopularProducts(ppageDTO);
+		    } else if ("highPrice".equals(orderBy)) {
+		        productList = productService.getHighPriceProducts(ppageDTO);
+		    } else if ("lowPrice".equals(orderBy)) {
+		        productList = productService.getLowPriceProducts(ppageDTO);
+		    } else {
+		        // 디폴트로 최신순 정렬
+		        productList = productService.getLatestProducts(ppageDTO);
+		    }
+		    }
 			
 			// 게시판 전체 글 개수 구하기 
 			int p_count = productService.getProductCount();
@@ -96,9 +115,11 @@ public class ProductController extends HttpServlet{
 			ppageDTO.setP_endPage(p_endPage);
 			ppageDTO.setP_pageCount(p_pageCount);
 			
+			
 			// request에 "productList",productList 저장
 			request.setAttribute("productList", productList);
 			request.setAttribute("ppageDTO", ppageDTO);
+			request.setAttribute("orderBy", orderBy);
 			
 			// 주소변경없이 이동 center/products.jsp
 			dispatcher 
@@ -107,12 +128,14 @@ public class ProductController extends HttpServlet{
 		} // products.po
 		
 		
+		
 		if(sPath.equals("/productReg.po")) {
 			// 주소 변경 없이 이동 product/productReg.jsp
 			dispatcher 
 			    = request.getRequestDispatcher("product/productReg.jsp");
 			dispatcher.forward(request, response);
 		}// 
+		
 		
 		if(sPath.equals("/productRegPro.po")) {
 			System.out.println("뽑은 가상주소 비교 : /productRegPro.po");
