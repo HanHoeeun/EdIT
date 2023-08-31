@@ -196,7 +196,8 @@ String orderBy = (String) request.getAttribute("orderBy");
       <%
       for(int i=ppageDTO.getP_startPage();i<=ppageDTO.getP_endPage();i++){
          %>
-         <a href="products.po?p_pageNum=<%=i%>&orderBy=${orderBy}"><%=i %><span class="sr-only">(current)</span></a>
+    	 <a href="products.po?p_pageNum=<%= i %>&orderBy=${orderBy}" class="<%= (i == ppageDTO.getP_currentPage()) ? "active" : "" %>">
+         <%=i %><span class="sr-only">(current)</span></a>
          <%
          }
          %>
