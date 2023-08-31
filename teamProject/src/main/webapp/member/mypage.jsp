@@ -104,7 +104,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 %>				
 				
-				<form action="update.me" method="post">
+				<form action="mypage.me" method="post">
 					<div class="hover14 column">
 						<div class="_6clearfix1"> 
 							<div class="_6clearfix"> 
@@ -121,7 +121,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								
 					<div class="snipcart-details top_brand_home_details">
 						<fieldset>
-							<input type="button" name="submit" value="회원정보수정" class="button" onclick="location.href='updatePro.me'">
+							<input type="button" name="submit" value="정보수정하러가기" class="button" onclick="location.href='update.me'">
 						</fieldset>
 						</div>
 				</form>

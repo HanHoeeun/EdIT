@@ -87,7 +87,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<input type="email" placeholder="이메일" required=" " >
 					
 					<div class="_5center">
-						<input type="submit" value="확인" class="#">	
+						<input type="submit" value="확인"  class="#">	
+						<input type="submit" value="취소"  class="#">	
 					<hr style="width:100%;height:1px;border:none;background-color:#999;">
 					</div>
 					

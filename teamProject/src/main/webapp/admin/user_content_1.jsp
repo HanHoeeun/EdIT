@@ -1,10 +1,15 @@
-<%@page import="com.itwillbs.domain.ReportDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!--
+author: W3layouts
+author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
 <!DOCTYPE html>
 <html>
 <head>
-<title>신고페이지</title>
+<title>Super Market an Ecommerce Online Shopping Category Flat Bootstrap Responsive Website Template | Faq :: w3layouts</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -15,9 +20,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- //for-mobile-apps -->
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-<link href="css/style_1_1.css" rel="stylesheet" type="text/css" media="all" />
 <!-- font-awesome icons -->
 <link href="css/font-awesome.css" rel="stylesheet"> 
+<link href="css/faq_1.css" rel="stylesheet"> 
 <!-- //font-awesome icons -->
 <!-- js -->
 <script src="js/jquery-1.11.1.min.js"></script>
@@ -35,47 +40,84 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		});
 	});
 </script>
+<!-- start-smoth-scrolling -->
 </head>
-<%
-ReportDTO reportDTO = (ReportDTO)request.getAttribute("reportDTO");
-
-%>
-
-<!--============================== 바디 ============================================-->
-<div class="report">
-	<div class="container">
-			<h2>신고 상세페이지</h2>
-			<form class="report-form-grids_1_1" action="report_answer.ad" method="post" >		
-				<input type="hidden" value="<%=reportDTO.getR_num() %>" name="r_num">
-				<p>신고자 아이디</p>
-				<input class="readonly" type="text" name="r_m_num_id" value="<%=reportDTO.getR_m_num_id() %>" readonly="readonly"><br>
-				<p>신고대상자 아이디</p>
-				<input class="readonly" type="text" name="r_m_target_id" value="<%=reportDTO.getR_m_target_id() %>" readonly="readonly"><br>
-				<p>제목</p>
-				<input class="title" type="text" name="r_title" value="<%=reportDTO.getR_title() %>" required=" " ><br>
-				<p>첨부파일</p>
-				<div>
-					<img src="adminUpload/<%=reportDTO.getR_file() %>" width="200px" height="200px" onclick="window.open('adminUpload/<%=reportDTO.getR_file() %>','이미지','width=500, height=700, scrollbars=yes')">
-				</div><br>
-				<p>신고내용</p>
-				<textarea name="r_content" readonly="readonly"><%=reportDTO.getR_content() %></textarea><br>
-				<p>답변내용</p>
-				<%
-				String answer = reportDTO.getR_answer() == null ? "" : reportDTO.getR_answer();
-				%>
-				<textarea name="r_answer"><%=answer %></textarea><br>
-				<div class="reportbtn">
-					<input type="submit" value="답변등록">
-					<button type="button" id="reportbtn_btn_1" onclick="location.href='report_check.ad?r_num=<%=reportDTO.getR_num()%>'">신고적용</button>
-					<button type="button" id="reportbtn_btn_1" onclick="window.close()">닫기</button>
-				</div>
-			</form>
-	</div>
-</div>
-
-	<!--============================================== footer =========================-->
-
 	
+<body>
+<!-- header -->
+<jsp:include page="../inc/top.jsp"></jsp:include>
+		
+<!-- //navigation -->
+	<!-- breadcrumbs -->
+	<div class="breadcrumbs">
+		<div class="container">
+			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+				<li class="active">AdminPage</li>
+			</ol>
+		</div>
+	</div>
+	<!-- //breadcrumbs -->
+	<!-- top-brands -->
+	
+	<div class="top-brands_1">
+			<h2>회원정보 상세페이지</h2>
+		<div class="_1container_1_1">
+			<form class="_1report_content_form">		
+			<table class="_1report_content_board">
+				<tr>
+				<td class="_1report_content_border">회원번호</td><td></td>
+				</tr>				
+				<tr>
+				<td class="_1report_content_border">아이디</td><td></td>
+				</tr>				
+				<tr>
+				<td class="_1report_content_border">이름</td><td></td>
+				</tr>				
+				<tr>
+				<td class="_1report_content_border">닉네임</td><td></td>
+				</tr>				
+				<tr>
+				<td class="_1report_content_border">생년월일</td><td></td>
+				</tr>				
+				<tr>
+				<td class="_1report_content_border">성별</td><td></td>
+				</tr>				
+				<tr>
+				<td class="_1report_content_border">전화번호</td><td></td>
+				</tr>				
+				<tr>
+				<td class="_1report_content_border">주소</td><td></td>
+				</tr>				
+				<tr>
+				<td class="_1report_content_border">이메일</td><td></td>
+				</tr>				
+				<tr>
+				<td class="_1report_content_border">가입날짜</td><td></td>
+				</tr>				
+				<tr>
+				<td class="_1report_content_border">이벤트</td><td></td>
+				</tr>				
+				<tr>
+				<td class="_1report_content_border">회원레벨</td><td></td>
+				</tr>				
+				<tr>
+				<td class="_1report_content_border">회원벌점</td><td></td>
+				</tr>				
+					
+			</table>
+					<div class="_1q_query_btn">
+							<button type="submit">수정</button>
+							<button type="button" onclick="location.href='faq.html'">목록</button>
+					</div>
+			</form>
+		</div>
+	<div class="clearfix_1_1"> </div>
+	</div>
+<!-- //top-brands -->
+<!-- //footer -->
+<jsp:include page="../inc/bottom.jsp"></jsp:include>
+<!-- //footer -->	
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>
 <!-- top-header and slider -->
@@ -121,6 +163,5 @@ ReportDTO reportDTO = (ReportDTO)request.getAttribute("reportDTO");
 		});
 </script>	
 <!-- //main slider-banner --> 
-
 </body>
 </html>
