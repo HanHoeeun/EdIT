@@ -77,8 +77,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<form action="insert.me" method="post" id="_6join">
 					<input type="text" placeholder="아이디 (영문/숫자, 6~20자)" required=" " id="m_id" name="m_id" class="m_id"><br>
 					<div class="divdup"></div>
-					<input type="text" placeholder="비밀번호 (영문+숫자+특수문자, 8~20자)" required=" " id="m_pass" name="m_pass"><br>
-					<input type="text" placeholder="비밀번호 확인" required=" "  id="m_pass2" name="m_pass2"> <br>
+					<input type="password" placeholder="비밀번호 (영문+숫자+특수문자, 8~20자)" required=" " id="m_pass" name="m_pass">
+					<input type="password" placeholder="비밀번호 확인" required=" "  id="m_pass2" name="m_pass2"> <br>
 					<input type="text" placeholder="이름 (최소 2자 이상 입력)" required=" " id="m_name" name="m_name"><br>
 					<input type="text" placeholder="닉네임 (최소 2자 이상 입력)" required=" " id="m_nick" name="m_nick"><br>
 					<input type="email" placeholder="이메일" required=" " id="m_mail" name="m_email"><br>
@@ -116,23 +116,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-----------------------------------------------------------회원가입 끝------------------------------------------------------------------ -->
 
 
-<!-- 제이쿼리 -->
+<!-- --------------------------->
 <script type="text/javascript" src="script/jquery-3.7.0.js"></script>
 <script type="text/javascript">
- 	function checkPw(form) {
- 		pass = form.pass.value;
- 		paas1 = form.pass1.value;
- 		
- 		if (pass != pass2 ) {
- 			alert("패스워드가 동일하지 않습니다")
- 			return false;
- 		} else 
- 		return true;
- 		
- 	}
-
-
-
 
 	
 	
