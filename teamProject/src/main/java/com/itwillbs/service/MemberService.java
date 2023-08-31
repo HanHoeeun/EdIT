@@ -5,6 +5,7 @@ package com.itwillbs.service;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Member;
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -22,35 +23,35 @@ public class MemberService {
 			
 			request.setCharacterEncoding("utf-8");
 			
-			String id = request.getParameter("_6id");
-			String pass1 = request.getParameter("_6pass1");
-			String pass2 = request.getParameter("_6pass2");
-			String name = request.getParameter("_6name");
-			String nick = request.getParameter("_6nick");
-			String phone = request.getParameter("_6phone");
-			String email = request.getParameter("_6email");
-			Timestamp date = new Timestamp(System.currentTimeMillis());
-			String event = request.getParameter("_6event");
+			String m_id = request.getParameter("_6id");
+			String m_pass1 = request.getParameter("_6pass1");
+			String m_pass2 = request.getParameter("_6pass2");
+			String m_name = request.getParameter("_6name");
+			String m_nick = request.getParameter("_6nick");
+			String m_phone = request.getParameter("_6phone");
+			String m_email = request.getParameter("_6email");
+			Timestamp m_date = new Timestamp(System.currentTimeMillis());
+			String m_event = request.getParameter("_6event");
 			
-			int num = 1;
+			int m_num = 1;
 			
 			memberDAO = new MemberDAO();
 			
-			num = memberDAO.getMaxNum() + 1;
+			m_num = memberDAO.getMaxNum() + 1;
 			
 
 			MemberDTO memberDTO = new MemberDTO();
 			
-			memberDTO.setM_num(num);
-			memberDTO.setM_id(id);
-			memberDTO.setM_pass(pass1);
-			memberDTO.setM_pass(pass2);
-			memberDTO.setM_name(name);
-			memberDTO.setM_nick(nick);
-			memberDTO.setM_phone(phone);
-			memberDTO.setM_email(email);
-			memberDTO.setM_date(date);
-			memberDTO.setM_event(event);
+			memberDTO.setM_num(m_num);
+			memberDTO.setM_id(m_id);
+			memberDTO.setM_pass(m_pass1);
+			memberDTO.setM_pass(m_pass2);
+			memberDTO.setM_name(m_name);
+			memberDTO.setM_nick(m_nick);
+			memberDTO.setM_phone(m_phone);
+			memberDTO.setM_email(m_email);
+			memberDTO.setM_date(m_date);
+			memberDTO.setM_event(m_event);
 			
 			System.out.println(memberDTO);
 			
@@ -77,12 +78,12 @@ public class MemberService {
 			request.setCharacterEncoding("utf-8");
 			
 			
-			String id = request.getParameter("_5id");
-			String pass = request.getParameter("_5pass");
+			String m_id = request.getParameter("_5id");
+			String m_pass = request.getParameter("_5pass");
 			
 			MemberDTO memberDTO2 = new MemberDTO();
-			memberDTO2.setM_id(id);
-			memberDTO2.setM_pass(pass);
+			memberDTO2.setM_id(m_id);
+			memberDTO2.setM_pass(m_pass);
 			
 			memberDAO = new MemberDAO();
 			memberDTO = memberDAO.userCheck(memberDTO2);
@@ -97,15 +98,15 @@ public class MemberService {
 	}
 
 
-	public MemberDTO getMember(String id) {
-		System.out.println("MemberService userCheck()");
+	public MemberDTO getMember(String m_id) {
+		System.out.println("MemberService getMember()");
 		
 		MemberDTO memberDTO = null;
 		
 		try {
 			
 			memberDAO = new MemberDAO();
-			memberDTO = memberDAO.getMember(id);
+			memberDTO = memberDAO.getMember(m_id);
 			
 			
 		} catch (Exception e) {
@@ -125,24 +126,24 @@ public class MemberService {
 //			한글처리
 			request.setCharacterEncoding("utf-8");
 			
-			String id = request.getParameter("_6id");
-			String pass1 = request.getParameter("_6pass1");
-			String pass2 = request.getParameter("_6pass2");
-			String pass3 = request.getParameter("_6pass3");
-			String name = request.getParameter("_6name");
-			String nick = request.getParameter("_6nick");
-			String email = request.getParameter("_6email");
-			String phone = request.getParameter("_6phone");
+			String m_id = request.getParameter("_6id");
+			String m_pass1 = request.getParameter("_6pass1");
+			String m_pass2 = request.getParameter("_6pass2");
+			String m_pass3 = request.getParameter("_6pass3");
+			String m_name = request.getParameter("_6name");
+			String m_nick = request.getParameter("_6nick");
+			String m_email = request.getParameter("_6email");
+			String m_phone = request.getParameter("_6phone");
 			
 			MemberDTO memberDTO = new MemberDTO();
-			memberDTO.setM_id(id);
-			memberDTO.setM_pass(pass1);
-			memberDTO.setM_pass(pass2);
-			memberDTO.setM_pass(pass3);
-			memberDTO.setM_name(name);
-			memberDTO.setM_nick(nick);
-			memberDTO.setM_email(email);
-			memberDTO.setM_phone(phone);
+			memberDTO.setM_id(m_id);
+			memberDTO.setM_pass(m_pass1);
+			memberDTO.setM_pass(m_pass2);
+			memberDTO.setM_pass(m_pass3);
+			memberDTO.setM_name(m_name);
+			memberDTO.setM_nick(m_nick);
+			memberDTO.setM_email(m_email);
+			memberDTO.setM_phone(m_phone);
 			
 			memberDAO = new MemberDAO();
 			memberDAO.updateMember(memberDTO);
@@ -167,13 +168,13 @@ public class MemberService {
 		
 		try {
 			
-			String id = request.getParameter("_6id");
-			String pass = request.getParameter("_6pass");
+			String m_id = request.getParameter("_6id");
+			String m_pass = request.getParameter("_6pass");
 	
 			
 			MemberDTO memberDTO = new MemberDTO();
-			memberDTO.setM_id(id);
-			memberDTO.setM_pass(pass);
+			memberDTO.setM_id(m_id);
+			memberDTO.setM_pass(m_pass);
 			
 			memberDAO = new MemberDAO();
 			memberDAO.deleteMember(memberDTO);
@@ -183,6 +184,28 @@ public class MemberService {
 			e.printStackTrace();
 		}
 		
+	}
+
+
+	
+	
+//	멤버리스트
+	public List<MemberDTO> getMemberList() {
+		System.out.println("MemberService getMemberList()");
+
+		List<MemberDTO> memberList = null;
+		
+		try {
+			
+			memberDAO = new MemberDAO();
+			memberList = memberDAO.getMemberList();
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return memberList;
 	}
 
 	
@@ -206,6 +229,16 @@ public class MemberService {
 
 
 
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
 	
 	
 	

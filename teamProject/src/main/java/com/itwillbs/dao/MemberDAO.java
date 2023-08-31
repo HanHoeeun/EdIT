@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -219,8 +221,10 @@ public class MemberDAO {
 		}
 	}
 
+	
+	
 
-
+//	회원삭제
 	public void deleteMember(MemberDTO memberDTO) {
 		System.out.println("MemberDAO deleteMember()");
 		
@@ -251,7 +255,73 @@ public class MemberDAO {
 	
 	
 
-	// 8.31 진 - 아이디 찾기 만드는 중인데 이게 맞는지 모르겠다....일단 만들어보고.. 물어보고 수정해보자..
+
+	
+
+//	멤버리스트
+	public List<MemberDTO> getMemberList() {
+		System.out.println("MemberDAO getMemberList()");
+
+		
+		List<MemberDTO> memberList = null;
+		try {
+			
+			con = getConnection();
+			
+			String sql = "select * from members";
+			
+			pstmt = con.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			memberList = new ArrayList<>();
+			while (rs.next() == true) {
+				MemberDTO memberDTO = new MemberDTO();
+				System.out.println("회원 한 명 :" + memberDTO);
+				
+				
+				memberDTO.setM_num(rs.getInt("m_num"));
+				memberDTO.setM_id(rs.getString("m_id"));
+				memberDTO.setM_pass(rs.getString("m_pass"));
+				memberDTO.setM_name(rs.getString("m_name"));
+				memberDTO.setM_nick(rs.getString("m_nick"));
+				memberDTO.setM_email(rs.getString("m_email"));
+				memberDTO.setM_phone(rs.getString("m_phone"));
+				memberDTO.setM_date(rs.getTimestamp("m_date"));
+				
+				memberList.add(memberDTO);
+			}
+			System.out.println("배열에 회원 여러 명 : " + memberList);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dblClose();
+		}
+		
+		return memberList;
+	}
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	// 진 - 아이디 찾기
 	public MemberDTO findidmember(String _5name, String _5email) {
 		System.out.println("MemberDAO findidmember()");
 		MemberDTO memberDTO = null;
@@ -281,6 +351,4 @@ public class MemberDAO {
 	}
 
 
-	
-	
 }	// insertMember()

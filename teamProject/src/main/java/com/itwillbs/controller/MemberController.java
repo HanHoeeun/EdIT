@@ -2,6 +2,9 @@ package com.itwillbs.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.invoke.CallSite;
+import java.text.SimpleDateFormat;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import com.itwillbs.dao.MemberDAO;
 import com.itwillbs.domain.MemberDTO;
@@ -147,7 +153,24 @@ public class MemberController extends HttpServlet{
 		}
 		
 		
-		
+		if (sPath.equals("/update.me")) {
+			System.out.println("뽑은 가상주소 비교 : update.me");
+			
+//			DB의 나의 정보 조회
+			HttpSession session = request.getSession();
+			String m_id = (String)session.getAttribute("m_id");
+			
+
+			memberService = new MemberService();
+			MemberDTO memberDTO =  memberService.getMember(m_id);
+			
+			request.setAttribute("memberDTO", memberDTO);
+			
+			
+			dispatcher = request.getRequestDispatcher("member/update.jsp");
+			dispatcher.forward(request, response);
+			
+		}
 		
 		
 		
@@ -166,11 +189,11 @@ public class MemberController extends HttpServlet{
 				
 				memberService.updateMember(request);
 				
-				response.sendRedirect("main.me");
+				response.sendRedirect("mypage.me");
 				
 			} else {
 //				불일치면 경고 메시지 화면에 띄우기 나중에 고치기
-				dispatcher = request.getRequestDispatcher("member/mypage.jsp");
+				dispatcher = request.getRequestDispatcher("member/update.jsp");
 				dispatcher.forward(request, response);
 				
 			}
@@ -211,6 +234,50 @@ public class MemberController extends HttpServlet{
 			}
 			
 		}
+		
+		
+//		회원리스트
+		if (sPath.equals("listjson.me")) {
+			System.out.println("뽑은 가상주소 비교 : listjson.me");
+			
+			memberService = new MemberService();
+			
+			List<MemberDTO> memberList = memberService.getMemberList();
+			
+			JSONArray arr = new JSONArray();
+			
+			SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
+			
+			
+			for (int i=0; i<memberList.size(); i++) {
+				MemberDTO memberDTO = memberList.get(i);
+				
+				JSONObject object = new JSONObject();
+				object.put("m_num", memberDTO.getM_num());
+				object.put("m_id", memberDTO.getM_id());
+				object.put("m_pass", memberDTO.getM_pass());
+				object.put("m_name", memberDTO.getM_name());
+				object.put("m_nick", memberDTO.getM_nick());
+				object.put("m_email", memberDTO.getM_email());
+				object.put("m_phone", memberDTO.getM_phone());
+				object.put("m_date", memberDTO.getM_date());
+				
+				
+//				배열 한칸에 저장
+				arr.add(object);
+				
+			}
+			
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 //		아이디 중복체크
