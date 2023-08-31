@@ -14,6 +14,7 @@ import javax.sql.DataSource;
 
 import com.itwillbs.domain.AdminDTO;
 import com.itwillbs.domain.AdminPageDTO;
+import com.itwillbs.domain.ReportDTO;
 
 public class AdminDAO {
 	Connection con = null;
@@ -42,18 +43,17 @@ public class AdminDAO {
 			String sql = "";
 //			번호(자동) 작성자 제목 내용 시간 타입 파일 
 			if(adminDTO.getA_cs_type() == 1) {
-				sql = "insert into test_1 values (default,?,?,?,default,'계정',?,?)";
+				sql = "insert into test_1 values (default,?,?,?,default,'계정',?,null)";
 			}else if(adminDTO.getA_cs_type() == 2) {
-				sql = "insert into test_1 values (default,?,?,?,default,'중고거래',?,?)";
+				sql = "insert into test_1 values (default,?,?,?,default,'중고거래',?,null)";
 			}else {
-				sql = "insert into test_1 values (default,?,?,?,default,'기타',?,?)";
+				sql = "insert into test_1 values (default,?,?,?,default,'기타',?,null)";
 			}
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, adminDTO.getA_m_nick());
 			pstmt.setString(2, adminDTO.getA_title());
 			pstmt.setString(3, adminDTO.getA_content());
 			pstmt.setString(4, adminDTO.getA_file());
-			pstmt.setString(5, "");
 			
 			pstmt.executeUpdate();
 			
@@ -145,5 +145,155 @@ public class AdminDAO {
 		}
 		
 		return adminDTO;
+	}
+	public List<ReportDTO> getReportList(AdminPageDTO pageDTO) {
+		List<ReportDTO> reportList = null;
+		try {
+			con = this.getConnection();
+			
+			String sql = "select * from report_test order by r_num desc limit ?, ?";
+			pstmt = con.prepareStatement(sql);
+			
+			
+			pstmt.setInt(1, pageDTO.getStartRow()-1); // 시작하는 행 -1 
+			pstmt.setInt(2, pageDTO.getPageSize()); // 몇개
+			
+			rs = pstmt.executeQuery();
+			reportList = new ArrayList<>();
+			while(rs.next()) {
+//				신고번호 회원번호 제목 작성자 작성시간 확인여부
+				ReportDTO reportDTO = new ReportDTO();
+				reportDTO.setR_num(rs.getInt("r_num"));
+				reportDTO.setR_m_num(rs.getInt("r_m_num"));
+				reportDTO.setR_title(rs.getString("r_title"));
+				reportDTO.setR_date(rs.getTimestamp("r_date"));
+				reportDTO.setR_check(rs.getInt("r_check"));
+				
+				reportList.add(reportDTO);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			this.dbClose();
+		}
+		
+		return reportList;
+	}
+	public int getReportCount(AdminPageDTO pageDTO) {
+		int count = 0;
+		
+		try {
+			con = this.getConnection();
+			String sql = "select count(*) as count from report_test";
+			pstmt = con.prepareStatement(sql);
+			
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt("count");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
+	
+	public String getTagetId(int num) {
+		String target_id=null;
+		try {
+			con = this.getConnection();
+//			신고자 대상자 아이디
+			String sql = "select m.r_name name "
+					+ "from report_test r join report_test_member m "
+					+ "on r.r_m_target = m.r_m_num "
+					+ "where r_num = ?";
+
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				target_id = rs.getString("name");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			this.dbClose();
+		}
+		return target_id;
+	}
+	
+	public ReportDTO getReportContent(int num) {
+		ReportDTO reportDTO = new ReportDTO();
+		try {
+			con = this.getConnection();
+			
+//			신고 아이디 및 신고정보 
+			String sql = "select * "
+					+ "from report_test r join report_test_member m "
+					+ "on r.r_m_num =  m.r_m_num "
+					+ "where r.r_num = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			ResultSet rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				String target_id = this.getTagetId(num);
+				
+				reportDTO.setR_m_target_id(target_id);
+				reportDTO.setR_num(rs.getInt("r_num"));
+				reportDTO.setR_m_num_id(rs.getString("r_name"));
+				reportDTO.setR_title(rs.getString("r_title"));
+				reportDTO.setR_file(rs.getString("r_file"));
+				reportDTO.setR_content(rs.getString("r_content"));
+				reportDTO.setR_answer(rs.getString("r_answer"));
+			}
+			
+			
+		} catch (Exception e) {
+
+		}finally {
+			this.dbClose();
+		}
+		
+		return reportDTO;
+	}
+	public void updateReportAnswer(ReportDTO reportDTO) {
+		try {
+			con = this.getConnection();
+			
+			String sql = "update report_test set r_answer = ? where r_num = ?";
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, reportDTO.getR_answer());
+			pstmt.setInt(2, reportDTO.getR_num());
+			
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			this.dbClose();
+		}
+	}
+	public void updateReportCheck(ReportDTO reportDTO) {
+		try {
+			con = this.getConnection();
+			
+			String sql = "update report_test set r_check = 1 where r_num = ?";
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, reportDTO.getR_num());
+			
+			pstmt.executeUpdate();
+//			신고 적용후에 member check에도 적용해야됨
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			this.dbClose();
+		}
 	}
 }

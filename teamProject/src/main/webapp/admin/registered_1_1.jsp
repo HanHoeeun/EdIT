@@ -58,9 +58,11 @@ AdminDTO adminDTO = (AdminDTO)request.getAttribute("adminDTO");
 			<p>문의내용</p>
 			<textarea name="textarea" readonly="readonly"><%=adminDTO.getA_content() %></textarea><br>
 			
-			
+			<%
+			String answer = adminDTO.getA_answer() == null ? "" : adminDTO.getA_answer();
+			%>
 			<p>답변내용</p>
-			<textarea name="textarea" readonly="readonly"><%=adminDTO.getA_answer() %></textarea><br>
+			<textarea name="textarea" readonly="readonly"><%=answer %></textarea><br>
 			<div class="reportbtn">
 			<input type="submit" value="답변등록">
 			<button type="button" id="reportbtn_btn_1" onclick="window.close()">확인</button>

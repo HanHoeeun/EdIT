@@ -1,6 +1,7 @@
 package com.itwillbs.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -10,9 +11,11 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.itwillbs.domain.AdminDTO;
 import com.itwillbs.domain.AdminPageDTO;
+import com.itwillbs.domain.ReportDTO;
 import com.itwillbs.service.AdminService;
 
 public class AdminController extends HttpServlet{
@@ -35,12 +38,12 @@ public class AdminController extends HttpServlet{
 		String sPath=request.getServletPath();
 		System.out.println("뽑은 가상주소 :  " + sPath);
 		if(sPath.equals("/faq.ad")) {
-			System.out.println("뽑은 가상주소 비교 : /list.bo");
 //			한글처리
 			request.setCharacterEncoding("utf-8");
 //			request 검색어 뽑아오기
 //			String search = request.getParameter("search");
-			String search = "권광민";
+			HttpSession session = request.getSession();
+			String search = (String)session.getAttribute("id");
 			
 //			한페이지에서 보여지는 글개수 설정
 			int pageSize =10;
@@ -121,6 +124,7 @@ public class AdminController extends HttpServlet{
 //			엔터(\r\n) -> <br> 로 바꾼다
 //			adminDTO.setA_content(adminDTO.getA_content().replaceAll("\r\n","<br>"));
 			adminDTO.setA_content(adminDTO.getA_content().replaceAll("\r\n","&#10;"));
+			adminDTO.setA_answer(adminDTO.getA_answer().replaceAll("\r\n","&#10;"));
 			
 			request.setAttribute("adminDTO", adminDTO);
 			dispatcher = request.getRequestDispatcher("admin/registered_1_1.jsp");
@@ -129,8 +133,87 @@ public class AdminController extends HttpServlet{
 		
 		
 		if(sPath.equals("/adminPage.ad")) {
+			request.setCharacterEncoding("utf-8");
+			
+			int pageSize =10;
+			String pageNum=request.getParameter("pageNum");
+			if(pageNum == null) {
+				pageNum = "1";
+			}
+			int currentPage = Integer.parseInt(pageNum);
+			
+			AdminPageDTO pageDTO = new AdminPageDTO();
+			pageDTO.setPageSize(pageSize);
+			pageDTO.setPageNum(pageNum);
+			pageDTO.setCurrentPage(currentPage);
+			
+			
+			// AdminService 객체생성
+			adminService = new AdminService();
+
+			List<ReportDTO> reportList = adminService.getReportList(pageDTO);
+			
+//			게시판 전체 글 개수 구하기
+			int count = adminService.getReportCount(pageDTO);
+			System.out.println(count);
+//			한화면에 보여줄 페이지 개수 설정
+			int pageBlock =10;
+			int startPage = (currentPage-1)/pageBlock*pageBlock+1;
+			int endPage = startPage + pageBlock -1;
+			
+			int pageCount = count%pageBlock == 0 ? count/pageBlock : count/pageBlock+1 ;
+			if(endPage > pageCount ) {
+				endPage = pageCount;
+			}
+			
+			pageDTO.setCount(count);
+			pageDTO.setPageBlock(pageBlock);	
+			pageDTO.setStartPage(startPage);
+			pageDTO.setEndPage(endPage);
+			pageDTO.setPageCount(pageCount);
+			request.setAttribute("pageDTO", pageDTO);
+			
+			// request에 "adminList",adminList 저장
+			request.setAttribute("reportList", reportList);
+			// 주소변경없이 이동 faq 이동
+			
+			
 			dispatcher = request.getRequestDispatcher("admin/adminPage_1_1.jsp");
 			dispatcher.forward(request, response);	
+		}
+		if(sPath.equals("/report_content.ad")) {
+			adminService = new AdminService();
+			ReportDTO reportDTO = adminService.getReportContent(request);
+//			엔터(\r\n) -> &#10; , <br> 로 바꾼다
+			reportDTO.setR_content(reportDTO.getR_content().replaceAll("\r\n","&#10;"));
+			
+			if(reportDTO.getR_answer() != null) {
+				reportDTO.setR_answer(reportDTO.getR_answer().replaceAll("\r\n","&#10;"));
+			}
+			
+			
+			request.setAttribute("reportDTO", reportDTO);
+			dispatcher = request.getRequestDispatcher("admin/report_content_1_1.jsp");
+			dispatcher.forward(request, response);
+		}
+		if(sPath.equals("/report_answer.ad")) {
+			adminService = new AdminService();
+			adminService.updateReportAnswer(request);
+			
+			int r_num = Integer.parseInt(request.getParameter("r_num"));
+			
+			response.sendRedirect("report_content.ad?r_num="+r_num);
+		}
+		if(sPath.equals("/report_check.ad")) {
+			adminService = new AdminService();
+			adminService.updateReportCheck(request);
+			
+			response.setContentType("text/html;charset=UTF-8");
+	        PrintWriter out = response.getWriter();
+	        out.println("<script>");
+	        out.println("window.opener.location.reload();");
+	        out.println("window.close();");
+	        out.println("</script>");
 		}
 	}
 
