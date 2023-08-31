@@ -13,6 +13,14 @@ public class AdminDTO {
 	
 	private String a_file; // 파일명
 	
+	private String a_answer; // 답변
+	
+	public String getA_answer() {
+		return a_answer;
+	}
+	public void setA_answer(String a_answer) {
+		this.a_answer = a_answer;
+	}
 	public String getA_file() {
 		return a_file;
 	}

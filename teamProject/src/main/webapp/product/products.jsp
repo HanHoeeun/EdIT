@@ -115,6 +115,8 @@ String orderBy = (String) request.getAttribute("orderBy");
                     <option value="popular" <% if (orderBy != null && orderBy.equals("popular")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>인기순</option> 
                     <option value="highPrice" <% if (orderBy != null && orderBy.equals("highPrice")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>가격 높은 순</option>               
                     <option value="lowPrice" <% if (orderBy != null && orderBy.equals("lowPrice")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>가격 낮은 순</option>                        
+                	<option value="sell" <% if (orderBy != null && orderBy.equals("sell")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>판매중</option>                        
+                    <option value="sold" <% if (orderBy != null && orderBy.equals("sold")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>판매완료</option>
                 </select>
             </div>
            
@@ -131,6 +133,14 @@ String orderBy = (String) request.getAttribute("orderBy");
             ProductPageDTO ppageDTO
             = (ProductPageDTO)request.getAttribute("ppageDTO");
             
+            int itemsPerPage = 5; // 페이지당 아이템 수
+            int currentPage = (request.getParameter("page") != null) ? Integer.parseInt(request.getParameter("page")) : 1;
+            int startIndex = (currentPage - 1) * itemsPerPage;
+            int endIndex = Math.min(startIndex + itemsPerPage, productList.size());
+            int totalPages = (int) Math.ceil((double) productList.size() / itemsPerPage);
+
+            List<ProductDTO> visibleItems = productList.subList(startIndex, endIndex);
+            
             %>
             
               <div class="agile_top_brands_grids">
@@ -146,10 +156,11 @@ String orderBy = (String) request.getAttribute("orderBy");
                     <figure>
                          <div class="snipcart-item block">
                             <div class="snipcart-thumb">
-                                <a href="single.po"><img title=" " alt=" " src="upload/<%=productDTO.getP_file() %>"  width="150px" height="150px" download></a>
+                                <a href="single.po"><img title=" " alt=" " src="upload/<%=productDTO.getP_file() %>" download width="150px" height="150px" ></a>
                                 <p><%=productDTO.getP_title() %></p>
                                 <h4><%= productDTO.getP_price() %>원</h4>
                                 <h4><%= productDTO.getP_status() %></h4>
+                                <h4><%= productDTO.getP_type() %></h4>
                             </div>
                             <div class="snipcart-details top_brand_home_details">
                                 <form action="#" method="post">
@@ -176,39 +187,41 @@ String orderBy = (String) request.getAttribute("orderBy");
     <div class="clearfix"> </div>
 </div>
 
+<!-- 페이징 코드 5개씩 나눠서 페이징 -->
 <nav class="numbering">
    <ul class="pagination paging">
-      <li>
       <%
       if(ppageDTO.getP_startPage() > ppageDTO.getP_pageBlock()){
          %>
-         <a href="products.po?p_pageNum=<%=ppageDTO.getP_startPage()-ppageDTO.getP_pageBlock()%>&orderBy=${orderBy}" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-         </a>
+         <li>
+            <a href="products.po?p_pageNum=<%=ppageDTO.getP_startPage()-ppageDTO.getP_pageBlock()%>&orderBy=${orderBy}" aria-label="Previous">
+               <span aria-hidden="true">&laquo;</span>
+            </a>
+         </li>
          <%
-         }
+      }
+
+      for(int i=ppageDTO.getP_startPage(); i<=ppageDTO.getP_endPage(); i++){
+         boolean isCurrentPage = (i == ppageDTO.getP_currentPage());
+         boolean isPcurrentPage = (i == ppageDTO.getP_currentPage());
          %>
-      </li>
-      <li class="active">
-      <%
-      for(int i=ppageDTO.getP_startPage();i<=ppageDTO.getP_endPage();i++){
-         %>
-         <a href="products.po?p_pageNum=<%=i%>&orderBy=${orderBy}"><%=i %><span class="sr-only">(current)</span></a>
+         <li class="<%= (isCurrentPage || isPcurrentPage) ? "active" : "" %>">
+            <a href="products.po?p_pageNum=<%= i %>&orderBy=${orderBy}" class="<%= (isCurrentPage) ? "" : "" %> <%= (isPcurrentPage) ? "custom-class" : "" %>">
+            <%= (isPcurrentPage) ? i : i %></a>
+         </li>
          <%
-         }
-         %>
-      </li>
-      <li>
-      <%
+      }
+
       if(ppageDTO.getP_endPage() < ppageDTO.getP_pageCount()){
          %>
-         <a href="products.po?p_pageNum=<%=ppageDTO.getP_startPage()+ppageDTO.getP_pageBlock()%>&orderBy=${orderBy}" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-         </a>
+         <li>
+            <a href="products.po?p_pageNum=<%=ppageDTO.getP_startPage()+ppageDTO.getP_pageBlock()%>&orderBy=${orderBy}" >
+               <span aria-hidden="true">&raquo;</span>
+            </a>
+         </li>
          <%
-         }
-         %>
-      </li>
+      }
+      %>
    </ul>
 </nav>
 
@@ -216,18 +229,15 @@ String orderBy = (String) request.getAttribute("orderBy");
          <div class="clearfix"> </div>
       </div>
       </div>
-      
-  
+
+
 <!--- products --->
 <!-- 푸터 들어가는 곳! -->
 <div class="clearfix">
 <jsp:include page="../inc/bottom.jsp"></jsp:include>
 </div>
 <!-- 푸터 들어가는 곳! -->
-<!-- <script type="text/javascript">
-function change_country(l) {
-	location.href="products.po?ord="+l;
-} -->
+
 <script type="text/javascript">
 function change_country(l) {
     location.href = "products.po?ord=" + l;

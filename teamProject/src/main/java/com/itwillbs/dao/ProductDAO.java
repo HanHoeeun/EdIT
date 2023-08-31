@@ -75,7 +75,7 @@ public class ProductDAO {
 			//1,2단계 디비연결
 			con = getConnection();
 			//3 sql 구문 insert
-			String sql="insert into products(p_num, p_title, p_type, p_price, p_detail, p_date, p_readcount, p_status, p_file) values(?,?,?,?,?,?,?,?,?)";
+			String sql="insert into products(p_num, p_title, p_type, p_price, p_detail, p_date, p_readcount, p_status, p_file, m_nick) values(?,?,?,?,?,?,?,?,?,?)";
 			
 			pstmt=con.prepareStatement(sql);
 			
@@ -88,6 +88,7 @@ public class ProductDAO {
 			pstmt.setInt(7, productDTO.getP_readcount());
 			pstmt.setString(8, productDTO.getP_status());
 			pstmt.setString(9, productDTO.getP_file());
+			pstmt.setString(10, productDTO.getM_nick());
 			
 			//4 실행
 			pstmt.executeUpdate();
@@ -139,15 +140,13 @@ public class ProductDAO {
 	
 	public ProductDTO getproduct(int p_num) {
 		ProductDTO productDTO = null;
-		
+		 
 		try {
 			con = getConnection();
 			
 			//3 sql select * from board where num = ?
 			String sql="select * from products where p_num = ?";
-			
 			pstmt = con.prepareStatement(sql);
-			
 			pstmt.setInt(1, p_num);
 			
 			//4 실행 => 결과 저장
@@ -169,6 +168,7 @@ public class ProductDAO {
 				productDTO.setP_status(rs.getString("p_status"));
 				//첨부파일
 				productDTO.setP_file(rs.getString("p_file"));
+				productDTO.setM_nick(rs.getString("m_nick"));
 				
 			}
 		} catch (Exception e) {
@@ -401,58 +401,800 @@ public class ProductDAO {
 		
 	}
 	
+	// 전체상품보기 내 판매중인 상품
+		public List<ProductDTO> getSellProducts(ProductPageDTO ppageDTO) {
+			System.out.println("ProductDAO getSellProducts()");
+			List<ProductDTO> productList = new ArrayList<>(); 
+			int size = productList.size();
+			try {
+				//1,2 단계 디비 연결 
+				con = getConnection();
+				//3 sql  => mysql 제공 => limit 시작행-1, 몇개
+//				String sql="select * from board order by num desc";
+				String sql="select * from products where p_status =? order by p_num limit ?, ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, "sell");
+				pstmt.setInt(2, ppageDTO.getP_startRow()-1);//시작행-1
+				pstmt.setInt(3, ppageDTO.getP_pageSize());//몇개
+				//4 실행 => 결과 저장
+				rs = pstmt.executeQuery();
+				// boardList 객체생성
+				productList = new ArrayList<>();
+				size = productList.size();
+				//5 결과 행접근 => BoardDTO객체생성 => set호출(열접근저장)
+				while(rs.next()) {
+					ProductDTO productDTO = new ProductDTO();
+					productDTO.setP_num(rs.getInt("p_num"));
+					productDTO.setP_title(rs.getString("p_title"));
+					productDTO.setP_type(rs.getString("p_type"));
+					productDTO.setP_price(rs.getInt("p_price"));
+					productDTO.setP_status(rs.getString("p_status"));
+					productDTO.setP_file(rs.getString("p_file"));
+				// => 배열 한칸에 저장
+					productList.add(productDTO); 
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				dbClose();
+			}
+			return productList;
+		}
 
-	public int getMaxP_num() {
-		System.out.println("ProductDAO getMaxP_num()");
-		int p_num = 0;
+		// 전체상품보기 내 판매완료인 상품
+		public List<ProductDTO> getSoldProducts(ProductPageDTO ppageDTO) {
+			System.out.println("ProductDAO getSoldProducts()");
+			List<ProductDTO> productList = new ArrayList<>(); 
+			int size = productList.size();
+			try {
+				//1,2 단계 디비 연결 
+				con = getConnection();
+				//3 sql  => mysql 제공 => limit 시작행-1, 몇개
+//				String sql="select * from board order by num desc";
+				String sql="select * from products where p_status =? order by p_num limit ?, ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, "selled");
+				pstmt.setInt(2, ppageDTO.getP_startRow()-1);//시작행-1
+				pstmt.setInt(3, ppageDTO.getP_pageSize());//몇개
+				//4 실행 => 결과 저장
+				rs = pstmt.executeQuery();
+				// boardList 객체생성
+				productList = new ArrayList<>();
+				size = productList.size();
+				//5 결과 행접근 => BoardDTO객체생성 => set호출(열접근저장)
+				while(rs.next()) {
+					ProductDTO productDTO = new ProductDTO();
+					productDTO.setP_num(rs.getInt("p_num"));
+					productDTO.setP_title(rs.getString("p_title"));
+					productDTO.setP_type(rs.getString("p_type"));
+					productDTO.setP_price(rs.getInt("p_price"));
+					productDTO.setP_status(rs.getString("p_status"));
+					productDTO.setP_file(rs.getString("p_file"));
+				// => 배열 한칸에 저장
+					productList.add(productDTO); 
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				dbClose();
+			}
+			return productList;
+		}
+		// 노트북 중 최신순
+		public List<ProductDTO> getLaptopLatestProducts(ProductPageDTO ppageDTO) {
+			System.out.println("ProductDAO getLaptopLatestProducts()");
+			List<ProductDTO> productList = new ArrayList<>(); 
+			int size = productList.size();
+			try {
+				//1,2 단계 디비 연결 
+				con = getConnection();
+				//3 sql  => mysql 제공 => limit 시작행-1, 몇개
+//				String sql="select * from board order by num desc";
+				String sql="select * from products where p_type =? order by p_num desc limit ?, ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, "laptop");
+				pstmt.setInt(2, ppageDTO.getP_startRow()-1);//시작행-1
+				pstmt.setInt(3, ppageDTO.getP_pageSize());//몇개
+				//4 실행 => 결과 저장
+				rs = pstmt.executeQuery();
+				// boardList 객체생성
+				productList = new ArrayList<>();
+				size = productList.size();
+				//5 결과 행접근 => BoardDTO객체생성 => set호출(열접근저장)
+				while(rs.next()) {
+					ProductDTO productDTO = new ProductDTO();
+					productDTO.setP_num(rs.getInt("p_num"));
+					productDTO.setP_title(rs.getString("p_title"));
+					productDTO.setP_type(rs.getString("p_type"));
+					productDTO.setP_price(rs.getInt("p_price"));
+					productDTO.setP_status(rs.getString("p_status"));
+					productDTO.setP_file(rs.getString("p_file"));
+				// => 배열 한칸에 저장
+					productList.add(productDTO); 
+			} 
+			}catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				dbClose();
+			}
+			return productList;
+		}
+		// 노트북 중 인기순
+		public List<ProductDTO> getLaptopPopularProducts(ProductPageDTO ppageDTO) {
+			System.out.println("ProductDAO getLaptopPopularProducts()");
+			List<ProductDTO> productList = new ArrayList<>(); 
+			int size = productList.size();
+			try {
+				//1,2 단계 디비 연결 
+				con = getConnection();
+				//3 sql  => mysql 제공 => limit 시작행-1, 몇개
+//				String sql="select * from board order by num desc";
+				String sql="select * from products where p_type=? order by p_readcount desc limit ?, ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, "laptop");
+				pstmt.setInt(2, ppageDTO.getP_startRow()-1);//시작행-1
+				pstmt.setInt(3, ppageDTO.getP_pageSize());//몇개
+				//4 실행 => 결과 저장
+				rs = pstmt.executeQuery();
+				// boardList 객체생성
+				productList = new ArrayList<>();
+				size = productList.size();
+				//5 결과 행접근 => BoardDTO객체생성 => set호출(열접근저장)
+				while(rs.next()) {
+					ProductDTO productDTO = new ProductDTO();
+					productDTO.setP_num(rs.getInt("p_num"));
+					productDTO.setP_title(rs.getString("p_title"));
+					productDTO.setP_type(rs.getString("p_type"));
+					productDTO.setP_price(rs.getInt("p_price"));
+					productDTO.setP_status(rs.getString("p_status"));
+					productDTO.setP_file(rs.getString("p_file"));
+				// => 배열 한칸에 저장
+					productList.add(productDTO); 
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				dbClose();
+			}
+			return productList;
+		}
+		// 노트북 중 가격 높은 순
+		public List<ProductDTO> getLaptopHighPriceProducts(ProductPageDTO ppageDTO) {
+			System.out.println("ProductDAO getLaptopHighPriceProducts()");
+			List<ProductDTO> productList = new ArrayList<>(); 
+			int size = productList.size();
+			try {
+				//1,2 단계 디비 연결 
+				con = getConnection();
+				//3 sql  => mysql 제공 => limit 시작행-1, 몇개
+//				String sql="select * from board order by num desc";
+				String sql="select * from products where p_type =? order by p_price desc limit ?, ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, "laptop");
+				pstmt.setInt(2, ppageDTO.getP_startRow()-1);//시작행-1
+				pstmt.setInt(3, ppageDTO.getP_pageSize());//몇개
+				//4 실행 => 결과 저장
+				rs = pstmt.executeQuery();
+				// boardList 객체생성
+				productList = new ArrayList<>();
+				size = productList.size();
+				//5 결과 행접근 => BoardDTO객체생성 => set호출(열접근저장)
+				while(rs.next()) {
+					ProductDTO productDTO = new ProductDTO();
+					productDTO.setP_num(rs.getInt("p_num"));
+					productDTO.setP_title(rs.getString("p_title"));
+					productDTO.setP_type(rs.getString("p_type"));
+					productDTO.setP_price(rs.getInt("p_price"));
+					productDTO.setP_status(rs.getString("p_status"));
+					productDTO.setP_file(rs.getString("p_file"));
+				// => 배열 한칸에 저장
+					productList.add(productDTO); 
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				dbClose();
+			}
+			return productList;
+		}
+		// 노트북 중 가격낮은순
+		public List<ProductDTO> getLaptopLowPriceProducts(ProductPageDTO ppageDTO) {
+			System.out.println("ProductDAO getLaptopLowPriceProducts()");
+			List<ProductDTO> productList = new ArrayList<>(); 
+			int size = productList.size();
+			try {
+				//1,2 단계 디비 연결 
+				con = getConnection();
+				//3 sql  => mysql 제공 => limit 시작행-1, 몇개
+//				String sql="select * from board order by num desc";
+				String sql="select * from products where p_type = ? order by p_price limit ?, ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, "laptop");
+				pstmt.setInt(2, ppageDTO.getP_startRow()-1);//시작행-1
+				pstmt.setInt(3, ppageDTO.getP_pageSize());//몇개
+				//4 실행 => 결과 저장
+				rs = pstmt.executeQuery();
+				// boardList 객체생성
+				productList = new ArrayList<>();
+				size = productList.size();
+				//5 결과 행접근 => BoardDTO객체생성 => set호출(열접근저장)
+				while(rs.next()) {
+					ProductDTO productDTO = new ProductDTO();
+					productDTO.setP_num(rs.getInt("p_num"));
+					productDTO.setP_title(rs.getString("p_title"));
+					productDTO.setP_type(rs.getString("p_type"));
+					productDTO.setP_price(rs.getInt("p_price"));
+					productDTO.setP_status(rs.getString("p_status"));
+					productDTO.setP_file(rs.getString("p_file"));
+				// => 배열 한칸에 저장
+					productList.add(productDTO); 
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				dbClose();
+			}
+			return productList;
+		}
+	// 노트북 내에 판매중인 상품 검색 
+	public List<ProductDTO> getLaptopSellProducts(ProductPageDTO ppageDTO) {
+		System.out.println("ProductDAO getLaptopSellProducts()");
+		List<ProductDTO> productList = new ArrayList<>(); 
+		int size = productList.size();
 		try {
-			//1,2 디비연결
-			con=getConnection();
-			//3 sql select max(num) from members
-			String sql = "select max(num) from products;";
-			pstmt=con.prepareStatement(sql);
-			//4 실행 => 결과저장
-			rs =pstmt.executeQuery();
-			//5 if 다음행  => 열데이터 가져와서 => num저장
-			if(rs.next()) {
-				p_num = rs.getInt("max(p_num)");
+			//1,2 단계 디비 연결 
+			con = getConnection();
+			//3 sql  => mysql 제공 => limit 시작행-1, 몇개
+//			String sql="select * from board order by num desc";
+			String sql="select * from products where p_status =? and p_type=? limit ?, ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "sell");
+			pstmt.setString(2, "laptop");
+			pstmt.setInt(3, ppageDTO.getP_startRow()-1);//시작행-1
+			pstmt.setInt(4, ppageDTO.getP_pageSize());//몇개
+			//4 실행 => 결과 저장
+			rs = pstmt.executeQuery();
+			// boardList 객체생성
+			productList = new ArrayList<>();
+			size = productList.size();
+			//5 결과 행접근 => BoardDTO객체생성 => set호출(열접근저장)
+			while(rs.next()) {
+				ProductDTO productDTO = new ProductDTO();
+				productDTO.setP_num(rs.getInt("p_num"));
+				productDTO.setP_title(rs.getString("p_title"));
+				productDTO.setP_type(rs.getString("p_type"));
+				productDTO.setP_price(rs.getInt("p_price"));
+				productDTO.setP_status(rs.getString("p_status"));
+				productDTO.setP_file(rs.getString("p_file"));
+			// => 배열 한칸에 저장
+				productList.add(productDTO); 
+		} }catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		return productList;
+	}
+
+	// 노트북 내에 판매완료된 상품 검색 
+	public List<ProductDTO> getLaptopSoldProducts(ProductPageDTO ppageDTO) {
+		System.out.println("ProductDAO getLaptopSoldProducts()");
+		List<ProductDTO> productList = new ArrayList<>(); 
+		int size = productList.size();
+		try {
+			//1,2 단계 디비 연결 
+			con = getConnection();
+			//3 sql  => mysql 제공 => limit 시작행-1, 몇개
+//			String sql="select * from board order by num desc";
+			String sql="select * from products where p_status =? and p_type = ? order by p_num limit ?, ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "selled");
+			pstmt.setString(2, "laptop");
+			pstmt.setInt(3, ppageDTO.getP_startRow()-1);//시작행-1
+			pstmt.setInt(4, ppageDTO.getP_pageSize());//몇개
+			//4 실행 => 결과 저장
+			rs = pstmt.executeQuery();
+			// boardList 객체생성
+			productList = new ArrayList<>();
+			size = productList.size();
+			//5 결과 행접근 => BoardDTO객체생성 => set호출(열접근저장)
+			while(rs.next()) {
+				ProductDTO productDTO = new ProductDTO();
+				productDTO.setP_num(rs.getInt("p_num"));
+				productDTO.setP_title(rs.getString("p_title"));
+				productDTO.setP_type(rs.getString("p_type"));
+				productDTO.setP_price(rs.getInt("p_price"));
+				productDTO.setP_status(rs.getString("p_status"));
+				productDTO.setP_file(rs.getString("p_file"));
+			// => 배열 한칸에 저장
+				productList.add(productDTO); 
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			dbClose();
 		}
-		return p_num;
-	}//getMaxNum()
-	
-	public void registerProduct(ProductDTO productDTO) {
-		System.out.println("productDAO registerProduct()");
+		return productList;
+	}
+	// 폰 중 최신순
+	public List<ProductDTO> getPhoneLatestProducts(ProductPageDTO ppageDTO) {
+		System.out.println("ProductDAO getPhoneLatestProducts()");
+		List<ProductDTO> productList = new ArrayList<>(); 
+		int size = productList.size();
 		try {
-			//1,2 디비연결
-			con=getConnection();
-			//3 sql insert
-			String sql = "insert into products(num,name,subject,content,readcount,date,file) values(?,?,?,?,?,?,?)";
-			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(1, productDTO.getP_num());      //(물음표 순서,값)
-			pstmt.setString(2, productDTO.getP_m_id()); 
-			pstmt.setString(3, productDTO.getP_title());
-			pstmt.setString(4, productDTO.getP_detail());
-			pstmt.setInt(5, productDTO.getP_price());
-			pstmt.setInt(6, productDTO.getP_readcount());
-			pstmt.setTimestamp(7, productDTO.getP_date());
-			pstmt.setString(8, productDTO.getP_status());
-		
-			//파일추가
-			pstmt.setString(9, productDTO.getP_file());
-			
-			//4 실행 
-			pstmt.executeUpdate();
+			//1,2 단계 디비 연결 
+			con = getConnection();
+			//3 sql  => mysql 제공 => limit 시작행-1, 몇개
+//			String sql="select * from board order by num desc";
+			String sql="select * from products where p_type=? order by p_num desc limit ?, ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "phone");
+			pstmt.setInt(2, ppageDTO.getP_startRow()-1);//시작행-1
+			pstmt.setInt(3, ppageDTO.getP_pageSize());//몇개
+			//4 실행 => 결과 저장
+			rs = pstmt.executeQuery();
+			// boardList 객체생성
+			productList = new ArrayList<>();
+			size = productList.size();
+			//5 결과 행접근 => BoardDTO객체생성 => set호출(열접근저장)
+			while(rs.next()) {
+				ProductDTO productDTO = new ProductDTO();
+				productDTO.setP_num(rs.getInt("p_num"));
+				productDTO.setP_title(rs.getString("p_title"));
+				productDTO.setP_type(rs.getString("p_type"));
+				productDTO.setP_price(rs.getInt("p_price"));
+				productDTO.setP_status(rs.getString("p_status"));
+				productDTO.setP_file(rs.getString("p_file"));
+			// => 배열 한칸에 저장
+				productList.add(productDTO); 
+		} 
+		}catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		return productList;
+	}
+	// 폰 중 인기순
+	public List<ProductDTO> getPhonePopularProducts(ProductPageDTO ppageDTO) {
+		System.out.println("ProductDAO getPhonePopularProducts()");
+		List<ProductDTO> productList = new ArrayList<>(); 
+		int size = productList.size();
+		try {
+			//1,2 단계 디비 연결 
+			con = getConnection();
+			//3 sql  => mysql 제공 => limit 시작행-1, 몇개
+//			String sql="select * from board order by num desc";
+			String sql="select * from products where p_type=? order by p_readcount desc limit ?, ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "phone");
+			pstmt.setInt(2, ppageDTO.getP_startRow()-1);//시작행-1
+			pstmt.setInt(3, ppageDTO.getP_pageSize());//몇개
+			//4 실행 => 결과 저장
+			rs = pstmt.executeQuery();
+			// boardList 객체생성
+			productList = new ArrayList<>();
+			size = productList.size();
+			//5 결과 행접근 => BoardDTO객체생성 => set호출(열접근저장)
+			while(rs.next()) {
+				ProductDTO productDTO = new ProductDTO();
+				productDTO.setP_num(rs.getInt("p_num"));
+				productDTO.setP_title(rs.getString("p_title"));
+				productDTO.setP_type(rs.getString("p_type"));
+				productDTO.setP_price(rs.getInt("p_price"));
+				productDTO.setP_status(rs.getString("p_status"));
+				productDTO.setP_file(rs.getString("p_file"));
+			// => 배열 한칸에 저장
+				productList.add(productDTO); 
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			dbClose();
 		}
-	} //registerProduct()
+		return productList;
+		
+	}
+	// 폰 중 가격높은 순
+	public List<ProductDTO> getPhoneHighPriceProducts(ProductPageDTO ppageDTO) {
+		System.out.println("ProductDAO getPhoneHighPriceProducts()");
+		List<ProductDTO> productList = new ArrayList<>(); 
+		int size = productList.size();
+		try {
+			//1,2 단계 디비 연결 
+			con = getConnection();
+			//3 sql  => mysql 제공 => limit 시작행-1, 몇개
+//			String sql="select * from board order by num desc";
+			String sql="select * from products where p_type=? order by p_price desc limit ?, ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "phone");
+			pstmt.setInt(2, ppageDTO.getP_startRow()-1);//시작행-1
+			pstmt.setInt(3, ppageDTO.getP_pageSize());//몇개
+			//4 실행 => 결과 저장
+			rs = pstmt.executeQuery();
+			// boardList 객체생성
+			productList = new ArrayList<>();
+			size = productList.size();
+			//5 결과 행접근 => BoardDTO객체생성 => set호출(열접근저장)
+			while(rs.next()) {
+				ProductDTO productDTO = new ProductDTO();
+				productDTO.setP_num(rs.getInt("p_num"));
+				productDTO.setP_title(rs.getString("p_title"));
+				productDTO.setP_type(rs.getString("p_type"));
+				productDTO.setP_price(rs.getInt("p_price"));
+				productDTO.setP_status(rs.getString("p_status"));
+				productDTO.setP_file(rs.getString("p_file"));
+			// => 배열 한칸에 저장
+				productList.add(productDTO); 
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		return productList;
+	}
+	// 폰 중 가격낮은 순
+	public List<ProductDTO> getPhoneLowPriceProducts(ProductPageDTO ppageDTO) {
+		System.out.println("ProductDAO getPhoneLowPriceProducts()");
+		List<ProductDTO> productList = new ArrayList<>(); 
+		int size = productList.size();
+		try {
+			//1,2 단계 디비 연결 
+			con = getConnection();
+			//3 sql  => mysql 제공 => limit 시작행-1, 몇개
+//			String sql="select * from board order by num desc";
+			String sql="select * from products where p_type=? order by p_price limit ?, ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "phone");
+			pstmt.setInt(2, ppageDTO.getP_startRow()-1);//시작행-1
+			pstmt.setInt(3, ppageDTO.getP_pageSize());//몇개
+			//4 실행 => 결과 저장
+			rs = pstmt.executeQuery();
+			// boardList 객체생성
+			productList = new ArrayList<>();
+			size = productList.size();
+			//5 결과 행접근 => BoardDTO객체생성 => set호출(열접근저장)
+			while(rs.next()) {
+				ProductDTO productDTO = new ProductDTO();
+				productDTO.setP_num(rs.getInt("p_num"));
+				productDTO.setP_title(rs.getString("p_title"));
+				productDTO.setP_type(rs.getString("p_type"));
+				productDTO.setP_price(rs.getInt("p_price"));
+				productDTO.setP_status(rs.getString("p_status"));
+				productDTO.setP_file(rs.getString("p_file"));
+			// => 배열 한칸에 저장
+				productList.add(productDTO); 
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		return productList;
+	}
+	
+	// 폰페이지 내에 판매중인 상품 검색 
+	public List<ProductDTO> getPhoneSellProducts(ProductPageDTO ppageDTO) {
+		System.out.println("ProductDAO getPhoneSellProducts()");
+		List<ProductDTO> productList = new ArrayList<>(); 
+		int size = productList.size();
+		try {
+			//1,2 단계 디비 연결 
+			con = getConnection();
+			//3 sql  => mysql 제공 => limit 시작행-1, 몇개
+//			String sql="select * from board order by num desc";
+			String sql="select * from products where p_status =? and p_type = ? order by p_num limit ?, ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "sell");
+			pstmt.setString(2, "phone");
+			pstmt.setInt(3, ppageDTO.getP_startRow()-1);//시작행-1
+			pstmt.setInt(4, ppageDTO.getP_pageSize());//몇개
+			//4 실행 => 결과 저장
+			rs = pstmt.executeQuery();
+			// boardList 객체생성
+			productList = new ArrayList<>();
+			size = productList.size();
+			//5 결과 행접근 => BoardDTO객체생성 => set호출(열접근저장)
+			while(rs.next()) {
+				ProductDTO productDTO = new ProductDTO();
+				productDTO.setP_num(rs.getInt("p_num"));
+				productDTO.setP_title(rs.getString("p_title"));
+				productDTO.setP_type(rs.getString("p_type"));
+				productDTO.setP_price(rs.getInt("p_price"));
+				productDTO.setP_status(rs.getString("p_status"));
+				productDTO.setP_file(rs.getString("p_file"));
+			// => 배열 한칸에 저장
+				productList.add(productDTO); 
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		return productList;
+	}
+
+	// 폰페이지 내에 판매완료된 상품 검색 
+	public List<ProductDTO> getPhoneSoldProducts(ProductPageDTO ppageDTO) {
+		System.out.println("ProductDAO getPhoneSoldProducts()");
+		List<ProductDTO> productList = new ArrayList<>(); 
+		int size = productList.size();
+		try {
+			//1,2 단계 디비 연결 
+			con = getConnection();
+			//3 sql  => mysql 제공 => limit 시작행-1, 몇개
+//			String sql="select * from board order by num desc";
+			String sql="select * from products where p_status =? and p_type = ? order by p_num limit ?, ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "selled");
+			pstmt.setString(2, "phone");
+			pstmt.setInt(3, ppageDTO.getP_startRow()-1);//시작행-1
+			pstmt.setInt(4, ppageDTO.getP_pageSize());//몇개
+			//4 실행 => 결과 저장
+			rs = pstmt.executeQuery();
+			// boardList 객체생성
+			productList = new ArrayList<>();
+			size = productList.size();
+			//5 결과 행접근 => BoardDTO객체생성 => set호출(열접근저장)
+			while(rs.next()) {
+				ProductDTO productDTO = new ProductDTO();
+				productDTO.setP_num(rs.getInt("p_num"));
+				productDTO.setP_title(rs.getString("p_title"));
+				productDTO.setP_type(rs.getString("p_type"));
+				productDTO.setP_price(rs.getInt("p_price"));
+				productDTO.setP_status(rs.getString("p_status"));
+				productDTO.setP_file(rs.getString("p_file"));
+			// => 배열 한칸에 저장
+				productList.add(productDTO); 
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		return productList;
+	}
+	// 태블릿 중 최신순
+	public List<ProductDTO> getTabletLatestProducts(ProductPageDTO ppageDTO) {
+		System.out.println("ProductDAO getTabletLatestProducts()");
+		List<ProductDTO> productList = new ArrayList<>(); 
+		int size = productList.size();
+		try {
+			//1,2 단계 디비 연결 
+			con = getConnection();
+			//3 sql  => mysql 제공 => limit 시작행-1, 몇개
+//			String sql="select * from board order by num desc";
+			String sql="select * from products where p_type=? order by p_num desc limit ?, ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "tablet");
+			pstmt.setInt(2, ppageDTO.getP_startRow()-1);//시작행-1
+			pstmt.setInt(3, ppageDTO.getP_pageSize());//몇개			//4 실행 => 결과 저장
+			rs = pstmt.executeQuery();
+			// boardList 객체생성
+			productList = new ArrayList<>();
+			size = productList.size();
+			//5 결과 행접근 => BoardDTO객체생성 => set호출(열접근저장)
+			while(rs.next()) {
+				ProductDTO productDTO = new ProductDTO();
+				productDTO.setP_num(rs.getInt("p_num"));
+				productDTO.setP_title(rs.getString("p_title"));
+				productDTO.setP_type(rs.getString("p_type"));
+				productDTO.setP_price(rs.getInt("p_price"));
+				productDTO.setP_status(rs.getString("p_status"));
+				productDTO.setP_file(rs.getString("p_file"));
+			// => 배열 한칸에 저장
+				productList.add(productDTO); 
+		} 
+		}catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		return productList;
+	}
+	// 태블릿 중 인기순
+	public List<ProductDTO> getTabletPopularProducts(ProductPageDTO ppageDTO) {
+		System.out.println("ProductDAO getTabletPopularProducts()");
+		List<ProductDTO> productList = new ArrayList<>(); 
+		int size = productList.size();
+		try {
+			//1,2 단계 디비 연결 
+			con = getConnection();
+			//3 sql  => mysql 제공 => limit 시작행-1, 몇개
+//			String sql="select * from board order by num desc";
+			String sql="select * from products where p_type=? order by p_readcount desc limit ?, ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "tablet");
+			pstmt.setInt(2, ppageDTO.getP_startRow()-1);//시작행-1
+			pstmt.setInt(3, ppageDTO.getP_pageSize());//몇개
+			//4 실행 => 결과 저장
+			rs = pstmt.executeQuery();
+			// boardList 객체생성
+			productList = new ArrayList<>();
+			size = productList.size();
+			//5 결과 행접근 => BoardDTO객체생성 => set호출(열접근저장)
+			while(rs.next()) {
+				ProductDTO productDTO = new ProductDTO();
+				productDTO.setP_num(rs.getInt("p_num"));
+				productDTO.setP_title(rs.getString("p_title"));
+				productDTO.setP_type(rs.getString("p_type"));
+				productDTO.setP_price(rs.getInt("p_price"));
+				productDTO.setP_status(rs.getString("p_status"));
+				productDTO.setP_file(rs.getString("p_file"));
+			// => 배열 한칸에 저장
+				productList.add(productDTO); 
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		return productList;
+	}
+	// 태블릿 중 가격높은 순
+	public List<ProductDTO> getTabletHighPriceProducts(ProductPageDTO ppageDTO) {
+		System.out.println("ProductDAO getTabletHighPriceProducts()");
+		List<ProductDTO> productList = new ArrayList<>(); 
+		int size = productList.size();
+		try {
+			//1,2 단계 디비 연결 
+			con = getConnection();
+			//3 sql  => mysql 제공 => limit 시작행-1, 몇개
+//			String sql="select * from board order by num desc";
+			String sql="select * from products where p_type=? order by p_price desc limit ?, ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "tablet");
+			pstmt.setInt(2, ppageDTO.getP_startRow()-1);//시작행-1
+			pstmt.setInt(3, ppageDTO.getP_pageSize());//몇개
+			//4 실행 => 결과 저장
+			rs = pstmt.executeQuery();
+			// boardList 객체생성
+			productList = new ArrayList<>();
+			size = productList.size();
+			//5 결과 행접근 => BoardDTO객체생성 => set호출(열접근저장)
+			while(rs.next()) {
+				ProductDTO productDTO = new ProductDTO();
+				productDTO.setP_num(rs.getInt("p_num"));
+				productDTO.setP_title(rs.getString("p_title"));
+				productDTO.setP_type(rs.getString("p_type"));
+				productDTO.setP_price(rs.getInt("p_price"));
+				productDTO.setP_status(rs.getString("p_status"));
+				productDTO.setP_file(rs.getString("p_file"));
+			// => 배열 한칸에 저장
+				productList.add(productDTO); 
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		return productList;
+	}
+	// 태블릿 중 가격낮은 순
+	public List<ProductDTO> getTabletLowPriceProducts(ProductPageDTO ppageDTO) {
+		System.out.println("ProductDAO getTabletLowPriceProducts()");
+		List<ProductDTO> productList = new ArrayList<>(); 
+		int size = productList.size();
+		try {
+			//1,2 단계 디비 연결 
+			con = getConnection();
+			//3 sql  => mysql 제공 => limit 시작행-1, 몇개
+//			String sql="select * from board order by num desc";
+			String sql="select * from products where p_type=? order by p_price limit ?, ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "tablet");
+			pstmt.setInt(2, ppageDTO.getP_startRow()-1);//시작행-1
+			pstmt.setInt(3, ppageDTO.getP_pageSize());//몇개
+			//4 실행 => 결과 저장
+			rs = pstmt.executeQuery();
+			// boardList 객체생성
+			productList = new ArrayList<>();
+			size = productList.size();
+			//5 결과 행접근 => BoardDTO객체생성 => set호출(열접근저장)
+			while(rs.next()) {
+				ProductDTO productDTO = new ProductDTO();
+				productDTO.setP_num(rs.getInt("p_num"));
+				productDTO.setP_title(rs.getString("p_title"));
+				productDTO.setP_type(rs.getString("p_type"));
+				productDTO.setP_price(rs.getInt("p_price"));
+				productDTO.setP_status(rs.getString("p_status"));
+				productDTO.setP_file(rs.getString("p_file"));
+			// => 배열 한칸에 저장
+				productList.add(productDTO); 
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		return productList;
+	}
+
+	// 태블릿 페이지 내에 판매중인 상품 검색 
+		public List<ProductDTO> getTabletSellProducts(ProductPageDTO ppageDTO) {
+			System.out.println("ProductDAO getTabletSellProducts()");
+			List<ProductDTO> productList = new ArrayList<>(); 
+			int size = productList.size();
+			try {
+				//1,2 단계 디비 연결 
+				con = getConnection();
+				//3 sql  => mysql 제공 => limit 시작행-1, 몇개
+//				String sql="select * from board order by num desc";
+				String sql="select * from products where p_status =? and p_type=? order by p_num limit ?, ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, "sell");
+				pstmt.setString(2, "tablet");
+				pstmt.setInt(3, ppageDTO.getP_startRow()-1);//시작행-1
+				pstmt.setInt(4, ppageDTO.getP_pageSize());//몇개
+				//4 실행 => 결과 저장
+				rs = pstmt.executeQuery();
+				// boardList 객체생성
+				productList = new ArrayList<>();
+				size = productList.size();
+				//5 결과 행접근 => BoardDTO객체생성 => set호출(열접근저장)
+				while(rs.next()) {
+					ProductDTO productDTO = new ProductDTO();
+					productDTO.setP_num(rs.getInt("p_num"));
+					productDTO.setP_title(rs.getString("p_title"));
+					productDTO.setP_type(rs.getString("p_type"));
+					productDTO.setP_price(rs.getInt("p_price"));
+					productDTO.setP_status(rs.getString("p_status"));
+					productDTO.setP_file(rs.getString("p_file"));
+				// => 배열 한칸에 저장
+					productList.add(productDTO); 
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				dbClose();
+			}
+			return productList;
+		}
+
+		// 폰페이지 내에 판매완료된 상품 검색 
+		public List<ProductDTO> getTabletSoldProducts(ProductPageDTO ppageDTO) {
+			System.out.println("ProductDAO getTabletSoldProducts()");
+			List<ProductDTO> productList = new ArrayList<>(); 
+			int size = productList.size();
+			try {
+				//1,2 단계 디비 연결 
+				con = getConnection();
+				//3 sql  => mysql 제공 => limit 시작행-1, 몇개
+//				String sql="select * from board order by num desc";
+				String sql="select * from products where p_status =? and p_type = ? order by p_num limit ?, ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, "selled");
+				pstmt.setString(2, "tablet");
+				pstmt.setInt(3, ppageDTO.getP_startRow()-1);//시작행-1
+				pstmt.setInt(4, ppageDTO.getP_pageSize());//몇개
+				//4 실행 => 결과 저장
+				rs = pstmt.executeQuery();
+				// boardList 객체생성
+				productList = new ArrayList<>();
+				size = productList.size();
+				//5 결과 행접근 => BoardDTO객체생성 => set호출(열접근저장)
+				while(rs.next()) {
+					ProductDTO productDTO = new ProductDTO();
+					productDTO.setP_num(rs.getInt("p_num"));
+					productDTO.setP_title(rs.getString("p_title"));
+					productDTO.setP_type(rs.getString("p_type"));
+					productDTO.setP_price(rs.getInt("p_price"));
+					productDTO.setP_status(rs.getString("p_status"));
+					productDTO.setP_file(rs.getString("p_file"));
+				// => 배열 한칸에 저장
+					productList.add(productDTO); 
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				dbClose();
+			}
+			return productList;
+		}
+
+		//---------------------------------------------------------------------------------------------------------------------
+
 
 	
 	public int getProductCount() {
@@ -489,7 +1231,7 @@ public class ProductDAO {
 			//String sql="select * from products order by num desc";
 			String sql="select * from products where p_type=? order by p_num desc limit ?, ?";
 			pstmt = con.prepareStatement(sql);
-			//pstmt.setString(1,  );
+			pstmt.setString(1, "laptop" );
 			pstmt.setInt(2, ppageDTO.getP_startRow()-1);//시작행-1
 			pstmt.setInt(3, ppageDTO.getP_pageSize());//몇개
 			//4 실행 => 결과 저장
@@ -516,6 +1258,90 @@ public class ProductDAO {
 		}
 		return laptopList;
 	}
+
+	public List<ProductDTO> getPhoneList(ProductPageDTO ppageDTO) {
+		System.out.println("ProductDAO getPhoneList()");
+		List<ProductDTO> phoneList = new ArrayList<>();
+		int size = phoneList.size();
+		try {
+			//1,2 단계 디비 연결 
+			con = getConnection();
+			//3 sql  => mysql 제공 => limit 시작행-1, 몇개
+			//String sql="select * from products order by num desc";
+			String sql="select * from products where p_type=? order by p_num desc limit ?, ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "phone" );
+			pstmt.setInt(2, ppageDTO.getP_startRow()-1);//시작행-1
+			pstmt.setInt(3, ppageDTO.getP_pageSize());//몇개
+			//4 실행 => 결과 저장
+			rs = pstmt.executeQuery();
+			// boardList 객체생성
+			phoneList = new ArrayList<>();
+			size = phoneList.size();
+			//5 결과 행접근 => BoardDTO객체생성 => set호출(열접근저장)
+			while(rs.next()) {
+				ProductDTO productDTO = new ProductDTO();
+				productDTO.setP_num(rs.getInt("p_num"));
+				productDTO.setP_title(rs.getString("p_title"));
+				productDTO.setP_type(rs.getString("p_type"));
+				productDTO.setP_price(rs.getInt("p_price"));
+				productDTO.setP_status(rs.getString("p_status"));
+				productDTO.setP_file(rs.getString("p_file"));
+			// => 배열 한칸에 저장
+				phoneList.add(productDTO); 
+		}
+		}catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		return phoneList;
+	}
+
+	public List<ProductDTO> getTabletList(ProductPageDTO ppageDTO) {
+		System.out.println("ProductDAO getTabletList()");
+		List<ProductDTO> tabletList = new ArrayList<>();
+		int size = tabletList.size();
+		try {
+			//1,2 단계 디비 연결 
+			con = getConnection();
+			//3 sql  => mysql 제공 => limit 시작행-1, 몇개
+			//String sql="select * from products order by num desc";
+			String sql="select * from products where p_type=? order by p_num desc limit ?, ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "tablet" );
+			pstmt.setInt(2, ppageDTO.getP_startRow()-1);//시작행-1
+			pstmt.setInt(3, ppageDTO.getP_pageSize());//몇개
+			//4 실행 => 결과 저장
+			rs = pstmt.executeQuery();
+			// boardList 객체생성
+			tabletList = new ArrayList<>();
+			size = tabletList.size();
+			//5 결과 행접근 => BoardDTO객체생성 => set호출(열접근저장)
+			while(rs.next()) {
+				ProductDTO productDTO = new ProductDTO();
+				productDTO.setP_num(rs.getInt("p_num"));
+				productDTO.setP_title(rs.getString("p_title"));
+				productDTO.setP_type(rs.getString("p_type"));
+				productDTO.setP_price(rs.getInt("p_price"));
+				productDTO.setP_status(rs.getString("p_status"));
+				productDTO.setP_file(rs.getString("p_file"));
+			// => 배열 한칸에 저장
+				tabletList.add(productDTO); 
+		}
+		}catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		return tabletList;
+	}
+
+
+
+
+
+
 
 
 } // class

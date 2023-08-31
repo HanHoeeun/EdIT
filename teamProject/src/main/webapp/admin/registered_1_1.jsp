@@ -1,4 +1,4 @@
-<%@page import="com.itwillbs.domain.ReportDTO"%>
+<%@page import="com.itwillbs.domain.AdminDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -36,42 +36,41 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	});
 </script>
 </head>
+	
 <%
-ReportDTO reportDTO = (ReportDTO)request.getAttribute("reportDTO");
+AdminDTO adminDTO = (AdminDTO)request.getAttribute("adminDTO");
 
 %>
-
 <!--============================== 바디 ============================================-->
 <div class="report">
 	<div class="container">
-			<h2>신고 상세페이지</h2>
-			<form class="report-form-grids_1_1" action="report_answer.ad" method="post" >		
-				<input type="hidden" value="<%=reportDTO.getR_num() %>" name="r_num">
-				<p>신고자 아이디</p>
-				<input class="readonly" type="text" name="r_m_num_id" value="<%=reportDTO.getR_m_num_id() %>" readonly="readonly"><br>
-				<p>신고대상자 아이디</p>
-				<input class="readonly" type="text" name="r_m_target_id" value="<%=reportDTO.getR_m_target_id() %>" readonly="readonly"><br>
-				<p>제목</p>
-				<input class="title" type="text" name="r_title" value="<%=reportDTO.getR_title() %>" required=" " ><br>
-				<p>첨부파일</p>
-				<div>
-					<img src="adminUpload/<%=reportDTO.getR_file() %>" width="200px" height="200px" onclick="window.open('adminUpload/<%=reportDTO.getR_file() %>','이미지','width=500, height=700, scrollbars=yes')">
-				</div><br>
-				<p>신고내용</p>
-				<textarea name="r_content" readonly="readonly"><%=reportDTO.getR_content() %></textarea><br>
-				<p>답변내용</p>
-				<%
-				String answer = reportDTO.getR_answer() == null ? "" : reportDTO.getR_answer();
-				%>
-				<textarea name="r_answer"><%=answer %></textarea><br>
-				<div class="reportbtn">
-					<input type="submit" value="답변등록">
-					<button type="button" id="reportbtn_btn_1" onclick="location.href='report_check.ad?r_num=<%=reportDTO.getR_num()%>'">신고적용</button>
-					<button type="button" id="reportbtn_btn_1" onclick="window.close()">닫기</button>
-				</div>
+			<h2>1 : 1 문의</h2>
+			<form action="" method="post" class="report-form-grids_1_1">
+			<input type="hidden" value="<%=adminDTO.getA_num()%>">
+			<p>아이디</p>
+			<input class="readonly" type="text" value="<%=adminDTO.getA_m_nick() %>" readonly="readonly"><br>
+			<p>제목</p>
+			<input class="title" type="text" value="<%=adminDTO.getA_title() %>" readonly="readonly"><br>
+			<p>첨부파일</p>
+			<div>
+				<img src="adminUpload/<%=adminDTO.getA_file() %>" width="200px" height="200px" onclick="window.open('adminUpload/<%=adminDTO.getA_file() %>','이미지','width=500, height=700, scrollbars=yes')">
+			</div><br>
+			<p>문의내용</p>
+			<textarea name="textarea" readonly="readonly"><%=adminDTO.getA_content() %></textarea><br>
+			
+			<%
+			String answer = adminDTO.getA_answer() == null ? "" : adminDTO.getA_answer();
+			%>
+			<p>답변내용</p>
+			<textarea name="textarea" readonly="readonly"><%=answer %></textarea><br>
+			<div class="reportbtn">
+			<input type="submit" value="답변등록">
+			<button type="button" id="reportbtn_btn_1" onclick="window.close()">확인</button>
+			</div>
 			</form>
 	</div>
 </div>
+
 
 	<!--============================================== footer =========================-->
 

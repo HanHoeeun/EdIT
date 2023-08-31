@@ -49,98 +49,55 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	});
 </script>
 
+<!-- ==================================== 카카오로 로그인하기 ============================ -->
 
-<!-- 카카오 테스트1 -->
-<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-<script type="text/javascript">
-kakao.init('abe7984fd16d1fc768372dce3dec7c60');
-$("#kakao-login-btn").on("click", function(){
-    //1. 로그인 시도
-    Kakao.Auth.login({
-        success: function(authObj) {
-         
-          //2. 로그인 성공시, API 호출
-          Kakao.API.request({
-            url: '/v2/user/me',
-            success: function(res) {
-              console.log(res);
-              var id = res.id;
-			  scope : 'account_email';
-			alert('로그인성공');
-              location.href="main.me";
-		
+<!-- // 카카오 테스트1 -->
 
-            
-        }
-          })
-          console.log(authObj);
-          var token = authObj.access_token;
-        },
-        fail: function(err) {
-          alert(JSON.stringify(err));
-        }
-      });
-        
-}) //
-
-
-
-
-
-</script>
-
-
-
-
-<!-- 카카오 로그인 테스트 중입니다. -->
-<!-- 카카오 로그인 연동  -->
-<!-- 둘 중 뭐를 써야하지..?? -->
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-<!-- <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script> -->
-
 <script>
-// Kakao.init('abe7984fd16d1fc768372dce3dec7c60'); //js토큰키 사용(내 고유 토큰키)
-// console.log(Kakao.isInitialized()); // sdk초기화 여부 판단
-// //카카오로그인
-// function kakaoLogin() {
-//     Kakao.Auth.login({
-//       success: function (res) {
-//         Kakao.API.request({
-//           url: '/v2/user/me',
-//           success: function (res) {
-//         	  sessionStorage.setItem("id",res.id); //session에 카카오로그인 아이디 담음
-//         	  var id = sessionStorage.getItem("id");
-//         	  $.ajax({
-// 				  url : "./AjaxAction.aj",
-// 				  data: {"id": id},
-// 				  success:function(data){
-// 					  const result = $.trim(data);
-// 					  if(result=="yes"){
-// 						alert('회원정보가 없습니다. 회원가입페이지로 이동합니다.');
-// 						location.href="./registered3.me?id="+id;
-					  
-// 					  }else if ( result=="no"){
-// 					 	alert('코드리스 회원입니다.');
-// 					 	location.href="./KakaoLogin.me?id="+id; //페이지 이동해서 데이터(db에서 id값만 갖고와도 로그인 성공하도록 해야함!!)
-				
-// 					  }
-// 				  }//success 
-// 			  });// ajax
-        	  
-//           },
-//           fail: function (error) {
-//             console.log(error)
-//           },
-//         })
-//       },
-//       fail: function (error) {
-//         console.log(error)
-//       },
-//     })
-//   }
+// 내 고유 토큰키-> API 키를 넣으니깐 오류 뜸.
+// 오류가 난다... -> 카카오 로그인 버튼 누르면 처음에는 잘 되다가 다음번에는 그냥 꺼짐...
+Kakao.init('abe7984fd16d1fc768372dce3dec7c60'); // 발급받은 키 중 자바스크립트 키 사용
+console.log(Kakao.isInitialized()); // sdk초기화 여부 판단
+//카카오로그인
+function kakaoLogin() {
+    Kakao.Auth.login({
+      success: function (response) {
+        Kakao.API.request({
+          url: '/v2/user/me',
+          success: function (response) {
+        	  	     console.log(response)
+          } ,
+          fail: function (errer){
+        	  console.log(error)
+          } ,
+        })
+      },
+      fail: function (error) {
+          console.log(error)
+        },
+      })
+    }
+//카카오로그아웃  
+function kakaoLogout() {
+    if (Kakao.Auth.getAccessToken()) {
+      Kakao.API.request({
+        url: '/v1/user/unlink',
+        success: function (response) {
+        	console.log(response)
+        },
+        fail: function (error) {
+          console.log(error)
+        },
+      })
+      Kakao.Auth.setAccessToken(undefined)
+    }
+  }  
 </script>
-<!-- // 카카오 로그인 연동  -->
-<!-- 카카오로그인 테스트중입니다. -->
+
+<!-- // 카카오 테스트1 -->
+
+<!-- ====================================  // 카카오로 로그인하기 ============================ -->
 
 
 
@@ -175,8 +132,8 @@ $("#kakao-login-btn").on("click", function(){
 			<div class="login-form-grids animated wow slideInUp" data-wow-delay=".5s">
 			
 				<form action="loginPro.me" method="post">
-					<input type="text" placeholder="아이디" required=" " id="_5id" name="_5id">
-					<input type="password" placeholder="비밀번호" required=" " id="_5pass" name="_5pass">
+					<input type="text" placeholder="아이디" required=" " id="m_id" name="m_id">
+					<input type="password" placeholder="비밀번호" required=" " id="m_pass" name="m_pass">
 					<input type="submit" value="로그인">
 				</form>
 				
@@ -192,6 +149,8 @@ $("#kakao-login-btn").on("click", function(){
 						<a href="insert.me">회원가입</a>
 					</div>	
 <!-- // 아이디/비밀번호 찾기/회원가입 -->		
+
+
 				
 <!-- or 표시 -->				
 					<div class="_5or-login-with">
@@ -212,7 +171,7 @@ $("#kakao-login-btn").on("click", function(){
 	<div class="_5login-kakao">
 	<a href="javascript:void(0)">
       <img onclick="kakaoLogin();" src="//k.kakaocdn.net/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg"  
-      width="100%;" height="50%;"  style="margin-top: 15px; padding-inline: 50px;" />
+      width="100%;" height="50%;"  style="margin-top: 15px; padding-inline: 50px;">
       </a>
 </div>			
 </div>

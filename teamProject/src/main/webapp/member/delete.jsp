@@ -110,9 +110,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<div class="_6clearfix"> 
 								<div align="center">
 									<input type="text1" placeholder="아이디" readonly="readonly"readonly>
-									<input type="text" value="<%=id%>"name="_6id"  readonly="readonly"readonly>
+									<input type="text" value="<%=id%>" name="m_id"  readonly="readonly"readonly>
 									<input type="text1" placeholder="비밀번호" readonly="readonly"readonly >
-									<input type="text" name="_6pass"> <br>
+									<input type="text" name="m_pass" required=" " id="m_pass"> <br>
+									<div class="divdub"></div>
 								</div>	
 							</div>
 						</div>
@@ -120,7 +121,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				
 				<div class="snipcart-details top_brand_home_details">
 						<fieldset>
-							<input type="button" name="submit" value="회원탈퇴" class="button">
+							<input type="submit" name="submit" value="회원탈퇴" class="button">
 						</fieldset>
 						</div>
 			</form>
@@ -135,6 +136,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 
 <!--- --------------------------------------------------회원탈퇴 ---------------------------------------------------------->
+
+
+<!-- --------------------제이쿼리------------------------>
+
+<script type="text/javascript" src="script/jquery-3.7.0.js"></script>
+<script type="text/javascript">
+
+	$('#_6pass').keyup(function (){
+		
+		
+		
+		
+		
+	})
+
+
+
+</script>
+
+
+
+
+
+
 
 
 

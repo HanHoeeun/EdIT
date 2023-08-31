@@ -81,7 +81,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li><a href="product/checkout.jsp"><i class="fa fa-arrow-right"></i>찜♥</a></li>
 						<li><a href="qnalist.me"><i class="fa fa-arrow-right"></i>문의 내역</a></li>
 						<li><a href="delete.me"><i class="fa fa-arrow-right"></i>회원 탈퇴</a></li>
- 						<li><a href="#"><i class="fa fa-arrow-right"></i>회원 관리</a></li>  
+ 						<li><a href="list.me"><i class="fa fa-arrow-right"></i>회원 관리(리스트)</a></li>  
 					</ul>
 				</div>											
 			</div>		
@@ -104,7 +104,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 %>				
 				
-				<form action="update.me" method="post">
+				<form action="mypage.me" method="post">
 					<div class="hover14 column">
 						<div class="_6clearfix1"> 
 							<div class="_6clearfix"> 
@@ -121,7 +121,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								
 					<div class="snipcart-details top_brand_home_details">
 						<fieldset>
-							<input type="button" name="submit" value="회원정보수정" class="button" onclick="location.href='updatePro.me'">
+							<input type="button" name="submit" value="정보수정하러가기" class="button" onclick="location.href='update.me'">
 						</fieldset>
 						</div>
 				</form>

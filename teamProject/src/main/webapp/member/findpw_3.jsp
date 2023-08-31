@@ -71,7 +71,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- ================================ 비밀번호찾기 ================================ -->
 	<div class="login">
 		<div class="container">
-		<div class="container">
 		<div style="text-align : center;">
      		<img src="../images/find_5_1.png"><br><br><br>
 		</div>
@@ -81,13 +80,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		
 			<div class="login-form-grids animated wow slideInUp" data-wow-delay=".5s">
 			
-				<form>			
+				<form action = "findpwPro.me"  method = "post">					
 
-					<input type="text" placeholder="아이디" required=" " >  
-					<input type="email" placeholder="이메일" required=" " >
+					<input type="text"  placeholder ="아이디"  required=" "  id = "m_id" name = "m_id" >
+					<input type="email"  placeholder ="이메일"  required=" "  id = "m_email" name = "m_email" >
 					
 					<div class="_5center">
-						<input type="submit" value="확인" class="#">	
+						<input type="submit" value="확인"  class="#">	
+						<input type="submit" value="취소"  class="#">	
 					<hr style="width:100%;height:1px;border:none;background-color:#999;">
 					</div>
 					
