@@ -75,7 +75,7 @@ public class ProductDAO {
 			//1,2단계 디비연결
 			con = getConnection();
 			//3 sql 구문 insert
-			String sql="insert into products(p_num, p_title, p_type, p_price, p_detail, p_date, p_readcount, p_status, p_file) values(?,?,?,?,?,?,?,?,?)";
+			String sql="insert into products(p_num, p_title, p_type, p_price, p_detail, p_date, p_readcount, p_status, p_file, m_nick) values(?,?,?,?,?,?,?,?,?,?)";
 			
 			pstmt=con.prepareStatement(sql);
 			
@@ -88,6 +88,7 @@ public class ProductDAO {
 			pstmt.setInt(7, productDTO.getP_readcount());
 			pstmt.setString(8, productDTO.getP_status());
 			pstmt.setString(9, productDTO.getP_file());
+			pstmt.setString(10, productDTO.getM_nick());
 			
 			//4 실행
 			pstmt.executeUpdate();
@@ -145,9 +146,7 @@ public class ProductDAO {
 			
 			//3 sql select * from board where num = ?
 			String sql="select * from products where p_num = ?";
-			
 			pstmt = con.prepareStatement(sql);
-			
 			pstmt.setInt(1, p_num);
 			
 			//4 실행 => 결과 저장
@@ -169,6 +168,7 @@ public class ProductDAO {
 				productDTO.setP_status(rs.getString("p_status"));
 				//첨부파일
 				productDTO.setP_file(rs.getString("p_file"));
+				productDTO.setM_nick(rs.getString("m_nick"));
 				
 			}
 		} catch (Exception e) {
@@ -401,34 +401,7 @@ public class ProductDAO {
 		
 	}
 	
-	public void registerProduct(ProductDTO productDTO) {
-		System.out.println("productDAO registerProduct()");
-		try {
-			//1,2 디비연결
-			con=getConnection();
-			//3 sql insert
-			String sql = "insert into products(num,name,subject,content,readcount,date,file) values(?,?,?,?,?,?,?)";
-			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(1, productDTO.getP_num());      //(물음표 순서,값)
-			pstmt.setString(2, productDTO.getP_m_id()); 
-			pstmt.setString(3, productDTO.getP_title());
-			pstmt.setString(4, productDTO.getP_detail());
-			pstmt.setInt(5, productDTO.getP_price());
-			pstmt.setInt(6, productDTO.getP_readcount());
-			pstmt.setTimestamp(7, productDTO.getP_date());
-			pstmt.setString(8, productDTO.getP_status());
-		
-			//파일추가
-			pstmt.setString(9, productDTO.getP_file());
-			
-			//4 실행 
-			pstmt.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			dbClose();
-		}
-	} //registerProduct()
+	
 
 	
 	public int getProductCount() {

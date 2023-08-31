@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.ProductDTO;
 import com.itwillbs.domain.ProductPageDTO;
+import com.itwillbs.service.MemberService;
 import com.itwillbs.service.ProductService;
 
 public class ProductController extends HttpServlet{
@@ -210,6 +212,13 @@ public class ProductController extends HttpServlet{
 		// -------------------------------------------------------------------------------
 		
 		if(sPath.equals("/productReg.po")) {
+			HttpSession session = request.getSession();
+			String id = (String)session.getAttribute("m_id");
+			
+			MemberService memberService = new MemberService();
+			MemberDTO memberDTO =  memberService.getMember(id);
+			request.setAttribute("memberDTO", memberDTO);
+			
 			// 주소 변경 없이 이동 product/productReg.jsp
 			dispatcher 
 			    = request.getRequestDispatcher("product/productReg.jsp");
@@ -219,10 +228,13 @@ public class ProductController extends HttpServlet{
 		
 		if(sPath.equals("/productRegPro.po")) {
 			
+			
 			// ProductService 객체생성
 			productService = new ProductService();
 			// insertMember() 메서드 호출
 			productService.insertProduct(request);
+			
+			
 			//로그인 이동 => 주소변경하면서 이동
 			response.sendRedirect("products.po");
 			
@@ -236,7 +248,7 @@ public class ProductController extends HttpServlet{
 			HttpSession session = request.getSession();
 			
 			// "p_id" 세션값 가져오기=> String id 변수 저장
-			String m_id = (String)session.getAttribute("m_id");
+			String id = (String)session.getAttribute("m_id");
 			
 			// ProductService 객체생성
 			productService = new ProductService();
@@ -284,6 +296,14 @@ public class ProductController extends HttpServlet{
 		
 		
 		if(sPath.equals("/single.po")) {
+			
+			HttpSession session = request.getSession();
+			String id = (String)session.getAttribute("m_id");
+			
+			MemberService memberService = new MemberService();
+			MemberDTO memberDTO =  memberService.getMember(id);
+			request.setAttribute("memberDTO", memberDTO);
+			
 			// ProductService 객체생성
 			productService = new ProductService();
 			

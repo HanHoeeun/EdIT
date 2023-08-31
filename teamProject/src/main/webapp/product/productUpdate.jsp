@@ -1,3 +1,4 @@
+<%@page import="com.itwillbs.domain.MemberDTO"%>
 <%@page import="com.itwillbs.domain.ProductDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -67,7 +68,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- //breadcrumbs -->
 
 <%
-String m_id = (String)session.getAttribute("m_id");
+String id = (String)session.getAttribute("m_id");
 ProductDTO productDTO=(ProductDTO)request.getAttribute("productDTO");
 %>
 
@@ -83,7 +84,7 @@ ProductDTO productDTO=(ProductDTO)request.getAttribute("productDTO");
 				
 				<!-- 상품 제목, 가격, 상품설명 -->
 				<form action="productUpdatePro.po" method="post" enctype="multipart/form-data">
-					<input type="hidden" value="1" name="p_num">
+					<input type="hidden" value="<%=productDTO.getP_num()%>" name="p_num">
 					<input type="text" name="p_title" placeholder="제목을 입력하세요..." value="<%=productDTO.getP_title()%>">
 					<input type="text" name="p_price" placeholder="가격을 입력하세요..." value="<%=productDTO.getP_price()%>">
 					<textarea name="p_detail" placeholder="상품설명을 입력하세요..." id="p_detail" rows="10" cols="50" style="width: 428px" maxlength="400" ><%=productDTO.getP_detail()%></textarea>

@@ -69,7 +69,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- //breadcrumbs -->
 
 <%
-String m_id = (String)session.getAttribute("m_id");
+String id = (String)session.getAttribute("m_id");
 ProductDTO productDTO = (ProductDTO)request.getAttribute("productDTO");
 MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 %>
@@ -81,14 +81,24 @@ MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 		<div class="container">
 			<div class="agileinfo_single">
 				
+				<!-- 사진 -->
 				<div class="col-md-4 agileinfo_single_left">
-					<img id="example" src="../images/si1.jpg" alt=" " class="img-responsive">
-				</div>
-				<div class="col-md-8 agileinfo_single_right">
+<%-- 						<a href="upload/<%=productDTO.getP_file() %>" download> --%>
+<%-- 				        <%=productDTO.getP_file() %></a> --%>
+<%-- 				        <img src="upload/<%=productDTO.getP_file() %>"  --%>
+<!-- 				         width="200" height="200"> -->
 				
+<!-- 					<img id="example" src="../images/si1.jpg" alt=" " class="img-responsive"> -->
+				</div>
+				<!-- // 사진 -->
+				
+				<div class="col-md-8 agileinfo_single_right">
+					
+					<input type="hidden" value="<%=productDTO.getP_num()%>" name="p_num">
+					
 					<!-- 조회수 -->
 					<div style="float: right;">
-					<img src="../images/readcountimg.png" width="20" height=20" alt="조회수"><i> : 236</i>
+					<img src="../images/readcountimg.png" width="20" height=20" alt="조회수"><i> : <%=productDTO.getP_readcount() %></i>
 					</div>
 					<!-- 조회수 -->
 				
@@ -110,12 +120,12 @@ MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 					<!-- // 관심도(별) -->
 					
 					<!-- 상품제목 -->
-					<h2>사과 노트북</h2>
+					<h2><%=productDTO.getP_title() %></h2>
 					<!-- // 상품제목 -->
 					
 					<!-- 가격 -->	
 					<div class="snipcart-thumb agileinfo_single_right_snipcart">
-						<h4 class="m-sing">200만원</h4>
+						<h4 class="m-sing"><%=productDTO.getP_price() %></h4>
 					</div>
 					<!-- // 가격 -->
 					
@@ -123,17 +133,17 @@ MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 					
 					<!-- 판매ID,상품상태,등록날짜 -->
 					<div class="w3agile_description">
-						<p>판매ID : asgg123</p>
-						<p>상품상태 : 판매중</p>
-						<p>등록날짜 : </p>
+						<p>판매ID : <%=productDTO.getM_nick() %></p>
+						<p>상품상태 : <%=productDTO.getP_status() %></p>
+						<p>등록날짜 : <%=productDTO.getP_date() %></p>
 					</div>
 					<!-- 판매ID,상품상태,등록날짜 -->
 					
 					<!-- 상품설명 -->
 					<div class="w3agile_description">
-						<h4>상품 상세설명 :</h4>
+						<h4>상품 상세설명 : </h4>
 						<p>
-						노트북이 빠르고 디자인도 깔끔하게 잘 뽑혔다. 성능이 죽입니다!!!!1
+						<%=productDTO.getP_detail() %>
 						</p>
 					</div>
 					<!-- // 상품설명 -->
@@ -150,18 +160,26 @@ MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 					</div>
 					<!-- // 위시리스트 추가버튼 -->
 					
+					<!--  로그인했을떄 아이디 일치시 수정삭제버튼 나오게하긔 -->
 					<%				
-					if(m_id!=null){
-						if(m_id.equals(memberDTO.getM_id())){
+					if(id!=null){
+						if(id.equals(memberDTO.getM_id())){
 							%>
+					<div class="checkout-right-basket">		
 					<input type="button" value="상품수정" class="glyphicon glyphicon-menu-left"
 					onclick="location.href='productUpdate.po?p_num=<%=productDTO.getP_num()%>'">
 					
 					<input type="button" value="상품삭제" class="glyphicon glyphicon-menu-left"
 					onclick="location.href='delete.po?p_num=<%=productDTO.getP_num()%>'">
 					
+					<a href=products.po"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>상품목록</a>
+					</div>
+					<!-- // 로그인했을떄 아이디 일치시 수정삭제버튼 나오게하긔 -->
 							<%
-						}
+						}%>
+							
+							
+				<%
 					}
 					%>
 					
@@ -173,6 +191,11 @@ MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 					<a href=products.po"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>상품목록</a>
 					</div>
 					<!-- // 채팅, 신고하기, 상품목록 버튼 -->
+					
+					
+					
+					
+					
 					
 				</div>
 				<div class="clearfix"> </div>
