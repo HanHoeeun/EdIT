@@ -61,14 +61,14 @@ public class ProductService {
 		return count;
 	}
 
-	public List<ProductDTO> getLatestProducts(ProductPageDTO productDTO) {
+	public List<ProductDTO> getLatestProducts(ProductPageDTO ppageDTO) {
 		List<ProductDTO> latestList = null;
 		System.out.println("ProductService getLatestProducts()");
 		try {
 			// productDAO 객체생성
 			productDAO = new ProductDAO();	
 			// DAO에서 데이터 가져오기
-			latestList =productDAO.getLatestProducts(productDTO); 
+			latestList =productDAO.getLatestProducts(ppageDTO); 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -147,7 +147,67 @@ public class ProductService {
 		}
 		return soldList;
 	}
+	
+	// 노트북 중 최신순
+		public List<ProductDTO> getLaptopLatestProducts(ProductPageDTO ppageDTO) {
+			List<ProductDTO>	laptopLatestList = null;
+			System.out.println("ProductService getLatestProducts()");
+			try {
+				// productDAO 객체생성
+				productDAO = new ProductDAO();	
+				// DAO에서 데이터 가져오기
+				laptopLatestList =productDAO.getLaptopLatestProducts(ppageDTO); 
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return laptopLatestList;
+		}
 
+		// 노트북 중 인기순
+		public List<ProductDTO> getLaptopPopularProducts(ProductPageDTO ppageDTO) {
+			List<ProductDTO>	laptopPopularList = null;
+			System.out.println("ProductService getLaptopPopularProducts()");
+			try {
+				// productDAO 객체생성
+				productDAO = new ProductDAO();	
+				// DAO에서 데이터 가져오기
+				laptopPopularList =productDAO.getLaptopPopularProducts(ppageDTO); 
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return laptopPopularList;
+		}
+
+		// 노트북 중 가격 높은 순
+		public List<ProductDTO> getLaptopHighPriceProducts(ProductPageDTO ppageDTO) {
+			List<ProductDTO>	laptopHighPriceList = null;
+			System.out.println("ProductService getLaptopHighPriceProducts()");
+			try {
+				// productDAO 객체생성
+				productDAO = new ProductDAO();	
+				// DAO에서 데이터 가져오기
+				laptopHighPriceList =productDAO.getLaptopHighPriceProducts(ppageDTO); 
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return laptopHighPriceList;
+		}
+
+		// 노트북 중 가격낮은순
+		public List<ProductDTO> getLaptopLowPriceProducts(ProductPageDTO ppageDTO) {
+			List<ProductDTO>	laptopLowPriceList = null;
+			System.out.println("ProductService getLaptopLowPriceProducts()");
+			try {
+				// productDAO 객체생성
+				productDAO = new ProductDAO();	
+				// DAO에서 데이터 가져오기
+				laptopLowPriceList =productDAO.getLaptopLowPriceProducts(ppageDTO); 
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return laptopLowPriceList;
+		}
+	
 	// 노트북 내에 판매중인 상품 검색 
 	public List<ProductDTO> getLaptopSellProducts(ProductPageDTO ppageDTO) {
 		System.out.println("ProductService getLaptopSellProducts()");
@@ -176,6 +236,66 @@ public class ProductService {
 			e.printStackTrace();
 		}
 		return soldList;
+	}
+	
+	// 폰 중 최신순
+	public List<ProductDTO> getPhoneLatestProducts(ProductPageDTO ppageDTO) {
+		List<ProductDTO>	phoneLatestList = null;
+		System.out.println("ProductService getPhoneLatestProducts()");
+		try {
+			// productDAO 객체생성
+			productDAO = new ProductDAO();	
+			// DAO에서 데이터 가져오기
+			phoneLatestList =productDAO.getPhoneLatestProducts(ppageDTO); 
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return phoneLatestList;
+	}
+	
+	// 폰 중 인기순
+	public List<ProductDTO> getPhonePopularProducts(ProductPageDTO ppageDTO) {
+		List<ProductDTO>	phonePopularList = null;
+		System.out.println("ProductService getPhonePopularProducts()");
+		try {
+			// productDAO 객체생성
+			productDAO = new ProductDAO();	
+			// DAO에서 데이터 가져오기
+			phonePopularList =productDAO.getPhonePopularProducts(ppageDTO); 
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return phonePopularList;
+	}
+	
+	// 폰 중 가격높은 순
+	public List<ProductDTO> getPhoneHighPriceProducts(ProductPageDTO ppageDTO) {
+		List<ProductDTO>	phoneHighPriceList = null;
+		System.out.println("ProductService getPhoneHighPriceProducts()");
+		try {
+			// productDAO 객체생성
+			productDAO = new ProductDAO();	
+			// DAO에서 데이터 가져오기
+			phoneHighPriceList =productDAO.getPhoneHighPriceProducts(ppageDTO); 
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return phoneHighPriceList;
+	}
+	
+	// 폰 중 가격낮은 순
+	public List<ProductDTO> getPhoneLowPriceProducts(ProductPageDTO ppageDTO) {
+		List<ProductDTO>	phoneLowPriceList = null;
+		System.out.println("ProductService getPhoneLowPriceProducts()");
+		try {
+			// productDAO 객체생성
+			productDAO = new ProductDAO();	
+			// DAO에서 데이터 가져오기
+			phoneLowPriceList =productDAO.getPhoneLowPriceProducts(ppageDTO); 
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return phoneLowPriceList;
 	}
 	
 	// 폰페이지 내에 판매중인 상품 검색 
@@ -208,35 +328,98 @@ public class ProductService {
 		return soldList;
 	}
 	
-	// 폰페이지 내에 판매중인 상품 검색 
-	public List<ProductDTO> getTabletSellProducts(ProductPageDTO ppageDTO) {
-		System.out.println("ProductService getTabletSellProducts()");
-		List<ProductDTO> sellList = null;
-		try {
-			// productDAO 객체생성
-			productDAO = new ProductDAO();
-			// DAO에서 데이터 가져오기
-			sellList=productDAO.getTabletSellProducts(ppageDTO);
-		} catch (Exception e) {
-			e.printStackTrace();
+	
+	
+	// 태블릿 중 최신순
+		public List<ProductDTO> getTabletLatestProducts(ProductPageDTO ppageDTO) {
+			List<ProductDTO>	tabletLatestList = null;
+			System.out.println("ProductService getTabletLatestProducts()");
+			try {
+				// productDAO 객체생성
+				productDAO = new ProductDAO();	
+				// DAO에서 데이터 가져오기
+				tabletLatestList =productDAO.getTabletLatestProducts(ppageDTO); 
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return tabletLatestList;
 		}
-		return sellList;
-	}
 
-	// 폰페이지 내에 판매완료된 상품 검색 
-	public List<ProductDTO> getTabletSoldProducts(ProductPageDTO ppageDTO) {
-		System.out.println("ProductService getTabletSoldProducts()");
-		List<ProductDTO> soldList = null;
-		try {
-			// productDAO 객체생성
-			productDAO = new ProductDAO();
-			// DAO에서 데이터 가져오기
-			soldList=productDAO.getTabletSoldProducts(ppageDTO);
-		} catch (Exception e) {
-			e.printStackTrace();
+		// 태블릿 중 인기순
+		public List<ProductDTO> getTabletPopularProducts(ProductPageDTO ppageDTO) {
+			List<ProductDTO>	tabletPopularList = null;
+			System.out.println("ProductService getTabletPopularProducts()");
+			try {
+				// productDAO 객체생성
+				productDAO = new ProductDAO();	
+				// DAO에서 데이터 가져오기
+				tabletPopularList =productDAO.getTabletPopularProducts(ppageDTO); 
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return tabletPopularList;
 		}
-		return soldList;
-	}
+
+
+		// 태블릿 중 가격높은 순
+		public List<ProductDTO> getTabletHighPriceProducts(ProductPageDTO ppageDTO) {
+			List<ProductDTO>	tabletHighPriceList = null;
+			System.out.println("ProductService getTabletHighPriceProducts()");
+			try {
+				// productDAO 객체생성
+				productDAO = new ProductDAO();	
+				// DAO에서 데이터 가져오기
+				tabletHighPriceList =productDAO.getTabletHighPriceProducts(ppageDTO); 
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return tabletHighPriceList;
+		}
+
+		// 태블릿 중 가격낮은 순
+		public List<ProductDTO> getTabletLowPriceProducts(ProductPageDTO ppageDTO) {
+			List<ProductDTO>	tabletLowPriceList = null;
+			System.out.println("ProductService getTabletLowPriceProducts()");
+			try {
+				// productDAO 객체생성
+				productDAO = new ProductDAO();	
+				// DAO에서 데이터 가져오기
+				tabletLowPriceList =productDAO.getTabletLowPriceProducts(ppageDTO); 
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return tabletLowPriceList;
+		}
+		
+		// 태블릿페이지 내에 판매중인 상품 검색 
+		public List<ProductDTO> getTabletSellProducts(ProductPageDTO ppageDTO) {
+			System.out.println("ProductService getTabletSellProducts()");
+			List<ProductDTO> sellList = null;
+			try {
+				// productDAO 객체생성
+				productDAO = new ProductDAO();
+				// DAO에서 데이터 가져오기
+				sellList=productDAO.getTabletSellProducts(ppageDTO);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return sellList;
+		}
+		
+		// 태블릿페이지 내에 판매완료된 상품 검색 
+		public List<ProductDTO> getTabletSoldProducts(ProductPageDTO ppageDTO) {
+			System.out.println("ProductService getTabletSoldProducts()");
+			List<ProductDTO> soldList = null;
+			try {
+				// productDAO 객체생성
+				productDAO = new ProductDAO();
+				// DAO에서 데이터 가져오기
+				soldList=productDAO.getTabletSoldProducts(ppageDTO);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return soldList;
+		}
 	
 	public List<ProductDTO> getLaptopList(ProductPageDTO ppageDTO) {
 		System.out.println("productService getLaptopList()");
@@ -450,6 +633,12 @@ public class ProductService {
 			e.printStackTrace();
 		}
 	}//deleteProduct()
+
+	
+
+
+
+	
 
 
 

@@ -159,18 +159,18 @@ public class ProductController extends HttpServlet{
 		    String orderBy = request.getParameter("ord");
 		    System.out.println("orderBy"+ orderBy);
 		    if(orderBy != null) {
-		    if ("latest".equals(orderBy)) {
-		    	laptopList = productService.getLatestProducts(ppageDTO);
+		    if ("laptopLatest".equals(orderBy)) {
+		    	laptopList = productService.getLaptopLatestProducts(ppageDTO);
 		    } else
-		    	if ("popular".equals(orderBy)) {
-		    	laptopList = productService.getPopularProducts(ppageDTO);
-		    } else if ("highPrice".equals(orderBy)) {
-		    	laptopList = productService.getHighPriceProducts(ppageDTO);
-		    } else if ("lowPrice".equals(orderBy)) {
-		    	laptopList = productService.getLowPriceProducts(ppageDTO);
+		    	if ("laptopPopular".equals(orderBy)) {
+		    	laptopList = productService.getLaptopPopularProducts(ppageDTO);
+		    } else if ("laptopHighPrice".equals(orderBy)) {
+		    	laptopList = productService.getLaptopHighPriceProducts(ppageDTO);
+		    } else if ("laptopLowPrice".equals(orderBy)) {
+		    	laptopList = productService.getLaptopLowPriceProducts(ppageDTO);
 		    } else if ("laptopSell".equals(orderBy)) {
 		    	laptopList = productService.getLaptopSellProducts(ppageDTO);
-		    } else if ("lsptopSold".equals(orderBy)) {
+		    } else if ("laptopSold".equals(orderBy)) {
 		    	laptopList = productService.getLaptopSoldProducts(ppageDTO);
 		    } else {
 		        // 디폴트로 최신순 정렬
@@ -243,15 +243,15 @@ public class ProductController extends HttpServlet{
 		    String orderBy = request.getParameter("ord");
 		    System.out.println("orderBy"+ orderBy);
 		    if(orderBy != null) {
-		    if ("latest".equals(orderBy)) {
-		    	phoneList = productService.getLatestProducts(ppageDTO);
+		    if ("phoneLatest".equals(orderBy)) {
+		    	phoneList = productService.getPhoneLatestProducts(ppageDTO);
 		    } else
-		    	if ("popular".equals(orderBy)) {
-		    	phoneList = productService.getPopularProducts(ppageDTO);
-		    } else if ("highPrice".equals(orderBy)) {
-		    	phoneList = productService.getHighPriceProducts(ppageDTO);
-		    } else if ("lowPrice".equals(orderBy)) {
-		    	phoneList = productService.getLowPriceProducts(ppageDTO);
+		    	if ("phonePopular".equals(orderBy)) {
+		    	phoneList = productService.getPhonePopularProducts(ppageDTO);
+		    } else if ("phoneHighPrice".equals(orderBy)) {
+		    	phoneList = productService.getPhoneHighPriceProducts(ppageDTO);
+		    } else if ("phoneLowPrice".equals(orderBy)) {
+		    	phoneList = productService.getPhoneLowPriceProducts(ppageDTO);
 		    } else if ("phoneSell".equals(orderBy)) {
 		    	phoneList = productService.getPhoneSellProducts(ppageDTO);
 		    } else if ("phoneSold".equals(orderBy)) {
@@ -328,15 +328,15 @@ public class ProductController extends HttpServlet{
 				    String orderBy = request.getParameter("ord");
 				    System.out.println("orderBy"+ orderBy);
 				    if(orderBy != null) {
-				    if ("latest".equals(orderBy)) {
-				    	tabletList = productService.getLatestProducts(ppageDTO);
+				    if ("tabletLatest".equals(orderBy)) {
+				    	tabletList = productService.getTabletLatestProducts(ppageDTO);
 				    } else
-				    	if ("popular".equals(orderBy)) {
-				    	tabletList = productService.getPopularProducts(ppageDTO);
-				    } else if ("highPrice".equals(orderBy)) {
-				    	tabletList = productService.getHighPriceProducts(ppageDTO);
-				    } else if ("lowPrice".equals(orderBy)) {
-				    	tabletList = productService.getLowPriceProducts(ppageDTO);
+				    	if ("tabletPopular".equals(orderBy)) {
+				    	tabletList = productService.getTabletPopularProducts(ppageDTO);
+				    } else if ("tabletHighPrice".equals(orderBy)) {
+				    	tabletList = productService.getTabletHighPriceProducts(ppageDTO);
+				    } else if ("tabletLowPrice".equals(orderBy)) {
+				    	tabletList = productService.getTabletLowPriceProducts(ppageDTO);
 				    } else if ("tabletSell".equals(orderBy)) {
 				    	tabletList = productService.getTabletSellProducts(ppageDTO);
 				    } else if ("tabletSold".equals(orderBy)) {
