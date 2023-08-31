@@ -100,17 +100,16 @@ public class MemberController extends HttpServlet{
 				
 				response.sendRedirect("main.me");
 				
-				// 8.31 새벽 진 - 수정 -> 아이디, 비밀번호 틀리면 메세지 창 뜨게 "member/login.jsp" -> "member/msg.jsp" 수정
-				// 8.31 오후12시 진 - 또 수정 필요함.. 새로운 jsp창을 만들어야 하나..? 저 msg.jsp는 아이디 찾기에 연결되어 있음..
 			} else {
+				// 아이디와 비밀번호 다르면 메세지 뜨게 수정해봤음.  "member/login.jsp" -> "member/msg.jsp" 수정
+				request.setAttribute("error", "아이디와 비밀번호가 다릅니다.");
 				dispatcher = request.getRequestDispatcher("member/msg.jsp");
 				dispatcher.forward(request, response);
 			}
 			
 		}
 		
-		
-		
+
 //		메인
 		if (sPath.equals("/main.me")) {
 			System.out.println("뽑은 가상주소 비교 : main.me");
