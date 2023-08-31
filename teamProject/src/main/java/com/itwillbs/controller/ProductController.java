@@ -91,7 +91,7 @@ public class ProductController extends HttpServlet{
 			// 게시판 전체 글 개수 구하기 
 			int p_count = productService.getProductCount();
 			// 한화면에 보여줄 페이지개수 설정
-			int p_pageBlock = 10;
+			int p_pageBlock = 5;
 			// 시작하는 페이지번호
 			// currentPage  pageBlock  => startPage
 			//   1~10(0~9)      10     =>  (0~9)/10*10+1=>0*10+1=> 0+1=> 1 
@@ -119,7 +119,8 @@ public class ProductController extends HttpServlet{
 			ppageDTO.setP_startPage(p_startPage);
 			ppageDTO.setP_endPage(p_endPage);
 			ppageDTO.setP_pageCount(p_pageCount);
-			
+			System.out.println("스타트페이지 =" + p_startPage +", 페이지 블럭 = "+ p_pageBlock);
+			System.out.println("현재페이지 =" + p_currentPage);
 			
 			// request에 "productList",productList 저장
 			request.setAttribute("productList", productList);
@@ -159,18 +160,18 @@ public class ProductController extends HttpServlet{
 		    String orderBy = request.getParameter("ord");
 		    System.out.println("orderBy"+ orderBy);
 		    if(orderBy != null) {
-		    if ("latest".equals(orderBy)) {
-		    	laptopList = productService.getLatestProducts(ppageDTO);
+		    if ("laptopLatest".equals(orderBy)) {
+		    	laptopList = productService.getLaptopLatestProducts(ppageDTO);
 		    } else
-		    	if ("popular".equals(orderBy)) {
-		    	laptopList = productService.getPopularProducts(ppageDTO);
-		    } else if ("highPrice".equals(orderBy)) {
-		    	laptopList = productService.getHighPriceProducts(ppageDTO);
-		    } else if ("lowPrice".equals(orderBy)) {
-		    	laptopList = productService.getLowPriceProducts(ppageDTO);
+		    	if ("laptopPopular".equals(orderBy)) {
+		    	laptopList = productService.getLaptopPopularProducts(ppageDTO);
+		    } else if ("laptopHighPrice".equals(orderBy)) {
+		    	laptopList = productService.getLaptopHighPriceProducts(ppageDTO);
+		    } else if ("laptopLowPrice".equals(orderBy)) {
+		    	laptopList = productService.getLaptopLowPriceProducts(ppageDTO);
 		    } else if ("laptopSell".equals(orderBy)) {
 		    	laptopList = productService.getLaptopSellProducts(ppageDTO);
-		    } else if ("lsptopSold".equals(orderBy)) {
+		    } else if ("laptopSold".equals(orderBy)) {
 		    	laptopList = productService.getLaptopSoldProducts(ppageDTO);
 		    } else {
 		        // 디폴트로 최신순 정렬
@@ -179,7 +180,7 @@ public class ProductController extends HttpServlet{
 			// 게시판 전체 글 개수 구하기 
 			int p_count = productService.getProductCount();
 			// 한화면에 보여줄 페이지개수 설정
-			int p_pageBlock = 10;
+			int p_pageBlock = 5;
 			// 시작하는 페이지번호
 			// currentPage  pageBlock  => startPage
 			//   1~10(0~9)      10     =>  (0~9)/10*10+1=>0*10+1=> 0+1=> 1 
@@ -206,6 +207,7 @@ public class ProductController extends HttpServlet{
 			ppageDTO.setP_startPage(p_startPage);
 			ppageDTO.setP_endPage(p_endPage);
 			ppageDTO.setP_pageCount(p_pageCount);
+			System.out.println(" laptop 스타트페이지 =" + p_startPage +", 페이지 블럭 = "+ p_pageBlock);
 			// request에 "laptopList",laptopList 저장
 			request.setAttribute("laptopList", laptopList);
 			request.setAttribute("ppageDTO", ppageDTO);
@@ -243,15 +245,15 @@ public class ProductController extends HttpServlet{
 		    String orderBy = request.getParameter("ord");
 		    System.out.println("orderBy"+ orderBy);
 		    if(orderBy != null) {
-		    if ("latest".equals(orderBy)) {
-		    	phoneList = productService.getLatestProducts(ppageDTO);
+		    if ("phoneLatest".equals(orderBy)) {
+		    	phoneList = productService.getPhoneLatestProducts(ppageDTO);
 		    } else
-		    	if ("popular".equals(orderBy)) {
-		    	phoneList = productService.getPopularProducts(ppageDTO);
-		    } else if ("highPrice".equals(orderBy)) {
-		    	phoneList = productService.getHighPriceProducts(ppageDTO);
-		    } else if ("lowPrice".equals(orderBy)) {
-		    	phoneList = productService.getLowPriceProducts(ppageDTO);
+		    	if ("phonePopular".equals(orderBy)) {
+		    	phoneList = productService.getPhonePopularProducts(ppageDTO);
+		    } else if ("phoneHighPrice".equals(orderBy)) {
+		    	phoneList = productService.getPhoneHighPriceProducts(ppageDTO);
+		    } else if ("phoneLowPrice".equals(orderBy)) {
+		    	phoneList = productService.getPhoneLowPriceProducts(ppageDTO);
 		    } else if ("phoneSell".equals(orderBy)) {
 		    	phoneList = productService.getPhoneSellProducts(ppageDTO);
 		    } else if ("phoneSold".equals(orderBy)) {
@@ -263,7 +265,7 @@ public class ProductController extends HttpServlet{
 			// 게시판 전체 글 개수 구하기 
 			int p_count = productService.getProductCount();
 			// 한화면에 보여줄 페이지개수 설정
-			int p_pageBlock = 10;
+			int p_pageBlock = 5;
 			// 시작하는 페이지번호
 			// currentPage  pageBlock  => startPage
 			//   1~10(0~9)      10     =>  (0~9)/10*10+1=>0*10+1=> 0+1=> 1 
@@ -290,6 +292,7 @@ public class ProductController extends HttpServlet{
 			ppageDTO.setP_startPage(p_startPage);
 			ppageDTO.setP_endPage(p_endPage);
 			ppageDTO.setP_pageCount(p_pageCount);
+			System.out.println("phone 스타트페이지 =" + p_startPage +", 페이지 블럭 = "+ p_pageBlock);
 			// request에 "phoneList",phoneList 저장
 			request.setAttribute("phoneList", phoneList);
 			request.setAttribute("ppageDTO", ppageDTO);
@@ -328,15 +331,15 @@ public class ProductController extends HttpServlet{
 				    String orderBy = request.getParameter("ord");
 				    System.out.println("orderBy"+ orderBy);
 				    if(orderBy != null) {
-				    if ("latest".equals(orderBy)) {
-				    	tabletList = productService.getLatestProducts(ppageDTO);
+				    if ("tabletLatest".equals(orderBy)) {
+				    	tabletList = productService.getTabletLatestProducts(ppageDTO);
 				    } else
-				    	if ("popular".equals(orderBy)) {
-				    	tabletList = productService.getPopularProducts(ppageDTO);
-				    } else if ("highPrice".equals(orderBy)) {
-				    	tabletList = productService.getHighPriceProducts(ppageDTO);
-				    } else if ("lowPrice".equals(orderBy)) {
-				    	tabletList = productService.getLowPriceProducts(ppageDTO);
+				    	if ("tabletPopular".equals(orderBy)) {
+				    	tabletList = productService.getTabletPopularProducts(ppageDTO);
+				    } else if ("tabletHighPrice".equals(orderBy)) {
+				    	tabletList = productService.getTabletHighPriceProducts(ppageDTO);
+				    } else if ("tabletLowPrice".equals(orderBy)) {
+				    	tabletList = productService.getTabletLowPriceProducts(ppageDTO);
 				    } else if ("tabletSell".equals(orderBy)) {
 				    	tabletList = productService.getTabletSellProducts(ppageDTO);
 				    } else if ("tabletSold".equals(orderBy)) {
@@ -348,7 +351,7 @@ public class ProductController extends HttpServlet{
 					// 게시판 전체 글 개수 구하기 
 					int p_count = productService.getProductCount();
 					// 한화면에 보여줄 페이지개수 설정
-					int p_pageBlock = 10;
+					int p_pageBlock = 5;
 					// 시작하는 페이지번호
 					// currentPage  pageBlock  => startPage
 					//   1~10(0~9)      10     =>  (0~9)/10*10+1=>0*10+1=> 0+1=> 1 
@@ -375,6 +378,7 @@ public class ProductController extends HttpServlet{
 					ppageDTO.setP_startPage(p_startPage);
 					ppageDTO.setP_endPage(p_endPage);
 					ppageDTO.setP_pageCount(p_pageCount);
+					System.out.println("tablet 스타트페이지 =" + p_startPage +", 페이지 블럭 = "+ p_pageBlock);
 					// request에 "phoneList",phoneList 저장
 					request.setAttribute("tabletList", tabletList);
 					request.setAttribute("ppageDTO", ppageDTO);

@@ -75,13 +75,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<h5>회원정보등록</h5>
 				
 				<form action="insertPro.me" method="post" id="_6join">
-					<input type="text" placeholder="아이디 (영문/숫자, 6~20자)" required=" " id="_6id" name="_6id">
-					<input type="text" placeholder="비밀번호 (영문+숫자+특수문자, 8~20자)" required=" " id="_6pass1" name="_6pass1">
-					<input type="text" placeholder="비밀번호 확인" required=" "  id="_6pass2" name="_6pass2"> <br>
-					<input type="text" placeholder="이름 (최소 2자 이상 입력)" required=" " id="_6name" name="_6name"><br>
-					<input type="text" placeholder="닉네임 (최소 2자 이상 입력)" required=" " id="_6nick" name="_6nick"><br>
-					<input type="email" placeholder="이메일" required=" " id="_6mail" name="_6email"><br>
-					<input type="tel" placeholder="전화번호" required=" " id="_phone" name="_6phone"><br><br>
+					<input type="text" placeholder="아이디 (영문/숫자, 6~20자)" required=" " id="m_id" name="m_id">
+					<input type="text" placeholder="비밀번호 (영문+숫자+특수문자, 8~20자)" required=" " id="m_pass1" name="m_pass1">
+					<input type="text" placeholder="비밀번호 확인" required=" "  id="m_pass2" name="m_pass2"> <br>
+					<input type="text" placeholder="이름 (최소 2자 이상 입력)" required=" " id="m_name" name="m_name"><br>
+					<input type="text" placeholder="닉네임 (최소 2자 이상 입력)" required=" " id="m_nick" name="m_nick"><br>
+					<input type="email" placeholder="이메일" required=" " id="_6mail" name="m_email"><br>
+					<input type="tel" placeholder="전화번호" required=" " id="_phone" name="m_phone"><br><br>
 
 					<label></label>
 					<div class="divdup"></div>
@@ -118,117 +118,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- 제이쿼리 -->
 <script type="text/javascript" src="script/jquery-3.7.0.js"></script>
 <script type="text/javascript">
-	$(document).ready(function() {
-		$('#_6id').keyup(function() {
-			$.ajax({
-				url:'idCheck.me',
-				data:{'_6id':$('._6id').val() },
-				success:function (result) {
-					$('.divdup').html(result);
-				}
-			}) //$.ajax
-		}) // $('#_6id').keyup
-	}) // $(document)
+ 	$(document).ready(function() {
+ 		$('#_6id').keyup(function() {
+ 			$.ajax({
+ 				url:'idCheck.me',
+ 				data:{'_6id':$('._6id').val() },
+ 				success:function (result) {
+ 					$('.divdup').html(result);
+ 				}
+ 			}) //$.ajax
+ 		}) // $('#_6id').keyup
+ 	}) // $(document)
 	
-
+	
+	
+	
+	
 </script>
 
 
-
-<!-- Bootstrap Core JavaScript -->
-<script src="js/bootstrap.min.js"></script>
-<!-- top-header and slider -->
-<!-- here stars scrolling icon -->
-	<script type="text/javascript">
-		$(document).ready(function() {
-			/*
-				var defaults = {
-				containerID: 'toTop', // fading element id
-				containerHoverID: 'toTopHover', // fading element hover id
-				scrollSpeed: 1200,
-				easingType: 'linear' 
-				};
-			*/
-								
-			$().UItoTop({ easingType: 'easeOutQuart' });
-								
-			});
-	</script>
-<!-- //here ends scrolling icon -->
-<script src="js/minicart.min.js"></script>
-<script>
-	// Mini Cart
-	paypal.minicart.render({
-		action: '#'
-	});
-
-	if (~window.location.search.indexOf('reset=true')) {
-		paypal.minicart.reset();
-	}
-</script>
-<!-- main slider-banner -->
-<script src="js/skdslider.min.js"></script>
-<link href="../css/skdslider.css" rel="stylesheet">
-<script type="text/javascript">
-		jQuery(document).ready(function(){
-			jQuery('#demo1').skdslider({'delay':5000, 'animationSpeed': 2000,'showNextPrev':true,'showPlayButton':true,'autoSlide':true,'animationType':'fading'});
-						
-			jQuery('#responsive').change(function(){
-			  $('#responsive_wrapper').width(jQuery(this).val());
-			});
-			
-		});
-</script>	
-<!-- //main slider-banner --> 
-<!-- //footer -->
-<jsp:include page="/inc/bottom.jsp"></jsp:include>
-<!-- //footer -->	
-<!-- Bootstrap Core JavaScript -->
-<script src="js/bootstrap.min.js"></script>
-
-<!-- top-header and slider -->
-<!-- here stars scrolling icon -->
-	<script type="text/javascript">
-		$(document).ready(function() {
-			/*
-				var defaults = {
-				containerID: 'toTop', // fading element id
-				containerHoverID: 'toTopHover', // fading element hover id
-				scrollSpeed: 1200,
-				easingType: 'linear' 
-				};
-			*/
-								
-			$().UItoTop({ easingType: 'easeOutQuart' });
-								
-			});
-	</script>
-<!-- //here ends scrolling icon -->
-<script src="js/minicart.min.js"></script>
-<script>
-	// Mini Cart
-	paypal.minicart.render({
-		action: '#'
-	});
-
-	if (~window.location.search.indexOf('reset=true')) {
-		paypal.minicart.reset();
-	}
-</script>
-<!-- main slider-banner -->
-<script src="js/skdslider.min.js"></script>
-<link href="../css/skdslider.css" rel="stylesheet">
-<script type="text/javascript">
-		jQuery(document).ready(function(){
-			jQuery('#demo1').skdslider({'delay':5000, 'animationSpeed': 2000,'showNextPrev':true,'showPlayButton':true,'autoSlide':true,'animationType':'fading'});
-						
-			jQuery('#responsive').change(function(){
-			  $('#responsive_wrapper').width(jQuery(this).val());
-			});
-			
-		});
-</script>	
-<!-- //main slider-banner --> 
 </body>
 </html>
 </body>
