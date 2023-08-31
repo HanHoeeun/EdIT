@@ -81,7 +81,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li><a href="product/checkout.jsp"><i class="fa fa-arrow-right"></i>찜♥</a></li>
 						<li><a href="qnalist.me"><i class="fa fa-arrow-right"></i>문의 내역</a></li>
 						<li><a href="delete.me"><i class="fa fa-arrow-right"></i>회원 탈퇴</a></li>
- 						<li><a href="#"><i class="fa fa-arrow-right"></i>회원 관리</a></li>  
+ 						<li><a href="list.me"><i class="fa fa-arrow-right"></i>회원 관리(리스트)</a></li>  
 					</ul>
 				</div>											
 			</div>		
