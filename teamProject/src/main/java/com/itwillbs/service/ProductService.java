@@ -594,7 +594,7 @@ public class ProductService {
 		
 	} //updateProduct()
 	
-	
+	 
 	public ProductDTO getproduct(HttpServletRequest request) {
 		
 		ProductDTO productDTO = null;

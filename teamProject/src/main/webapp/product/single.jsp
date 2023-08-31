@@ -177,7 +177,7 @@ MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 					<!-- // 로그인했을떄 아이디 일치시 수정삭제버튼 나오게하긔 -->
 							<%
 						}%>
-							
+					 		
 							
 				<%
 					}

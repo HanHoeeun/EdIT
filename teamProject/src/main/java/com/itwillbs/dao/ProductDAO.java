@@ -140,7 +140,7 @@ public class ProductDAO {
 	
 	public ProductDTO getproduct(int p_num) {
 		ProductDTO productDTO = null;
-		
+		 
 		try {
 			con = getConnection();
 			
