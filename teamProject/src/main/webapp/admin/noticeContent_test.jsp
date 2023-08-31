@@ -13,7 +13,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
-<title>공지사항</title>
+<title>공지사항 게시물</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -24,6 +24,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- //for-mobile-apps -->
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/style_1_2_1.css" rel="stylesheet" type="text/css" media="all" />
 <!-- font-awesome icons -->
 <link href="css/font-awesome.css" rel="stylesheet"> 
 <link href="css/faq_1_9.css" rel="stylesheet"> 
@@ -60,136 +61,53 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</ol>
 		</div>
 	</div><br><br>
+	
 <!--=========================== 본문 헤더 ========================================= -->	
 	
 	<div class="../top-brands_1">
 		<h2>공지사항</h2>
-		<div class="container_1_1">
+		<div class="container">
 			<div class="container_2_1">
+<!--================================== 공지사항 게시물 ==================================== -->
+				<%
+				String id = (String) session.getAttribute("id");
+				NoticeDTO noticeDTO = (NoticeDTO) request.getAttribute("noticeDTO");
+				SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
+				%>
+				<article>
+				<h1><%=noticeDTO.getA_title()%></h1><!-- 제목 -->
+				<table>
+				<tr><td><%=format.format(noticeDTO.getA_date())%></td></tr><!-- 작성일 -->
+				<tr><td><a href="upload/<%=noticeDTO.getA_file()%>" download>
+						<%=noticeDTO.getA_file()%></a> 
+						<img src="upload/<%=noticeDTO.getA_file()%>" width="200" height="200"></td></tr><!--첨부파일-->
+				<tr><td><%=noticeDTO.getA_content()%></td></tr><!-- 내용 -->
+				</table>
+				
+						<div id="table_search">
+							<%
+							// 로그인, 글쓴이 일치
+							if (1==1){ %>
+							<input type="button" value="수정" class="btn"
+								onclick="location.href='update.no?a_num=<%=noticeDTO.getA_num()%>'">
+							<input type="button" value="삭제" class="btn"
+								onclick="location.href='delete.no?a_num=<%=noticeDTO.getA_num()%>'">
+							<input type="button" value="파일 수정" class="btn"
+								onclick="
+								location.href='fupdate.no?a_num=<%=noticeDTO.getA_num()%>'">
+							<%	}
+							 %>
+							<input type="button" value="목록" class="btn"
+								onclick="location.href='list.no?tab=tab-1'">
+						</div>
 
-<!--=========================== 상단 탭 리스트============================================ -->
-				<ul class="tabs">
-					<li class="tab-link" data-tab="tab-1">일반공지</li>
-					<li class="tab-link" data-tab="tab-2">이벤트</li>
-					<%if(1==1){ %>
-					<li class="tab-link current" data-tab="tab-3">글 작성</li>
-					<%} %>
-				</ul>
-			</div>
-<!--================================== 1탭 일반공지==================================== -->
-<%
-List<NoticeDTO> noticeList = (List<NoticeDTO>)request.getAttribute("noticeList");
-NoticePageDTO pageDTO=(NoticePageDTO)request.getAttribute("pageDTO");
-%>	
-			<div class="container_3_1">
-				<div id="tab-1" class="tab-content">
-					<table class="_1qna_board">
-						<tr>
-							<th class="_1qna_board_border">번호</th>
-							<th class="_1qna_board_border">제목</th>
-							<th class="_1qna_board_border">작성일</th>
-						</tr>
-						<%
-						SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
-						for (int i = 0; i < noticeList.size(); i++) {
-							NoticeDTO noticeDTO = noticeList.get(i);
-						%>
-						<tr onclick="location.href='content.no?a_num=<%=noticeDTO.getA_num()%>'">
-							<td class="_1qna_board_border"><%=noticeDTO.getA_num()%></td>
-							<td class="_1qna_board_subject"><%=noticeDTO.getA_title()%></td>
-							<td class="_1qna_board_border"><%=format.format(noticeDTO.getA_date())%></td>
-						</tr>
-						<%
-						}
-						%>
-					</table>
-					<!--============= 1탭 일반공지 페이징 ==================== -->
-					<div class="_1qna_paging">
-				    <ul>
-					<%
-					// 시작페이지 1페이지 Prev 없음
-					// 시작페이지 11,21,31 Prev가 보이게
-						if(pageDTO.getStartPage() > pageDTO.getPageBlock()){%>
-							<li onclick="location.href='list.no?pageNum=<%=pageDTO.getStartPage()-pageDTO.getPageBlock()%>&tab=tab-1'">Prev</li>
-							
-						<% } 
-						for(int i= pageDTO.getStartPage(); i<=pageDTO.getEndPage(); i++){%>
-							<li onclick="location.href='list.no?pageNum=<%=i%>&tab=tab-1'"><%=i %></li>
-						<%}
-						// 끝페이지 번호 전체페이지수 비교 => 전체페이지 수 크면 => next보임
-						if(pageDTO.getEndPage() < pageDTO.getPageCount()){%>
-							<li onclick="location.href='list.no?pageNum=<%=pageDTO.getStartPage() + pageDTO.getPageBlock() %>&tab=tab-1'">Next</li>
-						<%}%>
-				    </ul>
-					</div>
-				</div>
-<!--=========================================== 2탭 이벤트 ==================================================== -->				
-				<div id="tab-2" class="tab-content">
-					<table class="_1qna_board">
-						<tr>
-							<th class="_1qna_board_border">번호</th>
-							<th class="_1qna_board_border">제목</th>
-							<th class="_1qna_board_border">작성일</th>
-						</tr>
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_subject">신규가입 회원 혜택이 빵빵! (~09/30)</td>
-							<td class="_1qna_board_border">2023.09.01</td>
-						</tr>
-						
-					</table>
-					<!--============= 2탭 이벤트 페이징 ==================== -->
-				    <div class="_1qna_paging">
-        				<ul>
-				           <li onclick="location.href='index.html'">◀</li>
-				           <li onclick="location.href='about.html'">1</li>
-				           <li onclick="location.href='login.html'">2</li>
-				           <li onclick="location.href='faq.html'">3</li>
-				           <li onclick="location.href='gourmet.html'">4</li>
-				           <li onclick="location.href='login.html'">5</li>
-				           <li onclick="location.href='products.html'">▶</li>
-						</ul>
-   					 </div>
-				</div>
-<!--================================== 3탭 글작성 ==================================== -->
-				<%if(1 == 1){ %>
-				<div id="tab-3" class="tab-content current">
-					<form action="write.no" method="post" >
-						<table class="_1q_query_tab">
-							<tr>
-							<td class="_1q_query_tab_1">
-								<select class="_1q_query_tab_sel" name="a_notice_type" style="border:none;">
-									<option value="1">일반공지</option>
-									<option value="2">이벤트</option>
-								</select>
-							</td>
-							<td>
-								<div class="_1q_query_tab_3"><label for="imgfile"><img src="images/picture.png" width="25px" height="25px">파일 업로드</label></div>
-								<input type="file" name="imgfile" id="imgfile" accept="image/*">
-							</td>
-							</tr>
-						</table>
-						<div><br></div>
-			
-						<table class="_1q_query_tab">
-							<tr>
-							<td class="_1q_query_tab_4" colspan="3" ><input type="text" name="a_title"  placeholder="제목을 작성 해주세요" style="border:none;"></td>
-							</tr>
-						</table>
-						<div><br></div>
-						<table class="_1q_query_tab">
-							<tr>
-							<td class="_1q_query_tab_5" colspan="3"><textarea name="a_content"  style="border:none;" cols="110" rows="20" class="noresize" placeholder="내용을 작성 해주세요" ></textarea></td>
-							</tr>
-						</table>
-						<div class="_1q_query_btn">
-								<button type="submit">작성</button>
-								<button type="reset">취소</button>
-						</div>						
-				</form>
-				<%} %>
-				</div>
-<!-- 			탭 jquery -->
+
+						<div class="clear"></div>
+						<div id="page_control"></div>
+					
+				</div></article> 
+				
+				<!-- 			탭 jquery -->
 			<script type="text/javascript">
             $(document).ready(function(){
                 $('ul.tabs li').click(function(){

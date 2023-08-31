@@ -6,7 +6,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import com.itwillbs.dao.NoticeDAO;
-
 import com.itwillbs.domain.NoticeDTO;
 import com.itwillbs.domain.NoticePageDTO;
 import com.oreilly.servlet.MultipartRequest;
@@ -26,8 +25,7 @@ public class NoticeService {
 			
 			//pageDTO 저장 <= startRow, endRow
 			pageDTO.setStartRow(startRow);
-			pageDTO.setEndRow(endRow);
-			
+			pageDTO.setEndRow(endRow);			
 			// NoticeDAO 객체생성
 			noticeDAO = new NoticeDAO();
 			// noticeList = getnoticeList() 메서드 호출
@@ -44,8 +42,8 @@ public class NoticeService {
 			request.setCharacterEncoding("utf-8");
 			// request 파라미터 값 가져오기
 			int a_notice_type = Integer.parseInt(request.getParameter("a_notice_type"));
-			String a_title = request.getParameter("subject");
-			String a_content = request.getParameter("content");
+			String a_title = request.getParameter("a_title");
+			String a_content = request.getParameter("a_content");
 			System.out.println(a_notice_type);
 			// NoticeDAO 객체생성
 			noticeDAO = new NoticeDAO();
@@ -55,8 +53,8 @@ public class NoticeService {
 			
 			noticeDTO.setA_notice_type(a_notice_type);
 			noticeDTO.setA_title(a_title);
-			noticeDTO.setA_title(a_content);
-
+			noticeDTO.setA_content(a_content);
+			
 			// 리턴할형없음 insertNotice(noticeDTO) 호출
 			noticeDAO.insertNotice(noticeDTO);
 		} catch (Exception e) {
@@ -88,17 +86,41 @@ public class NoticeService {
 		try {
 			// NoticeDAO 객체생성
 			noticeDAO = new NoticeDAO();
-			// count = getBoardCount() 호출
+			// count = getNoticeCount() 호출
 			count = noticeDAO.getNoticeCount();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return count;
 	}//getNoticeCount()
+
+	public void updateNotice(HttpServletRequest request) {
+		System.out.println("NoticeService updateNotice()");
+		try {
+			// 한글처리
+			request.setCharacterEncoding("utf-8");
+			// num title content 파라미터 값 가져오기
+			int a_num = Integer.parseInt(request.getParameter("a_num"));
+			String a_title = request.getParameter("a_title");
+			String a_content = request.getParameter("a_content");
+			// NoticeDTO 객체생성
+			NoticeDTO noticeDTO = new NoticeDTO();
+			// set메서드 호출 파라미터값 저장
+			noticeDTO.setA_num(a_num);
+			noticeDTO.setA_title(a_title);
+			noticeDTO.setA_content(a_content);
+			// DAO 객체생성
+			noticeDAO = new NoticeDAO();
+			// updateNotice(noticeDTO) 메서드호출
+			noticeDAO.updateNotice(noticeDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}//updateNotice()
 	
 	// 첨부파일
 //	public void finsertNotice(HttpServletRequest request) {
-//		System.out.println("BoardService finsertBoard()");
+//		System.out.println("NoticeService finsertNotice()");
 //		try {
 //			//업로드 폴더 만들기 webapp - upload 폴더만들기
 //			// 업로드 폴더 경로=> 물리적 경로
@@ -122,21 +144,21 @@ public class NoticeService {
 //			
 //			// num, date => 변수저장
 //			Timestamp date = new Timestamp(System.currentTimeMillis());
-//			// BoardDAO 객체생성
-//			noticeDAO = new BoardDAO();
+//			// NoticeDAO 객체생성
+//			noticeDAO = new NoticeDAO();
 //			int num = noticeDAO.getMaxNum() + 1;
 //			
-//			// BoardDTO 객체생성
-//			BoardDTO noticeDTO = new BoardDTO();
+//			// NoticeDTO 객체생성
+//			NoticeDTO noticeDTO = new NoticeDTO();
 //			// set메서드 호출 파라미터값 저장
 //			noticeDTO.setNum(num);
 //			noticeDTO.setSubject(subject);
 //			noticeDTO.setContent(content);
 //			noticeDTO.setDate(date);
 //			//첨부파일
-//			boardDTO.setFile(file);
+//			noticeDTO.setFile(file);
 //			
-//			// 리턴할형없음 insertBoard(boardDTO) 호출
+//			// 리턴할형없음 insertNotice(noticeDTO) 호출
 //			noticeDAO.insertNotice(noticeDTO);			
 //			
 //		} catch (Exception e) {
@@ -144,6 +166,30 @@ public class NoticeService {
 //		}
 //	}//finsertNotice
 	
+//	public void updateNotice(HttpServletRequest request) {
+//		System.out.println("NoticeService updateNotice()");
+//		try {
+//			// 한글처리
+//			request.setCharacterEncoding("utf-8");
+//			// num name subject content 파라미터 값 가져오기
+//			int num = Integer.parseInt(request.getParameter("a_num"));
+//			String a_title = request.getParameter("subject");
+//			String a_content = request.getParameter("a_content");
+//			// NoticeDTO 객체생성
+//			NoticeDTO noticeDTO = new NoticeDTO();
+//			// 내용 시간 분류 파일명 제목
+//			// set메서드 호출 파라미터값 저장
+//			noticeDTO.setA_content(a_content);;
+//			noticeDTO.setA_notice_type();
+//			noticeDTO.);
+//			// NoticeDAO 객체생성
+//			noticeDAO = new NoticeDAO();
+//			// updateNotice(boardDTO) 메서드호출
+//			noticeDAO.updateNotice(noticeDTO);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}//updateNotice()
 	
 	
 	

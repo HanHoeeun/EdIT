@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.itwillbs.domain.NoticeDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -73,36 +74,31 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--=========================== 본문 헤더 =========================================== -->
 	<div class="top-brands_1">
 		<h2>일반공지</h2>
-		<div><br></div></div>
+		<div><br></div>
 	<!--=========================== 본문 =========================================== -->
-		<%
-		NoticeDTO noticeDTO = (NoticeDTO) request.getAttribute("noticeDTO");
-		%>
-		<div class="container_notice" action="updatePro.no" method="post" enctype="multipart/form-data">
-		<input type="hidden" name="a_num" value="<%=noticeDTO.getA_num()%>">
-		
-        <h1><%=noticeDTO.getA_title()%></h1>
-        <p class="author"><%=noticeDTO.getA_date()%></p>
+    <div class="container_notice">
+			<%
+			String id = (String) session.getAttribute("id");
+			NoticeDTO noticeDTO = (NoticeDTO) request.getAttribute("noticeDTO");
+			SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
+			%>
+			<h1><%=noticeDTO.getA_title()%></h1>
+        <p class="author"><%=format.format(noticeDTO.getA_date())%></p>
         <hr>
         <div class="attachment-section">
-        <p for="imgfile"><img src="images/picture.png" width="25px" height="25px">첨부 파일</a></p><br>
-        <input type="file" name="imgfile" id="imgfile" accept="image/*"><br>
+        <p>첨부 파일 <a href="your-file-url.pdf" target="_blank">첨부 파일 이름.pdf</a></p><br>
    		 </div>
         <p><%=noticeDTO.getA_content()%></p>
-        
-       <!--  <img src="your-image-url.jpg" alt="공지사항 이미지" style="max-width: 100%;"><br> -->
-        <hr>
-        <%
-			if (1 == 1) {
-			%>
+
+			<%
+			// 로그인, 글쓴이 일치
+			if (1==1){ %>
+			<hr>
 			<button class="modify-button" onclick="goBack()">수정</button>
 			<button class="delete-button" onclick="goBack()">삭제</button>
-			<%
-			}
-			%>
 			<button class="list-button" onclick="goBack()">목록</button>
 		</div>
-    
+    </div>
 
     <script>
     </script>
@@ -159,7 +155,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 			jQuery('#responsive').change(function() {
 				$('#responsive_wrapper').width(jQuery(this).val());
-			});sd
+			});
 
 		});
 	</script>
