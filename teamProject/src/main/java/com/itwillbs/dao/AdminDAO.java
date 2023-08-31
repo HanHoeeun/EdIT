@@ -14,6 +14,7 @@ import javax.sql.DataSource;
 
 import com.itwillbs.domain.AdminDTO;
 import com.itwillbs.domain.AdminPageDTO;
+import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.ReportDTO;
 
 public class AdminDAO {
@@ -295,5 +296,75 @@ public class AdminDAO {
 		}finally {
 			this.dbClose();
 		}
+	}
+	public List<MemberDTO> getMemberList(AdminPageDTO pageDTO) {
+		List<MemberDTO> memberList = null;
+		try {
+			con = this.getConnection();
+			
+			String sql;
+			
+			if(pageDTO.getSearch() != null) {
+				if(pageDTO.getSearch_type() == 1) {
+					sql = "select * from members where m_num = ? order by m_num desc limit ?, ? ";
+					pstmt = con.prepareStatement(sql);
+					
+					pstmt.setInt(1, Integer.parseInt(pageDTO.getSearch()));
+					pstmt.setInt(2, pageDTO.getStartRow()-1); // 시작하는 행 -1 
+					pstmt.setInt(3, pageDTO.getPageSize()); // 몇개
+				}
+				if(pageDTO.getSearch_type() == 2) {
+					sql = "select * from members where m_id = ? order by m_num desc limit ?, ? ";
+					pstmt = con.prepareStatement(sql);
+					
+					pstmt.setString(1, pageDTO.getSearch());
+					pstmt.setInt(2, pageDTO.getStartRow()-1); // 시작하는 행 -1 
+					pstmt.setInt(3, pageDTO.getPageSize()); // 몇개
+				}
+				if(pageDTO.getSearch_type() == 3) {
+					sql = "select * from members where m_nick = ? order by m_num desc limit ?, ? ";
+					pstmt = con.prepareStatement(sql);
+					
+					pstmt.setString(1, pageDTO.getSearch());
+					pstmt.setInt(2, pageDTO.getStartRow()-1); // 시작하는 행 -1 
+					pstmt.setInt(3, pageDTO.getPageSize()); // 몇개
+				}
+				if(pageDTO.getSearch_type() == 4) {
+					sql = "select * from members where m_count = ? order by m_num desc limit ?, ? ";
+					pstmt = con.prepareStatement(sql);
+					
+					pstmt.setInt(1, Integer.parseInt(pageDTO.getSearch()));
+					pstmt.setInt(2, pageDTO.getStartRow()-1); // 시작하는 행 -1 
+					pstmt.setInt(3, pageDTO.getPageSize()); // 몇개
+				}
+			}else {
+				sql = "select * from members order by m_num desc limit ?, ?";
+				pstmt = con.prepareStatement(sql);
+				
+				pstmt.setInt(1, pageDTO.getStartRow()-1); // 시작하는 행 -1 
+				pstmt.setInt(2, pageDTO.getPageSize()); // 몇개
+			}
+			
+			rs = pstmt.executeQuery();
+			memberList = new ArrayList<>();
+			while(rs.next()) {
+//				회원번호 아이디 닉네임 이름 신고횟수 
+				MemberDTO memberDTO = new MemberDTO();
+				memberDTO.setM_num(rs.getInt("m_num"));
+				memberDTO.setM_id(rs.getString("m_id"));
+				memberDTO.setM_nick(rs.getString("m_nick"));
+				memberDTO.setM_name(rs.getString("m_name"));
+				memberDTO.setM_count(rs.getInt("m_count"));
+				
+				memberList.add(memberDTO);
+			}
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			this.dbClose();
+		}
+		
+		return memberList;
 	}
 }

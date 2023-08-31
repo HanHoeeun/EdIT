@@ -50,7 +50,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 <body>
 <% 
-String id = (String)session.getAttribute("id");
+String id = (String)session.getAttribute("m_id");
 List<AdminDTO> adminList = (List<AdminDTO>)request.getAttribute("adminList");
 AdminPageDTO pageDTO = (AdminPageDTO)request.getAttribute("pageDTO");
 SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");

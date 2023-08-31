@@ -100,7 +100,8 @@ public class MemberController extends HttpServlet{
 				
 				response.sendRedirect("main.me");
 				
-				// 8.31 진 - 수정 -> 아이디, 비밀번호 틀리면 메세지 창 뜨게 "member/login.jsp" -> "member/msg.jsp" 수정
+				// 8.31 새벽 진 - 수정 -> 아이디, 비밀번호 틀리면 메세지 창 뜨게 "member/login.jsp" -> "member/msg.jsp" 수정
+				// 8.31 오후12시 진 - 또 수정 필요함.. 새로운 jsp창을 만들어야 하나..? 저 msg.jsp는 아이디 찾기에 연결되어 있음..
 			} else {
 				dispatcher = request.getRequestDispatcher("member/msg.jsp");
 				dispatcher.forward(request, response);
@@ -292,15 +293,7 @@ public class MemberController extends HttpServlet{
 			
 		}
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+	
 		
 //		아이디 중복체크
 		if (sPath.equals("/idCheck.me")) {
@@ -333,10 +326,7 @@ public class MemberController extends HttpServlet{
 		}
 		
 		
-		
-		
-		
-		
+	
 
 //		진유정 - 아이디찾기 화면
 		if(sPath.equals("/findid.me")) {
@@ -347,21 +337,22 @@ public class MemberController extends HttpServlet{
 		} // 
 		
 		
-//		8.31 진유정 - 아이디찾기(수정중...) -> 이게 맞아...????   => 안됨....!!
+//		8.31 오후 12시 진유정 - 아이디찾기(수정중...) -> 되긴되는데 수정 필요..? 
 		if(sPath.equals("/findidPro.me")) {
 			System.out.println("뽑은 가상주소 비교 : findidPro.me"); 
+			
 			request.setCharacterEncoding("utf-8");
-			String name = request.getParameter("_5name");
-			String email = request.getParameter("_5email");
+			String name = request.getParameter("m_name");
+			String email = request.getParameter("m_email");
 			
 		    MemberService memberService = new MemberService();
 			
-			 // 이름과 이메일을 이용하여 아이디 찾기 작동  // 저 foundID는 뭐야??
-		    String foundId = memberService.findidmember(name, email);
+			 // 이름과 이메일을 이용하여 아이디 찾기 작동
+		    String foundid = memberService.findidmember(name, email);
 
-		    if (foundId != null) {
+		    if (foundid != null) {
 		        // 아이디를 찾은 경우
-		        request.setAttribute("foundId", foundId);
+		        request.setAttribute("foundid", foundid);
 		        dispatcher = request.getRequestDispatcher("member/findid_result.jsp");
 		        dispatcher.forward(request, response);
 		    } else {
@@ -373,11 +364,6 @@ public class MemberController extends HttpServlet{
 		    }
 		} //
 
-
-		
-
-		
-		
 		
 //		진유정 - 비밀번호찾기 화면
 		if(sPath.equals("/findpw.me")) {
@@ -386,23 +372,40 @@ public class MemberController extends HttpServlet{
 		   dispatcher = request.getRequestDispatcher("member/findpw_3.jsp");
 		   dispatcher.forward(request, response);
 		} //		
-			
 
+		
+//		8.31 오후 12시 진유정 - 비밀번호찾기 (아이디, 이메일 입력)
+		if(sPath.equals("/findpwPro.me")) {
+			System.out.println("뽑은 가상주소 비교 : findpwPro.me"); 
+			
+			request.setCharacterEncoding("utf-8");
+			
+			String id = request.getParameter("m_id");
+			String email = request.getParameter("m_email");
+			
+		    MemberService memberService = new MemberService();
+			
+			 // 아이디와 이메일을 이용하여 비밀번호 찾기 작동
+		    String foundpw = memberService.findpwmember(id, email);
+
+		    if (foundpw != null) {
+		        // 비밀번호를 찾은 경우 
+		    	// -> 이것도 수정필요(찾은 비밀번호를 이메일로 보낼것이냐 or 그냥 창에 보여줄 것이냐
+		    	// -> 만약 창에 보여주면 비밀번호 다 보여줄것인가, 아니면 앞에 몇자리만 보여줄 것인가.....
+		        request.setAttribute("foundpw", foundpw);
+		        dispatcher = request.getRequestDispatcher("member/findpw_result.jsp");
+		        dispatcher.forward(request, response);
+		    } else {
+		        // 비밀번호를 찾지 못한 경우(아이디나 이메일을 잘못적었겠지..??)
+		        request.setAttribute("error", "비밀번호를 찾을 수 없습니다.");
+		        // member/findid.jsp 주소변경 없이 연결
+		        dispatcher = request.getRequestDispatcher("member/msg.jsp");
+		        dispatcher.forward(request, response);
+		    }
+		} //	
+		
+		
 	
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 	}	// doProcess()
 	

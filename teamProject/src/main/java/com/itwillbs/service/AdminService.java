@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.itwillbs.dao.AdminDAO;
 import com.itwillbs.domain.AdminDTO;
 import com.itwillbs.domain.AdminPageDTO;
+import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.ReportDTO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -219,6 +220,33 @@ public class AdminService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public List<MemberDTO> getMemberListSearch(AdminPageDTO pageDTO) {
+		List<MemberDTO> memberList = null;
+		try {
+//			시박하는 행부터 10개 뽑아오기
+//			페이지 번호 	한화면에 보여줄 글개수 => 			시작하는 행번호
+//			currentPage		pageSize	=>		 	startRow
+//			1				10			=> 0*10 +1	 1 ~ 10
+//			2				10			=> 1*10 +1 	11 ~ 20
+//			3				10			=> 2*10 +1 	21 ~ 30
+//			((currentPage-1)*10)+1
+			int startRow = (pageDTO.getCurrentPage()-1)*pageDTO.getPageSize()+1;
+			int endRos = startRow + pageDTO.getPageSize() -1;
+			
+			pageDTO.setStartRow(startRow);
+			pageDTO.setEndRow(endRos);
+			
+//			AdminDAO 객체 생성
+			adminDAO = new AdminDAO();
+//			adminList = getBoardList() 메서드 호출
+			memberList =  adminDAO.getMemberList(pageDTO);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return memberList;
+		
 	}
 
 }
