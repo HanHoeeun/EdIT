@@ -114,7 +114,7 @@ public class MemberController extends HttpServlet{
 		if (sPath.equals("/main.me")) {
 			System.out.println("뽑은 가상주소 비교 : main.me");
 			
-			dispatcher = request.getRequestDispatcher("main/main.jsp");
+			dispatcher = request.getRequestDispatcher("main/main3.jsp");
 			dispatcher.forward(request, response);
 			
 		}

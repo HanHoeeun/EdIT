@@ -57,7 +57,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="agileits_header">
 		<div class="container">
 			<div class="w3l_offers">
-				<p><a href="../product/products.jsp"><i class="fa fa-shopping-bag" aria-hidden="true"> 쇼핑하기 </i></a></p>
+				<p><a href="products.po"><i class="fa fa-shopping-bag" aria-hidden="true"> 쇼핑하기 </i></a></p>
 			</div>
 			<div class="agile-login">
 				<ul>
@@ -127,7 +127,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</ul> -->
 			</div>
 			<div class="w3ls_logo_products_left">
-				<h1><a href="main.jsp">EdIT</a></h1>
+				<h1><a href="main.me">EdIT</a></h1>
 			</div>
 		<div class="w3l_search">
 			<form action="#" method="post">
