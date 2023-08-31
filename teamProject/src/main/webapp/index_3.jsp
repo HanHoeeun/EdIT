@@ -10,6 +10,7 @@
 <script type="text/javascript">
 location.href="productReg.po";
 // location.href="productUpdate.po";
+// location.href="productUpdate.po";
 </script>
 </body>
 </html>

@@ -20,12 +20,11 @@ public class ProductDTO {
 	public String toString() {
 		return "ProductDTO [p_num=" + p_num + ", p_title= "+ p_title + ",p_m_id=" + p_m_id +
 							", p_type= "+ p_type + ", p_price= " + p_price + ", p_detail=" + p_detail +
-							", p_date= " + p_date + ", p_readcount= "+ p_readcount +
-							",p_status=" +p_status +",p_file="+ p_file+ "]";
+							", p_date= " + p_date + ", p_readcount= "+ p_readcount + ",p_status=" +p_status + "]";
+		
 	}
 	
 	// getter & setter 
-
 	public int getP_m_num() {
 		return p_m_num;
 	}
@@ -95,7 +94,6 @@ public class ProductDTO {
 	public void setP_status(String p_status) {
 		this.p_status = p_status;
 	}
-	
 	
 	
 }
