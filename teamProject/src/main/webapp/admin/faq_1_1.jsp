@@ -50,7 +50,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 <body>
 <% 
-String id = "권광민";
+String id = (String)session.getAttribute("id");
 List<AdminDTO> adminList = (List<AdminDTO>)request.getAttribute("adminList");
 AdminPageDTO pageDTO = (AdminPageDTO)request.getAttribute("pageDTO");
 SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
@@ -176,7 +176,7 @@ SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
 									<option value="3">기타</option>
 								</select>
 							</td>
-							<td class="_1q_query_tab_2"><input type="text" name="name" value="권광민" style="border:none;" readonly="readonly"></td>
+							<td class="_1q_query_tab_2"><input type="text" name="name" value="<%=id %>" style="border:none;" readonly="readonly"></td>
 							<td>
 								<div class="_1q_query_tab_3"><label for="imgfile"><img src="images/picture.png" width="25px" height="25px">파일 업로드</label></div>
 								<input type="file" name="imgfile" id="imgfile" accept="image/*">
@@ -212,7 +212,7 @@ SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
 							<th class="_1qna_board_border">작성시간</th>
 						</tr>
 						<%for(AdminDTO adminDTO : adminList){ %>
-						<tr>
+						<tr onclick="window.open('registered.ad?a_num=<%=adminDTO.getA_num() %>','문의상세페이지','width=800, height=700, scrollbars=yes')">
 							<td class="_1qna_board_border"><%=adminDTO.getA_num() %></td>
 							<td class="_1qna_board_subject"><%=adminDTO.getA_title() %></td>
 							<td class="_1qna_board_border"><%=adminDTO.getA_m_nick() %></td>

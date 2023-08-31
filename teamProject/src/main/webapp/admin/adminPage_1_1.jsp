@@ -1,3 +1,7 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="com.itwillbs.domain.AdminPageDTO"%>
+<%@page import="com.itwillbs.domain.ReportDTO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!--
@@ -65,117 +69,60 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="container_2_1">
 <!-- 				상단 탭 리스트 -->
 				<ul class="tabs">
-					<li class="tab-link current" data-tab="tab-1">신고내역</li>
-					<li class="tab-link" data-tab="tab-2">회원관리</li>
-					<li class="tab-link" data-tab="tab-3">블랙리스트</li>
+					<li class="tab-link current" onclick="location.href='adminPage.ad'" >신고내역</li>
+					<li class="tab-link" onclick="location.href='adminPage.ad'">회원관리</li>
+					<li class="tab-link" onclick="location.href='adminPage.ad'">블랙리스트</li>
 					
 				</ul>
 			</div>
 			<div class="container_3_1">
 				<div id="tab-1" class="tab-content current">
 <!-- 				신고내역 테이블 -->
+<%
+List<ReportDTO> reportList = (List<ReportDTO>)request.getAttribute("reportList");
+AdminPageDTO pageDTO = (AdminPageDTO)request.getAttribute("pageDTO");
+SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
+
+%>
 				<table class="_1qna_board">
 						<tr>
 							<th class="_1qna_board_border">신고번호</th>
 							<th class="_1qna_board_border">회원번호</th>
-							<th class="_1qna_board_border">제목</th>
-							<th class="_1qna_board_border">작성자</th>
+							<th class="_1qna_board_subject">제목</th>
 							<th class="_1qna_board_border">작성시간</th>
 							<th>확인여부</th>
 						</tr>
-						<tr onclick="window.open('report_content_1_1.jsp','신고상세페이지','width=800, height=700, scrollbars=yes')">
-							<td class="_1qna_board_border">3</td>
-							<td class="_1qna_board_border">002</td>
-							<td class="_1qna_board_subject">사장나와</td>
-							<td class="_1qna_board_border">kkm</td>
-							<td class="_1qna_board_border">11:13</td>
-							<td>x</td>
+						<%for(ReportDTO reportDTO : reportList) {
+							String check = reportDTO.getR_check() == 0 ? "x" : "o";					
+						%>
+						<tr onclick="window.open('report_content.ad?r_num=<%=reportDTO.getR_num() %>','신고상세페이지','width=800, height=700, scrollbars=yes')">
+							<td class="_1qna_board_border"><%=reportDTO.getR_num() %></td>
+							<td class="_1qna_board_border"><%=reportDTO.getR_m_num() %></td>
+							<td class="_1qna_board_subject"><%=reportDTO.getR_title() %></td>
+							<td class="_1qna_board_border"><%=format.format(reportDTO.getR_date()) %></td>
+							<td><%=check %></td>
 						</tr>
-						<tr>
-							<td class="_1qna_board_border">2</td>
-							<td class="_1qna_board_border">002</td>
-							<td class="_1qna_board_subject">사기당했어요</td>
-							<td class="_1qna_board_border">kkm</td>
-							<td class="_1qna_board_border">11:13</td>
-							<td>x</td>
-						</tr>
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_border">002</td>
-							<td class="_1qna_board_subject">비밀번호 변경 문의</td>
-							<td class="_1qna_board_border">kkm</td>
-							<td class="_1qna_board_border">11:13</td>
-							<td>x</td>
-						</tr>
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_border">002</td>
-							<td class="_1qna_board_subject">비밀번호 변경 문의</td>
-							<td class="_1qna_board_border">kkm</td>
-							<td class="_1qna_board_border">11:13</td>
-							<td>x</td>
-						</tr>
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_border">002</td>
-							<td class="_1qna_board_subject">비밀번호 변경 문의</td>
-							<td class="_1qna_board_border">kkm</td>
-							<td class="_1qna_board_border">11:13</td>
-							<td>x</td>
-						</tr>
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_border">002</td>
-							<td class="_1qna_board_subject">비밀번호 변경 문의</td>
-							<td class="_1qna_board_border">kkm</td>
-							<td class="_1qna_board_border">11:13</td>
-							<td>x</td>
-						</tr>
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_border">002</td>
-							<td class="_1qna_board_subject">비밀번호 변경 문의</td>
-							<td class="_1qna_board_border">kkm</td>
-							<td class="_1qna_board_border">11:13</td>
-							<td>x</td>
-						</tr>
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_border">002</td>
-							<td class="_1qna_board_subject">비밀번호 변경 문의</td>
-							<td class="_1qna_board_border">kkm</td>
-							<td class="_1qna_board_border">11:13</td>
-							<td>x</td>
-						</tr>
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_border">002</td>
-							<td class="_1qna_board_subject">비밀번호 변경 문의</td>
-							<td class="_1qna_board_border">kkm</td>
-							<td class="_1qna_board_border">11:13</td>
-							<td>x</td>
-						</tr>
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_border">002</td>
-							<td class="_1qna_board_subject">비밀번호 변경 문의</td>
-							<td class="_1qna_board_border">kkm</td>
-							<td class="_1qna_board_border">11:13</td>
-							<td>x</td>
-						</tr>
+						<%} %>
 						
 					</table>
-<!-- 				신고내역 페이징 -->
+<!-- 				페이징 -->
 				    <div class="_1qna_paging">
-        				<ul>
-				           <li onclick="location.href='index.html'">prev</li>
-				           <li onclick="location.href='about.html'">1</li>
-				           <li onclick="location.href='login.html'">2</li>
-				           <li onclick="location.href='faq.html'">3</li>
-				           <li onclick="location.href='gourmet.html'">4</li>
-				           <li onclick="location.href='login.html'">5</li>
-				           <li onclick="location.href='products.html'">next</li>
-						</ul>
+        				 <ul>
+					<%
+					// 시작페이지 1페이지 Prev 없음
+					// 시작페이지 11,21,31 Prev가 보이게
+						if(pageDTO.getStartPage() > pageDTO.getPageBlock()){%>
+							<li onclick="location.href='adminPage.ad?pageNum=<%=pageDTO.getStartPage()-pageDTO.getPageBlock()%>'">Prev</li>
+							
+						<% } 
+						for(int i= pageDTO.getStartPage(); i<=pageDTO.getEndPage(); i++){%>
+							<li onclick="location.href='adminPage.ad?pageNum=<%=i%>'"><%=i %></li>
+						<%}
+						// 끝페이지 번호 전체페이지수 비교 => 전체페이지 수 크면 => next보임
+						if(pageDTO.getEndPage() < pageDTO.getPageCount()){%>
+							<li onclick="location.href='adminPage.ad?pageNum=<%=pageDTO.getStartPage() + pageDTO.getPageBlock() %>'">Next</li>
+						<%}%>
+				    </ul>
    					 </div>
 			
 			<!-- script for tabs -->
@@ -190,14 +137,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<th class="_1qna_board_border">이름</th>
 							<th>신고횟수</th>
 						</tr>
-						<tr onclick="location.href='user_content_1.jsp'">
-							<td class="_1qna_board_border">002</td>
-							<td class="_1qna_board_border">kkm</td>
-							<td class="_1qna_board_border">kkm</td>
-							<td class="_1qna_board_border">권광민</td>
-							<td>2</td>
-						</tr>
-						<tr onclick="location.href='user_content_1.jsp'">
+						<tr onclick="window.open('user_content.ad','신고상세페이지','width=800, height=700, scrollbars=yes')">
 							<td class="_1qna_board_border">002</td>
 							<td class="_1qna_board_border">kkm</td>
 							<td class="_1qna_board_border">kkm</td>
@@ -266,21 +206,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 			</div>
 <!-- 			탭 jquery -->
-			<script type="text/javascript">
-			$(document).ready(function(){
-				
-				$('ul.tabs li').click(function(){
-					var tab_id = $(this).attr('data-tab');
-
-					$('ul.tabs li').removeClass('current');
-					$('.tab-content').removeClass('current');
-
-					$(this).addClass('current');
-					$("#"+tab_id).addClass('current');
-				})
-
-			})
-			</script>
+			
 		</div>
 			<div class="clearfix_1_1"> </div>
 	</div>
