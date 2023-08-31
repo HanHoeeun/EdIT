@@ -107,7 +107,7 @@ public class MemberDAO {
 
 
 
-//	로그인 유저체크
+//	유저체크
 	public MemberDTO userCheck(MemberDTO memberDTO2) {
 		System.out.println("MemberDAO userCheck()");
 		
@@ -137,7 +137,7 @@ public class MemberDAO {
 //				아이디, 비밀번호 불일치 -> 초기값 null -> 리턴
 				memberDTO = null;
 				
-				System.out.println("로그인 실패");
+				System.out.println("실패");
 			}
 			
 		} catch (Exception e) {
@@ -193,6 +193,7 @@ public class MemberDAO {
 	}
 
 
+	
 
 //	회원정보 변경
 	public void updateMember(MemberDTO memberDTO) {
@@ -221,6 +222,7 @@ public class MemberDAO {
 		}
 	}
 
+	
 	
 	
 
@@ -254,7 +256,6 @@ public class MemberDAO {
 	
 	
 	
-
 
 	
 
@@ -321,18 +322,20 @@ public class MemberDAO {
 	
 	
 
+
 	// 8.31 진 - 아이디 찾기
 	public MemberDTO findidmember(String m_name, String m_email) {
+
 		System.out.println("MemberDAO findidmember()");
 		MemberDTO memberDTO = null;
 		try {
-			// 디비 연결
 			con = getConnection();
 			
 			String sql = "SELECT * FROM members WHERE m_name = ? and m_email = ?";
 			pstmt = con.prepareStatement(sql);
             pstmt.setString(1, m_name);
             pstmt.setString(2, m_email);
+
             ResultSet rs = pstmt.executeQuery();
             
             if (rs.next()) {
@@ -353,7 +356,8 @@ public class MemberDAO {
 
 	// 8.31 진 - 비밀번호 찾기
 	public MemberDTO findpwmember(String m_id, String m_email) {
-		System.out.println("MemberDAO findidmember()");
+		
+		System.out.println("MemberDAO findpwmember()");
 		MemberDTO memberDTO = null;
 		try {
 			// 디비 연결
@@ -363,7 +367,14 @@ public class MemberDAO {
 			pstmt = con.prepareStatement(sql);
             pstmt.setString(1, m_id);
             pstmt.setString(2, m_email);
+            
             ResultSet rs = pstmt.executeQuery();
+			if(rs.next()) {
+                memberDTO = new MemberDTO();
+                memberDTO.setM_pass(rs.getString("m_pass"));	
+			}
+            System.out.println(m_id + "," + m_email );
+			System.out.println(memberDTO);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -375,3 +386,10 @@ public class MemberDAO {
 
 
 }	// insertMember()
+
+	
+	
+	
+	
+
+

@@ -99,7 +99,7 @@ $("#kakao-login-btn").on("click", function(){
 <!-- <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script> -->
 
 <script>
-// Kakao.init('abe7984fd16d1fc768372dce3dec7c60'); //js토큰키 사용(내 고유 토큰키)
+// Kakao.init('abe7984fd16d1fc768372dce3dec7c60'); //js토큰키 사용(내 고유 토큰키)-> API 키를 넣어야하나..? JavaScript 키를 넣어야하나.??? -> 블로그마다 말이 다르네...ㅜㅜ
 // console.log(Kakao.isInitialized()); // sdk초기화 여부 판단
 // //카카오로그인
 // function kakaoLogin() {
@@ -174,9 +174,9 @@ $("#kakao-login-btn").on("click", function(){
 
 			<div class="login-form-grids animated wow slideInUp" data-wow-delay=".5s">
 			
-				<form action="loginPro.me"  method="post">
-					<input type="text"  placeholder="아이디"  required=" "  id="_5id"  name="_5id">
-					<input type="password"  placeholder="비밀번호"  required=" "  id="_5pass"  name="_5pass">
+				<form action="loginPro.me" method="post">
+					<input type="text" placeholder="아이디" required=" " id="m_id" name="m_id">
+					<input type="password" placeholder="비밀번호" required=" " id="m_pass" name="m_pass">
 					<input type="submit" value="로그인">
 				</form>
 				

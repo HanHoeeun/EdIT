@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>member/msg.jsp</title>
 </head>
+
 <body>
 <%
 String error =(String)request.getAttribute("error");
@@ -18,15 +19,7 @@ history.back();
 </script>
 
 
-<script type="text/javascript">
-<%
-String error2 =(String)request.getAttribute("error");
-%>
-//	아이디와 이메일 다르면 나오는 메세지
-	<script type="text/javascript">
-alert("<%=error2%>");
+
 	
-history.back();
-	</script>
 </body>
 </html>

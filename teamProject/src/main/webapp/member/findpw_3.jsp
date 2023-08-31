@@ -83,7 +83,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<form action = "findpwPro.me"  method = "post">					
 
 					<input type="text"  placeholder ="아이디"  required=" "  id = "m_id" name = "m_id" >
-					<input type="email"  placeholder ="이메일"  required=" "  id = "m_email" name = "m_emai" >
+					<input type="email"  placeholder ="이메일"  required=" "  id = "m_email" name = "m_email" >
 					
 					<div class="_5center">
 						<input type="submit" value="확인"  class="#">	
