@@ -9,7 +9,9 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.itwillbs.dao.MemberDAO;
 import com.itwillbs.dao.ProductDAO;
+import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.ProductDTO;
 import com.itwillbs.domain.ProductPageDTO;
 
@@ -491,6 +493,7 @@ public class ProductService {
 			request.setCharacterEncoding("utf-8");
 			
     	    // request 저장된 파라미터값 가져오기=>변수저장
+			String m_nick = multi.getParameter("m_nick");
 			String p_title = multi.getParameter("p_title");
 			String p_type = multi.getParameter("p_type");
 			int p_price = Integer.parseInt(multi.getParameter("p_price"));
@@ -511,6 +514,7 @@ public class ProductService {
 			ProductDTO productDTO =new ProductDTO();
 			
 			// set메서드 호출 파라미터값 저장
+			productDTO.setM_nick(m_nick);
 			productDTO.setP_num(p_num);
 			productDTO.setP_title(p_title);
 			productDTO.setP_type(p_type);
@@ -590,7 +594,7 @@ public class ProductService {
 		
 	} //updateProduct()
 	
-	
+	 
 	public ProductDTO getproduct(HttpServletRequest request) {
 		
 		ProductDTO productDTO = null;
@@ -606,6 +610,7 @@ public class ProductService {
 			
 			// boardDTO = getBoard(num) 메서드 호출
 			productDTO = productDAO.getproduct(p_num);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

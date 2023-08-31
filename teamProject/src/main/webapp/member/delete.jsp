@@ -112,7 +112,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<input type="text1" placeholder="아이디" readonly="readonly"readonly>
 									<input type="text" value="<%=id%>" name="m_id"  readonly="readonly"readonly>
 									<input type="text1" placeholder="비밀번호" readonly="readonly"readonly >
-									<input type="text" name="m_pass" required=" " id="m_5pass"> <br>
+									<input type="text" name="m_pass" required=" " id="m_pass"> <br>
 									<div class="divdub"></div>
 								</div>	
 							</div>
