@@ -2179,6 +2179,7 @@
   content: "\f2b4";
 }
 .sr-only {
+  background-color : #050fd7!important;
   position: absolute;
   width: 1px;
   height: 1px;

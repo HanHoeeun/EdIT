@@ -133,6 +133,14 @@ String orderBy = (String) request.getAttribute("orderBy");
             ProductPageDTO ppageDTO
             = (ProductPageDTO)request.getAttribute("ppageDTO");
             
+            int itemsPerPage = 5; // 페이지당 아이템 수
+            int currentPage = (request.getParameter("page") != null) ? Integer.parseInt(request.getParameter("page")) : 1;
+            int startIndex = (currentPage - 1) * itemsPerPage;
+            int endIndex = Math.min(startIndex + itemsPerPage, productList.size());
+            int totalPages = (int) Math.ceil((double) productList.size() / itemsPerPage);
+
+            List<ProductDTO> visibleItems = productList.subList(startIndex, endIndex);
+            
             %>
             
               <div class="agile_top_brands_grids">
@@ -179,13 +187,15 @@ String orderBy = (String) request.getAttribute("orderBy");
     <div class="clearfix"> </div>
 </div>
 
+<!-- 페이징 코드 5개씩 나눠서 페이징 -->
+
 <nav class="numbering">
    <ul class="pagination paging">
       <li>
       <%
       if(ppageDTO.getP_startPage() > ppageDTO.getP_pageBlock()){
          %>
-         <a href="products.po?p_pageNum=<%=ppageDTO.getP_startPage()-ppageDTO.getP_pageBlock()%>" aria-label="Previous">
+         <a href="products.po?p_pageNum=<%=ppageDTO.getP_startPage()-ppageDTO.getP_pageBlock()%>&orderBy=${orderBy}" aria-label="Previous">
             <span aria-hidden="true">&laquo;</span>
          </a>
          <%
@@ -197,16 +207,17 @@ String orderBy = (String) request.getAttribute("orderBy");
       for(int i=ppageDTO.getP_startPage();i<=ppageDTO.getP_endPage();i++){
          %>
     	 <a href="products.po?p_pageNum=<%= i %>&orderBy=${orderBy}" class="<%= (i == ppageDTO.getP_currentPage()) ? "active" : "" %>">
-         <%=i %><span class="sr-only">(current)</span></a>
+         <%=i %><span class = "sr-only">current</a>
          <%
          }
          %>
       </li>
       <li>
       <%
+      // 끝페이지 번호 전체페이지수 비교 => 전체 페이지수 크면 => next보
       if(ppageDTO.getP_endPage() < ppageDTO.getP_pageCount()){
          %>
-         <a href="products.po?p_pageNum=<%=ppageDTO.getP_startPage()+ppageDTO.getP_pageBlock()%>" aria-label="Next">
+         <a href="products.po?p_pageNum=<%=ppageDTO.getP_startPage()+ppageDTO.getP_pageBlock()%>&orderBy=${orderBy}" >
             <span aria-hidden="true">&raquo;</span>
          </a>
          <%
@@ -214,7 +225,26 @@ String orderBy = (String) request.getAttribute("orderBy");
          %>
       </li>
    </ul>
-</nav>
+</nav>  
+<!-- <nav class="numbering">
+					<ul class="pagination paging">
+						<li>
+							<a href="#" aria-label="Previous">
+								<span aria-hidden="true">&laquo;</span>
+							</a>
+						</li>
+						<li class="active"><a href="#">1<span class="sr-only">(current)</span></a></li>
+						<li><a href="#">2</a></li>
+						<li><a href="#">3</a></li>
+						<li><a href="#">4</a></li>
+						<li><a href="#">5</a></li>
+						<li>
+							<a href="#" aria-label="Next">
+							<span aria-hidden="true">&raquo;</span>
+							</a>
+						</li>
+					</ul>
+				</nav> -->
 
          </div>
          <div class="clearfix"> </div>
