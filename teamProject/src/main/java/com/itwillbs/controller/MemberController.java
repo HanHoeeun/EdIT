@@ -176,7 +176,7 @@ public class MemberController extends HttpServlet{
 		
 		
 		
-//		회원정보 수정	--------------------------------------------------------------실패
+//		회원정보 수정	--성공 (닉네임에 포린키 걸려있어서 닉네임은 변경 불가!)
 		if (sPath.equals("/updatePro.me")) {
 			System.out.println("뽑은 가상주소 비교 : updatePro.me");
 

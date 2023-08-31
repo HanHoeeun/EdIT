@@ -135,7 +135,7 @@ public class MemberService {
 			request.setCharacterEncoding("utf-8");
 			
 			String m_id = request.getParameter("m_id");
-			String m_pass1 = request.getParameter("m_pass1");
+			String m_pass1 = request.getParameter("m_pass");
 			String m_pass2 = request.getParameter("m_pass2");
 			String m_pass3 = request.getParameter("m_pass3");
 			String m_name = request.getParameter("m_name");
