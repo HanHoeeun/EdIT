@@ -59,9 +59,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<li class="active">공지사항</li>
 			</ol>
 		</div>
-	</div><br><br>
+	</div>
 <!--=========================== 본문 헤더 =========================================== -->	
-	<div class="../top-brands_1">
+	<div class="top-brands_1">
 		<h2>공지사항</h2>
 		<div class="container_1_1">
 			<div class="container_2_1">

@@ -37,9 +37,9 @@ public class NoticeController extends HttpServlet{
 		String sPath=request.getServletPath();
 		System.out.println("뽑은 가상주소 :  " + sPath);
 		
-		//================================================= 공지 리스트 =============================================
-		if(sPath.equals("/list.no")) {
-			System.out.println("뽑은 가상주소 비교 : /list.no");
+		//================================================= 일반공지 리스트 =============================================
+		if(sPath.equals("/noticelist.no")) {
+			System.out.println("뽑은 가상주소 비교 : /noticelist.no");
 			// 한페이지에서 보여지는 글 개수 설정
 			int pageSize=10;
 			// 페이지번호 
@@ -86,15 +86,15 @@ public class NoticeController extends HttpServlet{
 			
 			dispatcher = request.getRequestDispatcher("/admin/notice_copy.jsp");
 			dispatcher.forward(request, response);	
-		}//list.no
+		}//noticelist.no
 		
 		//=============================================== 공지글 작성 ================================================
 		if(sPath.equals("/write.no")) { 
 			System.out.println("뽑은 가상주소 비교 : /write.no");
 			NoticeService noticeService = new NoticeService();
 			noticeService.insertNotice(request);
-			// 주소변경 이동 "notice.no?tab=tab-1"
-			response.sendRedirect("notice.no?tab=tab-1");
+			// 주소변경 이동 "notice.no?tab=tab-1" 
+			response.sendRedirect("notice.no?tab=tab-1");//=> 글 작성 후 일반공지 리스트로 이동
 		}//write.no
 		
 		if(sPath.equals("/notice.no")) {
@@ -148,6 +148,7 @@ public class NoticeController extends HttpServlet{
 			dispatcher.forward(request, response);
 		}//notice.no
 
+//=============================================== 공지글 작성 ================================================
 		if(sPath.equals("/writePro.no")) {
 			System.out.println("뽑은 가상주소 비교 : /writePro.no");
 			// NoticeService 객체생성
@@ -155,9 +156,10 @@ public class NoticeController extends HttpServlet{
 			// 리턴할형없음 insertNotice(request) 메서드 호출
 			noticeService.insertNotice(request);
 			// list.bo 주소 변경 되면서 이동
-			response.sendRedirect("list.no");
+			response.sendRedirect("noticelist.no");//=> 글 작성 후 일반공지 리스트로 이동
 		}//writePro.no
-		
+
+//=============================================== 상세 게시물 ================================================
 		if(sPath.equals("/content.no")) {
 			System.out.println("뽑은 가상주소 비교 : /content.no");
 			// NoticeService 객체생성
@@ -176,7 +178,8 @@ public class NoticeController extends HttpServlet{
 			dispatcher = request.getRequestDispatcher("admin/noticeContent.jsp");
 			dispatcher.forward(request, response);
 		}//content.no
-		
+
+//=============================================== 파일 업로드 ================================================
 		if(sPath.equals("/fwrite.no")) {
 			// 주소변경없이 이동 admin/fwrite.jsp
 			dispatcher = request.getRequestDispatcher("admin/fwrite.jsp");
@@ -190,16 +193,16 @@ public class NoticeController extends HttpServlet{
 			// 리턴할형없음 finsertNotice(request) 메서드 호출
 //			noticeService.finsertNotice(request);
 			// list.bo 주소 변경 되면서 이동
-			response.sendRedirect("list.no");
+			response.sendRedirect("noticelist.no");
 		}//fwritePro.no
-		
+
+//=============================================== 게시물 수정 페이지 ================================================
 		if(sPath.equals("/update.no")) {
 			System.out.println("뽑은 가상주소 비교 : /update.no");
 			// NoticeService 객체생성
 			noticeService = new NoticeService();
 			// NoticeDTO noticeDTO = getNotice(request) 메서드 호출
 			NoticeDTO noticeDTO = noticeService.getNotice(request);
-			System.out.println("notice"+noticeDTO);
 			// request에 "noticeDTO",noticeDTO 담아서
 			request.setAttribute("noticeDTO", noticeDTO);
 			// center/update.jsp 주소변경없이 이동
@@ -213,12 +216,20 @@ public class NoticeController extends HttpServlet{
 			noticeService = new NoticeService();
 			// noticeDTO(request) 메서드 호출
 			noticeService.updateNotice(request);
-			// 글목록 list.no 주소 변경되면서 이동
-			response.sendRedirect("notice.no?tab=tab-1");
+			// 글목록 noticelist.no 주소 변경되면서 이동
+			response.sendRedirect("noticelist.no");
 		}//updatePro.no
 		
-		
-		
+//=============================================== 게시물 삭제 페이지 ================================================		
+		if(sPath.equals("/delete.no")) {
+			System.out.println("뽑은 가상주소 비교 : /delete.no");
+			// NoticeService 객체생성
+			noticeService = new NoticeService();
+			// deleteNotice(request) 메서드 호출
+			noticeService.deleteNotice(request);
+			// 글목록 noticelist.no 주소 변경 되면서 이동
+			response.sendRedirect("noticelist.no");
+		}//delete.no
 		
 		
 		

@@ -172,6 +172,22 @@ public class NoticeDAO {
 			dbClose();
 		}
 	}//updateNotice
+
+	public void deleteNotice(int a_num) {
+		try {
+			con = getConnection();
+			// 3단계 sql구문 delete from notice where a_num=?
+			String sql = "delete from notice where a_num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1,a_num);
+			// 4단계
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbClose();
+		}		
+	}//deleteNotice()
 	
 		
 		

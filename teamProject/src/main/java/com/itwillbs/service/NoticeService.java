@@ -117,6 +117,22 @@ public class NoticeService {
 			e.printStackTrace();
 		}
 	}//updateNotice()
+
+	public void deleteNotice(HttpServletRequest request) {
+		System.out.println("NoticeService deleteNotice()");
+		try {
+			// 한글처리
+			request.setCharacterEncoding("utf-8");
+			// NoticeService => int a_num = request 파라미터값 가져오기
+			int a_num = Integer.parseInt(request.getParameter("a_num"));
+			// NoticeDAO 객체생성 
+			noticeDAO = new NoticeDAO();
+			// deleteNotice(a_num)호출
+			noticeDAO.deleteNotice(a_num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}//deleteNotice()
 	
 	// 첨부파일
 //	public void finsertNotice(HttpServletRequest request) {

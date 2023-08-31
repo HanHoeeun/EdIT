@@ -117,6 +117,8 @@ public class AdminDAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			dbClose();
 		}
 		return count;
 	}
@@ -140,7 +142,7 @@ public class AdminDAO {
 			}
 			
 		} catch (Exception e) {
-			
+			e.printStackTrace();
 		}finally {
 			this.dbClose();
 		}
@@ -176,7 +178,7 @@ public class AdminDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			this.dbClose();
+			dbClose();
 		}
 		
 		return reportList;
@@ -196,6 +198,8 @@ public class AdminDAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			dbClose();
 		}
 		return count;
 	}

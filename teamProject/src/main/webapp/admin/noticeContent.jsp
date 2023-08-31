@@ -23,16 +23,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		function hideURLbar(){ window.scrollTo(0,1); } 
 </script>
 <!-- //for-mobile-apps -->
-<link href="../css/bootstrap.css" rel="stylesheet" type="text/css"
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css"
 	media="all" />
-<link href="../css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 <!-- font-awesome icons -->
-<link href="../css/font-awesome.css" rel="stylesheet">
-<link href="../css/faq_1_9.css" rel="stylesheet">
-<link href="../css/notice.css" rel="stylesheet">
+<link href="css/font-awesome.css" rel="stylesheet">
+<link href="css/faq_1_9.css" rel="stylesheet">
+<link href="css/notice.css" rel="stylesheet">
 <!-- //font-awesome icons -->
 <!-- js -->
-<script src="../js/jquery-1.11.1.min.js"></script>
+<script src="js/jquery-1.11.1.min.js"></script>
 <!-- //js -->
 <link
 	href='//fonts.googleapis.com/css?family=Raleway:400,100,100italic,200,200italic,300,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic'
@@ -41,8 +41,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic'
 	rel='stylesheet' type='text/css'>
 <!-- start-smoth-scrolling -->
-<script type="text/javascript" src="../js/move-top.js"></script>
-<script type="text/javascript" src="../js/easing.js"></script>
+<script type="text/javascript" src="js/move-top.js"></script>
+<script type="text/javascript" src="js/easing.js"></script>
 <script type="text/javascript">
 	jQuery(document).ready(function($) {
 		$(".scroll").click(function(event) {
@@ -74,11 +74,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--=========================== 본문 헤더 =========================================== -->
 	<div class="top-brands_1">
 		<h2>일반공지</h2>
-		<div><br></div>
+		</div>
 	<!--=========================== 본문 =========================================== -->
     <div class="container_notice">
 			<%
-			String id = (String) session.getAttribute("id");
+			/* String id = (String) session.getAttribute("id"); */
 			NoticeDTO noticeDTO = (NoticeDTO) request.getAttribute("noticeDTO");
 			SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
 			%>
@@ -86,7 +86,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <p class="author"><%=format.format(noticeDTO.getA_date())%></p>
         <hr>
         <div class="attachment-section">
-        <p>첨부 파일 <a href="your-file-url.pdf" target="_blank">첨부 파일 이름.pdf</a></p><br>
+        <p>첨부 파일 <a href="upload/<%=noticeDTO.getA_file()%>" download>
+						<%=noticeDTO.getA_file()%></a> 
+						<img src="upload/<%=noticeDTO.getA_file()%>" width="200" height="200"></p><br>
    		 </div>
         <p><%=noticeDTO.getA_content()%></p>
 
@@ -94,12 +96,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			// 로그인, 글쓴이 일치
 			if (1==1){ %>
 			<hr>
-			<button class="modify-button" onclick="goBack()">수정</button>
-			<button class="delete-button" onclick="goBack()">삭제</button>
-			<button class="list-button" onclick="goBack()">목록</button>
+			<input type="button" value="수정" class="modify-button" onclick="location.href='update.no?a_num=<%=noticeDTO.getA_num()%>'">
+			<input type="button" value="삭제" class="delete-button" onclick="location.href='delete.no?a_num=<%=noticeDTO.getA_num()%>'">
+			<%} %>
+			<input type="button" value="목록" class="list-button" onclick="location.href='notice.no?tab=tab-1'">
 		</div>
-    </div>
-
+	<div class="clear"></div>
+	<div id="page_control"></div>
     <script>
     </script>
 	<!--================================== 푸터 ==================================== -->
@@ -107,7 +110,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<jsp:include page="../inc/bottom.jsp"></jsp:include>
 	</div>
 	<!--========================= Bootstrap Core JavaScript =========================-->
-	<script src="../js/bootstrap.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 	<!-- top-header and slider -->
 	<!-- here stars scrolling icon -->
 	<script type="text/javascript">
@@ -128,7 +131,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		});
 	</script>
 	<!-- //here ends scrolling icon -->
-	<script src="../js/minicart.min.js"></script>
+	<script src="js/minicart.min.js"></script>
 	<script>
 		// Mini Cart
 		paypal.minicart.render({
@@ -140,8 +143,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		}
 	</script>
 	<!-- main slider-banner -->
-	<script src="../js/skdslider.min.js"></script>
-	<link href="../css/skdslider.css" rel="stylesheet">
+	<script src="js/skdslider.min.js"></script>
+	<link href="css/skdslider.css" rel="stylesheet">
 	<script type="text/javascript">
 		jQuery(document).ready(function() {
 			jQuery('#demo1').skdslider({

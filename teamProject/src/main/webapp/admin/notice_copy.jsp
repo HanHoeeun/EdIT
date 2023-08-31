@@ -69,10 +69,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <!--=========================== 상단 탭 리스트============================================ -->
 				<ul class="tabs">
-					<li class="tab-link" data-tab="tab-1">일반공지</li>
+					<li class="tab-link current" data-tab="tab-1">일반공지</li>
 					<li class="tab-link" data-tab="tab-2">이벤트</li>
 					<%if(1==1){ %>
-					<li class="tab-link current" data-tab="tab-3">글 작성</li>
+					<li class="tab-link" data-tab="tab-3">글 작성</li>
 					<%} %>
 				</ul>
 			</div>
@@ -82,7 +82,7 @@ List<NoticeDTO> noticeList = (List<NoticeDTO>)request.getAttribute("noticeList")
 NoticePageDTO pageDTO=(NoticePageDTO)request.getAttribute("pageDTO");
 %>	
 			<div class="container_3_1">
-				<div id="tab-1" class="tab-content">
+				<div id="tab-1" class="tab-content current">
 					<table class="_1qna_board">
 						<tr>
 							<th class="_1qna_board_border">번호</th>
@@ -153,7 +153,7 @@ NoticePageDTO pageDTO=(NoticePageDTO)request.getAttribute("pageDTO");
 				</div>
 <!--================================== 3탭 글작성 ==================================== -->
 				<%if(1 == 1){ %>
-				<div id="tab-3" class="tab-content current">
+				<div id="tab-3" class="tab-content">
 					<form action="write.no" method="post" >
 						<table class="_1q_query_tab">
 							<tr>

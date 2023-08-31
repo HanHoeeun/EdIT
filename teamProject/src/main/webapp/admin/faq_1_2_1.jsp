@@ -9,7 +9,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
-<title>공지사항 상세게시글</title>
+<title>공지사항 수정</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -71,7 +71,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 	<!--=========================== 본문 헤더 =========================================== -->
 	<div class="top-brands_1">
-		<h2>일반공지</h2>
+		<h2>공지사항 수정</h2>
 		<div><br></div>
 
 		<!--================================== 3탭 글작성 ==================================== -->

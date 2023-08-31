@@ -22,16 +22,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		function hideURLbar(){ window.scrollTo(0,1); } 
 </script>
 <!-- //for-mobile-apps -->
-<link href="../css/bootstrap.css" rel="stylesheet" type="text/css"
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css"
 	media="all" />
-<link href="../css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 <!-- font-awesome icons -->
-<link href="../css/font-awesome.css" rel="stylesheet">
-<link href="../css/faq_1_9.css" rel="stylesheet">
-<link href="../css/notice.css" rel="stylesheet">
+<link href="css/font-awesome.css" rel="stylesheet">
+<link href="css/faq_1_9.css" rel="stylesheet">
+<link href="css/notice.css" rel="stylesheet">
 <!-- //font-awesome icons -->
 <!-- js -->
-<script src="../js/jquery-1.11.1.min.js"></script>
+<script src="js/jquery-1.11.1.min.js"></script>
 <!-- //js -->
 <link
 	href='//fonts.googleapis.com/css?family=Raleway:400,100,100italic,200,200italic,300,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic'
@@ -40,8 +40,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic'
 	rel='stylesheet' type='text/css'>
 <!-- start-smoth-scrolling -->
-<script type="text/javascript" src="../js/move-top.js"></script>
-<script type="text/javascript" src="../js/easing.js"></script>
+<script type="text/javascript" src="js/move-top.js"></script>
+<script type="text/javascript" src="js/easing.js"></script>
 <script type="text/javascript">
 	jQuery(document).ready(function($) {
 		$(".scroll").click(function(event) {
@@ -72,10 +72,61 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 <!--=========================== 본문 헤더 =========================================== -->
 	<div class="top-brands_1">
-		<h2>일반공지</h2>
-		<div><br></div></div>
+		<h2>공지글 수정</h2>
+	</div>	
 	<!--=========================== 본문 =========================================== -->
-		<%
+	<%
+String a_m_num = (String)session.getAttribute("a_m_num");
+NoticeDTO noticeDTO=(NoticeDTO)request.getAttribute("noticeDTO");
+%>	
+		<form action="updatePro.no" method="post">
+		<input type="hidden" name="num" value="<%=noticeDTO.getA_num()%>">
+			<table class="_1q_query_tab">
+				<tr>
+					<td class="_1q_query_tab_1"><select class="_1q_query_tab_sel"
+						name="a_notice_type" style="border: none;">
+							<option value="1">일반공지</option>
+							<option value="2">이벤트</option>
+					</select></td>
+					<td>
+						<div class="_1q_query_tab_3">
+							<label for="imgfile"><img src="images/picture.png"
+								width="25px" height="25px">파일 업로드</label>
+						</div> <input type="file" name="imgfile" id="imgfile" accept="image/*">
+						<%=noticeDTO.getA_file() %>
+					</td>
+				</tr>
+			</table>
+			<div>
+				<br>
+			</div>
+
+			<table class="_1q_query_tab">
+				<tr>
+					<td class="_1q_query_tab_4" colspan="3"><input type="text"
+						name="a_title" value="<%=noticeDTO.getA_title() %>" style="border: none;"></td>
+				</tr>
+			</table>
+			<div>
+				<br>
+			</div>
+			<table class="_1q_query_tab">
+				<tr>
+					<td class="_1q_query_tab_5" colspan="3"><textarea
+							name="a_content" style="border: none;" cols="110" rows="20"
+							class="noresize"><%=noticeDTO.getA_content() %></textarea></td>
+				</tr>
+			</table>
+			<div class="_1q_query_btn">
+				<input type="submit" value="수정" class="modify-button">
+			</div>
+		</form>
+		
+<div class="clear"></div>
+<div id="page_control"></div>
+
+
+		<%-- 	<%
 		NoticeDTO noticeDTO = (NoticeDTO) request.getAttribute("noticeDTO");
 		%>
 		<div class="container_notice" action="updatePro.no" method="post" enctype="multipart/form-data">
@@ -92,29 +143,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         
        <!--  <img src="your-image-url.jpg" alt="공지사항 이미지" style="max-width: 100%;"><br> -->
         <hr>
-        <%
-			if (1 == 1) {
-			%>
-			<button class="modify-button" onclick="goBack()">수정</button>
-			<button class="delete-button" onclick="goBack()">삭제</button>
-			<%
-			}
-			%>
-			<button class="list-button" onclick="goBack()">목록</button>
+			<input type="submit" value="수정" class="modify-button" onclick="location.href='content.no?a_num=<%=noticeDTO.getA_num()%>'">
+			<input type="button" value="취소" class="delete-button" onclick="location.href='content.no?a_num=<%=noticeDTO.getA_num()%>'">
 		</div>
-    
+     --%>
 
-    <script>
-    </script>
-	<!--================================== 푸터 ==================================== -->
-	<div class="clearfix">
-		<jsp:include page="../inc/bottom.jsp"></jsp:include>
-	</div>
-	<!--========================= Bootstrap Core JavaScript =========================-->
-	<script src="../js/bootstrap.min.js"></script>
-	<!-- top-header and slider -->
-	<!-- here stars scrolling icon -->
-	<script type="text/javascript">
+		<!--================================== 푸터 ==================================== -->
+		<div class="clearfix">
+			<jsp:include page="../inc/bottom.jsp"></jsp:include>
+		</div>
+		<!--========================= Bootstrap Core JavaScript =========================-->
+		<script src="js/bootstrap.min.js"></script>
+		<!-- top-header and slider -->
+		<!-- here stars scrolling icon -->
+		<script type="text/javascript">
 		$(document).ready(function() {
 			/*
 				var defaults = {
@@ -131,9 +173,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 		});
 	</script>
-	<!-- //here ends scrolling icon -->
-	<script src="../js/minicart.min.js"></script>
-	<script>
+		<!-- //here ends scrolling icon -->
+		<script src="js/minicart.min.js"></script>
+		<script>
 		// Mini Cart
 		paypal.minicart.render({
 			action : '#'
@@ -143,10 +185,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			paypal.minicart.reset();
 		}
 	</script>
-	<!-- main slider-banner -->
-	<script src="../js/skdslider.min.js"></script>
-	<link href="../css/skdslider.css" rel="stylesheet">
-	<script type="text/javascript">
+		<!-- main slider-banner -->
+		<script src="js/skdslider.min.js"></script>
+		<link href="css/skdslider.css" rel="stylesheet">
+		<script type="text/javascript">
 		jQuery(document).ready(function() {
 			jQuery('#demo1').skdslider({
 				'delay' : 5000,
@@ -163,6 +205,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 		});
 	</script>
-	<!-- //main slider-banner -->
+		<!-- //main slider-banner -->
 </body>
 </html>
