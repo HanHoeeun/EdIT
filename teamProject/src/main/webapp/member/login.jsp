@@ -168,11 +168,11 @@ function kakaoLogout() {
 
 
 <!-- 카카오 로그인 버튼 -->
-<!-- 	<div class="_5login-kakao"> -->
-<!-- 	<a href="javascript:void(0)"> -->
-<!--       <img onclick="kakaoLogin();" src="//k.kakaocdn.net/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg"   -->
-<!--       width="100%;" height="50%;"  style="margin-top: 15px; padding-inline: 50px;"> -->
-<!--       </a> -->
+	<div class="_5login-kakao">
+	<a href="javascript:void(0)">
+      <img onclick="kakaoLogin();" src="//k.kakaocdn.net/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg"  
+      width="100%;" height="50%;"  style="margin-top: 15px; padding-inline: 50px;">
+      </a>
 </div>			
 </div>
 </form>		
