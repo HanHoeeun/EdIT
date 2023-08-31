@@ -261,9 +261,9 @@ public class MemberController extends HttpServlet{
 //		8.31 진유정 - 아이디찾기(수정중...) -> 이게 맞아...????   => 안됨....!!
 		if(sPath.equals("/findidPro.me")) {
 			System.out.println("뽑은 가상주소 비교 : findidPro.me"); 
-			
-			String name = request.getParameter("m_name");
-			String email = request.getParameter("m_email");
+			request.setCharacterEncoding("utf-8");
+			String name = request.getParameter("_5name");
+			String email = request.getParameter("_5email");
 			
 		    MemberService memberService = new MemberService();
 			
@@ -273,13 +273,13 @@ public class MemberController extends HttpServlet{
 		    if (foundId != null) {
 		        // 아이디를 찾은 경우
 		        request.setAttribute("foundId", foundId);
-		        dispatcher = request.getRequestDispatcher("findid_result.jsp");
+		        dispatcher = request.getRequestDispatcher("member/findid_result.jsp");
 		        dispatcher.forward(request, response);
 		    } else {
 		        // 아이디를 찾지 못한 경우
 		        request.setAttribute("error", "아이디를 찾을 수 없습니다.");
 		        // member/findid.jsp 주소변경 없이 연결
-		        dispatcher = request.getRequestDispatcher("member/findid.jsp");
+		        dispatcher = request.getRequestDispatcher("member/msg.jsp");
 		        dispatcher.forward(request, response);
 		    }
 		} //

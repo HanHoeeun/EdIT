@@ -174,9 +174,9 @@ $("#kakao-login-btn").on("click", function(){
 
 			<div class="login-form-grids animated wow slideInUp" data-wow-delay=".5s">
 			
-				<form action="loginPro.me" method="post">
-					<input type="text" placeholder="아이디" required=" " id="_5id" name="_5id">
-					<input type="password" placeholder="비밀번호" required=" " id="_5pass" name="_5pass">
+				<form action="loginPro.me"  method="post">
+					<input type="text"  placeholder="아이디"  required=" "  id="_5id"  name="_5id">
+					<input type="password"  placeholder="비밀번호"  required=" "  id="_5pass"  name="_5pass">
 					<input type="submit" value="로그인">
 				</form>
 				

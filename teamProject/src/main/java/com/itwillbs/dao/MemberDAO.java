@@ -252,15 +252,17 @@ public class MemberDAO {
 	
 
 	// 8.31 진 - 아이디 찾기 만드는 중인데 이게 맞는지 모르겠다....일단 만들어보고.. 물어보고 수정해보자..
-	public MemberDTO findidmember(String name, String email) {
+	public MemberDTO findidmember(String _5name, String _5email) {
 		System.out.println("MemberDAO findidmember()");
 		MemberDTO memberDTO = null;
 		try {
+			// 디비 연결
 			con = getConnection();
 			
-			String sql = "SELECT * FROM members WHERE m_name = ?, m_email = ?";
-            pstmt.setString(1, name);
-            pstmt.setString(2, email);
+			String sql = "SELECT * FROM members WHERE m_name = ? and m_email = ?";
+			pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, _5name);
+            pstmt.setString(2, _5email);
             ResultSet rs = pstmt.executeQuery();
             
             if (rs.next()) {
@@ -268,7 +270,8 @@ public class MemberDAO {
                 memberDTO.setM_id(rs.getString("m_id"));
                 // 다른 필드도 필요한 경우에 가져와서 설정
             }
-			
+            System.out.println(_5name+","+_5email );
+			System.out.println(memberDTO);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
