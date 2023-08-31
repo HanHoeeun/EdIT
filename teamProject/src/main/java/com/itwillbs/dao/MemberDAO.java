@@ -321,8 +321,8 @@ public class MemberDAO {
 	
 	
 
-	// 진 - 아이디 찾기
-	public MemberDTO findidmember(String _5name, String _5email) {
+	// 8.31 진 - 아이디 찾기
+	public MemberDTO findidmember(String m_name, String m_email) {
 		System.out.println("MemberDAO findidmember()");
 		MemberDTO memberDTO = null;
 		try {
@@ -331,8 +331,8 @@ public class MemberDAO {
 			
 			String sql = "SELECT * FROM members WHERE m_name = ? and m_email = ?";
 			pstmt = con.prepareStatement(sql);
-            pstmt.setString(1, _5name);
-            pstmt.setString(2, _5email);
+            pstmt.setString(1, m_name);
+            pstmt.setString(2, m_email);
             ResultSet rs = pstmt.executeQuery();
             
             if (rs.next()) {
@@ -340,8 +340,31 @@ public class MemberDAO {
                 memberDTO.setM_id(rs.getString("m_id"));
                 // 다른 필드도 필요한 경우에 가져와서 설정
             }
-            System.out.println(_5name+","+_5email );
+            System.out.println(m_name + "," + m_email );
 			System.out.println(memberDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dblClose();
+		}
+		return memberDTO; // 멤버 정보 반환
+	}
+
+
+	// 8.31 진 - 비밀번호 찾기
+	public MemberDTO findpwmember(String m_id, String m_email) {
+		System.out.println("MemberDAO findidmember()");
+		MemberDTO memberDTO = null;
+		try {
+			// 디비 연결
+			con = getConnection();
+			
+			String sql = "SELECT * FROM members WHERE m_id = ? and m_email = ?";
+			pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, m_id);
+            pstmt.setString(2, m_email);
+            ResultSet rs = pstmt.executeQuery();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

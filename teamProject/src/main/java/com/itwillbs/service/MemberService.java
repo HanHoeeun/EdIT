@@ -212,19 +212,32 @@ public class MemberService {
 	
 
 	// 8.31 진 - 이름과 이메일 이용해서 아이디 찾기 구현 
-	public String findidmember(String _5name, String _5email) {
-		// 이름과 이메일을 이용하여 아이디를 찾는 로직을 구현
+	public String findidmember(String m_name, String m_email) {
+		// 이름과 이메일을 이용하여 아이디를 찾기 구현
 		memberDAO = new MemberDAO();
-		MemberDTO memberDTO = memberDAO.findidmember(_5name, _5email);
+		MemberDTO memberDTO = memberDAO.findidmember(m_name, m_email);
 		 // 이름과 이메일을 이용하여 아이디를 찾는 로직을 구현
 
         // 예시: MemberDAO의 메서드를 이용하여 데이터베이스에서 아이디를 조회
-        // 실제로는 데이터베이스에서 조회하도록 로직을 구현해야 합니다.
+        // 실제로는 데이터베이스에서 조회하도록 로직을 구현해야 합니다.(???)
 		if (memberDTO != null) {
 	        return memberDTO.getM_id(); // 아이디 반환
 	    } else {
 	        return null; // 아이디를 찾지 못한 경우
 	    }
+	}
+
+	// 8.31 진 - 아이디와 이메일 이용해서 비밀번호 찾기 구현 
+	public String findpwmember(String m_id, String m_email) {
+		// 아이디와 이메일을 이용하여 비밀번호를 찾기 구현
+		memberDAO = new MemberDAO();
+		MemberDTO memberDTO = memberDAO.findpwmember(m_id, m_email);
+		
+		if(memberDTO != null) {
+			return memberDTO.getM_pass(); // 비밀번호 반환(앞 몇자리만 보이게 구현..해보자..!!??)
+		} else {
+			return null; // 비밀번호를 찾지 못한 경우
+		}
 	}
 
 
