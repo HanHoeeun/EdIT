@@ -185,7 +185,7 @@ String orderBy = (String) request.getAttribute("orderBy");
       <%
       if(ppageDTO.getP_startPage() > ppageDTO.getP_pageBlock()){
          %>
-         <a href="products.po?p_pageNum=<%=ppageDTO.getP_startPage()-ppageDTO.getP_pageBlock()%>&orderBy=${orderBy}" aria-label="Previous">
+         <a href="products.po?p_pageNum=<%=ppageDTO.getP_startPage()-ppageDTO.getP_pageBlock()%>" aria-label="Previous">
             <span aria-hidden="true">&laquo;</span>
          </a>
          <%
@@ -206,7 +206,7 @@ String orderBy = (String) request.getAttribute("orderBy");
       <%
       if(ppageDTO.getP_endPage() < ppageDTO.getP_pageCount()){
          %>
-         <a href="products.po?p_pageNum=<%=ppageDTO.getP_startPage()+ppageDTO.getP_pageBlock()%>&orderBy=${orderBy}" aria-label="Next">
+         <a href="products.po?p_pageNum=<%=ppageDTO.getP_startPage()+ppageDTO.getP_pageBlock()%>" aria-label="Next">
             <span aria-hidden="true">&raquo;</span>
          </a>
          <%

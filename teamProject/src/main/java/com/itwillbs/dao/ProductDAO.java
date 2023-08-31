@@ -884,7 +884,7 @@ public class ProductDAO {
 			con = getConnection();
 			//3 sql  => mysql 제공 => limit 시작행-1, 몇개
 //			String sql="select * from board order by num desc";
-			String sql="select * from products where p_status =? and p_type=? order by p_num limit ?, ?";
+			String sql="select * from products where p_status =? and p_type = ? order by p_num limit ?, ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, "sell");
 			pstmt.setString(2, "phone");
