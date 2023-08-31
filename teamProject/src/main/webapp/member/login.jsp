@@ -192,6 +192,8 @@ $("#kakao-login-btn").on("click", function(){
 						<a href="insert.me">회원가입</a>
 					</div>	
 <!-- // 아이디/비밀번호 찾기/회원가입 -->		
+
+
 				
 <!-- or 표시 -->				
 					<div class="_5or-login-with">

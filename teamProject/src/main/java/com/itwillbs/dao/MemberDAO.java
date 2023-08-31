@@ -248,7 +248,14 @@ public class MemberDAO {
 		
 	}
 
+	
+	
+	
+	
+	
+	
 
+<<<<<<< HEAD
 	
 
 //	멤버리스트
@@ -313,6 +320,35 @@ public class MemberDAO {
 	
 	
 	
+=======
+	// 8.31 진 - 아이디 찾기 만드는 중인데 이게 맞는지 모르겠다....일단 만들어보고.. 물어보고 수정해보자..
+	public MemberDTO findidmember(String name, String email) {
+		System.out.println("MemberDAO findidmember()");
+		MemberDTO memberDTO = null;
+		try {
+			con = getConnection();
+			
+			String sql = "SELECT * FROM members WHERE m_name = ?, m_email = ?";
+            pstmt.setString(1, name);
+            pstmt.setString(2, email);
+            ResultSet rs = pstmt.executeQuery();
+            
+            if (rs.next()) {
+                memberDTO = new MemberDTO();
+                memberDTO.setM_id(rs.getString("m_id"));
+                // 다른 필드도 필요한 경우에 가져와서 설정
+            }
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dblClose();
+		}
+		return memberDTO; // 멤버 정보 반환
+	}
+
+
+>>>>>>> branch 'master' of https://github.com/HanHoeeun/EdIT.git
 	
 	
 }	// insertMember()

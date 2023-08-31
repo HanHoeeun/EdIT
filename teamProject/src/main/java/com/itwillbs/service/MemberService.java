@@ -184,6 +184,7 @@ public class MemberService {
 			e.printStackTrace();
 		}
 		
+<<<<<<< HEAD
 	}
 
 
@@ -206,8 +207,29 @@ public class MemberService {
 		}
 		
 		return memberList;
+=======
+>>>>>>> branch 'master' of https://github.com/HanHoeeun/EdIT.git
 	}
+
 	
+	
+
+	// 8.31 진 - 이름과 이메일 이용해서 아이디 찾기 구현 -> 이게 맞는지 모르겠삼....   name , email을 _6name or M_name or name 중 뭘로해야하지
+	public String findidmember(String name, String email) {
+		// 이름과 이메일을 이용하여 아이디를 찾는 로직을 구현
+		MemberDTO memberDTO = memberDAO.findidmember(name, email);
+		 // 이름과 이메일을 이용하여 아이디를 찾는 로직을 구현
+
+        // 예시: MemberDAO의 메서드를 이용하여 데이터베이스에서 아이디를 조회
+        // 실제로는 데이터베이스에서 조회하도록 로직을 구현해야 합니다.
+		if (memberDTO != null) {
+	        return memberDTO.getM_id(); // 아이디 반환
+	    } else {
+	        return null; // 아이디를 찾지 못한 경우
+	    }
+	}
+
+
 
 	
 	
@@ -224,4 +246,4 @@ public class MemberService {
 	
 	
 	
-}
+} // MemberService()

@@ -111,10 +111,10 @@ String orderBy = (String) request.getAttribute("orderBy");
                 <div class="products-right-grids">
                     <div class="sorting">
                         <select id="country" onchange="change_country(this.value)" class="frm-field required sect">
-                    <option value="latest" <% if (orderBy != null && orderBy.equals("latest")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>최신순</option>
-                    <option value="popular" <% if (orderBy != null && orderBy.equals("popular")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>인기순</option> 
-                    <option value="highPrice" <% if (orderBy != null && orderBy.equals("highPrice")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>가격 높은 순</option>               
-                    <option value="lowPrice" <% if (orderBy != null && orderBy.equals("lowPrice")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>가격 낮은 순</option>                        
+                    <option value="laptopLatest" <% if (orderBy != null && orderBy.equals("laptopLatest")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>최신순</option>
+                    <option value="laptopPopular" <% if (orderBy != null && orderBy.equals("laptopPopular")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>인기순</option> 
+                    <option value="laptopHighPrice" <% if (orderBy != null && orderBy.equals("laptopHighPrice")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>가격 높은 순</option>               
+                    <option value="laptopLowPrice" <% if (orderBy != null && orderBy.equals("laptopLowPrice")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>가격 낮은 순</option>                        
                		<option value="laptopSell" <% if (orderBy != null && orderBy.equals("laptopSell")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>판매중</option>                        
                     <option value="laptopSold" <% if (orderBy != null && orderBy.equals("laptopSold")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>판매완료</option>
                 </select>
@@ -185,7 +185,7 @@ String orderBy = (String) request.getAttribute("orderBy");
       <%
       if(ppageDTO.getP_startPage() > ppageDTO.getP_pageBlock()){
          %>
-         <a href="products.po?p_pageNum=<%=ppageDTO.getP_startPage()-ppageDTO.getP_pageBlock()%>&orderBy=${orderBy}" aria-label="Previous">
+         <a href="laptop.po?p_pageNum=<%=ppageDTO.getP_startPage()-ppageDTO.getP_pageBlock()%>&orderBy=${orderBy}" aria-label="Previous">
             <span aria-hidden="true">&laquo;</span>
          </a>
          <%
@@ -196,7 +196,7 @@ String orderBy = (String) request.getAttribute("orderBy");
       <%
       for(int i=ppageDTO.getP_startPage();i<=ppageDTO.getP_endPage();i++){
          %>
-         <a href="products.po?p_pageNum=<%=i%>&orderBy=${orderBy}"><%=i %><span class="sr-only">(current)</span></a>
+         <a href="laptop.po?p_pageNum=<%=i%>&orderBy=${orderBy}"><%=i %><span class="sr-only">(current)</span></a>
          <%
          }
          %>
@@ -205,7 +205,7 @@ String orderBy = (String) request.getAttribute("orderBy");
       <%
       if(ppageDTO.getP_endPage() < ppageDTO.getP_pageCount()){
          %>
-         <a href="products.po?p_pageNum=<%=ppageDTO.getP_startPage()+ppageDTO.getP_pageBlock()%>&orderBy=${orderBy}" aria-label="Next">
+         <a href="laptop.po?p_pageNum=<%=ppageDTO.getP_startPage()+ppageDTO.getP_pageBlock()%>&orderBy=${orderBy}" aria-label="Next">
             <span aria-hidden="true">&raquo;</span>
          </a>
          <%

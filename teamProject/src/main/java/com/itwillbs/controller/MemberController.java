@@ -80,9 +80,11 @@ public class MemberController extends HttpServlet{
 		dispatcher.forward(request, response);
 		
 	}
+			
 		
 		
 //		로그인 하기 -- 로그인 성공은 뜨는데... 메인화면으로 이동 안함
+		
 		if (sPath.equals("/loginPro.me")) {
 			System.out.println("뽑은 가상주소 비교 : loginPro.me");
 			
@@ -97,8 +99,9 @@ public class MemberController extends HttpServlet{
 				
 				response.sendRedirect("main.me");
 				
+				// 8.31 진 - 수정 -> 아이디, 비밀번호 틀리면 메세지 창 뜨게 "member/login.jsp" -> "member/msg.jsp" 수정
 			} else {
-				dispatcher = request.getRequestDispatcher("member/login.jsp");
+				dispatcher = request.getRequestDispatcher("member/msg.jsp");
 				dispatcher.forward(request, response);
 			}
 			
@@ -311,6 +314,59 @@ public class MemberController extends HttpServlet{
 		
 		
 		
+		
+
+//		진유정 - 아이디찾기 화면
+		if(sPath.equals("/findid.me")) {
+		   System.out.println("뽑은 가상주소 비교 : findid.me" );
+		   // member/findid_3.jsp 주소변경 없이 연결
+		   dispatcher = request.getRequestDispatcher("member/findid_3.jsp");
+		   dispatcher.forward(request, response);
+		} // 
+		
+		
+//		8.31 진유정 - 아이디찾기(수정중...) -> 이게 맞아...????   => 안됨....!!
+		if(sPath.equals("/findidPro.me")) {
+			System.out.println("뽑은 가상주소 비교 : findidPro.me"); 
+			
+			String name = request.getParameter("m_name");
+			String email = request.getParameter("m_email");
+			
+		    MemberService memberService = new MemberService();
+			
+			 // 이름과 이메일을 이용하여 아이디 찾기 작동  // 저 foundID는 뭐야??
+		    String foundId = memberService.findidmember(name, email);
+
+		    if (foundId != null) {
+		        // 아이디를 찾은 경우
+		        request.setAttribute("foundId", foundId);
+		        dispatcher = request.getRequestDispatcher("findid_result.jsp");
+		        dispatcher.forward(request, response);
+		    } else {
+		        // 아이디를 찾지 못한 경우
+		        request.setAttribute("error", "아이디를 찾을 수 없습니다.");
+		        // member/findid.jsp 주소변경 없이 연결
+		        dispatcher = request.getRequestDispatcher("member/findid.jsp");
+		        dispatcher.forward(request, response);
+		    }
+		} //
+
+
+		
+
+		
+		
+		
+//		진유정 - 비밀번호찾기 화면
+		if(sPath.equals("/findpw.me")) {
+		   System.out.println("뽑은 가상주소 비교 : findpw.me" );
+		   // member/findid_3.jsp 주소변경 없이 연결
+		   dispatcher = request.getRequestDispatcher("member/findpw_3.jsp");
+		   dispatcher.forward(request, response);
+		} //		
+			
+
+	
 		
 		
 		
