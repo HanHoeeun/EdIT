@@ -62,7 +62,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div><br><br>
 <!--=========================== 본문 헤더 ========================================= -->	
 	
-	<div class="../top-brands_1">
+	<div class="top-brands_1">
 		<h2>공지사항</h2>
 		<div class="container_1_1">
 			<div class="container_2_1">
@@ -248,9 +248,8 @@ if(pageDTO.getEndPage() < pageDTO.getPageCount()){
 		</div>
 			<div class="clearfix_1_1"> </div>
 <!--================================== 푸터 ==================================== -->
-<div class="clearfix">
 <jsp:include page="../inc/bottom.jsp"></jsp:include>
-</div>	
+	
 <!--========================= Bootstrap Core JavaScript =========================-->
 <script src="../js/bootstrap.min.js"></script>
 <!-- top-header and slider -->

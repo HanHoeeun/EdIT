@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.ProductDTO;
 import com.itwillbs.domain.ProductPageDTO;
+import com.itwillbs.service.MemberService;
 import com.itwillbs.service.ProductService;
 
 public class ProductController extends HttpServlet{
@@ -91,7 +93,7 @@ public class ProductController extends HttpServlet{
 			// 게시판 전체 글 개수 구하기 
 			int p_count = productService.getProductCount();
 			// 한화면에 보여줄 페이지개수 설정
-			int p_pageBlock = 5;
+			int p_pageBlock = 3;
 			// 시작하는 페이지번호
 			// currentPage  pageBlock  => startPage
 			//   1~10(0~9)      10     =>  (0~9)/10*10+1=>0*10+1=> 0+1=> 1 
@@ -302,7 +304,7 @@ public class ProductController extends HttpServlet{
 		    = request.getRequestDispatcher("product/phone.jsp");
 		dispatcher.forward(request, response);
 		} // phone.po
-		
+		 
 		// -------------------------------------------------------------------------------
 				if (sPath.equals("/tablet.po")) {
 					System.out.println("뽑은 가상주소 비교 : /tablet.po");
@@ -393,6 +395,13 @@ public class ProductController extends HttpServlet{
 		// -------------------------------------------------------------------------------
 		
 		if(sPath.equals("/productReg.po")) {
+			HttpSession session = request.getSession();
+			String id = (String)session.getAttribute("m_id");
+			
+			MemberService memberService = new MemberService();
+			MemberDTO memberDTO =  memberService.getMember(id);
+			request.setAttribute("memberDTO", memberDTO);
+			
 			// 주소 변경 없이 이동 product/productReg.jsp
 			dispatcher 
 			    = request.getRequestDispatcher("product/productReg.jsp");
@@ -402,10 +411,13 @@ public class ProductController extends HttpServlet{
 		
 		if(sPath.equals("/productRegPro.po")) {
 			
+			
 			// ProductService 객체생성
 			productService = new ProductService();
 			// insertMember() 메서드 호출
 			productService.insertProduct(request);
+			
+			
 			//로그인 이동 => 주소변경하면서 이동
 			response.sendRedirect("products.po");
 			
@@ -419,7 +431,7 @@ public class ProductController extends HttpServlet{
 			HttpSession session = request.getSession();
 			
 			// "p_id" 세션값 가져오기=> String id 변수 저장
-			String m_id = (String)session.getAttribute("m_id");
+			String id = (String)session.getAttribute("m_id");
 			
 			// ProductService 객체생성
 			productService = new ProductService();
@@ -467,6 +479,14 @@ public class ProductController extends HttpServlet{
 		
 		
 		if(sPath.equals("/single.po")) {
+			
+			HttpSession session = request.getSession();
+			String id = (String)session.getAttribute("m_id");
+			
+			MemberService memberService = new MemberService();
+			MemberDTO memberDTO =  memberService.getMember(id);
+			request.setAttribute("memberDTO", memberDTO);
+			
 			// ProductService 객체생성
 			productService = new ProductService();
 			

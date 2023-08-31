@@ -259,12 +259,6 @@ public class MemberController extends HttpServlet{
 		
 		
 		
-		
-		
-		
-		
-		
-		
 //		회원리스트
 		if (sPath.equals("listjson.me")) {
 			System.out.println("뽑은 가상주소 비교 : listjson.me");
