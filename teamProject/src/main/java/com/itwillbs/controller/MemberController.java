@@ -48,8 +48,10 @@ public class MemberController extends HttpServlet{
 		
 
 		
+//		---------------------------------------------------------------------------------------
 		
-//		회원가입 화면
+		
+//		회원가입 화면	--성공	
 		if (sPath.equals("/insert.me")) {
 			System.out.println("뽑은 가상주소 비교 : " + sPath);
 			
@@ -59,7 +61,7 @@ public class MemberController extends HttpServlet{
 		}
 		
 		
-//		회원가입
+//		회원가입		--성공
 		if (sPath.equals("/insertPro.me")) {
 			System.out.println("뽑은 가상주소 비교 : insertPro.me");
 
@@ -71,7 +73,7 @@ public class MemberController extends HttpServlet{
 		}
 		
 		
-//		로그인 화면
+//		로그인 화면		--성공
 		if (sPath.equals("/login.me")) {
 		System.out.println("뽑은 가상주소 비교 : login.me");
 		
@@ -83,8 +85,7 @@ public class MemberController extends HttpServlet{
 			
 		
 		
-//		로그인 하기 -- 로그인 성공은 뜨는데... 메인화면으로 이동 안함
-		
+//		로그인 하기		--성공
 		if (sPath.equals("/loginPro.me")) {
 			System.out.println("뽑은 가상주소 비교 : loginPro.me");
 			
@@ -119,7 +120,7 @@ public class MemberController extends HttpServlet{
 		}
 		
 		
-//		로그아웃
+//		로그아웃		--성공
 		if (sPath.equals("/logout.me")) {
 			System.out.println("뽑은 가상주소 비교 : logout.me");
 			
@@ -132,7 +133,7 @@ public class MemberController extends HttpServlet{
 		
 		
 		
-//		회원정보확인
+//		회원정보확인		--성공
 		if (sPath.equals("/mypage.me")) {
 			System.out.println("뽑은 가상주소 비교 : mypage.me");
 			
@@ -153,10 +154,11 @@ public class MemberController extends HttpServlet{
 		}
 		
 		
+		
+//		회원정보수정 화면	--성공
 		if (sPath.equals("/update.me")) {
 			System.out.println("뽑은 가상주소 비교 : update.me");
 			
-//			DB의 나의 정보 조회
 			HttpSession session = request.getSession();
 			String m_id = (String)session.getAttribute("m_id");
 			
@@ -174,7 +176,7 @@ public class MemberController extends HttpServlet{
 		
 		
 		
-//		회원정보 수정	---------------------------------------------------------------수정해야함
+//		회원정보 수정	--------------------------------------------------------------실패
 		if (sPath.equals("/updatePro.me")) {
 			System.out.println("뽑은 가상주소 비교 : updatePro.me");
 
@@ -189,11 +191,12 @@ public class MemberController extends HttpServlet{
 				
 				memberService.updateMember(request);
 				
+//				성공하면 마이페이지 창으로 이동해서 나의 정보 확인
 				response.sendRedirect("mypage.me");
 				
 			} else {
-//				불일치면 경고 메시지 화면에 띄우기 나중에 고치기
-				dispatcher = request.getRequestDispatcher("member/update.jsp");
+//				불일치면 경고 메시지 화면에 띄우기--------인데 걍.............
+				dispatcher = request.getRequestDispatcher("member/msg.jsp");
 				dispatcher.forward(request, response);
 				
 			}
@@ -201,7 +204,7 @@ public class MemberController extends HttpServlet{
 		}
 		
 		
-//		회원탈퇴 화면
+//		회원탈퇴화면		--성공
 		if (sPath.equals("/delete.me")) {
 			System.out.println("뽑은 가상주소 비교 : delete.me");
 			
@@ -211,7 +214,7 @@ public class MemberController extends HttpServlet{
 		}
 		
 		
-//		회원탈퇴하기
+//		회원탈퇴하기		--성공
 		if (sPath.equals("/deletePro.me")) {
 			System.out.println("뽑은 가상주소 비교 : deletePro.me");
 			
@@ -228,12 +231,37 @@ public class MemberController extends HttpServlet{
 				response.sendRedirect("main.me");
 				
 			} else {
-//				아이디, 비밀번호 불일치 -> 경고 메시지다 -------------------------------수정
-				dispatcher = request.getRequestDispatcher("member/war.jsp");
+//				비밀번호 불일치 -> 경고 메시지다 -------------------------------수정
+				dispatcher = request.getRequestDispatcher("member/msg.jsp");
 				dispatcher.forward(request, response);
 			}
 			
 		}
+		
+		
+		
+		
+		if (sPath.equals("/list.me")) {
+			System.out.println("뽑은 가상주소 비교 : list.me");
+			
+			memberService = new MemberService();
+			List<MemberDTO> memberList = memberService.getMemberList();
+			
+			request.setAttribute("memberList", memberList);			
+			
+			dispatcher = request.getRequestDispatcher("member/memberlist.jsp");
+			dispatcher.forward(request, response);
+			
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 //		회원리스트

@@ -108,14 +108,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<div class="_6clearfix"> 
 								<div align="center">
 									<input type="text1" placeholder="아이디" readonly="readonly"readonly>
-									<input type="text" value="<%=memberDTO.getM_id() %>" id="_6id" name="_6id" readonly="readonly"><br>
-									<input type="text" placeholder="현재비밀번호" id="_6pass1" name="_6pass1"><br>
-									<input type="text" placeholder="새비밀번호" id="_6pass2" name="_6pass2"> <br>
-									<input type="text" placeholder="새비밀번호 확인" id="_6pass3" name="_6pass3"><br> 
-									<input type="text" value="<%=memberDTO.getM_name() %>" id="_6name" name="_6name" readonly="readonly"><br>
-									<input type="text" placeholder="변경 할 닉네임 (최소 2자 이상 입력)" id="_6nick" name="_6nick"><br>
-									<input type="email" placeholder="변경 할 이메일" id="_6mail" name="_6mail"><br>
-									<input type="tel" placeholder="변경 할 전화번호" id="_6phone" name="_6phone">
+									<input type="text" value="<%=memberDTO.getM_id() %>" id="m_id" name="m_id" readonly="readonly"><br>
+									<input type="text" placeholder="현재비밀번호" id="m_pass1" name="m_pass1"><br>
+									<input type="text" placeholder="새비밀번호" id="m_pass2" name="m_pass2"> <br>
+									<input type="text" placeholder="새비밀번호 확인" id="m_pass3" name="m_pass3"><br> 
+									<input type="text" value="<%=memberDTO.getM_name() %>" id="m_name" name="m_name" readonly="readonly"><br>
+									<input type="text" placeholder="변경 할 닉네임 (최소 2자 이상 입력)" id="m_nick" name="m_nick"><br>
+									<input type="email" placeholder="변경 할 이메일" id="m_mail" name="m_mail"><br>
+									<input type="tel" placeholder="변경 할 전화번호" id="m_phone" name="m_phone">
 								</div>	
 							</div>
 						</div>

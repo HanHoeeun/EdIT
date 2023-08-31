@@ -23,15 +23,15 @@ public class MemberService {
 			
 			request.setCharacterEncoding("utf-8");
 			
-			String m_id = request.getParameter("_6id");
-			String m_pass1 = request.getParameter("_6pass1");
-			String m_pass2 = request.getParameter("_6pass2");
-			String m_name = request.getParameter("_6name");
-			String m_nick = request.getParameter("_6nick");
-			String m_phone = request.getParameter("_6phone");
-			String m_email = request.getParameter("_6email");
+			String m_id = request.getParameter("m_id");
+			String m_pass1 = request.getParameter("m_pass1");
+			String m_pass2 = request.getParameter("m_pass2");
+			String m_name = request.getParameter("m_name");
+			String m_nick = request.getParameter("m_nick");
+			String m_phone = request.getParameter("m_phone");
+			String m_email = request.getParameter("m_email");
 			Timestamp m_date = new Timestamp(System.currentTimeMillis());
-			String m_event = request.getParameter("_6event");
+			String m_event = request.getParameter("m_event");
 			
 			int m_num = 1;
 			
@@ -66,7 +66,7 @@ public class MemberService {
 	}
 
 	
-//	로그인 유저체크
+//	유저체크
 	public MemberDTO userCheck(HttpServletRequest request) {
 		System.out.println("MemberService userCheck()");
 		
@@ -78,8 +78,8 @@ public class MemberService {
 			request.setCharacterEncoding("utf-8");
 			
 			
-			String m_id = request.getParameter("_5id");
-			String m_pass = request.getParameter("_5pass");
+			String m_id = request.getParameter("m_id");
+			String m_pass = request.getParameter("m_pass");
 			
 			MemberDTO memberDTO2 = new MemberDTO();
 			memberDTO2.setM_id(m_id);
@@ -97,6 +97,10 @@ public class MemberService {
 		return memberDTO;
 	}
 
+	
+	
+	
+	
 
 	public MemberDTO getMember(String m_id) {
 		System.out.println("MemberService getMember()");
@@ -118,6 +122,10 @@ public class MemberService {
 
 
 	
+	
+	
+	
+	
 //	회원정보 수정
 	public void updateMember(HttpServletRequest request) {
 		System.out.println("MemberService updateMember()");
@@ -126,14 +134,14 @@ public class MemberService {
 //			한글처리
 			request.setCharacterEncoding("utf-8");
 			
-			String m_id = request.getParameter("_6id");
-			String m_pass1 = request.getParameter("_6pass1");
-			String m_pass2 = request.getParameter("_6pass2");
-			String m_pass3 = request.getParameter("_6pass3");
-			String m_name = request.getParameter("_6name");
-			String m_nick = request.getParameter("_6nick");
-			String m_email = request.getParameter("_6email");
-			String m_phone = request.getParameter("_6phone");
+			String m_id = request.getParameter("m_id");
+			String m_pass1 = request.getParameter("m_pass1");
+			String m_pass2 = request.getParameter("m_pass2");
+			String m_pass3 = request.getParameter("m_pass3");
+			String m_name = request.getParameter("m_name");
+			String m_nick = request.getParameter("m_nick");
+			String m_email = request.getParameter("m_email");
+			String m_phone = request.getParameter("m_phone");
 			
 			MemberDTO memberDTO = new MemberDTO();
 			memberDTO.setM_id(m_id);
@@ -168,8 +176,8 @@ public class MemberService {
 		
 		try {
 			
-			String m_id = request.getParameter("_6id");
-			String m_pass = request.getParameter("_6pass");
+			String m_id = request.getParameter("m_id");
+			String m_pass = request.getParameter("m_pass");
 	
 			
 			MemberDTO memberDTO = new MemberDTO();
@@ -184,7 +192,6 @@ public class MemberService {
 			e.printStackTrace();
 		}
 		
-<<<<<<< HEAD
 	}
 
 
@@ -207,8 +214,6 @@ public class MemberService {
 		}
 		
 		return memberList;
-=======
->>>>>>> branch 'master' of https://github.com/HanHoeeun/EdIT.git
 	}
 
 	

@@ -107,7 +107,7 @@ public class MemberDAO {
 
 
 
-//	로그인 유저체크
+//	유저체크
 	public MemberDTO userCheck(MemberDTO memberDTO2) {
 		System.out.println("MemberDAO userCheck()");
 		
@@ -137,7 +137,7 @@ public class MemberDAO {
 //				아이디, 비밀번호 불일치 -> 초기값 null -> 리턴
 				memberDTO = null;
 				
-				System.out.println("로그인 실패");
+				System.out.println("실패");
 			}
 			
 		} catch (Exception e) {
@@ -193,6 +193,7 @@ public class MemberDAO {
 	}
 
 
+	
 
 //	회원정보 변경
 	public void updateMember(MemberDTO memberDTO) {
@@ -221,6 +222,7 @@ public class MemberDAO {
 		}
 	}
 
+	
 	
 	
 
@@ -255,7 +257,6 @@ public class MemberDAO {
 	
 	
 
-<<<<<<< HEAD
 	
 
 //	멤버리스트
@@ -320,7 +321,6 @@ public class MemberDAO {
 	
 	
 	
-=======
 	// 8.31 진 - 아이디 찾기 만드는 중인데 이게 맞는지 모르겠다....일단 만들어보고.. 물어보고 수정해보자..
 	public MemberDTO findidmember(String name, String email) {
 		System.out.println("MemberDAO findidmember()");
@@ -348,7 +348,16 @@ public class MemberDAO {
 	}
 
 
->>>>>>> branch 'master' of https://github.com/HanHoeeun/EdIT.git
 	
 	
-}	// insertMember()
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}
