@@ -203,14 +203,13 @@ public class MemberDAO {
 			
 			con = getConnection();
 			
-			String sql = "update members set m_pass = ?, m_nick = ?, m_email = ?, m_phone = ? where m_id = ?";
+			String sql = "update members set m_pass = ?, m_email = ?, m_phone = ? where m_id = ?";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, memberDTO.getM_pass());
-			pstmt.setString(2, memberDTO.getM_nick());
-			pstmt.setString(3, memberDTO.getM_email());
-			pstmt.setString(4, memberDTO.getM_phone());
-			pstmt.setString(5, memberDTO.getM_id());
+			pstmt.setString(2, memberDTO.getM_email());
+			pstmt.setString(3, memberDTO.getM_phone());
+			pstmt.setString(4, memberDTO.getM_id());
 			
 			pstmt.executeUpdate();
 			

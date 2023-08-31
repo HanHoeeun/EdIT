@@ -1198,7 +1198,7 @@ a.w3_agile_vimeo:hover{
     width: 60%;
 }
 
-._6clearfix input[type="text1"]{
+._6clearfix input[id="text1"]{
 	outline: none;
 	border: 1px solid #ffffff;
     padding: 10px 10px 10px 10px;
