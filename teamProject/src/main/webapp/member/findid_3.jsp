@@ -79,16 +79,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		
 			<div class="login-form-grids animated wow slideInUp" data-wow-delay=".5s">
 			
-				<form action = "findid.me" method = "post">			
+				<form action = "findidPro.me" method = "post">			
 
-					<input type="text" placeholder="이름" required=" " >  
-					<input type="email" placeholder="이메일" required=" " >
+					<input type="text" placeholder="이름"  required=" "  id = "_5name" name = "_5name" >  
+					<input type="email" placeholder="이메일"  required=" "   id = "_5email" name = "_5email" >
 					
 					<div class="_5center">
-						<input type="submit" value="확인" class="#">		
-						<input type="submit" value="취소" class="login.me">
-					<hr style="width:100%;height:1px;border:none;background-color:#999;">
+<!-- 					<a href="insert.me">확인</a> -->
+<!-- 					<a href="login.me">취소</a> -->
+					
+						<input type="submit"  value="확인" class="#">		
+						<input type="submit"  value="취소" class="#">
+					<hr style="width : 100%; height : 1px; border : none; background-color : #999;">
 					</div>
+					
+					
+				
+						
+					
+	
+					
 					
 					
 <!-- 홈/비밀번호 찾기/회원가입 -->					
