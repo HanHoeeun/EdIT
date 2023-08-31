@@ -156,7 +156,7 @@ String orderBy = (String) request.getAttribute("orderBy");
                     <figure>
                          <div class="snipcart-item block">
                             <div class="snipcart-thumb">
-                                <a href="single.po"><img title=" " alt=" " src="upload/<%=productDTO.getP_file() %>"  width="150px" height="150px" download></a>
+                                <a href="single.po"><img title=" " alt=" " src="upload/<%=productDTO.getP_file() %>" download width="150px" height="150px" ></a>
                                 <p><%=productDTO.getP_title() %></p>
                                 <h4><%= productDTO.getP_price() %>원</h4>
                                 <h4><%= productDTO.getP_status() %></h4>
@@ -188,80 +188,56 @@ String orderBy = (String) request.getAttribute("orderBy");
 </div>
 
 <!-- 페이징 코드 5개씩 나눠서 페이징 -->
-
 <nav class="numbering">
    <ul class="pagination paging">
-      <li>
       <%
       if(ppageDTO.getP_startPage() > ppageDTO.getP_pageBlock()){
          %>
-         <a href="products.po?p_pageNum=<%=ppageDTO.getP_startPage()-ppageDTO.getP_pageBlock()%>&orderBy=${orderBy}" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-         </a>
+         <li>
+            <a href="products.po?p_pageNum=<%=ppageDTO.getP_startPage()-ppageDTO.getP_pageBlock()%>&orderBy=${orderBy}" aria-label="Previous">
+               <span aria-hidden="true">&laquo;</span>
+            </a>
+         </li>
          <%
-         }
+      }
+
+      for(int i=ppageDTO.getP_startPage(); i<=ppageDTO.getP_endPage(); i++){
+         boolean isCurrentPage = (i == ppageDTO.getP_currentPage());
+         boolean isPcurrentPage = (i == ppageDTO.getP_currentPage());
          %>
-      </li>
-      <li class="active">
-      <%
-      for(int i=ppageDTO.getP_startPage();i<=ppageDTO.getP_endPage();i++){
-         %>
-    	 <a href="products.po?p_pageNum=<%= i %>&orderBy=${orderBy}" class="<%= (i == ppageDTO.getP_currentPage()) ? "active" : "" %>">
-         <%=i %><span class = "sr-only">current</a>
+         <li class="<%= (isCurrentPage || isPcurrentPage) ? "active" : "" %>">
+            <a href="products.po?p_pageNum=<%= i %>&orderBy=${orderBy}" class="<%= (isCurrentPage) ? "" : "" %> <%= (isPcurrentPage) ? "custom-class" : "" %>">
+            <%= (isPcurrentPage) ? i : i %></a>
+         </li>
          <%
-         }
-         %>
-      </li>
-      <li>
-      <%
-      // 끝페이지 번호 전체페이지수 비교 => 전체 페이지수 크면 => next보
+      }
+
       if(ppageDTO.getP_endPage() < ppageDTO.getP_pageCount()){
          %>
-         <a href="products.po?p_pageNum=<%=ppageDTO.getP_startPage()+ppageDTO.getP_pageBlock()%>&orderBy=${orderBy}" >
-            <span aria-hidden="true">&raquo;</span>
-         </a>
+         <li>
+            <a href="products.po?p_pageNum=<%=ppageDTO.getP_startPage()+ppageDTO.getP_pageBlock()%>&orderBy=${orderBy}" >
+               <span aria-hidden="true">&raquo;</span>
+            </a>
+         </li>
          <%
-         }
-         %>
-      </li>
+      }
+      %>
    </ul>
-</nav>  
-<!-- <nav class="numbering">
-					<ul class="pagination paging">
-						<li>
-							<a href="#" aria-label="Previous">
-								<span aria-hidden="true">&laquo;</span>
-							</a>
-						</li>
-						<li class="active"><a href="#">1<span class="sr-only">(current)</span></a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#">5</a></li>
-						<li>
-							<a href="#" aria-label="Next">
-							<span aria-hidden="true">&raquo;</span>
-							</a>
-						</li>
-					</ul>
-				</nav> -->
+</nav>
 
          </div>
          <div class="clearfix"> </div>
       </div>
       </div>
-      
-  
+
+
 <!--- products --->
 <!-- 푸터 들어가는 곳! -->
 <div class="clearfix">
 <jsp:include page="../inc/bottom.jsp"></jsp:include>
 </div>
 <!-- 푸터 들어가는 곳! -->
-<!-- <script type="text/javascript">
-function change_country(l) {
-	location.href="products.po?ord="+l;
-} -->
+
 <script type="text/javascript">
 function change_country(l) {
     location.href = "products.po?ord=" + l;
