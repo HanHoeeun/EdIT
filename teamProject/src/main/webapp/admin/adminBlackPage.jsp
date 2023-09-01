@@ -22,11 +22,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- //for-mobile-apps -->
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="../css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="../css/style.css" rel="stylesheet" type="text/css" media="all" />
 <!-- font-awesome icons -->
-<link href="css/font-awesome.css" rel="stylesheet"> 
-<link href="css/faq_1.css" rel="stylesheet"> 
+<link href="../css/font-awesome.css" rel="stylesheet"> 
+<link href="../css/faq_1.css" rel="stylesheet"> 
 <!-- //font-awesome icons -->
 <!-- js -->
 <script src="js/jquery-1.11.1.min.js"></script>
@@ -49,8 +49,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 <body>
 <%
-List<MemberDTO> memberList = (List<MemberDTO>)request.getAttribute("memberList");
-AdminPageDTO pageDTO = (AdminPageDTO)request.getAttribute("pageDTO");
+// List<MemberDTO> memberList = (List<MemberDTO>)request.getAttribute("memberList");
+// AdminPageDTO pageDTO = (AdminPageDTO)request.getAttribute("pageDTO");
 
 %>
 <!-- header -->
@@ -129,21 +129,7 @@ AdminPageDTO pageDTO = (AdminPageDTO)request.getAttribute("pageDTO");
 							}
 						}
 					</script>
-				    <div class="_1qna_paging">
-        				 <ul>
-					<%	
-						if(pageDTO.getStartPage() > pageDTO.getPageBlock()){%>
-							<li onclick="location.href='adminMeberPag?pageNum=<%=pageDTO.getStartPage()-pageDTO.getPageBlock()%>&search=<%=pageDTO.getSearch()%>'">Prev</li>
-							
-						<% } 
-						for(int i= pageDTO.getStartPage(); i<=pageDTO.getEndPage(); i++){%>
-							<li onclick="location.href='adminMeberPag.ad?pageNum=<%=i%>&search=<%=pageDTO.getSearch()%>'"><%=i %></li>
-						<%}
-						if(pageDTO.getEndPage() < pageDTO.getPageCount()){%>
-							<li onclick="location.href='adminMeberPag.ad?pageNum=<%=pageDTO.getStartPage() + pageDTO.getPageBlock() %>&search=<%=pageDTO.getSearch()%>'">Next</li>
-						<%}%>
-				    </ul>
-   					 </div>	
+				   	
    				</div>
 			</div>
 		</div>
