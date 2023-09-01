@@ -72,7 +72,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="login">
 		<div class="container">
 		<div style="text-align : center;">
-     		<img src="../images/find_5_1.png"><br><br><br>
+     		<img src="./images/find_5_1.png"><br><br><br>
 		</div>
 			<h2>아이디찾기</h2>
 				<p>회원가입시 등록하신 이름과 이메일을 입력해 주세요.</p>
