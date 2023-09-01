@@ -1,10 +1,13 @@
-ㅠ<%@ page language="java" contentType="text/html; charset=UTF-8"
+ㅠ<%@page import="com.itwillbs.domain.WishListDTO"%>
+<%@page import="java.util.List"%>
+<%@page import="com.itwillbs.domain.ProductPageDTO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>  
 <head>
 <meta charset="UTF-8">
-<title>product/checkout.jsp</title>
+<title>product/wishlist.jsp</title>
 </head>
 <body>
 <!--  찜리스트 
@@ -60,168 +63,133 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="breadcrumbs">
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1">
-				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>홈</a></li>
+				<li><a href="main.me"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>홈</a></li>
 				<li class="active">찜리스트</li>
 			</ol>
 		</div>
 	</div>
 <!-- //breadcrumbs -->
+ <!-- 드롭다운과 상품 리스트 -->
 
+<%
+String orderBy = (String) request.getAttribute("orderBy");
+%>
+ <div class="col-md-8 products-right">
+            <div class="products-right-grid">
+                <div class="products-right-grids">
+                    <div class="sorting">
+                        <select id="country" onchange="change_country(this.value)" class="frm-field required sect">
+                    <option value="wishSell" <% if (orderBy != null && orderBy.equals("wishSell")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>판매중</option>                        
+                    <option value="wishSold" <% if (orderBy != null && orderBy.equals("wishSold")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>판매완료</option>
+                </select>
+            </div>
+           
+        </div>
+    </div>
+
+<div class="clearfix"> </div>
 
 <!-- 찜리스트 -->
+<%
+   String id = (String)session.getAttribute("id");
+   WishListDTO wishListDTO = (WishListDTO)request.getAttribute("wishListDTO");
+   List<WishListDTO> wishList 
+   = (List<WishListDTO>)request.getAttribute("wishList");
+   ProductPageDTO ppageDTO
+   = (ProductPageDTO)request.getAttribute("ppageDTO");
+ %> 
 	<div class="checkout">
 		<div class="container">
-			<h2>나의 찜리스트</h2>
+			<h2><%= %> 님의 찜리스트</h2>
 			<div class="checkout-right">
 				<table class="timetable_sub">
-				
 					<thead>
 						<tr>
 							<th>찜 번호</th>	
 							<th>상품 이미지</th>
 							<th>상품 이름</th>
+							<th>상품 상태</th>
+							<th>상품 타입</th>
 							<th>가격</th>
 							<th>삭제</th>
 						</tr>
 					</thead>
 					
-					<!-- 1번상품 -->
+					
 					<tr class="rem1">
-					
-						<!-- 찜 번호 -->
-						<td class="invert">1</td>
-						<!-- // 찜 번호 -->
-						
-						<!-- 상품 이미지 -->
+				<%-- <% for (int i = 0; i < wishList.size(); i++){
+					WishListDTO wishListDTO = wishList.get(i);
+				}
+				%> --%>
+						<td class="invert"></td>
 						<td class="invert-image"><a href="single.po"><img src="../images/1.png" alt=" " class="img-responsive" /></a></td>
-						<!-- // 상품 이미지 -->
-						
-						<!-- 상품 이름 -->
+						<td class="invert"><a href="single.po">팝니다 </a></td>
+						<td class = "invert">판매중</td>
 						<td class="invert"><a href="single.po">태블릿</a></td>
-						<!-- // 상품 이름 -->
-						
-						<!-- 상품 가격 -->
 						<td class="invert">200만원</td>
-						<!-- // 상품 가격 -->
-						
-						<!-- 삭제하기 -->
-						<td class="invert">
-							<div class="rem">
-								<div class="close1"> </div>
-							</div>
-							<script>$(document).ready(function(c) {
-								$('.close1').on('click', function(c){
-									$('.rem1').fadeOut('slow', function(c){
-										$('.rem1').remove();
-									});
-									});	  
-								});
-						   </script>
+						<td class="invert" align="center">
+    					<div class="rem" style="display: flex; justify-content: center; align-items: center;">
+       					<div class="close1"></div>
+   					    </div>
+   					 	<script>
+        				$(document).ready(function(c) {
+            			$('.close1').on('click', function(c){
+               		 	$('.rem1').fadeOut('slow', function(c){
+                    	$('.rem1').remove();
+            	    			});
+            				});	  
+        				});
+    					</script>
 						</td>
-						<!-- // 삭제하기 -->
-						
 					</tr>
-					<!-- // 1번상품 -->
-					
-					<!-- 2번상품 -->
-					<tr class="rem2">
-					
-						<!-- 찜 번호 -->
-						<td class="invert">2</td>
-						<!-- // 찜 번호 -->
-						
-						<!-- 상품이미지 -->
-						<td class="invert-image"><a href="single.po"><img src="../images/2.png" alt=" " class="img-responsive" /></a></td>
-						<!-- // 상품이미지 -->
-						
-						<!-- 상품 이름 -->
-						<td class="invert"><a href="single.po">노트북</a></td>
-						<!-- // 상품 이름 -->
-						
-						<!-- 가격 -->
-						<td class="invert">202만원</td>
-						<!-- // 가격 -->
-						
-						<!-- 삭제하기 -->
-						<td class="invert">
-							<div class="rem">
-								<div class="close2"> </div>
-							</div>
-							<script>$(document).ready(function(c) {
-								$('.close2').on('click', function(c){
-									$('.rem2').fadeOut('slow', function(c){
-										$('.rem2').remove();
-									});
-									});	  
-								});
-						   </script>
-						</td>
-						<!-- // 삭제하기 -->
-						
-					</tr>
-					<!-- // 2번상품 -->
-					
-					<!-- 3번상품 -->
-					<tr class="rem3">
-						
-						<!-- 찜 번호 -->
-						<td class="invert">3</td>
-						<!-- // 찜 번호 -->
-						
-						<!-- 상품이미지 -->
-						<td class="invert-image"><a href="single.po"><img src="../images/3.png" alt=" " class="img-responsive" /></a></td>
-						<!-- // 상품이미지 -->
-						
-						<!-- 상품 이름 -->
-						<td class="invert"><a href="single.po">휴대폰</a></td>
-						<!-- // 상품 이름 -->
-						
-						<!-- 가격 -->
-						<td class="invert">150만원</td>
-						<!-- 가격 -->
-						
-						<!-- 삭제하기 -->
-						<td class="invert">
-							<div class="rem">
-								<div class="close3"> </div>
-							</div>
-							<script>$(document).ready(function(c) {
-								$('.close3').on('click', function(c){
-									$('.rem3').fadeOut('slow', function(c){
-										$('.rem3').remove();
-									});
-									});	  
-								});
-						   </script>
-						</td>
-						<!-- 삭제하기 -->
-						
-					</tr>
-					<!-- // 3번상품 -->
-					
+			
 				</table>
 			</div>
 			
 			<!-- 페이지 목록 -->
-			<nav class="numbering">
-					<ul class="pagination paging">
-						<li>
-							<a href="#" aria-label="Previous">
-								<span aria-hidden="true">&laquo;</span>
-							</a>
-						</li>
-						<li class="active"><a href="#">1<span class="sr-only">(current)</span></a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#">5</a></li>
-						<li>
-							<a href="#" aria-label="Next">
-							<span aria-hidden="true">&raquo;</span>
-							</a>
-						</li>
-					</ul>
-			</nav>
+<!-- 페이징 코드 5개씩 나눠서 페이징 -->
+<nav class="numbering">
+   <ul class="pagination paging">
+      <%
+      if(ppageDTO.getP_startPage() > ppageDTO.getP_pageBlock()){
+         %>
+         <li>
+            <a href="products.po?p_pageNum=<%=ppageDTO.getP_startPage()-ppageDTO.getP_pageBlock()%>&orderBy=${orderBy}" aria-label="Previous">
+               <span aria-hidden="true">&laquo;</span>
+            </a>
+         </li>
+         <%
+      }
+
+      for(int i=ppageDTO.getP_startPage(); i<=ppageDTO.getP_endPage(); i++){
+         boolean isCurrentPage = (i == ppageDTO.getP_currentPage());
+         boolean isPcurrentPage = (i == ppageDTO.getP_currentPage());
+         %>
+         <li class="<%= (isCurrentPage || isPcurrentPage) ? "active" : "" %>">
+            <a href="products.po?p_pageNum=<%= i %>&orderBy=${orderBy}" class="<%= (isCurrentPage) ? "" : "" %> <%= (isPcurrentPage) ? "custom-class" : "" %>">
+            <%= (isPcurrentPage) ? i : i %></a>
+         </li>
+         <%
+      }
+
+      if(ppageDTO.getP_endPage() < ppageDTO.getP_pageCount()){
+         %>
+         <li>
+            <a href="products.po?p_pageNum=<%=ppageDTO.getP_startPage()+ppageDTO.getP_pageBlock()%>&orderBy=${orderBy}" >
+               <span aria-hidden="true">&raquo;</span>
+            </a>
+         </li>
+         <%
+      }
+      %> 
+   </ul>
+</nav>
+
+         </div>
+         <div class="clearfix"> </div>
+      </div>
+      </div>
+
 			<!-- // 페이지 목록 -->	
 			
 			<!-- 쇼핑계속하기 버튼 -->
