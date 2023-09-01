@@ -325,6 +325,18 @@ public class AdminService {
 			e.printStackTrace();
 		}
 	}
+
+	public int getMemberCountSearch(AdminPageDTO pageDTO) {
+		int count = 0;
+		try {
+			adminDAO = new AdminDAO();
+			count = adminDAO.getMemberCountSearch(pageDTO);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return count;
+	}
 	
 
 }

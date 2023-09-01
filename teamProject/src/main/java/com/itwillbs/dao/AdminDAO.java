@@ -433,4 +433,62 @@ public class AdminDAO {
 			this.dbClose();
 		}
 	}
+	public int getMemberCountSearch(AdminPageDTO pageDTO) {
+		int count = 0;
+		
+		try {
+			con = this.getConnection();
+			String sql = "select count(*) as count from members where a_m_nick like ? ";
+			if(pageDTO.getSearch() != null) {
+				if(pageDTO.getSearch_type() == 1) {
+					sql = "select count(*) as count from members where m_num = ? limit ?, ? ";
+					pstmt = con.prepareStatement(sql);
+					
+					pstmt.setInt(1, Integer.parseInt(pageDTO.getSearch()));
+					pstmt.setInt(2, pageDTO.getStartRow()-1); // 시작하는 행 -1 
+					pstmt.setInt(3, pageDTO.getPageSize()); // 몇개
+				}
+				if(pageDTO.getSearch_type() == 2) {
+					sql = "select count(*) as count from members where m_id = ? limit ?, ? ";
+					pstmt = con.prepareStatement(sql);
+					
+					pstmt.setString(1, pageDTO.getSearch());
+					pstmt.setInt(2, pageDTO.getStartRow()-1); // 시작하는 행 -1 
+					pstmt.setInt(3, pageDTO.getPageSize()); // 몇개
+				}
+				if(pageDTO.getSearch_type() == 3) {
+					sql = "select count(*) as count from members where m_nick = ? limit ?, ? ";
+					pstmt = con.prepareStatement(sql);
+					
+					pstmt.setString(1, pageDTO.getSearch());
+					pstmt.setInt(2, pageDTO.getStartRow()-1); // 시작하는 행 -1 
+					pstmt.setInt(3, pageDTO.getPageSize()); // 몇개
+				}
+				if(pageDTO.getSearch_type() == 4) {
+					sql = "select count(*) as count from members where m_count = ? limit ?, ? ";
+					pstmt = con.prepareStatement(sql);
+					
+					pstmt.setInt(1, Integer.parseInt(pageDTO.getSearch()));
+					pstmt.setInt(2, pageDTO.getStartRow()-1); // 시작하는 행 -1 
+					pstmt.setInt(3, pageDTO.getPageSize()); // 몇개
+				}
+			}else {
+				sql = "select count(*) as count from members limit ?, ?";
+				pstmt = con.prepareStatement(sql);
+				
+				pstmt.setInt(1, pageDTO.getStartRow()-1); // 시작하는 행 -1 
+				pstmt.setInt(2, pageDTO.getPageSize()); // 몇개
+			}
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt("count");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbClose();
+		}
+		return count;
+	}
 }

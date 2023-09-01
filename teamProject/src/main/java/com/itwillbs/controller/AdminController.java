@@ -263,7 +263,7 @@ public class AdminController extends HttpServlet{
 			List<MemberDTO> memberList = adminService.getMemberListSearch(pageDTO);
 			
 //			게시판 전체 글 개수 구하기
-			int count = adminService.getBoardCountSearch(pageDTO);
+			int count = adminService.getMemberCountSearch(pageDTO);
 			System.out.println(count);
 //			한화면에 보여줄 페이지 개수 설정
 			int pageBlock =10;
