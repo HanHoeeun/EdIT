@@ -38,7 +38,7 @@ public class AdminService {
 			
 //			multi 파라미터 값 가져오기
 			int a_cs_type = Integer.parseInt(multi.getParameter("faq_select"));
-			String name = multi.getParameter("name");
+			String m_id = multi.getParameter("m_id");
 			String subject = multi.getParameter("subject");
 			String content = multi.getParameter("content");
 			adminDAO = new AdminDAO();
@@ -51,7 +51,7 @@ public class AdminService {
 			AdminDTO adminDTO = new AdminDTO();
 			
 			adminDTO.setA_cs_type(a_cs_type);
-			adminDTO.setA_m_nick(name);
+			adminDTO.setA_m_nick(m_id);
 			adminDTO.setA_title(subject);
 			adminDTO.setA_content(content);
 			

@@ -176,13 +176,22 @@ SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
 									<option value="3">기타</option>
 								</select>
 							</td>
-							<td class="_1q_query_tab_2"><input type="text" name="name" value="<%=id %>" style="border:none;" readonly="readonly"></td>
+							<td class="_1q_query_tab_2"><input type="text" name="m_id" value="<%=id %>" style="border:none;" readonly="readonly"></td>
 							<td>
-								<div class="_1q_query_tab_3"><label for="imgfile"><img src="images/picture.png" width="25px" height="25px">파일 업로드</label></div>
+								<div class="_1q_query_tab_3"><label for="imgfile" id="fileLabel"><img src="images/picture.png" width="25px" height="25px">파일 업로드</label></div>
 								<input type="file" name="imgfile" id="imgfile" accept="image/*">
 							</td>
 							</tr>
 						</table>
+						<script>
+						    const fileInput = document.getElementById('imgfile');
+						    const fileLabel = document.getElementById('fileLabel');
+						
+						    fileInput.addEventListener('change', function() {
+						        const selectedFileName = fileInput.files[0].name;
+						        fileLabel.textContent = selectedFileName;
+						    });
+						</script>
 						<div><br></div>
 						<table class="_1q_query_tab">
 							<tr>
@@ -196,8 +205,10 @@ SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
 							</tr>
 						</table>
 						<div class="_1q_query_btn">
+						<%if(id != null){ %>
 								<button type="submit">작성</button>
 								<button type="reset">취소</button>
+						<%} %>
 						</div>
 				</form>
 				</div>
@@ -207,16 +218,18 @@ SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
 					<table class="_1qna_board">
 						<tr>
 							<th class="_1qna_board_border">번호</th>
-							<th class="_1qna_board_border">제목</th>
+							<th class="_1qna_board_subject">제목</th>
 							<th class="_1qna_board_border">작성자</th>
 							<th class="_1qna_board_border">작성시간</th>
+							<th class="_1qna_board_border">답변여부</th>
 						</tr>
 						<%for(AdminDTO adminDTO : adminList){ %>
 						<tr onclick="window.open('registered.ad?a_num=<%=adminDTO.getA_num() %>','문의상세페이지','width=800, height=700, scrollbars=yes')">
 							<td class="_1qna_board_border"><%=adminDTO.getA_num() %></td>
 							<td class="_1qna_board_subject"><%=adminDTO.getA_title() %></td>
 							<td class="_1qna_board_border"><%=adminDTO.getA_m_nick() %></td>
-							<td><%=format.format(adminDTO.getA_date()) %></td>
+							<td class="_1qna_board_border"><%=format.format(adminDTO.getA_date()) %></td>
+							<td>x</td>
 						</tr>
 						<%} %>
 					</table>
