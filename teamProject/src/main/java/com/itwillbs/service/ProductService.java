@@ -23,6 +23,8 @@ public class ProductService {
 		System.out.println("productService getProductList()");
 		List<ProductDTO> productList = null;
 		try {
+			
+			
 			// 시작하는 행부터 10개 뽑아오기
 //			페이지번호     한화면에 보여줄 글개수 => 시작하는 행번호
 //			currentPage         pageSize    => startRow
@@ -641,29 +643,20 @@ public class ProductService {
 	}//deleteProduct()
 
 
-	public List<WishListDTO> getWishList(ProductPageDTO ppageDTO) {
-		System.out.println("ProductService getWishList()");
-		List<WishListDTO> wishlist=null;
-		try {
-			int p_startRow = (ppageDTO.getP_currentPage()-1)*ppageDTO.getP_pageSize()+1;
-			int p_endRow = p_startRow + ppageDTO.getP_pageSize()-1;
-			ppageDTO.setP_startRow(p_startRow);
-			ppageDTO.setP_endRow(p_endRow);
-			productDAO = new ProductDAO();
-			wishlist = productDAO.getWishList(ppageDTO);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return wishlist;
-	}
+
+// -----------------------------------------------------------------
+
+
 
 
 	public List<WishListDTO> getWishSellProducts(ProductPageDTO ppageDTO) {
-		System.out.println("ProductService getWishSellProducts");
+		System.out.println("ProductService getWishSellProducts()");
 		List<WishListDTO> sellList = null;
 		try {
+			// productDAO 객체생성
 			productDAO = new ProductDAO();
-			sellList = productDAO.getWishSellProducts(ppageDTO);
+			// DAO에서 데이터 가져오기
+			sellList=productDAO.getWishSellProducts(ppageDTO);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -672,11 +665,13 @@ public class ProductService {
 
 
 	public List<WishListDTO> getWishSoldProducts(ProductPageDTO ppageDTO) {
-		System.out.println("ProductService getWishSoldProducts");
+		System.out.println("ProductService getWishSoldProducts()");
 		List<WishListDTO> soldList = null;
 		try {
+			// productDAO 객체생성
 			productDAO = new ProductDAO();
-			soldList = productDAO.getWishSoldProducts(ppageDTO);
+			// DAO에서 데이터 가져오기
+			soldList=productDAO.getWishSoldProducts(ppageDTO);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -684,28 +679,40 @@ public class ProductService {
 	}
 
 
-	public WishListDTO getwishlist(HttpServletRequest request) {
-		WishListDTO wishListDTO = null;
+	public List<WishListDTO> getWishList(ProductPageDTO ppageDTO) {
+		System.out.println("productService getWishList()");
+		List<WishListDTO> wishList = null;
 		try {
-			request.setCharacterEncoding("utf-8");
-			int w_num = Integer.parseInt(request.getParameter("w_num"));
+			
+			
+			// 시작하는 행부터 10개 뽑아오기
+//			페이지번호     한화면에 보여줄 글개수 => 시작하는 행번호
+//			currentPage         pageSize    => startRow
+//			    1                 10        => (1-1)*10+1=>0*10+1=> 0+1=>1        ~ 10
+//			    2                 10        => (2-1)*10+1=>1*10+1=>10+1=>11       ~ 20
+//		        3                 10        => (3-1)*10+1=>2*10+1=>20+1=>21       ~ 30			
+			int p_startRow = (ppageDTO.getP_currentPage()-1)*ppageDTO.getP_pageSize()+1;
+			// 시작하는 행부터 끝나는 행까지 뽑아오기
+//			startRow  pageSize => endRow
+//			    1         10   =>   1+10-1 =>10
+//			    11        10   =>   11+10-1 =>20
+//		        21        10   =>   21+10-1 =>30
+			int p_endRow = p_startRow+ppageDTO.getP_pageSize()-1;
+			//pageDTO 저장 <= startRow, endRow
+			ppageDTO.setP_startRow(p_startRow);
+			ppageDTO.setP_endRow(p_endRow);
+			// BoardDAO 객체생성
 			productDAO = new ProductDAO();
-			wishListDTO = productDAO.getWish(w_num);
+			// boardList = getBoardList() 메서드 호출
+			wishList = productDAO.getWishList(ppageDTO);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return wishListDTO;
-	}
+		return wishList;
+	
+}// get
 
 	
-
-
-
-	
-
-
-
-
 
 
 	

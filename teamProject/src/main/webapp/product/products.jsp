@@ -1,3 +1,4 @@
+<%@page import="com.itwillbs.domain.MemberDTO"%>
 <%@page import="com.itwillbs.domain.WishListDTO"%>
 <%@page import="com.itwillbs.domain.ProductPageDTO"%>
 <%@page import="com.itwillbs.domain.ProductDTO"%>
@@ -134,7 +135,9 @@ String orderBy = (String) request.getAttribute("orderBy");
             ProductPageDTO ppageDTO
             = (ProductPageDTO)request.getAttribute("ppageDTO");
             String id = (String)session.getAttribute("id");
-            WishListDTO wishListDTO = (WishListDTO)request.getAttribute("wishListDTO");
+            MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
+           	List<WishListDTO> wishList 
+          	= (List<WishListDTO>)request.getAttribute("wishList");
             %>
             
               <div class="agile_top_brands_grids">
@@ -167,8 +170,40 @@ String orderBy = (String) request.getAttribute("orderBy");
                                         <input type="hidden" name="currency_code" value="KRW">
                                         <input type="hidden" name="return" value=" ">
                                         <input type="hidden" name="cancel_return" value=" ">
-                                        <input type="button" value="찜 추가하기" class="button"
-                                        		<%-- onclick="location.href='wishlist.po?w_num=<%WishListDTO.%> --%>'">
+                                        <!-- <input type="button" value="찜 추가하기" class="button"> -->
+										<input type="button" value="찜 추가하기" class="button" id="addToWishlistButton">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#addToWishlistButton').click(function() {
+        // p_num과 m_num을 가져오는 코드 (원하는 방식으로 설정)
+        var p_num = parseInt('<%= request.getAttribute("p_num") %>');
+        var m_num = parseInt('<%= request.getAttribute("m_num") %>');
+
+        // p_num과 m_num 값이 정상적으로 가져와지는지 console.log로 확인
+        console.log("p_num:", p_num);
+        console.log("m_num:", m_num);
+
+        $.ajax({
+            type: 'POST',
+            url: '/AddToWishlistServlet', // 변경된 URL
+            data: {p_num: p_num, m_num: m_num},
+            success: function(response) {
+                alert(response);
+            },
+            error: function() {
+                alert('오류 발생');
+            }
+        });
+
+    });
+});
+
+
+</script>
+
+
+
                                     </fieldset>
                                 </form>
                             </div>

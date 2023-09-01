@@ -1,4 +1,6 @@
-ㅠ<%@page import="com.itwillbs.domain.WishListDTO"%>
+<%@page import="com.itwillbs.domain.MemberDTO"%>
+<%@page import="com.itwillbs.domain.ProductDTO"%>
+<%@page import="com.itwillbs.domain.WishListDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="com.itwillbs.domain.ProductPageDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -91,16 +93,15 @@ String orderBy = (String) request.getAttribute("orderBy");
 
 <!-- 찜리스트 -->
 <%
-   String id = (String)session.getAttribute("id");
-   WishListDTO wishListDTO = (WishListDTO)request.getAttribute("wishListDTO");
    List<WishListDTO> wishList 
    = (List<WishListDTO>)request.getAttribute("wishList");
-   ProductPageDTO ppageDTO
-   = (ProductPageDTO)request.getAttribute("ppageDTO");
- %> 
+
+	MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
+
+ %>  
 	<div class="checkout">
 		<div class="container">
-			<h2><%= %> 님의 찜리스트</h2>
+			<h2><%=memberDTO.getM_nick() %>님의 찜리스트</h2>
 			<div class="checkout-right">
 				<table class="timetable_sub">
 					<thead>
@@ -115,22 +116,35 @@ String orderBy = (String) request.getAttribute("orderBy");
 						</tr>
 					</thead>
 					
-					
+				<%-- 	<% for (int i = 0; i < wishList.size(); i++) {
+      				 WishListDTO wishListDTO = wishList.get(i);%>
 					<tr class="rem1">
-				<%-- <% for (int i = 0; i < wishList.size(); i++){
-					WishListDTO wishListDTO = wishList.get(i);
-				}
-				%> --%>
-						<td class="invert"></td>
-						<td class="invert-image"><a href="single.po"><img src="../images/1.png" alt=" " class="img-responsive" /></a></td>
-						<td class="invert"><a href="single.po">팝니다 </a></td>
-						<td class = "invert">판매중</td>
-						<td class="invert"><a href="single.po">태블릿</a></td>
-						<td class="invert">200만원</td>
+						<td class="invert"><%=wishListDTO.getW_num() %></td>
+						<td class="invert-image"><a href="single.po"><img src="upload/<%= wishListDTO.getP_file() %>" alt=" " class="img-responsive" /></a></td>
+						<td class="invert"><a href="single.po"><%=wishListDTO.getP_title() %></a></td>
+						<td class = "invert"><%=wishListDTO.getP_status() %></td>
+						<td class="invert"><a href="single.po"><%=wishListDTO.getP_type() %></a></td>
+						<td class="invert"><%=wishListDTO.getP_price() %>원</td>
 						<td class="invert" align="center">
     					<div class="rem" style="display: flex; justify-content: center; align-items: center;">
        					<div class="close1"></div>
    					    </div>
+   					    <%
+   					    }
+   					    %> --%>
+   					    
+   					    <tr class="rem1">
+						<td class="invert">1</td>
+						<td class="invert-image"><a href="single.po"><img src="#" alt=" " class="img-responsive" /></a></td>
+						<td class="invert"><a href="single.po">팝니다</a></td>
+						<td class = "invert">판매중</td>
+						<td class="invert"><a href="single.po">노트북</a></td>
+						<td class="invert">500000원</td>
+						<td class="invert" align="center">
+    					<div class="rem" style="display: flex; justify-content: center; align-items: center;">
+       					<div class="close1"></div>
+   					    </div>
+   					    
    					 	<script>
         				$(document).ready(function(c) {
             			$('.close1').on('click', function(c){
@@ -151,10 +165,12 @@ String orderBy = (String) request.getAttribute("orderBy");
 <nav class="numbering">
    <ul class="pagination paging">
       <%
+      ProductPageDTO ppageDTO
+      = (ProductPageDTO)request.getAttribute("ppageDTO");
       if(ppageDTO.getP_startPage() > ppageDTO.getP_pageBlock()){
          %>
          <li>
-            <a href="products.po?p_pageNum=<%=ppageDTO.getP_startPage()-ppageDTO.getP_pageBlock()%>&orderBy=${orderBy}" aria-label="Previous">
+            <a href="wishlist.po?p_pageNum=<%=ppageDTO.getP_startPage()-ppageDTO.getP_pageBlock()%>&orderBy=${orderBy}" aria-label="Previous">
                <span aria-hidden="true">&laquo;</span>
             </a>
          </li>
@@ -166,7 +182,7 @@ String orderBy = (String) request.getAttribute("orderBy");
          boolean isPcurrentPage = (i == ppageDTO.getP_currentPage());
          %>
          <li class="<%= (isCurrentPage || isPcurrentPage) ? "active" : "" %>">
-            <a href="products.po?p_pageNum=<%= i %>&orderBy=${orderBy}" class="<%= (isCurrentPage) ? "" : "" %> <%= (isPcurrentPage) ? "custom-class" : "" %>">
+            <a href="wishlist.po?p_pageNum=<%= i %>&orderBy=${orderBy}" class="<%= (isCurrentPage) ? "" : "" %> <%= (isPcurrentPage) ? "custom-class" : "" %>">
             <%= (isPcurrentPage) ? i : i %></a>
          </li>
          <%
@@ -175,7 +191,7 @@ String orderBy = (String) request.getAttribute("orderBy");
       if(ppageDTO.getP_endPage() < ppageDTO.getP_pageCount()){
          %>
          <li>
-            <a href="products.po?p_pageNum=<%=ppageDTO.getP_startPage()+ppageDTO.getP_pageBlock()%>&orderBy=${orderBy}" >
+            <a href="wishlist.po?p_pageNum=<%=ppageDTO.getP_startPage()+ppageDTO.getP_pageBlock()%>&orderBy=${orderBy}" >
                <span aria-hidden="true">&raquo;</span>
             </a>
          </li>
