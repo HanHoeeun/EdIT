@@ -118,7 +118,7 @@ NoticePageDTO pageDTO=(NoticePageDTO)request.getAttribute("pageDTO");
 				    </ul>
 					</div>
 				</div> 
-<!--=========================================== 2탭 이벤트 ==================================================== -->				
+<!--=========================================== 2탭 이벤트    ==================================================== -->				
 <%-- <%
 List<NoticeDTO> eventList = (List<NoticeDTO>)request.getAttribute("eventList");
 NoticePageDTO pageDTO2=(NoticePageDTO)request.getAttribute("pageDTO");
