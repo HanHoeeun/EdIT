@@ -182,6 +182,7 @@ public class AdminController extends HttpServlet{
 			dispatcher = request.getRequestDispatcher("admin/adminPage_1_1.jsp");
 			dispatcher.forward(request, response);	
 		}
+		
 		if(sPath.equals("/report_content.ad")) {
 			adminService = new AdminService();
 			ReportDTO reportDTO = adminService.getReportContent(request);
@@ -197,6 +198,7 @@ public class AdminController extends HttpServlet{
 			dispatcher = request.getRequestDispatcher("admin/report_content_1_1.jsp");
 			dispatcher.forward(request, response);
 		}
+		
 		if(sPath.equals("/report_answer.ad")) {
 			adminService = new AdminService();
 			adminService.updateReportAnswer(request);
@@ -286,6 +288,46 @@ public class AdminController extends HttpServlet{
 			dispatcher = request.getRequestDispatcher("admin/adminMemberPage.jsp");
 			dispatcher.forward(request, response);
 		}
+//		회원정보 불러오기
+		if(sPath.equals("/user_content.ad")) {
+			adminService = new AdminService();
+			MemberDTO memberDTO = adminService.getMemberContent(request);
+			
+			String phone = adminService.formatPhoneNumber(memberDTO.getM_phone());
+			memberDTO.setM_phone(phone);
+			
+			request.setAttribute("memberDTO", memberDTO);
+			
+			dispatcher = request.getRequestDispatcher("admin/user_content_1.jsp");
+			dispatcher.forward(request, response);
+		}
+//		회원정보 수정
+		if(sPath.equals("/user_contentPro.ad")) {
+			
+			try {
+				request.setCharacterEncoding("utf-8");
+				
+				adminService = new AdminService();
+				
+				response.setContentType("text/html;charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				
+				if(request.getParameter("admin_pass").equals("1q2w3e4r")) {
+					adminService.updateUserContent(request);
+					int m_num = Integer.parseInt(request.getParameter("m_num"));
+					
+					response.sendRedirect("user_content.ad?m_num="+m_num);
+				}else {
+					out.println("<script>");
+					out.println("window.close();");
+					out.println("</script>");
+				}
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
 	}
 
 	

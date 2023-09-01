@@ -124,8 +124,11 @@ public class MemberDTO {
 	public void setBl_reason(String bl_reason) {
 		this.bl_reason = bl_reason;
 	}
-	
-	
+//	request.getParameter -> string 받아서 timestamp로 변환
+	public void setM_date(String timestampString) {
+	    long timestamp = Long.parseLong(timestampString);
+	    this.m_date = new Timestamp(timestamp);
+	}
 
 	
 	

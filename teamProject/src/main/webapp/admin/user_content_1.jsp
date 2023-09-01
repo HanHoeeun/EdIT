@@ -1,3 +1,6 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.logging.SimpleFormatter"%>
+<%@page import="com.itwillbs.domain.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!--
@@ -44,80 +47,83 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 	
 <body>
+<%
+MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
+%>
+<script type="text/javascript">
+function oninputPhone(target) {
+    target.value = target.value
+        .replace(/[^0-9]/g, '')
+        .replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]{3,4})([0-9]{4})/g, "$1-$2-$3");
+}
+</script>
 <!-- header -->
-<jsp:include page="../inc/top.jsp"></jsp:include>
-		
-<!-- //navigation -->
-	<!-- breadcrumbs -->
-	<div class="breadcrumbs">
-		<div class="container">
-			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
-				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-				<li class="active">AdminPage</li>
-			</ol>
-		</div>
-	</div>
 	<!-- //breadcrumbs -->
 	<!-- top-brands -->
 	
 	<div class="top-brands_1">
 			<h2>회원정보 상세페이지</h2>
 		<div class="_1container_1_1">
-			<form class="_1report_content_form">		
+			<form class="_1report_content_form" action="user_contentPro.ad" method="post">		
 			<table class="_1report_content_board">
 				<tr>
-				<td class="_1report_content_border">회원번호</td><td></td>
+				<td class="_1report_content_border">회원번호</td>
+				<td><input type="text" value="<%=memberDTO.getM_num() %>" name="m_num" readonly="readonly" style="border:none;"></td>
 				</tr>				
 				<tr>
-				<td class="_1report_content_border">아이디</td><td></td>
+				<td class="_1report_content_border">아이디</td>
+				<td><input type="text" value="<%=memberDTO.getM_id() %>" name="m_id" style="border:none;"></td>
 				</tr>				
 				<tr>
-				<td class="_1report_content_border">이름</td><td></td>
+				<td class="_1report_content_border">이름</td>
+				<td><input type="text" value="<%=memberDTO.getM_name() %>" name="m_name" style="border:none;"></td>
 				</tr>				
 				<tr>
-				<td class="_1report_content_border">닉네임</td><td></td>
+				<td class="_1report_content_border">닉네임</td>
+				<td><input type="text" value="<%=memberDTO.getM_nick() %>" name="m_nick" style="border:none;"></td>
 				</tr>				
 				<tr>
-				<td class="_1report_content_border">생년월일</td><td></td>
+				<td class="_1report_content_border">전화번호</td>
+				<td><input type="text" value="<%=memberDTO.getM_phone() %>"  oninput="oninputPhone(this)" name="m_phone" style="border:none;"></td>
 				</tr>				
 				<tr>
-				<td class="_1report_content_border">성별</td><td></td>
+				<td class="_1report_content_border">이메일</td>
+				<td><input type="text" value="<%=memberDTO.getM_email() %>" name="m_email" style="border:none;"></td>
 				</tr>				
 				<tr>
-				<td class="_1report_content_border">전화번호</td><td></td>
+				<%
+				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				%>
+				<td class="_1report_content_border">가입날짜</td>
+				<td><input type="text" value="<%=format.format(memberDTO.getM_date()) %>" name="m_date" readonly="readonly" style="border:none;"></td>
 				</tr>				
 				<tr>
-				<td class="_1report_content_border">주소</td><td></td>
+				<td class="_1report_content_border">이벤트</td>
+				<td><input type="text" value="<%=memberDTO.getM_event() %>" name="m_event" style="border:none;"></td>
 				</tr>				
 				<tr>
-				<td class="_1report_content_border">이메일</td><td></td>
+				<td class="_1report_content_border">회원레벨</td>
+				<td><input type="text" value="<%=memberDTO.getM_level() %>" name="m_level" style="border:none;"></td>
 				</tr>				
 				<tr>
-				<td class="_1report_content_border">가입날짜</td><td></td>
+				<td class="_1report_content_border">회원벌점</td>
+				<td><input type="text" value="<%=memberDTO.getM_count() %>" name="m_count" style="border:none;"></td>
 				</tr>				
 				<tr>
-				<td class="_1report_content_border">이벤트</td><td></td>
-				</tr>				
-				<tr>
-				<td class="_1report_content_border">회원레벨</td><td></td>
-				</tr>				
-				<tr>
-				<td class="_1report_content_border">회원벌점</td><td></td>
+				<td class="_1report_content_border">수정 비밀번호</td>
+				<td><input type="password" name="admin_pass" style="border:none;" required="required" ></td>
 				</tr>				
 					
 			</table>
 					<div class="_1q_query_btn">
 							<button type="submit">수정</button>
-							<button type="button" onclick="location.href='faq.html'">목록</button>
+							<button type="button" onclick="window.close()">닫기</button>
 					</div>
 			</form>
 		</div>
 	<div class="clearfix_1_1"> </div>
-	</div>
+</div>
 <!-- //top-brands -->
-<!-- //footer -->
-<jsp:include page="../inc/bottom.jsp"></jsp:include>
-<!-- //footer -->	
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>
 <!-- top-header and slider -->

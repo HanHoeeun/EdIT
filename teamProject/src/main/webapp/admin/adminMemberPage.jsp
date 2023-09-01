@@ -92,7 +92,7 @@ AdminPageDTO pageDTO = (AdminPageDTO)request.getAttribute("pageDTO");
 							<th>신고횟수</th>
 						</tr>
 						<%for(MemberDTO memberDTO : memberList){ %>
-						<tr onclick="window.open('user_content.ad','신고상세페이지','width=800, height=700, scrollbars=yes')">
+						<tr onclick="window.open('user_content.ad?m_num=<%=memberDTO.getM_num() %>','회원정보 상세','width=800, height=700, scrollbars=yes')">
 							<td class="_1qna_board_border"><%=memberDTO.getM_num() %></td>
 							<td class="_1qna_board_border"><%=memberDTO.getM_id() %></td>
 							<td class="_1qna_board_border"><%=memberDTO.getM_nick() %></td>
