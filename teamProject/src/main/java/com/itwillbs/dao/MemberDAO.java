@@ -127,9 +127,10 @@ public class MemberDAO {
 //			첫번째 행으로 데이터 있으면 memberDTO 객체생성, set 메서드 호출,rs열 데이터 저장
 			if (rs.next() == true) {
 				memberDTO = new MemberDTO();
-				
+				// m_level 추가
 				memberDTO.setM_id(rs.getString("m_id"));
 				memberDTO.setM_pass(rs.getString("m_pass"));
+				memberDTO.setM_level(rs.getInt("m_level"));
 
 				System.out.println("로그인 성공!");
 				
