@@ -173,12 +173,12 @@ public class AdminService {
 		try {
 			request.setCharacterEncoding("utf-8");
 			
-			int num = Integer.parseInt(request.getParameter("r_num"));
+			int r_num = Integer.parseInt(request.getParameter("r_num"));
 			
 			adminDAO = new AdminDAO();
 			reportDTO = new ReportDTO();
 			
-			reportDTO = adminDAO.getReportContent(num);
+			reportDTO = adminDAO.getReportContent(r_num);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

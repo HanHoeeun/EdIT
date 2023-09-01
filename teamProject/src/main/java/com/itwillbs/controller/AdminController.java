@@ -125,7 +125,9 @@ public class AdminController extends HttpServlet{
 //			엔터(\r\n) -> <br> 로 바꾼다
 //			adminDTO.setA_content(adminDTO.getA_content().replaceAll("\r\n","<br>"));
 			adminDTO.setA_content(adminDTO.getA_content().replaceAll("\r\n","&#10;"));
-			adminDTO.setA_answer(adminDTO.getA_answer().replaceAll("\r\n","&#10;"));
+			if(adminDTO.getA_answer() != null) {
+				adminDTO.setA_answer(adminDTO.getA_answer().replaceAll("\r\n","&#10;"));
+			}
 			
 			request.setAttribute("adminDTO", adminDTO);
 			dispatcher = request.getRequestDispatcher("admin/registered_1_1.jsp");
@@ -205,7 +207,13 @@ public class AdminController extends HttpServlet{
 			
 			int r_num = Integer.parseInt(request.getParameter("r_num"));
 			
-			response.sendRedirect("report_content.ad?r_num="+r_num);
+			response.setContentType("text/html;charset=UTF-8");
+	        PrintWriter out = response.getWriter();
+	        out.println("<script>");
+	        out.println("window.opener.location.reload();");
+	        out.println("location.href='report_content.ad?r_num="+r_num+"'");
+	        out.println("</script>");
+			
 		}
 		if(sPath.equals("/report_check.ad")) {
 			adminService = new AdminService();
@@ -214,7 +222,6 @@ public class AdminController extends HttpServlet{
 			response.setContentType("text/html;charset=UTF-8");
 	        PrintWriter out = response.getWriter();
 	        out.println("<script>");
-	        out.println("window.opener.location.reload();");
 	        out.println("window.close();");
 	        out.println("</script>");
 		}
