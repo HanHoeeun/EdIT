@@ -235,13 +235,14 @@ public class AdminDAO {
 			con = this.getConnection();
 			
 //			신고 아이디 및 신고정보 
-			String sql = "select * "
+			String sql = "select *  "
 					+ "from report_test r join report_test_member m "
 					+ "on r.r_m_num =  m.r_m_num "
 					+ "where r.r_num = ?";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num);
+			
 			ResultSet rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
@@ -254,11 +255,10 @@ public class AdminDAO {
 				reportDTO.setR_file(rs.getString("r_file"));
 				reportDTO.setR_content(rs.getString("r_content"));
 				reportDTO.setR_answer(rs.getString("r_answer"));
+				
 			}
-			
-			
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		}finally {
 			this.dbClose();
 		}
@@ -370,5 +370,125 @@ public class AdminDAO {
 		}
 		
 		return memberList;
+	}
+	public MemberDTO getMemberContent(int num) {
+		MemberDTO memberDTO = new MemberDTO();
+		try {
+			con = this.getConnection();
+			
+//			신고 아이디 및 신고정보 
+			String sql = "select * from members where m_num = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				memberDTO.setM_num(rs.getInt("m_num"));
+				memberDTO.setM_id(rs.getString("m_id"));
+				memberDTO.setM_name(rs.getString("m_name"));
+				memberDTO.setM_nick(rs.getString("m_nick"));
+				memberDTO.setM_phone(rs.getString("m_phone"));
+				memberDTO.setM_email(rs.getString("m_email"));
+				memberDTO.setM_date(rs.getTimestamp("m_date"));
+				memberDTO.setM_event(rs.getString("m_event"));
+				memberDTO.setM_level(rs.getInt("m_level"));
+				memberDTO.setM_count(rs.getInt("m_count"));
+			}
+		} catch (Exception e) {
+
+		}finally {
+			this.dbClose();
+		}
+		
+		return memberDTO;
+		
+	}
+	public void updateUserContent(MemberDTO memberDTO) {
+		try {
+			con = this.getConnection();
+			
+//			신고 아이디 및 신고정보 
+			String sql = "update members "  
+					+ "set m_id = ?, m_name = ?, m_nick = ?, m_phone = ?, m_email = ?, m_event = ?, m_level = ?, m_count = ? " 
+					+ "where m_num = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, memberDTO.getM_id());
+			pstmt.setString(2, memberDTO.getM_name());
+			pstmt.setString(3, memberDTO.getM_nick());
+			pstmt.setString(4, memberDTO.getM_phone());
+			pstmt.setString(5, memberDTO.getM_email());
+//			pstmt.setTimestamp(6, memberDTO.getM_date());
+			pstmt.setString(6, memberDTO.getM_event());
+			pstmt.setInt(7, memberDTO.getM_level());
+			pstmt.setInt(8, memberDTO.getM_count());
+			pstmt.setInt(9, memberDTO.getM_num());
+			
+			pstmt.executeUpdate();
+		
+		} catch (Exception e) {
+
+		}finally {
+			this.dbClose();
+		}
+	}
+	public int getMemberCountSearch(AdminPageDTO pageDTO) {
+		int count = 0;
+		
+		try {
+			con = this.getConnection();
+			String sql = "select count(*) as count from members where a_m_nick like ? ";
+			if(pageDTO.getSearch() != null) {
+				if(pageDTO.getSearch_type() == 1) {
+					sql = "select count(*) as count from members where m_num = ? limit ?, ? ";
+					pstmt = con.prepareStatement(sql);
+					
+					pstmt.setInt(1, Integer.parseInt(pageDTO.getSearch()));
+					pstmt.setInt(2, pageDTO.getStartRow()-1); // 시작하는 행 -1 
+					pstmt.setInt(3, pageDTO.getPageSize()); // 몇개
+				}
+				if(pageDTO.getSearch_type() == 2) {
+					sql = "select count(*) as count from members where m_id = ? limit ?, ? ";
+					pstmt = con.prepareStatement(sql);
+					
+					pstmt.setString(1, pageDTO.getSearch());
+					pstmt.setInt(2, pageDTO.getStartRow()-1); // 시작하는 행 -1 
+					pstmt.setInt(3, pageDTO.getPageSize()); // 몇개
+				}
+				if(pageDTO.getSearch_type() == 3) {
+					sql = "select count(*) as count from members where m_nick = ? limit ?, ? ";
+					pstmt = con.prepareStatement(sql);
+					
+					pstmt.setString(1, pageDTO.getSearch());
+					pstmt.setInt(2, pageDTO.getStartRow()-1); // 시작하는 행 -1 
+					pstmt.setInt(3, pageDTO.getPageSize()); // 몇개
+				}
+				if(pageDTO.getSearch_type() == 4) {
+					sql = "select count(*) as count from members where m_count = ? limit ?, ? ";
+					pstmt = con.prepareStatement(sql);
+					
+					pstmt.setInt(1, Integer.parseInt(pageDTO.getSearch()));
+					pstmt.setInt(2, pageDTO.getStartRow()-1); // 시작하는 행 -1 
+					pstmt.setInt(3, pageDTO.getPageSize()); // 몇개
+				}
+			}else {
+				sql = "select count(*) as count from members limit ?, ?";
+				pstmt = con.prepareStatement(sql);
+				
+				pstmt.setInt(1, pageDTO.getStartRow()-1); // 시작하는 행 -1 
+				pstmt.setInt(2, pageDTO.getPageSize()); // 몇개
+			}
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt("count");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbClose();
+		}
+		return count;
 	}
 }

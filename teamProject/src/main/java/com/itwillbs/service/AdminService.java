@@ -3,6 +3,8 @@ package com.itwillbs.service;
 import java.io.UnsupportedEncodingException;
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -248,5 +250,93 @@ public class AdminService {
 		return memberList;
 		
 	}
+
+	public MemberDTO getMemberContent(HttpServletRequest request) {
+		MemberDTO memberDTO = null;
+		try {
+			request.setCharacterEncoding("utf-8");
+			
+			int num = Integer.parseInt(request.getParameter("m_num"));
+			
+			adminDAO = new AdminDAO();
+			
+			
+			memberDTO = adminDAO.getMemberContent(num);
+			
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return memberDTO;
+	}
+
+	public String formatPhoneNumber(String m_phone) {
+		 // 전화번호에서 숫자만 추출
+        String digitsOnly = m_phone.replaceAll("[^0-9]", "");
+        
+        // 전화번호 길이에 따라 정규식 패턴 선택
+        String pattern;
+        if (digitsOnly.length() == 10) {
+            pattern = "(\\d{3})(\\d{3})(\\d{4})";
+        } else {
+            pattern = "(\\d{3})(\\d{4})(\\d{4})";
+        }
+
+        // 정규식 패턴 적용하여 전화번호 포맷 변환
+        Pattern phonePattern = Pattern.compile(pattern);
+        Matcher matcher = phonePattern.matcher(digitsOnly);
+        if (matcher.matches()) {
+        	return String.format("%s-%s-%s", matcher.group(1), matcher.group(2), matcher.group(3));
+        } else {
+            // 매치되지 않는 경우에는 원본 번호 그대로 반환
+            return m_phone;
+        }
+    }
+
+	public void updateUserContent(HttpServletRequest request) {
+		try {
+			request.setCharacterEncoding("utf-8");
+			
+			adminDAO = new AdminDAO();
+			
+			MemberDTO memberDTO = new MemberDTO();
+			
+			int m_num = Integer.parseInt(request.getParameter("m_num"));
+
+			String phone = request.getParameter("m_phone").replace("-", "");
+			System.out.println(phone);
+			memberDTO.setM_num(m_num);
+			memberDTO.setM_id(request.getParameter("m_id"));
+			memberDTO.setM_name(request.getParameter("m_name"));
+			memberDTO.setM_nick(request.getParameter("m_nick"));
+			memberDTO.setM_phone(phone);
+			memberDTO.setM_email(request.getParameter("m_email"));
+//			memberDTO.setM_date(request.getParameter("m_date"));
+			memberDTO.setM_event(request.getParameter("m_event"));
+			memberDTO.setM_level(Integer.parseInt(request.getParameter("m_level")));
+			memberDTO.setM_count(Integer.parseInt(request.getParameter("m_count")));
+			
+			adminDAO.updateUserContent(memberDTO);
+			
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public int getMemberCountSearch(AdminPageDTO pageDTO) {
+		int count = 0;
+		try {
+			adminDAO = new AdminDAO();
+			count = adminDAO.getMemberCountSearch(pageDTO);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return count;
+	}
+	
 
 }
