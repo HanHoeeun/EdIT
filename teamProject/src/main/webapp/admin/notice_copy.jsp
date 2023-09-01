@@ -69,10 +69,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <!--=========================== 상단 탭 리스트============================================ -->
 				<ul class="tabs">
-					<li class="tab-link" data-tab="tab-1">일반공지</li>
+					<li class="tab-link current" data-tab="tab-1">일반공지</li>
 					<li class="tab-link" data-tab="tab-2">이벤트</li>
 					<%if(1==1){ %>
-					<li class="tab-link current" data-tab="tab-3">글 작성</li>
+					<li class="tab-link" data-tab="tab-3">글 작성</li>
 					<%} %>
 				</ul>
 			</div>
@@ -82,65 +82,48 @@ List<NoticeDTO> noticeList = (List<NoticeDTO>)request.getAttribute("noticeList")
 NoticePageDTO pageDTO=(NoticePageDTO)request.getAttribute("pageDTO");
 %>	
 			<div class="container_3_1">
-				<div id="tab-1" class="tab-content">
-				<table class="_1qna_board">
+				<div id="tab-1" class="tab-content current">
+					<table class="_1qna_board">
 						<tr>
 							<th class="_1qna_board_border">번호</th>
 							<th class="_1qna_board_border">제목</th>
 							<th class="_1qna_board_border">작성일</th>
 						</tr>
- <%
-SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
-    for(int i=0;i<noticeList.size();i++){
-    	NoticeDTO noticeDTO=noticeList.get(i);   
-    	%>							
-						<tr onclick="location.href='content.no?num=<%=noticeDTO.getA_num()%>'">
-						<td class="_1qna_board_border"><%=noticeDTO.getA_num() %></td>
-						<td class="_1qna_board_subject"><%=noticeDTO.getA_title() %></td>
-						<td class="_1qna_board_border"><%=format.format(noticeDTO.getA_date()) %></td>
+						<%
+						SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
+						for (int i = 0; i < noticeList.size(); i++) {
+							NoticeDTO noticeDTO = noticeList.get(i);
+						%>
+						<tr onclick="location.href='content.no?a_num=<%=noticeDTO.getA_num()%>'">
+							<td class="_1qna_board_border"><%=noticeDTO.getA_num()%></td>
+							<td class="_1qna_board_subject"><%=noticeDTO.getA_title()%></td>
+							<td class="_1qna_board_border"><%=format.format(noticeDTO.getA_date())%></td>
 						</tr>
 						<%
-    }
-    %>
+						}
+						%>
 					</table>
 					<!--============= 1탭 일반공지 페이징 ==================== -->
-				    <div class="_1qna_paging">
-        				<% if(pageDTO.getStartPage() > pageDTO.getPageBlock()){ %>
-						<a
-							href="list.no?pageNum=<%=pageDTO.getStartPage()-pageDTO.getPageBlock()%>">◀</a>
-						<%
-}
-%>
-
-						<%
-for(int i=pageDTO.getStartPage();i<=pageDTO.getEndPage();i++){
-	%>
-						<a href="list.no?pageNum=<%=i%>"><%=i %></a>
-						<%
-}
-%>
-
-						<%
-//끝페이지번호  전체페이지수 비교 => 전체페이지수 크면 => Next보임
-if(pageDTO.getEndPage() < pageDTO.getPageCount()){
-	%>
-						<a
-							href="list.no?pageNum=<%=pageDTO.getStartPage()+pageDTO.getPageBlock()%>">▶</a>
-						<%
-}
-%>
-						<!-- <ul>
-							<li onclick="location.href='index.html'">◀</li>
-							<li onclick="location.href='about.html'">1</li>
-							<li onclick="location.href='login.html'">2</li>
-							<li onclick="location.href='faq.html'">3</li>
-							<li onclick="location.href='gourmet.html'">4</li>
-							<li onclick="location.href='login.html'">5</li>
-							<li onclick="location.href='products.html'">▶</li>
-						</ul> -->
+					<div class="_1qna_paging">
+				    <ul>
+					<%
+					// 시작페이지 1페이지 Prev 없음
+					// 시작페이지 11,21,31 Prev가 보이게
+						if(pageDTO.getStartPage() > pageDTO.getPageBlock()){%>
+							<li onclick="location.href='list.no?pageNum=<%=pageDTO.getStartPage()-pageDTO.getPageBlock()%>&tab=tab-1'">Prev</li>
+							
+						<% } 
+						for(int i= pageDTO.getStartPage(); i<=pageDTO.getEndPage(); i++){%>
+							<li onclick="location.href='list.no?pageNum=<%=i%>&tab=tab-1'"><%=i %></li>
+						<%}
+						// 끝페이지 번호 전체페이지수 비교 => 전체페이지 수 크면 => next보임
+						if(pageDTO.getEndPage() < pageDTO.getPageCount()){%>
+							<li onclick="location.href='list.no?pageNum=<%=pageDTO.getStartPage() + pageDTO.getPageBlock() %>&tab=tab-1'">Next</li>
+						<%}%>
+				    </ul>
 					</div>
 				</div>
-<!--================================== 2탭 이벤트 ==================================== -->				
+<!--=========================================== 2탭 이벤트 ==================================================== -->				
 				<div id="tab-2" class="tab-content">
 					<table class="_1qna_board">
 						<tr>
@@ -170,7 +153,7 @@ if(pageDTO.getEndPage() < pageDTO.getPageCount()){
 				</div>
 <!--================================== 3탭 글작성 ==================================== -->
 				<%if(1 == 1){ %>
-				<div id="tab-3" class="tab-content current">
+				<div id="tab-3" class="tab-content">
 					<form action="write.no" method="post" >
 						<table class="_1q_query_tab">
 							<tr>
@@ -187,15 +170,16 @@ if(pageDTO.getEndPage() < pageDTO.getPageCount()){
 							</tr>
 						</table>
 						<div><br></div>
+			
 						<table class="_1q_query_tab">
 							<tr>
-							<td class="_1q_query_tab_4" colspan="3" ><input type="text" name="subject" placeholder="제목을 작성 해주세요" style="border:none;"></td>
+							<td class="_1q_query_tab_4" colspan="3" ><input type="text" name="a_title"  placeholder="제목을 작성 해주세요" style="border:none;"></td>
 							</tr>
 						</table>
 						<div><br></div>
 						<table class="_1q_query_tab">
 							<tr>
-							<td class="_1q_query_tab_5" colspan="3"><textarea name="content" style="border:none;" cols="110" rows="20" class="noresize" placeholder="내용을 작성 해주세요" ></textarea></td>
+							<td class="_1q_query_tab_5" colspan="3"><textarea name="a_content"  style="border:none;" cols="110" rows="20" class="noresize" placeholder="내용을 작성 해주세요" ></textarea></td>
 							</tr>
 						</table>
 						<div class="_1q_query_btn">

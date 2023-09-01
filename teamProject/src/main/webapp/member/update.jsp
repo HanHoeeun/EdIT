@@ -80,7 +80,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li><a href="product/checkout.jsp"><i class="fa fa-arrow-right"></i>찜♥</a></li>
 						<li><a href="qnalist.me"><i class="fa fa-arrow-right"></i>문의 내역</a></li>
 						<li><a href="delete.me"><i class="fa fa-arrow-right"></i>회원 탈퇴</a></li>
- 						<li><a href="#"><i class="fa fa-arrow-right"></i>회원 관리</a></li>  
+ 						<li><a href="list.me"><i class="fa fa-arrow-right"></i>회원 관리</a></li>  
 					</ul>
 				</div>											
 			</div>		
@@ -107,14 +107,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="_6clearfix1"> 
 							<div class="_6clearfix"> 
 								<div align="center">
-									<input type="text1" placeholder="아이디" readonly="readonly"readonly>
-									<input type="text" value="<%=memberDTO.getM_id() %>" id="m_id" name="m_id" readonly="readonly"><br>
-									<input type="text" placeholder="현재비밀번호" id="m_pass1" name="m_pass1"><br>
+									<input type="text" value="아이디 : <%=memberDTO.getM_id() %>" id="m_id" name="m_id" readonly="readonly"><br>
+									<input type="text" value="이름 : <%=memberDTO.getM_name() %>" id="m_name" name="m_name" readonly="readonly"><br>
+									<input type="text" placeholder="현재비밀번호" id="m_pass1" name="m_pass"><br>
 									<input type="text" placeholder="새비밀번호" id="m_pass2" name="m_pass2"> <br>
 									<input type="text" placeholder="새비밀번호 확인" id="m_pass3" name="m_pass3"><br> 
-									<input type="text" value="<%=memberDTO.getM_name() %>" id="m_name" name="m_name" readonly="readonly"><br>
-									<input type="text" placeholder="변경 할 닉네임 (최소 2자 이상 입력)" id="m_nick" name="m_nick"><br>
-									<input type="email" placeholder="변경 할 이메일" id="m_mail" name="m_mail"><br>
+									<input type="text" value="<%=memberDTO.getM_nick() %>" id="m_nick" name="m_nick" readonly="readonly"><br>
+									<input type="email" placeholder="변경 할 이메일" id="m_mail" name="m_email"><br>
 									<input type="tel" placeholder="변경 할 전화번호" id="m_phone" name="m_phone">
 								</div>	
 							</div>
