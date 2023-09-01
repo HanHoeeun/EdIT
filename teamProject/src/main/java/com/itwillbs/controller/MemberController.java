@@ -94,9 +94,10 @@ public class MemberController extends HttpServlet{
 			MemberDTO memberDTO = memberService.userCheck(request);
 			
 			if (memberDTO != null) {
-				
+				// m_level 추가(0 - 관리자, 1 - 일반회원, 2 - 블랙리스트)
 				HttpSession session = request.getSession();
 				session.setAttribute("m_id", memberDTO.getM_id());
+				session.setAttribute("m_level", memberDTO.getM_level());
 				
 				response.sendRedirect("main.me");
 				

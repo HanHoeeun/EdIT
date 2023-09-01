@@ -16,6 +16,7 @@ import com.itwillbs.domain.AdminDTO;
 import com.itwillbs.domain.AdminPageDTO;
 import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.ReportDTO;
+import com.itwillbs.service.AdminService;
 
 public class AdminDAO {
 	Connection con = null;
@@ -38,28 +39,60 @@ public class AdminDAO {
 		if(con != null) {try {con.close();} catch (SQLException e) {	}}
 	}
 	
-	public void insertBoard(AdminDTO adminDTO) {
+	public MemberDTO getMemberInfo(MemberDTO member) {
+		MemberDTO memberDTO = null;
 		try {
 			con = this.getConnection();
+			String sql = "select m_num, m_nick from members where m_id = ?";
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, member.getM_id());
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				memberDTO = new MemberDTO();
+				memberDTO.setM_num(rs.getInt("m_num"));
+				memberDTO.setM_nick(rs.getString("m_nick"));
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		return memberDTO;
+	}
+	
+	
+	public void insertBoard(AdminDTO adminDTO) {
+		try {
+//			아이디로 회원번호 닉네임 얻어오기 
+			MemberDTO memberDTO = new MemberDTO();
+			memberDTO.setM_id(adminDTO.getA_m_id());
+			
+			memberDTO = this.getMemberInfo(memberDTO);
+			
+			con = this.getConnection();
 			String sql = "";
-//			번호(자동) 작성자 제목 내용 시간 타입 파일 
+//			문의타입 아이디 제목 내용 파일
+			
+			
+//			1게시글번호 (2회원번호 3닉네임 4제목 5내용) 6답변 (7파일명) 8확인용 9작성시간 10문의타입 11공지타입
 			if(adminDTO.getA_cs_type() == 1) {
-				sql = "insert into test_1 values (default,?,?,?,default,'계정',?,null)";
+				sql = "insert into admin values (default,?,?,?,?,null,?,default,default,'계정',null)";
 			}else if(adminDTO.getA_cs_type() == 2) {
-				sql = "insert into test_1 values (default,?,?,?,default,'중고거래',?,null)";
+				sql = "insert into admin values (default,?,?,?,?,null,?,default,default,'중고거래',null)";
 			}else {
-				sql = "insert into test_1 values (default,?,?,?,default,'기타',?,null)";
+				sql = "insert into admin values (default,?,?,?,?,null,?,default,default,'기타',null)";
 			}
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, adminDTO.getA_m_nick());
-			pstmt.setString(2, adminDTO.getA_title());
-			pstmt.setString(3, adminDTO.getA_content());
-			pstmt.setString(4, adminDTO.getA_file());
+			pstmt.setInt(1, memberDTO.getM_num());
+			pstmt.setString(2, memberDTO.getM_nick());
+			pstmt.setString(3, adminDTO.getA_title());
+			pstmt.setString(4, adminDTO.getA_content());
+			pstmt.setString(5, adminDTO.getA_file());
 			
 			pstmt.executeUpdate();
-			
-			
-			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -70,12 +103,18 @@ public class AdminDAO {
 	public List<AdminDTO> getBoardListSearch(AdminPageDTO pageDTO) {
 		List<AdminDTO> adminList = null;
 		try {
+			MemberDTO memberDTO = new MemberDTO();
+			memberDTO.setM_id(pageDTO.getSearch());
+			
+			memberDTO = this.getMemberInfo(memberDTO);
+
 			con = this.getConnection();
-//			limit start, pagesize; 	start 에서 시작해서 pagesize 개수만큼 출력 
-			String sql = "select * from test_1 where a_m_nick like ? order by a_num desc limit ?, ?";
+			
+			String sql = "select * from admin where a_m_nick = ? order by a_num desc limit ?, ?";
 			pstmt = con.prepareStatement(sql);
 			
-			pstmt.setString(1, "%"+pageDTO.getSearch()+"%");
+			//지금 아이디 
+			pstmt.setString(1, memberDTO.getM_nick());
 			
 			pstmt.setInt(2, pageDTO.getStartRow()-1); // 시작하는 행 -1 
 			pstmt.setInt(3, pageDTO.getPageSize()); // 몇개
@@ -88,6 +127,8 @@ public class AdminDAO {
 				adminDTO.setA_title(rs.getString("a_title"));
 				adminDTO.setA_m_nick(rs.getString("a_m_nick"));
 				adminDTO.setA_date(rs.getTimestamp("a_date"));
+				adminDTO.setA_check(rs.getInt("a_check"));
+				
 				
 				adminList.add(adminDTO);
 			}
@@ -122,14 +163,14 @@ public class AdminDAO {
 		}
 		return count;
 	}
-	public AdminDTO getBoardContent(int num) {
+	public AdminDTO getBoardContent(int a_num) {
 		AdminDTO adminDTO = null;
 		try {
 			con = this.getConnection();
 			
-			String sql = "select * from test_1 where a_num = ?";
+			String sql = "select * from admin where a_num = ?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1,num);
+			pstmt.setInt(1,a_num);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				adminDTO = new AdminDTO();
@@ -154,7 +195,7 @@ public class AdminDAO {
 		try {
 			con = this.getConnection();
 			
-			String sql = "select * from report_test order by r_num desc limit ?, ?";
+			String sql = "select * from report order by r_num desc limit ?, ?";
 			pstmt = con.prepareStatement(sql);
 			
 			
@@ -188,7 +229,7 @@ public class AdminDAO {
 		
 		try {
 			con = this.getConnection();
-			String sql = "select count(*) as count from report_test";
+			String sql = "select count(*) as count from report";
 			pstmt = con.prepareStatement(sql);
 			
 			
@@ -203,23 +244,24 @@ public class AdminDAO {
 		}
 		return count;
 	}
-	
-	public String getTagetId(int num) {
+
+//	report 번호로 맴버테이블 닉네임 반환
+	public String getTargetId(int r_num) {
 		String target_id=null;
 		try {
 			con = this.getConnection();
 //			신고자 대상자 아이디
-			String sql = "select m.r_name name "
-					+ "from report_test r join report_test_member m "
-					+ "on r.r_m_target = m.r_m_num "
+			String sql = "select m.m_nick nick "
+					+ "from report r join members m "
+					+ "on r.r_m_target = m.m_num "
 					+ "where r_num = ?";
 
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, num);
+			pstmt.setInt(1, r_num);
 			
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				target_id = rs.getString("name");
+				target_id = rs.getString("nick");
 			}
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -229,28 +271,28 @@ public class AdminDAO {
 		return target_id;
 	}
 	
-	public ReportDTO getReportContent(int num) {
+	public ReportDTO getReportContent(int r_num) {
 		ReportDTO reportDTO = new ReportDTO();
 		try {
 			con = this.getConnection();
 			
 //			신고 아이디 및 신고정보 
 			String sql = "select *  "
-					+ "from report_test r join report_test_member m "
-					+ "on r.r_m_num =  m.r_m_num "
+					+ "from report r join members m "
+					+ "on r.r_m_num =  m.m_num "
 					+ "where r.r_num = ?";
 			
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, num);
+			pstmt.setInt(1, r_num);
 			
 			ResultSet rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				String target_id = this.getTagetId(num);
+				String target_id = this.getTargetId(r_num);
 				
 				reportDTO.setR_m_target_id(target_id);
 				reportDTO.setR_num(rs.getInt("r_num"));
-				reportDTO.setR_m_num_id(rs.getString("r_name"));
+				reportDTO.setR_m_num_id(rs.getString("m_nick"));
 				reportDTO.setR_title(rs.getString("r_title"));
 				reportDTO.setR_file(rs.getString("r_file"));
 				reportDTO.setR_content(rs.getString("r_content"));
@@ -269,7 +311,7 @@ public class AdminDAO {
 		try {
 			con = this.getConnection();
 			
-			String sql = "update report_test set r_answer = ? where r_num = ?";
+			String sql = "update report set r_answer = ?, r_check = 1 where r_num = ?";
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setString(1, reportDTO.getR_answer());
@@ -277,23 +319,61 @@ public class AdminDAO {
 			
 			pstmt.executeUpdate();
 			
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
 			this.dbClose();
 		}
 	}
-	public void updateReportCheck(ReportDTO reportDTO) {
+	
+//	닉네임으로 m_count 반환 
+	public int getMemberCountCheck(String m_nick) {
+		int m_count = 0;
 		try {
 			con = this.getConnection();
-			
-			String sql = "update report_test set r_check = 1 where r_num = ?";
+			String sql = "select m_count from members where m_nick = ?";;
 			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, m_nick);
 			
-			pstmt.setInt(1, reportDTO.getR_num());
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				m_count = rs.getInt("m_count");
+			}
 			
-			pstmt.executeUpdate();
-//			신고 적용후에 member check에도 적용해야됨
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+//			this.dbClose();
+		}
+		return m_count;
+	}
+	
+	public void updateReportCheck(ReportDTO reportDTO) {
+		try {
+			String m_nick = this.getTargetId(reportDTO.getR_num());
+			int m_count = this.getMemberCountCheck(m_nick);
+//			m_count 3보다 작아야 작동 
+//			count 가 2면 +1 하고 블랙리스트 등록 m_level 			
+			if(m_count == 2){
+				con = this.getConnection();
+				String sql = "update members set m_count = m_count + 1, m_level = 1 where m_nick = ?";
+				pstmt = con.prepareStatement(sql);
+				
+				pstmt.setString(1, m_nick);
+				
+				pstmt.executeUpdate();
+			}else if(m_count < 3 ) {
+				con = this.getConnection();
+				String sql = "update members set m_count = m_count + 1 where m_nick = ?";
+				pstmt = con.prepareStatement(sql);
+				
+				pstmt.setString(1, m_nick);
+				
+				pstmt.executeUpdate();
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -438,7 +518,7 @@ public class AdminDAO {
 		
 		try {
 			con = this.getConnection();
-			String sql = "select count(*) as count from members where a_m_nick like ? ";
+			String sql;
 			if(pageDTO.getSearch() != null) {
 				if(pageDTO.getSearch_type() == 1) {
 					sql = "select count(*) as count from members where m_num = ? limit ?, ? ";
@@ -474,6 +554,127 @@ public class AdminDAO {
 				}
 			}else {
 				sql = "select count(*) as count from members limit ?, ?";
+				pstmt = con.prepareStatement(sql);
+				
+				pstmt.setInt(1, pageDTO.getStartRow()-1); // 시작하는 행 -1 
+				pstmt.setInt(2, pageDTO.getPageSize()); // 몇개
+			}
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt("count");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbClose();
+		}
+		return count;
+	}
+	public List<MemberDTO> getBlackList(AdminPageDTO pageDTO) {
+		List<MemberDTO> blackList = new ArrayList<>();
+		try {
+			con = this.getConnection();
+//			블랙리스트 출력 
+			String sql;
+//			아이디 이름 이메일 
+			if(pageDTO.getSearch() != null) {
+				if(pageDTO.getSearch_type() == 1) {
+					sql = "select * from members where m_id = ? and m_count = 3 limit ?, ? ";
+					pstmt = con.prepareStatement(sql);
+					
+					pstmt.setString(1, pageDTO.getSearch());
+					pstmt.setInt(2, pageDTO.getStartRow()-1); // 시작하는 행 -1 
+					pstmt.setInt(3, pageDTO.getPageSize()); // 몇개
+				}
+				if(pageDTO.getSearch_type() == 2) {
+					sql = "select * from members where m_name = ? and m_count = 3 limit ?, ? ";
+					pstmt = con.prepareStatement(sql);
+					
+					pstmt.setString(1, pageDTO.getSearch());
+					pstmt.setInt(2, pageDTO.getStartRow()-1); // 시작하는 행 -1 
+					pstmt.setInt(3, pageDTO.getPageSize()); // 몇개
+				}
+				if(pageDTO.getSearch_type() == 3) {
+					sql = "select * from members where m_email = ? and m_count = 3 limit ?, ? ";
+					pstmt = con.prepareStatement(sql);
+					
+					pstmt.setString(1, pageDTO.getSearch());
+					pstmt.setInt(2, pageDTO.getStartRow()-1); // 시작하는 행 -1 
+					pstmt.setInt(3, pageDTO.getPageSize()); // 몇개
+				}
+					
+			}else {
+				sql = "select * from members where m_count = 3 limit ?, ?";
+				pstmt = con.prepareStatement(sql);
+				
+				pstmt.setInt(1, pageDTO.getStartRow()-1); // 시작하는 행 -1 
+				pstmt.setInt(2, pageDTO.getPageSize()); // 몇개
+			}
+			
+			rs = pstmt.executeQuery();
+			AdminService adminService = new AdminService();
+//			회원번호 아이디 이름 이메일 전화번호 
+			while(rs.next()) {
+				MemberDTO memberDTO = new MemberDTO();
+				
+				memberDTO.setM_num(rs.getInt("m_num"));
+				memberDTO.setM_id(rs.getString("m_id"));
+				memberDTO.setM_name(rs.getString("m_name"));
+				memberDTO.setM_email(rs.getString("m_email"));
+
+				String phone = adminService.formatPhoneNumber(rs.getString("m_phone"));
+				
+				memberDTO.setM_phone(phone);
+				
+				blackList.add(memberDTO);
+				
+			}
+			
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			this.dbClose();
+		}
+		
+		return blackList;
+	}
+	public int getBlackCountSearch(AdminPageDTO pageDTO) {
+		int count = 0;
+		
+		try {
+			con = this.getConnection();
+			String sql;
+			
+//			아이디 이름 이메일 
+			if(pageDTO.getSearch() != null) {
+				if(pageDTO.getSearch_type() == 1) {
+					sql = "select count(*) as count from members where m_id = ? and m_count = 3 limit ?, ? ";
+					pstmt = con.prepareStatement(sql);
+					
+					pstmt.setString(1, pageDTO.getSearch());
+					pstmt.setInt(2, pageDTO.getStartRow()-1); // 시작하는 행 -1 
+					pstmt.setInt(3, pageDTO.getPageSize()); // 몇개
+				}
+				if(pageDTO.getSearch_type() == 2) {
+					sql = "select count(*) as count from members where m_name = ? and m_count = 3 limit ?, ? ";
+					pstmt = con.prepareStatement(sql);
+					
+					pstmt.setString(1, pageDTO.getSearch());
+					pstmt.setInt(2, pageDTO.getStartRow()-1); // 시작하는 행 -1 
+					pstmt.setInt(3, pageDTO.getPageSize()); // 몇개
+				}
+				if(pageDTO.getSearch_type() == 3) {
+					sql = "select count(*) as count from members where m_email = ? and m_count = 3 limit ?, ? ";
+					pstmt = con.prepareStatement(sql);
+					
+					pstmt.setString(1, pageDTO.getSearch());
+					pstmt.setInt(2, pageDTO.getStartRow()-1); // 시작하는 행 -1 
+					pstmt.setInt(3, pageDTO.getPageSize()); // 몇개
+				}
+			}else {
+				sql = "select count(*) as count from members where m_count = 3 limit ?, ?";
 				pstmt = con.prepareStatement(sql);
 				
 				pstmt.setInt(1, pageDTO.getStartRow()-1); // 시작하는 행 -1 

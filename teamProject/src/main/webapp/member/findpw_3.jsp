@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>findpw.jsp</title>
-<link href= "../css/login.css" rel= "stylesheet" type="text/css">
-<link href= "../css/style.css" rel= "stylesheet" type="text/css">
+<link href= "./css/login.css" rel= "stylesheet" type="text/css">
+<link href= "./css/style.css" rel= "stylesheet" type="text/css">
 </head>
 <body>
 <!--
@@ -72,7 +72,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="login">
 		<div class="container">
 		<div style="text-align : center;">
-     		<img src="../images/find_5_1.png"><br><br><br>
+     		<img src="./images/find_5_1.png"><br><br><br>
 		</div>
 			<h2>비밀번호찾기</h2><br><br>
 				<p>회원가입 시 등록하신 아이디, 이메일 주소를 입력해 주세요.</p>

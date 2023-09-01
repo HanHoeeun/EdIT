@@ -98,17 +98,20 @@ function oninputPhone(target) {
 				<td><input type="text" value="<%=format.format(memberDTO.getM_date()) %>" name="m_date" readonly="readonly" style="border:none;"></td>
 				</tr>				
 				<tr>
-				<td class="_1report_content_border">이벤트</td>
-				<td><input type="text" value="<%=memberDTO.getM_event() %>" name="m_event" style="border:none;"></td>
-				</tr>				
-				<tr>
 				<td class="_1report_content_border">회원레벨</td>
 				<td><input type="text" value="<%=memberDTO.getM_level() %>" name="m_level" style="border:none;"></td>
 				</tr>				
 				<tr>
 				<td class="_1report_content_border">회원벌점</td>
 				<td><input type="text" value="<%=memberDTO.getM_count() %>" name="m_count" style="border:none;"></td>
-				</tr>				
+				</tr>
+				<tr>
+				<%
+				String black = memberDTO.getM_event() == null ? "" : memberDTO.getM_event();
+				%>
+				<td class="_1report_content_border">블랙사유</td>
+				<td><input type="text" value="<%=black %>" name="m_event" style="border:none;"></td>
+				</tr>					
 				<tr>
 				<td class="_1report_content_border">수정 비밀번호</td>
 				<td><input type="password" name="admin_pass" style="border:none;" required="required" ></td>

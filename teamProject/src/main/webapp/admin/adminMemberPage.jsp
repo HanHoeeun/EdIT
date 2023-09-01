@@ -101,6 +101,21 @@ AdminPageDTO pageDTO = (AdminPageDTO)request.getAttribute("pageDTO");
 						</tr>
 						<%} %>
 					</table>
+					 <div class="_1qna_paging">
+        				 <ul>
+					<%	
+						if(pageDTO.getStartPage() > pageDTO.getPageBlock()){%>
+							<li onclick="location.href='adminMeberPage.ad?pageNum=<%=pageDTO.getStartPage()-pageDTO.getPageBlock()%>&search=<%=pageDTO.getSearch()%>'">Prev</li>
+							
+						<% } 
+						for(int i= pageDTO.getStartPage(); i<=pageDTO.getEndPage(); i++){%>
+							<li onclick="location.href='adminMeberPage.ad?pageNum=<%=i%>&search=<%=pageDTO.getSearch()%>'"><%=i %></li>
+						<%}
+						if(pageDTO.getEndPage() < pageDTO.getPageCount()){%>
+							<li onclick="location.href='adminMeberPage.ad?pageNum=<%=pageDTO.getStartPage() + pageDTO.getPageBlock() %>&search=<%=pageDTO.getSearch()%>'">Next</li>
+						<%}%>
+				    </ul>
+   					 </div>	
 <!-- 					검색테이블  -->
 					<form action="adminMemberPage.ad" method="post" id="_1admin_search_form">
 						<table class="_1admin_search">
@@ -129,21 +144,7 @@ AdminPageDTO pageDTO = (AdminPageDTO)request.getAttribute("pageDTO");
 							}
 						}
 					</script>
-				    <div class="_1qna_paging">
-        				 <ul>
-					<%	
-						if(pageDTO.getStartPage() > pageDTO.getPageBlock()){%>
-							<li onclick="location.href='adminMeberPag?pageNum=<%=pageDTO.getStartPage()-pageDTO.getPageBlock()%>&search=<%=pageDTO.getSearch()%>'">Prev</li>
-							
-						<% } 
-						for(int i= pageDTO.getStartPage(); i<=pageDTO.getEndPage(); i++){%>
-							<li onclick="location.href='adminMeberPag.ad?pageNum=<%=i%>&search=<%=pageDTO.getSearch()%>'"><%=i %></li>
-						<%}
-						if(pageDTO.getEndPage() < pageDTO.getPageCount()){%>
-							<li onclick="location.href='adminMeberPag.ad?pageNum=<%=pageDTO.getStartPage() + pageDTO.getPageBlock() %>&search=<%=pageDTO.getSearch()%>'">Next</li>
-						<%}%>
-				    </ul>
-   					 </div>	
+				   
    				</div>
 			</div>
 		</div>

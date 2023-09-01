@@ -79,8 +79,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 String a_m_num = (String)session.getAttribute("a_m_num");
 NoticeDTO noticeDTO=(NoticeDTO)request.getAttribute("noticeDTO");
 %>	
-		<form action="updatePro.no" method="post">
-		<input type="hidden" name="num" value="<%=noticeDTO.getA_num()%>">
+		<form action="updatePro.no" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="a_num" value="<%=noticeDTO.getA_num()%>">
 			<table class="_1q_query_tab">
 				<tr>
 					<td class="_1q_query_tab_1"><select class="_1q_query_tab_sel"
@@ -92,8 +92,9 @@ NoticeDTO noticeDTO=(NoticeDTO)request.getAttribute("noticeDTO");
 						<div class="_1q_query_tab_3">
 							<label for="imgfile"><img src="images/picture.png"
 								width="25px" height="25px">파일 업로드</label>
-						</div> <input type="file" name="imgfile" id="imgfile" accept="image/*">
+						</div> <input type="file" name="a_file" id="imgfile" accept="image/*">
 						<%=noticeDTO.getA_file() %>
+						<input type="hidden" name="a_oldfile" value="<%=noticeDTO.getA_file() %>">
 					</td>
 				</tr>
 			</table>
