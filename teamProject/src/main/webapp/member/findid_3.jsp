@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>findid.jsp</title>
-<link href= "../css/login.css" rel= "stylesheet" type="text/css">
-<link href= "../css/style.css" rel= "stylesheet" type="text/css">
+<link href= "./css/login.css" rel= "stylesheet" type="text/css">
+<link href= "./css/style.css" rel= "stylesheet" type="text/css">
 </head>
 <body>
 <!--
