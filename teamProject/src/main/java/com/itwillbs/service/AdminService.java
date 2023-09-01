@@ -38,7 +38,7 @@ public class AdminService {
 			
 //			multi 파라미터 값 가져오기
 			int a_cs_type = Integer.parseInt(multi.getParameter("faq_select"));
-			String name = multi.getParameter("name");
+			String m_id = multi.getParameter("m_id");
 			String subject = multi.getParameter("subject");
 			String content = multi.getParameter("content");
 			adminDAO = new AdminDAO();
@@ -51,7 +51,7 @@ public class AdminService {
 			AdminDTO adminDTO = new AdminDTO();
 			
 			adminDTO.setA_cs_type(a_cs_type);
-			adminDTO.setA_m_nick(name);
+			adminDTO.setA_m_id(m_id);
 			adminDTO.setA_title(subject);
 			adminDTO.setA_content(content);
 			
@@ -61,8 +61,7 @@ public class AdminService {
 				adminDTO.setA_file(file);
 			}
 			
-//			첨부파일 이름 담기			
-//			boardDTO.setFile(file);
+
 			
 			adminDAO.insertBoard(adminDTO);
 			
@@ -116,12 +115,12 @@ public class AdminService {
 		try {
 			request.setCharacterEncoding("utf-8");
 			
-			int num = Integer.parseInt(request.getParameter("a_num"));
+			int a_num = Integer.parseInt(request.getParameter("a_num"));
 			
 			adminDAO = new AdminDAO();
 			adminDTO = new AdminDTO();
 			
-			adminDTO = adminDAO.getBoardContent(num);
+			adminDTO = adminDAO.getBoardContent(a_num);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
