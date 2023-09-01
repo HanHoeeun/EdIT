@@ -327,6 +327,75 @@ public class AdminController extends HttpServlet{
 			}
 			
 		}
+		if(sPath.equals("/adminBlackPage.ad")) {
+//			한글처리
+			request.setCharacterEncoding("utf-8");
+//			request 검색어 뽑아오기
+			String search_t = request.getParameter("search_type");
+			int search_type = 0;
+			if(search_t != null) {
+				search_type = Integer.parseInt(search_t);
+			}
+			String search = request.getParameter("search");
+			
+			System.out.println("검색값 : " + search);
+			System.out.println(search_t);
+			
+//			HttpSession session = request.getSession();
+//			String search = (String)session.getAttribute("m_id");
+			
+//			한페이지에서 보여지는 글개수 설정
+			int pageSize =10;
+//			페이지 번호
+			String pageNum=request.getParameter("pageNum");
+//			패이지 번호가 없으면 1페이지 설정
+			if(pageNum == null) {
+				pageNum = "1";
+			}
+//			페이지 번호를 정수형 변경 
+			int currentPage = Integer.parseInt(pageNum);
+			
+			AdminPageDTO pageDTO = new AdminPageDTO();
+			pageDTO.setPageSize(pageSize);
+			pageDTO.setPageNum(pageNum);
+			pageDTO.setCurrentPage(currentPage);
+			
+//			검색어 담기
+			pageDTO.setSearch_type(search_type);
+			pageDTO.setSearch(search);
+			
+			// AdminService 객체생성
+			adminService = new AdminService();
+
+			List<MemberDTO> blackList = adminService.getBlackListSearch(pageDTO);
+			
+//			게시판 전체 글 개수 구하기
+			int count = adminService.getBlackCountSearch(pageDTO);
+			System.out.println(count);
+//			한화면에 보여줄 페이지 개수 설정
+			int pageBlock =10;
+			int startPage = (currentPage-1)/pageBlock*pageBlock+1;
+			int endPage = startPage + pageBlock -1;
+			
+			int pageCount = count%pageBlock == 0 ? count/pageBlock : count/pageBlock+1 ;
+			if(endPage > pageCount ) {
+				endPage = pageCount;
+			}
+			
+			pageDTO.setCount(count);
+			pageDTO.setPageBlock(pageBlock);	
+			pageDTO.setStartPage(startPage);
+			pageDTO.setEndPage(endPage);
+			pageDTO.setPageCount(pageCount);
+			request.setAttribute("pageDTO", pageDTO);
+			
+			request.setAttribute("blackList", blackList);
+			
+			
+			dispatcher = request.getRequestDispatcher("admin/adminBlackPage.jsp");
+			dispatcher.forward(request, response);
+		}
+			
 		
 	}
 

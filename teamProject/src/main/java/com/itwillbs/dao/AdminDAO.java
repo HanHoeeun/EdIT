@@ -16,6 +16,7 @@ import com.itwillbs.domain.AdminDTO;
 import com.itwillbs.domain.AdminPageDTO;
 import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.ReportDTO;
+import com.itwillbs.service.AdminService;
 
 public class AdminDAO {
 	Connection con = null;
@@ -438,7 +439,7 @@ public class AdminDAO {
 		
 		try {
 			con = this.getConnection();
-			String sql = "select count(*) as count from members where a_m_nick like ? ";
+			String sql;
 			if(pageDTO.getSearch() != null) {
 				if(pageDTO.getSearch_type() == 1) {
 					sql = "select count(*) as count from members where m_num = ? limit ?, ? ";
@@ -474,6 +475,127 @@ public class AdminDAO {
 				}
 			}else {
 				sql = "select count(*) as count from members limit ?, ?";
+				pstmt = con.prepareStatement(sql);
+				
+				pstmt.setInt(1, pageDTO.getStartRow()-1); // 시작하는 행 -1 
+				pstmt.setInt(2, pageDTO.getPageSize()); // 몇개
+			}
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt("count");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbClose();
+		}
+		return count;
+	}
+	public List<MemberDTO> getBlackList(AdminPageDTO pageDTO) {
+		List<MemberDTO> blackList = new ArrayList<>();
+		try {
+			con = this.getConnection();
+//			블랙리스트 출력 
+			String sql;
+//			아이디 이름 이메일 
+			if(pageDTO.getSearch() != null) {
+				if(pageDTO.getSearch_type() == 1) {
+					sql = "select * from members where m_id = ? and m_count = 3 limit ?, ? ";
+					pstmt = con.prepareStatement(sql);
+					
+					pstmt.setString(1, pageDTO.getSearch());
+					pstmt.setInt(2, pageDTO.getStartRow()-1); // 시작하는 행 -1 
+					pstmt.setInt(3, pageDTO.getPageSize()); // 몇개
+				}
+				if(pageDTO.getSearch_type() == 2) {
+					sql = "select * from members where m_name = ? and m_count = 3 limit ?, ? ";
+					pstmt = con.prepareStatement(sql);
+					
+					pstmt.setString(1, pageDTO.getSearch());
+					pstmt.setInt(2, pageDTO.getStartRow()-1); // 시작하는 행 -1 
+					pstmt.setInt(3, pageDTO.getPageSize()); // 몇개
+				}
+				if(pageDTO.getSearch_type() == 3) {
+					sql = "select * from members where m_email = ? and m_count = 3 limit ?, ? ";
+					pstmt = con.prepareStatement(sql);
+					
+					pstmt.setString(1, pageDTO.getSearch());
+					pstmt.setInt(2, pageDTO.getStartRow()-1); // 시작하는 행 -1 
+					pstmt.setInt(3, pageDTO.getPageSize()); // 몇개
+				}
+					
+			}else {
+				sql = "select * from members where m_count = 3 limit ?, ?";
+				pstmt = con.prepareStatement(sql);
+				
+				pstmt.setInt(1, pageDTO.getStartRow()-1); // 시작하는 행 -1 
+				pstmt.setInt(2, pageDTO.getPageSize()); // 몇개
+			}
+			
+			rs = pstmt.executeQuery();
+			AdminService adminService = new AdminService();
+//			회원번호 아이디 이름 이메일 전화번호 
+			while(rs.next()) {
+				MemberDTO memberDTO = new MemberDTO();
+				
+				memberDTO.setM_num(rs.getInt("m_num"));
+				memberDTO.setM_id(rs.getString("m_id"));
+				memberDTO.setM_name(rs.getString("m_name"));
+				memberDTO.setM_email(rs.getString("m_email"));
+
+				String phone = adminService.formatPhoneNumber(rs.getString("m_phone"));
+				
+				memberDTO.setM_phone(phone);
+				
+				blackList.add(memberDTO);
+				
+			}
+			
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			this.dbClose();
+		}
+		
+		return blackList;
+	}
+	public int getBlackCountSearch(AdminPageDTO pageDTO) {
+		int count = 0;
+		
+		try {
+			con = this.getConnection();
+			String sql;
+			
+//			아이디 이름 이메일 
+			if(pageDTO.getSearch() != null) {
+				if(pageDTO.getSearch_type() == 1) {
+					sql = "select count(*) as count from members where m_id = ? and m_count = 3 limit ?, ? ";
+					pstmt = con.prepareStatement(sql);
+					
+					pstmt.setString(1, pageDTO.getSearch());
+					pstmt.setInt(2, pageDTO.getStartRow()-1); // 시작하는 행 -1 
+					pstmt.setInt(3, pageDTO.getPageSize()); // 몇개
+				}
+				if(pageDTO.getSearch_type() == 2) {
+					sql = "select count(*) as count from members where m_name = ? and m_count = 3 limit ?, ? ";
+					pstmt = con.prepareStatement(sql);
+					
+					pstmt.setString(1, pageDTO.getSearch());
+					pstmt.setInt(2, pageDTO.getStartRow()-1); // 시작하는 행 -1 
+					pstmt.setInt(3, pageDTO.getPageSize()); // 몇개
+				}
+				if(pageDTO.getSearch_type() == 3) {
+					sql = "select count(*) as count from members where m_email = ? and m_count = 3 limit ?, ? ";
+					pstmt = con.prepareStatement(sql);
+					
+					pstmt.setString(1, pageDTO.getSearch());
+					pstmt.setInt(2, pageDTO.getStartRow()-1); // 시작하는 행 -1 
+					pstmt.setInt(3, pageDTO.getPageSize()); // 몇개
+				}
+			}else {
+				sql = "select count(*) as count from members and m_count = 3 limit ?, ?";
 				pstmt = con.prepareStatement(sql);
 				
 				pstmt.setInt(1, pageDTO.getStartRow()-1); // 시작하는 행 -1 
