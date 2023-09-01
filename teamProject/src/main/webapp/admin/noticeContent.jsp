@@ -84,11 +84,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			%>
 			<h1><%=noticeDTO.getA_title()%></h1>
         <p class="author"><%=format.format(noticeDTO.getA_date())%></p>
+       
+       
+       
+       <!--============================ 첨부파일==================================  -->
         <hr>
         <div class="attachment-section">
-        <p>첨부 파일 <a href="upload/<%=noticeDTO.getA_file()%>" download>
-						<%=noticeDTO.getA_file()%></a> 
-						<img src="upload/<%=noticeDTO.getA_file()%>" width="200" height="200"></p><br>
+        <% /* 첨부파일이 없으면 본문에 안보이게 */
+    String attachmentFile = noticeDTO.getA_file();
+    if (attachmentFile != null && !attachmentFile.isEmpty()) {
+%>
+    <p>
+        첨부 파일 
+        <a href="upload/<%= attachmentFile %>" download>
+            <%= attachmentFile %>
+        </a> <br>
+        <img src="upload/<%= attachmentFile %>" >
+    </p>
+<%
+    }
+%>
    		 </div>
         <p><%=noticeDTO.getA_content()%></p>
 
@@ -99,7 +114,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<input type="button" value="수정" class="modify-button" onclick="location.href='update.no?a_num=<%=noticeDTO.getA_num()%>'">
 			<input type="button" value="삭제" class="delete-button" onclick="location.href='delete.no?a_num=<%=noticeDTO.getA_num()%>'">
 			<%} %>
-			<input type="button" value="목록" class="list-button" onclick="location.href='notice.no?tab=tab-1'">
+			<input type="button" value="목록" class="list-button" onclick="location.href='noticelist.no?tab=tab-1'">
+			
 		</div>
 	<div class="clear"></div>
 	<div id="page_control"></div>
