@@ -173,12 +173,12 @@ public class AdminService {
 		try {
 			request.setCharacterEncoding("utf-8");
 			
-			int num = Integer.parseInt(request.getParameter("r_num"));
+			int r_num = Integer.parseInt(request.getParameter("r_num"));
 			
 			adminDAO = new AdminDAO();
 			reportDTO = new ReportDTO();
 			
-			reportDTO = adminDAO.getReportContent(num);
+			reportDTO = adminDAO.getReportContent(r_num);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -227,13 +227,6 @@ public class AdminService {
 	public List<MemberDTO> getMemberListSearch(AdminPageDTO pageDTO) {
 		List<MemberDTO> memberList = null;
 		try {
-//			시박하는 행부터 10개 뽑아오기
-//			페이지 번호 	한화면에 보여줄 글개수 => 			시작하는 행번호
-//			currentPage		pageSize	=>		 	startRow
-//			1				10			=> 0*10 +1	 1 ~ 10
-//			2				10			=> 1*10 +1 	11 ~ 20
-//			3				10			=> 2*10 +1 	21 ~ 30
-//			((currentPage-1)*10)+1
 			int startRow = (pageDTO.getCurrentPage()-1)*pageDTO.getPageSize()+1;
 			int endRos = startRow + pageDTO.getPageSize() -1;
 			
@@ -242,7 +235,7 @@ public class AdminService {
 			
 //			AdminDAO 객체 생성
 			adminDAO = new AdminDAO();
-//			adminList = getBoardList() 메서드 호출
+//			adminList = getMemberList() 메서드 호출
 			memberList =  adminDAO.getMemberList(pageDTO);
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -331,6 +324,37 @@ public class AdminService {
 		try {
 			adminDAO = new AdminDAO();
 			count = adminDAO.getMemberCountSearch(pageDTO);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return count;
+	}
+
+	public List<MemberDTO> getBlackListSearch(AdminPageDTO pageDTO) {
+		List<MemberDTO> memberList = null;
+		try {
+			int startRow = (pageDTO.getCurrentPage()-1)*pageDTO.getPageSize()+1;
+			int endRos = startRow + pageDTO.getPageSize() -1;
+			
+			pageDTO.setStartRow(startRow);
+			pageDTO.setEndRow(endRos);
+			
+//			AdminDAO 객체 생성
+			adminDAO = new AdminDAO();
+			
+			memberList =  adminDAO.getBlackList(pageDTO);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return memberList;
+	}
+
+	public int getBlackCountSearch(AdminPageDTO pageDTO) {
+		int count = 0;
+		try {
+			adminDAO = new AdminDAO();
+			count = adminDAO.getBlackCountSearch(pageDTO);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}

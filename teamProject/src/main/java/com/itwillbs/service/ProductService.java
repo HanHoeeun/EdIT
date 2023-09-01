@@ -14,6 +14,7 @@ import com.itwillbs.dao.ProductDAO;
 import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.ProductDTO;
 import com.itwillbs.domain.ProductPageDTO;
+import com.itwillbs.domain.WishListDTO;
 
 public class ProductService {
 	ProductDAO productDAO = null;
@@ -638,6 +639,63 @@ public class ProductService {
 			e.printStackTrace();
 		}
 	}//deleteProduct()
+
+
+	public List<WishListDTO> getWishList(ProductPageDTO ppageDTO) {
+		System.out.println("ProductService getWishList()");
+		List<WishListDTO> wishlist=null;
+		try {
+			int p_startRow = (ppageDTO.getP_currentPage()-1)*ppageDTO.getP_pageSize()+1;
+			int p_endRow = p_startRow + ppageDTO.getP_pageSize()-1;
+			ppageDTO.setP_startRow(p_startRow);
+			ppageDTO.setP_endRow(p_endRow);
+			productDAO = new ProductDAO();
+			wishlist = productDAO.getWishList(ppageDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return wishlist;
+	}
+
+
+	public List<WishListDTO> getWishSellProducts(ProductPageDTO ppageDTO) {
+		System.out.println("ProductService getWishSellProducts");
+		List<WishListDTO> sellList = null;
+		try {
+			productDAO = new ProductDAO();
+			sellList = productDAO.getWishSellProducts(ppageDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return sellList;
+	}
+
+
+	public List<WishListDTO> getWishSoldProducts(ProductPageDTO ppageDTO) {
+		System.out.println("ProductService getWishSoldProducts");
+		List<WishListDTO> soldList = null;
+		try {
+			productDAO = new ProductDAO();
+			soldList = productDAO.getWishSoldProducts(ppageDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return soldList;
+	}
+
+
+	public WishListDTO getwishlist(HttpServletRequest request) {
+		WishListDTO wishListDTO = null;
+		try {
+			request.setCharacterEncoding("utf-8");
+			int w_num = Integer.parseInt(request.getParameter("w_num"));
+			productDAO = new ProductDAO();
+			wishListDTO = productDAO.getWish(w_num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return wishListDTO;
+	}
 
 	
 
