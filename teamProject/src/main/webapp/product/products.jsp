@@ -1,3 +1,4 @@
+<%@page import="com.itwillbs.domain.WishListDTO"%>
 <%@page import="com.itwillbs.domain.ProductPageDTO"%>
 <%@page import="com.itwillbs.domain.ProductDTO"%>
 <%@page import="java.util.List"%>
@@ -132,15 +133,8 @@ String orderBy = (String) request.getAttribute("orderBy");
             = (List<ProductDTO>)request.getAttribute("productList");
             ProductPageDTO ppageDTO
             = (ProductPageDTO)request.getAttribute("ppageDTO");
-            
-            int itemsPerPage = 5; // 페이지당 아이템 수
-            int currentPage = (request.getParameter("page") != null) ? Integer.parseInt(request.getParameter("page")) : 1;
-            int startIndex = (currentPage - 1) * itemsPerPage;
-            int endIndex = Math.min(startIndex + itemsPerPage, productList.size());
-            int totalPages = (int) Math.ceil((double) productList.size() / itemsPerPage);
-
-            List<ProductDTO> visibleItems = productList.subList(startIndex, endIndex);
-            
+            String id = (String)session.getAttribute("id");
+            WishListDTO wishListDTO = (WishListDTO)request.getAttribute("wishListDTO");
             %>
             
               <div class="agile_top_brands_grids">
@@ -173,7 +167,8 @@ String orderBy = (String) request.getAttribute("orderBy");
                                         <input type="hidden" name="currency_code" value="KRW">
                                         <input type="hidden" name="return" value=" ">
                                         <input type="hidden" name="cancel_return" value=" ">
-                                        <input type="submit" name="submit" value="찜 추가하기" class="button">
+                                        <input type="button" value="찜 추가하기" class="button"
+                                        		<%-- onclick="location.href='wishlist.po?w_num=<%WishListDTO.%> --%>'">
                                     </fieldset>
                                 </form>
                             </div>

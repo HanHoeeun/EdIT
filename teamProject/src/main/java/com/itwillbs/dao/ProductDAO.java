@@ -10,6 +10,7 @@ import javax.sql.DataSource;
 
 import com.itwillbs.domain.ProductDTO;
 import com.itwillbs.domain.ProductPageDTO;
+import com.itwillbs.domain.WishListDTO;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -1335,6 +1336,151 @@ public class ProductDAO {
 			dbClose();
 		}
 		return tabletList;
+	}
+
+	public List<WishListDTO> getWishList(ProductPageDTO ppageDTO) {
+		System.out.println("ProductDAO getWishList()");
+		List<WishListDTO> wishList = new ArrayList<>();
+		int size = wishList.size();
+		try {
+			//1,2 단계 디비 연결 
+			con = getConnection();
+			//3 sql  => mysql 제공 => limit 시작행-1, 몇개
+			//String sql="select * from products order by num desc";
+			String sql="select * from wishList order by p_num desc limit ?, ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, ppageDTO.getP_startRow()-1);//시작행-1
+			pstmt.setInt(2, ppageDTO.getP_pageSize());//몇개
+			//4 실행 => 결과 저장
+			rs = pstmt.executeQuery();
+			// boardList 객체생성
+			wishList = new ArrayList<>();
+			size = wishList.size();
+			//5 결과 행접근 => BoardDTO객체생성 => set호출(열접근저장)
+			while(rs.next()) {
+				WishListDTO wishListDTO = new WishListDTO();
+				wishListDTO.setM_nick(rs.getString("m_nick"));
+				wishListDTO.setW_num(rs.getInt("w_num"));
+				wishListDTO.setP_type(rs.getString("p_type"));
+				wishListDTO.setP_title(rs.getString("p_title"));
+				wishListDTO.setP_status(rs.getString("p_status"));
+				wishListDTO.setP_price(rs.getInt("p_price"));
+				wishListDTO.setP_file(rs.getString("p_file"));
+			// => 배열 한칸에 저장
+				wishList.add(wishListDTO); 
+		}
+		}catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		return wishList;
+	}
+
+	public List<WishListDTO> getWishSellProducts(ProductPageDTO ppageDTO) {
+		System.out.println("ProductDAO getWishSellProducts()");
+		List<WishListDTO> wishList = new ArrayList<>(); 
+		int size = wishList.size();
+		try {
+			//1,2 단계 디비 연결 
+			con = getConnection();
+			//3 sql  => mysql 제공 => limit 시작행-1, 몇개
+//			String sql="select * from board order by num desc";
+			String sql="select * from wishlist where p_status= ?order by p_num limit ?, ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "sell");
+			pstmt.setInt(2, ppageDTO.getP_startRow()-1);//시작행-1
+			pstmt.setInt(3, ppageDTO.getP_pageSize());//몇개
+			//4 실행 => 결과 저장
+			rs = pstmt.executeQuery();
+			// boardList 객체생성
+			wishList = new ArrayList<>();
+			size = wishList.size();
+			//5 결과 행접근 => BoardDTO객체생성 => set호출(열접근저장)
+			while(rs.next()) {
+				WishListDTO wishListDTO = new WishListDTO();
+				wishListDTO.setM_nick(rs.getString("m_nick"));
+				wishListDTO.setW_num(rs.getInt("w_num"));
+				wishListDTO.setP_type(rs.getString("p_type"));
+				wishListDTO.setP_title(rs.getString("p_title"));
+				wishListDTO.setP_status(rs.getString("p_status"));
+				wishListDTO.setP_price(rs.getInt("p_price"));
+				wishListDTO.setP_file(rs.getString("p_file"));
+			// => 배열 한칸에 저장
+				wishList.add(wishListDTO); 
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		return wishList;
+	}
+
+	public List<WishListDTO> getWishSoldProducts(ProductPageDTO ppageDTO) {
+		System.out.println("ProductDAO getWishSoldProducts()");
+		List<WishListDTO> wishList = new ArrayList<>(); 
+		int size = wishList.size();
+		try {
+			//1,2 단계 디비 연결 
+			con = getConnection();
+			//3 sql  => mysql 제공 => limit 시작행-1, 몇개
+//			String sql="select * from board order by num desc";
+			String sql="select * from wishlist where p_status= ? order by p_num limit ?, ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "selled");
+			pstmt.setInt(2, ppageDTO.getP_startRow()-1);//시작행-1
+			pstmt.setInt(3, ppageDTO.getP_pageSize());//몇개
+			//4 실행 => 결과 저장
+			rs = pstmt.executeQuery();
+			// boardList 객체생성
+			wishList = new ArrayList<>();
+			size = wishList.size();
+			//5 결과 행접근 => BoardDTO객체생성 => set호출(열접근저장)
+			while(rs.next()) {
+				WishListDTO wishListDTO = new WishListDTO();
+				wishListDTO.setM_nick(rs.getString("m_nick"));
+				wishListDTO.setW_num(rs.getInt("w_num"));
+				wishListDTO.setP_type(rs.getString("p_type"));
+				wishListDTO.setP_title(rs.getString("p_title"));
+				wishListDTO.setP_status(rs.getString("p_status"));
+				wishListDTO.setP_price(rs.getInt("p_price"));
+				wishListDTO.setP_file(rs.getString("p_file"));
+			// => 배열 한칸에 저장
+				wishList.add(wishListDTO); 
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		return wishList;
+	}
+
+	public WishListDTO getWish(int w_num) {
+		WishListDTO dto = null;
+		try {
+			con = getConnection();
+			String sql = "select * from wishlist where w_num = ? ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, w_num);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				WishListDTO wishListDTO = new WishListDTO();
+				wishListDTO.setM_nick(rs.getString("m_nick"));
+				wishListDTO.setW_num(rs.getInt("w_num"));
+				wishListDTO.setP_type(rs.getString("p_type"));
+				wishListDTO.setP_title(rs.getString("p_title"));
+				wishListDTO.setP_status(rs.getString("p_status"));
+				wishListDTO.setP_price(rs.getInt("p_price"));
+				wishListDTO.setP_file(rs.getString("p_file"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		return dto;
 	}
 
 
