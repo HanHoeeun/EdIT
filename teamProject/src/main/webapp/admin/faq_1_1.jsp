@@ -78,8 +78,8 @@ SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
 <!-- 				상단 탭 리스트 -->
 				<ul class="tabs">
 					<li class="tab-link current" data-tab="tab-1">자주묻는 질문</li>
+					<%if(id != null){ %>
 					<li class="tab-link" data-tab="tab-2">문의 하기</li>
-					<%if(1==1){ %>
 					<li class="tab-link" data-tab="tab-3">내 문의 내역</li>
 					<%} %>
 				</ul>
@@ -163,6 +163,7 @@ SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
 			</script>
 			<!-- script for tabs -->
 				</div>
+				<%if(id != null){ %>
 				<div id="tab-2" class="tab-content">
 <!-- 				2탭 문의글 작성 -->
 					<form action="adminPro.ad" method="post" enctype="multipart/form-data">
@@ -205,14 +206,12 @@ SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
 							</tr>
 						</table>
 						<div class="_1q_query_btn">
-						<%if(id != null){ %>
 								<button type="submit">작성</button>
 								<button type="reset">취소</button>
-						<%} %>
 						</div>
 				</form>
 				</div>
-				<%if(1 == 1){ %>
+				
 				<div id="tab-3" class="tab-content">
 <!-- 				3탭 게시판 테이블  -->
 					<table class="_1qna_board">
@@ -223,7 +222,9 @@ SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
 							<th class="_1qna_board_border">작성시간</th>
 							<th class="_1qna_board_border">답변여부</th>
 						</tr>
-						<%for(AdminDTO adminDTO : adminList){ %>
+						<%for(AdminDTO adminDTO : adminList){ 
+							String a_check = adminDTO.getA_check() == 0 ? "x":"o";
+						%>
 						<tr onclick="window.open('registered.ad?a_num=<%=adminDTO.getA_num() %>','문의상세페이지','width=800, height=700, scrollbars=yes')">
 							<td class="_1qna_board_border"><%=adminDTO.getA_num() %></td>
 							<td class="_1qna_board_subject"><%=adminDTO.getA_title() %></td>

@@ -51,7 +51,7 @@ public class AdminService {
 			AdminDTO adminDTO = new AdminDTO();
 			
 			adminDTO.setA_cs_type(a_cs_type);
-			adminDTO.setA_m_nick(m_id);
+			adminDTO.setA_m_id(m_id);
 			adminDTO.setA_title(subject);
 			adminDTO.setA_content(content);
 			
@@ -61,8 +61,7 @@ public class AdminService {
 				adminDTO.setA_file(file);
 			}
 			
-//			첨부파일 이름 담기			
-//			boardDTO.setFile(file);
+
 			
 			adminDAO.insertBoard(adminDTO);
 			
@@ -116,12 +115,12 @@ public class AdminService {
 		try {
 			request.setCharacterEncoding("utf-8");
 			
-			int num = Integer.parseInt(request.getParameter("a_num"));
+			int a_num = Integer.parseInt(request.getParameter("a_num"));
 			
 			adminDAO = new AdminDAO();
 			adminDTO = new AdminDTO();
 			
-			adminDTO = adminDAO.getBoardContent(num);
+			adminDTO = adminDAO.getBoardContent(a_num);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

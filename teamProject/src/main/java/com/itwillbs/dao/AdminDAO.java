@@ -39,28 +39,60 @@ public class AdminDAO {
 		if(con != null) {try {con.close();} catch (SQLException e) {	}}
 	}
 	
-	public void insertBoard(AdminDTO adminDTO) {
+	public MemberDTO getMemberInfo(MemberDTO member) {
+		MemberDTO memberDTO = null;
 		try {
 			con = this.getConnection();
+			String sql = "select m_num, m_nick from members where m_id = ?";
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, member.getM_id());
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				memberDTO = new MemberDTO();
+				memberDTO.setM_num(rs.getInt("m_num"));
+				memberDTO.setM_nick(rs.getString("m_nick"));
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		return memberDTO;
+	}
+	
+	
+	public void insertBoard(AdminDTO adminDTO) {
+		try {
+//			아이디로 회원번호 닉네임 얻어오기 
+			MemberDTO memberDTO = new MemberDTO();
+			memberDTO.setM_id(adminDTO.getA_m_id());
+			
+			memberDTO = this.getMemberInfo(memberDTO);
+			
+			con = this.getConnection();
 			String sql = "";
-//			번호(자동) 작성자 제목 내용 시간 타입 파일 
+//			문의타입 아이디 제목 내용 파일
+			
+			
+//			1게시글번호 (2회원번호 3닉네임 4제목 5내용) 6답변 (7파일명) 8확인용 9작성시간 10문의타입 11공지타입
 			if(adminDTO.getA_cs_type() == 1) {
-				sql = "insert into test_1 values (default,?,?,?,default,'계정',?,null)";
+				sql = "insert into admin values (default,?,?,?,?,null,?,default,default,'계정',null)";
 			}else if(adminDTO.getA_cs_type() == 2) {
-				sql = "insert into test_1 values (default,?,?,?,default,'중고거래',?,null)";
+				sql = "insert into admin values (default,?,?,?,?,null,?,default,default,'중고거래',null)";
 			}else {
-				sql = "insert into test_1 values (default,?,?,?,default,'기타',?,null)";
+				sql = "insert into admin values (default,?,?,?,?,null,?,default,default,'기타',null)";
 			}
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, adminDTO.getA_m_nick());
-			pstmt.setString(2, adminDTO.getA_title());
-			pstmt.setString(3, adminDTO.getA_content());
-			pstmt.setString(4, adminDTO.getA_file());
+			pstmt.setInt(1, memberDTO.getM_num());
+			pstmt.setString(2, memberDTO.getM_nick());
+			pstmt.setString(3, adminDTO.getA_title());
+			pstmt.setString(4, adminDTO.getA_content());
+			pstmt.setString(5, adminDTO.getA_file());
 			
 			pstmt.executeUpdate();
-			
-			
-			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -71,12 +103,18 @@ public class AdminDAO {
 	public List<AdminDTO> getBoardListSearch(AdminPageDTO pageDTO) {
 		List<AdminDTO> adminList = null;
 		try {
+			MemberDTO memberDTO = new MemberDTO();
+			memberDTO.setM_id(pageDTO.getSearch());
+			
+			memberDTO = this.getMemberInfo(memberDTO);
+
 			con = this.getConnection();
-//			limit start, pagesize; 	start 에서 시작해서 pagesize 개수만큼 출력 
-			String sql = "select * from test_1 where a_m_nick like ? order by a_num desc limit ?, ?";
+			
+			String sql = "select * from admin where a_m_nick = ? order by a_num desc limit ?, ?";
 			pstmt = con.prepareStatement(sql);
 			
-			pstmt.setString(1, "%"+pageDTO.getSearch()+"%");
+			//지금 아이디 
+			pstmt.setString(1, memberDTO.getM_nick());
 			
 			pstmt.setInt(2, pageDTO.getStartRow()-1); // 시작하는 행 -1 
 			pstmt.setInt(3, pageDTO.getPageSize()); // 몇개
@@ -89,6 +127,8 @@ public class AdminDAO {
 				adminDTO.setA_title(rs.getString("a_title"));
 				adminDTO.setA_m_nick(rs.getString("a_m_nick"));
 				adminDTO.setA_date(rs.getTimestamp("a_date"));
+				adminDTO.setA_check(rs.getInt("a_check"));
+				
 				
 				adminList.add(adminDTO);
 			}
@@ -123,14 +163,14 @@ public class AdminDAO {
 		}
 		return count;
 	}
-	public AdminDTO getBoardContent(int num) {
+	public AdminDTO getBoardContent(int a_num) {
 		AdminDTO adminDTO = null;
 		try {
 			con = this.getConnection();
 			
-			String sql = "select * from test_1 where a_num = ?";
+			String sql = "select * from admin where a_num = ?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1,num);
+			pstmt.setInt(1,a_num);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				adminDTO = new AdminDTO();
