@@ -194,11 +194,10 @@ public class NoticeDAO {
 			dbClose();
 		}		
 	}//deleteNotice()
-
 	
-
+//====================================================================================================
 //=============================================== 이벤트 ===========================================================
-	public List<NoticeDTO> getEventList(NoticePageDTO pageDTO) {
+	public List<NoticeDTO> getEventList(NoticePageDTO pageDTO2) {
 		System.out.println("NoticeDAO getEventList()");
 		List<NoticeDTO> eventList = null;
 		try {
@@ -207,8 +206,8 @@ public class NoticeDAO {
 			//3 sql  => mysql 제공 => limit 시작행-1, 몇개
 			String sql="select * from notice1 order by a_num desc limit ?, ?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, pageDTO.getStartRow()-1);//시작행-1
-			pstmt.setInt(2, pageDTO.getPageSize());//몇개
+			pstmt.setInt(1, pageDTO2.getStartRow()-1);//시작행-1
+			pstmt.setInt(2, pageDTO2.getPageSize());//몇개
 			//4 실행 => 결과 저장
 			rs = pstmt.executeQuery();
 			// eventList 객체생성
@@ -231,6 +230,103 @@ public class NoticeDAO {
 			dbClose();
 		}return eventList;		
 	}//getEventList()
+
+	public int getEventCount() {
+		int count = 0;
+		try {
+			//1,2 디비연결
+			con=getConnection();
+			//3 sql select count(*) from notice
+			String sql = "select count(*) from notice1;";
+			pstmt=con.prepareStatement(sql);
+			//4 실행 => 결과저장
+			rs = pstmt.executeQuery();
+			//5 결과 행접근 => 열접근 => count변수 저장
+			if(rs.next()) {
+				count = rs.getInt("count(*)");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbClose();
+		}
+		return count;
+	}//getEventCount()
+
+	public void insertEvent(NoticeDTO eventDTO) {
+		System.out.println("NoticeDAO insertEvent()");
+		try {
+			//1,2 디비연결
+			con=getConnection();
+			//3 sql insert
+			String sql="";
+//			글번호 내용 시간 분류 파일명 제목
+			if(eventDTO.getA_notice_type()==1) {
+				sql = "insert into notice1 values (default, ?, default,'일반공지', ?, ?)";
+			}else {
+				sql = "insert into notice1 values (default, ?, default,'이벤트', ?, ?)";
+			}
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, eventDTO.getA_content());
+			//파일추가
+			pstmt.setString(2, eventDTO.getA_file());
+			pstmt.setString(3, eventDTO.getA_title());
+			//4 실행 
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbClose();
+		}
+	}//insertEvent
+
+	public NoticeDTO getEvent(int a_num) {
+		NoticeDTO eventDTO = null;
+		try {
+			//1,2 디비연결
+			con = getConnection();
+			//3 sql select * from notice where a_num = ?
+			String sql="select * from notice1 where a_num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, a_num);
+			//4 실행 => 결과 저장
+			rs = pstmt.executeQuery();
+			//5 결과 행접근 => noticeDTO 객체생성 
+			//        => set메서드 호출 => 열접근 데이터 저장
+			if(rs.next()) {
+				eventDTO = new NoticeDTO();
+				eventDTO.setA_num(rs.getInt("a_num"));
+	//			noticeDTO.setA_notice_type(rs.getString("a_notice_type"));
+				eventDTO.setA_title(rs.getString("a_title"));
+				eventDTO.setA_content(rs.getString("a_content"));
+				eventDTO.setA_date(rs.getTimestamp("a_date"));				
+				//첨부파일
+				eventDTO.setA_file(rs.getString("a_file"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbClose();
+		}
+		return eventDTO;
+	}//getEvent()
+
+	public void deleteEvent(int a_num) {
+		try {
+			con = getConnection();
+			// 3단계 sql구문 delete from notice where a_num=?
+			String sql = "delete from notice1 where a_num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1,a_num);
+			// 4단계
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbClose();
+		}		
+	}//deleteEvent()
 	
 		
 		

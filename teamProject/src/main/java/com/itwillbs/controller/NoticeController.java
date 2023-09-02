@@ -37,60 +37,6 @@ public class NoticeController extends HttpServlet{
 		// 가상주소 뽑아오기
 		String sPath=request.getServletPath();
 		System.out.println("뽑은 가상주소 :  " + sPath);
-		
-		//================================================= 일반공지 리스트 =============================================
-		if(sPath.equals("/noticelist.no")) {
-			System.out.println("뽑은 가상주소 비교 : /noticelist.no");
-			// 한페이지에서 보여지는 글 개수 설정
-			int pageSize=10;
-			// 페이지번호 
-			String pageNum=request.getParameter("pageNum");
-			// 페이지번호가 없으면 1페이지 설정
-			if(pageNum == null) {
-				pageNum = "1";
-			}
-			// 페이지 번호를 => 정수형 변경
-			int currentPage = Integer.parseInt(pageNum);
-			
-			NoticePageDTO pageDTO = new NoticePageDTO();
-			pageDTO.setPageSize(pageSize);
-			pageDTO.setPageNum(pageNum);
-			pageDTO.setCurrentPage(currentPage);
-			
-			// NoticeService 객체생성
-			noticeService = new NoticeService();
-			// List<NoticeDTO> noticeList = getnoticeList(); 메서드 호출
-			List<NoticeDTO> noticeList = noticeService.getNoticeList(pageDTO);
-			// 게시판 전체 글 개수 구하기 
-			int count = noticeService.getNoticeCount();
-			// 한화면에 보여줄 페이지개수 설정
-			int pageBlock = 10;
-			// 시작하는 페이지번호
-			int startPage=(currentPage-1)/pageBlock*pageBlock+1;
-			// 끝나는 페이지번호
-			int endPage=startPage+pageBlock-1;
-			// 전체 페이지 구하기
-			int pageCount = count / pageSize + (count % pageSize==0?0:1);
-			if(endPage > pageCount) {
-				endPage = pageCount;
-			}
-			//pageDTO 저장
-			pageDTO.setCount(count);
-			pageDTO.setPageBlock(pageBlock);
-			pageDTO.setStartPage(startPage);
-			pageDTO.setEndPage(endPage);
-			pageDTO.setPageCount(pageCount);
-			
-			// request에 "noticeList",noticeList 저장
-			request.setAttribute("noticeList", noticeList);
-			request.setAttribute("pageDTO", pageDTO);	
-			
-			System.out.println("pageDTO");
-			
-			dispatcher = request.getRequestDispatcher("/admin/notice_copy.jsp");
-			dispatcher.forward(request, response);	
-		}//noticelist.no
-		
 		//=============================================== 공지글 작성 ================================================
 //		if(sPath.equals("/write.no")) { 
 //			System.out.println("뽑은 가상주소 비교 : /write.no");
@@ -154,7 +100,60 @@ public class NoticeController extends HttpServlet{
 //			dispatcher = request.getRequestDispatcher("admin/notice_copy.jsp");
 //			dispatcher.forward(request, response);
 //		}//notice.no
-
+		
+//================================================= 일반공지 리스트 =============================================
+		if(sPath.equals("/noticelist.no")) {
+			System.out.println("뽑은 가상주소 비교 : /noticelist.no");
+			// 한페이지에서 보여지는 글 개수 설정
+			int pageSize=10;
+			// 페이지번호 
+			String pageNum=request.getParameter("pageNum");
+			// 페이지번호가 없으면 1페이지 설정
+			if(pageNum == null) {
+				pageNum = "1";
+			}
+			// 페이지 번호를 => 정수형 변경
+			int currentPage = Integer.parseInt(pageNum);
+			
+			NoticePageDTO pageDTO = new NoticePageDTO();
+			pageDTO.setPageSize(pageSize);
+			pageDTO.setPageNum(pageNum);
+			pageDTO.setCurrentPage(currentPage);
+			
+			// NoticeService 객체생성
+			noticeService = new NoticeService();
+			// List<NoticeDTO> noticeList = getnoticeList(); 메서드 호출
+			List<NoticeDTO> noticeList = noticeService.getNoticeList(pageDTO);
+			// 게시판 전체 글 개수 구하기 
+			int count = noticeService.getNoticeCount();
+			// 한화면에 보여줄 페이지개수 설정
+			int pageBlock = 10;
+			// 시작하는 페이지번호
+			int startPage=(currentPage-1)/pageBlock*pageBlock+1;
+			// 끝나는 페이지번호
+			int endPage=startPage+pageBlock-1;
+			// 전체 페이지 구하기
+			int pageCount = count / pageSize + (count % pageSize==0?0:1);
+			if(endPage > pageCount) {
+				endPage = pageCount;
+			}
+			//pageDTO 저장
+			pageDTO.setCount(count);
+			pageDTO.setPageBlock(pageBlock);
+			pageDTO.setStartPage(startPage);
+			pageDTO.setEndPage(endPage);
+			pageDTO.setPageCount(pageCount);
+			
+			// request에 "noticeList",noticeList 저장
+			request.setAttribute("noticeList", noticeList);
+			request.setAttribute("pageDTO", pageDTO);	
+			
+			System.out.println("pageDTO");
+			
+			dispatcher = request.getRequestDispatcher("/admin/notice_copy.jsp");
+			dispatcher.forward(request, response);	
+		}//noticelist.no
+	
 //=============================================== 공지글 작성 ================================================
 		if(sPath.equals("/writePro.no")) {
 			System.out.println("뽑은 가상주소 비교 : /writePro.no");
@@ -175,9 +174,9 @@ public class NoticeController extends HttpServlet{
 			NoticeDTO noticeDTO = noticeService.getNotice(request);
 			
 			// 엔터치면 줄바뀌게 -> <br>
-//			String content = noticeDTO.getA_content();
-//			content = content.replace("\r\n", "<br>"); //"\r\n"엔터 -> "<br>"줄바꿈
-//			noticeDTO.setA_content(content);
+			String a_content = noticeDTO.getA_content();
+			a_content = a_content.replace("\r\n", "<br>"); //"\r\n"엔터 -> "<br>"줄바꿈
+			noticeDTO.setA_content(a_content);
 			
 			// request에 "noticeDTO",noticeDTO 담아서
 			request.setAttribute("noticeDTO", noticeDTO);
@@ -221,22 +220,22 @@ public class NoticeController extends HttpServlet{
 			response.sendRedirect("noticelist.no");
 		}//delete.no
 		
-//=============================================== 파일 업로드 ================================================
-		if(sPath.equals("/fwrite.no")) {
-			// 주소변경없이 이동 admin/fwrite.jsp
-			dispatcher = request.getRequestDispatcher("admin/fwrite.jsp");
-			dispatcher.forward(request, response);
-		}//fwrite.no
-
-		if(sPath.equals("/fwritePro.no")) {
-			System.out.println("뽑은 가상주소 비교 : /fwritePro.no");
-			// NoticeService 객체생성
-			noticeService = new NoticeService();
-			// 리턴할형없음 finsertNotice(request) 메서드 호출
-			//					noticeService.finsertNotice(request);
-			// list.no 주소 변경 되면서 이동
-			response.sendRedirect("noticelist.no");
-		}//fwritePro.no
+////=============================================== 파일 업로드 ================================================
+//		if(sPath.equals("/fwrite.no")) {
+//			// 주소변경없이 이동 admin/fwrite.jsp
+//			dispatcher = request.getRequestDispatcher("admin/fwrite.jsp");
+//			dispatcher.forward(request, response);
+//		}//fwrite.no
+//
+//		if(sPath.equals("/fwritePro.no")) {
+//			System.out.println("뽑은 가상주소 비교 : /fwritePro.no");
+//			// NoticeService 객체생성
+//			noticeService = new NoticeService();
+//			// 리턴할형없음 finsertNotice(request) 메서드 호출
+//			//					noticeService.finsertNotice(request);
+//			// list.no 주소 변경 되면서 이동
+//			response.sendRedirect("noticelist.no");
+//		}//fwritePro.no
 		
 //=============================================== 파일 수정 ================================================
 //		if(sPath.equals("/fupdate.no")) {
@@ -262,6 +261,7 @@ public class NoticeController extends HttpServlet{
 //			response.sendRedirect("noticelist.no");
 //		}//fupdatePro.no
 		
+//========================================================================================================		
 //================================================= 이벤트 리스트 =============================================
 		if(sPath.equals("/eventlist.no")) {
 			System.out.println("뽑은 가상주소 비교 : /eventlist.no");
@@ -276,18 +276,18 @@ public class NoticeController extends HttpServlet{
 			// 페이지 번호를 => 정수형 변경
 			int currentPage = Integer.parseInt(pageNum);
 			
-			NoticePageDTO pageDTO = new NoticePageDTO();
-			pageDTO.setPageSize(pageSize);
-			pageDTO.setPageNum(pageNum);
-			pageDTO.setCurrentPage(currentPage);
+			NoticePageDTO pageDTO2 = new NoticePageDTO();
+			pageDTO2.setPageSize(pageSize);
+			pageDTO2.setPageNum(pageNum);
+			pageDTO2.setCurrentPage(currentPage);
 			
 			// NoticeService 객체생성
 			noticeService = new NoticeService();
 			// List<NoticeDTO> eventList = geteventList(); 메서드 호출
-			List<NoticeDTO> eventList = noticeService.getEventList(pageDTO);
+			List<NoticeDTO> eventList = noticeService.getEventList(pageDTO2);
 			
 			// 게시판 전체 글 개수 구하기 
-			int count = noticeService.getNoticeCount();
+			int count = noticeService.getEventCount();
 			// 한화면에 보여줄 페이지개수 설정
 			int pageBlock = 10;
 			// 시작하는 페이지번호
@@ -299,23 +299,84 @@ public class NoticeController extends HttpServlet{
 			if(endPage > pageCount) {
 				endPage = pageCount;
 			}
-			//pageDTO 저장
-			pageDTO.setCount(count);
-			pageDTO.setPageBlock(pageBlock);
-			pageDTO.setStartPage(startPage);
-			pageDTO.setEndPage(endPage);
-			pageDTO.setPageCount(pageCount);
+			//pageDTO2 저장
+			pageDTO2.setCount(count);
+			pageDTO2.setPageBlock(pageBlock);
+			pageDTO2.setStartPage(startPage);
+			pageDTO2.setEndPage(endPage);
+			pageDTO2.setPageCount(pageCount);
 			
 			// request에 "noticeList",noticeList 저장
 			request.setAttribute("eventList", eventList);
-			request.setAttribute("pageDTO", pageDTO);	
+			request.setAttribute("pageDTO2", pageDTO2);	
 			
-			dispatcher = request.getRequestDispatcher("/admin/notice_copy.jsp");
+			dispatcher = request.getRequestDispatcher("notice.no?tab=tab-2");
 			dispatcher.forward(request, response);	
 		
 		}//eventnlist.no
+//=============================================== 이벤트 작성 ================================================
+		if(sPath.equals("/eventWritePro.no")) {
+			System.out.println("뽑은 가상주소 비교 : /eventWritePro.no");
+			// NoticeService 객체생성
+			noticeService = new NoticeService();
+			// 리턴할형없음 insertEvent(request) 메서드 호출
+			noticeService.insertEvent(request);
+			// list.no 주소 변경 되면서 이동
+			response.sendRedirect("Eventlist.no");//=> 글 작성 후 일반공지 리스트로 이동
+		}//eventWritePro.no
+//=============================================== 이벤트 게시물 상세페이지 ================================================
+		if(sPath.equals("/eventContent.no")) {
+			System.out.println("뽑은 가상주소 비교 : /eventContent.no");
+			// NoticeService 객체생성
+			noticeService = new NoticeService();
+			// NoticeDTO noticeDTO = getNotice(request) 메서드 호출
+			NoticeDTO eventDTO = noticeService.getNotice(request);
+			
+			// 엔터치면 줄바뀌게 -> <br>
+			String a_content = eventDTO.getA_content();
+			a_content = a_content.replace("\r\n", "<br>"); //"\r\n"엔터 -> "<br>"줄바꿈
+			eventDTO.setA_content(a_content);
+			
+			// request에 "eventDTO",eventDTO 담아서
+			request.setAttribute("eventDTO", eventDTO);
+			// center/content.jsp 주소변경없이 이동
+			dispatcher = request.getRequestDispatcher("admin/eventContent.jsp");
+			dispatcher.forward(request, response);
+		}//eventContent.no
 		
-		
+//=============================================== 게시물 수정 페이지 ================================================
+		if(sPath.equals("/eventUpdate.no")) {
+			System.out.println("뽑은 가상주소 비교 : /eventUpdate.no");
+			// NoticeService 객체생성
+			noticeService = new NoticeService();
+			// NoticeDTO noticeDTO = getNotice(request) 메서드 호출
+			NoticeDTO eventDTO = noticeService.getEvent(request);
+			// request에 "eventDTO",eventDTO 담아서
+			request.setAttribute("eventDTO", eventDTO);
+			// center/update.jsp 주소변경없이 이동
+			dispatcher = request.getRequestDispatcher("admin/eventUpdate.jsp");
+			dispatcher.forward(request, response);
+		}//eventUpdate.no
+
+		if(sPath.equals("/eventUpdatePro.no")) {
+			System.out.println("뽑은 가상주소 비교 : /eventUpdatePro.no");
+			// NoticeService 객체생성
+			noticeService = new NoticeService();
+			// noticeDTO(request) 메서드 호출
+			noticeService.updateEvent(request);
+			// 글목록 noticelist.no 주소 변경되면서 이동
+			response.sendRedirect("eventlist.no");
+		}//eventUpdatePro.no	
+//=============================================== 게시물 삭제 페이지 ================================================		
+		if(sPath.equals("/eventDelete.no")) {
+			System.out.println("뽑은 가상주소 비교 : /eventDelete.no");
+			// NoticeService 객체생성
+			noticeService = new NoticeService();
+			// deleteNotice(request) 메서드 호출
+			noticeService.deleteEvent(request);
+			// 글목록 noticelist.no 주소 변경 되면서 이동
+			response.sendRedirect("eventlist.no");
+		}//eventDelete.no	
 		
 		
 		
