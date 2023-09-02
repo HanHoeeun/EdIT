@@ -8,6 +8,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.ProductDTO;
 import com.itwillbs.domain.ProductPageDTO;
 import com.itwillbs.domain.WishListDTO;
@@ -1452,6 +1453,36 @@ public class ProductDAO {
 			dbClose();
 		}
 		return wishlist;
+	}
+
+	public MemberDTO getmember(int n_num) {
+		MemberDTO memberDTO = null;
+		 
+		try {
+			con = getConnection();
+			
+			//3 sql select * from board where num = ?
+			String sql="select * from members where n_num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, n_num);
+			
+			//4 실행 => 결과 저장
+			rs = pstmt.executeQuery();
+			//5 결과 행접근 => boardDTO 객체생성 
+			//        => set메서드 호출 => 열접근 데이터 저장
+			
+			if(rs.next()) {
+				
+				memberDTO = new MemberDTO();
+				memberDTO.setM_num(rs.getInt("m_num"));
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbClose();
+		}
+		return memberDTO;
 	}
 
 	

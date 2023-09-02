@@ -712,6 +712,29 @@ public class ProductService {
 	
 }// get
 
+
+
+	public MemberDTO getmember(HttpServletRequest request) {
+		MemberDTO memberDTO = null;
+		try {
+			// request 한글처리
+			request.setCharacterEncoding("utf-8");
+			
+			// request 파라미터 가져오기 => int num 저장
+			int n_num = Integer.parseInt(request.getParameter("n_num"));
+			
+			// BoardDAO 객체생성
+			productDAO = new ProductDAO();
+			
+			// boardDTO = getBoard(num) 메서드 호출
+			memberDTO = productDAO.getmember(n_num);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return memberDTO;
+	}
+
 	
 
 

@@ -37,14 +37,14 @@ public class AddToWishlistServlet extends HttpServlet {
             conn = ds.getConnection();
 
             // SQL 쿼리를 작성하여 찜 정보를 추가
-            String sql = "INSERT INTO wishlist (p_num, m_num) VALUES (?, ?)";
+            String sql = "INSERT INTO wishlist (w_p_num, w_m_num) VALUES (?, ?)";
             pstmt = conn.prepareStatement(sql);
 
             // p_num과 m_num을 정수로 파싱하여 설정
-            int p_num = Integer.parseInt(p_numStr);
-            int m_num = Integer.parseInt(m_numStr);
-            pstmt.setInt(1, p_num);
-            pstmt.setInt(2, m_num);
+            var w_p_num = Integer.parseInt(p_numStr);
+            var w_m_num = Integer.parseInt(m_numStr);
+            pstmt.setInt(1, w_p_num);
+            pstmt.setInt(2, w_m_num);
 
             // SQL 쿼리 실행
             int rowsInserted = pstmt.executeUpdate();

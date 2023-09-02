@@ -136,28 +136,26 @@ String orderBy = (String) request.getAttribute("orderBy");
             = (ProductPageDTO)request.getAttribute("ppageDTO");
             String id = (String)session.getAttribute("id");
             MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
+           	ProductDTO productDTO = (ProductDTO)request.getAttribute("productDTO");
            	List<WishListDTO> wishList 
           	= (List<WishListDTO>)request.getAttribute("wishList");
             %>
             
               <div class="agile_top_brands_grids">
     <% for (int i = 0; i < productList.size(); i++) {
-       ProductDTO productDTO = productList.get(i);%>
+       ProductDTO productDTO2 = productList.get(i);%>
     <div class="col-md-4 top_brand_left">
         <div class="hover14 column">
             <div class="agile_top_brand_left_grid">
-                <!-- <div class="agile_top_brand_left_grid_pos">
-                    You can customize this part
-                </div> -->
                 <div class="agile_top_brand_left_grid1">
                     <figure>
                          <div class="snipcart-item block">
                             <div class="snipcart-thumb">
                                 <a href="single.po"><img title=" " alt=" " src="upload/<%=productDTO.getP_file() %>" download width="150px" height="150px" ></a>
-                                <p><%=productDTO.getP_title() %></p>
-                                <h4><%= productDTO.getP_price() %>원</h4>
-                                <h4><%= productDTO.getP_status() %></h4>
-                                <h4><%= productDTO.getP_type() %></h4>
+                                <p><%=productDTO2.getP_title() %></p>
+                                <h4><%= productDTO2.getP_price() %>원</h4>
+                                <h4><%= productDTO2.getP_status() %></h4>
+                                <h4><%= productDTO2.getP_type() %></h4>
                             </div>
                             <div class="snipcart-details top_brand_home_details">
                                 <form action="#" method="post">
@@ -172,38 +170,7 @@ String orderBy = (String) request.getAttribute("orderBy");
                                         <input type="hidden" name="cancel_return" value=" ">
                                         <!-- <input type="button" value="찜 추가하기" class="button"> -->
 										<input type="button" value="찜 추가하기" class="button" id="addToWishlistButton">
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-$(document).ready(function() {
-    $('#addToWishlistButton').click(function() {
-        // p_num과 m_num을 가져오는 코드 (원하는 방식으로 설정)
-        var p_num = parseInt('<%= request.getAttribute("p_num") %>');
-        var m_num = parseInt('<%= request.getAttribute("m_num") %>');
-
-        // p_num과 m_num 값이 정상적으로 가져와지는지 console.log로 확인
-        console.log("p_num:", p_num);
-        console.log("m_num:", m_num);
-
-        $.ajax({
-            type: 'POST',
-            url: '/AddToWishlistServlet', // 변경된 URL
-            data: {p_num: p_num, m_num: m_num},
-            success: function(response) {
-                alert(response);
-            },
-            error: function() {
-                alert('오류 발생');
-            }
-        });
-
-    });
-});
-
-
-</script>
-
-
-
+										
                                     </fieldset>
                                 </form>
                             </div>
@@ -216,6 +183,43 @@ $(document).ready(function() {
     <% } %>
     <div class="clearfix"> </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../js/jquery-1.11.1.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#addToWishlistButton').click(function() {
+        // 버튼의 data-p-num와 data-m-num 속성 값을 가져오기
+        var w_p_num =  <%= productDTO.getP_num() %>;
+        var w_m_num =  <%= memberDTO.getM_num() %>; 
+
+        // productDTO와 memberDTO 객체가 null인지 확인
+        if (w_p_num == null || w_m_num == null) {
+            alert('productDTO 또는 memberDTO가 null입니다.');
+            return; // 함수 실행 중지
+        }
+
+        // p_num과 m_num 값이 정상적으로 가져와지는지 console.log로 확인
+        console.log("p_num:", w_p_num);
+        console.log("m_num:", w_m_num);
+
+        $.ajax({
+            type: 'POST',
+            url: '/AddToWishlistServlet',
+            data: {w_p_num: w_p_num, w_m_num: w_m_num},
+            success: function(response) {
+                alert(response);
+            },
+            error: function() {
+                alert('오류 발생');
+            }
+        });
+    });
+});
+</script>
+
+
+
 
 <!-- 페이징 코드 5개씩 나눠서 페이징 -->
 <nav class="numbering">

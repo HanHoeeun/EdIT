@@ -61,9 +61,23 @@ public class ProductController extends HttpServlet{
 			ppageDTO.setP_pageSize(p_pageSize);
 			ppageDTO.setP_pageNum(p_pageNum);
 			ppageDTO.setP_currentPage(p_currentPage);
+			ProductDTO productDTO = new ProductDTO();
+			MemberDTO memberDTO = new MemberDTO();
 			
+			// 세션 객체생성
+			HttpSession session = request.getSession();
+						
+			// "p_id" 세션값 가져오기=> String id 변수 저장	
+			String id = (String)session.getAttribute("m_id");
+						
+			
+						
+			// ProductDTO productDTO = getMember(id) 메서드 호출
 			// ProductService 객체생성
 			productService = new ProductService();
+			MemberService memberService = new MemberService();
+			productDTO = productService.getproduct(request);
+			memberDTO = productService.getmember(request);
 // 			List<ProductDTO> productList = getProductList(); 메서드 호출
 			List<ProductDTO> productList=productService.getProductList(ppageDTO);
 			
@@ -126,10 +140,12 @@ public class ProductController extends HttpServlet{
 			System.out.println("현재페이지 =" + p_currentPage);
 			
 			// request에 "productList",productList 저장
+			
 			request.setAttribute("productList", productList);
 			request.setAttribute("ppageDTO", ppageDTO);
 			request.setAttribute("orderBy", orderBy);
-			
+			request.setAttribute("productDTO", productDTO);
+			request.setAttribute("memberDTO", memberDTO);
 			// 주소변경없이 이동 center/products.jsp
 			dispatcher 
 		    = request.getRequestDispatcher("product/products.jsp");
