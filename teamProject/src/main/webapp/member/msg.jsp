@@ -12,7 +12,7 @@
 String error =(String)request.getAttribute("error");
 %>
 	<script type="text/javascript">
-// 	이름과 이메일이 다르면 나오는 메세지
+// 	아이디 비밀번호 찾기에서 메세지 띄우기
 alert("<%=error%>");
 
 history.back();

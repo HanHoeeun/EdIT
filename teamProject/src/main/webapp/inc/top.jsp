@@ -77,7 +77,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					
 					<li><a href="faq.ad"><i class="fa fa-question-circle-o" aria-hidden="true"> 문의하기</i></a></li>
 
-					<li><a href="../product/wishlist.jsp"><i class="fa fa-heart" aria-hidden="true"> 찜리스트 </i></a></li>
+					<li><a href="wishlist.po"><i class="fa fa-heart" aria-hidden="true"> 찜리스트 </i></a></li>
 					<li><a href="logout.me"><i class="fa fa-heart" aria-hidden="true"> 로그아웃 </i></a></li>
 					
 					
@@ -180,7 +180,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<!-- // 태블릿 -->
 									
 									<!-- //Mega Menu -->
-									<li><a href="notice.no">공지사항</a></li>
+									<li><a href="noticelist.no">공지사항</a></li>
 									<li><a href="faq.ad">고객센터</a></li>
 								</ul>			
 							</div>

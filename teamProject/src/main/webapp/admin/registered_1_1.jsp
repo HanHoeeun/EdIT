@@ -39,7 +39,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 <%
 AdminDTO adminDTO = (AdminDTO)request.getAttribute("adminDTO");
-
+String id = (String)session.getAttribute("m_id");
+int m_level = (int)session.getAttribute("m_level");
 %>
 <!--============================== 바디 ============================================-->
 <div class="report">
@@ -64,7 +65,9 @@ AdminDTO adminDTO = (AdminDTO)request.getAttribute("adminDTO");
 			<p>답변내용</p>
 			<textarea name="textarea" readonly="readonly"><%=answer %></textarea><br>
 			<div class="reportbtn">
+			<%if(m_level != 2){ %>
 			<input type="submit" value="답변등록">
+			<%} %>
 			<button type="button" id="reportbtn_btn_1" onclick="window.close()">확인</button>
 			</div>
 			</form>

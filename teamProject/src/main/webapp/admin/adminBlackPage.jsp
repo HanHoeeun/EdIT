@@ -49,7 +49,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 <body>
 <%
-List<MemberDTO> memberList = (List<MemberDTO>)request.getAttribute("memberList");
+List<MemberDTO> blackList = (List<MemberDTO>)request.getAttribute("blackList");
 AdminPageDTO pageDTO = (AdminPageDTO)request.getAttribute("pageDTO");
 
 %>
@@ -75,57 +75,54 @@ AdminPageDTO pageDTO = (AdminPageDTO)request.getAttribute("pageDTO");
 <!-- 				상단 탭 리스트 -->
 				<ul class="tabs">
 					<li class="tab-link" onclick="location.href='adminPage.ad'" >신고내역</li>
-					<li class="tab-link  current" onclick="location.href='adminMemberPage.ad'">회원관리</li>
-					<li class="tab-link" onclick="location.href='adminBlackPage.ad'">블랙리스트</li>
+					<li class="tab-link" onclick="location.href='adminMemberPage.ad'">회원관리</li>
+					<li class="tab-link current" onclick="location.href='adminBlackPage.ad'">블랙리스트</li>
 					
 				</ul>
 			</div>
 			<div class="container_3_1">
 <!-- 				2번째 탭 -->
-				<div id="tab-2" class="tab-content current">
+				<div id="tab-3" class="tab-content current">
 					<table class="_1qna_board">
 						<tr>
-							<th class="_1qna_board_border">회원번호</th>
 							<th class="_1qna_board_border">아이디</th>
-							<th class="_1qna_board_border">닉네임</th>
 							<th class="_1qna_board_border">이름</th>
-							<th>신고횟수</th>
+							<th class="_1qna_board_border">이메일</th>
+							<th class="_1qna_board_border">전화번호</th>
 						</tr>
-						<%for(MemberDTO memberDTO : memberList){ %>
+						<%for(MemberDTO memberDTO : blackList){ %>
 						<tr onclick="window.open('user_content.ad?m_num=<%=memberDTO.getM_num() %>','회원정보 상세','width=800, height=700, scrollbars=yes')">
-							<td class="_1qna_board_border"><%=memberDTO.getM_num() %></td>
 							<td class="_1qna_board_border"><%=memberDTO.getM_id() %></td>
-							<td class="_1qna_board_border"><%=memberDTO.getM_nick() %></td>
 							<td class="_1qna_board_border"><%=memberDTO.getM_name() %></td>
-							<td><%=memberDTO.getM_count() %></td>
+							<td class="_1qna_board_border"><%=memberDTO.getM_email() %></td>
+							<td class="_1qna_board_border"><%=memberDTO.getM_phone() %></td>
 						</tr>
 						<%} %>
 					</table>
-					 <div class="_1qna_paging">
+					<div class="_1qna_paging">
         				 <ul>
 					<%	
-						if(pageDTO.getStartPage() > pageDTO.getPageBlock()){%>
-							<li onclick="location.href='adminMeberPage.ad?pageNum=<%=pageDTO.getStartPage()-pageDTO.getPageBlock()%>&search=<%=pageDTO.getSearch()%>'">Prev</li>
+						if(pageDTO.getStartPage() > pageDTO.getPageBlock()){%> 
+							<li onclick="location.href='adminBlackPage.ad?pageNum=<%=pageDTO.getStartPage()-pageDTO.getPageBlock()%>&search=<%=pageDTO.getSearch()%>'">Prev</li>
 							
 						<% } 
-						for(int i= pageDTO.getStartPage(); i<=pageDTO.getEndPage(); i++){%>
-							<li onclick="location.href='adminMeberPage.ad?pageNum=<%=i%>&search=<%=pageDTO.getSearch()%>'"><%=i %></li>
+						for(int i= pageDTO.getStartPage(); i<=pageDTO.getEndPage(); i++){%> 
+							<li onclick="location.href='adminBlackPage.ad?pageNum=<%=i%>&search=<%=pageDTO.getSearch()%>'"><%=i %></li>
 						<%}
-						if(pageDTO.getEndPage() < pageDTO.getPageCount()){%>
-							<li onclick="location.href='adminMeberPage.ad?pageNum=<%=pageDTO.getStartPage() + pageDTO.getPageBlock() %>&search=<%=pageDTO.getSearch()%>'">Next</li>
+						if(pageDTO.getEndPage() < pageDTO.getPageCount()){%> 
+							<li onclick="location.href='adminBlackPage.ad?pageNum=<%=pageDTO.getStartPage() + pageDTO.getPageBlock() %>&search=<%=pageDTO.getSearch()%>'">Next</li>
 						<%}%>
 				    </ul>
-   					 </div>	
-<!-- 					검색테이블  -->
-					<form action="adminMemberPage.ad" method="post" id="_1admin_search_form">
+   					 </div>
+					<!-- 					검색테이블  -->
+					<form action="adminBlackPage.ad" method="post" id="_1admin_search_form">
 						<table class="_1admin_search">
 						<tr>
 							<td>
-								<select name="search_type">
-									<option value="1">회원번호</option>
-									<option value="2">아이디</option>
-									<option value="3">닉네임</option>
-									<option value="4">신고횟수</option>
+								<select>
+									<option value="1">아이디</option>
+									<option value="2">이름</option>
+									<option value="3">이메일</option>
 								</select>
 							</td>
 							<td>
@@ -144,7 +141,7 @@ AdminPageDTO pageDTO = (AdminPageDTO)request.getAttribute("pageDTO");
 							}
 						}
 					</script>
-				   
+				    	
    				</div>
 			</div>
 		</div>
