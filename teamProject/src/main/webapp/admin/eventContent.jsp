@@ -11,7 +11,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
-<title>공지사항 상세게시물</title>
+<title>이벤트 상세게시물</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -68,23 +68,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<li><a href="index.html"><span
 						class="glyphicon glyphicon-home" aria-hidden="true"></span>홈</a></li>
 				<li class="active">공지사항</li>
-				<li class="active">일반공지</li>
+				<li class="active">이벤트</li>
 			</ol>
 		</div>
 	</div>
 <!--=========================== 본문 헤더 =========================================== -->
 	<div class="top-brands_1">
-		<h2>일반공지</h2>
+		<h2>이벤트</h2>
 		</div>
 	<!--=========================== 본문 =========================================== -->
     <div class="container_notice">
 			<%
 			/* String id = (String) session.getAttribute("id"); */
 			NoticeDTO noticeDTO = (NoticeDTO) request.getAttribute("noticeDTO");
-			SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
+			SimpleDateFormat format2 = new SimpleDateFormat("yyyy.MM.dd");
 			%>
 			<h1><%=noticeDTO.getA_title()%></h1>
-        <p class="author"><%=format.format(noticeDTO.getA_date())%></p>
+        <p class="author"><%=format2.format(noticeDTO.getA_date())%></p>
        
        
        
