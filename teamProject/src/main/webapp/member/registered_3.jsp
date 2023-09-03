@@ -74,13 +74,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="login-form-grids">
 				<h5>회원정보등록</h5>
 				
-				<form action="insertPro.me" method="post" id="_6join">
+				<form action="mypage.me" method="post" id="_6join">
 					<input type="text" placeholder="아이디 (영문/숫자, 6~20자)" required=" " id="m_id" name="m_id">
 					<input type="text" placeholder="비밀번호 (영문+숫자+특수문자, 8~20자)" required=" " id="m_pass1" name="m_pass1">
 					<input type="text" placeholder="비밀번호 확인" required=" "  id="m_pass2" name="m_pass2"> <br>
 					<input type="text" placeholder="이름 (최소 2자 이상 입력)" required=" " id="m_name" name="m_name"><br>
 					<input type="text" placeholder="닉네임 (최소 2자 이상 입력)" required=" " id="m_nick" name="m_nick"><br>
-					<input type="email" placeholder="이메일" required=" " id="_6mail" name="m_email"><br>
+					<input type="email" placeholder="이메일" required=" " id="m_mail" name="m_email"><br>
 					<input type="tel" placeholder="전화번호" required=" " id="_phone" name="m_phone"><br><br>
 
 					<label></label>

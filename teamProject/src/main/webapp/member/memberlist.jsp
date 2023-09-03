@@ -84,7 +84,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li><a href="product/checkout.jsp"><i class="fa fa-arrow-right"></i>찜♥</a></li>
 						<li><a href="qnalist.me"><i class="fa fa-arrow-right"></i>문의 내역</a></li>
 						<li><a href="delete.me"><i class="fa fa-arrow-right"></i>회원 탈퇴</a></li>
- 						<li><a href="memberlist.me"><i class="fa fa-arrow-right"></i>회원 관리(리스트)</a></li>  
+ 						<li><a href="list.me"><i class="fa fa-arrow-right"></i>회원 관리(리스트)</a></li>  
 					</ul>
 				</div>											
 			</div>		
@@ -97,7 +97,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="products-right-grids">
 						<div class="clearfix">
 							<div class="categories">
-								<h2>구매내역</h2>
+								<h2>회원리스트</h2>
 							</div>		
 				 		</div>
 					</div>
@@ -128,20 +128,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					
 <%
 		SimpleDateFormat fotmat = new SimpleDateFormat("yyyy.MM.dd");
-		for (int i=0; i<memberList.size(); i++) {
-			
+		for (int i=0; i<memberList.size(); i++) { 
+			MemberDTO memberDTO = memberList.get(i);
+%>
+		<tr>
+			<td class="_1qna_board_border"><%=memberDTO.getM_num() %></td>
+			<td class="_1qna_board_border"><%=memberDTO.getM_name() %></td>
+			<td class="_1qna_board_border"><%=memberDTO.getM_nick() %></td>
+			<td class="_1qna_board_border"><%=memberDTO.getM_email() %></td>
+			<td class="_1qna_board_border"><%=memberDTO.getM_phone() %></td>
+			<td class="_1qna_board_border"><%=memberDTO.getM_date() %></td>
+		</tr>
+<% 	
 		}
 %>						
 						
-						
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_border">2</td>
-							<td class="_1qna_board_border">3</td>
-							<td class="_1qna_board_border">4</td>
-							<td class="_1qna_board_border">5</td>
-							<td class="_1qna_board_border">6</td>
-						</tr>
 		</table>
 		</div>
 						</div>

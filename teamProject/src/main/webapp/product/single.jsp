@@ -89,6 +89,35 @@ MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 <!-- 				         width="200" height="200"> -->
 				
 <!-- 					<img id="example" src="../images/si1.jpg" alt=" " class="img-responsive"> -->
+<a id="downloadLink" href="upload/<%=productDTO.getP_file() %>" download>
+        <%=productDTO.getP_file() %></a>
+    <div id="outputContainer"></div>
+
+    <script>
+        document.getElementById("downloadLink").addEventListener("click", function (event) {
+            event.preventDefault();
+            var link = event.target;
+            var fileName = link.textContent;
+            
+            // Create a hidden anchor element to initiate the download
+            var downloadAnchor = document.createElement("a");
+            downloadAnchor.style.display = "none";
+            downloadAnchor.href = link.href;
+            downloadAnchor.download = fileName;
+            document.body.appendChild(downloadAnchor);
+            downloadAnchor.click();
+            document.body.removeChild(downloadAnchor);
+
+            // Display the downloaded content
+            var outputContainer = document.getElementById("outputContainer");
+            var img = document.createElement("img");
+            img.src = "upload/" + fileName;
+            img.width = 200;
+            img.height = 200;
+            outputContainer.innerHTML = "";
+            outputContainer.appendChild(img);
+        });
+    </script>
 				</div>
 				<!-- // 사진 -->
 				
@@ -133,7 +162,7 @@ MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 					
 					<!-- 판매ID,상품상태,등록날짜 -->
 					<div class="w3agile_description">
-						<p>판매ID : <%=productDTO.getM_nick() %></p>
+						<p>판매닉네임 : <%=productDTO.getM_nick() %></p>
 						<p>상품상태 : <%=productDTO.getP_status() %></p>
 						<p>등록날짜 : <%=productDTO.getP_date() %></p>
 					</div>
@@ -166,20 +195,11 @@ MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 						if(id.equals(memberDTO.getM_id())){
 							%>
 					<div class="checkout-right-basket">		
-					<input type="button" value="상품수정" class="glyphicon glyphicon-menu-left"
-					onclick="location.href='productUpdate.po?p_num=<%=productDTO.getP_num()%>'">
-					
-					<input type="button" value="상품삭제" class="glyphicon glyphicon-menu-left"
-					onclick="location.href='delete.po?p_num=<%=productDTO.getP_num()%>'">
-					
-					<a href=products.po"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>상품목록</a>
+					<a href="productUpdate.po?p_num=<%=productDTO.getP_num()%>"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>상품수정</a>
+					<a href="delete.po?p_num=<%=productDTO.getP_num()%>"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>상품삭제</a>
 					</div>
 					<!-- // 로그인했을떄 아이디 일치시 수정삭제버튼 나오게하긔 -->
-							<%
-						}%>
-					 		
-							
-				<%
+							<%}
 					}
 					%>
 					
@@ -191,7 +211,6 @@ MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 					<a href=products.po"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>상품목록</a>
 					</div>
 					<!-- // 채팅, 신고하기, 상품목록 버튼 -->
-					
 					
 					
 					

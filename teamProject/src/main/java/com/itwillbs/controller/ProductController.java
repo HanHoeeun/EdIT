@@ -93,7 +93,7 @@ public class ProductController extends HttpServlet{
 			// 게시판 전체 글 개수 구하기 
 			int p_count = productService.getProductCount();
 			// 한화면에 보여줄 페이지개수 설정
-			int p_pageBlock = 3;
+			int p_pageBlock = 5;
 			// 시작하는 페이지번호
 			// currentPage  pageBlock  => startPage
 			//   1~10(0~9)      10     =>  (0~9)/10*10+1=>0*10+1=> 0+1=> 1 
@@ -304,7 +304,7 @@ public class ProductController extends HttpServlet{
 		    = request.getRequestDispatcher("product/phone.jsp");
 		dispatcher.forward(request, response);
 		} // phone.po
-		 
+		
 		// -------------------------------------------------------------------------------
 				if (sPath.equals("/tablet.po")) {
 					System.out.println("뽑은 가상주소 비교 : /tablet.po");
