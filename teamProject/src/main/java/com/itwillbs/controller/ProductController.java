@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.ProductDTO;
 import com.itwillbs.domain.ProductPageDTO;
+import com.itwillbs.domain.WishListDTO;
 import com.itwillbs.service.MemberService;
 import com.itwillbs.service.ProductService;
 
@@ -46,7 +47,7 @@ public class ProductController extends HttpServlet{
 		if (sPath.equals("/products.po")) {
 			System.out.println("뽑은 가상주소 비교 : /products.po");
 			// 한페이지에서 보여지는 글개수 설정
-			int p_pageSize=9;
+			int p_pageSize=6;
 			// 페이지번호 
 			String p_pageNum=request.getParameter("p_pageNum");
 			// 페이지번호가 없으면 1페이지 설정
@@ -60,9 +61,23 @@ public class ProductController extends HttpServlet{
 			ppageDTO.setP_pageSize(p_pageSize);
 			ppageDTO.setP_pageNum(p_pageNum);
 			ppageDTO.setP_currentPage(p_currentPage);
+			ProductDTO productDTO = new ProductDTO();
+			MemberDTO memberDTO = new MemberDTO();
 			
+			// 세션 객체생성
+			HttpSession session = request.getSession();
+						
+			// "p_id" 세션값 가져오기=> String id 변수 저장	
+			String id = (String)session.getAttribute("m_id");
+						
+			
+						
+			// ProductDTO productDTO = getMember(id) 메서드 호출
 			// ProductService 객체생성
 			productService = new ProductService();
+			MemberService memberService = new MemberService();
+			productDTO = productService.getproduct(request);
+			memberDTO = productService.getmember(request);
 // 			List<ProductDTO> productList = getProductList(); 메서드 호출
 			List<ProductDTO> productList=productService.getProductList(ppageDTO);
 			
@@ -125,10 +140,12 @@ public class ProductController extends HttpServlet{
 			System.out.println("현재페이지 =" + p_currentPage);
 			
 			// request에 "productList",productList 저장
+			
 			request.setAttribute("productList", productList);
 			request.setAttribute("ppageDTO", ppageDTO);
 			request.setAttribute("orderBy", orderBy);
-			
+			request.setAttribute("productDTO", productDTO);
+			request.setAttribute("memberDTO", memberDTO);
 			// 주소변경없이 이동 center/products.jsp
 			dispatcher 
 		    = request.getRequestDispatcher("product/products.jsp");
@@ -138,7 +155,7 @@ public class ProductController extends HttpServlet{
 		if (sPath.equals("/laptop.po")) {
 			System.out.println("뽑은 가상주소 비교 : /laptop.po");
 			// 한페이지에서 보여지는 글개수 설정
-			int p_pageSize=9;
+			int p_pageSize=6;
 			// 페이지번호 
 			String p_pageNum=request.getParameter("p_pageNum");
 			// 페이지번호가 없으면 1페이지 설정
@@ -182,7 +199,7 @@ public class ProductController extends HttpServlet{
 			// 게시판 전체 글 개수 구하기 
 			int p_count = productService.getProductCount();
 			// 한화면에 보여줄 페이지개수 설정
-			int p_pageBlock = 5;
+			int p_pageBlock = 3;
 			// 시작하는 페이지번호
 			// currentPage  pageBlock  => startPage
 			//   1~10(0~9)      10     =>  (0~9)/10*10+1=>0*10+1=> 0+1=> 1 
@@ -223,7 +240,7 @@ public class ProductController extends HttpServlet{
 		if (sPath.equals("/phone.po")) {
 			System.out.println("뽑은 가상주소 비교 : /phone.po");
 			// 한페이지에서 보여지는 글개수 설정
-			int p_pageSize=9;
+			int p_pageSize=6;
 			// 페이지번호 
 			String p_pageNum=request.getParameter("p_pageNum");
 			// 페이지번호가 없으면 1페이지 설정
@@ -267,7 +284,7 @@ public class ProductController extends HttpServlet{
 			// 게시판 전체 글 개수 구하기 
 			int p_count = productService.getProductCount();
 			// 한화면에 보여줄 페이지개수 설정
-			int p_pageBlock = 5;
+			int p_pageBlock = 3;
 			// 시작하는 페이지번호
 			// currentPage  pageBlock  => startPage
 			//   1~10(0~9)      10     =>  (0~9)/10*10+1=>0*10+1=> 0+1=> 1 
@@ -309,7 +326,7 @@ public class ProductController extends HttpServlet{
 				if (sPath.equals("/tablet.po")) {
 					System.out.println("뽑은 가상주소 비교 : /tablet.po");
 					// 한페이지에서 보여지는 글개수 설정
-					int p_pageSize=9;
+					int p_pageSize=6;
 					// 페이지번호 
 					String p_pageNum=request.getParameter("p_pageNum");
 					// 페이지번호가 없으면 1페이지 설정
@@ -353,7 +370,7 @@ public class ProductController extends HttpServlet{
 					// 게시판 전체 글 개수 구하기 
 					int p_count = productService.getProductCount();
 					// 한화면에 보여줄 페이지개수 설정
-					int p_pageBlock = 5;
+					int p_pageBlock = 3;
 					// 시작하는 페이지번호
 					// currentPage  pageBlock  => startPage
 					//   1~10(0~9)      10     =>  (0~9)/10*10+1=>0*10+1=> 0+1=> 1 
@@ -395,6 +412,7 @@ public class ProductController extends HttpServlet{
 		// -------------------------------------------------------------------------------
 		
 		if(sPath.equals("/productReg.po")) {
+			System.out.println("뽑은 가상주소 비교 : /productReg.po");
 			HttpSession session = request.getSession();
 			String id = (String)session.getAttribute("m_id");
 			
@@ -410,7 +428,7 @@ public class ProductController extends HttpServlet{
 		} // if
 		
 		if(sPath.equals("/productRegPro.po")) {
-			
+			System.out.println("뽑은 가상주소 비교 : /tablet.po");
 			
 			// ProductService 객체생성
 			productService = new ProductService();
@@ -426,6 +444,7 @@ public class ProductController extends HttpServlet{
 		// -------------------------------------------------------------------------------
 		
 		if(sPath.equals("/productUpdate.po")) {
+			System.out.println("뽑은 가상주소 비교 : /productUpdate.po");
 			//수정하기 전에 디비 나의 정보 조회(세션값 id) => jsp 화면 출력
 			// 세션 객체생성
 			HttpSession session = request.getSession();
@@ -450,6 +469,7 @@ public class ProductController extends HttpServlet{
 		}//
 		
 		if(sPath.equals("/productUpdatePro.po")) {
+			System.out.println("뽑은 가상주소 비교 : /productUpdatePro.po");
 			// request안에 폼에서 입력한 수정할 값이 저장
 			// ProductService 객체생성
 			productService = new ProductService();
@@ -466,6 +486,7 @@ public class ProductController extends HttpServlet{
 		// -------------------------------------------------------------------------------------------
 		
 		if(sPath.equals("/delete.po")) {
+			System.out.println("뽑은 가상주소 비교 : /delete.po");
 			// BoardService 객체생성
 			productService = new ProductService();
 			
@@ -479,7 +500,7 @@ public class ProductController extends HttpServlet{
 		
 		
 		if(sPath.equals("/single.po")) {
-			
+			System.out.println("뽑은 가상주소 비교 : /single.po");
 			HttpSession session = request.getSession();
 			String id = (String)session.getAttribute("m_id");
 			
@@ -506,7 +527,66 @@ public class ProductController extends HttpServlet{
 		
 		}//
 		
+		if (sPath.equals("/wishlist.po")) {
+			System.out.println("뽑은 가상주소 비교 : /wishlist.po");
+			int p_pageSize=10;
+			String p_pageNum=request.getParameter("p_pageNum");
+			if(p_pageNum == null) {
+				p_pageNum = "1";
+			}
+			int p_currentPage = Integer.parseInt(p_pageNum);
+			ProductPageDTO ppageDTO = new ProductPageDTO();
+			ppageDTO.setP_pageSize(p_pageSize);
+			ppageDTO.setP_pageNum(p_pageNum);
+			ppageDTO.setP_currentPage(p_currentPage);
+			productService = new ProductService();
+			List<WishListDTO> wishList=productService.getWishList(ppageDTO);
+			String orderBy = request.getParameter("ord");
+		    System.out.println("orderBy"+ orderBy);
+		    if(orderBy != null) {
+		    	if ("wishSell".equals(orderBy)) {
+			    	wishList = productService.getWishSellProducts(ppageDTO);
+			    } else if ("wishSold".equals(orderBy)) {
+			    	wishList = productService.getWishSoldProducts(ppageDTO);
+			    	
+			    } else {
+			        // 디폴트로 판매중으로 정렬
+			    	wishList = productService.getWishSellProducts(ppageDTO);
+			    }
+		    }	
+		    int p_count = productService.getProductCount();
+		    int p_pageBlock = 3;
+		    int p_startPage=(p_currentPage-1)/p_pageBlock*p_pageBlock+1;
+		    int p_endPage=p_startPage+p_pageBlock-1;
+		    int p_pageCount = p_count / p_pageSize + (p_count % p_pageSize==0?0:1);
+			if(p_endPage > p_pageCount) {
+				p_endPage = p_pageCount;
+			}
+			ppageDTO.setP_count(p_count);
+			ppageDTO.setP_pageBlock(p_pageBlock);
+			ppageDTO.setP_startPage(p_startPage);
+			ppageDTO.setP_endPage(p_endPage);
+			ppageDTO.setP_pageCount(p_pageCount);
+			System.out.println("스타트페이지 =" + p_startPage +", 페이지 블럭 = "+ p_pageBlock);
+			System.out.println("현재페이지 =" + p_currentPage);
+			request.setAttribute("wishList", wishList);
+			request.setAttribute("ppageDTO", ppageDTO);
+			request.setAttribute("orderBy", orderBy);
+		
+			dispatcher 
+		    = request.getRequestDispatcher("product/wishlist.jsp");
+		dispatcher.forward(request, response);
+		}//wishlist.po
 		
 		
-	}//doProcess()
-}
+
+		
+		
+		
+		
+		
+		}//doProcess()
+	
+	
+	}//
+

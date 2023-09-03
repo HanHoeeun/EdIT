@@ -50,7 +50,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 <body>
 <% 
-String id = (String)session.getAttribute("id");
+String id = (String)session.getAttribute("m_id");
 List<AdminDTO> adminList = (List<AdminDTO>)request.getAttribute("adminList");
 AdminPageDTO pageDTO = (AdminPageDTO)request.getAttribute("pageDTO");
 SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
@@ -78,8 +78,8 @@ SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
 <!-- 				상단 탭 리스트 -->
 				<ul class="tabs">
 					<li class="tab-link current" data-tab="tab-1">자주묻는 질문</li>
+					<%if(id != null){ %>
 					<li class="tab-link" data-tab="tab-2">문의 하기</li>
-					<%if(1==1){ %>
 					<li class="tab-link" data-tab="tab-3">내 문의 내역</li>
 					<%} %>
 				</ul>
@@ -163,6 +163,7 @@ SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
 			</script>
 			<!-- script for tabs -->
 				</div>
+				<%if(id != null){ %>
 				<div id="tab-2" class="tab-content">
 <!-- 				2탭 문의글 작성 -->
 					<form action="adminPro.ad" method="post" enctype="multipart/form-data">
@@ -176,13 +177,22 @@ SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
 									<option value="3">기타</option>
 								</select>
 							</td>
-							<td class="_1q_query_tab_2"><input type="text" name="name" value="<%=id %>" style="border:none;" readonly="readonly"></td>
+							<td class="_1q_query_tab_2"><input type="text" name="m_id" value="<%=id %>" style="border:none;" readonly="readonly"></td>
 							<td>
-								<div class="_1q_query_tab_3"><label for="imgfile"><img src="images/picture.png" width="25px" height="25px">파일 업로드</label></div>
+								<div class="_1q_query_tab_3"><label for="imgfile" id="fileLabel"><img src="images/picture.png" width="25px" height="25px">파일 업로드</label></div>
 								<input type="file" name="imgfile" id="imgfile" accept="image/*">
 							</td>
 							</tr>
 						</table>
+						<script>
+						    const fileInput = document.getElementById('imgfile');
+						    const fileLabel = document.getElementById('fileLabel');
+						
+						    fileInput.addEventListener('change', function() {
+						        const selectedFileName = fileInput.files[0].name;
+						        fileLabel.textContent = selectedFileName;
+						    });
+						</script>
 						<div><br></div>
 						<table class="_1q_query_tab">
 							<tr>
@@ -201,22 +211,26 @@ SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
 						</div>
 				</form>
 				</div>
-				<%if(1 == 1){ %>
+				
 				<div id="tab-3" class="tab-content">
 <!-- 				3탭 게시판 테이블  -->
 					<table class="_1qna_board">
 						<tr>
 							<th class="_1qna_board_border">번호</th>
-							<th class="_1qna_board_border">제목</th>
+							<th class="_1qna_board_subject">제목</th>
 							<th class="_1qna_board_border">작성자</th>
 							<th class="_1qna_board_border">작성시간</th>
+							<th class="_1qna_board_border">답변여부</th>
 						</tr>
-						<%for(AdminDTO adminDTO : adminList){ %>
+						<%for(AdminDTO adminDTO : adminList){ 
+							String a_check = adminDTO.getA_check() == 0 ? "x":"o";
+						%>
 						<tr onclick="window.open('registered.ad?a_num=<%=adminDTO.getA_num() %>','문의상세페이지','width=800, height=700, scrollbars=yes')">
 							<td class="_1qna_board_border"><%=adminDTO.getA_num() %></td>
 							<td class="_1qna_board_subject"><%=adminDTO.getA_title() %></td>
 							<td class="_1qna_board_border"><%=adminDTO.getA_m_nick() %></td>
-							<td><%=format.format(adminDTO.getA_date()) %></td>
+							<td class="_1qna_board_border"><%=format.format(adminDTO.getA_date()) %></td>
+							<td>x</td>
 						</tr>
 						<%} %>
 					</table>

@@ -1,3 +1,5 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="com.itwillbs.domain.NoticeDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!--
@@ -9,7 +11,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
-<title>공지사항 수정</title>
+<title>공지사항 상세게시물</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -21,15 +23,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		function hideURLbar(){ window.scrollTo(0,1); } 
 </script>
 <!-- //for-mobile-apps -->
-<link href="../css/bootstrap.css" rel="stylesheet" type="text/css"
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css"
 	media="all" />
-<link href="../css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 <!-- font-awesome icons -->
-<link href="../css/font-awesome.css" rel="stylesheet">
-<link href="../css/faq_1_9.css" rel="stylesheet">
+<link href="css/font-awesome.css" rel="stylesheet">
+<link href="css/faq_1_9.css" rel="stylesheet">
+<link href="css/notice.css" rel="stylesheet">
 <!-- //font-awesome icons -->
 <!-- js -->
-<script src="../js/jquery-1.11.1.min.js"></script>
+<script src="js/jquery-1.11.1.min.js"></script>
 <!-- //js -->
 <link
 	href='//fonts.googleapis.com/css?family=Raleway:400,100,100italic,200,200italic,300,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic'
@@ -38,8 +41,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic'
 	rel='stylesheet' type='text/css'>
 <!-- start-smoth-scrolling -->
-<script type="text/javascript" src="../js/move-top.js"></script>
-<script type="text/javascript" src="../js/easing.js"></script>
+<script type="text/javascript" src="js/move-top.js"></script>
+<script type="text/javascript" src="js/easing.js"></script>
 <script type="text/javascript">
 	jQuery(document).ready(function($) {
 		$(".scroll").click(function(event) {
@@ -51,8 +54,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	});
 </script>
 <!-- start-smoth-scrolling -->
+    
 </head>
-
 <body>
 	<!--================================== 헤더 ==================================== -->
 	<jsp:include page="../inc/top.jsp"></jsp:include>
@@ -69,89 +72,62 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</ol>
 		</div>
 	</div>
-	<!--=========================== 본문 헤더 =========================================== -->
+<!--=========================== 본문 헤더 =========================================== -->
 	<div class="top-brands_1">
-		<h2>공지사항 수정</h2>
-		<div><br></div>
-
-		<!--================================== 3탭 글작성 ==================================== -->
-
-		<!-- <div id="tab-3" class="tab-content"> -->
-		<form action="index.html" method="post" enctype="multipart/form-data">
-
-			<table class="_1q_query_tab">
-				<tr>
-					<td class="_1q_query_tab_4" colspan="3"><input type="text"
-						name="subject" placeholder="거래 시 유의사항 안내드립니다"
-						style="border: none;" readonly="readonly"></td>
-				</tr>
-			</table>
-			<div>
-				<br>
-			</div>
-			<table class="_1q_query_tab">
-				<tr>
-
-					<td>
-						<div class="_1q_query_tab_3">
-							<label for="imgfile"><img src="images/picture.png"
-								width="25px" height="25px">파일 업로드</label>
-						</div> <input type="file" name="imgfile" id="imgfile" accept="image/*">
-					</td>
-				</tr>
-			</table>
-			<div>
-				<br>
-			</div>
-			<table class="_1q_query_tab">
-				<tr>
-					<td class="_1q_query_tab_5" colspan="3"><textarea
-							name="content" style="border: none;" cols="110" rows="20"
-							class="noresize"
-							placeholder="EDIT는 통신판매의 당사자가 아닌 통신판매중개자로서 상품, 상품정보, 거래에 대한 책임이 제한될 수 있으므로,
-각 상품 페이지에서 구체적인 내용을 확인하시기 바랍니다.
-본사에 등록된 모든 광고와 저작권 및 법적책임은 자료제공사(또는 회원)에게 있으므로 본사는광고에 대한 책임을 지지 않습니다."
-							readonly="readonly"></textarea></td>
-				</tr>
-			</table>
+		<h2>일반공지</h2>
+		</div>
+	<!--=========================== 본문 =========================================== -->
+    <div class="container_notice">
 			<%
-			if (1 == 1) {
+			/* String id = (String) session.getAttribute("id"); */
+			NoticeDTO noticeDTO = (NoticeDTO) request.getAttribute("noticeDTO");
+			SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
 			%>
-			<div class="_1q_query_btn">
-				<button type="submit">수정</button>
-				<button type="reset">삭제</button>
-			</div>
+			<h1><%=noticeDTO.getA_title()%></h1>
+        <p class="author"><%=format.format(noticeDTO.getA_date())%></p>
+       
+       
+       
+       <!--============================ 첨부파일==================================  -->
+        <hr>
+        <div class="attachment-section">
+        <% /* 첨부파일이 없으면 본문에 안보이게 */
+    String attachmentFile = noticeDTO.getA_file();
+    if (attachmentFile != null && !attachmentFile.isEmpty()) {
+%>
+    <p>
+        첨부 파일 
+        <a href="upload/<%= attachmentFile %>" download>
+            <%= attachmentFile %>
+        </a> <br>
+        <img src="upload/<%= attachmentFile %>" >
+    </p>
+<%
+    }
+%>
+   		 </div>
+        <p><%=noticeDTO.getA_content()%></p>
+
 			<%
-			}
-			%>
-		</form>
-
-		<!-- 	</div> -->
-		<!-- 			탭 jquery -->
-		<script type="text/javascript">
-			$(document).ready(function() {
-
-				$('ul.tabs li').click(function() {
-					var tab_id = $(this).attr('data-tab');
-
-					$('ul.tabs li').removeClass('current');
-					$('.tab-content').removeClass('current');
-
-					$(this).addClass('current');
-					$("#" + tab_id).addClass('current');
-				})
-
-			})
-		</script>
-	</div>
-	</div>
-	<div class="clearfix_1_1"></div>
+			// 로그인, 글쓴이 일치
+			if (1==1){ %>
+			<hr>
+			<input type="button" value="수정" class="modify-button" onclick="location.href='update.no?a_num=<%=noticeDTO.getA_num()%>'">
+			<input type="button" value="삭제" class="delete-button" onclick="location.href='delete.no?a_num=<%=noticeDTO.getA_num()%>'">
+			<%} %>
+			<input type="button" value="목록" class="list-button" onclick="location.href='noticelist.no?tab=tab-1'">
+			
+		</div>
+	<div class="clear"></div>
+	<div id="page_control"></div>
+    <script>
+    </script>
 	<!--================================== 푸터 ==================================== -->
 	<div class="clearfix">
 		<jsp:include page="../inc/bottom.jsp"></jsp:include>
 	</div>
 	<!--========================= Bootstrap Core JavaScript =========================-->
-	<script src="../js/bootstrap.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 	<!-- top-header and slider -->
 	<!-- here stars scrolling icon -->
 	<script type="text/javascript">
@@ -172,7 +148,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		});
 	</script>
 	<!-- //here ends scrolling icon -->
-	<script src="../js/minicart.min.js"></script>
+	<script src="js/minicart.min.js"></script>
 	<script>
 		// Mini Cart
 		paypal.minicart.render({
@@ -184,8 +160,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		}
 	</script>
 	<!-- main slider-banner -->
-	<script src="../js/skdslider.min.js"></script>
-	<link href="../css/skdslider.css" rel="stylesheet">
+	<script src="js/skdslider.min.js"></script>
+	<link href="css/skdslider.css" rel="stylesheet">
 	<script type="text/javascript">
 		jQuery(document).ready(function() {
 			jQuery('#demo1').skdslider({

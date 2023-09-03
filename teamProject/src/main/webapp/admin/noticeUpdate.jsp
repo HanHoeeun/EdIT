@@ -1,3 +1,4 @@
+<%@page import="com.itwillbs.domain.NoticeDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!--
@@ -9,7 +10,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
-<title>공지사항 상세게시글</title>
+<title>공지사항 게시물수정</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -21,15 +22,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		function hideURLbar(){ window.scrollTo(0,1); } 
 </script>
 <!-- //for-mobile-apps -->
-<link href="../css/bootstrap.css" rel="stylesheet" type="text/css"
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css"
 	media="all" />
-<link href="../css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 <!-- font-awesome icons -->
-<link href="../css/font-awesome.css" rel="stylesheet">
-<link href="../css/faq_1_9.css" rel="stylesheet">
+<link href="css/font-awesome.css" rel="stylesheet">
+<link href="css/faq_1_9.css" rel="stylesheet">
+<link href="css/notice.css" rel="stylesheet">
 <!-- //font-awesome icons -->
 <!-- js -->
-<script src="../js/jquery-1.11.1.min.js"></script>
+<script src="js/jquery-1.11.1.min.js"></script>
 <!-- //js -->
 <link
 	href='//fonts.googleapis.com/css?family=Raleway:400,100,100italic,200,200italic,300,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic'
@@ -38,8 +40,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic'
 	rel='stylesheet' type='text/css'>
 <!-- start-smoth-scrolling -->
-<script type="text/javascript" src="../js/move-top.js"></script>
-<script type="text/javascript" src="../js/easing.js"></script>
+<script type="text/javascript" src="js/move-top.js"></script>
+<script type="text/javascript" src="js/easing.js"></script>
 <script type="text/javascript">
 	jQuery(document).ready(function($) {
 		$(".scroll").click(function(event) {
@@ -51,8 +53,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	});
 </script>
 <!-- start-smoth-scrolling -->
+    
 </head>
-
 <body>
 	<!--================================== 헤더 ==================================== -->
 	<jsp:include page="../inc/top.jsp"></jsp:include>
@@ -65,39 +67,45 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<li><a href="index.html"><span
 						class="glyphicon glyphicon-home" aria-hidden="true"></span>홈</a></li>
 				<li class="active">공지사항</li>
-				<li class="active">일반공지</li>
 			</ol>
 		</div>
 	</div>
-	<!--=========================== 본문 헤더 =========================================== -->
+<!--=========================== 본문 헤더 =========================================== -->
 	<div class="top-brands_1">
-		<h2>일반공지</h2>
-		<div><br></div>
-
-		<!--================================== 3탭 글작성 ==================================== -->
-
-		<!-- <div id="tab-3" class="tab-content"> -->
-		<form action="index.html" method="post" enctype="multipart/form-data">
-
+		<h2>공지글 수정</h2>
+	</div>	
+	<!--=========================== 본문 =========================================== -->
+	<%
+String a_m_num = (String)session.getAttribute("a_m_num");
+NoticeDTO noticeDTO=(NoticeDTO)request.getAttribute("noticeDTO");
+%>	
+		<form action="updatePro.no" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="a_num" value="<%=noticeDTO.getA_num()%>">
 			<table class="_1q_query_tab">
 				<tr>
-					<td class="_1q_query_tab_4" colspan="3"><input type="text"
-						name="subject" placeholder="거래 시 유의사항 안내드립니다"
-						style="border: none;" readonly="readonly"></td>
+					<td class="_1q_query_tab_1"><select class="_1q_query_tab_sel"
+						name="a_notice_type" style="border: none;">
+							<option value="1">일반공지</option>
+							<option value="2">이벤트</option>
+					</select></td>
+					<td>
+						<div class="_1q_query_tab_3">
+							<label for="imgfile"><img src="images/picture.png"
+								width="25px" height="25px">파일 업로드</label>
+						</div> <input type="file" name="a_file" id="imgfile" accept="image/*">
+						<%=noticeDTO.getA_file() %>
+						<input type="hidden" name="a_oldfile" value="<%=noticeDTO.getA_file() %>">
+					</td>
 				</tr>
 			</table>
 			<div>
 				<br>
 			</div>
+
 			<table class="_1q_query_tab">
 				<tr>
-
-					<td>
-						<div class="_1q_query_tab_3">
-							<label for="imgfile"><img src="images/picture.png"
-								width="25px" height="25px">파일 업로드</label>
-						</div> <input type="file" name="imgfile" id="imgfile" accept="image/*">
-					</td>
+					<td class="_1q_query_tab_4" colspan="3"><input type="text"
+						name="a_title" value="<%=noticeDTO.getA_title() %>" style="border: none;"></td>
 				</tr>
 			</table>
 			<div>
@@ -106,55 +114,50 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<table class="_1q_query_tab">
 				<tr>
 					<td class="_1q_query_tab_5" colspan="3"><textarea
-							name="content" style="border: none;" cols="110" rows="20"
-							class="noresize" 
-							value="EDIT는 통신판매의 당사자가 아닌 통신판매중개자로서 상품, 상품정보, 거래에 대한 책임이 제한될 수 있으므로,
-각 상품 페이지에서 구체적인 내용을 확인하시기 바랍니다.
-본사에 등록된 모든 광고와 저작권 및 법적책임은 자료제공사(또는 회원)에게 있으므로 본사는광고에 대한 책임을 지지 않습니다."
-							></textarea></td>
+							name="a_content" style="border: none;" cols="110" rows="20"
+							class="noresize"><%=noticeDTO.getA_content() %></textarea></td>
 				</tr>
 			</table>
-			<%
-			if (1 == 1) {
-			%>
 			<div class="_1q_query_btn">
-				<button type="submit">수정</button>
-				<button type="reset">삭제</button>
+				<input type="submit" value="수정" class="modify-button">
 			</div>
-			<%
-			}
-			%>
 		</form>
+		
+<div class="clear"></div>
+<div id="page_control"></div>
 
-		<!-- 	</div> -->
-		<!-- 			탭 jquery -->
+
+		<%-- 	<%
+		NoticeDTO noticeDTO = (NoticeDTO) request.getAttribute("noticeDTO");
+		%>
+		<div class="container_notice" action="updatePro.no" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="a_num" value="<%=noticeDTO.getA_num()%>">
+		
+        <h1><%=noticeDTO.getA_title()%></h1>
+        <p class="author"><%=noticeDTO.getA_date()%></p>
+        <hr>
+        <div class="attachment-section">
+        <p for="imgfile"><img src="images/picture.png" width="25px" height="25px">첨부 파일</a></p><br>
+        <input type="file" name="imgfile" id="imgfile" accept="image/*"><br>
+   		 </div>
+        <p><%=noticeDTO.getA_content()%></p>
+        
+       <!--  <img src="your-image-url.jpg" alt="공지사항 이미지" style="max-width: 100%;"><br> -->
+        <hr>
+			<input type="submit" value="수정" class="modify-button" onclick="location.href='content.no?a_num=<%=noticeDTO.getA_num()%>'">
+			<input type="button" value="취소" class="delete-button" onclick="location.href='content.no?a_num=<%=noticeDTO.getA_num()%>'">
+		</div>
+     --%>
+
+		<!--================================== 푸터 ==================================== -->
+		<div class="clearfix">
+			<jsp:include page="../inc/bottom.jsp"></jsp:include>
+		</div>
+		<!--========================= Bootstrap Core JavaScript =========================-->
+		<script src="js/bootstrap.min.js"></script>
+		<!-- top-header and slider -->
+		<!-- here stars scrolling icon -->
 		<script type="text/javascript">
-			$(document).ready(function() {
-
-				$('ul.tabs li').click(function() {
-					var tab_id = $(this).attr('data-tab');
-
-					$('ul.tabs li').removeClass('current');
-					$('.tab-content').removeClass('current');
-
-					$(this).addClass('current');
-					$("#" + tab_id).addClass('current');
-				})
-
-			})
-		</script>
-	</div>
-	</div>
-	<div class="clearfix_1_1"></div>
-	<!--================================== 푸터 ==================================== -->
-	<div class="clearfix">
-		<jsp:include page="../inc/bottom.jsp"></jsp:include>
-	</div>
-	<!--========================= Bootstrap Core JavaScript =========================-->
-	<script src="../js/bootstrap.min.js"></script>
-	<!-- top-header and slider -->
-	<!-- here stars scrolling icon -->
-	<script type="text/javascript">
 		$(document).ready(function() {
 			/*
 				var defaults = {
@@ -171,9 +174,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 		});
 	</script>
-	<!-- //here ends scrolling icon -->
-	<script src="../js/minicart.min.js"></script>
-	<script>
+		<!-- //here ends scrolling icon -->
+		<script src="js/minicart.min.js"></script>
+		<script>
 		// Mini Cart
 		paypal.minicart.render({
 			action : '#'
@@ -183,10 +186,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			paypal.minicart.reset();
 		}
 	</script>
-	<!-- main slider-banner -->
-	<script src="../js/skdslider.min.js"></script>
-	<link href="../css/skdslider.css" rel="stylesheet">
-	<script type="text/javascript">
+		<!-- main slider-banner -->
+		<script src="js/skdslider.min.js"></script>
+		<link href="css/skdslider.css" rel="stylesheet">
+		<script type="text/javascript">
 		jQuery(document).ready(function() {
 			jQuery('#demo1').skdslider({
 				'delay' : 5000,
@@ -199,10 +202,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 			jQuery('#responsive').change(function() {
 				$('#responsive_wrapper').width(jQuery(this).val());
-			});
+			});sd
 
 		});
 	</script>
-	<!-- //main slider-banner -->
+		<!-- //main slider-banner -->
 </body>
 </html>

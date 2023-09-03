@@ -127,9 +127,10 @@ public class MemberDAO {
 //			첫번째 행으로 데이터 있으면 memberDTO 객체생성, set 메서드 호출,rs열 데이터 저장
 			if (rs.next() == true) {
 				memberDTO = new MemberDTO();
-				
+				// m_level 추가
 				memberDTO.setM_id(rs.getString("m_id"));
 				memberDTO.setM_pass(rs.getString("m_pass"));
+				memberDTO.setM_level(rs.getInt("m_level"));
 
 				System.out.println("로그인 성공!");
 				
@@ -203,14 +204,13 @@ public class MemberDAO {
 			
 			con = getConnection();
 			
-			String sql = "update members set m_pass = ?, m_nick = ?, m_email = ?, m_phone = ? where m_id = ?";
+			String sql = "update members set m_pass = ?, m_email = ?, m_phone = ? where m_id = ?";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, memberDTO.getM_pass());
-			pstmt.setString(2, memberDTO.getM_nick());
-			pstmt.setString(3, memberDTO.getM_email());
-			pstmt.setString(4, memberDTO.getM_phone());
-			pstmt.setString(5, memberDTO.getM_id());
+			pstmt.setString(2, memberDTO.getM_email());
+			pstmt.setString(3, memberDTO.getM_phone());
+			pstmt.setString(4, memberDTO.getM_id());
 			
 			pstmt.executeUpdate();
 			
@@ -321,16 +321,21 @@ public class MemberDAO {
 	
 	
 	
-	// 8.31 진 - 아이디 찾기 만드는 중인데 이게 맞는지 모르겠다....일단 만들어보고.. 물어보고 수정해보자..
-	public MemberDTO findidmember(String name, String email) {
+
+
+	// 8.31 진 - 아이디 찾기
+	public MemberDTO findidmember(String m_name, String m_email) {
+
 		System.out.println("MemberDAO findidmember()");
 		MemberDTO memberDTO = null;
 		try {
 			con = getConnection();
 			
-			String sql = "SELECT * FROM members WHERE m_name = ?, m_email = ?";
-            pstmt.setString(1, name);
-            pstmt.setString(2, email);
+			String sql = "SELECT * FROM members WHERE m_name = ? and m_email = ?";
+			pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, m_name);
+            pstmt.setString(2, m_email);
+
             ResultSet rs = pstmt.executeQuery();
             
             if (rs.next()) {
@@ -338,6 +343,38 @@ public class MemberDAO {
                 memberDTO.setM_id(rs.getString("m_id"));
                 // 다른 필드도 필요한 경우에 가져와서 설정
             }
+            System.out.println(m_name + "," + m_email );
+			System.out.println(memberDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dblClose();
+		}
+		return memberDTO; // 멤버 정보 반환
+	}
+
+
+	// 8.31 진 - 비밀번호 찾기
+	public MemberDTO findpwmember(String m_id, String m_email) {
+		
+		System.out.println("MemberDAO findpwmember()");
+		MemberDTO memberDTO = null;
+		try {
+			// 디비 연결
+			con = getConnection();
+			
+			String sql = "SELECT * FROM members WHERE m_id = ? and m_email = ?";
+			pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, m_id);
+            pstmt.setString(2, m_email);
+            
+            ResultSet rs = pstmt.executeQuery();
+			if(rs.next()) {
+                memberDTO = new MemberDTO();
+                memberDTO.setM_pass(rs.getString("m_pass"));	
+			}
+            System.out.println(m_id + "," + m_email );
+			System.out.println(memberDTO);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -348,16 +385,11 @@ public class MemberDAO {
 	}
 
 
+}	// insertMember()
+
 	
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-}
+
+

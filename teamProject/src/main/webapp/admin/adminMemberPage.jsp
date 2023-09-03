@@ -1,6 +1,6 @@
+<%@page import="com.itwillbs.domain.MemberDTO"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.itwillbs.domain.AdminPageDTO"%>
-<%@page import="com.itwillbs.domain.ReportDTO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -49,9 +49,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 <body>
 <%
-List<ReportDTO> reportList = (List<ReportDTO>)request.getAttribute("reportList");
+List<MemberDTO> memberList = (List<MemberDTO>)request.getAttribute("memberList");
 AdminPageDTO pageDTO = (AdminPageDTO)request.getAttribute("pageDTO");
-SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
 
 %>
 <!-- header -->
@@ -75,60 +74,15 @@ SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
 			<div class="container_2_1">
 <!-- 				상단 탭 리스트 -->
 				<ul class="tabs">
-					<li class="tab-link current" onclick="location.href='adminPage.ad'" >신고내역</li>
-					<li class="tab-link" onclick="location.href='adminMemberPage.ad'">회원관리</li>
+					<li class="tab-link" onclick="location.href='adminPage.ad'" >신고내역</li>
+					<li class="tab-link  current" onclick="location.href='adminMemberPage.ad'">회원관리</li>
 					<li class="tab-link" onclick="location.href='adminBlackPage.ad'">블랙리스트</li>
 					
 				</ul>
 			</div>
 			<div class="container_3_1">
-				<div id="tab-1" class="tab-content current">
-<!-- 				신고내역 테이블 -->
-				<table class="_1qna_board">
-						<tr>
-							<th class="_1qna_board_border">신고번호</th>
-							<th class="_1qna_board_border">회원번호</th>
-							<th class="_1qna_board_subject">제목</th>
-							<th class="_1qna_board_border">작성시간</th>
-							<th>확인여부</th>
-						</tr>
-						<%for(ReportDTO reportDTO : reportList) {
-							String check = reportDTO.getR_check() == 0 ? "x" : "o";					
-						%>
-						<tr onclick="window.open('report_content.ad?r_num=<%=reportDTO.getR_num() %>','신고상세페이지','width=800, height=700, scrollbars=yes')">
-							<td class="_1qna_board_border"><%=reportDTO.getR_num() %></td>
-							<td class="_1qna_board_border"><%=reportDTO.getR_m_num() %></td>
-							<td class="_1qna_board_subject"><%=reportDTO.getR_title() %></td>
-							<td class="_1qna_board_border"><%=format.format(reportDTO.getR_date()) %></td>
-							<td><%=check %></td>
-						</tr>
-						<%} %>
-						
-					</table>
-<!-- 				페이징 -->
-				    <div class="_1qna_paging">
-        				 <ul>
-					<%
-					// 시작페이지 1페이지 Prev 없음
-					// 시작페이지 11,21,31 Prev가 보이게
-						if(pageDTO.getStartPage() > pageDTO.getPageBlock()){%>
-							<li onclick="location.href='adminPage.ad?pageNum=<%=pageDTO.getStartPage()-pageDTO.getPageBlock()%>'">Prev</li>
-							
-						<% } 
-						for(int i= pageDTO.getStartPage(); i<=pageDTO.getEndPage(); i++){%>
-							<li onclick="location.href='adminPage.ad?pageNum=<%=i%>'"><%=i %></li>
-						<%}
-						// 끝페이지 번호 전체페이지수 비교 => 전체페이지 수 크면 => next보임
-						if(pageDTO.getEndPage() < pageDTO.getPageCount()){%>
-							<li onclick="location.href='adminPage.ad?pageNum=<%=pageDTO.getStartPage() + pageDTO.getPageBlock() %>'">Next</li>
-						<%}%>
-				    </ul>
-   					 </div>
-			
-			<!-- script for tabs -->
-				</div>
 <!-- 				2번째 탭 -->
-				<div id="tab-2" class="tab-content">
+				<div id="tab-2" class="tab-content current">
 					<table class="_1qna_board">
 						<tr>
 							<th class="_1qna_board_border">회원번호</th>
@@ -137,28 +91,45 @@ SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
 							<th class="_1qna_board_border">이름</th>
 							<th>신고횟수</th>
 						</tr>
-						<tr onclick="window.open('user_content.ad','신고상세페이지','width=800, height=700, scrollbars=yes')">
-							<td class="_1qna_board_border">002</td>
-							<td class="_1qna_board_border">kkm</td>
-							<td class="_1qna_board_border">kkm</td>
-							<td class="_1qna_board_border">권광민</td>
-							<td>2</td>
+						<%for(MemberDTO memberDTO : memberList){ %>
+						<tr onclick="window.open('user_content.ad?m_num=<%=memberDTO.getM_num() %>','회원정보 상세','width=800, height=700, scrollbars=yes')">
+							<td class="_1qna_board_border"><%=memberDTO.getM_num() %></td>
+							<td class="_1qna_board_border"><%=memberDTO.getM_id() %></td>
+							<td class="_1qna_board_border"><%=memberDTO.getM_nick() %></td>
+							<td class="_1qna_board_border"><%=memberDTO.getM_name() %></td>
+							<td><%=memberDTO.getM_count() %></td>
 						</tr>
+						<%} %>
 					</table>
+					 <div class="_1qna_paging">
+        				 <ul>
+					<%	
+						if(pageDTO.getStartPage() > pageDTO.getPageBlock()){%>
+							<li onclick="location.href='adminMeberPage.ad?pageNum=<%=pageDTO.getStartPage()-pageDTO.getPageBlock()%>&search=<%=pageDTO.getSearch()%>'">Prev</li>
+							
+						<% } 
+						for(int i= pageDTO.getStartPage(); i<=pageDTO.getEndPage(); i++){%>
+							<li onclick="location.href='adminMeberPage.ad?pageNum=<%=i%>&search=<%=pageDTO.getSearch()%>'"><%=i %></li>
+						<%}
+						if(pageDTO.getEndPage() < pageDTO.getPageCount()){%>
+							<li onclick="location.href='adminMeberPage.ad?pageNum=<%=pageDTO.getStartPage() + pageDTO.getPageBlock() %>&search=<%=pageDTO.getSearch()%>'">Next</li>
+						<%}%>
+				    </ul>
+   					 </div>	
 <!-- 					검색테이블  -->
-					<form action="index.html" method="get" id="_1admin_search_form">
+					<form action="adminMemberPage.ad" method="post" id="_1admin_search_form">
 						<table class="_1admin_search">
 						<tr>
 							<td>
-								<select>
-									<option value="">회원번호</option>
-									<option value="">아이디</option>
-									<option value="">닉네임</option>
-									<option value="">신고횟수</option>
+								<select name="search_type">
+									<option value="1">회원번호</option>
+									<option value="2">아이디</option>
+									<option value="3">닉네임</option>
+									<option value="4">신고횟수</option>
 								</select>
 							</td>
 							<td>
-								<input type="text" onkeyup="enterKey();"> 
+								<input type="text" name="search" onkeyup="enterKey();"> 
 							</td>
 							<td>
 								<input type="submit" value="검색">
@@ -173,39 +144,9 @@ SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
 							}
 						}
 					</script>
-<!-- 				신고내역 페이징 -->
-				    <div class="_1qna_paging">
-        				<ul>
-				           <li onclick="location.href='index.html'">prev</li>
-				           <li onclick="location.href='about.html'">1</li>
-				           <li onclick="location.href='login.html'">2</li>
-				           <li onclick="location.href='faq.html'">3</li>
-				           <li onclick="location.href='gourmet.html'">4</li>
-				           <li onclick="location.href='login.html'">5</li>
-				           <li onclick="location.href='products.html'">next</li>
-						</ul>
-   					 </div>
-   					 </div>
-   					 
-				<div id="tab-3" class="tab-content">
-<!-- 				3탭 게시판 테이블  -->
-					<table class="_1qna_board">
-						<tr>
-							<th class="_1qna_board_border">아이디</th>
-							<th class="_1qna_board_border">이름</th>
-							<th class="_1qna_board_border">이메일</th>
-							<th class="_1qna_board_border">전화번호</th>
-						</tr>
-						<tr onclick="location.href='user_content_1.jsp'">
-							<td class="_1qna_board_border">002</td>
-							<td class="_1qna_board_border">kkm</td>
-							<td class="_1qna_board_border">kkm</td>
-							<td class="_1qna_board_border">권광민</td>
-						</tr>
-					</table>
-				</div>
+				   
+   				</div>
 			</div>
-			
 		</div>
 			<div class="clearfix_1_1"> </div>
 	</div>

@@ -57,7 +57,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="agileits_header">
 		<div class="container">
 			<div class="w3l_offers">
-				<p><a href="../product/products.jsp"><i class="fa fa-shopping-bag" aria-hidden="true"> 쇼핑하기 </i></a></p>
+				<p><a href="products.po"><i class="fa fa-shopping-bag" aria-hidden="true"> 쇼핑하기 </i></a></p>
 			</div>
 			<div class="agile-login">
 				<ul>
@@ -77,7 +77,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					
 					<li><a href="faq.ad"><i class="fa fa-question-circle-o" aria-hidden="true"> 문의하기</i></a></li>
 
-					<li><a href="../product/wishlist.jsp"><i class="fa fa-heart" aria-hidden="true"> 찜리스트 </i></a></li>
+					<li><a href="wishlist.po"><i class="fa fa-heart" aria-hidden="true"> 찜리스트 </i></a></li>
 					<li><a href="logout.me"><i class="fa fa-heart" aria-hidden="true"> 로그아웃 </i></a></li>
 					
 					
@@ -127,7 +127,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</ul> -->
 			</div>
 			<div class="w3ls_logo_products_left">
-				<h1><a href="main.jsp">EdIT</a></h1>
+				<h1><a href="main.me">EdIT</a></h1>
 			</div>
 		<div class="w3l_search">
 			<form action="#" method="post">
@@ -180,7 +180,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<!-- // 태블릿 -->
 									
 									<!-- //Mega Menu -->
-									<li><a href="notice.no">공지사항</a></li>
+									<li><a href="noticelist.no">공지사항</a></li>
 									<li><a href="faq.ad">고객센터</a></li>
 								</ul>			
 							</div>

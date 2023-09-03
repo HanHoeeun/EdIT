@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>findid.jsp</title>
-<link href= "../css/login.css" rel= "stylesheet" type="text/css">
-<link href= "../css/style.css" rel= "stylesheet" type="text/css">
+<link href= "./css/login.css" rel= "stylesheet" type="text/css">
+<link href= "./css/style.css" rel= "stylesheet" type="text/css">
 </head>
 <body>
 <!--
@@ -72,17 +72,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="login">
 		<div class="container">
 		<div style="text-align : center;">
-     		<img src="../images/find_5_1.png"><br><br><br>
+     		<img src="./images/find_5_1.png"><br><br><br>
 		</div>
 			<h2>아이디찾기</h2>
 				<p>회원가입시 등록하신 이름과 이메일을 입력해 주세요.</p>
 		
 			<div class="login-form-grids animated wow slideInUp" data-wow-delay=".5s">
 			
-				<form action = "findidPro.me" method = "post">			
-
-					<input type="text" placeholder="이름"  required=" "  id = "_5name" name = "_5name" >  
-					<input type="email" placeholder="이메일"  required=" "   id = "_5email" name = "_5email" >
+				<form action = "findidPro.me"  method = "post">			
+<!-- css에서 불러올때 id -> #, class->. -->
+					<input type="text" placeholder="이름"  required=" "  id = "m_name"  name = "m_name" >  
+					<input type="email" placeholder="이메일"  required=" "   id = "m_email" name = "m_email" >
 					
 					<div class="_5center">
 <!-- 					<a href="insert.me">확인</a> -->
@@ -93,12 +93,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<hr style="width : 100%; height : 1px; border : none; background-color : #999;">
 					</div>
 					
-					
-				
-						
-					
-	
-					
+
 					
 					
 <!-- 홈/비밀번호 찾기/회원가입 -->					

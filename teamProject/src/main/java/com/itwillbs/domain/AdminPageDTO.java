@@ -14,7 +14,14 @@ public class AdminPageDTO {
 	private int pageCount;	//페이지 갯수
 	
 	private String search; //검색어 저장
+	private int search_type; // 회원 검색 타입 0 전체 1 회원번호 2 아이디 3 닉네임 4 신고횟수
 	
+	public int getSearch_type() {
+		return search_type;
+	}
+	public void setSearch_type(int search_type) {
+		this.search_type = search_type;
+	}
 	public String getSearch() {
 		return search;
 	}

@@ -11,6 +11,14 @@ public class NoticeDTO {
 	private Timestamp a_date; //작성일
 	private int a_notice_type; //1유형 2일반공지 3이벤트 
 	
+	
+	@Override
+	public String toString() {
+		return "NoticeDTO [a_num=" + a_num + ", a_m_num=" + a_m_num + ", a_m_nick=" + a_m_nick + ", a_title=" + a_title
+				+ ", a_content=" + a_content + ", a_date=" + a_date + ", a_notice_type=" + a_notice_type + ", a_file="
+				+ a_file + "]";
+	}
+
 	private String a_file; //파일명
 
 	// get, set

@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>findpw.jsp</title>
-<link href= "../css/login.css" rel= "stylesheet" type="text/css">
-<link href= "../css/style.css" rel= "stylesheet" type="text/css">
+<link href= "./css/login.css" rel= "stylesheet" type="text/css">
+<link href= "./css/style.css" rel= "stylesheet" type="text/css">
 </head>
 <body>
 <!--
@@ -71,9 +71,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- ================================ 비밀번호찾기 ================================ -->
 	<div class="login">
 		<div class="container">
-		<div class="container">
 		<div style="text-align : center;">
-     		<img src="../images/find_5_1.png"><br><br><br>
+     		<img src="./images/find_5_1.png"><br><br><br>
 		</div>
 			<h2>비밀번호찾기</h2><br><br>
 				<p>회원가입 시 등록하신 아이디, 이메일 주소를 입력해 주세요.</p>
@@ -81,10 +80,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		
 			<div class="login-form-grids animated wow slideInUp" data-wow-delay=".5s">
 			
-				<form>			
+				<form action = "findpwPro.me"  method = "post">					
 
-					<input type="text" placeholder="아이디" required=" " >  
-					<input type="email" placeholder="이메일" required=" " >
+					<input type="text"  placeholder ="아이디"  required=" "  id = "m_id" name = "m_id" >
+					<input type="email"  placeholder ="이메일"  required=" "  id = "m_email" name = "m_email" >
 					
 					<div class="_5center">
 						<input type="submit" value="확인"  class="#">	

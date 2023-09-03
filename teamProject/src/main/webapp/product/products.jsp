@@ -1,3 +1,5 @@
+<%@page import="com.itwillbs.domain.MemberDTO"%>
+<%@page import="com.itwillbs.domain.WishListDTO"%>
 <%@page import="com.itwillbs.domain.ProductPageDTO"%>
 <%@page import="com.itwillbs.domain.ProductDTO"%>
 <%@page import="java.util.List"%>
@@ -132,35 +134,28 @@ String orderBy = (String) request.getAttribute("orderBy");
             = (List<ProductDTO>)request.getAttribute("productList");
             ProductPageDTO ppageDTO
             = (ProductPageDTO)request.getAttribute("ppageDTO");
-            
-            int itemsPerPage = 5; // 페이지당 아이템 수
-            int currentPage = (request.getParameter("page") != null) ? Integer.parseInt(request.getParameter("page")) : 1;
-            int startIndex = (currentPage - 1) * itemsPerPage;
-            int endIndex = Math.min(startIndex + itemsPerPage, productList.size());
-            int totalPages = (int) Math.ceil((double) productList.size() / itemsPerPage);
-
-            List<ProductDTO> visibleItems = productList.subList(startIndex, endIndex);
-            
+            String id = (String)session.getAttribute("id");
+            MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
+           	ProductDTO productDTO = (ProductDTO)request.getAttribute("productDTO");
+           	List<WishListDTO> wishList 
+          	= (List<WishListDTO>)request.getAttribute("wishList");
             %>
             
               <div class="agile_top_brands_grids">
     <% for (int i = 0; i < productList.size(); i++) {
-       ProductDTO productDTO = productList.get(i);%>
+       ProductDTO productDTO2 = productList.get(i);%>
     <div class="col-md-4 top_brand_left">
         <div class="hover14 column">
             <div class="agile_top_brand_left_grid">
-                <!-- <div class="agile_top_brand_left_grid_pos">
-                    You can customize this part
-                </div> -->
                 <div class="agile_top_brand_left_grid1">
                     <figure>
                          <div class="snipcart-item block">
                             <div class="snipcart-thumb">
-                                <a href="single.po"><img title=" " alt=" " src="upload/<%=productDTO.getP_file() %>"  width="150px" height="150px" download></a>
-                                <p><%=productDTO.getP_title() %></p>
-                                <h4><%= productDTO.getP_price() %>원</h4>
-                                <h4><%= productDTO.getP_status() %></h4>
-                                <h4><%= productDTO.getP_type() %></h4>
+                                <a href="single.po"><img title=" " alt=" " src="upload/<%=productDTO.getP_file() %>" download width="150px" height="150px" ></a>
+                                <p><%=productDTO2.getP_title() %></p>
+                                <h4><%= productDTO2.getP_price() %>원</h4>
+                                <h4><%= productDTO2.getP_status() %></h4>
+                                <h4><%= productDTO2.getP_type() %></h4>
                             </div>
                             <div class="snipcart-details top_brand_home_details">
                                 <form action="#" method="post">
@@ -173,7 +168,9 @@ String orderBy = (String) request.getAttribute("orderBy");
                                         <input type="hidden" name="currency_code" value="KRW">
                                         <input type="hidden" name="return" value=" ">
                                         <input type="hidden" name="cancel_return" value=" ">
-                                        <input type="submit" name="submit" value="찜 추가하기" class="button">
+                                        <!-- <input type="button" value="찜 추가하기" class="button"> -->
+										<input type="button" value="찜 추가하기" class="button" id="addToWishlistButton">
+										
                                     </fieldset>
                                 </form>
                             </div>
@@ -187,81 +184,94 @@ String orderBy = (String) request.getAttribute("orderBy");
     <div class="clearfix"> </div>
 </div>
 
-<!-- 페이징 코드 5개씩 나눠서 페이징 -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../js/jquery-1.11.1.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#addToWishlistButton').click(function() {
+        // 버튼의 data-p-num와 data-m-num 속성 값을 가져오기
+        var w_p_num =  <%= productDTO.getP_num() %>;
+        var w_m_num =  <%= memberDTO.getM_num() %>; 
 
+        // productDTO와 memberDTO 객체가 null인지 확인
+        if (w_p_num == null || w_m_num == null) {
+            alert('productDTO 또는 memberDTO가 null입니다.');
+            return; // 함수 실행 중지
+        }
+
+        // p_num과 m_num 값이 정상적으로 가져와지는지 console.log로 확인
+        console.log("p_num:", w_p_num);
+        console.log("m_num:", w_m_num);
+
+        $.ajax({
+            type: 'POST',
+            url: '/AddToWishlistServlet',
+            data: {w_p_num: w_p_num, w_m_num: w_m_num},
+            success: function(response) {
+                alert(response);
+            },
+            error: function() {
+                alert('오류 발생');
+            }
+        });
+    });
+});
+</script>
+
+
+
+
+<!-- 페이징 코드 5개씩 나눠서 페이징 -->
 <nav class="numbering">
    <ul class="pagination paging">
-      <li>
       <%
       if(ppageDTO.getP_startPage() > ppageDTO.getP_pageBlock()){
          %>
-         <a href="products.po?p_pageNum=<%=ppageDTO.getP_startPage()-ppageDTO.getP_pageBlock()%>&orderBy=${orderBy}" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-         </a>
+         <li>
+            <a href="products.po?p_pageNum=<%=ppageDTO.getP_startPage()-ppageDTO.getP_pageBlock()%>&orderBy=${orderBy}" aria-label="Previous">
+               <span aria-hidden="true">&laquo;</span>
+            </a>
+         </li>
          <%
-         }
+      }
+
+      for(int i=ppageDTO.getP_startPage(); i<=ppageDTO.getP_endPage(); i++){
+         boolean isCurrentPage = (i == ppageDTO.getP_currentPage());
+         boolean isPcurrentPage = (i == ppageDTO.getP_currentPage());
          %>
-      </li>
-      <li class="active">
-      <%
-      for(int i=ppageDTO.getP_startPage();i<=ppageDTO.getP_endPage();i++){
-         %>
-    	 <a href="products.po?p_pageNum=<%= i %>&orderBy=${orderBy}" class="<%= (i == ppageDTO.getP_currentPage()) ? "active" : "" %>">
-         <%=i %><span class = "sr-only">current</a>
+         <li class="<%= (isCurrentPage || isPcurrentPage) ? "active" : "" %>">
+            <a href="products.po?p_pageNum=<%= i %>&orderBy=${orderBy}" class="<%= (isCurrentPage) ? "" : "" %> <%= (isPcurrentPage) ? "custom-class" : "" %>">
+            <%= (isPcurrentPage) ? i : i %></a>
+         </li>
          <%
-         }
-         %>
-      </li>
-      <li>
-      <%
-      // 끝페이지 번호 전체페이지수 비교 => 전체 페이지수 크면 => next보
+      }
+
       if(ppageDTO.getP_endPage() < ppageDTO.getP_pageCount()){
          %>
-         <a href="products.po?p_pageNum=<%=ppageDTO.getP_startPage()+ppageDTO.getP_pageBlock()%>&orderBy=${orderBy}" >
-            <span aria-hidden="true">&raquo;</span>
-         </a>
+         <li>
+            <a href="products.po?p_pageNum=<%=ppageDTO.getP_startPage()+ppageDTO.getP_pageBlock()%>&orderBy=${orderBy}" >
+               <span aria-hidden="true">&raquo;</span>
+            </a>
+         </li>
          <%
-         }
-         %>
-      </li>
+      }
+      %>
    </ul>
-</nav>  
-<!-- <nav class="numbering">
-					<ul class="pagination paging">
-						<li>
-							<a href="#" aria-label="Previous">
-								<span aria-hidden="true">&laquo;</span>
-							</a>
-						</li>
-						<li class="active"><a href="#">1<span class="sr-only">(current)</span></a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#">5</a></li>
-						<li>
-							<a href="#" aria-label="Next">
-							<span aria-hidden="true">&raquo;</span>
-							</a>
-						</li>
-					</ul>
-				</nav> -->
+</nav>
 
          </div>
          <div class="clearfix"> </div>
       </div>
       </div>
-      
-  
+
+
 <!--- products --->
 <!-- 푸터 들어가는 곳! -->
 <div class="clearfix">
 <jsp:include page="../inc/bottom.jsp"></jsp:include>
 </div>
 <!-- 푸터 들어가는 곳! -->
-<!-- <script type="text/javascript">
-function change_country(l) {
-	location.href="products.po?ord="+l;
-} -->
+
 <script type="text/javascript">
 function change_country(l) {
     location.href = "products.po?ord=" + l;

@@ -81,7 +81,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li><a href="product/checkout.jsp"><i class="fa fa-arrow-right"></i>찜♥</a></li>
 						<li><a href="qnalist.me"><i class="fa fa-arrow-right"></i>문의 내역</a></li>
 						<li><a href="delete.me"><i class="fa fa-arrow-right"></i>회원 탈퇴</a></li>
- 						<li><a href="memberlist.me"><i class="fa fa-arrow-right"></i>회원 관리</a></li>  
+ 						<li><a href="list.me"><i class="fa fa-arrow-right"></i>회원 관리</a></li>  
 					</ul>
 				</div>											
 			</div>		
@@ -115,12 +115,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<th class="_1qna_board_border">가격</th>
 							<th class="_1qna_board_border">구매시간</th>
 							<th class="_1qna_board_border">구매시간</th>
+							<th class="_1qna_board_border">구매시간</th>
+							<th class="_1qna_board_border">구매시간</th>
+							<th class="_1qna_board_border">구매시간</th>
 						</tr>
 						<tr>
 							<td class="_1qna_board_border">1</td>
 							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_border">ㅇㄹㄴㅇㄹㄴㅇ</td>
-							<td class="_1qna_board_border">ㅇㄹㄴㅇㄹㄴㅇ</td>
+							<td class="_1qna_board_border">ㅇㄹㄴㅇ</td>
+							<td class="_1qna_board_border">ㅇㄹㄴㅇ</td>
+							<td class="_1qna_board_border">ㅇㄹㄴㅇ</td>
+							<td class="_1qna_board_border">ㅇㄹㄴㅇ</td>
+							<td class="_1qna_board_border">ㅇㄴㅇ</td>
 							<td>4</td>
 						</tr>
 		</table>

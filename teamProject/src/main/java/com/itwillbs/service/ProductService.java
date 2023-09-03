@@ -14,6 +14,7 @@ import com.itwillbs.dao.ProductDAO;
 import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.ProductDTO;
 import com.itwillbs.domain.ProductPageDTO;
+import com.itwillbs.domain.WishListDTO;
 
 public class ProductService {
 	ProductDAO productDAO = null;
@@ -22,6 +23,8 @@ public class ProductService {
 		System.out.println("productService getProductList()");
 		List<ProductDTO> productList = null;
 		try {
+			
+			
 			// 시작하는 행부터 10개 뽑아오기
 //			페이지번호     한화면에 보여줄 글개수 => 시작하는 행번호
 //			currentPage         pageSize    => startRow
@@ -639,15 +642,100 @@ public class ProductService {
 		}
 	}//deleteProduct()
 
+
+
+// -----------------------------------------------------------------
+
+
+
+
+	public List<WishListDTO> getWishSellProducts(ProductPageDTO ppageDTO) {
+		System.out.println("ProductService getWishSellProducts()");
+		List<WishListDTO> sellList = null;
+		try {
+			// productDAO 객체생성
+			productDAO = new ProductDAO();
+			// DAO에서 데이터 가져오기
+			sellList=productDAO.getWishSellProducts(ppageDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return sellList;
+	}
+
+
+	public List<WishListDTO> getWishSoldProducts(ProductPageDTO ppageDTO) {
+		System.out.println("ProductService getWishSoldProducts()");
+		List<WishListDTO> soldList = null;
+		try {
+			// productDAO 객체생성
+			productDAO = new ProductDAO();
+			// DAO에서 데이터 가져오기
+			soldList=productDAO.getWishSoldProducts(ppageDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return soldList;
+	}
+
+
+	public List<WishListDTO> getWishList(ProductPageDTO ppageDTO) {
+		System.out.println("productService getWishList()");
+		List<WishListDTO> wishList = null;
+		try {
+			
+			
+			// 시작하는 행부터 10개 뽑아오기
+//			페이지번호     한화면에 보여줄 글개수 => 시작하는 행번호
+//			currentPage         pageSize    => startRow
+//			    1                 10        => (1-1)*10+1=>0*10+1=> 0+1=>1        ~ 10
+//			    2                 10        => (2-1)*10+1=>1*10+1=>10+1=>11       ~ 20
+//		        3                 10        => (3-1)*10+1=>2*10+1=>20+1=>21       ~ 30			
+			int p_startRow = (ppageDTO.getP_currentPage()-1)*ppageDTO.getP_pageSize()+1;
+			// 시작하는 행부터 끝나는 행까지 뽑아오기
+//			startRow  pageSize => endRow
+//			    1         10   =>   1+10-1 =>10
+//			    11        10   =>   11+10-1 =>20
+//		        21        10   =>   21+10-1 =>30
+			int p_endRow = p_startRow+ppageDTO.getP_pageSize()-1;
+			//pageDTO 저장 <= startRow, endRow
+			ppageDTO.setP_startRow(p_startRow);
+			ppageDTO.setP_endRow(p_endRow);
+			// BoardDAO 객체생성
+			productDAO = new ProductDAO();
+			// boardList = getBoardList() 메서드 호출
+			wishList = productDAO.getWishList(ppageDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return wishList;
 	
+}// get
 
 
+
+	public MemberDTO getmember(HttpServletRequest request) {
+		MemberDTO memberDTO = null;
+		try {
+			// request 한글처리
+			request.setCharacterEncoding("utf-8");
+			
+			// request 파라미터 가져오기 => int num 저장
+			int n_num = Integer.parseInt(request.getParameter("n_num"));
+			
+			// BoardDAO 객체생성
+			productDAO = new ProductDAO();
+			
+			// boardDTO = getBoard(num) 메서드 호출
+			memberDTO = productDAO.getmember(n_num);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return memberDTO;
+	}
 
 	
-
-
-
-
 
 
 	

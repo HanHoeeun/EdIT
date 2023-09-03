@@ -8,8 +8,8 @@
 </head>
 <body>
 <%
-String findid=(String)request.getAttribute("foundid");
+String findpw=(String)request.getAttribute("foundpw");
 %>
-찾은 아이디<%=findid %>
+찾은 비밀번호<%=findpw %>
 </body>
 </html>

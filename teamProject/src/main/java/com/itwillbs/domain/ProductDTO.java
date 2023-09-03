@@ -13,9 +13,17 @@ public class ProductDTO {
 	private String p_status;
 	private String p_file;
 	private String m_nick;
-	
+	private int w_num;
 	 
 
+
+	public int getW_num() {
+		return w_num;
+	}
+
+	public void setW_num(int w_num) {
+		this.w_num = w_num;
+	}
 
 	@Override
 	public String toString() {

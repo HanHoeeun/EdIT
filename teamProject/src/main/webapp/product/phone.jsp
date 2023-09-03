@@ -179,39 +179,41 @@ String orderBy = (String) request.getAttribute("orderBy");
     <div class="clearfix"> </div>
 </div>
 
+<!-- 페이징 코드 5개씩 나눠서 페이징 -->
 <nav class="numbering">
    <ul class="pagination paging">
-      <li>
       <%
       if(ppageDTO.getP_startPage() > ppageDTO.getP_pageBlock()){
          %>
-         <a href="phone.po?p_pageNum=<%=ppageDTO.getP_startPage()-ppageDTO.getP_pageBlock()%>&orderBy=${orderBy}" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-         </a>
+         <li>
+            <a href="products.po?p_pageNum=<%=ppageDTO.getP_startPage()-ppageDTO.getP_pageBlock()%>&orderBy=${orderBy}" aria-label="Previous">
+               <span aria-hidden="true">&laquo;</span>
+            </a>
+         </li>
          <%
-         }
+      }
+
+      for(int i=ppageDTO.getP_startPage(); i<=ppageDTO.getP_endPage(); i++){
+         boolean isCurrentPage = (i == ppageDTO.getP_currentPage());
+         boolean isPcurrentPage = (i == ppageDTO.getP_currentPage());
          %>
-      </li>
-      <li class="active">
-      <%
-      for(int i=ppageDTO.getP_startPage();i<=ppageDTO.getP_endPage();i++){
-         %>
-         <a href="phone.po?p_pageNum=<%=i%>&orderBy=${orderBy}"><%=i %><span class="sr-only">(current)</span></a>
+         <li class="<%= (isCurrentPage || isPcurrentPage) ? "active" : "" %>">
+            <a href="products.po?p_pageNum=<%= i %>&orderBy=${orderBy}" class="<%= (isCurrentPage) ? "" : "" %> <%= (isPcurrentPage) ? "custom-class" : "" %>">
+            <%= (isPcurrentPage) ? i : i %></a>
+         </li>
          <%
-         }
-         %>
-      </li>
-      <li>
-      <%
+      }
+
       if(ppageDTO.getP_endPage() < ppageDTO.getP_pageCount()){
          %>
-         <a href="phone.po?p_pageNum=<%=ppageDTO.getP_startPage()+ppageDTO.getP_pageBlock()%>&orderBy=${orderBy}" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-         </a>
+         <li>
+            <a href="products.po?p_pageNum=<%=ppageDTO.getP_startPage()+ppageDTO.getP_pageBlock()%>&orderBy=${orderBy}" >
+               <span aria-hidden="true">&raquo;</span>
+            </a>
+         </li>
          <%
-         }
-         %>
-      </li>
+      }
+      %>
    </ul>
 </nav>
 
