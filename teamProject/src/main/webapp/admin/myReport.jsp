@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>신고페이지</title>
+<title>나의 신고 내역</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -44,7 +44,7 @@ ReportDTO reportDTO = (ReportDTO)request.getAttribute("reportDTO");
 <!--============================== 바디 ============================================-->
 <div class="report">
 	<div class="container">
-			<h2>신고 상세페이지</h2>
+			<h2>나의 신고 내역</h2>
 			<form class="report-form-grids_1_1" action="report_answer.ad" method="post" >		
 				<input type="hidden" value="<%=reportDTO.getR_num() %>" name="r_num">
 				<p>신고자 아이디</p>
@@ -60,14 +60,9 @@ ReportDTO reportDTO = (ReportDTO)request.getAttribute("reportDTO");
 				<p>신고내용</p>
 				<textarea name="r_content" readonly="readonly"><%=reportDTO.getR_content() %></textarea><br>
 				<p>답변내용</p>
-				<%
-				String answer = reportDTO.getR_answer() == null ? "" : reportDTO.getR_answer();
-				%>
-				<textarea name="r_answer"><%=answer %></textarea><br>
+				<textarea name="r_answer" readonly="readonly"><%=reportDTO.getR_answer() %></textarea><br>
 				<div class="reportbtn">
-					<input type="submit" value="답변등록">
-					<button type="button" id="reportbtn_btn_1" onclick="location.href='report_check.ad?r_num=<%=reportDTO.getR_num()%>'">신고적용</button>
-					<button type="button" id="reportbtn_btn_1" onclick="window.close()">닫기</button>
+					<button type="button" id="reportbtn_btn_1" onclick="window.close()">확인</button>
 				</div>
 			</form>
 	</div>
