@@ -72,12 +72,13 @@ public class ProductDAO {
 	}//getMaxNum()
 	
 	public void insertProduct(ProductDTO productDTO) {
+		System.out.println("인서트 프로덕츠 디에오");
 		
 		try {
 			//1,2단계 디비연결
 			con = getConnection();
 			//3 sql 구문 insert
-			String sql="insert into products(p_num, p_title, p_type, p_price, p_detail, p_date, p_readcount, p_status, p_file, m_nick) values(?,?,?,?,?,?,?,?,?,?)";
+			String sql="insert into products(p_num, p_title, p_type, p_price, p_detail, p_date, p_readcount, m_nick, m_id, p_file ,p_status) values(?,?,?,?,?,?,?,?,?,?,?)";
 			
 			pstmt=con.prepareStatement(sql);
 			
@@ -88,9 +89,10 @@ public class ProductDAO {
 			pstmt.setString(5, productDTO.getP_detail());
 			pstmt.setTimestamp(6, productDTO.getP_date());
 			pstmt.setInt(7, productDTO.getP_readcount());
-			pstmt.setString(8, productDTO.getP_status());
-			pstmt.setString(9, productDTO.getP_file());
-			pstmt.setString(10, productDTO.getM_nick());
+			pstmt.setString(8, productDTO.getM_nick());
+			pstmt.setString(9,productDTO.getM_id());
+			pstmt.setString(10,productDTO.getP_file());
+			pstmt.setString(11, productDTO.getP_status());
 			
 			//4 실행
 			pstmt.executeUpdate();
@@ -115,7 +117,7 @@ public class ProductDAO {
 			con = getConnection();
 			
 			//3 sql "update products set p_title=?, p_type=?, p_price=?, p_detail=?, p_date=?, p_status=?, p_file=? where p_num=?";
-			String sql="update products set p_title=?, p_type=?, p_price=?, p_detail=?, p_date=?, p_status=?, p_file=? where p_num=?";
+			String sql="update products set p_title=?, p_type=?, p_price=?, p_detail=?, p_date=?, p_file=?, p_status=? where p_num=?";
 			
 			pstmt=con.prepareStatement(sql);
 			
@@ -124,8 +126,8 @@ public class ProductDAO {
 			pstmt.setInt(3, productDTO.getP_price());
 			pstmt.setString(4, productDTO.getP_detail());
 			pstmt.setTimestamp(5, productDTO.getP_date());
-			pstmt.setString(6, productDTO.getP_status());
-			pstmt.setString(7, productDTO.getP_file());
+			pstmt.setString(6, productDTO.getP_file());
+			pstmt.setString(7, productDTO.getP_status());
 			pstmt.setInt(8, productDTO.getP_num());
 			
 			//4 실행
@@ -141,6 +143,7 @@ public class ProductDAO {
 	}//updateBoard
 	
 	public ProductDTO getproduct(int p_num) {
+		
 		ProductDTO productDTO = null;
 		 
 		try {
@@ -170,7 +173,9 @@ public class ProductDAO {
 				productDTO.setP_status(rs.getString("p_status"));
 				//첨부파일
 				productDTO.setP_file(rs.getString("p_file"));
+				
 				productDTO.setM_nick(rs.getString("m_nick"));
+				productDTO.setM_id(rs.getString("m_id"));
 				
 			}
 		} catch (Exception e) {
@@ -207,6 +212,32 @@ public class ProductDAO {
 		}
 		
 	}//deleteBoard()
+	
+	public void updateProduct2(ProductDTO productDTO) {
+		try {
+			System.out.println("업데이트 디에오");
+			con = getConnection();
+			
+			//3 sql "update products set p_title=?, p_type=?, p_price=?, p_detail=?, p_date=?, p_status=?, p_file=? where p_num=?";
+			String sql="update products set p_date=?, p_status=? where p_num=?";
+			
+			pstmt=con.prepareStatement(sql);
+			
+			pstmt.setTimestamp(1, productDTO.getP_date());
+			pstmt.setString(2, "거래완료");
+			pstmt.setInt(3, productDTO.getP_num());
+			
+			//4 실행
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		}finally {
+			dbClose();
+		}
+		
+	}//updateBoard
 	
 	// ---------------------------------------------------------------------------------------------
 
@@ -1345,8 +1376,10 @@ public class ProductDAO {
 		int size = wishList.size();
 		try {
 			con = getConnection();
-			String sql="select w.w_num, p.m_nick, p.p_file, p.p_title, p.p_status, p.p_type, "
-					+ "p.p_price from wishlists w natural join products p order by p_num desc limit ?, ?";
+			String sql="select  w.w_num, m.m_nick, p.p_file, p.p_title, p.p_status, p.p_type, p.p_price "
+					+ "from wishlists w join products p on w.w_p_num = p.p_num "
+					+ "join members m on w.w_num = m.m_num "
+					+ "order by p_num desc limit ?, ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, ppageDTO.getP_startRow()-1);//시작행-1
 			pstmt.setInt(2, ppageDTO.getP_pageSize());//몇개
@@ -1382,8 +1415,9 @@ public class ProductDAO {
 			con = getConnection();
 			//3 sql  => mysql 제공 => limit 시작행-1, 몇개
 //			String sql="select * from board order by num desc";
-			String sql="select  w.w_num, p.m_nick, p.p_file, p.p_title, p.p_status, "
-					+ "p.p_type, p.p_price from wishlists w natural join products p  "
+			String sql="select  w.w_num, m.m_nick, p.p_file, p.p_title, p.p_status, p.p_type, p.p_price "
+					+ "from  wishlists w join products p on w.w_p_num = p.p_num "
+					+ "join members m on w.w_num = m.m_num "
 					+ "where p_status =? order by p_num limit ?, ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, "selled");
@@ -1423,8 +1457,9 @@ public class ProductDAO {
 			con = getConnection();
 			//3 sql  => mysql 제공 => limit 시작행-1, 몇개
 //			String sql="select * from board order by num desc";
-			String sql="select  w.w_num, p.m_nick, p.p_file, p.p_title, p.p_status, "
-					+ "p.p_type, p.p_price from wishlists w natural join products p  "
+			String sql="select  w.w_num, m.m_nick, p.p_file, p.p_title, p.p_status, p.p_type, p.p_price "
+					+ "from wishlists w join products p on w.w_p_num = p.p_num "
+					+ "join members m on w.w_num = m.m_num" 
 					+ "where p_status =? order by p_num limit ?, ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, "sell");
@@ -1455,37 +1490,30 @@ public class ProductDAO {
 		return wishlist;
 	}
 
-	public MemberDTO getmember(int n_num) {
-		MemberDTO memberDTO = null;
-		 
-		try {
-			con = getConnection();
-			
-			//3 sql select * from board where num = ?
-			String sql="select * from members where n_num = ?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, n_num);
-			
-			//4 실행 => 결과 저장
-			rs = pstmt.executeQuery();
-			//5 결과 행접근 => boardDTO 객체생성 
-			//        => set메서드 호출 => 열접근 데이터 저장
-			
-			if(rs.next()) {
-				
-				memberDTO = new MemberDTO();
-				memberDTO.setM_num(rs.getInt("m_num"));
-				
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			dbClose();
-		}
-		return memberDTO;
-	}
+	
 
 	
+	public void updateReadcount(int p_num) {
+		try {
+			//1,2 디비연결
+			con = getConnection();
+			
+			//3 sql update board set readcount = readcount+1 where num=?
+			String sql="update products set p_readcount = p_readcount+1 where p_num=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, p_num);
+			
+			//4 실행
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		}finally {
+			dbClose();
+			
+		}
+	}//updateReadcount()
 
 
 

@@ -479,6 +479,8 @@ public class ProductService {
 
 	public void insertProduct(HttpServletRequest request) {
 		
+		System.out.println("인서트 프로덕츠 서비스");
+		
 		try {
 			
 			String uploadPath=request.getRealPath("/upload");
@@ -497,6 +499,7 @@ public class ProductService {
 			
     	    // request 저장된 파라미터값 가져오기=>변수저장
 			String m_nick = multi.getParameter("m_nick");
+			String m_id = multi.getParameter("m_id");
 			String p_title = multi.getParameter("p_title");
 			String p_type = multi.getParameter("p_type");
 			int p_price = Integer.parseInt(multi.getParameter("p_price"));
@@ -505,7 +508,6 @@ public class ProductService {
 			
 			// 조회수
 			int p_readcount = 0;
-			
 			String p_status = multi.getParameter("p_status");
 			String p_file = multi.getFilesystemName("p_file");
 			
@@ -517,7 +519,6 @@ public class ProductService {
 			ProductDTO productDTO =new ProductDTO();
 			
 			// set메서드 호출 파라미터값 저장
-			productDTO.setM_nick(m_nick);
 			productDTO.setP_num(p_num);
 			productDTO.setP_title(p_title);
 			productDTO.setP_type(p_type);
@@ -527,9 +528,12 @@ public class ProductService {
 			productDTO.setP_readcount(p_readcount);
 			productDTO.setP_status(p_status);
 			productDTO.setP_file(p_file);
+			productDTO.setM_nick(m_nick);
+			productDTO.setM_id(m_id);
 			
 			// insertMember() 메서드 호출
 			productDAO.insertProduct(productDTO);
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -565,6 +569,8 @@ public class ProductService {
 			
 			String p_status = multi.getParameter("p_status");
 			String p_file = multi.getFilesystemName("p_file");
+			String m_id = multi.getFilesystemName("m_id");
+			String m_nick = multi.getFilesystemName("m_nick");
 			
 			if(p_file == null) {
 				//기존 파일이름 가져오기
@@ -583,6 +589,8 @@ public class ProductService {
 			productDTO.setP_date(p_date);
 			productDTO.setP_status(p_status);
 			productDTO.setP_file(p_file);
+			productDTO.setM_id(m_id);
+			productDTO.setM_nick(m_nick);
 			
 			
 			// ProductDAO 객체생성
@@ -607,6 +615,7 @@ public class ProductService {
 			
 			// request 파라미터 가져오기 => int num 저장
 			int p_num = Integer.parseInt(request.getParameter("p_num"));
+			// String m_id = request.getParameter("m_id");
 			
 			// BoardDAO 객체생성
 			productDAO = new ProductDAO();
@@ -642,6 +651,68 @@ public class ProductService {
 		}
 	}//deleteProduct()
 
+	public void updateProduct2(HttpServletRequest request) {
+		try {
+//			System.out.println("서비스");
+//			String uploadPath=request.getRealPath("/upload");
+//			// 이클립스에 실행하면 이클립스 가상경로 
+//			System.out.println(uploadPath);
+//			//파일 최대크기 지정  10M
+//			int maxSize=10*1024*1024; 
+//			// 파일 업로드 했을때 폴더내 파일이름 동일하면 파일이름 변경하는 프로그램
+//			// import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+//			// new DefaultFileRenamePolicy()
+//			MultipartRequest multi 
+//			= new MultipartRequest(request, uploadPath, maxSize,"utf-8", new DefaultFileRenamePolicy()); 
+			
+//			// request 한글처리
+//			request.setCharacterEncoding("utf-8");
+//			
+			int p_num = Integer.parseInt(request.getParameter("p_num"));
+//			String p_title = multi.getParameter("p_title");
+//			String p_type = multi.getParameter("p_type");
+//			int p_price = Integer.parseInt(multi.getParameter("p_price"));
+//			String p_detail = multi.getParameter("p_detail");
+			Timestamp p_date = new Timestamp(System.currentTimeMillis());
+//			
+			String p_status = request.getParameter("p_status");
+//			String p_file = multi.getFilesystemName("p_file");
+//			String m_id = multi.getFilesystemName("m_id");
+//			String m_nick = multi.getFilesystemName("m_nick");
+//			
+//			if(p_file == null) {
+//				//기존 파일이름 가져오기
+//				p_file = multi.getParameter("oldfile");
+//			}
+			
+			// ProductDTO 객체생성 
+			ProductDTO productDTO =new ProductDTO();
+			
+			// set메서드 호출 파라미터값 저장
+			productDTO.setP_num(p_num);
+//			productDTO.setP_title(p_title);
+//			productDTO.setP_type(p_type);
+//			productDTO.setP_price(p_price);
+//			productDTO.setP_detail(p_detail);
+			productDTO.setP_date(p_date);
+			productDTO.setP_status(p_status);
+//			productDTO.setP_file(p_file);
+//			productDTO.setM_id(m_id);
+//			productDTO.setM_nick(m_nick);
+			
+			
+			// ProductDAO 객체생성
+			productDAO = new ProductDAO();
+			
+			// updateProduct(productDTO) 메서드 호출
+			productDAO.updateProduct2(productDTO);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	} //updateProduct()
+	
 
 
 // -----------------------------------------------------------------
@@ -714,30 +785,34 @@ public class ProductService {
 
 
 
-	public MemberDTO getmember(HttpServletRequest request) {
-		MemberDTO memberDTO = null;
+
+	
+	public void updateReadcount(HttpServletRequest request) {
+		System.out.println("BoardService updateReadcount()");
 		try {
-			// request 한글처리
+			// 한글처리
 			request.setCharacterEncoding("utf-8");
 			
-			// request 파라미터 가져오기 => int num 저장
-			int n_num = Integer.parseInt(request.getParameter("n_num"));
+			// num 파라미터 값 가져오기
+			int p_num = Integer.parseInt(request.getParameter("p_num"));
 			
 			// BoardDAO 객체생성
 			productDAO = new ProductDAO();
 			
-			// boardDTO = getBoard(num) 메서드 호출
-			memberDTO = productDAO.getmember(n_num);
+			// updateReadcount(num) 메서드호출
+			productDAO.updateReadcount(p_num);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return memberDTO;
-	}
+	}//updateReadcount()
+	
+	
+
+
 
 	
 
-
 	
 	
 	
@@ -745,4 +820,4 @@ public class ProductService {
 	
 	
 	
-}
+} // class

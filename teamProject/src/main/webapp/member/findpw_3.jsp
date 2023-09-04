@@ -76,7 +76,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 			<h2>비밀번호찾기</h2><br><br>
 				<p>회원가입 시 등록하신 아이디, 이메일 주소를 입력해 주세요.</p>
-				<p>해당 이메일로 비밀번호 정보를 보내드립니다.</p>
+				<p>해당 이메일로 OTP(일회용 비밀번호)를 보내드립니다.</p>
 		
 			<div class="login-form-grids animated wow slideInUp" data-wow-delay=".5s">
 			
@@ -86,7 +86,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<input type="email"  placeholder ="이메일"  required=" "  id = "m_email" name = "m_email" >
 					
 					<div class="_5center">
-						<input type="submit" value="확인"  class="#">	
+						<input type="submit" value="새 비밀번호 받기"  class="#">	
 						<input type="submit" value="취소"  class="#">	
 					<hr style="width:100%;height:1px;border:none;background-color:#999;">
 					</div>
