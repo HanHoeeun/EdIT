@@ -224,7 +224,6 @@ public class MemberDAO {
 
 	
 	
-	
 
 //	회원삭제
 	public void deleteMember(MemberDTO memberDTO) {

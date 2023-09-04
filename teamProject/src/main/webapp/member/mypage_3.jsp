@@ -78,34 +78,38 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 		
 <!--================================== 1탭 나의정보==================================== -->
+<%
+	MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
+%>
+
 			<div class="container_3_1">
 				<div id="tab-1" class="tab-content current">
 					<table class="mypage-board">
 						<tr>
 							<th class="_1qna_board_border1" colspan="2">나의정보</th>
 						</tr>
-
+<!-- 		----아이디---- -->
 						 <tr>
 							<td class="_1qna_board_border2">
-								<form action="mypage.me" method="post">
+								<form action="update.me" method="post">
 									<div class="mypage-grids"> 
 										<div align="center">
 											<input type="text" class="show" placeholder="아이디" readonly="readonly"readonly>
-											<input type="text" value="dkdkdkdk" id="m_id" name="m_id" readonly="readonly">
+											<input type="text" value="<%=memberDTO.getM_id() %>" id="m_id" name="m_id" readonly="readonly">
 										</div>
 									</div>
 								</form>
 							</td>
 						</tr>
 						
-						
+<!-- 		----닉네임---- -->						
 						 <tr>
 							<td class="_1qna_board_border2">
-								<form action="mypage.me" method="post">
+								<form action="update.me" method="post">
 									<div class="mypage-grids"> 
 										<div align="center">
 											<input type="text" class="show" placeholder="닉네임" readonly="readonly"readonly>
-											<input type="text" value="닉네임이 나타남" id="m_nick" name="m_nick">
+											<input type="text" value="<%=memberDTO.getM_nick() %>" id="m_nick" name="m_nick">
 										</div>
 									</div>
 								</form>
@@ -117,16 +121,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</td>
 						</tr>
 						
-						
+<!-- 		----비밀번호---- -->						
 						<tr>
 							<td class="_1qna_board_border2">
 								<form action="mypage.me" method="post">
 									<div class="mypage-grids"> 
 										<div align="center">
 											<input type="text" class="show" placeholder="비밀번호" readonly="readonly"readonly>
-											<input type="password" value=""		id="m_pass" 	name="m_pass">
+											<input type="password" value=""			id="m_pass" 	name="m_pass">
 											<input type="password" value="" 		id="m_pass2" 	name="m_pass2">
-											<input type="password" value="" 	id="m_pass3" 	name="m_pass3">
+											<input type="password" value="" 		id="m_pass3" 	name="m_pass3">
 										</div>
 									</div>
 								</form>
