@@ -2,6 +2,7 @@ package com.itwillbs.ajax;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -31,6 +32,7 @@ public class AddToWishlistServlet extends HttpServlet {
         PreparedStatement pstmt = null;
 
         try {
+        	
             // 컨텍스트에서 데이터 소스 가져오기
             Context initContext = new InitialContext();
             Context envContext = (Context) initContext.lookup("java:/comp/env");
@@ -40,7 +42,7 @@ public class AddToWishlistServlet extends HttpServlet {
             conn = ds.getConnection();
 
             // SQL 쿼리를 작성하여 찜 정보를 추가
-            String sql = "INSERT INTO wishlist (w_p_num, w_m_num) VALUES (?, ?)";
+            String sql = "INSERT INTO wishlists (w_p_num, w_m_num) VALUES (?, ?)";
             pstmt = conn.prepareStatement(sql);
 
             // p_num과 m_num을 정수로 파싱하여 설정
@@ -70,7 +72,7 @@ public class AddToWishlistServlet extends HttpServlet {
         }
 
         // 결과 메시지를 클라이언트에게 응답으로 보냄
-        response.setContentType("text/plain");
+        response.setContentType("text/plain; charset=UTF-8");
         PrintWriter out = response.getWriter();
         out.write(resultMessage);
         out.close();

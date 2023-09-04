@@ -25,6 +25,9 @@
 }
 
 </style>
+<%
+String loggedInMNum =(String)session.getAttribute("n_num");
+%>
 </head>
   
 <body>
@@ -136,6 +139,8 @@ String orderBy = (String) request.getAttribute("orderBy");
             = (ProductPageDTO)request.getAttribute("ppageDTO");
             List<WishListDTO> wishList
             = (List<WishListDTO>)request.getAttribute("wishList");
+            String id = (String)session.getAttribute("m_id");
+            MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO"); 
             %>
             
               <div class="agile_top_brands_grids">
@@ -151,7 +156,7 @@ String orderBy = (String) request.getAttribute("orderBy");
                     <figure>
                          <div class="snipcart-item block">
                             <div class="snipcart-thumb">
-                                <a href="single.po"><img title=" " alt=" " src="./upload/<%=productDTO.getP_file() %>"  width="150px" height="150px" download></a>
+                                <a href="single.po"><img title=" " alt=" " src="upload/<%=productDTO.getP_file() %>"  width="150px" height="150px" download></a>
                                 <p><%=productDTO.getP_title() %></p>
                                 <h4><%= productDTO.getP_price() %>원</h4>
                                 <h4><%= productDTO.getP_status() %></h4>
@@ -168,7 +173,8 @@ String orderBy = (String) request.getAttribute("orderBy");
                                         <input type="hidden" name="currency_code" value="KRW">
                                         <input type="hidden" name="return" value=" ">
                                         <input type="hidden" name="cancel_return" value=" ">
-                                        <input type="button" value="찜 추가하기" class="button" id="addToWishlistButton" data-p-num="<%= productDTO.getP_num() %>">
+                                        <input type="button" value="찜 추가하기" class="button" id="addToWishlistButton" 
+                                        data-p-num="<%= productDTO.getP_num() %>" data-m-num="<%=memberDTO.getM_num()%>">
                                     </fieldset>
                                 </form>
                             </div>
@@ -179,7 +185,8 @@ String orderBy = (String) request.getAttribute("orderBy");
         </div>
     </div>
     <% 
-    } 
+    }
+    
     %>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="../js/jquery-1.11.1.min.js"></script>
@@ -188,7 +195,7 @@ $(document).ready(function() {
     $('#addToWishlistButton').click(function() {
         // 버튼의 data-p-num와 data-m-num 속성 값을 가져오기
         var w_p_num = $(this).data('p-num');
-		var w_m_num = loggedInMNum;
+		var w_m_num = $(this).data('m-num');
 
 
         // productDTO와 memberDTO 객체가 null인지 확인
