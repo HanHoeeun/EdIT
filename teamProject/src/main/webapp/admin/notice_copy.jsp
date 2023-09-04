@@ -4,6 +4,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -119,9 +120,9 @@ NoticePageDTO pageDTO=(NoticePageDTO)request.getAttribute("pageDTO");
 					</div>
 				</div> 
 <!--=========================================== 2탭 이벤트    ==================================================== -->				
-<%-- <%
+ <%--  <%
 List<NoticeDTO> eventList = (List<NoticeDTO>)request.getAttribute("eventList");
-NoticePageDTO pageDTO2=(NoticePageDTO)request.getAttribute("pageDTO");
+NoticePageDTO pageDTO2=(NoticePageDTO)request.getAttribute("pageDTO2");
 %>	
 				<div id="tab-2" class="tab-content">
 					<table class="_1qna_board">
@@ -133,12 +134,12 @@ NoticePageDTO pageDTO2=(NoticePageDTO)request.getAttribute("pageDTO");
 						<%
 						SimpleDateFormat format2 = new SimpleDateFormat("yyyy.MM.dd");
 						for (int i = 0; i < eventList.size(); i++) {
-							NoticeDTO noticeDTO = eventList.get(i);
+							NoticeDTO eventDTO = eventList.get(i);
 						%>
-						<tr onclick="location.href='content.no?a_num=<%=noticeDTO.getA_num()%>'">
-							<td class="_1qna_board_border"><%=noticeDTO.getA_num()%></td>
-							<td class="_1qna_board_subject"><%=noticeDTO.getA_title()%></td>
-							<td class="_1qna_board_border"><%=format.format(noticeDTO.getA_date())%></td>
+						<tr onclick="location.href='content.no?a_num=<%=eventDTO.getA_num()%>'">
+							<td class="_1qna_board_border"><%=eventDTO.getA_num()%></td>
+							<td class="_1qna_board_subject"><%=eventDTO.getA_title()%></td>
+							<td class="_1qna_board_border"><%=format2.format(eventDTO.getA_date())%></td>
 						</tr>
 						<%
 						}
@@ -151,20 +152,20 @@ NoticePageDTO pageDTO2=(NoticePageDTO)request.getAttribute("pageDTO");
 					<%
 					// 시작페이지 1페이지 Prev 없음
 					// 시작페이지 11,21,31 Prev가 보이게
-						if(pageDTO.getStartPage() > pageDTO.getPageBlock()){%>
-							<li onclick="location.href='eventlist.no?pageNum=<%=pageDTO.getStartPage()-pageDTO.getPageBlock()%>&tab=tab-2'">Prev</li>
+						if(pageDTO2.getStartPage() > pageDTO2.getPageBlock()){%>
+							<li onclick="location.href='eventlist.no?pageNum=<%=pageDTO2.getStartPage()-pageDTO2.getPageBlock()%>&tab=tab-2'">Prev</li>
 							
 						<% } 
-						for(int i= pageDTO.getStartPage(); i<=pageDTO.getEndPage(); i++){%>
+						for(int i= pageDTO2.getStartPage(); i<=pageDTO2.getEndPage(); i++){%>
 							<li onclick="location.href='eventlist.no?pageNum=<%=i%>&tab=tab-2'"><%=i %></li>
 						<%}
 						// 끝페이지 번호 전체페이지수 비교 => 전체페이지 수 크면 => next보임
-						if(pageDTO.getEndPage() < pageDTO.getPageCount()){%>
-							<li onclick="location.href='eventlist.no?pageNum=<%=pageDTO.getStartPage() + pageDTO.getPageBlock() %>&tab=tab-2'">Next</li>
+						if(pageDTO2.getEndPage() < pageDTO2.getPageCount()){%>
+							<li onclick="location.href='eventlist.no?pageNum=<%=pageDTO2.getStartPage() + pageDTO2.getPageBlock() %>&tab=tab-2'">Next</li>
 						<%}%>
 				    </ul>
 					</div>
-				</div>  --%>
+				</div>   --%>
 <!--================================== 3탭 글작성 ==================================== -->
 				<%if(1 == 1){ %>
 				<div id="tab-3" class="tab-content">

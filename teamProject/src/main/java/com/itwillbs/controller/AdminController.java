@@ -120,6 +120,7 @@ public class AdminController extends HttpServlet{
 			response.sendRedirect("faq.ad?tab=tab-3");
 		}
 		if(sPath.equals("/registered.ad")) {
+			HttpSession session = request.getSession();
 			adminService = new AdminService();
 			AdminDTO adminDTO = adminService.getBoardContent(request);
 //			엔터(\r\n) -> <br> 로 바꾼다
@@ -133,7 +134,27 @@ public class AdminController extends HttpServlet{
 			dispatcher = request.getRequestDispatcher("admin/registered_1_1.jsp");
 			dispatcher.forward(request, response);
 		}
-		
+		if(sPath.equals("/registeredPro.ad")) {
+			try {
+				request.setCharacterEncoding("utf-8");
+			
+				adminService = new AdminService();
+				
+				adminService.updateFaqAnswer(request);
+				
+				int a_num = Integer.parseInt(request.getParameter("a_num"));
+				
+				response.setContentType("text/html;charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>");
+				out.println("window.opener.location.reload();");
+				out.println("location.href='registered.ad?a_num="+a_num+"'");
+				out.println("</script>");
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
 		
 		if(sPath.equals("/adminPage.ad")) {
 			request.setCharacterEncoding("utf-8");
