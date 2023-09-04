@@ -292,7 +292,7 @@ ul.faq_1 {
 
 
 .mypage-grids input[class="show"] {
-    border: 1px solid #ffffff;
+    border: none;
     padding: 10px 10px 10px 10px;
     font-size: 14px;
     display: block;
