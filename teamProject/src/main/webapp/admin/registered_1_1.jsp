@@ -41,13 +41,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 AdminDTO adminDTO = (AdminDTO)request.getAttribute("adminDTO");
 String id = (String)session.getAttribute("m_id");
 int m_level = (int)session.getAttribute("m_level");
+
 %>
 <!--============================== 바디 ============================================-->
 <div class="report">
 	<div class="container">
 			<h2>1 : 1 문의</h2>
-			<form action="" method="post" class="report-form-grids_1_1">
-			<input type="hidden" value="<%=adminDTO.getA_num()%>">
+			<form action="registeredPro.ad" method="post" class="report-form-grids_1_1">
+			<input type="hidden" value="<%=adminDTO.getA_num()%>" name="a_num">
 			<p>아이디</p>
 			<input class="readonly" type="text" value="<%=adminDTO.getA_m_nick() %>" readonly="readonly"><br>
 			<p>제목</p>
@@ -61,11 +62,16 @@ int m_level = (int)session.getAttribute("m_level");
 			
 			<%
 			String answer = adminDTO.getA_answer() == null ? "" : adminDTO.getA_answer();
+			if(m_level == 2){
 			%>
 			<p>답변내용</p>
-			<textarea name="textarea" readonly="readonly"><%=answer %></textarea><br>
+			<textarea name="a_answer1"><%=answer %></textarea><br>
+			<%}else{ %>
+			<p>답변내용</p>
+			<textarea name="a_answer2" readonly="readonly"><%=answer %></textarea><br>
+			<%} %>
 			<div class="reportbtn">
-			<%if(m_level != 2){ %>
+			<%if(m_level == 2){ %>
 			<input type="submit" value="답변등록">
 			<%} %>
 			<button type="button" id="reportbtn_btn_1" onclick="window.close()">확인</button>

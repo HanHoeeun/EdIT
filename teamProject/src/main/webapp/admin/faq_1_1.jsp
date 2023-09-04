@@ -230,7 +230,7 @@ SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
 							<td class="_1qna_board_subject"><%=adminDTO.getA_title() %></td>
 							<td class="_1qna_board_border"><%=adminDTO.getA_m_nick() %></td>
 							<td class="_1qna_board_border"><%=format.format(adminDTO.getA_date()) %></td>
-							<td>x</td>
+							<td><%=a_check %></td>
 						</tr>
 						<%} %>
 					</table>
