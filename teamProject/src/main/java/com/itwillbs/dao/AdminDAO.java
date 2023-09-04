@@ -190,6 +190,23 @@ public class AdminDAO {
 		
 		return adminDTO;
 	}
+	
+	public void updateFaqAnswer(AdminDTO adminDTO) {
+		try {
+			con = this.getConnection();
+			String sql = "update admin set a_answer = ?, a_check = 1 where a_num = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, adminDTO.getA_answer());
+			pstmt.setInt(2, adminDTO.getA_num());
+			pstmt.executeUpdate();
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			this.dbClose();
+		}
+	}
+	
 	public List<ReportDTO> getReportList(AdminPageDTO pageDTO) {
 		List<ReportDTO> reportList = null;
 		try {
@@ -692,4 +709,5 @@ public class AdminDAO {
 		}
 		return count;
 	}
+	
 }

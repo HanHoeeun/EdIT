@@ -360,6 +360,27 @@ public class AdminService {
 		
 		return count;
 	}
+
+	public void updateFaqAnswer(HttpServletRequest request) {
+		try {
+			request.setCharacterEncoding("utf-8");
+			
+			AdminDTO adminDTO = new AdminDTO();
+			
+			int a_num = Integer.parseInt(request.getParameter("a_num"));
+			adminDTO.setA_num(a_num);
+			adminDTO.setA_answer(request.getParameter("a_answer1"));
+			
+			
+			adminDAO = new AdminDAO();
+			adminDAO.updateFaqAnswer(adminDTO);
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
 	
 
 }

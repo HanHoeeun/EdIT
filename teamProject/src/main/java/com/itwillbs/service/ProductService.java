@@ -806,6 +806,12 @@ public class ProductService {
 			e.printStackTrace();
 		}
 	}//updateReadcount()
+	
+	
+
+
+
+	
 
 	
 	

@@ -178,7 +178,10 @@ function kakaoLogout() {
 </div>
 </div>
 		
-		
+<script>
+    // 로그인 성공 시 m_num 값을 JavaScript 변수에 설정
+    int loggedInMNum = <%= session.getAttribute("m_num") %>;
+</script>
 	
 		
 <!-- sns로그인 -->

@@ -55,7 +55,7 @@ public class MemberController extends HttpServlet{
 		if (sPath.equals("/insert.me")) {
 			System.out.println("뽑은 가상주소 비교 : " + sPath);
 			
-			dispatcher = request.getRequestDispatcher("member/registered_3.jsp");
+			dispatcher = request.getRequestDispatcher("member/join.jsp");
 			dispatcher.forward(request, response);
 			
 		}
@@ -386,14 +386,13 @@ public class MemberController extends HttpServlet{
 		    MemberService memberService = new MemberService();
 			
 			 // 아이디와 이메일을 이용하여 비밀번호 찾기 작동
+		     // 아이디와 비밀번호가 일치하면 해당 이메일로 OTP발송
 		    String foundpw = memberService.findpwmember(id, email);
 
 		    if (foundpw != null) {
 		        // 비밀번호를 찾은 경우 
-		    	// -> 이것도 수정필요(찾은 비밀번호를 이메일로 보낼것이냐 or 그냥 창에 보여줄 것이냐
-		    	// -> 만약 창에 보여주면 비밀번호 다 보여줄것인가, 아니면 앞에 몇자리만 보여줄 것인가.....
 		        request.setAttribute("foundpw", foundpw);
-		        dispatcher = request.getRequestDispatcher("member/findpw_result.jsp");
+		        dispatcher = request.getRequestDispatcher("member/forgotPassword.jsp");
 		        dispatcher.forward(request, response);
 		    } else {
 		        // 비밀번호를 찾지 못한 경우(아이디나 이메일을 잘못적었겠지..??)

@@ -160,7 +160,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<ul class="nav navbar-nav">
 									<li class="active"><a href="main.me" class="act">Home</a></li>	
 									<!-- Mega Menu -->
-									<!-- Mega Menu -->
+									<li class="dropdown">
+										<a href="products.po">전체 상품 보기</a>
+									</li>
 									<!-- 노트북 -->
 									<li class="dropdown">
 										<a href="laptop.po">노트북</a>

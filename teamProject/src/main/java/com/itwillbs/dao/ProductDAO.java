@@ -1376,8 +1376,10 @@ public class ProductDAO {
 		int size = wishList.size();
 		try {
 			con = getConnection();
-			String sql="select w.w_num, p.m_nick, p.p_file, p.p_title, p.p_status, p.p_type, "
-					+ "p.p_price from wishlists w natural join products p order by p_num desc limit ?, ?";
+			String sql="select  w.w_num, m.m_nick, p.p_file, p.p_title, p.p_status, p.p_type, p.p_price "
+					+ "from wishlists w join products p on w.w_p_num = p.p_num "
+					+ "join members m on w.w_num = m.m_num "
+					+ "order by p_num desc limit ?, ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, ppageDTO.getP_startRow()-1);//시작행-1
 			pstmt.setInt(2, ppageDTO.getP_pageSize());//몇개
@@ -1413,8 +1415,9 @@ public class ProductDAO {
 			con = getConnection();
 			//3 sql  => mysql 제공 => limit 시작행-1, 몇개
 //			String sql="select * from board order by num desc";
-			String sql="select  w.w_num, p.m_nick, p.p_file, p.p_title, p.p_status, "
-					+ "p.p_type, p.p_price from wishlists w natural join products p  "
+			String sql="select  w.w_num, m.m_nick, p.p_file, p.p_title, p.p_status, p.p_type, p.p_price "
+					+ "from  wishlists w join products p on w.w_p_num = p.p_num "
+					+ "join members m on w.w_num = m.m_num "
 					+ "where p_status =? order by p_num limit ?, ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, "selled");
@@ -1454,8 +1457,9 @@ public class ProductDAO {
 			con = getConnection();
 			//3 sql  => mysql 제공 => limit 시작행-1, 몇개
 //			String sql="select * from board order by num desc";
-			String sql="select  w.w_num, p.m_nick, p.p_file, p.p_title, p.p_status, "
-					+ "p.p_type, p.p_price from wishlists w natural join products p  "
+			String sql="select  w.w_num, m.m_nick, p.p_file, p.p_title, p.p_status, p.p_type, p.p_price "
+					+ "from wishlists w join products p on w.w_p_num = p.p_num "
+					+ "join members m on w.w_num = m.m_num" 
 					+ "where p_status =? order by p_num limit ?, ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, "sell");
