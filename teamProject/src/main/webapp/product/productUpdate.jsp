@@ -100,8 +100,8 @@ ProductDTO productDTO=(ProductDTO)request.getAttribute("productDTO");
 						</select>
 						
 						<select name="p_status" id="p_status"  style="width: 122px; height: 38px; margin: 1em 10px;">
-						    <option value="sell">판매중</option>
-						    <option value="selled">거래완료</option>
+						    <option value="거래중">판매중</option>
+						    <option value="거래완료">거래완료</option>
 						</select>
 					</div>
 				</div>

@@ -77,7 +77,7 @@ public class ProductController extends HttpServlet{
 			productService = new ProductService();
 			MemberService memberService = new MemberService();
 			productDTO = productService.getproduct(request);
-			memberDTO = productService.getmember(request);
+			productDTO = productService.getproduct(request);
 // 			List<ProductDTO> productList = getProductList(); 메서드 호출
 			List<ProductDTO> productList=productService.getProductList(ppageDTO);
 			
@@ -413,6 +413,7 @@ public class ProductController extends HttpServlet{
 		
 		if(sPath.equals("/productReg.po")) {
 			System.out.println("뽑은 가상주소 비교 : /productReg.po");
+			
 			HttpSession session = request.getSession();
 			String id = (String)session.getAttribute("m_id");
 			
@@ -428,7 +429,8 @@ public class ProductController extends HttpServlet{
 		} // if
 		
 		if(sPath.equals("/productRegPro.po")) {
-			System.out.println("뽑은 가상주소 비교 : /tablet.po");
+			
+			System.out.println("뽑은 가상주소 비교 : /productRegPro.po");
 			
 			// ProductService 객체생성
 			productService = new ProductService();
@@ -437,7 +439,7 @@ public class ProductController extends HttpServlet{
 			
 			
 			//로그인 이동 => 주소변경하면서 이동
-			response.sendRedirect("products.po");
+			response.sendRedirect("main.me");
 			
 		} // if
 		
@@ -479,7 +481,7 @@ public class ProductController extends HttpServlet{
 			//  sql =>  update members set name = ? where id = ? 
 			productService.updateProduct(request);
 			
-			response.sendRedirect("products.po");
+			response.sendRedirect("main.me");
 			
 		}//
 		
@@ -494,13 +496,14 @@ public class ProductController extends HttpServlet{
 			productService.deleteProduct(request);
 			
 			// 글목록 list.bo 주소 변경 되면서 이동
-			response.sendRedirect("products.bo");
+			response.sendRedirect("main.me");
 			
 		}//
 		
 		
 		if(sPath.equals("/single.po")) {
 			System.out.println("뽑은 가상주소 비교 : /single.po");
+			
 			HttpSession session = request.getSession();
 			String id = (String)session.getAttribute("m_id");
 			
@@ -513,7 +516,7 @@ public class ProductController extends HttpServlet{
 			
 			//조회수 증가 readcount 1증가
 			// 리턴할형 없음  updateReadcount(request) 메서드 호출
-//			productService.updateReadcount(request);
+			productService.updateReadcount(request);
 			
 			// ProductDTO productDTO = getBoard(request) 메서드 호출
 			ProductDTO productDTO = productService.getproduct(request);
@@ -527,6 +530,21 @@ public class ProductController extends HttpServlet{
 		
 		}//
 		
+		if(sPath.equals("/complete.po")) {
+			
+			// request안에 폼에서 입력한 수정할 값이 저장
+			// ProductService 객체생성
+			productService = new ProductService();
+			
+			productService.updateProduct2(request);
+			
+			response.sendRedirect("main.me");
+			
+		}//
+		
+		
+		
+		// -----------------------------------------------------------------------------
 		if (sPath.equals("/wishlist.po")) {
 			System.out.println("뽑은 가상주소 비교 : /wishlist.po");
 			int p_pageSize=10;

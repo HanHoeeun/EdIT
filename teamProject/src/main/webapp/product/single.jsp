@@ -53,6 +53,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body>
 
+<div id="modal-background" class="modal-background"></div>
+
 <!-- 헤더 들어가는 곳! -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
 <!-- 헤더 들어가는 곳! -->
@@ -83,47 +85,19 @@ MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 				
 				<!-- 사진 -->
 				<div class="col-md-4 agileinfo_single_left">
-<%-- 						<a href="upload/<%=productDTO.getP_file() %>" download> --%>
-<%-- 				        <%=productDTO.getP_file() %></a> --%>
-<%-- 				        <img src="upload/<%=productDTO.getP_file() %>"  --%>
-<!-- 				         width="200" height="200"> -->
-				
+						<a href="upload/<%=productDTO.getP_file() %>" download>
+				        <%=productDTO.getP_file() %></a>
+				        <img src="upload/<%=productDTO.getP_file() %>" 
+				         width="200" height="200">
 <!-- 					<img id="example" src="../images/si1.jpg" alt=" " class="img-responsive"> -->
-<a id="downloadLink" href="upload/<%=productDTO.getP_file() %>" download>
-        <%=productDTO.getP_file() %></a>
-    <div id="outputContainer"></div>
 
-    <script>
-        document.getElementById("downloadLink").addEventListener("click", function (event) {
-            event.preventDefault();
-            var link = event.target;
-            var fileName = link.textContent;
-            
-            // Create a hidden anchor element to initiate the download
-            var downloadAnchor = document.createElement("a");
-            downloadAnchor.style.display = "none";
-            downloadAnchor.href = link.href;
-            downloadAnchor.download = fileName;
-            document.body.appendChild(downloadAnchor);
-            downloadAnchor.click();
-            document.body.removeChild(downloadAnchor);
-
-            // Display the downloaded content
-            var outputContainer = document.getElementById("outputContainer");
-            var img = document.createElement("img");
-            img.src = "upload/" + fileName;
-            img.width = 200;
-            img.height = 200;
-            outputContainer.innerHTML = "";
-            outputContainer.appendChild(img);
-        });
-    </script>
 				</div>
 				<!-- // 사진 -->
 				
 				<div class="col-md-8 agileinfo_single_right">
 					
 					<input type="hidden" value="<%=productDTO.getP_num()%>" name="p_num">
+					<input type="hidden" value="<%=productDTO.getM_nick()%>" name="m_nick">
 					
 					<!-- 조회수 -->
 					<div style="float: right;">
@@ -190,25 +164,28 @@ MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 					<!-- // 위시리스트 추가버튼 -->
 					
 					<!--  로그인했을떄 아이디 일치시 수정삭제버튼 나오게하긔 -->
+					<div class="checkout-right-basket">	
+						
 					<%				
-					if(id!=null){
-						if(id.equals(memberDTO.getM_id())){
+					if(id != null){
+						if(id.equals(productDTO.getM_id())){
 							%>
-					<div class="checkout-right-basket">		
 					<a href="productUpdate.po?p_num=<%=productDTO.getP_num()%>"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>상품수정</a>
 					<a href="delete.po?p_num=<%=productDTO.getP_num()%>"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>상품삭제</a>
-					</div>
+					<a href="complete.po?p_num=<%=productDTO.getP_num()%>"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>구매확정</a>
+					<br>
+					<br>
+					<br>
 					<!-- // 로그인했을떄 아이디 일치시 수정삭제버튼 나오게하긔 -->
 							<%}
 					}
 					%>
 					
 					<!-- 채팅, 신고하기, 상품목록 버튼 -->
-					<div class="checkout-right-basket">
 					<a href=""><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>1:1 채팅</a>
-					<a href=""><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>구매확정</a>
 					<a href=""><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>신고하기</a>
 					<a href=products.po"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>상품목록</a>
+					
 					</div>
 					<!-- // 채팅, 신고하기, 상품목록 버튼 -->
 					
