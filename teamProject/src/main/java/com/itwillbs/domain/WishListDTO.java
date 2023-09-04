@@ -3,6 +3,7 @@ package com.itwillbs.domain;
 public class WishListDTO {
  
 	private int w_num;
+	private int p_num;
 	private String p_type;
 	private String p_title;
 	private String p_status;
@@ -11,6 +12,12 @@ public class WishListDTO {
 	private String m_nick;
 	
 	
+	public int getP_num() {
+		return p_num;
+	}
+	public void setP_num(int p_num) {
+		this.p_num = p_num;
+	}
 	public int getW_num() {
 		return w_num;
 	}
