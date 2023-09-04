@@ -123,7 +123,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<fieldset>
 							<input type="button" name="submit" value="정보수정하러가기" class="button" onclick="location.href='update.me'">
 						</fieldset>
-						</div>
+					</div>
 				</form>
 			</div> <br><br>
 							

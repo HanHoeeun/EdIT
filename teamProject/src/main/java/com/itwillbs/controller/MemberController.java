@@ -55,7 +55,7 @@ public class MemberController extends HttpServlet{
 		if (sPath.equals("/insert.me")) {
 			System.out.println("뽑은 가상주소 비교 : " + sPath);
 			
-			dispatcher = request.getRequestDispatcher("member/registered_3.jsp");
+			dispatcher = request.getRequestDispatcher("member/join.jsp");
 			dispatcher.forward(request, response);
 			
 		}
