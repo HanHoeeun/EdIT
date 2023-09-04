@@ -44,6 +44,8 @@ public class ProductController extends HttpServlet{
 		System.out.println("뽑은 가상주소 :  " + sPath);
 		// 뽑은 가상주소 비교하기 => 실제 페이지 연결
 		
+// ==================================================================================================================================	
+		
 		if (sPath.equals("/products.po")) {
 			System.out.println("뽑은 가상주소 비교 : /products.po");
 			// 한페이지에서 보여지는 글개수 설정
@@ -62,22 +64,10 @@ public class ProductController extends HttpServlet{
 			ppageDTO.setP_pageNum(p_pageNum);
 			ppageDTO.setP_currentPage(p_currentPage);
 			ProductDTO productDTO = new ProductDTO();
-			MemberDTO memberDTO = new MemberDTO();
 			
-			// 세션 객체생성
-			HttpSession session = request.getSession();
-						
-			// "p_id" 세션값 가져오기=> String id 변수 저장	
-			String id = (String)session.getAttribute("m_id");
-						
-			
-						
-			// ProductDTO productDTO = getMember(id) 메서드 호출
 			// ProductService 객체생성
 			productService = new ProductService();
-			MemberService memberService = new MemberService();
-			productDTO = productService.getproduct(request);
-			memberDTO = productService.getmember(request);
+			
 // 			List<ProductDTO> productList = getProductList(); 메서드 호출
 			List<ProductDTO> productList=productService.getProductList(ppageDTO);
 			
@@ -144,13 +134,28 @@ public class ProductController extends HttpServlet{
 			request.setAttribute("productList", productList);
 			request.setAttribute("ppageDTO", ppageDTO);
 			request.setAttribute("orderBy", orderBy);
-			request.setAttribute("productDTO", productDTO);
-			request.setAttribute("memberDTO", memberDTO);
+			//request.setAttribute("productDTO", productDTO);
+			
 			// 주소변경없이 이동 center/products.jsp
 			dispatcher 
 		    = request.getRequestDispatcher("product/products.jsp");
 		dispatcher.forward(request, response);
 		} // products.po
+	
+		
+		if (sPath.equals("/productsPro.po")) {
+			System.out.println("뽑은 가상 주소 비교 : /productsPro.po");
+			
+			productService = new ProductService();
+			ProductDTO productDTO = productService.getproduct(request);
+			HttpSession session = request.getSession();
+			session.setAttribute("p_num", productDTO.getP_num());
+			MemberDTO memberDTO = productService.getmember(request);
+			session.setAttribute("n_num", memberDTO.getM_num());
+					
+			response.sendRedirect("products.po");
+		}
+		//========================================================================================================
 		
 		if (sPath.equals("/laptop.po")) {
 			System.out.println("뽑은 가상주소 비교 : /laptop.po");
