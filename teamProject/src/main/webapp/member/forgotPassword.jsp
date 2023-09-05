@@ -5,7 +5,7 @@
 <head>
 <meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
-<title>Snippet - BBBootstrap</title>
+<title>member/forgotPassword.jsp</title>
 <link
 	href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css'
 	rel='stylesheet'>
@@ -66,7 +66,10 @@ body {
 						<li><span class="text-primary text-medium">3. </span>다음 페이지에서 OTP를 입력하세요.</li>
 					</ol>
 				</div>
-				<form class="card mt-4" action="forgotPassword" method="POST">
+				
+				
+				
+				<form class="card mt-4" action="forgotPassword.me" method="POST">
 					<div class="card-body">
 						<div class="form-group">
 							<label for="email-for-pass">이메일 주소를 입력하세요.</label> <input
@@ -75,10 +78,15 @@ body {
 						</div>
 					</div>
 					<div class="card-footer">
+<!-- 					새 비밀번호 받기 누르면 -> 멤버컨트롤단에 forgotPassword.me가 작동 -->
 						<button class="btn btn-success" type="submit">새 비밀번호 받기</button>
+						
 						<button class="btn btn-danger" type="submit">로그인으로 돌아가기</button>
 					</div>
 				</form>
+				
+				
+				
 			</div>
 		</div>
 	</div>

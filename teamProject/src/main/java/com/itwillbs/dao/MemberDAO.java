@@ -385,6 +385,29 @@ public class MemberDAO {
 	}
 
 
+  // 9월 5일 
+	public int newPassword(MemberDTO memberDTO) {
+		int result = 0;
+		try {
+			con = getConnection();
+			
+			PreparedStatement pst = con.prepareStatement("update members set m_pass = ? where m_email = ? ");
+			pst.setString(1, memberDTO.getM_pass());
+			pst.setString(2, memberDTO.getM_email());
+			
+			result = pst.executeUpdate();
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dblClose();
+		}
+
+		return result;
+	}
+
+
 }	// insertMember()
 
 	
