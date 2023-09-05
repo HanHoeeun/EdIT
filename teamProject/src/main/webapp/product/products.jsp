@@ -282,5 +282,3 @@ function change_country(l) {
 
 </body>
 </html>
-</body>
-</html>
