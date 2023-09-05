@@ -73,7 +73,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<li class="tab-link" data-tab="tab-4">찜</li>
 					<li class="tab-link" data-tab="tab-5">문의내역</li>
 					<li class="tab-link" data-tab="tab-6">신고내역</li>
-					<li class="tab-link" data-tab="tab-7">회원탈퇴</li>
+					<li class="tab-link" data-tab="tab-7" onclick="">회원탈퇴</li>
 				</ul>
 			</div>
 		
