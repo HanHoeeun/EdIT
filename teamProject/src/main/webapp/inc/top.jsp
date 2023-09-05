@@ -5,7 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>main.jsp</title>
- 
+<%
+String m_id = null;
+if(session.getAttribute("m_id")!=null){
+	m_id = (String)session.getAttribute("m_id");
+}
+%>
 </head>
 <body>    
 
@@ -31,6 +36,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 <!-- font-awesome icons -->
 <link href="css/font-awesome.css" rel="stylesheet"> 
+<link href="css/custom_1.css" rel="stylesheet"> 
 <!-- //font-awesome icons -->
 <!-- js -->
 <script src="js/jquery-1.11.1.min.js"></script>
@@ -48,6 +54,41 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		});
 	});
 </script>
+<%
+	if(m_id != null){%>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			getInfiniteUnread();
+		});
+	</script>
+<%	}%>
+<script type="text/javascript">
+
+function getUnread(){
+	$.ajax({
+		type:'post',
+		url: 'chatUnread.ch',
+		data:{
+			m_id : encodeURIComponent('<%=m_id%>')
+		},
+		success: function(result){
+			if(result >= 1){
+				showUnread(result);
+			}else{
+				showUnread('');
+			}
+		}
+	});
+}
+function getInfiniteUnread(){
+	setInterval(function(){
+		getUnread();
+	}, 4000);
+}
+function showUnread(result){
+	$('#unread').html(result);
+}
+</script>
 <!-- start-smoth-scrolling -->
 
 </head>
@@ -61,7 +102,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<div class="agile-login">
 				<ul>
-<!-- <<<<<<< HEAD >>>>>> -->
 <% 
 					String id = (String)session.getAttribute("m_id"); 
 					if (id == null) { %>
@@ -72,16 +112,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					} else { %>
 					
 					<li><a href="mypage.me"><i class="fa fa-user" aria-hidden="true"> 마이 페이지</i></a></li>
-					<li><a href="contact.jsp"><i class="fa fa-question-circle-o" aria-hidden="true"> 문의하기</i></a></li>
 					<li><a href="productReg.po"><i class="fa fa-plus-circle" aria-hidden="true"> 상품등록</i></a></li>
-					
-					<li><a href="faq.ad"><i class="fa fa-question-circle-o" aria-hidden="true"> 문의하기</i></a></li>
-
 					<li><a href="wishlist.po"><i class="fa fa-heart" aria-hidden="true"> 찜리스트 </i></a></li>
 					<li><a href="logout.me"><i class="fa fa-heart" aria-hidden="true"> 로그아웃 </i></a></li>
-					
-					
-					
+					<li><a href="single.po?p_num=5"><i class="fa fa-question-circle-o" aria-hidden="true"> 상품</i></a></li>
+					<li><a href="#" onclick="window.open('box.ch','1:1 채팅','width=500, height=800, scrollbars=yes')"><i class="fa fa-question-circle-o" aria-hidden="true"> 채팅<span id="unread" class="label label-info" style="margin-left:2px;"></span></i></a></li>
 <% 					
 					}
 %>

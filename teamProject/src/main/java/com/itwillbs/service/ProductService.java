@@ -479,8 +479,6 @@ public class ProductService {
 
 	public void insertProduct(HttpServletRequest request) {
 		
-		System.out.println("인서트 프로덕츠 서비스");
-		
 		try {
 			
 			String uploadPath=request.getRealPath("/upload");
@@ -498,8 +496,8 @@ public class ProductService {
 			request.setCharacterEncoding("utf-8");
 			
     	    // request 저장된 파라미터값 가져오기=>변수저장
-			String m_nick = multi.getParameter("m_nick");
 			String m_id = multi.getParameter("m_id");
+			String m_nick = multi.getParameter("m_nick");
 			String p_title = multi.getParameter("p_title");
 			String p_type = multi.getParameter("p_type");
 			int p_price = Integer.parseInt(multi.getParameter("p_price"));
@@ -508,6 +506,7 @@ public class ProductService {
 			
 			// 조회수
 			int p_readcount = 0;
+			
 			String p_status = multi.getParameter("p_status");
 			String p_file = multi.getFilesystemName("p_file");
 			
@@ -519,6 +518,8 @@ public class ProductService {
 			ProductDTO productDTO =new ProductDTO();
 			
 			// set메서드 호출 파라미터값 저장
+			productDTO.setM_id(m_id);
+			productDTO.setM_nick(m_nick);
 			productDTO.setP_num(p_num);
 			productDTO.setP_title(p_title);
 			productDTO.setP_type(p_type);
@@ -528,12 +529,9 @@ public class ProductService {
 			productDTO.setP_readcount(p_readcount);
 			productDTO.setP_status(p_status);
 			productDTO.setP_file(p_file);
-			productDTO.setM_nick(m_nick);
-			productDTO.setM_id(m_id);
 			
 			// insertMember() 메서드 호출
 			productDAO.insertProduct(productDTO);
-			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -562,6 +560,8 @@ public class ProductService {
 			
 			int p_num = Integer.parseInt(multi.getParameter("p_num"));
 			String p_title = multi.getParameter("p_title");
+			String m_nick = multi.getParameter("m_nick");
+			String m_id = multi.getParameter("m_id");
 			String p_type = multi.getParameter("p_type");
 			int p_price = Integer.parseInt(multi.getParameter("p_price"));
 			String p_detail = multi.getParameter("p_detail");
@@ -569,8 +569,6 @@ public class ProductService {
 			
 			String p_status = multi.getParameter("p_status");
 			String p_file = multi.getFilesystemName("p_file");
-			String m_id = multi.getFilesystemName("m_id");
-			String m_nick = multi.getFilesystemName("m_nick");
 			
 			if(p_file == null) {
 				//기존 파일이름 가져오기
@@ -582,6 +580,8 @@ public class ProductService {
 			
 			// set메서드 호출 파라미터값 저장
 			productDTO.setP_num(p_num);
+			productDTO.setM_nick(m_nick);
+			productDTO.setM_id(m_id);
 			productDTO.setP_title(p_title);
 			productDTO.setP_type(p_type);
 			productDTO.setP_price(p_price);
@@ -589,8 +589,6 @@ public class ProductService {
 			productDTO.setP_date(p_date);
 			productDTO.setP_status(p_status);
 			productDTO.setP_file(p_file);
-			productDTO.setM_id(m_id);
-			productDTO.setM_nick(m_nick);
 			
 			
 			// ProductDAO 객체생성
@@ -614,8 +612,8 @@ public class ProductService {
 			request.setCharacterEncoding("utf-8");
 			
 			// request 파라미터 가져오기 => int num 저장
+			String m_id = request.getParameter("m_id");
 			int p_num = Integer.parseInt(request.getParameter("p_num"));
-			// String m_id = request.getParameter("m_id");
 			
 			// BoardDAO 객체생성
 			productDAO = new ProductDAO();
@@ -650,6 +648,8 @@ public class ProductService {
 			e.printStackTrace();
 		}
 	}//deleteProduct()
+	
+	
 
 	public void updateProduct2(HttpServletRequest request) {
 		try {
@@ -712,6 +712,56 @@ public class ProductService {
 		}
 		
 	} //updateProduct()
+	
+	
+	public void updateReadcount(HttpServletRequest request) {
+		
+		try {
+			// 한글처리
+			request.setCharacterEncoding("utf-8");
+			
+			// num 파라미터 값 가져오기
+			int p_num = Integer.parseInt(request.getParameter("p_num"));
+			
+			// BoardDAO 객체생성
+			productDAO = new ProductDAO();
+			
+			// updateReadcount(num) 메서드호출
+			productDAO.updateReadcount(p_num);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}//updateReadcount()
+	
+	public List<ProductDTO> getProductList2() {
+		
+		List<ProductDTO> productList=null; 
+		try {
+			// ProductDAO 객체생성
+			productDAO = new ProductDAO();
+			
+			// productList = getProductList 메서드 호출
+			productList = productDAO.getProductList2();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return productList;
+		
+	} // getProductList2()
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 
 
@@ -785,34 +835,49 @@ public class ProductService {
 
 
 
-
-	
-	public void updateReadcount(HttpServletRequest request) {
-		System.out.println("BoardService updateReadcount()");
+	public MemberDTO getmember(HttpServletRequest request) {
+		MemberDTO memberDTO = null;
 		try {
-			// 한글처리
+			// request 한글처리
 			request.setCharacterEncoding("utf-8");
 			
-			// num 파라미터 값 가져오기
-			int p_num = Integer.parseInt(request.getParameter("p_num"));
+			// request 파라미터 가져오기 => int num 저장
+			int m_num = Integer.parseInt(request.getParameter("m_num"));
+			String m_nick = request.getParameter("m_nick");
 			
 			// BoardDAO 객체생성
 			productDAO = new ProductDAO();
 			
-			// updateReadcount(num) 메서드호출
-			productDAO.updateReadcount(p_num);
+			// boardDTO = getBoard(num) 메서드 호출
+			memberDTO = productDAO.getmember(m_num);
+			memberDTO = productDAO.getmember(m_nick);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}//updateReadcount()
+		return memberDTO;
+	}
+
+
+	public ProductDTO getProduct(int p_num) {
+	    ProductDTO productDTO = null;
+	    try {
+	        // ProductDAO 객체 생성
+	        productDAO = new ProductDAO();
+	        
+	        // ProductDAO의 getproduct 메서드 호출
+	        productDTO = productDAO.getproduct(p_num);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return productDTO;
+	}
+
 	
+
 	
 
 
-
-	
-
 	
 	
 	
@@ -820,4 +885,4 @@ public class ProductService {
 	
 	
 	
-} // class
+}

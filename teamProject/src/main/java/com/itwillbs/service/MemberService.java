@@ -8,6 +8,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import com.itwillbs.dao.MemberDAO;
 import com.itwillbs.domain.MemberDTO;
@@ -290,6 +291,29 @@ public class MemberService {
 			return null; // 비밀번호를 찾지 못한 경우
 		}
 	}
+
+
+	// 9월 5일 
+	// 새 비밀번호 -> DB에 업데이트 시켜줘야 함
+
+	public int newPassword(HttpServletRequest request) {	
+		String newPassword = request.getParameter("newPassword");
+		String confirmPassword = request.getParameter("confirmPassword");
+		
+		HttpSession mySession = request.getSession();
+		String email = (String)mySession.getAttribute("email");
+		
+		MemberDTO memberDTO = new MemberDTO();
+		memberDTO.setM_email(email);
+		memberDTO.setM_pass(newPassword);
+		
+		memberDAO = new MemberDAO();
+		int result = memberDAO.newPassword(memberDTO);
+		
+		return result;
+	}
+
+	
 
 
 

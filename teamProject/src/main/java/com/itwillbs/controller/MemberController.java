@@ -5,7 +5,16 @@ import java.io.PrintWriter;
 import java.lang.invoke.CallSite;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Properties;
+import java.util.Random;
 
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -429,7 +438,7 @@ public class MemberController extends HttpServlet{
 		        dispatcher.forward(request, response);
 		    } else {
 		        // 아이디를 찾지 못한 경우
-		        request.setAttribute("error", "아이디를 찾을 수 없습니다.");
+		        request.setAttribute("error", "이름과 이메일이 다릅니다.");
 		        // member/findid.jsp 주소변경 없이 연결
 		        dispatcher = request.getRequestDispatcher("member/msg.jsp");
 		        dispatcher.forward(request, response);
@@ -437,16 +446,23 @@ public class MemberController extends HttpServlet{
 		} //
 
 		
+		
+		// 9.5 수정함
+		// 로그인화면에서  <a href="findpw.me">비밀번호 찾기</a>를 누르면 연결되는 화면임
 //		진유정 - 비밀번호찾기 화면
+		// findpw.me
 		if(sPath.equals("/findpw.me")) {
 		   System.out.println("뽑은 가상주소 비교 : findpw.me" );
 		   // member/findid_3.jsp 주소변경 없이 연결
-		   dispatcher = request.getRequestDispatcher("member/findpw_3.jsp");
+//		   dispatcher = request.getRequestDispatcher("member/findpw_3.jsp");
+		   dispatcher = request.getRequestDispatcher("member/forgotPassword.jsp");
 		   dispatcher.forward(request, response);
 		} //		
-
+		// 9.5 수정
 		
-//		8.31 오후 12시 진유정 - 비밀번호찾기 (아이디, 이메일 입력)
+		
+//		진 - 메일로 OTP 전송
+		// 비밀번호찾기 수정 -> 아이디와 이메일이 일치할 경우 , 입력한 이메일로 임시 번호(OTP) 발송
 		if(sPath.equals("/findpwPro.me")) {
 			System.out.println("뽑은 가상주소 비교 : findpwPro.me"); 
 			
@@ -467,7 +483,8 @@ public class MemberController extends HttpServlet{
 		        dispatcher = request.getRequestDispatcher("member/forgotPassword.jsp");
 		        dispatcher.forward(request, response);
 		    } else {
-		        // 비밀번호를 찾지 못한 경우(아이디나 이메일을 잘못적었겠지..??)
+		        // 비밀번호를 찾지 못한 경우
+		    	// 아이디나 이메일을 잘못적었거나(DB에 있는 값과 다른경우), 아이디와 비밀번호가 맞지 않은 경우
 		        request.setAttribute("error", "비밀번호를 찾을 수 없습니다.");
 		        // member/findid.jsp 주소변경 없이 연결
 		        dispatcher = request.getRequestDispatcher("member/msg.jsp");
@@ -476,7 +493,128 @@ public class MemberController extends HttpServlet{
 		} //	
 		
 		
+		
+		
+		// 9월 5일
+		// 이메일을 입력해서 새비밀번호받기 버튼을 누르면 -> otp가 입력된 메일로 발송 됨
+		// 메일 입력하고 새 비밀번호 받기 버튼을 눌렀을때의 액션
+		// forgotPassword.me
+		if(sPath.equals("/forgotPassword.me")) {
+			
+			String email = request.getParameter("email");
+			RequestDispatcher dispatcher = null;
+			int otpvalue = 0;
+			HttpSession mySession = request.getSession();
+			
+			if(email!=null || !email.equals("")) {
+				// email 변수가 null이 아니고 빈 문자열이 아닐 때만 아래의 코드 실행
+				// sending OTP
+				Random rand = new Random();
+				// 랜덤 숫자 생성
+				otpvalue = rand.nextInt(1255650);
+
+				String to = email;// change accordingly
+				// Get the session object
+				Properties props = new Properties();
+				
+				props.put("mail.smtp.host", "smtp.gmail.com");
+				// 이메일 발송을 처리해줄 SMTP서버
+				props.put("mail.smtp.host", "smtp.gmail.com");
+				props.put("mail.smtp.socketFactory.port", "465");
+				props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+				// SMTP 서버의 인증을 사용한다는 의미
+				props.put("mail.smtp.auth", "true");
+				props.put("mail.smtp.port", "465");
+				Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
+					protected PasswordAuthentication getPasswordAuthentication() {
+						// 본인 메일 주소, 앱비밀번호(띄어쓰기 없이) 입력
+						// 앱비밀번호 생성 방법 : 구글 - 계정관리 - 보안 - 2단계 인증  - 앱비밀번호 - 기타(website입력)
+						return new PasswordAuthentication("Edit.ADMR@gmail.com", "lcreakptorofatyr");
+					}
+				});
+				// 메세지 작성
+				try {
+					request.setCharacterEncoding("utf-8");
+					
+					MimeMessage message = new MimeMessage(session);
+					message.setFrom(new InternetAddress(email));// change accordingly
+					message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+					// 메일 제목
+					message.setSubject("EdIT의 OTP입니다.");
+					// 메일 내용
+					message.setText("귀하의 OTP는: " + otpvalue);
+					// send message
+					Transport.send(message);
+					System.out.println("message sent successfully");
+				} catch (MessagingException e) {
+					throw new RuntimeException(e);
+				}
+				dispatcher = request.getRequestDispatcher("member/EnterOtp.jsp");
+				request.setAttribute("message","귀하의 이메일로 OTP가 발송되었습니다.<br>정확한 OTP를 입력해주세요.");
+				//request.setAttribute("connection", con);
+				mySession.setAttribute("otp",otpvalue); 
+				mySession.setAttribute("email",email); 
+				dispatcher.forward(request, response);
+				//request.setAttribute("status", "success");
+			}
+			
+		}
+		
+		
+		// 9월 5일
+		// ValidateOtp.me
+		if(sPath.equals("/ValidateOtp.me")) {
+			int value=Integer.parseInt(request.getParameter("otp"));
+			HttpSession session=request.getSession();
+			int otp=(int)session.getAttribute("otp");
+			
+			RequestDispatcher dispatcher=null;
+			
+			// otp 숫자가 일치할 경우 newPassword.jsp로 이동
+			if (value==otp) {
+		
+			request.setAttribute("email", request.getParameter("email"));
+			request.setAttribute("status", "success");
+			dispatcher=request.getRequestDispatcher("member/newPassword.jsp");
+			dispatcher.forward(request, response);	
+			
+			// otp 숫자가 일치하지 않을 경우 메세지
+			} else {
+				request.setAttribute("message","OTP가 일치하지 않습니다. <br> 다시 입력해주세요.");
+				
+			   dispatcher=request.getRequestDispatcher("member/EnterOtp.jsp");
+				dispatcher.forward(request, response);
+			}
+		}
+		
+		// 9월 5일
+		// 새비밀번호 설정
+		// DB 연동
+		// newPassword.me
+		if(sPath.equals("/newPassword.me")) {
+			String newPassword = request.getParameter("newPassword");
+			String confirmPassword = request.getParameter("confirmPassword");
+			
+
+			
+			if(newPassword.equals(confirmPassword)) {
+				memberService = new MemberService();
+				int result = memberService.newPassword(request);
+				
+				if (result > 0) {
+					dispatcher = request.getRequestDispatcher("member/login.jsp");
+				} else {
 	
+				request.setAttribute("error", "업데이트에 실패했습니다.");
+				dispatcher=request.getRequestDispatcher("member/msg.jsp"); 
+				}
+			} else { 
+				request.setAttribute("error", "일치하지 않습니다.");
+				   dispatcher=request.getRequestDispatcher("member/msg.jsp");
+				  
+			}
+			 dispatcher.forward(request, response);
+		}
 		
 	}	// doProcess()
 	
