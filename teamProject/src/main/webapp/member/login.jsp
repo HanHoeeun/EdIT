@@ -130,7 +130,6 @@ function kakaoLogout() {
 			<h2>로그인</h2>
 
 			<div class="login-form-grids animated wow slideInUp" data-wow-delay=".5s">
-			
 				<form action="loginPro.me" method="post">
 					<input type="text" placeholder="아이디" required=" " id="m_id" name="m_id">
 					<input type="password" placeholder="비밀번호" required=" " id="m_pass" name="m_pass">
@@ -142,7 +141,7 @@ function kakaoLogout() {
 				
 <!-- 아이디/비밀번호 찾기/회원가입 -->					
 					<div class="_5forgot">
-						<a href="findid.me">아이디</a>
+						<a href="findid.me">아이디 찾기</a>
 						|
 						<a href="findpw.me">비밀번호 찾기</a>
 						|
@@ -179,7 +178,10 @@ function kakaoLogout() {
 </div>
 </div>
 		
-		
+<script>
+    // 로그인 성공 시 m_num 값을 JavaScript 변수에 설정
+    int loggedInMNum = <%= session.getAttribute("m_num") %>;
+</script>
 	
 		
 <!-- sns로그인 -->

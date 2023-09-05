@@ -12,6 +12,17 @@ public class ProductPageDTO {
 	private int p_startPage;
 	private int p_endPage;
 	private int p_pageCount;
+	
+	private String m_id;
+	
+	
+	
+	public String getM_id() {
+		return m_id;
+	}
+	public void setM_id(String m_id) {
+		this.m_id = m_id;
+	}
 	public int getP_pageSize() {
 		return p_pageSize;
 	}

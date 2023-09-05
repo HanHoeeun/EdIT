@@ -1,3 +1,5 @@
+<%@page import="com.itwillbs.service.MemberService"%>
+<%@page import="com.itwillbs.service.ProductService"%>
 <%@page import="com.itwillbs.domain.MemberDTO"%>
 <%@page import="com.itwillbs.domain.ProductDTO"%>
 <%@page import="com.itwillbs.domain.WishListDTO"%>
@@ -73,10 +75,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- //breadcrumbs -->
  <!-- 드롭다운과 상품 리스트 -->
 
-<%
+<%-- <%
 String orderBy = (String) request.getAttribute("orderBy");
-%>
- <div class="col-md-8 products-right">
+%> --%>
+ <%-- <div class="col-md-8 products-right">
             <div class="products-right-grid">
                 <div class="products-right-grids">
                     <div class="sorting">
@@ -87,18 +89,18 @@ String orderBy = (String) request.getAttribute("orderBy");
             </div>
            
         </div>
-    </div>
+    </div> --%>
 
 <div class="clearfix"> </div>
 
 <!-- 찜리스트 -->
-<%
-   List<WishListDTO> wishList 
-   = (List<WishListDTO>)request.getAttribute("wishList");
-
-	MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
-
- %>  
+ <%
+ List<WishListDTO> wishList = (List<WishListDTO>)request.getAttribute("wishList");
+ String id = (String)session.getAttribute("m_id");
+ MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO"); 
+ ProductDTO	productDTO = (ProductDTO)request.getAttribute("productDTO");
+ 
+ %>
 	<div class="checkout">
 		<div class="container">
 			<h2><%=memberDTO.getM_nick() %>님의 찜리스트</h2>
@@ -115,25 +117,7 @@ String orderBy = (String) request.getAttribute("orderBy");
 							<th>삭제</th>
 						</tr>
 					</thead>
-					
-				<%-- 	<% for (int i = 0; i < wishList.size(); i++) {
-      				 WishListDTO wishListDTO = wishList.get(i);%>
-					<tr class="rem1">
-						<td class="invert"><%=wishListDTO.getW_num() %></td>
-						<td class="invert-image"><a href="single.po"><img src="upload/<%= wishListDTO.getP_file() %>" alt=" " class="img-responsive" /></a></td>
-						<td class="invert"><a href="single.po"><%=wishListDTO.getP_title() %></a></td>
-						<td class = "invert"><%=wishListDTO.getP_status() %></td>
-						<td class="invert"><a href="single.po"><%=wishListDTO.getP_type() %></a></td>
-						<td class="invert"><%=wishListDTO.getP_price() %>원</td>
-						<td class="invert" align="center">
-    					<div class="rem" style="display: flex; justify-content: center; align-items: center;">
-       					<div class="close1"></div>
-   					    </div>
-   					    <%
-   					    }
-   					    %> --%>
-   					    
-   					    <tr class="rem1">
+   					    <!-- <tr class="rem1">
 						<td class="invert">1</td>
 						<td class="invert-image"><a href="single.po"><img src="#" alt=" " class="img-responsive" /></a></td>
 						<td class="invert"><a href="single.po">팝니다</a></td>
@@ -143,23 +127,78 @@ String orderBy = (String) request.getAttribute("orderBy");
 						<td class="invert" align="center">
     					<div class="rem" style="display: flex; justify-content: center; align-items: center;">
        					<div class="close1"></div>
+   					    </div> -->
+					
+				 <% for (int i = 0; i < wishList.size(); i++) {
+					 WishListDTO wishListDTO = wishList.get(i);
+						%>
+
+					<tr class="rem1">
+						<td class="w_num" style="display: none;"><%= wishListDTO.getW_num() %></td>
+						<td class="invert"><%=i + 1 %></td>
+						<td class="invert-image"><a href="single.po"><img src="upload/<%= wishListDTO.getProductDTO().getP_file() %>" width="100px" height="100px" download alt=" " class="img-responsive" /></a></td>
+						<td class="invert"><a href="single.po"><%=wishListDTO.getProductDTO().getP_title() %></a></td>
+						<td class = "invert"><%=wishListDTO.getProductDTO().getP_status() %></td>
+						<td class="invert"><a href="single.po"><%=wishListDTO.getProductDTO().getP_type() %></a></td>
+						<td class="invert"><%=wishListDTO.getProductDTO().getP_price() %>원</td>
+						<td class="invert" align="center">
+    					<div class="rem" style="display: flex; justify-content: center; align-items: center;">
+       					<div class="close1"></div>
    					    </div>
+   					    <%
+   					    }
+   					    %>    
    					    
-   					 	<script>
-        				$(document).ready(function(c) {
+   					    
+   					 	
+   					<script>
+    				$(document).ready(function() {
+      				  $('.close1').on('click', function() {
+     			       var $rem1 = $(this).closest('.rem1');
+         			   var w_num = $rem1.find('.w_num').text(); // 항목의 w_num 값을 가져옴
+
+         			   // 서버로 삭제 요청을 보냄 (AJAX를 사용할 수 있음)
+         			   $.ajax({
+           			   url: 'deletewish.dwi', // 서버에서 삭제를 처리하는 서블릿 주소
+             		   type: 'POST', // 또는 GET, 삭제 요청에 맞게 설정
+                	   data: { w_num: w_num }, // 삭제할 항목의 식별자를 서버로 전달
+               		   success: function(response) {
+                       if (response === 'success') {
+                        // 삭제가 성공하면 UI에서 항목을 제거
+                        $rem1.animate('slow', function() {
+                            $rem1.remove();
+                        });
+                       } else {
+                        // 삭제 실패 시 메시지를 표시하거나 다른 조치를 취할 수 있음
+                        alert(response);
+                        location.reload();
+                       }
+                },
+                error: function() {
+                    alert('서버 오류: 삭제 요청을 처리할 수 없습니다.');
+                }
+            });
+        });
+    });
+</script>
+
+   				
+						<!-- <script>
+        				/* $(document).ready(function(c) {
             			$('.close1').on('click', function(c){
                		 	$('.rem1').fadeOut('slow', function(c){
                     	$('.rem1').remove();
             	    			});
             				});	  
-        				});
-    					</script>
+        				}); 
+    					</script> -->
 						</td>
 					</tr>
 			
 				</table>
 			</div>
-			
+			<div class="clearfix"> </div>
+			</div>
 			<!-- 페이지 목록 -->
 <!-- 페이징 코드 5개씩 나눠서 페이징 -->
 <nav class="numbering">

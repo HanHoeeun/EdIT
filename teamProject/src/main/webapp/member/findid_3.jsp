@@ -79,7 +79,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		
 			<div class="login-form-grids animated wow slideInUp" data-wow-delay=".5s">
 			
-				<form action = "findidPro.me"  method = "post">			
+				<form action = ""  method = "post">			
 <!-- css에서 불러올때 id -> #, class->. -->
 					<input type="text" placeholder="이름"  required=" "  id = "m_name"  name = "m_name" >  
 					<input type="email" placeholder="이메일"  required=" "   id = "m_email" name = "m_email" >
@@ -88,12 +88,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- 					<a href="insert.me">확인</a> -->
 <!-- 					<a href="login.me">취소</a> -->
 					
-						<input type="submit"  value="확인" class="#">		
-						<input type="submit"  value="취소" class="#">
+						<input type="submit"  value="확인" class="#" formaction="findPro.me">	
+						<input type="submit"  value="취소"   onclick="location.href='login.me'" class="#">
+<!-- 						</form> -->
+						
 					<hr style="width : 100%; height : 1px; border : none; background-color : #999;">
 					</div>
 					
 
+					
 					
 					
 <!-- 홈/비밀번호 찾기/회원가입 -->					
