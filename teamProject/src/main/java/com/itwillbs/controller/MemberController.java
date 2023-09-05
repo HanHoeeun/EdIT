@@ -70,7 +70,7 @@ public class MemberController extends HttpServlet{
 		}
 		
 		
-//		회원가입		--성공
+//		회원가입		--보류
 		if (sPath.equals("/insertPro.me")) {
 			System.out.println("뽑은 가상주소 비교 : insertPro.me");
 
@@ -103,7 +103,7 @@ public class MemberController extends HttpServlet{
 			MemberDTO memberDTO = memberService.userCheck(request);
 			
 			if (memberDTO != null) {
-				// m_level 추가(0 - 관리자, 1 - 일반회원, 2 - 블랙리스트)
+				// m_level 추가
 				HttpSession session = request.getSession();
 				session.setAttribute("m_id", memberDTO.getM_id());
 				session.setAttribute("m_level", memberDTO.getM_level());
@@ -143,7 +143,7 @@ public class MemberController extends HttpServlet{
 		
 		
 		
-//		회원정보확인		--성공
+//		회원정보확인		--보류
 		if (sPath.equals("/mypage.me")) {
 			System.out.println("뽑은 가상주소 비교 : mypage.me");
 			
@@ -165,7 +165,7 @@ public class MemberController extends HttpServlet{
 		
 		
 		
-//		회원정보수정 화면	--성공
+//		회원정보수정 화면	--보류
 		if (sPath.equals("/update.me")) {
 			System.out.println("뽑은 가상주소 비교 : update.me");
 			
@@ -186,7 +186,7 @@ public class MemberController extends HttpServlet{
 		
 		
 		
-//		회원정보 수정	--성공 (닉네임에 포린키 걸려있어서 닉네임은 변경 불가!)
+//		회원정보 수정	--보류 (닉네임에 포린키 걸려있어서 닉네임은 변경 불가!)
 		if (sPath.equals("/updatePro.me")) {
 			System.out.println("뽑은 가상주소 비교 : updatePro.me");
 
@@ -214,7 +214,7 @@ public class MemberController extends HttpServlet{
 		}
 		
 		
-//		회원탈퇴화면		--성공
+//		회원탈퇴화면		--보류
 		if (sPath.equals("/delete.me")) {
 			System.out.println("뽑은 가상주소 비교 : delete.me");
 			
@@ -224,7 +224,7 @@ public class MemberController extends HttpServlet{
 		}
 		
 		
-//		회원탈퇴하기		--성공
+//		회원탈퇴하기		--보류
 		if (sPath.equals("/deletePro.me")) {
 			System.out.println("뽑은 가상주소 비교 : deletePro.me");
 			

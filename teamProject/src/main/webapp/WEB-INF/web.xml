@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
-  <display-name>FunWeb</display-name>
+  <display-name>Edit</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.jsp</welcome-file>
@@ -78,6 +78,25 @@
 
   
   
+
+<servlet>
+    <servlet-name>AddToWishlistServlet</servlet-name>
+    <servlet-class>com.itwillbs.ajax.AddToWishlistServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>AddToWishlistServlet</servlet-name>
+    <url-pattern>*.wi</url-pattern>
+</servlet-mapping>
+
+ <servlet>
+    <servlet-name>DeleteWishlistItemServlet</servlet-name>
+    <servlet-class>com.itwillbs.ajax.DeleteWishlistItemServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>DeleteWishlistItemServlet</servlet-name>
+    <url-pattern>*.dwi</url-pattern>
+</servlet-mapping>
+ 
 <!-- <servlet-mapping>
 	<servlet-name>MainController</servlet-name>
 	<url-pattern>*.ma</url-pattern>
@@ -88,15 +107,4 @@
 	<servlet-name>MainController</servlet-name>
 	<servlet-class>com.itwillbs.controller.MainController</servlet-class>
 </servlet> -->
-
-<servlet>
-    <servlet-name>AddToWishlistServlet</servlet-name>
-    <servlet-class>AddToWishlistServlet</servlet-class>
-</servlet>
-<servlet-mapping>
-    <servlet-name>AddToWishlistServlet</servlet-name>
-    <url-pattern>/AddToWishlistServlet</url-pattern>
-</servlet-mapping>
-
-  
 </web-app>

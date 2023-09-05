@@ -53,6 +53,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body>
 
+<div id="modal-background" class="modal-background"></div>
+
 <!-- 헤더 들어가는 곳! -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
 <!-- 헤더 들어가는 곳! -->
@@ -83,18 +85,20 @@ MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 				
 				<!-- 사진 -->
 				<div class="col-md-4 agileinfo_single_left">
-<%-- 						<a href="upload/<%=productDTO.getP_file() %>" download> --%>
-<%-- 				        <%=productDTO.getP_file() %></a> --%>
-<%-- 				        <img src="upload/<%=productDTO.getP_file() %>"  --%>
-<!-- 				         width="200" height="200"> -->
-				
+						<a href="upload/<%=productDTO.getP_file() %>" download>
+				        <%=productDTO.getP_file() %></a>
+				        <img src="upload/<%=productDTO.getP_file() %>" 
+				         width="200" height="200">
 <!-- 					<img id="example" src="../images/si1.jpg" alt=" " class="img-responsive"> -->
+
 				</div>
 				<!-- // 사진 -->
 				
 				<div class="col-md-8 agileinfo_single_right">
 					
 					<input type="hidden" value="<%=productDTO.getP_num()%>" name="p_num">
+					<input type="hidden" value="<%=productDTO.getM_id()%>" name="m_id">
+					<input type="hidden" value="<%=productDTO.getM_nick()%>" name="m_nick">
 					
 					<!-- 조회수 -->
 					<div style="float: right;">
@@ -102,23 +106,6 @@ MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 					</div>
 					<!-- 조회수 -->
 				
-					<!-- 관심도(별) -->
-					<div class="rating1">
-						<span class="starRating">
-							<input id="rating5" type="radio" name="rating" value="5">
-							<label for="rating5">5</label>
-							<input id="rating4" type="radio" name="rating" value="4">
-							<label for="rating4">4</label>
-							<input id="rating3" type="radio" name="rating" value="3" checked="">
-							<label for="rating3">3</label>
-							<input id="rating2" type="radio" name="rating" value="2">
-							<label for="rating2">2</label>
-							<input id="rating1" type="radio" name="rating" value="1">
-							<label for="rating1">1</label>
-						</span>
-					</div>
-					<!-- // 관심도(별) -->
-					
 					<!-- 상품제목 -->
 					<h2><%=productDTO.getP_title() %></h2>
 					<!-- // 상품제목 -->
@@ -133,7 +120,7 @@ MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 					
 					<!-- 판매ID,상품상태,등록날짜 -->
 					<div class="w3agile_description">
-						<p>판매ID : <%=productDTO.getM_nick() %></p>
+						<p>판매닉네임 : <%=productDTO.getM_nick() %></p>
 						<p>상품상태 : <%=productDTO.getP_status() %></p>
 						<p>등록날짜 : <%=productDTO.getP_date() %></p>
 					</div>
@@ -161,37 +148,30 @@ MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 					<!-- // 위시리스트 추가버튼 -->
 					
 					<!--  로그인했을떄 아이디 일치시 수정삭제버튼 나오게하긔 -->
+					<div class="checkout-right-basket">	
+						
 					<%				
-					if(id!=null){
-						if(id.equals(memberDTO.getM_id())){
+					if(id != null){
+						if(id.equals(productDTO.getM_id())){
 							%>
-					<div class="checkout-right-basket">		
-					<input type="button" value="상품수정" class="glyphicon glyphicon-menu-left"
-					onclick="location.href='productUpdate.po?p_num=<%=productDTO.getP_num()%>'">
-					
-					<input type="button" value="상품삭제" class="glyphicon glyphicon-menu-left"
-					onclick="location.href='delete.po?p_num=<%=productDTO.getP_num()%>'">
-					
-					<a href=products.po"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>상품목록</a>
-					</div>
+					<a href="productUpdate.po?p_num=<%=productDTO.getP_num()%>"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>상품수정</a>
+					<a href="delete.po?p_num=<%=productDTO.getP_num()%>"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>상품삭제</a>
+					<a href="complete.po?p_num=<%=productDTO.getP_num()%>"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>구매확정</a>
+					<br>
+					<br>
+					<br>
 					<!-- // 로그인했을떄 아이디 일치시 수정삭제버튼 나오게하긔 -->
-							<%
-						}%>
-					 		
-							
-				<%
+							<%}
 					}
 					%>
 					
 					<!-- 채팅, 신고하기, 상품목록 버튼 -->
-					<div class="checkout-right-basket">
 					<a href=""><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>1:1 채팅</a>
-					<a href=""><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>구매확정</a>
 					<a href=""><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>신고하기</a>
 					<a href=products.po"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>상품목록</a>
+					
 					</div>
 					<!-- // 채팅, 신고하기, 상품목록 버튼 -->
-					
 					
 					
 					

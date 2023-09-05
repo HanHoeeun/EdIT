@@ -5,8 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>EdIT join</title>
-<link href= "../css/join.css" rel= "stylesheet" type="text/css">
-<link href= "../css/style.css" rel= "stylesheet" type="text/css">
+<!-- <link href= "../css/join.css" rel= "stylesheet" type="text/css"> -->
+<!-- <link href= "../css/style.css" rel= "stylesheet" type="text/css"> -->
+<!-- <link href="../css/faq_1_9.css" rel="stylesheet">  -->
+<link href="./css/join.css" rel="stylesheet"> 
+
 
 </head>
 <body>
@@ -76,21 +79,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="join-form-grids">
 				<div class="container_3_1">
 					<div class="tab-content current">
-					<form action="insert.me" method="post">
+					<form action="insertPro.me" method="post" id="join">
+					
 						<table class="mypage-board">
 <!-- 				----아이디입력---- -->
 							 <tr>
 								<td class="_1qna_board_border2">
 									<div class="mypage-grids"> 
 										<div align="center">
-											<input type="text" placeholder="아이디 (영문/숫자, 6~20자)" id="m_id" name="m_id" >
+											<input type="text" placeholder="아이디 (영문/숫자, 6~20자)" required=" " id="m_id" name="m_id" >
+											<br><div class="divdub"></div>
 										</div>
 									</div>
 								</td>
 <!-- 				-----중복버튼----							 -->
 								<td class="_1qna_board_border3" width="10">
 									<div class="up-button">
-										<input type="button" class="up-button" value="중복확인">
+										<input type="button" class="checkDuplicateID" value="중복확인"><br><br>
 									</div>
 								</td>
 							</tr>
@@ -102,20 +107,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<td class="_1qna_board_border2">
 									<div class="mypage-grids"> 
 										<div align="center">
-											<input type="password" placeholder="비밀번호 (문자+숫자+특수문자, 8~20자)"	id="m_pass" 	name="m_pass">
-											<input type="password" placeholder="비밀번호확인" 						id="m_pass2" 	name="m_pass2">
+											<input type="password" placeholder="비밀번호 (문자+숫자+특수문자, 8~20자)"	id="m_pass" 	name="m_pass" required=" ">
+											<input type="password" placeholder="비밀번호확인" 						id="m_pass2" 	name="m_pass2" required=" ">
+											<br><div id="result"></div>
 										</div>
 									</div>
 								</td>
 							</tr>
 							
-										
+<!-- 				----이름입력---- -->
+							 <tr>
+								<td class="_1qna_board_border2">
+									<div class="mypage-grids"> 
+										<div align="center">
+											<input type="text" placeholder="이름 (최소 2자 이상)" id="m_name" name="m_name" required=" ">
+										</div>
+									</div>
+								</td>
+							</tr>			
 <!-- 				----닉네임 입력---- -->
 							 <tr>
 								<td class="_1qna_board_border2">
 									<div class="mypage-grids"> 
 										<div align="center">
-											<input type="text" placeholder="닉네임 (최소 2자 이상)" id="m_nick" name="m_nick">
+											<input type="text" placeholder="닉네임 (최소 2자 이상)" id="m_nick" name="m_nick" required=" ">
 										</div>
 									</div>
 								</td>
@@ -134,7 +149,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<td class="_1qna_board_border2">
 									<div class="mypage-grids"> 
 										<div align="center">
-											<input type="email" placeholder="이메일" id="m_email" name="m_email">
+											<input type="email" placeholder="이메일" id="m_email" name="m_email" required=" ">
 										</div>
 									</div>
 								</td>
@@ -152,13 +167,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<td class="_1qna_board_border2">
 									<div class="mypage-grids"> 
 										<div align="center">
-											<input type="tel" placeholder="전화번호" id="m_phone" name="m_phone">
+											<input type="tel" placeholder="전화번호" id="m_phone" name="m_phone" required=" ">
 										</div>
 									</div>
 								</td>
 							</tr>
 					</table>
-				</form>
+				
 				</div>
 			
 			</div><br><br><br>
@@ -166,6 +181,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			
 			
 			
+			<div class="register-check-box">
+				<div class="check">
+					<label class="checkbox"><input type="checkbox" name="m_event"><i> </i>이메일</label>
+				</div>
+			</div>	<br>		
+			<div class="register-check-box">
+				<div class="check">
+					<label class="checkbox"><input type="checkbox" name="m_event"><i> </i>SMS</label>
+				</div>
+			</div><br>			
 <!-- 			----동의체크---- -->
 			<div class="register-check-box">
 				<div class="check">
@@ -174,8 +199,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>			
 			
 			<div>
-				<input type="submit" value="회원가입">
+				<input type="submit" value="회원가입" onclick="validatePassword()">
 			</div>
+			</form>
 		</div>
 			<div class="register-home">
 				<a href="main.me">Home</a>
@@ -189,13 +215,60 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- --------------------------->
 <script type="text/javascript" src="script/jquery-3.7.0.js"></script>
 <script type="text/javascript">
+//	비밀번호/비밀번호확인 일치
+function validatePassword() {
+	var newPassword = document.getElementById('m_pass').value;
+	var confirmPassword = document.getElementById('m_pass2').value;
+	var resultDiv = document.getElementById('result');
 
+	var passwordRegex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*?_]).{8,16}$/;
+
+	if (passwordRegex.test(newPassword)) {
+		if (newPassword === confirmPassword) {
+			resultDiv.innerHTML = '비밀번호 일치';
+			resultDiv.style.color = 'green';
+			window.location.href = 'login.me';
+		}else{
+			resultDiv.innerHTML = '비밀번호가 일치하지 않습니다.';
+			resultDiv.style.color = 'red';
+			return false;
+		}
+	}else{
+		resultDiv.innerHTML = '영문+숫자+특수문자 포함 8~20자로 입력해주세요';
+		resultDiv.style.color = 'red';
+		return false;
+	}
 	
-	
-	
-	
+}
+
+
+
+
+//	아이디 중복체크
+$(document).ready(function (){	
+	$('.up-button-button').click(function() {
+		$.ajax ({
+			url:'idCheck.me',
+			data:{'m_id':$('.m_id').val()},
+			success:function(result){
+				$('.divdub').html(result);
+			}
+		})	// ajax
+	})	// up-button
+})	// document
 </script>
 
+
+
+
+
+
+
+<!-- 푸터 들어가는 곳! -->
+<div class="clearfix">
+<jsp:include page="../inc/bottom.jsp"></jsp:include>
+</div>
+<!-- // 푸터 들어가는 곳! -->
 
 </body>
 </html>

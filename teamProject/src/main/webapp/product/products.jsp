@@ -1,5 +1,5 @@
-<%@page import="com.itwillbs.domain.MemberDTO"%>
 <%@page import="com.itwillbs.domain.WishListDTO"%>
+<%@page import="com.itwillbs.domain.MemberDTO"%>
 <%@page import="com.itwillbs.domain.ProductPageDTO"%>
 <%@page import="com.itwillbs.domain.ProductDTO"%>
 <%@page import="java.util.List"%>
@@ -25,6 +25,9 @@
 }
 
 </style>
+<%
+String loggedInMNum =(String)session.getAttribute("n_num");
+%>
 </head>
   
 <body>
@@ -79,8 +82,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
    <div class="breadcrumbs">
       <div class="container">
          <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
-            <li><a href="main.jsp"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-            <li class="active">전체 상품 보기</li>
+            <li><a href="main.me"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+            <li class="active"><a href = "products.po">전체상품 보기</a></li>
          </ol>
       </div>
    </div>
@@ -117,7 +120,7 @@ String orderBy = (String) request.getAttribute("orderBy");
                     <option value="popular" <% if (orderBy != null && orderBy.equals("popular")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>인기순</option> 
                     <option value="highPrice" <% if (orderBy != null && orderBy.equals("highPrice")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>가격 높은 순</option>               
                     <option value="lowPrice" <% if (orderBy != null && orderBy.equals("lowPrice")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>가격 낮은 순</option>                        
-                	<option value="sell" <% if (orderBy != null && orderBy.equals("sell")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>판매중</option>                        
+               		<option value="sell" <% if (orderBy != null && orderBy.equals("sell")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>판매중</option>                        
                     <option value="sold" <% if (orderBy != null && orderBy.equals("sold")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>판매완료</option>
                 </select>
             </div>
@@ -134,28 +137,30 @@ String orderBy = (String) request.getAttribute("orderBy");
             = (List<ProductDTO>)request.getAttribute("productList");
             ProductPageDTO ppageDTO
             = (ProductPageDTO)request.getAttribute("ppageDTO");
-            String id = (String)session.getAttribute("id");
-            MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
-           	ProductDTO productDTO = (ProductDTO)request.getAttribute("productDTO");
-           	List<WishListDTO> wishList 
-          	= (List<WishListDTO>)request.getAttribute("wishList");
+            List<WishListDTO> wishList
+            = (List<WishListDTO>)request.getAttribute("wishList");
+            String id = (String)session.getAttribute("m_id");
+            MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO"); 
             %>
             
               <div class="agile_top_brands_grids">
     <% for (int i = 0; i < productList.size(); i++) {
-       ProductDTO productDTO2 = productList.get(i);%>
+       ProductDTO productDTO = productList.get(i);%>
     <div class="col-md-4 top_brand_left">
         <div class="hover14 column">
             <div class="agile_top_brand_left_grid">
+                <!-- <div class="agile_top_brand_left_grid_pos">
+                    You can customize this part
+                </div> -->
                 <div class="agile_top_brand_left_grid1">
                     <figure>
                          <div class="snipcart-item block">
                             <div class="snipcart-thumb">
-                                <a href="single.po"><img title=" " alt=" " src="upload/<%=productDTO.getP_file() %>" download width="150px" height="150px" ></a>
-                                <p><%=productDTO2.getP_title() %></p>
-                                <h4><%= productDTO2.getP_price() %>원</h4>
-                                <h4><%= productDTO2.getP_status() %></h4>
-                                <h4><%= productDTO2.getP_type() %></h4>
+                                <a href="single.po?p_num=<%=productDTO.getP_num()%>"><img title=" " alt=" " src="upload/<%=productDTO.getP_file() %>"  width="150px" height="150px" download></a>
+                                <p><%=productDTO.getP_title() %></p>
+                                <h4><%= productDTO.getP_price() %>원</h4>
+                                <h4><%= productDTO.getP_status() %></h4>
+                                <h4><%= productDTO.getP_type() %></h4>
                             </div>
                             <div class="snipcart-details top_brand_home_details">
                                 <form action="#" method="post">
@@ -168,10 +173,10 @@ String orderBy = (String) request.getAttribute("orderBy");
                                         <input type="hidden" name="currency_code" value="KRW">
                                         <input type="hidden" name="return" value=" ">
                                         <input type="hidden" name="cancel_return" value=" ">
-                                        <!-- <input type="button" value="찜 추가하기" class="button"> -->
-										<input type="button" value="찜 추가하기" class="button" id="addToWishlistButton">
-										
-                                    </fieldset>
+                                       <input type="button" value="찜 추가하기" class="button addToWishlistButton"
+   										 data-p-num="<%= productDTO.getP_num() %>"			
+  										 data-m-num="<%= memberDTO.getM_num() %>">
+									 </fieldset>
                                 </form>
                             </div>
                         </div> 
@@ -180,24 +185,27 @@ String orderBy = (String) request.getAttribute("orderBy");
             </div>
         </div>
     </div>
-    <% } %>
-    <div class="clearfix"> </div>
-</div>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <% 
+    }
+    
+    %>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="../js/jquery-1.11.1.min.js"></script>
 <script>
 $(document).ready(function() {
-    $('#addToWishlistButton').click(function() {
+    $('.addToWishlistButton').click(function() {
         // 버튼의 data-p-num와 data-m-num 속성 값을 가져오기
-        var w_p_num =  <%= productDTO.getP_num() %>;
-        var w_m_num =  <%= memberDTO.getM_num() %>; 
+       var $button = $(this);
+        var w_p_num = $button.data('p-num');
+        var w_m_num = $button.data('m-num');
+
 
         // productDTO와 memberDTO 객체가 null인지 확인
-        if (w_p_num == null || w_m_num == null) {
-            alert('productDTO 또는 memberDTO가 null입니다.');
+        if (w_p_num == undefined || w_m_num == undefined) {
+            alert('로그인 먼저 해주세요 :) ');
             return; // 함수 실행 중지
         }
+        
 
         // p_num과 m_num 값이 정상적으로 가져와지는지 console.log로 확인
         console.log("p_num:", w_p_num);
@@ -205,22 +213,24 @@ $(document).ready(function() {
 
         $.ajax({
             type: 'POST',
-            url: '/AddToWishlistServlet',
+            url: 'addwish.wi',
             data: {w_p_num: w_p_num, w_m_num: w_m_num},
             success: function(response) {
                 alert(response);
+                
             },
             error: function() {
                 alert('오류 발생');
             }
         });
     });
+    
 });
 </script>
 
 
-
-
+<div class="clearfix"> </div>
+</div>
 <!-- 페이징 코드 5개씩 나눠서 페이징 -->
 <nav class="numbering">
    <ul class="pagination paging">
@@ -228,7 +238,7 @@ $(document).ready(function() {
       if(ppageDTO.getP_startPage() > ppageDTO.getP_pageBlock()){
          %>
          <li>
-            <a href="products.po?p_pageNum=<%=ppageDTO.getP_startPage()-ppageDTO.getP_pageBlock()%>&orderBy=${orderBy}" aria-label="Previous">
+            <a href="laptop.po?p_pageNum=<%=ppageDTO.getP_startPage()-ppageDTO.getP_pageBlock()%>&orderBy=${orderBy}" aria-label="Previous">
                <span aria-hidden="true">&laquo;</span>
             </a>
          </li>
@@ -240,7 +250,7 @@ $(document).ready(function() {
          boolean isPcurrentPage = (i == ppageDTO.getP_currentPage());
          %>
          <li class="<%= (isCurrentPage || isPcurrentPage) ? "active" : "" %>">
-            <a href="products.po?p_pageNum=<%= i %>&orderBy=${orderBy}" class="<%= (isCurrentPage) ? "" : "" %> <%= (isPcurrentPage) ? "custom-class" : "" %>">
+            <a href="laptop.po?p_pageNum=<%= i %>&orderBy=${orderBy}" class="<%= (isCurrentPage) ? "" : "" %> <%= (isPcurrentPage) ? "custom-class" : "" %>">
             <%= (isPcurrentPage) ? i : i %></a>
          </li>
          <%
@@ -249,7 +259,7 @@ $(document).ready(function() {
       if(ppageDTO.getP_endPage() < ppageDTO.getP_pageCount()){
          %>
          <li>
-            <a href="products.po?p_pageNum=<%=ppageDTO.getP_startPage()+ppageDTO.getP_pageBlock()%>&orderBy=${orderBy}" >
+            <a href="laptop.po?p_pageNum=<%=ppageDTO.getP_startPage()+ppageDTO.getP_pageBlock()%>&orderBy=${orderBy}" >
                <span aria-hidden="true">&raquo;</span>
             </a>
          </li>
@@ -263,8 +273,9 @@ $(document).ready(function() {
          <div class="clearfix"> </div>
       </div>
       </div>
-
-
+      
+      
+  
 <!--- products --->
 <!-- 푸터 들어가는 곳! -->
 <div class="clearfix">
@@ -276,11 +287,10 @@ $(document).ready(function() {
 function change_country(l) {
     location.href = "products.po?ord=" + l;
 }
+
+
 </script>
 
+</body>
+</html>
 
-<!-- </script> -->
-</body>
-</html>
-</body>
-</html>
