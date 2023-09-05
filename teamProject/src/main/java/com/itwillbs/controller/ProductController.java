@@ -547,6 +547,46 @@ public class ProductController extends HttpServlet{
 		}//
 		
 		
+		if(sPath.equals("/buylist.po")) {
+			
+			HttpSession session = request.getSession();
+			String id = (String)session.getAttribute("m_id");
+			
+			MemberService memberService = new MemberService();
+			MemberDTO memberDTO =  memberService.getMember(id);
+			request.setAttribute("memberDTO", memberDTO);
+			
+			// ProductService 객체생성
+			productService = new ProductService();
+			
+			// ProductDTO productDTO = getBoard(request) 메서드 호출
+			ProductDTO productDTO = productService.getproduct2(request);
+			
+			// request에 "boardDTO",boardDTO 담아서
+			request.setAttribute("productDTO", productDTO);
+			
+			dispatcher 
+		    = request.getRequestDispatcher("product/buylist.jsp");
+			dispatcher.forward(request, response);
+		
+		}//
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		// -----------------------------------------------------------------------------
 		if (sPath.equals("/wishlist.po")) {

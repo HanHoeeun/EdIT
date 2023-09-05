@@ -239,6 +239,67 @@ public class ProductDAO {
 		
 	}//updateBoard
 	
+	
+public ProductDTO getproduct2(String m_id) {
+		
+		ProductDTO productDTO = null;
+		 
+		try {
+			con = getConnection();
+			
+			//3 sql select * from board where num = ?
+			String sql="select * from products where m_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, m_id);
+			
+			//4 실행 => 결과 저장
+			rs = pstmt.executeQuery();
+			//5 결과 행접근 => boardDTO 객체생성 
+			//        => set메서드 호출 => 열접근 데이터 저장
+			
+			if(rs.next()) {
+				
+				productDTO = new ProductDTO();
+				
+				productDTO.setP_num(rs.getInt("p_num"));
+				productDTO.setP_title(rs.getString("p_title"));
+				productDTO.setP_type(rs.getString("p_type"));
+				productDTO.setP_price(rs.getInt("p_price"));
+				productDTO.setP_detail(rs.getString("p_detail"));
+				productDTO.setP_date(rs.getTimestamp("p_date"));
+				productDTO.setP_readcount(rs.getInt("p_readcount"));
+				productDTO.setP_status(rs.getString("p_status"));
+				//첨부파일
+				productDTO.setP_file(rs.getString("p_file"));
+				
+				productDTO.setM_nick(rs.getString("m_nick"));
+				productDTO.setM_id(rs.getString("m_id"));
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbClose();
+		}
+		return productDTO;
+		
+	}// getproduct2
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	// ---------------------------------------------------------------------------------------------
 
 	public List<ProductDTO> getProductList(ProductPageDTO ppageDTO) {

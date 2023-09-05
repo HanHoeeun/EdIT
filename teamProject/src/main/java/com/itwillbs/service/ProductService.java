@@ -713,6 +713,50 @@ public class ProductService {
 		
 	} //updateProduct()
 	
+	
+public ProductDTO getproduct2(HttpServletRequest request) {
+		
+		ProductDTO productDTO = null;
+		try {
+			// request 한글처리
+			request.setCharacterEncoding("utf-8");
+			
+			// request 파라미터 가져오기 => int num 저장
+			// int p_num = Integer.parseInt(request.getParameter("p_num"));
+			String m_id = request.getParameter("m_id");
+			
+			// BoardDAO 객체생성
+			productDAO = new ProductDAO();
+			
+			// boardDTO = getBoard(num) 메서드 호출
+			productDTO = productDAO.getproduct2(m_id);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return productDTO;
+	}//getBoard
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 
 // -----------------------------------------------------------------
