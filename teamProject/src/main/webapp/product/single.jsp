@@ -120,6 +120,7 @@ MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 					
 					<!-- 판매ID,상품상태,등록날짜 -->
 					<div class="w3agile_description">
+						<p>판매닉네임 : <%=productDTO.getM_id() %></p>
 						<p>판매닉네임 : <%=productDTO.getM_nick() %></p>
 						<p>상품상태 : <%=productDTO.getP_status() %></p>
 						<p>등록날짜 : <%=productDTO.getP_date() %></p>
@@ -166,7 +167,7 @@ MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 					%>
 					
 					<!-- 채팅, 신고하기, 상품목록 버튼 -->
-					<a href=""><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>1:1 채팅</a>
+					<a href="#" onclick="window.open('chat.ch?ch_toID=<%= productDTO.getM_id()%>','1:1 채팅','width=500, height=800, scrollbars=yes')" ><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>1:1 채팅</a>
 					<a href=""><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>신고하기</a>
 					<a href=products.po"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>상품목록</a>
 					
