@@ -721,13 +721,15 @@ public class ProductService {
 			request.setCharacterEncoding("utf-8");
 			
 			// request 파라미터 가져오기 => int num 저장
-			int n_num = Integer.parseInt(request.getParameter("n_num"));
+			int m_num = Integer.parseInt(request.getParameter("m_num"));
+			String m_nick = request.getParameter("m_nick");
 			
 			// BoardDAO 객체생성
 			productDAO = new ProductDAO();
 			
 			// boardDTO = getBoard(num) 메서드 호출
-			memberDTO = productDAO.getmember(n_num);
+			memberDTO = productDAO.getmember(m_num);
+			memberDTO = productDAO.getmember(m_nick);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -736,6 +738,19 @@ public class ProductService {
 	}
 
 
+	public ProductDTO getProduct(int p_num) {
+	    ProductDTO productDTO = null;
+	    try {
+	        // ProductDAO 객체 생성
+	        productDAO = new ProductDAO();
+	        
+	        // ProductDAO의 getproduct 메서드 호출
+	        productDTO = productDAO.getproduct(p_num);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return productDTO;
+	}
 
 	
 

@@ -86,10 +86,11 @@ ProductDTO productDTO=(ProductDTO)request.getAttribute("productDTO");
 				
 				<!-- 상품 제목, 가격, 상품설명 -->
 				<form action="productRegPro.po" method="post" enctype="multipart/form-data">
+					<input type="text" name="m_id" value="<%=memberDTO.getM_id()%>" readonly="readonly" >
 					<input type="text" name="m_nick" value="<%=memberDTO.getM_nick()%>" readonly="readonly" >
-					<input type="text" name="p_title" placeholder="제목을 입력하세요..." required=" " >
-					<input type="text" name="p_price" placeholder="가격을 입력하세요..." required=" " >
-					<textarea name="p_detail" placeholder="상품설명을 입력하세요... " id="p_detail" rows="10" cols="50" style="width: 428px" maxlength="400" required=" "></textarea>
+					<input type="text" name="p_title" placeholder="제목을 입력하세요..." required >
+					<input type="text" name="p_price" placeholder="가격을 입력하세요..." required >
+					<textarea name="p_detail" placeholder="상품설명을 입력하세요... " id="p_detail" rows="10" cols="50" style="width: 428px" maxlength="400" required></textarea>
 				<!-- // 상품 제목, 가격, 상품설명 -->
 
 				<!-- 상품카테고리, 상품상태 -->
@@ -102,8 +103,8 @@ ProductDTO productDTO=(ProductDTO)request.getAttribute("productDTO");
 						</select>
 						
 						<select name="p_status" id="p_status" required style="width: 122px; height: 38px; margin: 1em 10px;" >
-						    <option value="sell" selected>판매중</option>
-						    <option value="selled">거래완료</option>
+						    <option value="거래중" selected>판매중</option>
+						    <option value="거래완료">거래완료</option>
 						</select>
 					</div>
 				</div>

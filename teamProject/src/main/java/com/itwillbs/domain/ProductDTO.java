@@ -3,6 +3,7 @@ package com.itwillbs.domain;
 import java.sql.Timestamp;
 
 public class ProductDTO {
+	
 	private int p_num;
 	private String p_title;
 	private String p_type;
@@ -11,28 +12,36 @@ public class ProductDTO {
 	private Timestamp p_date;
 	private int p_readcount;
 	private String p_status;
-	private String p_file;
 	private String m_nick;
 	private int w_num;
+	private String m_id;
+	private String p_file;
 	 
-
-
-	public int getW_num() {
-		return w_num;
-	}
-
-	public void setW_num(int w_num) {
-		this.w_num = w_num;
-	}
 
 	@Override
 	public String toString() {
 		return "ProductDTO [p_num=" + p_num + ", p_title=" + p_title + ", p_type=" + p_type + ", p_price=" + p_price
 				+ ", p_detail=" + p_detail + ", p_date=" + p_date + ", p_readcount=" + p_readcount + ", p_status="
-				+ p_status + ", p_file=" + p_file + ", m_nick=" + m_nick + "]";
+				+ p_status + ", m_nick=" + m_nick + ", w_num=" + w_num + ", m_id=" + m_id + ", p_file=" + p_file + "]";
 	}
 
+	
 	// getter & setter 
+	public String getM_id() {
+		return m_id;
+	}
+	
+	public void setM_id(String m_id) {
+		this.m_id = m_id;
+	}
+	
+	public int getW_num() {
+		return w_num;
+	}
+	
+	public void setW_num(int w_num) {
+		this.w_num = w_num;
+	}
 	public String getM_nick() {
 		return m_nick;
 	}

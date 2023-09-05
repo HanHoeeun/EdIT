@@ -48,6 +48,16 @@ public class ProductController extends HttpServlet{
 		
 		if (sPath.equals("/products.po")) {
 			System.out.println("뽑은 가상주소 비교 : /products.po");
+			
+			HttpSession session = request.getSession();
+			String id = (String)session.getAttribute("m_id");
+			
+			MemberService memberService = new MemberService();
+			MemberDTO memberDTO =  memberService.getMember(id);
+			
+			ProductService productService = new ProductService();
+			ProductDTO productDTO = productService.getproduct(request);
+			
 			// 한페이지에서 보여지는 글개수 설정
 			int p_pageSize=6;
 			// 페이지번호 
@@ -63,7 +73,7 @@ public class ProductController extends HttpServlet{
 			ppageDTO.setP_pageSize(p_pageSize);
 			ppageDTO.setP_pageNum(p_pageNum);
 			ppageDTO.setP_currentPage(p_currentPage);
-			ProductDTO productDTO = new ProductDTO();
+			
 			
 			// ProductService 객체생성
 			productService = new ProductService();
@@ -134,7 +144,8 @@ public class ProductController extends HttpServlet{
 			request.setAttribute("productList", productList);
 			request.setAttribute("ppageDTO", ppageDTO);
 			request.setAttribute("orderBy", orderBy);
-			//request.setAttribute("productDTO", productDTO);
+			request.setAttribute("productDTO", productDTO);
+			request.setAttribute("memberDTO", memberDTO);
 			
 			// 주소변경없이 이동 center/products.jsp
 			dispatcher 
@@ -145,14 +156,19 @@ public class ProductController extends HttpServlet{
 		
 		if (sPath.equals("/productsPro.po")) {
 			System.out.println("뽑은 가상 주소 비교 : /productsPro.po");
-			
-			productService = new ProductService();
-			ProductDTO productDTO = productService.getproduct(request);
 			HttpSession session = request.getSession();
-			session.setAttribute("p_num", productDTO.getP_num());
-			MemberDTO memberDTO = productService.getmember(request);
-			session.setAttribute("n_num", memberDTO.getM_num());
-					
+			String id = (String)session.getAttribute("m_id");
+			
+			MemberService memberService = new MemberService();
+			MemberDTO memberDTO =  memberService.getMember(id);
+			request.setAttribute("memberDTO", memberDTO);
+			
+			// ProductDTO productDTO = getBoard(request) 메서드 호출
+			ProductDTO productDTO = productService.getproduct(request);
+			
+			// request에 "boardDTO",boardDTO 담아서
+			request.setAttribute("productDTO", productDTO);
+			 
 			response.sendRedirect("products.po");
 		}
 		//========================================================================================================
@@ -534,6 +550,16 @@ public class ProductController extends HttpServlet{
 		
 		if (sPath.equals("/wishlist.po")) {
 			System.out.println("뽑은 가상주소 비교 : /wishlist.po");
+			
+			HttpSession session = request.getSession();
+			String id = (String)session.getAttribute("m_id");
+			
+			MemberService memberService = new MemberService();
+			MemberDTO memberDTO =  memberService.getMember(id);
+			
+			ProductService productService = new ProductService();
+			ProductDTO productDTO = productService.getproduct(request);
+		
 			int p_pageSize=10;
 			String p_pageNum=request.getParameter("p_pageNum");
 			if(p_pageNum == null) {
@@ -577,12 +603,13 @@ public class ProductController extends HttpServlet{
 			request.setAttribute("wishList", wishList);
 			request.setAttribute("ppageDTO", ppageDTO);
 			request.setAttribute("orderBy", orderBy);
-		
+			request.setAttribute("productDTO", productDTO);
+			request.setAttribute("memberDTO", memberDTO);
+			
 			dispatcher 
 		    = request.getRequestDispatcher("product/wishlist.jsp");
 		dispatcher.forward(request, response);
 		}//wishlist.po
-		
 		
 
 		
