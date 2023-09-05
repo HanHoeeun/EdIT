@@ -1,3 +1,5 @@
+<%@page import="com.itwillbs.service.MemberService"%>
+<%@page import="com.itwillbs.service.ProductService"%>
 <%@page import="com.itwillbs.domain.MemberDTO"%>
 <%@page import="com.itwillbs.domain.ProductDTO"%>
 <%@page import="com.itwillbs.domain.WishListDTO"%>
@@ -92,12 +94,10 @@ String orderBy = (String) request.getAttribute("orderBy");
 <div class="clearfix"> </div>
 
 <!-- 찜리스트 -->
-<%
-   List<WishListDTO> wishList 
-   = (List<WishListDTO>)request.getAttribute("wishList");
-
-	MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
-
+ <%
+ List<WishListDTO> wishList = (List<WishListDTO>)request.getAttribute("wishList");
+ String id = (String)session.getAttribute("m_id");
+ MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO"); 
  %>  
 	<div class="checkout">
 		<div class="container">
@@ -115,24 +115,6 @@ String orderBy = (String) request.getAttribute("orderBy");
 							<th>삭제</th>
 						</tr>
 					</thead>
-					
-				<%-- 	<% for (int i = 0; i < wishList.size(); i++) {
-      				 WishListDTO wishListDTO = wishList.get(i);%>
-					<tr class="rem1">
-						<td class="invert"><%=wishListDTO.getW_num() %></td>
-						<td class="invert-image"><a href="single.po"><img src="upload/<%= wishListDTO.getP_file() %>" alt=" " class="img-responsive" /></a></td>
-						<td class="invert"><a href="single.po"><%=wishListDTO.getP_title() %></a></td>
-						<td class = "invert"><%=wishListDTO.getP_status() %></td>
-						<td class="invert"><a href="single.po"><%=wishListDTO.getP_type() %></a></td>
-						<td class="invert"><%=wishListDTO.getP_price() %>원</td>
-						<td class="invert" align="center">
-    					<div class="rem" style="display: flex; justify-content: center; align-items: center;">
-       					<div class="close1"></div>
-   					    </div>
-   					    <%
-   					    }
-   					    %> --%>
-   					    
    					    <tr class="rem1">
 						<td class="invert">1</td>
 						<td class="invert-image"><a href="single.po"><img src="#" alt=" " class="img-responsive" /></a></td>
@@ -144,6 +126,28 @@ String orderBy = (String) request.getAttribute("orderBy");
     					<div class="rem" style="display: flex; justify-content: center; align-items: center;">
        					<div class="close1"></div>
    					    </div>
+					
+				 <% for (int i = 0; i < wishList.size(); i++) {
+				        WishListDTO wishListDTO = wishList.get(i);
+				        ProductService productService = new ProductService();
+				        ProductDTO productDTO = productService.getProduct(wishListDTO.getW_p_num());
+						%>
+
+					<tr class="rem1">
+						<td class="invert"><%=wishListDTO.getW_num() %></td>
+						<td class="invert-image"><a href="single.po"><img src="upload/<%= productDTO.getP_file() %>" width="100px" height="100px" download alt=" " class="img-responsive" /></a></td>
+						<td class="invert"><a href="single.po"><%=productDTO.getP_title() %></a></td>
+						<td class = "invert"><%=productDTO.getP_status() %></td>
+						<td class="invert"><a href="single.po"><%=productDTO.getP_type() %></a></td>
+						<td class="invert"><%=productDTO.getP_price() %>원</td>
+						<td class="invert" align="center">
+    					<div class="rem" style="display: flex; justify-content: center; align-items: center;">
+       					<div class="close1"></div>
+   					    </div>
+   					    <%
+   					    }
+   					    %>  
+   					    
    					    
    					 	<script>
         				$(document).ready(function(c) {
@@ -159,7 +163,8 @@ String orderBy = (String) request.getAttribute("orderBy");
 			
 				</table>
 			</div>
-			
+			<div class="clearfix"> </div>
+			</div>
 			<!-- 페이지 목록 -->
 <!-- 페이징 코드 5개씩 나눠서 페이징 -->
 <nav class="numbering">
