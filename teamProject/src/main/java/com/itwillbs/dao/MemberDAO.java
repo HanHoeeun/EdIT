@@ -81,8 +81,8 @@ public class MemberDAO {
 			
 			con = getConnection();
 			
-			String sql = "insert into members(m_num, m_id, m_pass, m_name, m_nick, m_phone, m_email, m_date, m_event) "
-					+ "values(?,?,?,?,?,?,?,?,?)";
+			String sql = "insert into members(m_num, m_id, m_pass, m_name, m_nick, m_phone, m_email, m_date) "
+					+ "values(?,?,?,?,?,?,?,?)";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, memberDTO.getM_num());
@@ -93,7 +93,6 @@ public class MemberDAO {
 			pstmt.setString(6, memberDTO.getM_phone());
 			pstmt.setString(7, memberDTO.getM_email());
 			pstmt.setTimestamp(8, memberDTO.getM_date());
-			pstmt.setString(9, memberDTO.getM_event());
 			
 			pstmt.executeUpdate();
 			
@@ -197,6 +196,35 @@ public class MemberDAO {
 
 	
 	
+//	아이디 중복확인	
+	public MemberDTO getIdCheck(String m_id) {
+		System.out.println("MemberDAO getIdCheck()");
+		MemberDTO memberDTO = null;
+		
+		try {
+			
+			con = getConnection();
+			String sql = "select * from members where m_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, m_id);
+			
+			rs = pstmt.executeQuery();
+			
+			if (rs.next() == true) {
+				memberDTO = new MemberDTO();
+				memberDTO.setM_id(rs.getString("m_id"));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dblClose();
+		}
+		return memberDTO;
+	}
+
+	
+	
 // 	닉네임 중복확인	
 	public MemberDTO getNickCheck(String m_nick) {
 		System.out.println("MemberDAO getNickCheck()");
@@ -245,7 +273,7 @@ public class MemberDAO {
 			
 			if (rs.next() == true) {
 				memberDTO = new MemberDTO();
-				memberDTO.setM_nick(rs.getString("m_email"));
+				memberDTO.setM_email(rs.getString("m_email"));
 			}
 			
 		} catch (Exception e) {
@@ -442,8 +470,6 @@ public class MemberDAO {
 	}
 
 
-<<<<<<< HEAD
-=======
   // 9월 5일 
 	public int newPassword(MemberDTO memberDTO) {
 		int result = 0;
@@ -467,10 +493,6 @@ public class MemberDAO {
 	}
 
 
-}	// insertMember()
->>>>>>> branch 'master' of https://github.com/HanHoeeun/EdIT.git
-
-
 
 
 
@@ -505,10 +527,10 @@ public class MemberDAO {
 	
 	
 	
-}	
 	
-	
-	
-	
+}
 
+
+
+	
 

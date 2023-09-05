@@ -67,13 +67,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <!--=========================== 상단 탭 리스트============================================ -->
 				<ul class="tabs">
-					<li class="tab-link current" data-tab="tab-1">나의정보</li>
+					<li class="tab-link current" data-tab="tab-1" onclick="location.href='update.me'">나의정보</li>
 					<li class="tab-link" data-tab="tab-2">구매내역</li>
 					<li class="tab-link" data-tab="tab-3">판매내역</li>
 					<li class="tab-link" data-tab="tab-4">찜</li>
 					<li class="tab-link" data-tab="tab-5">문의내역</li>
 					<li class="tab-link" data-tab="tab-6">신고내역</li>
-					<li class="tab-link" data-tab="tab-7" onclick="">회원탈퇴</li>
+					<li class="tab-link" data-tab="tab-7" onclick="location.href='delete.me'">회원탈퇴</li>
 				</ul>
 			</div>
 		
@@ -91,7 +91,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- 		----아이디---- -->
 						 <tr>
 							<td class="_1qna_board_border2">
-								<form action="update.me" method="post">
+								<form action="updatePro.me" method="post">
 									<div class="mypage-grids"> 
 										<div align="center">
 											<input type="text" class="show" placeholder="아이디" readonly="readonly"readonly>
@@ -105,7 +105,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- 		----닉네임---- -->						
 						 <tr>
 							<td class="_1qna_board_border2">
-								<form action="update.me" method="post">
+								<form action="updatePro.me" method="post">
 									<div class="mypage-grids"> 
 										<div align="center">
 											<input type="text" class="show" placeholder="닉네임" readonly="readonly"readonly>
@@ -124,13 +124,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- 		----비밀번호---- -->						
 						<tr>
 							<td class="_1qna_board_border2">
-								<form action="mypage.me" method="post">
+								<form action="updatePro.me" method="post">
 									<div class="mypage-grids"> 
 										<div align="center">
 											<input type="text" class="show" placeholder="비밀번호" readonly="readonly"readonly>
-											<input type="password" value=""			id="m_pass" 	name="m_pass">
-											<input type="password" value="" 		id="m_pass2" 	name="m_pass2">
-											<input type="password" value="" 		id="m_pass3" 	name="m_pass3">
+											<input type="password" placeholder="현재비밀번호" id="m_pass" 	name="m_pass">
+											<input type="password" placeholder="새비밀번호" id="m_pass2" 	name="m_pass2">
+											<input type="password" placeholder="새비밀번호확인" id="m_pass3" 	name="m_pass3">
 										</div>
 									</div>
 								</form>
@@ -145,10 +145,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						
 						
 						
-						
+<!-- 		----이메일---- -->							
 						<tr>	
 							<td class="_1qna_board_border2">
-								<form action="mypage.me" method="post">
+								<form action="updatePro.me" method="post">
 									<div class="mypage-grids"> 
 										<div align="center">
 											<input type="text" class="show" placeholder="이메일" readonly="readonly"readonly>
@@ -166,10 +166,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</tr>
 						
 						
-						
+<!-- 		----전화번호---- -->							
 						<tr>	
 							<td class="_1qna_board_border2">
-								<form action="mypage.me" method="post">
+								<form action="updatePro.me" method="post">
 									<div class="mypage-grids"> 
 										<div align="center">
 											<input type="text" class="show" placeholder="전화번호" readonly="readonly"readonly>
@@ -317,7 +317,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											<input type="text" class="show" placeholder="아이디" readonly="readonly"readonly>
 											<input type="text" value="<%=m_id %>" name="m_id"  readonly="readonly"readonly>
 											<input type="text" class="show" placeholder="비밀번호" readonly="readonly"readonly >
-											<input type="password" name="m_pass" required=" " id="m_pass"> <br>
+											<input type="password" name="m_pass" id="m_pass"> <br>
 											<div class="divdub"></div>
 										</div>	
 									</div>
@@ -338,12 +338,60 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 				
 				
+<!-- -----------------------------------------------------------------------------				 -->
+<script type="text/javascript" src="script/jquery-3.7.0.js"></script>
+<script type="text/javascript">
+
+
+$(document).ready(function() {
+    $('#changePasswordForm').submit(function(e) {
+        e.preventDefault(); // Prevent form submission for now
+
+        var currentPassword = $('#currentPassword').val();
+        var newPassword = $('#newPassword').val();
+        var confirmNewPassword = $('#confirmNewPassword').val();
+
+        // Perform your validation here
+        if (!currentPasswordIsValid(currentPassword)) {
+            alert("Current password is incorrect.");
+            return false; // Prevent form submission
+        }
+
+        if (!newPasswordIsValid(newPassword)) {
+            alert("New password is not valid.");
+            return false; // Prevent form submission
+        }
+
+        if (newPassword !== confirmNewPassword) {
+            alert("New password and confirmation do not match.");
+            return false; // Prevent form submission
+        }
+
+        // If all conditions are met, you can submit the form
+        // Uncomment the following line to submit the form:
+        // $('#changePasswordForm').off('submit').submit();
+    });
+
+    // Your validation functions
+    function currentPasswordIsValid(password) {
+        // Implement your logic to check if the current password is correct
+        // Return true if it's correct, false otherwise
+        // You may use AJAX to check the current password on the server
+        return true; // Replace with your logic
+    }
+
+    function newPasswordIsValid(newPassword) {
+        // Implement your logic to check if the new password is valid
+        // Return true if it's valid, false otherwise
+        return newPassword.length >= 8; // Replace with your logic
+    }
+});
+
+
 				
 				
 				
-				
-				
-				
+</script>				
 				
 				
 				

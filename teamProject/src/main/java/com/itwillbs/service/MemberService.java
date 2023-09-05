@@ -32,7 +32,6 @@ public class MemberService {
 			String m_phone = request.getParameter("m_phone");
 			String m_email = request.getParameter("m_email");
 			Timestamp m_date = new Timestamp(System.currentTimeMillis());
-			String m_event = request.getParameter("m_event");
 			
 			int m_num = 1;
 			
@@ -52,7 +51,6 @@ public class MemberService {
 			memberDTO.setM_phone(m_phone);
 			memberDTO.setM_email(m_email);
 			memberDTO.setM_date(m_date);
-			memberDTO.setM_event(m_event);
 			
 			System.out.println(memberDTO);
 			
@@ -121,6 +119,26 @@ public class MemberService {
 		return memberDTO;
 	}
 
+	
+	
+//	아이디 중복체크
+	public MemberDTO getIdCheck(String m_id) {
+		System.out.println("MemberService getIdCheck()");
+		
+		MemberDTO memberDTO = null;
+		
+		try {
+			
+			memberDAO = new MemberDAO();
+			memberDTO = memberDAO.getIdCheck(m_id);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return memberDTO;
+	}
+	
 	
 	
 //	닉네임 중복체크
@@ -312,6 +330,8 @@ public class MemberService {
 		
 		return result;
 	}
+
+
 
 	
 

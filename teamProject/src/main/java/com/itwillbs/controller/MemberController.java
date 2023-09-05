@@ -314,9 +314,9 @@ public class MemberController extends HttpServlet{
 			System.out.println("받은 아이디 : " + m_id);
 			
 			memberService = new MemberService();
-			memberService.getMember(m_id);
+			memberService.getIdCheck(m_id);
 			
-			MemberDTO memberDTO = memberService.getMember(m_id);
+			MemberDTO memberDTO = memberService.getIdCheck(m_id);
 			
 			String result = "";
 			if (memberDTO != null) {

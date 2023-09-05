@@ -87,8 +87,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<td class="_1qna_board_border2">
 									<div class="mypage-grids"> 
 										<div align="center">
-											<input type="text" placeholder="아이디 (영문/숫자, 6~20자)" id="m_id" name="m_id" >
-											<br><div id="id_error_message" class="id_error-message"></div>
+											<input type="text" placeholder="아이디 (영문/숫자, 6~20자)" id="m_id" name="m_id" class="m_id" >
+											<br><div id="id_error_message" class="id_error_message"></div>
 										</div>
 									</div>
 								</td>
@@ -149,7 +149,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<td class="_1qna_board_border2">
 									<div class="mypage-grids"> 
 										<div align="center">
-											<input type="tel" placeholder="전화번호" id="m_phone" name="m_phone" required=" ">
+											<input type="tel" placeholder="전화번호" id="m_phone" name="m_phone">
 										</div>
 									</div>
 								</td>
@@ -192,18 +192,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 $(document).ready(function() {
-//	아이디 조건 + 중복검사		----성공
-    $('#m_id').on('input', function() {
-        var userId = $(this).val();
+//		아이디 조건 + 중복검사		----성공
+	$('#m_id').on('input', function() {
+		var userId = $(this).val();
         var userIdPattern = /^[a-zA-Z0-9]{6,20}$/;
-        var error_message = $('#id_error_message');
+        var id_error_message = $('#id_error_message');
 
         if (userId === "") {
-            error_message.text("아이디를 입력하세요").css("color", "red");
+            id_error_message.text("아이디를 입력하세요").css("color", "red");
             $('#m_id').focus();
             return false;
         } else if (!userIdPattern.test(userId)) {
-            error_message.text("아이디는 영문/숫자 조합이며 6~20자여야 합니다").css("color", "red");
+            id_error_message.text("아이디는 영문/숫자 조합이며 6~20자여야 합니다").css("color", "red");
             $('#m_id').focus();
             return false;
         } 
@@ -213,7 +213,7 @@ $(document).ready(function() {
 			url: 'idCheck.me', // 실제 서버 엔드포인트 URL을 지정합니다.
 			data: {'m_id':$('#m_id').val() }, // 서버에 보낼 데이터를 설정합니다.
 			success: function(result) {
-				$('.id_error-message').html(result)
+				$('.id_error_message').html(result)
 			}
 		});
     });
@@ -298,13 +298,20 @@ $(document).ready(function() {
 	        }
 	    });
 	});
+    
+    
+    
+    
+	 $('#join').submit(function() {
 	
-	$('#join').submit(function () {
-		alert("전송");
-		return false;
-		
-	});
-	
+			alert("회원가입 조건을 모두 충족해야 합니다.");
+			return false; // Prevent form submission
+		} );
+	         
+	 
+
+
+    
     
 })
 
@@ -322,8 +329,7 @@ function validatePassword() {
 
     if (passwordRegex.test(newPassword)) {
         if (newPassword === confirmPassword) {
-            resultDiv.innerHTML = '비밀번호 일치';
-            resultDiv.style.color = 'green';
+        	resultDiv.innerHTML = '';
         } else {
             resultDiv.innerHTML = '비밀번호가 일치하지 않습니다.';
             resultDiv.style.color = 'red';
