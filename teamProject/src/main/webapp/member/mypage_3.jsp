@@ -26,7 +26,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="../css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <link href="../css/style.css" rel="stylesheet" type="text/css" media="all" />
 <link href="../css/font-awesome.css" rel="stylesheet"> 
-<link href="../css/mypage_3.css" rel="stylesheet"> 
+<link href="./css/mypage_3.css" rel="stylesheet"> 
 <!-- //font-awesome icons -->
 <!-- js -->
 <script src="../js/jquery-1.11.1.min.js"></script>
@@ -152,7 +152,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<div class="mypage-grids"> 
 										<div align="center">
 											<input type="text" class="show" placeholder="이메일" readonly="readonly"readonly>
-											<input type="email" value="이메일"		id="m_email" 	name="m_email">
+											<input type="email" value="<%=memberDTO.getM_email()%>"		id="m_email" 	name="m_email">
 										</div>
 									</div>
 								</form>
@@ -173,7 +173,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<div class="mypage-grids"> 
 										<div align="center">
 											<input type="text" class="show" placeholder="전화번호" readonly="readonly"readonly>
-											<input type="tel" value="전화번호"		id="m_phone" 	name="m_phone">
+											<input type="tel" value="<%=memberDTO.getM_phone() %>"		id="m_phone" 	name="m_phone">
 										</div>
 									</div>
 								</form>
@@ -194,7 +194,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</table>
 				</div>
 <!--================================== 2탭 구매내역 ==================================== -->				
-				<div id="tab-2" class="tab-content current">
+				<div id="tab-2" class="tab-content">
 					<table class="_1qna_board">
 						<tr>
 							<th class="_1qna_board_border">번호</th>
@@ -253,7 +253,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
    					 </div>
 				</div>
 <!--================================== 4탭 찜 ==================================== -->				
-				<div id="tab-4" class="tab-content current">
+				<div id="tab-4" class="tab-content">
 					<table class="_1qna_board">
 						<tr>
 							<th class="_1qna_board_border">번호</th>
@@ -269,7 +269,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</table>
 				</div>
 <!--================================== 5탭 문의내역 ==================================== -->				
-				<div id="tab-5" class="tab-content current">
+				<div id="tab-5" class="tab-content">
 					<table class="_1qna_board">
 						<tr>
 							<th class="_1qna_board_border">번호</th>
@@ -285,7 +285,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</table>
 				</div>
 <!--================================== 6탭 신고내역 ==================================== -->				
-				<div id="tab-6" class="tab-content current">
+				<div id="tab-6" class="tab-content">
 					<table class="_1qna_board">
 						<tr>
 							<th class="_1qna_board_border">번호</th>
@@ -303,18 +303,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</table>
 				</div>
 <!--================================== 7탭 회원탈퇴 ==================================== -->				
-				<div id="tab-7" class="tab-content current">
+<%
+	String m_id = (String)request.getAttribute("m_id");
+%>	
+				<div id="tab-7" class="tab-content">
 					<table class="_1qna_board">
 						<tr><th class="_1qna_board_border1">회원탈퇴</th></tr>
 
 						 <tr ><td class="_1qna_board_border2">
-								<form action="#" method="post">
+								<form action="deletePro.me" method="post">
 									<div class="mypage-grids">  
 										<div align="center">
 											<input type="text" class="show" placeholder="아이디" readonly="readonly"readonly>
-											<input type="text" value="--" name="m_id"  readonly="readonly"readonly>
+											<input type="text" value="<%=m_id %>" name="m_id"  readonly="readonly"readonly>
 											<input type="text" class="show" placeholder="비밀번호" readonly="readonly"readonly >
-											<input type="text" value="---"name="m_pass" required=" " id="m_pass"> <br>
+											<input type="password" name="m_pass" required=" " id="m_pass"> <br>
 											<div class="divdub"></div>
 										</div>	
 									</div>

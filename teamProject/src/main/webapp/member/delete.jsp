@@ -26,7 +26,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="../css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <link href="../css/style.css" rel="stylesheet" type="text/css" media="all" />
 <link href="../css/font-awesome.css" rel="stylesheet"> 
-<link href="../css/mypage_3.css" rel="stylesheet"> 
+<link href="./css/mypage_3.css" rel="stylesheet"> 
 <!-- //font-awesome icons -->
 <!-- js -->
 <script src="../js/jquery-1.11.1.min.js"></script>
@@ -79,7 +79,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		
 <!--================================== 1탭 나의정보==================================== -->
 			<div class="container_3_1">
-				<div id="tab-1" class="tab-content current">
+				<div id="tab-1" class="tab-content">
 					<table class="mypage-board">
 						<tr>
 							<th class="_1qna_board_border1" colspan="2">나의정보</th>
@@ -190,7 +190,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</table>
 				</div>
 <!--================================== 2탭 구매내역 ==================================== -->				
-				<div id="tab-2" class="tab-content current">
+				<div id="tab-2" class="tab-content">
 					<table class="_1qna_board">
 						<tr>
 							<th class="_1qna_board_border">번호</th>
@@ -249,7 +249,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
    					 </div>
 				</div>
 <!--================================== 4탭 찜 ==================================== -->				
-				<div id="tab-4" class="tab-content current">
+				<div id="tab-4" class="tab-content">
 					<table class="_1qna_board">
 						<tr>
 							<th class="_1qna_board_border">번호</th>
@@ -265,7 +265,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</table>
 				</div>
 <!--================================== 5탭 문의내역 ==================================== -->				
-				<div id="tab-5" class="tab-content current">
+				<div id="tab-5" class="tab-content">
 					<table class="_1qna_board">
 						<tr>
 							<th class="_1qna_board_border">번호</th>
@@ -281,7 +281,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</table>
 				</div>
 <!--================================== 6탭 신고내역 ==================================== -->				
-				<div id="tab-6" class="tab-content current">
+				<div id="tab-6" class="tab-content">
 					<table class="_1qna_board">
 						<tr>
 							<th class="_1qna_board_border">번호</th>
