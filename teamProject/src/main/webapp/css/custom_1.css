@@ -15,7 +15,7 @@ h3, h2, h1{
 	font-family: 'Hanna';
 }
 thead th{
-	background-color: #006DCC;
+	background-color: rgb(254,145,38);;
 	color: white;
 	text-align: center;
 }
@@ -186,7 +186,7 @@ tr th:last-child{
 .portlet-default>.portlet-heading,
 .portlet-dark-blue>.portlet-heading {
     color: #fff;
-    background-color: #34495e;
+	background-color: rgb(254,145,38);
 }
 
 .portlet-basic,
@@ -227,4 +227,8 @@ height:40px;
     position: relative;
     top: -5px; /* 원하는 만큼의 픽셀 값으로 조정합니다. */
     background-color: rgb(254,145,38);
+}
+#chatbtn{
+	background-color: rgba(254,145,38,0.7);
+	border-color: #fff;
 }

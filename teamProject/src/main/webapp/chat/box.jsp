@@ -78,7 +78,7 @@
 		function addBox(ch_fromID, ch_toID, ch_content, ch_date, unread){
 			  $('#boxTable').append('<tr>' +
 					    '<td style="width:150px;"><h5>' + ch_toID + '</h5>' +
-					    '<button type="button" class="btn btn-sm btn-default" onclick="deleteFuntion('+ ch_fromID +')";">삭제</button></td>' +
+					    '<button type="button" class="btn btn-sm btn-default" id="chatbtn" onclick="deleteFuntion('+ ch_fromID +')";">삭제</button></td>' +
 					    '<td onclick="location.href=\'chat.ch?ch_toID=' + encodeURIComponent(ch_fromID) + '\'">' +
 					    '<h5>' + ch_content +
 					    '<span id="unread" class="label label-info">' + unread + '</span></h5>' +

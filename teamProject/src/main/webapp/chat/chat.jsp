@@ -140,9 +140,9 @@
 									<textarea style="height:80px; resize:none;" id="ch_content" class="form-control" placeholder="메시지를 입력하세요" maxlength="100"></textarea>
 								</div>	
 								<div class="form-group col-xs-2">
-									<button type="button" class="btn btn-info pull-right" onclick="submitFunction();">전송</button>
+									<button type="button" class="btn btn-info pull-right" id="chatbtn" onclick="submitFunction();">전송</button>
 									<div class="clearfix"></div>
-									<button type="button" class="btn btn-info pull-right" style="margin-top: 10px;" onclick="location.href='box.ch'">목록</button>
+									<button type="button" class="btn btn-info pull-right" id="chatbtn" style="margin-top: 10px;" onclick="location.href='box.ch'">목록</button>
 								</div>						
 							</div>
 						</div>
