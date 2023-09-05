@@ -175,6 +175,17 @@ public class ProductController extends HttpServlet{
 		
 		if (sPath.equals("/laptop.po")) {
 			System.out.println("뽑은 가상주소 비교 : /laptop.po");
+			
+
+			HttpSession session = request.getSession();
+			String id = (String)session.getAttribute("m_id");
+			
+			MemberService memberService = new MemberService();
+			MemberDTO memberDTO =  memberService.getMember(id);
+			
+			ProductService productService = new ProductService();
+			ProductDTO productDTO = productService.getproduct(request);
+			
 			// 한페이지에서 보여지는 글개수 설정
 			int p_pageSize=6;
 			// 페이지번호 
@@ -252,14 +263,48 @@ public class ProductController extends HttpServlet{
 			request.setAttribute("laptopList", laptopList);
 			request.setAttribute("ppageDTO", ppageDTO);
 			request.setAttribute("orderBy", orderBy);
+			request.setAttribute("productDTO", productDTO);
+			request.setAttribute("memberDTO", memberDTO);
+			
 			// 주소변경없이 이동 center/laptop.jsp
 			dispatcher 
 		    = request.getRequestDispatcher("product/laptop.jsp");
 		dispatcher.forward(request, response);
 		} // laptop.po
+		
+		
+		if (sPath.equals("/laptopPro.po")) {
+			System.out.println("뽑은 가상 주소 비교 : /laptopPro.po");
+			HttpSession session = request.getSession();
+			String id = (String)session.getAttribute("m_id");
+			
+			MemberService memberService = new MemberService();
+			MemberDTO memberDTO =  memberService.getMember(id);
+			request.setAttribute("memberDTO", memberDTO);
+			
+			// ProductDTO productDTO = getBoard(request) 메서드 호출
+			ProductDTO productDTO = productService.getproduct(request);
+			
+			// request에 "boardDTO",boardDTO 담아서
+			request.setAttribute("productDTO", productDTO);
+			 
+			response.sendRedirect("laptop.po");
+		}
+		
+		
 		// -------------------------------------------------------------------------------
 		if (sPath.equals("/phone.po")) {
 			System.out.println("뽑은 가상주소 비교 : /phone.po");
+			
+			HttpSession session = request.getSession();
+			String id = (String)session.getAttribute("m_id");
+			
+			MemberService memberService = new MemberService();
+			MemberDTO memberDTO =  memberService.getMember(id);
+			
+			ProductService productService = new ProductService();
+			ProductDTO productDTO = productService.getproduct(request);
+			
 			// 한페이지에서 보여지는 글개수 설정
 			int p_pageSize=6;
 			// 페이지번호 
@@ -337,15 +382,45 @@ public class ProductController extends HttpServlet{
 			request.setAttribute("phoneList", phoneList);
 			request.setAttribute("ppageDTO", ppageDTO);
 			request.setAttribute("orderBy", orderBy);
+			request.setAttribute("productDTO", productDTO);
+			request.setAttribute("memberDTO", memberDTO);
+			
 			// 주소변경없이 이동 center/laptop.jsp
 			dispatcher 
 		    = request.getRequestDispatcher("product/phone.jsp");
 		dispatcher.forward(request, response);
 		} // phone.po
 		 
+		if (sPath.equals("/phonePro.po")) {
+			System.out.println("뽑은 가상 주소 비교 : /phonePro.po");
+			HttpSession session = request.getSession();
+			String id = (String)session.getAttribute("m_id");
+			
+			MemberService memberService = new MemberService();
+			MemberDTO memberDTO =  memberService.getMember(id);
+			request.setAttribute("memberDTO", memberDTO);
+			
+			// ProductDTO productDTO = getBoard(request) 메서드 호출
+			ProductDTO productDTO = productService.getproduct(request);
+			
+			// request에 "boardDTO",boardDTO 담아서
+			request.setAttribute("productDTO", productDTO);
+			 
+			response.sendRedirect("phone.po");
+		}
+		
 		// -------------------------------------------------------------------------------
 				if (sPath.equals("/tablet.po")) {
 					System.out.println("뽑은 가상주소 비교 : /tablet.po");
+					HttpSession session = request.getSession();
+					String id = (String)session.getAttribute("m_id");
+					
+					MemberService memberService = new MemberService();
+					MemberDTO memberDTO =  memberService.getMember(id);
+					
+					ProductService productService = new ProductService();
+					ProductDTO productDTO = productService.getproduct(request);
+					
 					// 한페이지에서 보여지는 글개수 설정
 					int p_pageSize=6;
 					// 페이지번호 
@@ -423,13 +498,32 @@ public class ProductController extends HttpServlet{
 					request.setAttribute("tabletList", tabletList);
 					request.setAttribute("ppageDTO", ppageDTO);
 					request.setAttribute("orderBy", orderBy);
+					request.setAttribute("productDTO", productDTO);
+					request.setAttribute("memberDTO", memberDTO);
+					
 					// 주소변경없이 이동 center/laptop.jsp
 					dispatcher 
 				    = request.getRequestDispatcher("product/tablet.jsp");
 				dispatcher.forward(request, response);
 				} // tablet.po
 		
-		
+				if (sPath.equals("/tabletPro.po")) {
+					System.out.println("뽑은 가상 주소 비교 : /tabletPro.po");
+					HttpSession session = request.getSession();
+					String id = (String)session.getAttribute("m_id");
+					
+					MemberService memberService = new MemberService();
+					MemberDTO memberDTO =  memberService.getMember(id);
+					request.setAttribute("memberDTO", memberDTO);
+					
+					// ProductDTO productDTO = getBoard(request) 메서드 호출
+					ProductDTO productDTO = productService.getproduct(request);
+					
+					// request에 "boardDTO",boardDTO 담아서
+					request.setAttribute("productDTO", productDTO);
+					 
+					response.sendRedirect("tablet.po");
+				}
 		// -------------------------------------------------------------------------------
 		
 		if(sPath.equals("/productReg.po")) {

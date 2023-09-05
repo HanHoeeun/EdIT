@@ -1,3 +1,5 @@
+<%@page import="com.itwillbs.domain.MemberDTO"%>
+<%@page import="com.itwillbs.domain.WishListDTO"%>
 <%@page import="com.itwillbs.domain.ProductPageDTO"%>
 <%@page import="com.itwillbs.domain.ProductDTO"%>
 <%@page import="java.util.List"%>
@@ -132,7 +134,11 @@ String orderBy = (String) request.getAttribute("orderBy");
             = (List<ProductDTO>)request.getAttribute("laptopList");
             ProductPageDTO ppageDTO
             = (ProductPageDTO)request.getAttribute("ppageDTO");
-            
+            List<WishListDTO> wishList
+            = (List<WishListDTO>)request.getAttribute("wishList");
+            String id = (String)session.getAttribute("m_id");
+            MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO"); 
+             
             %>
             
               <div class="agile_top_brands_grids">
@@ -148,7 +154,7 @@ String orderBy = (String) request.getAttribute("orderBy");
                     <figure>
                          <div class="snipcart-item block">
                             <div class="snipcart-thumb">
-                                <a href="single.po"><img title=" " alt=" " src="upload/<%=productDTO.getP_file() %>"  width="150px" height="150px" download></a>
+                                <a href="single.po?p_num=<%=productDTO.getP_num()%>"><img title=" " alt=" " src="upload/<%=productDTO.getP_file() %>"  width="150px" height="150px" download></a>
                                 <p><%=productDTO.getP_title() %></p>
                                 <h4><%= productDTO.getP_price() %>원</h4>
                                 <h4><%= productDTO.getP_status() %></h4>
@@ -165,8 +171,10 @@ String orderBy = (String) request.getAttribute("orderBy");
                                         <input type="hidden" name="currency_code" value="KRW">
                                         <input type="hidden" name="return" value=" ">
                                         <input type="hidden" name="cancel_return" value=" ">
-                                        <input type="submit" name="submit" value="찜 추가하기" class="button">
-                                    </fieldset>
+                                        <input type="button" value="찜 추가하기" class="button addToWishlistButton"
+   										 data-p-num="<%= productDTO.getP_num() %>"			
+  										 data-m-num="<%= memberDTO.getM_num() %>">
+									 </fieldset>
                                 </form>
                             </div>
                         </div> 
@@ -175,7 +183,49 @@ String orderBy = (String) request.getAttribute("orderBy");
             </div>
         </div>
     </div>
-    <% } %>
+    <% 
+    }
+    
+    %>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../js/jquery-1.11.1.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('.addToWishlistButton').click(function() {
+        // 버튼의 data-p-num와 data-m-num 속성 값을 가져오기
+       var $button = $(this);
+        var w_p_num = $button.data('p-num');
+        var w_m_num = $button.data('m-num');
+
+
+        // productDTO와 memberDTO 객체가 null인지 확인
+        if (w_p_num == undefined || w_m_num == undefined) {
+            alert('로그인 먼저 해주세요 :) ');
+            return; // 함수 실행 중지
+        }
+        
+
+        // p_num과 m_num 값이 정상적으로 가져와지는지 console.log로 확인
+        console.log("p_num:", w_p_num);
+        console.log("m_num:", w_m_num);
+
+        $.ajax({
+            type: 'POST',
+            url: 'addwish.wi',
+            data: {w_p_num: w_p_num, w_m_num: w_m_num},
+            success: function(response) {
+                alert(response);
+                
+            },
+            error: function() {
+                alert('오류 발생');
+            }
+        });
+    });
+    
+});
+</script>
+
     <div class="clearfix"> </div>
 </div>
 <!-- 페이징 코드 5개씩 나눠서 페이징 -->
