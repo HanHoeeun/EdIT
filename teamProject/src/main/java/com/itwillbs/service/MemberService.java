@@ -123,6 +123,26 @@ public class MemberService {
 
 	
 	
+	
+	public MemberDTO getIdCheck(String m_id) {
+		System.out.println("MemberService getIdCheck()");
+		
+		MemberDTO memberDTO = null;
+		
+		try {
+			
+			memberDAO = new MemberDAO();
+			memberDTO = memberDAO.getIdCheck(m_id);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return memberDTO;
+	}
+
+	
+	
+	
 //	닉네임 중복체크
 	public MemberDTO getNickCheck(String m_nick) {
 		System.out.println("MemberService getNickCheck()");
@@ -324,6 +344,7 @@ public class MemberService {
 		}
 		return memberDTO;
 	}
+
 
 
 	

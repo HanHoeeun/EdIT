@@ -192,6 +192,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 $(document).ready(function() {
+        
+        
 //		아이디 조건 + 중복검사		----성공
 	$('#m_id').on('input', function() {
 		var userId = $(this).val();
@@ -267,6 +269,7 @@ $(document).ready(function() {
             }
         });
     });
+  
 
 
     
@@ -302,11 +305,11 @@ $(document).ready(function() {
     
     
     
-	 $('#join').submit(function() {
+// 	 $('#join').submit(function() {
 	
-			alert("회원가입 조건을 모두 충족해야 합니다.");
-			return false; // Prevent form submission
-		} );
+// 			alert("회원가입 조건을 모두 충족해야 합니다.");
+// 			return false; // Prevent form submission
+// 		});
 	         
 	 
 

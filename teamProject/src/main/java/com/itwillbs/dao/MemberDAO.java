@@ -197,6 +197,35 @@ public class MemberDAO {
 
 	
 	
+	public MemberDTO getIdCheck(String m_id) {
+		System.out.println("MemberDAO getNickCheck()");
+		
+		MemberDTO memberDTO = null;
+		
+		try {
+			
+			con = getConnection();
+			String sql = "select * from members where m_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, m_id);
+			
+			rs = pstmt.executeQuery();
+			
+			if (rs.next() == true) {
+				memberDTO = new MemberDTO();
+				memberDTO.setM_id(rs.getString("m_id"));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dblClose();
+		}
+		return memberDTO;
+	}
+	
+	
+	
 // 	닉네임 중복확인	
 	public MemberDTO getNickCheck(String m_nick) {
 		System.out.println("MemberDAO getNickCheck()");
@@ -490,7 +519,11 @@ public class MemberDAO {
 	} // IdAndEmailMatch()
 
 
-}	// insertMember()
+
+
+
+
+}	
 
 	
 	

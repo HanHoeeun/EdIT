@@ -180,7 +180,7 @@ public class MemberController extends HttpServlet{
 			request.setAttribute("memberDTO", memberDTO);
 			
 			
-			dispatcher = request.getRequestDispatcher("member/update.jsp");
+			dispatcher = request.getRequestDispatcher("member/mypage_3.jsp");
 			dispatcher.forward(request, response);
 			
 		}
@@ -706,6 +706,45 @@ public class MemberController extends HttpServlet{
 			}
 			 dispatcher.forward(request, response);
 		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 	}	// doProcess()
 	
