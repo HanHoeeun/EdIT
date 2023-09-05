@@ -97,23 +97,24 @@ MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 				
 					
 <%				
-				//	if(id != null){
-					//	if(id.equals(productDTO.getM_id())){
-							for(int i=0;i<productList.size();i++){
-								productDTO =productList.get(i);
+		if(id != null){
+					for(int i=0;i<productList.size();i++){
+						productDTO =productList.get(i);
+							 if (id.equals(productDTO.getM_id()) && "거래완료".equals(productDTO.getP_status())) {
+							
 							%>
-					
-					<tr class="rem1">
-						<td class="invert"><%=productDTO.getP_num()%></td>
-						<td class="invert-image"><a href="single.po?p_num=<%=productDTO.getP_num()%>"><img src="upload/<%=productDTO.getP_file() %>" alt=" " class="img-responsive" /></a></td>
-						<td class="invert"><%=productDTO.getP_title() %></td>
-						<td class="invert"><%=productDTO.getP_price() %></td>
-					</tr>
+										
+		<tr class="rem1">
+			<td class="invert"><%=productDTO.getP_num()%></td>
+			<td class="invert-image"><a href="single.po?p_num=<%=productDTO.getP_num()%>"><img src="upload/<%=productDTO.getP_file() %>" alt=" " class="img-responsive" /></a></td>
+			<td class="invert"><%=productDTO.getP_title() %></td>
+			<td class="invert"><%=productDTO.getP_price() %></td>
+		</tr>
 					
 <%
-							}
-					//	}
-				//	}
+							 }
+					}
+			}
 
 %>
 					

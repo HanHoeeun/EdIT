@@ -613,6 +613,7 @@ public class ProductService {
 			
 			// request 파라미터 가져오기 => int num 저장
 			String m_id = request.getParameter("m_id");
+			String p_status = request.getParameter("p_status");
 			int p_num = Integer.parseInt(request.getParameter("p_num"));
 			
 			// BoardDAO 객체생성

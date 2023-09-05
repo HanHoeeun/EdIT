@@ -573,6 +573,13 @@ public class ProductController extends HttpServlet{
 			// ProductService 객체생성
 			productService = new ProductService();
 			
+			// ProductDTO productDTO = getBoard(request) 메서드 호출
+			ProductDTO productDTO = productService.getproduct(request);
+			
+			// request에 "boardDTO",boardDTO 담아서
+			request.setAttribute("productDTO", productDTO);
+
+			
 			// List<ProductDTO> productList  =  getProductList2();메서드호출
 			List<ProductDTO> productList = productService.getProductList2();
 			
