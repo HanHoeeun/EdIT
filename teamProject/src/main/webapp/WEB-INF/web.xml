@@ -88,7 +88,15 @@
     <url-pattern>*.wi</url-pattern>
 </servlet-mapping>
 
-  
+ <servlet>
+    <servlet-name>DeleteWishlistItemServlet</servlet-name>
+    <servlet-class>com.itwillbs.ajax.DeleteWishlistItemServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>DeleteWishlistItemServlet</servlet-name>
+    <url-pattern>*.dwi</url-pattern>
+</servlet-mapping>
+ 
 <!-- <servlet-mapping>
 	<servlet-name>MainController</servlet-name>
 	<url-pattern>*.ma</url-pattern>

@@ -598,27 +598,55 @@ public class ProductService {
 	} //updateProduct()
 	
 	 
+//	public ProductDTO getproduct(HttpServletRequest request) {
+//		
+//		ProductDTO productDTO = null;
+//		try {
+//			// request 한글처리
+//			request.setCharacterEncoding("utf-8");
+//			
+//			// request 파라미터 가져오기 => int num 저장
+//			int p_num = Integer.parseInt(request.getParameter("p_num"));
+//			
+//			// BoardDAO 객체생성
+//			productDAO = new ProductDAO();
+//			
+//			// boardDTO = getBoard(num) 메서드 호출
+//			productDTO = productDAO.getproduct(p_num);
+//			
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return productDTO;
+//	}//getBoard
+//	
 	public ProductDTO getproduct(HttpServletRequest request) {
-		
-		ProductDTO productDTO = null;
-		try {
-			// request 한글처리
-			request.setCharacterEncoding("utf-8");
-			
-			// request 파라미터 가져오기 => int num 저장
-			int p_num = Integer.parseInt(request.getParameter("p_num"));
-			
-			// BoardDAO 객체생성
-			productDAO = new ProductDAO();
-			
-			// boardDTO = getBoard(num) 메서드 호출
-			productDTO = productDAO.getproduct(p_num);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return productDTO;
-	}//getBoard
+	    ProductDTO productDTO = null;
+	    try {
+	        // request 한글처리
+	        request.setCharacterEncoding("utf-8");
+
+	        // request 파라미터 가져오기 => int num 저장
+	        int p_num = Integer.parseInt(request.getParameter("p_num"));
+
+	        // BoardDAO 객체생성
+	        productDAO = new ProductDAO();
+
+	        // boardDTO = getBoard(num) 메서드 호출
+	        productDTO = productDAO.getproduct(p_num);
+
+	        if (productDTO == null) {
+	            // productDTO가 null인 경우에 대한 처리
+	            // 예를 들어, 기본값 설정 또는 오류 메시지 출력
+	            // productDTO = new ProductDTO(); // 빈 객체로 초기화
+	        }
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return productDTO;
+	}
+
 	
 	//--------------------------------------------------------------------------------------------------
 	
@@ -649,34 +677,34 @@ public class ProductService {
 
 
 
-	public List<WishListDTO> getWishSellProducts(ProductPageDTO ppageDTO) {
-		System.out.println("ProductService getWishSellProducts()");
-		List<WishListDTO> sellList = null;
-		try {
-			// productDAO 객체생성
-			productDAO = new ProductDAO();
-			// DAO에서 데이터 가져오기
-			sellList=productDAO.getWishSellProducts(ppageDTO);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return sellList;
-	}
-
-
-	public List<WishListDTO> getWishSoldProducts(ProductPageDTO ppageDTO) {
-		System.out.println("ProductService getWishSoldProducts()");
-		List<WishListDTO> soldList = null;
-		try {
-			// productDAO 객체생성
-			productDAO = new ProductDAO();
-			// DAO에서 데이터 가져오기
-			soldList=productDAO.getWishSoldProducts(ppageDTO);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return soldList;
-	}
+//	public List<WishListDTO> getWishSellProducts(ProductPageDTO ppageDTO) {
+//		System.out.println("ProductService getWishSellProducts()");
+//		List<WishListDTO> sellList = null;
+//		try {
+//			// productDAO 객체생성
+//			productDAO = new ProductDAO();
+//			// DAO에서 데이터 가져오기
+//			sellList=productDAO.getWishSellProducts(ppageDTO);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return sellList;
+//	}
+//
+//
+//	public List<WishListDTO> getWishSoldProducts(ProductPageDTO ppageDTO) {
+//		System.out.println("ProductService getWishSoldProducts()");
+//		List<WishListDTO> soldList = null;
+//		try {
+//			// productDAO 객체생성
+//			productDAO = new ProductDAO();
+//			// DAO에서 데이터 가져오기
+//			soldList=productDAO.getWishSoldProducts(ppageDTO);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return soldList;
+//	}
 
 
 	public List<WishListDTO> getWishList(ProductPageDTO ppageDTO) {

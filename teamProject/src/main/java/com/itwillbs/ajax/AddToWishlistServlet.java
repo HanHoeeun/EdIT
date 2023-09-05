@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -37,13 +38,23 @@ public class AddToWishlistServlet extends HttpServlet {
             Context initContext = new InitialContext();
             Context envContext = (Context) initContext.lookup("java:/comp/env");
             DataSource ds = (DataSource) envContext.lookup("jdbc/c1d2304t4");
-
+            int i = 0;
             // 데이터베이스 연결
             conn = ds.getConnection();
-
-            // SQL 쿼리를 작성하여 찜 정보를 추가
-            String sql = "INSERT INTO wishlists (w_p_num, w_m_num) VALUES (?, ?)";
+            String sql="select w_p_num from wishlists where w_m_num =?";
             pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, Integer.parseInt(m_numStr));
+            ResultSet rs = pstmt.executeQuery();
+            while(rs.next()) {
+            	if(rs.getInt("w_p_num") == Integer.parseInt(p_numStr)) {
+                    resultMessage = "이미 상품이 찜리스트에 추가되었습니다.";
+                    i = 1;
+            	}
+            }
+            if(i == 1) {}else {
+            // SQL 쿼리를 작성하여 찜 정보를 추가
+            String sql2 = "INSERT INTO wishlists (w_p_num, w_m_num) VALUES (?, ?)";
+            pstmt = conn.prepareStatement(sql2);
 
             // p_num과 m_num을 정수로 파싱하여 설정
             int w_p_num = Integer.parseInt(p_numStr);
@@ -58,6 +69,7 @@ public class AddToWishlistServlet extends HttpServlet {
             } else {
                 resultMessage = "Error: 찜을 추가하지 못했습니다.";
             }
+            }
         } catch (NamingException | SQLException e) {
             e.printStackTrace();
             resultMessage = "Error: 데이터베이스 오류 발생 - " + e.getMessage(); // 더 구체적인 오류 메시지 반환
@@ -70,7 +82,7 @@ public class AddToWishlistServlet extends HttpServlet {
                 e.printStackTrace();
             }
         }
-
+        
         // 결과 메시지를 클라이언트에게 응답으로 보냄
         response.setContentType("text/plain; charset=UTF-8");
         PrintWriter out = response.getWriter();

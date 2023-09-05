@@ -83,7 +83,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       <div class="container">
          <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
             <li><a href="main.me"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-            <li class="active">전체상품 보기</li>
+            <li class="active"><a href = "products.po">전체상품 보기</a></li>
          </ol>
       </div>
    </div>
@@ -116,12 +116,12 @@ String orderBy = (String) request.getAttribute("orderBy");
                 <div class="products-right-grids">
                     <div class="sorting">
                         <select id="country" onchange="change_country(this.value)" class="frm-field required sect">
-                    <option value="laptopLatest" <% if (orderBy != null && orderBy.equals("laptopLatest")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>최신순</option>
-                    <option value="laptopPopular" <% if (orderBy != null && orderBy.equals("laptopPopular")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>인기순</option> 
-                    <option value="laptopHighPrice" <% if (orderBy != null && orderBy.equals("laptopHighPrice")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>가격 높은 순</option>               
-                    <option value="laptopLowPrice" <% if (orderBy != null && orderBy.equals("laptopLowPrice")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>가격 낮은 순</option>                        
-               		<option value="laptopSell" <% if (orderBy != null && orderBy.equals("laptopSell")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>판매중</option>                        
-                    <option value="laptopSold" <% if (orderBy != null && orderBy.equals("laptopSold")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>판매완료</option>
+                    <option value="latest" <% if (orderBy != null && orderBy.equals("latest")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>최신순</option>
+                    <option value="popular" <% if (orderBy != null && orderBy.equals("popular")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>인기순</option> 
+                    <option value="highPrice" <% if (orderBy != null && orderBy.equals("highPrice")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>가격 높은 순</option>               
+                    <option value="lowPrice" <% if (orderBy != null && orderBy.equals("lowPrice")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>가격 낮은 순</option>                        
+               		<option value="sell" <% if (orderBy != null && orderBy.equals("sell")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>판매중</option>                        
+                    <option value="sold" <% if (orderBy != null && orderBy.equals("sold")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>판매완료</option>
                 </select>
             </div>
            
@@ -156,7 +156,7 @@ String orderBy = (String) request.getAttribute("orderBy");
                     <figure>
                          <div class="snipcart-item block">
                             <div class="snipcart-thumb">
-                                <a href="single.po"><img title=" " alt=" " src="upload/<%=productDTO.getP_file() %>"  width="150px" height="150px" download></a>
+                                <a href="single.po?=p_num=<%=productDTO.getP_num()%>"><img title=" " alt=" " src="upload/<%=productDTO.getP_file() %>"  width="150px" height="150px" download></a>
                                 <p><%=productDTO.getP_title() %></p>
                                 <h4><%= productDTO.getP_price() %>원</h4>
                                 <h4><%= productDTO.getP_status() %></h4>
@@ -173,9 +173,10 @@ String orderBy = (String) request.getAttribute("orderBy");
                                         <input type="hidden" name="currency_code" value="KRW">
                                         <input type="hidden" name="return" value=" ">
                                         <input type="hidden" name="cancel_return" value=" ">
-                                        <input type="button" value="찜 추가하기" class="button" id="addToWishlistButton" 
-                                        data-p-num="<%= productDTO.getP_num() %>" data-m-num="<%=memberDTO.getM_num()%>">
-                                    </fieldset>
+                                       <input type="button" value="찜 추가하기" class="button addToWishlistButton"
+   										 data-p-num="<%= productDTO.getP_num() %>"			
+  										 data-m-num="<%= memberDTO.getM_num() %>">
+									 </fieldset>
                                 </form>
                             </div>
                         </div> 
@@ -192,17 +193,19 @@ String orderBy = (String) request.getAttribute("orderBy");
 <script src="../js/jquery-1.11.1.min.js"></script>
 <script>
 $(document).ready(function() {
-    $('#addToWishlistButton').click(function() {
+    $('.addToWishlistButton').click(function() {
         // 버튼의 data-p-num와 data-m-num 속성 값을 가져오기
-        var w_p_num = $(this).data('p-num');
-		var w_m_num = $(this).data('m-num');
+       var $button = $(this);
+        var w_p_num = $button.data('p-num');
+        var w_m_num = $button.data('m-num');
 
 
         // productDTO와 memberDTO 객체가 null인지 확인
         if (w_p_num == undefined || w_m_num == undefined) {
-            alert('w_p_num 또는 w_m_num이 정의되지 않았습니다.');
+            alert('로그인 먼저 해주세요 :) ');
             return; // 함수 실행 중지
         }
+        
 
         // p_num과 m_num 값이 정상적으로 가져와지는지 console.log로 확인
         console.log("p_num:", w_p_num);
@@ -221,11 +224,12 @@ $(document).ready(function() {
             }
         });
     });
+    
 });
 </script>
-    
 
-    <div class="clearfix"> </div>
+
+<div class="clearfix"> </div>
 </div>
 <!-- 페이징 코드 5개씩 나눠서 페이징 -->
 <nav class="numbering">

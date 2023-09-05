@@ -532,6 +532,8 @@ public class ProductController extends HttpServlet{
 			// ProductService 객체생성
 			productService = new ProductService();
 			
+			
+			
 			//조회수 증가 readcount 1증가
 			// 리턴할형 없음  updateReadcount(request) 메서드 호출
 //			productService.updateReadcount(request);
@@ -557,8 +559,8 @@ public class ProductController extends HttpServlet{
 			MemberService memberService = new MemberService();
 			MemberDTO memberDTO =  memberService.getMember(id);
 			
-			ProductService productService = new ProductService();
-			ProductDTO productDTO = productService.getproduct(request);
+//			ProductService productService = new ProductService();
+//			ProductDTO productDTO = productService.getproduct(request);
 		
 			int p_pageSize=10;
 			String p_pageNum=request.getParameter("p_pageNum");
@@ -571,20 +573,23 @@ public class ProductController extends HttpServlet{
 			ppageDTO.setP_pageNum(p_pageNum);
 			ppageDTO.setP_currentPage(p_currentPage);
 			productService = new ProductService();
+			ppageDTO.setM_id(id);
 			List<WishListDTO> wishList=productService.getWishList(ppageDTO);
-			String orderBy = request.getParameter("ord");
-		    System.out.println("orderBy"+ orderBy);
-		    if(orderBy != null) {
-		    	if ("wishSell".equals(orderBy)) {
-			    	wishList = productService.getWishSellProducts(ppageDTO);
-			    } else if ("wishSold".equals(orderBy)) {
-			    	wishList = productService.getWishSoldProducts(ppageDTO);
-			    	
-			    } else {
-			        // 디폴트로 판매중으로 정렬
-			    	wishList = productService.getWishSellProducts(ppageDTO);
-			    }
-		    }	
+			
+			System.out.println("위시리스트!!"+ wishList);
+			//String orderBy = request.getParameter("ord");
+		    //System.out.println("orderBy"+ orderBy);
+//		    if(orderBy != null) {
+//		    	if ("wishSell".equals(orderBy)) {
+//			    	wishList = productService.getWishSellProducts(ppageDTO);
+//			    } else if ("wishSold".equals(orderBy)) {
+//			    	wishList = productService.getWishSoldProducts(ppageDTO);
+//			    	
+//			    } else {
+//			        // 디폴트로 판매중으로 정렬
+//			    	wishList = productService.getWishSellProducts(ppageDTO);
+//			    }
+//		    }	
 		    int p_count = productService.getProductCount();
 		    int p_pageBlock = 3;
 		    int p_startPage=(p_currentPage-1)/p_pageBlock*p_pageBlock+1;
@@ -602,8 +607,8 @@ public class ProductController extends HttpServlet{
 			System.out.println("현재페이지 =" + p_currentPage);
 			request.setAttribute("wishList", wishList);
 			request.setAttribute("ppageDTO", ppageDTO);
-			request.setAttribute("orderBy", orderBy);
-			request.setAttribute("productDTO", productDTO);
+			//request.setAttribute("orderBy", orderBy);
+			//request.setAttribute("productDTO", productDTO);
 			request.setAttribute("memberDTO", memberDTO);
 			
 			dispatcher 
@@ -611,7 +616,23 @@ public class ProductController extends HttpServlet{
 		dispatcher.forward(request, response);
 		}//wishlist.po
 		
-
+		if (sPath.equals("/wishlistPro.po")) {
+			System.out.println("뽑은 가상 주소 비교 : /wishlistPro.po");
+			HttpSession session = request.getSession();
+			String id = (String)session.getAttribute("m_id");
+			
+			MemberService memberService = new MemberService();
+			MemberDTO memberDTO =  memberService.getMember(id);
+			request.setAttribute("memberDTO", memberDTO);
+			
+			// ProductDTO productDTO = getBoard(request) 메서드 호출
+			ProductDTO productDTO = productService.getproduct(request);
+			
+			// request에 "boardDTO",boardDTO 담아서
+			request.setAttribute("productDTO", productDTO);
+			 
+			response.sendRedirect("wishlist.po");
+		}
 		
 		
 		
