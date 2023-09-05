@@ -340,7 +340,6 @@ public class MemberDAO {
             if (rs.next()) {
                 memberDTO = new MemberDTO();
                 memberDTO.setM_id(rs.getString("m_id"));
-                // 다른 필드도 필요한 경우에 가져와서 설정
             }
             System.out.println(m_name + "," + m_email );
 			System.out.println(memberDTO);
@@ -350,38 +349,38 @@ public class MemberDAO {
 			dblClose();
 		}
 		return memberDTO; // 멤버 정보 반환
-	}
+	} // findidmember
 
 
-	// 8.31 진 - 비밀번호 찾기
-	public MemberDTO findpwmember(String m_id, String m_email) {
-		
-		System.out.println("MemberDAO findpwmember()");
-		MemberDTO memberDTO = null;
-		try {
-			// 디비 연결
-			con = getConnection();
-			
-			String sql = "SELECT * FROM members WHERE m_id = ? and m_email = ?";
-			pstmt = con.prepareStatement(sql);
-            pstmt.setString(1, m_id);
-            pstmt.setString(2, m_email);
-            
-            ResultSet rs = pstmt.executeQuery();
-			if(rs.next()) {
-                memberDTO = new MemberDTO();
-                memberDTO.setM_pass(rs.getString("m_pass"));	
-			}
-            System.out.println(m_id + "," + m_email );
-			System.out.println(memberDTO);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			dblClose();
-		}
-		return memberDTO; // 멤버 정보 반환
-	}
+	// 8.31 진 - 비밀번호 찾기 주석처리해도 되나,,??
+//	public MemberDTO findpwmember(String m_id, String m_email) {
+//		
+//		System.out.println("MemberDAO findpwmember()");
+//		MemberDTO memberDTO = null;
+//		try {
+//			// 디비 연결
+//			con = getConnection();
+//			
+//			String sql = "SELECT * FROM members WHERE m_id = ? and m_email = ?";
+//			pstmt = con.prepareStatement(sql);
+//            pstmt.setString(1, m_id);
+//            pstmt.setString(2, m_email);
+//            
+//            ResultSet rs = pstmt.executeQuery();
+//			if(rs.next()) {
+//                memberDTO = new MemberDTO();
+//                memberDTO.setM_pass(rs.getString("m_pass"));	
+//			}
+//            System.out.println(m_id + "," + m_email );
+//			System.out.println(memberDTO);
+//			
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			dblClose();
+//		}
+//		return memberDTO; // 멤버 정보 반환
+//	}
 
 
   // 9월 5일 
@@ -404,7 +403,33 @@ public class MemberDAO {
 		}
 
 		return result;
-	}
+	} // newPassword()
+
+
+ // 9.5 아이디와 비밀번호 일치한지 아닌지 DB 연동
+	public MemberDTO IdAndEmailMatch(String m_id, String m_email) {
+		MemberDTO memberDTO = null;
+		try {
+			con = getConnection();
+			
+			String sql = "SELECT * FROM members WHERE m_id = ? and m_email = ?";
+			pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, m_id);
+            pstmt.setString(2, m_email);
+            
+            ResultSet rs = pstmt.executeQuery();
+			if(rs.next()) {
+                memberDTO = new MemberDTO();
+                memberDTO.setM_pass(rs.getString("m_pass"));	
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dblClose();
+		}
+		return memberDTO;
+	} // IdAndEmailMatch()
 
 
 }	// insertMember()

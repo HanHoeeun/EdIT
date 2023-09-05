@@ -236,22 +236,22 @@ public class MemberService {
 	    }
 	}
 
-	// 8.31 진 - 아이디와 이메일 이용해서 비밀번호 찾기 구현 
-	public String findpwmember(String m_id, String m_email) {
-		// 아이디와 이메일을 이용하여 비밀번호를 찾기 구현
-		memberDAO = new MemberDAO();
-		MemberDTO memberDTO = memberDAO.findpwmember(m_id, m_email);
-		
-		if(memberDTO != null) {
-			return memberDTO.getM_pass(); // 비밀번호 반환(앞 몇자리만 보이게 구현..해보자..!!??)
-		} else {
-			return null; // 비밀번호를 찾지 못한 경우
-		}
-	}
+	// 8.31 진 - 아이디와 이메일 이용해서 비밀번호 찾기 구현 -> 주석처리...??
+//	public String findpwmember(String m_id, String m_email) {
+//		// 아이디와 이메일을 이용하여 비밀번호를 찾기 구현
+//		memberDAO = new MemberDAO();
+//		MemberDTO memberDTO = memberDAO.findpwmember(m_id, m_email);
+//		
+//		if(memberDTO != null) {
+//			return memberDTO.getM_pass(); // 비밀번호 반환(앞 몇자리만 보이게 구현..해보자..!!??)
+//		} else {
+//			return null; // 비밀번호를 찾지 못한 경우
+//		}
+//	}
 
 
 	// 9월 5일 
-	// 새 비밀번호 -> DB에 업데이트 시켜줘야 함
+	// 새 비밀번호 -> DB에 업데이트
 
 	public int newPassword(HttpServletRequest request) {	
 		String newPassword = request.getParameter("newPassword");
@@ -270,6 +270,20 @@ public class MemberService {
 		return result;
 	}
 
+
+	public MemberDTO IdAndEmailMatch(String m_id, String m_email) {
+		MemberDTO memberDTO = null;
+		try {
+			memberDAO = new MemberDAO();
+			 memberDTO = memberDAO.IdAndEmailMatch(m_id, m_email);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return memberDTO;
+	}
+
+
+	
 	
 
 
