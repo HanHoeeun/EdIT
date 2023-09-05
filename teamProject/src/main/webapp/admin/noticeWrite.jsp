@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>공지사항 글 작성</title>
+<title>공지사항 글작성</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -69,76 +69,76 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 <!--=========================== 본문 헤더 ========================================= -->
-
 	<div class="top-brands_1">
 		<h2>공지사항</h2>
 		<div class="container_1_1">
 			<div class="container_2_1">
 <!--=========================== 상단 탭 리스트============================================ -->
-				<ul class="tabs">
-					<li class="tab-link current" data-tab="tab-1">일반공지</li>
-					<li class="tab-link" data-tab="tab-2">이벤트</li>
+			<ul class="tabs">
+					<li class="tab-link" data-tab="tab-1" onclick="location.href='noticelist.no'">일반공지</li>
+					<li class="tab-link" data-tab="tab-2" onclick="location.href='eventlist.no'">이벤트</li>
 					<%
 					if (1 == 1) {
 					%>
-					<li class="tab-link" data-tab="tab-3">공지글 작성</li>
+					<li class="tab-link current" data-tab="tab-3" onclick="location.href='noticeWrite.no'">공지글 작성</li>
 					<%
 					}
 					%>
 				</ul>
 			</div>
 
-<!--================================== 3탭 공지글 작성 ==================================== -->
-			<%
-			if (1 == 1) {
-			%>
-			<div id="tab-3" class="tab-content">
-				<form action="write.no" method="post" enctype="multipart/form-data">
-					<table class="_1q_query_tab">
-						<tr>
-							<td class="_1q_query_tab_1"><select
-								class="_1q_query_tab_sel" name="a_notice_type"
-								style="border: none;">
-									<option value="1">일반공지</option>
-									<option value="2">이벤트</option>
-							</select></td>
-							<td>
-								<div class="_1q_query_tab_3">
-									<label for="imgfile"><img src="images/picture.png"
-										width="25px" height="25px">첨부파일</label>
-								</div> <input type="file" name="a_file" id="imgfile" accept="image/*">
-							</td>
-						</tr>
-					</table>
-					<div>
-						<br>
-					</div>
+<!--=========================================== 3탭 공지글 작성 ==================================================== -->
+			<div class="container_3_1">
+				<div id="tab-3" class="tab-content current">
 
-					<table class="_1q_query_tab">
-						<tr>
-							<td class="_1q_query_tab_4" colspan="3"><input type="text"
-								name="a_title" placeholder="제목을 작성 해주세요" style="border: none;"></td>
-						</tr>
-					</table>
-					<div>
-						<br>
-					</div>
-					<table class="_1q_query_tab">
-						<tr>
-							<td class="_1q_query_tab_5" colspan="3"><textarea
-									name="a_content" style="border: none;" cols="110" rows="20"
-									class="noresize" placeholder="내용을 작성 해주세요"></textarea></td>
-						</tr>
-					</table>
-					<div class="_1q_query_btn">
-						<button type="submit">작성</button>
-						<button type="reset">취소</button>
-					</div>
-				</form>
+					<form action="noticeWritePro.no" method="post"
+						enctype="multipart/form-data">
+						<table class="_1q_query_tab">
+							<tr>
+								<td class="_1q_query_tab_1"><select
+									class="_1q_query_tab_sel" name="a_notice_type"
+									style="border: none;">
+										<option value="일반공지">일반공지</option>
+										<option value="이벤트">이벤트</option>
+								</select></td>
+								<td>
+									<div class="_1q_query_tab_3">
+										<label for="imgfile"><img src="images/picture.png"
+											width="25px" height="25px">첨부파일</label>
+									</div> <input type="file" name="a_file" id="imgfile" accept="image/*">
+								</td>
+							</tr>
+						</table>
+						<div>
+							<br>
+						</div>
+
+						<table class="_1q_query_tab">
+							<tr>
+								<td class="_1q_query_tab_4" colspan="3"><input type="text"
+									name="a_title" placeholder="제목을 작성 해주세요" style="border: none;" required="required"></td>
+							</tr>
+						</table>
+						<div>
+							<br>
+						</div>
+						<table class="_1q_query_tab">
+							<tr>
+								<td class="_1q_query_tab_5" colspan="3"><textarea
+										name="a_content" style="border: none;" cols="110" rows="20"
+										class="noresize" placeholder="내용을 작성 해주세요" required="required"></textarea></td>
+							</tr>
+						</table>
+						<div class="_1q_query_btn">
+							<button type="submit">작성</button>
+							<button type="reset">취소</button>
+						</div>
+					</form>
+
+				</div>
+
 			</div>
-			<%
-			}
-			%>
+
 <!--====================================== 탭 jquery =================================-->
 			<script type="text/javascript">
             $(document).ready(function(){

@@ -10,7 +10,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
-<title>공지사항 게시물수정</title>
+<title>공지글 수정</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -67,17 +67,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<li><a href="index.html"><span
 						class="glyphicon glyphicon-home" aria-hidden="true"></span>홈</a></li>
 				<li class="active">공지사항</li>
+				<li class="active">공지글 수정</li>
 			</ol>
 		</div>
 	</div>
 <!--=========================== 본문 헤더 =========================================== -->
+<%
+	NoticeDTO noticeDTO = (NoticeDTO) request.getAttribute("noticeDTO");
+	%>
 	<div class="top-brands_1">
-		<h2>공지글 수정</h2>
+		<h2><%=noticeDTO.getA_notice_type()%>수정</h2>
 	</div>	
 	<!--=========================== 본문 =========================================== -->
 	<%
 String a_m_num = (String)session.getAttribute("a_m_num");
-NoticeDTO noticeDTO=(NoticeDTO)request.getAttribute("noticeDTO");
+
 %>	
 		<form action="updatePro.no" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="a_num" value="<%=noticeDTO.getA_num()%>">
@@ -85,8 +89,8 @@ NoticeDTO noticeDTO=(NoticeDTO)request.getAttribute("noticeDTO");
 				<tr>
 					<td class="_1q_query_tab_1"><select class="_1q_query_tab_sel"
 						name="a_notice_type" style="border: none;">
-							<option value="1">일반공지</option>
-							<option value="2">이벤트</option>
+							<option value="일반공지">일반공지</option>
+							<option value="이벤트">이벤트</option>
 					</select></td>
 					<td>
 						<div class="_1q_query_tab_3">

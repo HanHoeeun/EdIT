@@ -15,7 +15,16 @@ public class NoticePageDTO {
 	
 	//검색어
 	private String search;
+	private String a_notice_type;
 	
+	public String getA_notice_type() {
+		return a_notice_type;
+	}
+
+	public void setA_notice_type(String a_notice_type) {
+		this.a_notice_type = a_notice_type;
+	}
+
 	//alt shift s => r
 	public int getPageSize() {
 		return pageSize;
