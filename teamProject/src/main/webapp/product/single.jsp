@@ -97,7 +97,7 @@ MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 				<div class="col-md-8 agileinfo_single_right">
 					
 					<input type="hidden" value="<%=productDTO.getP_num()%>" name="p_num">
-					<input type="hidden" value="<%=productDTO.getM_id()%>" name="p_m_id">
+					<input type="hidden" value="<%=productDTO.getM_id()%>" name="m_id">
 					<input type="hidden" value="<%=productDTO.getM_nick()%>" name="m_nick">
 					
 					<!-- 조회수 -->

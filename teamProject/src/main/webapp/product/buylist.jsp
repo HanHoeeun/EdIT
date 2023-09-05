@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@page import="com.itwillbs.domain.MemberDTO"%>
 <%@page import="com.itwillbs.domain.ProductDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -74,15 +75,10 @@ ProductDTO productDTO = (ProductDTO)request.getAttribute("productDTO");
 MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 %>
 
-<%				
-					if(id != null){
-						if(id.equals(productDTO.getM_id())){
-							
-							for(int i=0;i<memberList.size();i++){
-								 ProductDTO productDTO = getProductList.get(i);
-							
-							%>
-
+<%
+	List<ProductDTO> productList
+	   =(List<ProductDTO>)request.getAttribute("productList");
+%>
 
 <!-- 판매목록 -->
 	<div class="checkout">
@@ -98,7 +94,14 @@ MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 							<th>가격</th>
 						</tr>
 					</thead>
+				
 					
+<%				
+				//	if(id != null){
+					//	if(id.equals(productDTO.getM_id())){
+							for(int i=0;i<productList.size();i++){
+								productDTO =productList.get(i);
+							%>
 					
 					<tr class="rem1">
 						<td class="invert"><%=productDTO.getP_num()%></td>
@@ -107,18 +110,20 @@ MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 						<td class="invert"><%=productDTO.getP_price() %></td>
 					</tr>
 					
+<%
+							}
+					//	}
+				//	}
+
+%>
+					
+					
 				</table>
 			</div>
 		</div>
 	</div>
 <!-- // 판매목록 -->
 
-<%
-							}
-						}
-					}
-
-%>
 
 
 

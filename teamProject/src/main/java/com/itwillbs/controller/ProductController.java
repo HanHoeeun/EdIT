@@ -515,7 +515,7 @@ public class ProductController extends HttpServlet{
 			productService.deleteProduct(request);
 			
 			// 글목록 list.bo 주소 변경 되면서 이동
-			response.sendRedirect("products.bo");
+			response.sendRedirect("main.me");
 			
 		}//
 		
@@ -534,7 +534,7 @@ public class ProductController extends HttpServlet{
 			
 			//조회수 증가 readcount 1증가
 			// 리턴할형 없음  updateReadcount(request) 메서드 호출
-//			productService.updateReadcount(request);
+			productService.updateReadcount(request);
 			
 			// ProductDTO productDTO = getBoard(request) 메서드 호출
 			ProductDTO productDTO = productService.getproduct(request);
@@ -573,15 +573,16 @@ public class ProductController extends HttpServlet{
 			// ProductService 객체생성
 			productService = new ProductService();
 			
-			// ProductDTO productDTO = getBoard(request) 메서드 호출
-			ProductDTO productDTO = productService.getproduct2(request);
+			// List<ProductDTO> productList  =  getProductList2();메서드호출
+			List<ProductDTO> productList = productService.getProductList2();
 			
-			// request에 "boardDTO",boardDTO 담아서
-			request.setAttribute("productDTO", productDTO);
+			// request에 "productList", productList를 담기
+			request.setAttribute("productList", productList);
 			
+			// product/buylist.jsp 주소변경 없이 이동
 			dispatcher 
 		    = request.getRequestDispatcher("product/buylist.jsp");
-			dispatcher.forward(request, response);
+			dispatcher.forward(request, response);	
 		
 		}//
 		

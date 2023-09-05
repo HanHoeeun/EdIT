@@ -496,6 +496,7 @@ public class ProductService {
 			request.setCharacterEncoding("utf-8");
 			
     	    // request 저장된 파라미터값 가져오기=>변수저장
+			String m_id = multi.getParameter("m_id");
 			String m_nick = multi.getParameter("m_nick");
 			String p_title = multi.getParameter("p_title");
 			String p_type = multi.getParameter("p_type");
@@ -517,6 +518,7 @@ public class ProductService {
 			ProductDTO productDTO =new ProductDTO();
 			
 			// set메서드 호출 파라미터값 저장
+			productDTO.setM_id(m_id);
 			productDTO.setM_nick(m_nick);
 			productDTO.setP_num(p_num);
 			productDTO.setP_title(p_title);
@@ -558,6 +560,8 @@ public class ProductService {
 			
 			int p_num = Integer.parseInt(multi.getParameter("p_num"));
 			String p_title = multi.getParameter("p_title");
+			String m_nick = multi.getParameter("m_nick");
+			String m_id = multi.getParameter("m_id");
 			String p_type = multi.getParameter("p_type");
 			int p_price = Integer.parseInt(multi.getParameter("p_price"));
 			String p_detail = multi.getParameter("p_detail");
@@ -576,6 +580,8 @@ public class ProductService {
 			
 			// set메서드 호출 파라미터값 저장
 			productDTO.setP_num(p_num);
+			productDTO.setM_nick(m_nick);
+			productDTO.setM_id(m_id);
 			productDTO.setP_title(p_title);
 			productDTO.setP_type(p_type);
 			productDTO.setP_price(p_price);
@@ -606,6 +612,7 @@ public class ProductService {
 			request.setCharacterEncoding("utf-8");
 			
 			// request 파라미터 가져오기 => int num 저장
+			String m_id = request.getParameter("m_id");
 			int p_num = Integer.parseInt(request.getParameter("p_num"));
 			
 			// BoardDAO 객체생성
@@ -641,6 +648,8 @@ public class ProductService {
 			e.printStackTrace();
 		}
 	}//deleteProduct()
+	
+	
 
 	public void updateProduct2(HttpServletRequest request) {
 		try {
@@ -705,28 +714,43 @@ public class ProductService {
 	} //updateProduct()
 	
 	
-public ProductDTO getproduct2(HttpServletRequest request) {
+	public void updateReadcount(HttpServletRequest request) {
 		
-		ProductDTO productDTO = null;
 		try {
-			// request 한글처리
+			// 한글처리
 			request.setCharacterEncoding("utf-8");
 			
-			// request 파라미터 가져오기 => int num 저장
-			// int p_num = Integer.parseInt(request.getParameter("p_num"));
-			String m_id = request.getParameter("m_id");
+			// num 파라미터 값 가져오기
+			int p_num = Integer.parseInt(request.getParameter("p_num"));
 			
 			// BoardDAO 객체생성
 			productDAO = new ProductDAO();
 			
-			// boardDTO = getBoard(num) 메서드 호출
-			productDTO = productDAO.getproduct2(m_id);
+			// updateReadcount(num) 메서드호출
+			productDAO.updateReadcount(p_num);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return productDTO;
-	}//getBoard
+	}//updateReadcount()
+	
+	public List<ProductDTO> getProductList2() {
+		
+		List<ProductDTO> productList=null; 
+		try {
+			// ProductDAO 객체생성
+			productDAO = new ProductDAO();
+			
+			// productList = getProductList 메서드 호출
+			productList = productDAO.getProductList2();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return productList;
+		
+	} // getProductList2()
 	
 	
 	
