@@ -156,7 +156,7 @@ String orderBy = (String) request.getAttribute("orderBy");
                     <figure>
                          <div class="snipcart-item block">
                             <div class="snipcart-thumb">
-                                <a href="single.po?=p_num=<%=productDTO.getP_num()%>"><img title=" " alt=" " src="upload/<%=productDTO.getP_file() %>"  width="150px" height="150px" download></a>
+                                <a href="single.po?p_num=<%=productDTO.getP_num()%>"><img title=" " alt=" " src="upload/<%=productDTO.getP_file() %>"  width="150px" height="150px" download></a>
                                 <p><%=productDTO.getP_title() %></p>
                                 <h4><%= productDTO.getP_price() %>원</h4>
                                 <h4><%= productDTO.getP_status() %></h4>
@@ -293,5 +293,4 @@ function change_country(l) {
 
 </body>
 </html>
-</body>
-</html>
+

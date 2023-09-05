@@ -77,7 +77,7 @@ public class ProductDAO {
 			//1,2단계 디비연결
 			con = getConnection();
 			//3 sql 구문 insert
-			String sql="insert into products(p_num, p_title, p_type, p_price, p_detail, p_date, p_readcount, p_status, p_file, m_nick) values(?,?,?,?,?,?,?,?,?,?)";
+			String sql="insert into products(p_num, p_title, p_type, p_price, p_detail, p_date, p_readcount, m_nick, m_id, p_file, p_status) values(?,?,?,?,?,?,?,?,?,?,?)";
 			
 			pstmt=con.prepareStatement(sql);
 			
@@ -88,9 +88,10 @@ public class ProductDAO {
 			pstmt.setString(5, productDTO.getP_detail());
 			pstmt.setTimestamp(6, productDTO.getP_date());
 			pstmt.setInt(7, productDTO.getP_readcount());
-			pstmt.setString(8, productDTO.getP_status());
-			pstmt.setString(9, productDTO.getP_file());
-			pstmt.setString(10, productDTO.getM_nick());
+			pstmt.setString(8, productDTO.getM_nick());
+			pstmt.setString(9, productDTO.getM_id());
+			pstmt.setString(10, productDTO.getP_file());
+			pstmt.setString(11, productDTO.getP_status());
 			
 			//4 실행
 			pstmt.executeUpdate();
@@ -162,6 +163,7 @@ public class ProductDAO {
 				
 				productDTO.setP_num(rs.getInt("p_num"));
 				productDTO.setP_title(rs.getString("p_title"));
+				productDTO.setM_id(rs.getString("m_id"));
 				productDTO.setP_type(rs.getString("p_type"));
 				productDTO.setP_price(rs.getInt("p_price"));
 				productDTO.setP_detail(rs.getString("p_detail"));
@@ -171,13 +173,17 @@ public class ProductDAO {
 				//첨부파일
 				productDTO.setP_file(rs.getString("p_file"));
 				productDTO.setM_nick(rs.getString("m_nick"));
+				productDTO.setM_id(rs.getString("m_id"));
 				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			
 		}finally {
 			dbClose();
+			
 		}
+		
 		return productDTO;
 		
 	}// getproduct
@@ -185,16 +191,54 @@ public class ProductDAO {
 	// -----------------------------------------------------------------------------------------------------------------
 	
 	public void deleteProduct(int p_num) {
+		
+		
 		try {
 			//1,2 디비연결
 			con = getConnection();
 			
 			//3 sql delete from board where num=?
+			String sql2="delete from wishlists where w_p_num=?";
 			String sql="delete from products where p_num=?";
+			
+			pstmt=con.prepareStatement(sql2);
+			
+			pstmt.setInt(1, p_num);
+			
+			//4 실행
+			pstmt.executeUpdate();
 			
 			pstmt=con.prepareStatement(sql);
 			
 			pstmt.setInt(1, p_num);
+			
+			//4 실행
+			pstmt.executeUpdate();
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		}finally {
+			dbClose();
+		}
+		
+	}//deleteBoard()
+	
+	
+	public void updateProduct2(ProductDTO productDTO) {
+		try {
+			System.out.println("업데이트 디에오");
+			con = getConnection();
+			
+			//3 sql "update products set p_title=?, p_type=?, p_price=?, p_detail=?, p_date=?, p_status=?, p_file=? where p_num=?";
+			String sql="update products set p_date=?, p_status=? where p_num=?";
+			
+			pstmt=con.prepareStatement(sql);
+			
+			pstmt.setTimestamp(1, productDTO.getP_date());
+			pstmt.setString(2, "거래완료");
+			pstmt.setInt(3, productDTO.getP_num());
 			
 			//4 실행
 			pstmt.executeUpdate();
@@ -206,7 +250,83 @@ public class ProductDAO {
 			dbClose();
 		}
 		
-	}//deleteBoard()
+	}//updateBoard
+	
+	public void updateReadcount(int p_num) {
+		try {
+				//1,2 디비연결
+				con = getConnection();
+				
+				//3 sql update board set readcount = readcount+1 where num=?
+				String sql="update products set p_readcount = p_readcount+1 where p_num=?";
+				
+				pstmt=con.prepareStatement(sql);
+				pstmt.setInt(1, p_num);
+				
+				//4 실행
+				pstmt.executeUpdate();
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				
+			}finally {
+				dbClose();
+				
+			}
+		}//updateReadcount()
+	
+	
+		public List<ProductDTO> getProductList2() {
+			
+			List<ProductDTO> productList = null;
+			
+			try {
+				//1,2 디비연결
+				con = getConnection();
+				
+				//3sql 
+				String sql="select * from products";
+				
+				pstmt = con.prepareStatement(sql);
+				
+				//4실행 => 결과 저장
+				rs = pstmt.executeQuery();
+				
+				productList = new ArrayList<>();
+				
+				while(rs.next()) {
+					ProductDTO productDTO = new ProductDTO();
+					productDTO.setP_num(rs.getInt("p_num"));
+					productDTO.setP_file(rs.getString("p_file"));
+					productDTO.setP_title(rs.getString("p_title"));
+					productDTO.setP_price(rs.getInt("P_price"));
+					
+					//배열 한칸에 저장
+					productList.add(productDTO);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				dbClose();
+			}
+			return productList;
+			
+	}//getMemberList2()
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	// ---------------------------------------------------------------------------------------------
 

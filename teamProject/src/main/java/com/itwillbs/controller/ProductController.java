@@ -515,7 +515,7 @@ public class ProductController extends HttpServlet{
 			productService.deleteProduct(request);
 			
 			// 글목록 list.bo 주소 변경 되면서 이동
-			response.sendRedirect("products.bo");
+			response.sendRedirect("main.me");
 			
 		}//
 		
@@ -536,7 +536,7 @@ public class ProductController extends HttpServlet{
 			
 			//조회수 증가 readcount 1증가
 			// 리턴할형 없음  updateReadcount(request) 메서드 호출
-//			productService.updateReadcount(request);
+			productService.updateReadcount(request);
 			
 			// ProductDTO productDTO = getBoard(request) 메서드 호출
 			ProductDTO productDTO = productService.getproduct(request);
@@ -550,6 +550,62 @@ public class ProductController extends HttpServlet{
 		
 		}//
 		
+		if(sPath.equals("/complete.po")) {
+			
+			// request안에 폼에서 입력한 수정할 값이 저장
+			// ProductService 객체생성
+			productService = new ProductService();
+			
+			productService.updateProduct2(request);
+			
+			response.sendRedirect("main.me");
+			
+		}//
+		
+		
+		if(sPath.equals("/buylist.po")) {
+			
+			HttpSession session = request.getSession();
+			String id = (String)session.getAttribute("m_id");
+			
+			MemberService memberService = new MemberService();
+			MemberDTO memberDTO =  memberService.getMember(id);
+			request.setAttribute("memberDTO", memberDTO);
+			
+			// ProductService 객체생성
+			productService = new ProductService();
+			
+			// List<ProductDTO> productList  =  getProductList2();메서드호출
+			List<ProductDTO> productList = productService.getProductList2();
+			
+			// request에 "productList", productList를 담기
+			request.setAttribute("productList", productList);
+			
+			// product/buylist.jsp 주소변경 없이 이동
+			dispatcher 
+		    = request.getRequestDispatcher("product/buylist.jsp");
+			dispatcher.forward(request, response);	
+		
+		}//
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		// -----------------------------------------------------------------------------
 		if (sPath.equals("/wishlist.po")) {
 			System.out.println("뽑은 가상주소 비교 : /wishlist.po");
 			

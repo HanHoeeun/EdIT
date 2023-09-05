@@ -97,6 +97,7 @@ MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 				<div class="col-md-8 agileinfo_single_right">
 					
 					<input type="hidden" value="<%=productDTO.getP_num()%>" name="p_num">
+					<input type="hidden" value="<%=productDTO.getM_id()%>" name="m_id">
 					<input type="hidden" value="<%=productDTO.getM_nick()%>" name="m_nick">
 					
 					<!-- 조회수 -->
@@ -105,23 +106,6 @@ MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 					</div>
 					<!-- 조회수 -->
 				
-					<!-- 관심도(별) -->
-					<div class="rating1">
-						<span class="starRating">
-							<input id="rating5" type="radio" name="rating" value="5">
-							<label for="rating5">5</label>
-							<input id="rating4" type="radio" name="rating" value="4">
-							<label for="rating4">4</label>
-							<input id="rating3" type="radio" name="rating" value="3" checked="">
-							<label for="rating3">3</label>
-							<input id="rating2" type="radio" name="rating" value="2">
-							<label for="rating2">2</label>
-							<input id="rating1" type="radio" name="rating" value="1">
-							<label for="rating1">1</label>
-						</span>
-					</div>
-					<!-- // 관심도(별) -->
-					
 					<!-- 상품제목 -->
 					<h2><%=productDTO.getP_title() %></h2>
 					<!-- // 상품제목 -->
@@ -136,6 +120,7 @@ MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 					
 					<!-- 판매ID,상품상태,등록날짜 -->
 					<div class="w3agile_description">
+						<p>판매닉네임 : <%=productDTO.getM_id() %></p>
 						<p>판매닉네임 : <%=productDTO.getM_nick() %></p>
 						<p>상품상태 : <%=productDTO.getP_status() %></p>
 						<p>등록날짜 : <%=productDTO.getP_date() %></p>
@@ -182,7 +167,7 @@ MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 					%>
 					
 					<!-- 채팅, 신고하기, 상품목록 버튼 -->
-					<a href=""><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>1:1 채팅</a>
+					<a href="#" onclick="window.open('chat.ch?ch_toID=<%= productDTO.getM_id()%>','1:1 채팅','width=500, height=800, scrollbars=yes')" ><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>1:1 채팅</a>
 					<a href=""><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>신고하기</a>
 					<a href=products.po"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>상품목록</a>
 					
