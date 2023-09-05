@@ -441,8 +441,6 @@ public class MemberDAO {
 //	}
 
 
-<<<<<<< HEAD
-=======
   // 9월 5일 
 	public int newPassword(MemberDTO memberDTO) {
 		int result = 0;
@@ -493,44 +491,7 @@ public class MemberDAO {
 
 
 }	// insertMember()
->>>>>>> branch 'master' of https://github.com/HanHoeeun/EdIT.git
 
-
-
-
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-}	
 	
 	
 	
