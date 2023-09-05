@@ -31,6 +31,7 @@ import com.itwillbs.service.MemberService;
 
 public class MemberController extends HttpServlet{
 	
+	private static final long serialVersionUID = 1L;
 	RequestDispatcher dispatcher = null;
 	MemberService memberService = null;
 	
@@ -158,7 +159,7 @@ public class MemberController extends HttpServlet{
 			request.setAttribute("memberDTO", memberDTO);
 			
 			
-			dispatcher = request.getRequestDispatcher("member/mypage.jsp");
+			dispatcher = request.getRequestDispatcher("member/mypage_3.jsp");
 			dispatcher.forward(request, response);
 			
 		}
@@ -309,21 +310,21 @@ public class MemberController extends HttpServlet{
 			System.out.println("뽑은 가상주소 비교 : idCheck.me");
 			
 			
-			String id = request.getParameter("_6id");
-			System.out.println("받은 아이디 : " +id);
+			String m_id = request.getParameter("m_id");
+			System.out.println("받은 아이디 : " + m_id);
 			
 			memberService = new MemberService();
-			memberService.getMember(id);
+			memberService.getMember(m_id);
 			
-			MemberDTO memberDTO = memberService.getMember(id);
+			MemberDTO memberDTO = memberService.getMember(m_id);
 			
 			String result = "";
 			if (memberDTO != null) {
 				System.out.println("아이디 중복");
-				result = "아이디 중복입니다";
+				result = "중복된 아이디입니다";
 			} else {
 				System.out.println("아이디 사용가능!");
-				result = "아이디 사용가능 합니다";
+				result = "<span style='color: green;'>사용가능한 아이디입니다</span>";
 			}
 			
 //			이동하지 않고 결과를 웹 화면에 출력
@@ -333,6 +334,77 @@ public class MemberController extends HttpServlet{
 			printWriter.close();
 			
 		}
+		
+		
+//		닉네임 중복체크
+		if (sPath.equals("/nickCheck.me")) {
+			System.out.println("뽑은 가상주소 비교 : nickCheck.me");
+			
+//			한글처리
+			request.setCharacterEncoding("utf-8");
+			
+			String m_nick = request.getParameter("m_nick");
+			System.out.println("받은 아이디 : " + m_nick);
+			
+			memberService = new MemberService();
+			memberService.getNickCheck(m_nick);
+			
+			MemberDTO memberDTO = memberService.getNickCheck(m_nick);
+			
+			String result = "";
+			if (memberDTO != null) {
+				System.out.println("닉네임 중복");
+				result = "중복된 닉네임입니다";
+			} else {
+				System.out.println("닉네임 사용가능!");
+				result = "<span style='color: green;'>사용가능한 닉네임입니다</span>";
+			}
+			
+//			이동하지 않고 결과를 웹 화면에 출력
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter printWriter = response.getWriter();
+			printWriter.print(result);
+			printWriter.close();
+			
+		}	
+		
+		
+		
+//		이메일 중복체크
+		if (sPath.equals("/emailCheck.me")) {
+			System.out.println("뽑은 가상주소 비교 : emailCheck.me");
+			
+			
+			String m_email = request.getParameter("m_email");
+			System.out.println("받은 아이디 : " + m_email);
+			
+			memberService = new MemberService();
+			memberService.getEmailCheck(m_email);
+			
+			MemberDTO memberDTO = memberService.getEmailCheck(m_email);
+			
+			String result = "";
+			if (memberDTO != null) {
+				System.out.println("이메일 중복");
+				result = "중복된 이메일입니다";
+			} else {
+				System.out.println("이메일 사용가능!");
+				result = "<span style='color: green;'>사용가능한 이메일입니다</span>";
+			}
+			
+//			이동하지 않고 결과를 웹 화면에 출력
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter printWriter = response.getWriter();
+			printWriter.print(result);
+			printWriter.close();
+			
+		}	
+		
+		
+		
+		
+		
+		
 		
 		
 	

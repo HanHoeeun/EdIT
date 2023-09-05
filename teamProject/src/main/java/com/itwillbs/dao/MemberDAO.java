@@ -154,19 +154,20 @@ public class MemberDAO {
 
 	
 //	
-	public MemberDTO getMember(String id) {
+	public MemberDTO getMember(String m_id) {
 		System.out.println("MemberDAO getMember()");
 		
 		MemberDTO memberDTO = null;
 		
 		try {
 			
+			
 			con = getConnection();
 			
 			String sql = "select * from members where m_id = ?";
 			
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, id);
+			pstmt.setString(1, m_id);
 			
 			rs = pstmt.executeQuery();
 			
@@ -194,6 +195,75 @@ public class MemberDAO {
 	}
 
 
+	
+	
+// 	닉네임 중복확인	
+	public MemberDTO getNickCheck(String m_nick) {
+		System.out.println("MemberDAO getNickCheck()");
+		
+		MemberDTO memberDTO = null;
+		
+		try {
+			
+			con = getConnection();
+			String sql = "select * from members where m_nick = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, m_nick);
+			
+			rs = pstmt.executeQuery();
+			
+			if (rs.next() == true) {
+				memberDTO = new MemberDTO();
+				memberDTO.setM_nick(rs.getString("m_nick"));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dblClose();
+		}
+		return memberDTO;
+	}
+
+	
+	
+	
+//	이메일 중복확인	
+	public MemberDTO getEmailCheck(String m_email) {
+		System.out.println("MemberDAO getEmailCheck()");
+		
+		MemberDTO memberDTO = null;
+		
+		try {
+			
+			con = getConnection();
+			String sql = "select * from members where m_email = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, m_email);
+			
+			rs = pstmt.executeQuery();
+			
+			if (rs.next() == true) {
+				memberDTO = new MemberDTO();
+				memberDTO.setM_nick(rs.getString("m_email"));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dblClose();
+		}
+		
+		return memberDTO;
+	}
+
+
+	
+	
+	
+	
+	
+	
 	
 
 //	회원정보 변경
@@ -308,18 +378,6 @@ public class MemberDAO {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 
 	// 8.31 진 - 아이디 찾기
@@ -383,6 +441,8 @@ public class MemberDAO {
 //	}
 
 
+<<<<<<< HEAD
+=======
   // 9월 5일 
 	public int newPassword(MemberDTO memberDTO) {
 		int result = 0;
@@ -433,7 +493,44 @@ public class MemberDAO {
 
 
 }	// insertMember()
+>>>>>>> branch 'master' of https://github.com/HanHoeeun/EdIT.git
 
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}	
 	
 	
 	

@@ -123,6 +123,49 @@ public class MemberService {
 
 	
 	
+//	닉네임 중복체크
+	public MemberDTO getNickCheck(String m_nick) {
+		System.out.println("MemberService getNickCheck()");
+		
+		MemberDTO memberDTO = null;
+		
+		try {
+			
+			memberDAO = new MemberDAO();
+			memberDTO = memberDAO.getNickCheck(m_nick);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return memberDTO;	
+	}
+	
+	
+	
+//	이메일 중복확인
+	public MemberDTO getEmailCheck(String m_email) {
+		System.out.println("MemberService getEmailCheck()");
+		
+		MemberDTO memberDTO = null;
+		
+		try {
+			
+			memberDAO = new MemberDAO();
+			memberDTO = memberDAO.getEmailCheck(m_email);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return memberDTO;
+	}
+
+	
+	
+	
+	
+	
+	
 	
 	
 //	회원정보 수정
@@ -285,6 +328,9 @@ public class MemberService {
 
 	
 	
+
+
+
 
 
 
