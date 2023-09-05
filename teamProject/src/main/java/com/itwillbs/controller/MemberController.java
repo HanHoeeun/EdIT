@@ -461,104 +461,195 @@ public class MemberController extends HttpServlet{
 		// 9.5 수정
 		
 		
-//		진 - 메일로 OTP 전송
+//		진 - 메일로 OTP 전송 -> 주석처리...??
 		// 비밀번호찾기 수정 -> 아이디와 이메일이 일치할 경우 , 입력한 이메일로 임시 번호(OTP) 발송
-		if(sPath.equals("/findpwPro.me")) {
-			System.out.println("뽑은 가상주소 비교 : findpwPro.me"); 
+//		if(sPath.equals("/findpwPro.me")) {
+//			System.out.println("뽑은 가상주소 비교 : findpwPro.me"); 
+//			
+//			request.setCharacterEncoding("utf-8");
+//			
+//			String id = request.getParameter("m_id");
+//			String email = request.getParameter("m_email");
+//			
+//		    MemberService memberService = new MemberService();
+//			
+//			 // 아이디와 이메일을 이용하여 비밀번호 찾기 작동
+//		     // 아이디와 비밀번호가 일치하면 해당 이메일로 OTP발송
+//		    String foundpw = memberService.findpwmember(id, email);
+//
+//		    if (foundpw != null) {
+//		        // 비밀번호를 찾은 경우 
+//		        request.setAttribute("foundpw", foundpw);
+//		        dispatcher = request.getRequestDispatcher("member/forgotPassword.jsp");
+//		        dispatcher.forward(request, response);
+//		    } else {
+//		        // 비밀번호를 찾지 못한 경우
+//		    	// 아이디나 이메일을 잘못적었거나(DB에 있는 값과 다른경우), 아이디와 비밀번호가 맞지 않은 경우
+//		        request.setAttribute("error", "비밀번호를 찾을 수 없습니다.");
+//		        // member/findid.jsp 주소변경 없이 연결
+//		        dispatcher = request.getRequestDispatcher("member/msg.jsp");
+//		        dispatcher.forward(request, response);
+//		    }
+//		} //	
+		
+		
+		// 9.5 
+		// forgotPassword.me 아이디와 이메일이 일치하면 입력한 이메일로 OTP 발송
+		// 아이디와 비밀번호가 다르면 에러 메세지
+		
+		if (sPath.equals("/forgotPassword.me")) {
 			
-			request.setCharacterEncoding("utf-8");
+			String m_id = request.getParameter("m_id");
+			String m_email = request.getParameter("m_email");
 			
-			String id = request.getParameter("m_id");
-			String email = request.getParameter("m_email");
-			
-		    MemberService memberService = new MemberService();
-			
-			 // 아이디와 이메일을 이용하여 비밀번호 찾기 작동
-		     // 아이디와 비밀번호가 일치하면 해당 이메일로 OTP발송
-		    String foundpw = memberService.findpwmember(id, email);
+	        RequestDispatcher dispatcher = null;
+	        int otpvalue = 0;
+	        HttpSession mySession = request.getSession();
 
-		    if (foundpw != null) {
-		        // 비밀번호를 찾은 경우 
-		        request.setAttribute("foundpw", foundpw);
-		        dispatcher = request.getRequestDispatcher("member/forgotPassword.jsp");
-		        dispatcher.forward(request, response);
-		    } else {
-		        // 비밀번호를 찾지 못한 경우
-		    	// 아이디나 이메일을 잘못적었거나(DB에 있는 값과 다른경우), 아이디와 비밀번호가 맞지 않은 경우
-		        request.setAttribute("error", "비밀번호를 찾을 수 없습니다.");
-		        // member/findid.jsp 주소변경 없이 연결
-		        dispatcher = request.getRequestDispatcher("member/msg.jsp");
-		        dispatcher.forward(request, response);
-		    }
-		} //	
+	        if (m_email != null && !m_email.isEmpty()) {
+	      
+		      	memberService = new MemberService();
+	        	
+	        	MemberDTO memberDTO = memberService.IdAndEmailMatch(m_id, m_email);
+	            if (memberDTO != null) {
+	            	System.out.println("일치");
+	                Random rand = new Random();
+	                otpvalue = rand.nextInt(1255650);
+
+	                // 이메일 전송 코드
+	                String to = m_email;// change accordingly
+					// Get the session object
+					Properties props = new Properties();
+					
+					props.put("mail.smtp.host", "smtp.gmail.com");
+					// 이메일 발송을 처리해줄 SMTP서버
+					props.put("mail.smtp.host", "smtp.gmail.com");
+					props.put("mail.smtp.socketFactory.port", "465");
+					props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+					// SMTP 서버의 인증을 사용한다는 의미
+					props.put("mail.smtp.auth", "true");
+					props.put("mail.smtp.port", "465");
+					Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
+						protected PasswordAuthentication getPasswordAuthentication() {
+							// 본인 메일 주소, 앱비밀번호(띄어쓰기 없이) 입력
+							// 앱비밀번호 생성 방법 : 구글 - 계정관리 - 보안 - 2단계 인증  - 앱비밀번호 - 기타(website입력)
+							return new PasswordAuthentication("Edit.ADMR@gmail.com", "lcreakptorofatyr");
+						}
+					});
+					// 메세지 작성
+					try {
+						request.setCharacterEncoding("utf-8");
+						
+						MimeMessage message = new MimeMessage(session);
+						message.setFrom(new InternetAddress(m_email));// change accordingly
+						message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+						// 메일 제목
+						message.setSubject("EdIT의 OTP입니다.");
+						// 메일 내용
+						message.setText("귀하의 OTP는: " + otpvalue);
+						// send message
+						Transport.send(message);
+						System.out.println("message sent successfully");
+					} catch (MessagingException e) {
+						throw new RuntimeException(e);
+					}
+
+
+	                
+
+	                dispatcher = request.getRequestDispatcher("member/EnterOtp.jsp");
+	                request.setAttribute("message", "귀하의 이메일로 OTP가 발송되었습니다.<br>정확한 OTP를 입력해주세요.");
+	                mySession.setAttribute("otp", otpvalue);
+	                mySession.setAttribute("email", m_email);
+	            } else {
+	                // 아이디와 이메일이 일치하지 않을 때 에러 메시지 표시
+	                dispatcher = request.getRequestDispatcher("member/ErrorPage.jsp");
+	                request.setAttribute("errorMessage", "아이디와 이메일이 일치하지 않습니다.");
+	            }
+	        } else {
+	            // 이메일이 입력되지 않았을 때 에러 메시지 표시
+	            dispatcher = request.getRequestDispatcher("member/ErrorPage.jsp");
+	            request.setAttribute("errorMessage", "이메일을 입력해주세요.");
+	        }
+
+	      
+	            dispatcher.forward(request, response);
+	        
+	    }
+
+	
+		// 테스트 중입니다....//
+		
+		
 		
 		
 		
 		
 		// 9월 5일
-		// 이메일을 입력해서 새비밀번호받기 버튼을 누르면 -> otp가 입력된 메일로 발송 됨
+		// 이메일을 입력해서 새비밀번호받기 버튼을 누르면 -> otp가 입력된 메일로 발송 됨 -> 아이디와 이메일이 일치하면 입력한 이메일로 OTP 발송되게 수정하고싶음.
+		// 아이디와 비밀번호가 다르면 
 		// 메일 입력하고 새 비밀번호 받기 버튼을 눌렀을때의 액션
 		// forgotPassword.me
-		if(sPath.equals("/forgotPassword.me")) {
-			
-			String email = request.getParameter("email");
-			RequestDispatcher dispatcher = null;
-			int otpvalue = 0;
-			HttpSession mySession = request.getSession();
-			
-			if(email!=null || !email.equals("")) {
-				// email 변수가 null이 아니고 빈 문자열이 아닐 때만 아래의 코드 실행
-				// sending OTP
-				Random rand = new Random();
-				// 랜덤 숫자 생성
-				otpvalue = rand.nextInt(1255650);
-
-				String to = email;// change accordingly
-				// Get the session object
-				Properties props = new Properties();
-				
-				props.put("mail.smtp.host", "smtp.gmail.com");
-				// 이메일 발송을 처리해줄 SMTP서버
-				props.put("mail.smtp.host", "smtp.gmail.com");
-				props.put("mail.smtp.socketFactory.port", "465");
-				props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-				// SMTP 서버의 인증을 사용한다는 의미
-				props.put("mail.smtp.auth", "true");
-				props.put("mail.smtp.port", "465");
-				Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
-					protected PasswordAuthentication getPasswordAuthentication() {
-						// 본인 메일 주소, 앱비밀번호(띄어쓰기 없이) 입력
-						// 앱비밀번호 생성 방법 : 구글 - 계정관리 - 보안 - 2단계 인증  - 앱비밀번호 - 기타(website입력)
-						return new PasswordAuthentication("Edit.ADMR@gmail.com", "lcreakptorofatyr");
-					}
-				});
-				// 메세지 작성
-				try {
-					request.setCharacterEncoding("utf-8");
-					
-					MimeMessage message = new MimeMessage(session);
-					message.setFrom(new InternetAddress(email));// change accordingly
-					message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-					// 메일 제목
-					message.setSubject("EdIT의 OTP입니다.");
-					// 메일 내용
-					message.setText("귀하의 OTP는: " + otpvalue);
-					// send message
-					Transport.send(message);
-					System.out.println("message sent successfully");
-				} catch (MessagingException e) {
-					throw new RuntimeException(e);
-				}
-				dispatcher = request.getRequestDispatcher("member/EnterOtp.jsp");
-				request.setAttribute("message","귀하의 이메일로 OTP가 발송되었습니다.<br>정확한 OTP를 입력해주세요.");
-				//request.setAttribute("connection", con);
-				mySession.setAttribute("otp",otpvalue); 
-				mySession.setAttribute("email",email); 
-				dispatcher.forward(request, response);
-				//request.setAttribute("status", "success");
-			}
-			
-		}
+//		if(sPath.equals("/forgotPassword.me")) {
+//			
+//			String email = request.getParameter("email");
+//			RequestDispatcher dispatcher = null;
+//			int otpvalue = 0;
+//			HttpSession mySession = request.getSession();
+//			
+//			if(email!=null || !email.equals("")) {
+//				// email 변수가 null이 아니고 빈 문자열이 아닐 때만 아래의 코드 실행
+//				// sending OTP
+//				Random rand = new Random();
+//				// 랜덤 숫자 생성
+//				otpvalue = rand.nextInt(1255650);
+//
+//				String to = email;// change accordingly
+//				// Get the session object
+//				Properties props = new Properties();
+//				
+//				props.put("mail.smtp.host", "smtp.gmail.com");
+//				// 이메일 발송을 처리해줄 SMTP서버
+//				props.put("mail.smtp.host", "smtp.gmail.com");
+//				props.put("mail.smtp.socketFactory.port", "465");
+//				props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+//				// SMTP 서버의 인증을 사용한다는 의미
+//				props.put("mail.smtp.auth", "true");
+//				props.put("mail.smtp.port", "465");
+//				Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
+//					protected PasswordAuthentication getPasswordAuthentication() {
+//						// 본인 메일 주소, 앱비밀번호(띄어쓰기 없이) 입력
+//						// 앱비밀번호 생성 방법 : 구글 - 계정관리 - 보안 - 2단계 인증  - 앱비밀번호 - 기타(website입력)
+//						return new PasswordAuthentication("Edit.ADMR@gmail.com", "lcreakptorofatyr");
+//					}
+//				});
+//				// 메세지 작성
+//				try {
+//					request.setCharacterEncoding("utf-8");
+//					
+//					MimeMessage message = new MimeMessage(session);
+//					message.setFrom(new InternetAddress(email));// change accordingly
+//					message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+//					// 메일 제목
+//					message.setSubject("EdIT의 OTP입니다.");
+//					// 메일 내용
+//					message.setText("귀하의 OTP는: " + otpvalue);
+//					// send message
+//					Transport.send(message);
+//					System.out.println("message sent successfully");
+//				} catch (MessagingException e) {
+//					throw new RuntimeException(e);
+//				}
+//				dispatcher = request.getRequestDispatcher("member/EnterOtp.jsp");
+//				request.setAttribute("message","귀하의 이메일로 OTP가 발송되었습니다.<br>정확한 OTP를 입력해주세요.");
+//				//request.setAttribute("connection", con);
+//				mySession.setAttribute("otp",otpvalue); 
+//				mySession.setAttribute("email",email); 
+//				dispatcher.forward(request, response);
+//				//request.setAttribute("status", "success");
+//			}
+//			
+//		}
 		
 		
 		// 9월 5일
