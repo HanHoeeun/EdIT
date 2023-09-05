@@ -32,8 +32,8 @@ p {
     line-height: 1.5;
 }
 
-/* 작성자 및 날짜 스타일 */
-.author {
+/* 날짜 스타일 */
+.a_date {
     font-size: 14px;
     color: #888888;
     margin-top: 10px;

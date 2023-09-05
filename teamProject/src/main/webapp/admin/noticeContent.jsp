@@ -28,7 +28,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 <!-- font-awesome icons -->
 <link href="css/font-awesome.css" rel="stylesheet">
-<link href="css/faq_1_9.css" rel="stylesheet">
+<link href="css/faq_1_9.css" rel="stylesheet"> 
 <link href="css/notice.css" rel="stylesheet">
 <!-- //font-awesome icons -->
 <!-- js -->
@@ -61,6 +61,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<jsp:include page="../inc/top.jsp"></jsp:include>
 
 	<!--=========================== 상단 네비 ============================================ -->
+	<%
+	NoticeDTO noticeDTO = (NoticeDTO) request.getAttribute("noticeDTO");
+	%>
 	<div class="breadcrumbs">
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft"
@@ -68,56 +71,62 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<li><a href="index.html"><span
 						class="glyphicon glyphicon-home" aria-hidden="true"></span>홈</a></li>
 				<li class="active">공지사항</li>
-				<li class="active">일반공지</li>
+				<li class="active"><%=noticeDTO.getA_notice_type()%></li>
 			</ol>
 		</div>
 	</div>
 <!--=========================== 본문 헤더 =========================================== -->
 	<div class="top-brands_1">
-		<h2>일반공지</h2>
-		</div>
-	<!--=========================== 본문 =========================================== -->
-    <div class="container_notice">
+		<h2><%=noticeDTO.getA_notice_type()%></h2>
+	</div>
+	
+<!--=========================== 제목 =========================================== -->
+	<div class="container_notice">
+		<%/* String id = (String) session.getAttribute("id"); */%>
+		<h4><%=noticeDTO.getA_title()%></h4>
+
+<!--=========================== 작성일 =========================================== -->		
+		<%
+		/* String id = (String) session.getAttribute("id"); */
+		SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
+		%>
+		<p class="a_date">
 			<%
-			/* String id = (String) session.getAttribute("id"); */
-			NoticeDTO noticeDTO = (NoticeDTO) request.getAttribute("noticeDTO");
-			SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
+			format.format(noticeDTO.getA_date());
 			%>
-			<h1><%=noticeDTO.getA_title()%></h1>
-        <p class="author"><%=format.format(noticeDTO.getA_date())%></p>
-       
-       
-       
-       <!--============================ 첨부파일==================================  -->
-        <hr>
-        <div class="attachment-section">
-        <% /* 첨부파일이 없으면 본문에 안보이게 */
+		</p>
+
+<!--============================ 첨부파일==================================  -->
+		<hr>
+		<div class="attachment-section">
+			<% /* 첨부파일이 없으면 본문에 안보이게 */
     String attachmentFile = noticeDTO.getA_file();
     if (attachmentFile != null && !attachmentFile.isEmpty()) {
 %>
-    <p>
-        첨부 파일 
-        <a href="upload/<%= attachmentFile %>" download>
-            <%= attachmentFile %>
-        </a> <br>
-        <img src="upload/<%= attachmentFile %>" >
-    </p>
-<%
-    }
-%>
-   		 </div>
-        <p><%=noticeDTO.getA_content()%></p>
-
-			<%
+			<p>
+				첨부 파일 <a href="upload/<%= attachmentFile %>" download> <%= attachmentFile %>
+				</a> <br> <img src="upload/<%= attachmentFile %>">
+			</p>
+			<%} %>
+		</div>
+		
+<!--=========================== 내용 =========================================== -->
+		<p><%=noticeDTO.getA_content()%></p>
+		
+<!--=========================== 버튼 =========================================== -->
+		<%
 			// 로그인, 글쓴이 일치
 			if (1==1){ %>
-			<hr>
-			<input type="button" value="수정" class="modify-button" onclick="location.href='update.no?a_num=<%=noticeDTO.getA_num()%>'">
-			<input type="button" value="삭제" class="delete-button" onclick="location.href='delete.no?a_num=<%=noticeDTO.getA_num()%>'">
-			<%} %>
-			<input type="button" value="목록" class="list-button" onclick="location.href='noticelist.no?tab=tab-1'">
-			
-		</div>
+		<hr>
+		<input type="button" value="수정" class="modify-button"
+			onclick="location.href='update.no?a_num=<%=noticeDTO.getA_num()%>'">
+		<input type="button" value="삭제" class="delete-button"
+			onclick="location.href='delete.no?a_num=<%=noticeDTO.getA_num()%>'">
+		<%} %>
+		<input type="button" value="목록" class="list-button"
+			onclick="location.href='noticelist.no?tab=tab-1'">
+
+	</div>
 	<div class="clear"></div>
 	<div id="page_control"></div>
     <script>
