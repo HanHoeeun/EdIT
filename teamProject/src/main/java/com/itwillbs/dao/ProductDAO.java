@@ -171,6 +171,7 @@ public class ProductDAO {
 				//첨부파일
 				productDTO.setP_file(rs.getString("p_file"));
 				productDTO.setM_nick(rs.getString("m_nick"));
+				productDTO.setM_id(rs.getString("m_id"));
 				
 			}
 		} catch (Exception e) {
