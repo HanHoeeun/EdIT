@@ -237,7 +237,6 @@ public class MemberService {
 
 		
 		try {
-			
 			String m_id = request.getParameter("m_id");
 			String m_pass = request.getParameter("m_pass");
 	

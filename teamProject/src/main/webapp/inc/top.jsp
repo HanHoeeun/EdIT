@@ -111,7 +111,7 @@ function showUnread(result){
 <%					
 					} else { %>
 					
-					<li><a href="mypage.me"><i class="fa fa-user" aria-hidden="true"> 마이 페이지</i></a></li>
+					<li><a href="update.me"><i class="fa fa-user" aria-hidden="true"> 마이 페이지</i></a></li>
 					<li><a href="productReg.po"><i class="fa fa-plus-circle" aria-hidden="true"> 상품등록</i></a></li>
 					<li><a href="wishlist.po"><i class="fa fa-heart" aria-hidden="true"> 찜리스트 </i></a></li>
 					<li><a href="logout.me"><i class="fa fa-heart" aria-hidden="true"> 로그아웃 </i></a></li>

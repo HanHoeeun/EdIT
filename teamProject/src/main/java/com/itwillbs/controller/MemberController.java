@@ -145,28 +145,27 @@ public class MemberController extends HttpServlet{
 		
 		
 //		회원정보확인		--보류
-		if (sPath.equals("/mypage.me")) {
-			System.out.println("뽑은 가상주소 비교 : mypage.me");
-			
-//			DB의 나의 정보 조회
-			HttpSession session = request.getSession();
-			String id = (String)session.getAttribute("m_id");
-			
-
-			memberService = new MemberService();
-			MemberDTO memberDTO =  memberService.getMember(id);
-			
-			request.setAttribute("memberDTO", memberDTO);
-			
-			
-			dispatcher = request.getRequestDispatcher("member/mypage_3.jsp");
-			dispatcher.forward(request, response);
-			
-		}
+//		if (sPath.equals("/mypage.me")) {
+//			System.out.println("뽑은 가상주소 비교 : mypage.me");
+//		
+//			HttpSession session = request.getSession();
+//			String m_id = (String)session.getAttribute("m_id");
+//			
+//
+//			memberService = new MemberService();
+//			MemberDTO memberDTO =  memberService.getMember(m_id);
+//			
+//			request.setAttribute("memberDTO", memberDTO);
+//			
+//			
+//			dispatcher = request.getRequestDispatcher("member/mypage_3.jsp");
+//			dispatcher.forward(request, response);
+//			
+//		}
 		
 		
 		
-//		회원정보수정 화면	--보류
+//		회원정보수정 화면	
 		if (sPath.equals("/update.me")) {
 			System.out.println("뽑은 가상주소 비교 : update.me");
 			
@@ -203,7 +202,7 @@ public class MemberController extends HttpServlet{
 				memberService.updateMember(request);
 				
 //				성공하면 마이페이지 창으로 이동해서 나의 정보 확인
-				response.sendRedirect("mypage.me");
+				response.sendRedirect("update.me?tab=tab-1");
 				
 			} else {
 //				불일치면 경고 메시지 화면에 띄우기--------인데 걍.............
@@ -216,13 +215,13 @@ public class MemberController extends HttpServlet{
 		
 		
 //		회원탈퇴화면		--보류
-		if (sPath.equals("/delete.me")) {
-			System.out.println("뽑은 가상주소 비교 : delete.me");
-			
-			dispatcher = request.getRequestDispatcher("member/delete.jsp");
-			dispatcher.forward(request, response);
-			
-		}
+//		if (sPath.equals("/delete.me")) {
+//			System.out.println("뽑은 가상주소 비교 : delete.me");
+//			
+//			dispatcher = request.getRequestDispatcher("member/delete.jsp");
+//			dispatcher.forward(request, response);
+//			
+//		}
 		
 		
 //		회원탈퇴하기		--보류
@@ -238,6 +237,7 @@ public class MemberController extends HttpServlet{
 				
 				HttpSession session = request.getSession();
 				session.invalidate();
+				
 				
 				response.sendRedirect("main.me");
 				

@@ -67,7 +67,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <!--=========================== 상단 탭 리스트============================================ -->
 				<ul class="tabs">
-					<li class="tab-link current" data-tab="tab-1">나의정보</li>
+					<li class="tab-link current" data-tab="tab-1" onclick="location.href='mypage.me'">나의정보</li>
 					<li class="tab-link" data-tab="tab-2">구매내역</li>
 					<li class="tab-link" data-tab="tab-3">판매내역</li>
 					<li class="tab-link" data-tab="tab-4">찜</li>
@@ -82,8 +82,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 %>
 
-		<div class="container_3_1">
-			<form action="updatePro.me" method="post">
+			<div class="container_3_1">
 				<div id="tab-1" class="tab-content current">
 					<table class="mypage-board">
 						<tr>
@@ -92,76 +91,112 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- 		----아이디---- -->
 						 <tr>
 							<td class="_1qna_board_border2">
-								<div class="mypage-grids"> 
-									<div align="center">
-										<input type="text" class="show" placeholder="아이디" readonly="readonly"readonly>
-										<input type="text" value="<%=memberDTO.getM_id() %>" id="m_id" name="m_id" readonly="readonly">
+								<form action="updatePro.me" method="post">
+									<div class="mypage-grids"> 
+										<div align="center">
+											<input type="text" class="show" placeholder="아이디" readonly="readonly"readonly>
+											<input type="text" value="<%=memberDTO.getM_id() %>" id="m_id" name="m_id" readonly="readonly">
+										</div>
 									</div>
-								</div>
+								</form>
 							</td>
 						</tr>
 						
 <!-- 		----닉네임---- -->						
 						 <tr>
 							<td class="_1qna_board_border2">
-								<div class="mypage-grids"> 
-									<div align="center">
-										<input type="text" class="show" placeholder="닉네임" readonly="readonly"readonly>
-										<input type="text" value="<%=memberDTO.getM_nick() %>" id="m_nick" name="m_nick">
+								<form action="updatePro.me" method="post">
+									<div class="mypage-grids"> 
+										<div align="center">
+											<input type="hidden" name="m_id" value="<%=memberDTO.getM_id() %>">
+											<input type="text" class="show" placeholder="닉네임" readonly="readonly"readonly>
+											<input type="text" value="<%=memberDTO.getM_nick() %>" id="m_nick" name="m_nick">
+										</div>
 									</div>
+								</form>
+							</td>
+							<td class="_1qna_board_border3" width="10">
+								<div class="up-button">
+									<input type="button" class="up-button" value="수정">
 								</div>
 							</td>
 						</tr>
+						
 <!-- 		----비밀번호---- -->						
 						<tr>
 							<td class="_1qna_board_border2">
-								<div class="mypage-grids"> 
-									<div align="center">
-										<input type="text" class="show" placeholder="비밀번호" readonly="readonly"readonly>
-										<input type="password" value="<%=memberDTO.getM_pass() %>" placeholder="현재비밀번호" id="m_pass" 	name="m_pass">
-										<input type="password" placeholder="새비밀번호" id="m_pass2" 	name="m_pass2">
-										<input type="password" placeholder="새비밀번호확인" id="m_pass3" 	name="m_pass3">
+								<form action="updatePro.me" method="post">
+									<div class="mypage-grids"> 
+										<div align="center">
+											<input type="hidden" name="m_id" value="<%=memberDTO.getM_id() %>">
+											<input type="text" class="show" placeholder="비밀번호" readonly="readonly"readonly>
+											<input type="password" placeholder="현재비밀번호" id="m_pass" 	name="m_pass">
+											<input type="password" placeholder="새비밀번호" id="m_pass2" 	name="m_pass2">
+											<input type="password" placeholder="새비밀번호확인" id="m_pass3" 	name="m_pass3">
+										</div>
 									</div>
-								</div>
-							</td>	
+								</form>
+							</td>
+												
+							<td class="_1qna_board_border3" width="10">
+							<div class="up-button">
+							<input type="button" class="up-button" value="수정">
+							</div>
+							</td>
 						</tr>
+						
+						
+						
 <!-- 		----이메일---- -->							
 						<tr>	
 							<td class="_1qna_board_border2">
-								<div class="mypage-grids"> 
-									<div align="center">
-										<input type="hidden" name="m_id" value="<%=memberDTO.getM_id() %>">
-										<input type="text" class="show" placeholder="이메일" readonly="readonly"readonly>
-										<input type="email" value="<%=memberDTO.getM_email()%>"		id="m_email" 	name="m_email">
+								<form action="updatePro.me" method="post">
+									<div class="mypage-grids"> 
+										<div align="center">
+											<input type="hidden" name="m_id" value="<%=memberDTO.getM_id() %>">
+											<input type="text" class="show" placeholder="이메일" readonly="readonly"readonly>
+											<input type="email" value="<%=memberDTO.getM_email()%>"		id="m_email" 	name="m_email">
+										</div>
 									</div>
-								</div>
+								</form>
+							</td>
+												
+							<td class="_1qna_board_border3" width="10">
+							<div class="up-button">
+							<input type="button" class="up-button" value="수정">
+							</div>
 							</td>
 						</tr>
+						
+						
 <!-- 		----전화번호---- -->							
 						<tr>	
 							<td class="_1qna_board_border2">
-								<div class="mypage-grids"> 
-									<div align="center">
-										<input type="hidden" name="m_id" value="<%=memberDTO.getM_id() %>">
-										<input type="text" class="show" placeholder="전화번호" readonly="readonly"readonly>
-										<input type="tel" value="<%=memberDTO.getM_phone() %>" id="m_phone" name="m_phone" oninput="oninputPhone(this)">
+								<form action="updatePro.me" method="post">
+									<div class="mypage-grids"> 
+										<div align="center">
+											<input type="hidden" name="m_id" value="<%=memberDTO.getM_id() %>">
+											<input type="text" class="show" placeholder="전화번호" readonly="readonly"readonly>
+											<input type="tel" value="<%=memberDTO.getM_phone() %>"		id="m_phone" 	name="m_phone">
+										</div>
 									</div>
-								</div>
+								</form>
 							</td>
-						</tr>
-						<tr>
+												
 							<td class="_1qna_board_border3" width="10">
 							<div class="up-button">
-							<input type="submit" class="up-button" value="수정">
+							<input type="button" class="up-button" value="수정">
 							</div>
 							</td>
-						
 						</tr>
+						
+
+						
+						
+						
+						
 					</table>
 				</div>
-			</form>
-			
-			
 <!--================================== 2탭 구매내역 ==================================== -->				
 				<div id="tab-2" class="tab-content">
 					<table class="_1qna_board">
@@ -310,14 +345,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- -----------------------------------------------------------------------------				 -->
 <script type="text/javascript" src="script/jquery-3.7.0.js"></script>
 <script type="text/javascript">
-
-//전화번호 - 자동 생성
-function oninputPhone(target) {
-    target.value = target.value
-        .replace(/[^0-9]/g, '')
-        .replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]{3,4})([0-9]{4})/g, "$1-$2-$3");
-}
-
 
 
 $(document).ready(function() {

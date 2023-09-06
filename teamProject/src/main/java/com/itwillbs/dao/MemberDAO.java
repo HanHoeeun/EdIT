@@ -324,7 +324,7 @@ public class MemberDAO {
 	
 	
 
-//	회원삭제
+//	회원탈퇴 -----> 글쓴거 찜한거 있으면 탈퇴 불가^^ 글쓴거랑 찜한것도 다 들고 삭제한 다음 탈퇴가넝~
 	public void deleteMember(MemberDTO memberDTO) {
 		System.out.println("MemberDAO deleteMember()");
 		
