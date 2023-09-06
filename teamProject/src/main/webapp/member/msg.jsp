@@ -9,11 +9,11 @@
 
 <body>
 <%
-String error =(String)request.getAttribute("error");
+String msg =(String)request.getAttribute("msg");
 %>
 	<script type="text/javascript">
 // 	메세지 띄우고 뒤로 가기
-alert("<%=error%>");
+alert("<%=msg%>");
 
 history.back();
 </script>

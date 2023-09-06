@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>member/forgotPassword.jsp</title>
+<title>member/findpw.jsp</title>
 <link href= "./css/login.css" rel= "stylesheet" type="text/css">
 <link href= "./css/style.css" rel= "stylesheet" type="text/css">
 </head>
@@ -91,7 +91,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<input type="submit"  value="취소"  onclick="location.href='login.me'" class="#">	
 					<hr style="width:100%;height:1px;border:none;background-color:#999;">
 					</div>
-					
+					</form>
 					
 <!-- 홈/아이디 찾기/회원가입 -->					
 					<div class="_5forgot">
