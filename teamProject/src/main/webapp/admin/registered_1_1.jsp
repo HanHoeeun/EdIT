@@ -38,9 +38,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 	
 <%
-AdminDTO adminDTO = (AdminDTO)request.getAttribute("adminDTO");
 String id = (String)session.getAttribute("m_id");
 int m_level = (int)session.getAttribute("m_level");
+AdminDTO adminDTO = (AdminDTO)request.getAttribute("adminDTO");
 
 %>
 <!--============================== 바디 ============================================-->
