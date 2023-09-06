@@ -12,7 +12,7 @@
 String error =(String)request.getAttribute("error");
 %>
 	<script type="text/javascript">
-// 	아이디 비밀번호 찾기에서 메세지 띄우기
+// 	메세지 띄우고 뒤로 가기
 alert("<%=error%>");
 
 history.back();

@@ -409,7 +409,7 @@ public class MemberController extends HttpServlet{
 		
 	
 
-//		진유정 - 아이디찾기 화면
+//		아이디찾기 화면
 		if(sPath.equals("/findid.me")) {
 		   System.out.println("뽑은 가상주소 비교 : findid.me" );
 		   // member/findid_3.jsp 주소변경 없이 연결
@@ -417,8 +417,6 @@ public class MemberController extends HttpServlet{
 		   dispatcher.forward(request, response);
 		} // 
 		
-		
-//		8.31 오후 12시 진유정 - 아이디찾기(수정중...) -> 되긴되는데 수정 필요..? 
 		if(sPath.equals("/findidPro.me")) {
 			System.out.println("뽑은 가상주소 비교 : findidPro.me"); 
 			
@@ -430,16 +428,18 @@ public class MemberController extends HttpServlet{
 			
 			 // 이름과 이메일을 이용하여 아이디 찾기 작동
 		    String foundid = memberService.findidmember(name, email);
-
+		    
+//			9.6 - 아이디 찾기 메세지 --------------------------- 수정 완
 		    if (foundid != null) {
 		        // 아이디를 찾은 경우
-		        request.setAttribute("foundid", foundid);
+//		        request.setAttribute("foundid", foundid);
+		        request.setAttribute("success", name + "님의 아이디는 " + foundid + "입니다.");
 		        dispatcher = request.getRequestDispatcher("member/findid_result.jsp");
 		        dispatcher.forward(request, response);
 		    } else {
 		        // 아이디를 찾지 못한 경우
-		        request.setAttribute("error", "이름과 이메일이 다릅니다.");
-		        // member/findid.jsp 주소변경 없이 연결
+		        request.setAttribute("error", "이름과 이메일이 일치하지 않습니다.");
+		        // member/msg.jsp로 주소변경 없이 연결
 		        dispatcher = request.getRequestDispatcher("member/msg.jsp");
 		        dispatcher.forward(request, response);
 		    }
