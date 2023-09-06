@@ -273,6 +273,7 @@ public class AdminController extends HttpServlet{
 			if(pageNum == null) {
 				pageNum = "1";
 			}
+			System.out.println(pageNum);
 //			페이지 번호를 정수형 변경 
 			int currentPage = Integer.parseInt(pageNum);
 			
