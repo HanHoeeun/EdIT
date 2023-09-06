@@ -767,10 +767,12 @@ public class ProductController extends HttpServlet{
 		
 
 		if (sPath.equals("/productSearch.po")) {
-			System.out.println("뽑은 가상 주소 : /productSearch.po ");
+			System.out.println("뽑은 가상 주소 비교 : /productSearch.po ");
 			
 			HttpSession session = request.getSession();
 			String id = (String)session.getAttribute("m_id");
+			System.out.println("m_id" + id);
+			
 			
 			MemberService memberService = new MemberService();
 			MemberDTO memberDTO =  memberService.getMember(id);
@@ -797,6 +799,7 @@ public class ProductController extends HttpServlet{
 			ppageDTO.setP_currentPage(p_currentPage);
 			ppageDTO.setSearch(search);
 			
+			
 			productService = new ProductService();
 			List<ProductDTO> productList = productService.getProductListSearch(ppageDTO);
 			
@@ -820,7 +823,7 @@ public class ProductController extends HttpServlet{
 			request.setAttribute("ppageDTO", ppageDTO);
 			request.setAttribute("productDTO", productDTO);
 			request.setAttribute("memberDTO", memberDTO);
-			System.out.println("m_num"+ memberDTO.getM_num());
+			//System.out.println("m_num"+ memberDTO.getM_num());
 			
 			dispatcher
 			= request.getRequestDispatcher("product/productSearch.jsp");

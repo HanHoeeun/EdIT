@@ -1468,8 +1468,8 @@ public class ProductDAO {
 					+ "from wishlists w "
 					+ "JOIN products p ON w.w_p_num = p.p_num "
 					+ "JOIN members m ON w.w_m_num = m.m_num "
-					+ "where m.m_id = ?"
-					+ "DESC limit ?, ?";
+					+ "where m.m_id = ? "
+					+ " limit ?, ? ";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, ppageDTO.getM_id());
 			System.out.println("m_id = "+ppageDTO.getM_id());
