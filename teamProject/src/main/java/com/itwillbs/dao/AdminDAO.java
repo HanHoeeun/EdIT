@@ -146,11 +146,16 @@ public class AdminDAO {
 		int count = 0;
 		
 		try {
+			MemberDTO memberDTO = new MemberDTO();
+			memberDTO.setM_id(pageDTO.getSearch());
+			
+			memberDTO = this.getMemberInfo(memberDTO);
+			
 			con = this.getConnection();
-			String sql = "select count(*) as count from test_1 where a_m_nick like ? ";
+			String sql = "select count(*) as count from admin where a_m_nick = ? ";
 			pstmt = con.prepareStatement(sql);
 			
-			pstmt.setString(1, "%"+pageDTO.getSearch()+"%");
+			pstmt.setString(1, memberDTO.getM_nick());
 			
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
@@ -405,6 +410,7 @@ public class AdminDAO {
 			
 			String sql;
 			
+			
 			if(pageDTO.getSearch() != null) {
 				if(pageDTO.getSearch_type() == 1) {
 					sql = "select * from members where m_num = ? order by m_num desc limit ?, ? ";
@@ -413,35 +419,39 @@ public class AdminDAO {
 					pstmt.setInt(1, Integer.parseInt(pageDTO.getSearch()));
 					pstmt.setInt(2, pageDTO.getStartRow()-1); // 시작하는 행 -1 
 					pstmt.setInt(3, pageDTO.getPageSize()); // 몇개
-				}
-				if(pageDTO.getSearch_type() == 2) {
+				}else if(pageDTO.getSearch_type() == 2) {
 					sql = "select * from members where m_id = ? order by m_num desc limit ?, ? ";
 					pstmt = con.prepareStatement(sql);
 					
 					pstmt.setString(1, pageDTO.getSearch());
 					pstmt.setInt(2, pageDTO.getStartRow()-1); // 시작하는 행 -1 
 					pstmt.setInt(3, pageDTO.getPageSize()); // 몇개
-				}
-				if(pageDTO.getSearch_type() == 3) {
+				}else if(pageDTO.getSearch_type() == 3) {
 					sql = "select * from members where m_nick = ? order by m_num desc limit ?, ? ";
 					pstmt = con.prepareStatement(sql);
 					
 					pstmt.setString(1, pageDTO.getSearch());
 					pstmt.setInt(2, pageDTO.getStartRow()-1); // 시작하는 행 -1 
 					pstmt.setInt(3, pageDTO.getPageSize()); // 몇개
-				}
-				if(pageDTO.getSearch_type() == 4) {
+				}else if(pageDTO.getSearch_type() == 4) {
 					sql = "select * from members where m_count = ? order by m_num desc limit ?, ? ";
 					pstmt = con.prepareStatement(sql);
 					
 					pstmt.setInt(1, Integer.parseInt(pageDTO.getSearch()));
 					pstmt.setInt(2, pageDTO.getStartRow()-1); // 시작하는 행 -1 
 					pstmt.setInt(3, pageDTO.getPageSize()); // 몇개
+				}else if(pageDTO.getSearch()=="null" || pageDTO.getSearch().equals("null")) {
+//					search=null 로 전달될때 getParameter로 읽으면 문자열 null 이 돼서 막아줘야한다
+					sql = "select * from members order by m_num desc limit ?, ?";
+					
+					pstmt = con.prepareStatement(sql);
+					pstmt.setInt(1, pageDTO.getStartRow()-1); // 시작하는 행 -1 
+					pstmt.setInt(2, pageDTO.getPageSize()); // 몇개
 				}
-			}else {
+			}else{
 				sql = "select * from members order by m_num desc limit ?, ?";
-				pstmt = con.prepareStatement(sql);
 				
+				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, pageDTO.getStartRow()-1); // 시작하는 행 -1 
 				pstmt.setInt(2, pageDTO.getPageSize()); // 몇개
 			}
@@ -603,24 +613,27 @@ public class AdminDAO {
 					pstmt.setString(1, pageDTO.getSearch());
 					pstmt.setInt(2, pageDTO.getStartRow()-1); // 시작하는 행 -1 
 					pstmt.setInt(3, pageDTO.getPageSize()); // 몇개
-				}
-				if(pageDTO.getSearch_type() == 2) {
+				}else if(pageDTO.getSearch_type() == 2) {
 					sql = "select * from members where m_name = ? and m_count = 3 limit ?, ? ";
 					pstmt = con.prepareStatement(sql);
 					
 					pstmt.setString(1, pageDTO.getSearch());
 					pstmt.setInt(2, pageDTO.getStartRow()-1); // 시작하는 행 -1 
 					pstmt.setInt(3, pageDTO.getPageSize()); // 몇개
-				}
-				if(pageDTO.getSearch_type() == 3) {
+				}else if(pageDTO.getSearch_type() == 3) {
 					sql = "select * from members where m_email = ? and m_count = 3 limit ?, ? ";
 					pstmt = con.prepareStatement(sql);
 					
 					pstmt.setString(1, pageDTO.getSearch());
 					pstmt.setInt(2, pageDTO.getStartRow()-1); // 시작하는 행 -1 
 					pstmt.setInt(3, pageDTO.getPageSize()); // 몇개
-				}
+				}else {
+					sql = "select * from members where m_count = 3 limit ?, ?";
+					pstmt = con.prepareStatement(sql);
 					
+					pstmt.setInt(1, pageDTO.getStartRow()-1); // 시작하는 행 -1 
+					pstmt.setInt(2, pageDTO.getPageSize()); // 몇개
+				}
 			}else {
 				sql = "select * from members where m_count = 3 limit ?, ?";
 				pstmt = con.prepareStatement(sql);
