@@ -99,6 +99,7 @@ String orderBy = (String) request.getAttribute("orderBy");
  String id = (String)session.getAttribute("m_id");
  MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO"); 
  ProductDTO	productDTO = (ProductDTO)request.getAttribute("productDTO");
+ 
  %>
 	<div class="checkout">
 		<div class="container">
