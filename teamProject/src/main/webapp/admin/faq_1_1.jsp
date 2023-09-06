@@ -171,10 +171,10 @@ SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
 							<tr>
 							<td class="_1q_query_tab_1">
 								<select class="_1q_query_tab_sel" name="faq_select"style="border:none;">
-									<option value="0">문의선택</option>
-									<option value="1">계정</option>
-									<option value="2">중고거래</option>
-									<option value="3">기타</option>
+									<option value="기타">문의선택</option>
+									<option value="계정">계정</option>
+									<option value="중고거래">중고거래</option>
+									<option value="기타">기타</option>
 								</select>
 							</td>
 							<td class="_1q_query_tab_2"><input type="text" name="m_id" value="<%=id %>" style="border:none;" readonly="readonly"></td>

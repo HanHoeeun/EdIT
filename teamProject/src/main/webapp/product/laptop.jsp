@@ -9,7 +9,7 @@
 <html>  
 <head>
 <meta charset="UTF-8">
-<title>product/products.jsp</title>
+<title>product/laptop.jsp</title>
 <style type="text/css">
 /* Breadcrumbs 스타일 */
 .breadcrumbs {
@@ -181,7 +181,7 @@ String orderBy = (String) request.getAttribute("orderBy");
   										 <%
                                         }else {
                                         	%>
-                                        	<a href="login.jsp"><input type="button" value="로그인 하기" class="button">로그인 시<br> 찜 추가 가능!</button></a>
+                                        	<a href="login.me"><input type="button" value="로그인 하기" class="button">로그인 시<br> 찜 추가 가능!</button></a>
                                         	
                                         	<%
                                         }
@@ -240,6 +240,21 @@ $(document).ready(function() {
 
     <div class="clearfix"> </div>
 </div>
+<!-- 검 색 창  -->
+<div class="w3l_search">
+			<form action="productSearch.po" method="get" id = "productSearch">
+				<input type="search" name="search" placeholder="찾으시는 상품을 검색하세요" required="" onkeyup="enterkey();">
+				<button type="submit" class="btn btn-default search" aria-label="Left Align">
+					<i class="fa fa-search" aria-hidden="true"> </i>
+				</button>
+				<div class="clearfix"></div>
+			</form>
+		</div>
+
+<!-- 검 색 창  -->
+<div class="clearfix"> </div>
+</div>
+
 <!-- 페이징 코드 5개씩 나눠서 페이징 -->
 <nav class="numbering">
    <ul class="pagination paging">

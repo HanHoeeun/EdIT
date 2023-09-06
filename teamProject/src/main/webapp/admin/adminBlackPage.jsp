@@ -75,6 +75,7 @@ AdminPageDTO pageDTO = (AdminPageDTO)request.getAttribute("pageDTO");
 <!-- 				상단 탭 리스트 -->
 				<ul class="tabs">
 					<li class="tab-link" onclick="location.href='adminPage.ad'" >신고내역</li>
+					<li class="tab-link" onclick="location.href='adminFAQ.ad'" >문의내역</li>
 					<li class="tab-link" onclick="location.href='adminMemberPage.ad'">회원관리</li>
 					<li class="tab-link current" onclick="location.href='adminBlackPage.ad'">블랙리스트</li>
 					

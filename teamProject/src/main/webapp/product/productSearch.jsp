@@ -1,5 +1,5 @@
-<%@page import="com.itwillbs.domain.MemberDTO"%>
 <%@page import="com.itwillbs.domain.WishListDTO"%>
+<%@page import="com.itwillbs.domain.MemberDTO"%>
 <%@page import="com.itwillbs.domain.ProductPageDTO"%>
 <%@page import="com.itwillbs.domain.ProductDTO"%>
 <%@page import="java.util.List"%>
@@ -9,7 +9,7 @@
 <html>  
 <head>
 <meta charset="UTF-8">
-<title>product/phone.jsp</title>
+<title>product/products.jsp</title>
 <style type="text/css">
 /* Breadcrumbs 스타일 */
 .breadcrumbs {
@@ -25,6 +25,9 @@
 }
 
 </style>
+<%
+String loggedInMNum =(String)session.getAttribute("n_num");
+%>
 </head>
   
 <body>
@@ -37,7 +40,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
-<title>product/phone.jsp</title>
+<title>Super Market an Ecommerce Online Shopping Category Flat Bootstrap Responsive Website Template | Single Page :: w3layouts</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -79,8 +82,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
    <div class="breadcrumbs">
       <div class="container">
          <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
-            <li><a href="main.jsp"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-            <li class="active">휴대폰 보기</li>
+            <li><a href="main.me"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+            <li class="active"><a href = "products.po">전체상품 보기</a></li>
          </ol>
       </div>
    </div>
@@ -104,7 +107,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         
  <!-- 카테고리  -->
  <!-- 드롭다운과 상품 리스트 -->
-
+<%-- 
 <%
 String orderBy = (String) request.getAttribute("orderBy");
 %>
@@ -113,37 +116,36 @@ String orderBy = (String) request.getAttribute("orderBy");
                 <div class="products-right-grids">
                     <div class="sorting">
                         <select id="country" onchange="change_country(this.value)" class="frm-field required sect">
-                    <option value="phoneLatest" <% if (orderBy != null && orderBy.equals("phoneLatest")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>최신순</option>
-                    <option value="phonePopular" <% if (orderBy != null && orderBy.equals("phonePopular")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>인기순</option> 
-                    <option value="phoneHighPrice" <% if (orderBy != null && orderBy.equals("phoneHighPrice")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>가격 높은 순</option>               
-                    <option value="phoneLowPrice" <% if (orderBy != null && orderBy.equals("phoneLowPrice")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>가격 낮은 순</option>                        
-                    <option value="phoneSell" <% if (orderBy != null && orderBy.equals("phoneSell")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>판매중</option>                        
-                    <option value="phoneSold" <% if (orderBy != null && orderBy.equals("phoneSold")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>판매완료</option>                        
+                    <option value="latest" <% if (orderBy != null && orderBy.equals("latest")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>최신순</option>
+                    <option value="popular" <% if (orderBy != null && orderBy.equals("popular")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>인기순</option> 
+                    <option value="highPrice" <% if (orderBy != null && orderBy.equals("highPrice")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>가격 높은 순</option>               
+                    <option value="lowPrice" <% if (orderBy != null && orderBy.equals("lowPrice")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>가격 낮은 순</option>                        
+               		<option value="sell" <% if (orderBy != null && orderBy.equals("sell")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>판매중</option>                        
+                    <option value="sold" <% if (orderBy != null && orderBy.equals("sold")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>판매완료</option>
                 </select>
             </div>
            
         </div>
     </div>
 
-<div class="clearfix"> </div>
+<div class="clearfix"> </div> --%>
 
  <!-- 드롭다운  -->
  <!-- 상품 리스트 -->
             <%
-            List<ProductDTO> phoneList 
-            = (List<ProductDTO>)request.getAttribute("phoneList");
+            List<ProductDTO> productList 
+            = (List<ProductDTO>)request.getAttribute("productList");
             ProductPageDTO ppageDTO
             = (ProductPageDTO)request.getAttribute("ppageDTO");
             List<WishListDTO> wishList
             = (List<WishListDTO>)request.getAttribute("wishList");
             String id = (String)session.getAttribute("m_id");
             MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO"); 
-           
             %>
             
               <div class="agile_top_brands_grids">
-    <% for (int i = 0; i < phoneList.size(); i++) {
-       ProductDTO productDTO = phoneList.get(i);%>
+    <% for (int i = 0; i < productList.size(); i++) {
+       ProductDTO productDTO = productList.get(i);%>
     <div class="col-md-4 top_brand_left">
         <div class="hover14 column">
             <div class="agile_top_brand_left_grid">
@@ -171,34 +173,40 @@ String orderBy = (String) request.getAttribute("orderBy");
                                         <input type="hidden" name="currency_code" value="KRW">
                                         <input type="hidden" name="return" value=" ">
                                         <input type="hidden" name="cancel_return" value=" ">
-                                      <% 
-                                        if(memberDTO != null){
-                                        
+                                       <% 
+                                  
+                                        	if(memberDTO != null){
                                         %>
                                        <input type="button" value="찜 추가하기" class="button addToWishlistButton"
-   										 data-p-num="<%= productDTO.getP_num() %>"			
-  										 data-m-num="<%= memberDTO.getM_num() %>">
+   										 data-p-num="<%=productDTO.getP_num() %>"			
+  										 data-m-num="<%=memberDTO.getM_num() %>">
   										 <%
-                                        }else {
+                                        	}
+                                       
+                                       
+                                       if(id == null) {
                                         	%>
                                         	<a href="login.me"><input type="button" value="로그인 하기" class="button">로그인 시<br> 찜 추가 가능!</button></a>
                                         	
                                         	<%
                                         }
-  										 %>
+  										 %> 
 									 </fieldset>
                                 </form>
                             </div>
                         </div> 
                     </figure>
+                    
                 </div>
             </div>
         </div>
     </div>
+    
     <% 
     }
     
     %>
+    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="../js/jquery-1.11.1.min.js"></script>
 <script>
@@ -237,8 +245,9 @@ $(document).ready(function() {
     
 });
 </script>
-    <div class="clearfix"> </div>
+<div class="clearfix"> </div>
 </div>
+
 <!-- 검 색 창  -->
 <div class="w3l_search">
 			<form action="productSearch.po" method="get" id = "productSearch">
@@ -253,6 +262,8 @@ $(document).ready(function() {
 <!-- 검 색 창  -->
 <div class="clearfix"> </div>
 </div>
+
+
 <!-- 페이징 코드 5개씩 나눠서 페이징 -->
 <nav class="numbering">
    <ul class="pagination paging">
@@ -260,7 +271,7 @@ $(document).ready(function() {
       if(ppageDTO.getP_startPage() > ppageDTO.getP_pageBlock()){
          %>
          <li>
-            <a href="products.po?p_pageNum=<%=ppageDTO.getP_startPage()-ppageDTO.getP_pageBlock()%>&orderBy=${orderBy}" aria-label="Previous">
+            <a href="laptop.po?p_pageNum=<%=ppageDTO.getP_startPage()-ppageDTO.getP_pageBlock()%>&orderBy=${orderBy}" aria-label="Previous">
                <span aria-hidden="true">&laquo;</span>
             </a>
          </li>
@@ -272,7 +283,7 @@ $(document).ready(function() {
          boolean isPcurrentPage = (i == ppageDTO.getP_currentPage());
          %>
          <li class="<%= (isCurrentPage || isPcurrentPage) ? "active" : "" %>">
-            <a href="products.po?p_pageNum=<%= i %>&orderBy=${orderBy}" class="<%= (isCurrentPage) ? "" : "" %> <%= (isPcurrentPage) ? "custom-class" : "" %>">
+            <a href="laptop.po?p_pageNum=<%= i %>&orderBy=${orderBy}" class="<%= (isCurrentPage) ? "" : "" %> <%= (isPcurrentPage) ? "custom-class" : "" %>">
             <%= (isPcurrentPage) ? i : i %></a>
          </li>
          <%
@@ -281,7 +292,7 @@ $(document).ready(function() {
       if(ppageDTO.getP_endPage() < ppageDTO.getP_pageCount()){
          %>
          <li>
-            <a href="products.po?p_pageNum=<%=ppageDTO.getP_startPage()+ppageDTO.getP_pageBlock()%>&orderBy=${orderBy}" >
+            <a href="laptop.po?p_pageNum=<%=ppageDTO.getP_startPage()+ppageDTO.getP_pageBlock()%>&orderBy=${orderBy}" >
                <span aria-hidden="true">&raquo;</span>
             </a>
          </li>
@@ -294,28 +305,24 @@ $(document).ready(function() {
          </div>
          <div class="clearfix"> </div>
       </div>
-      </div>
-      
+    
   
 <!--- products --->
 <!-- 푸터 들어가는 곳! -->
 <div class="clearfix">
+</div>
 <jsp:include page="../inc/bottom.jsp"></jsp:include>
 </div>
 <!-- 푸터 들어가는 곳! -->
-<!-- <script type="text/javascript">
-function change_country(l) {
-	location.href="products.po?ord="+l;
-} -->
+
 <script type="text/javascript">
 function change_country(l) {
-    location.href = "phone.po?ord=" + l;
+    location.href = "products.po?ord=" + l;
 }
+
+
 </script>
 
+</body>
+</html>
 
-<!-- </script> -->
-</body>
-</html>
-</body>
-</html>

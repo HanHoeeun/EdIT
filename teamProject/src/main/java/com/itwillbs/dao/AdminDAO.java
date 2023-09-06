@@ -78,19 +78,14 @@ public class AdminDAO {
 			
 			
 //			1게시글번호 (2회원번호 3닉네임 4제목 5내용) 6답변 (7파일명) 8확인용 9작성시간 10문의타입 11공지타입
-			if(adminDTO.getA_cs_type() == 1) {
-				sql = "insert into admin values (default,?,?,?,?,null,?,default,default,'계정',null)";
-			}else if(adminDTO.getA_cs_type() == 2) {
-				sql = "insert into admin values (default,?,?,?,?,null,?,default,default,'중고거래',null)";
-			}else {
-				sql = "insert into admin values (default,?,?,?,?,null,?,default,default,'기타',null)";
-			}
+				sql = "insert into admin values (default,?,?,?,?,null,?,default,default,?,null)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, memberDTO.getM_num());
 			pstmt.setString(2, memberDTO.getM_nick());
 			pstmt.setString(3, adminDTO.getA_title());
 			pstmt.setString(4, adminDTO.getA_content());
 			pstmt.setString(5, adminDTO.getA_file());
+			pstmt.setString(6, adminDTO.getA_cs_type());
 			
 			pstmt.executeUpdate();
 			
@@ -156,6 +151,80 @@ public class AdminDAO {
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setString(1, memberDTO.getM_nick());
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt("count");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbClose();
+		}
+		return count;
+	}
+	
+	public List<AdminDTO> getBoardList(AdminPageDTO pageDTO) {
+		List<AdminDTO> adminList = null;
+		try {
+			con = this.getConnection();
+			
+			String sql;
+			if(pageDTO.getSearch() == "전체") {
+				sql ="select * from admin order by a_num desc limit ?, ?";
+				pstmt = con.prepareStatement(sql);
+				
+				pstmt.setInt(1, pageDTO.getStartRow()-1); // 시작하는 행 -1 
+				pstmt.setInt(2, pageDTO.getPageSize()); // 몇개
+			}else {
+				sql ="select * from admin where a_cs_type = ? order by a_num desc limit ?, ?";
+				pstmt = con.prepareStatement(sql);
+				
+				pstmt.setString(1, pageDTO.getSearch());
+				pstmt.setInt(2, pageDTO.getStartRow()-1); // 시작하는 행 -1 
+				pstmt.setInt(3, pageDTO.getPageSize()); // 몇개
+			}
+			
+			rs = pstmt.executeQuery();
+			adminList = new ArrayList<>();
+			while(rs.next()) {
+				AdminDTO adminDTO = new AdminDTO();
+				adminDTO.setA_num(rs.getInt("a_num"));
+				adminDTO.setA_title(rs.getString("a_title"));
+				adminDTO.setA_m_nick(rs.getString("a_m_nick"));
+				adminDTO.setA_date(rs.getTimestamp("a_date"));
+				adminDTO.setA_check(rs.getInt("a_check"));
+				adminDTO.setA_cs_type(rs.getString("a_cs_type"));
+				
+				
+				adminList.add(adminDTO);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			this.dbClose();
+		}
+		
+		return adminList;
+		
+	}
+	public int getBoardCount(AdminPageDTO pageDTO) {
+		int count = 0;
+		
+		try {
+			con = this.getConnection();
+			String sql;
+			if(pageDTO.getSearch() == "전체") {
+				sql = "select count(*) as count from admin";
+				pstmt = con.prepareStatement(sql);
+			}else {
+				sql = "select count(*) as count from admin where a_cs_type = ?";
+				pstmt = con.prepareStatement(sql);
+				
+				pstmt.setString(1, pageDTO.getSearch());
+			}
+			
 			
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
