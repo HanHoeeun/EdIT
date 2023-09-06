@@ -181,7 +181,7 @@ String orderBy = (String) request.getAttribute("orderBy");
   										 <%
                                         }else {
                                         	%>
-                                        	<a href="login.jsp"><input type="button" value="로그인 하기" class="button">로그인 시<br> 찜 추가 가능!</button></a>
+                                        	<a href="login.me"><input type="button" value="로그인 하기" class="button">로그인 시<br> 찜 추가 가능!</button></a>
                                         	
                                         	<%
                                         }

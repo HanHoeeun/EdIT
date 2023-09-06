@@ -183,7 +183,7 @@ String orderBy = (String) request.getAttribute("orderBy");
   										 <%
                                         }else {
                                         	%>
-                                        	<a href="login.jsp"><input type="button" value="로그인 하기" class="button">로그인 시<br> 찜 추가 가능!</button></a>
+                                        	<a href="login.me"><input type="button" value="로그인 하기" class="button">로그인 시<br> 찜 추가 가능!</button></a>
                                         	
                                         	<%
                                         }
@@ -247,21 +247,15 @@ $(document).ready(function() {
 
 <!-- 검 색 창  -->
 <div class="w3l_search">
-			<form action="products.po" method="get" id = "productSearch">
-				<input type="text" name="Search" placeholder="찾으시는 상품을 검색하세요" required="" onkeyup="enterkey();">
+			<form action="productSearch.po" method="get" id = "productSearch">
+				<input type="search" name="search" placeholder="찾으시는 상품을 검색하세요" required="" onkeyup="enterkey();">
 				<button type="submit" class="btn btn-default search" aria-label="Left Align">
 					<i class="fa fa-search" aria-hidden="true"> </i>
 				</button>
 				<div class="clearfix"></div>
 			</form>
 		</div>
-		<script type="text/javascript">
-						function enterKey(){
-							if(window.event.keyCode == 13){ // Enter 키 코드값 13
-							document.getSearch('productSearch').submit();
-							}
-						}
-					</script>
+
 <!-- 검 색 창  -->
 <div class="clearfix"> </div>
 </div>
