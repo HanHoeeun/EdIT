@@ -627,6 +627,7 @@ public class ProductService {
 		return productDTO;
 	}//getBoard
 	
+	
 	//--------------------------------------------------------------------------------------------------
 	
 	public void deleteProduct(HttpServletRequest request) {
