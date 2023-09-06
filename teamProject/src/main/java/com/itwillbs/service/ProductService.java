@@ -771,34 +771,34 @@ public class ProductService {
 
 
 
-	public List<WishListDTO> getWishSellProducts(ProductPageDTO ppageDTO) {
-		System.out.println("ProductService getWishSellProducts()");
-		List<WishListDTO> sellList = null;
-		try {
-			// productDAO 객체생성
-			productDAO = new ProductDAO();
-			// DAO에서 데이터 가져오기
-			sellList=productDAO.getWishSellProducts(ppageDTO);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return sellList;
-	}
-
-
-	public List<WishListDTO> getWishSoldProducts(ProductPageDTO ppageDTO) {
-		System.out.println("ProductService getWishSoldProducts()");
-		List<WishListDTO> soldList = null;
-		try {
-			// productDAO 객체생성
-			productDAO = new ProductDAO();
-			// DAO에서 데이터 가져오기
-			soldList=productDAO.getWishSoldProducts(ppageDTO);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return soldList;
-	}
+//	public List<WishListDTO> getWishSellProducts(ProductPageDTO ppageDTO) {
+//		System.out.println("ProductService getWishSellProducts()");
+//		List<WishListDTO> sellList = null;
+//		try {
+//			// productDAO 객체생성
+//			productDAO = new ProductDAO();
+//			// DAO에서 데이터 가져오기
+//			sellList=productDAO.getWishSellProducts(ppageDTO);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return sellList;
+//	}
+//
+//
+//	public List<WishListDTO> getWishSoldProducts(ProductPageDTO ppageDTO) {
+//		System.out.println("ProductService getWishSoldProducts()");
+//		List<WishListDTO> soldList = null;
+//		try {
+//			// productDAO 객체생성
+//			productDAO = new ProductDAO();
+//			// DAO에서 데이터 가져오기
+//			soldList=productDAO.getWishSoldProducts(ppageDTO);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return soldList;
+//	}
 
 
 	public List<WishListDTO> getWishList(ProductPageDTO ppageDTO) {
