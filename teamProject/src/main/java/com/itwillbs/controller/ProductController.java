@@ -715,7 +715,6 @@ public class ProductController extends HttpServlet{
 			if(p_pageNum == null) {
 				p_pageNum = "1";
 			}
-			
 			int p_currentPage = Integer.parseInt(p_pageNum);
 			ProductPageDTO ppageDTO = new ProductPageDTO();
 			ppageDTO.setP_pageSize(p_pageSize);

@@ -248,7 +248,7 @@ $(document).ready(function() {
 <!-- 검 색 창  -->
 <div class="w3l_search">
 			<form action="products.po" method="get" id = "productSearch">
-				<input type="search" name="Search" placeholder="찾으시는 상품을 검색하세요" required="" onkeyup="enterkey();">
+				<input type="text" name="Search" placeholder="찾으시는 상품을 검색하세요" required="" onkeyup="enterkey();">
 				<button type="submit" class="btn btn-default search" aria-label="Left Align">
 					<i class="fa fa-search" aria-hidden="true"> </i>
 				</button>
