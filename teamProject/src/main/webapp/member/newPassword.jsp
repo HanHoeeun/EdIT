@@ -76,6 +76,7 @@
 								<hr>
 							</div>
 							<!-- Register Now -->
+<!-- 							홈, 회원가입  추가-->
 							<div class="pt-2">
 								<div class="row justify-content-center">
 									<h5>
