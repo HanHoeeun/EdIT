@@ -151,7 +151,7 @@ public class MemberDAO {
 	}
 
 	public MemberDTO userCheck2(MemberDTO memberDTO2) {
-MemberDTO memberDTO = null;
+		MemberDTO memberDTO = null;
 		
 		try {
 			
@@ -325,12 +325,6 @@ MemberDTO memberDTO = null;
 
 
 	
-	
-	
-	
-	
-	
-	
 
 //	회원정보 변경
 	public void updateMember(MemberDTO memberDTO) {
@@ -359,6 +353,34 @@ MemberDTO memberDTO = null;
 		}
 	}
 
+	
+	
+//	비밀번호수정
+	public void updatePass(MemberDTO memberDTO) {
+		System.out.println("MemberDAO updatePass()");
+
+		try {
+			
+			con = getConnection();
+			
+			String sql = "update members set m_pass = ? where m_id = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, memberDTO.getM_pass());
+			pstmt.setString(2, memberDTO.getM_id());
+			
+			pstmt.executeUpdate();
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dblClose();
+		}
+		
+	}
+	
+	
 	
 	
 
@@ -555,6 +577,10 @@ MemberDTO memberDTO = null;
 		}
 		return memberDTO;
 	} // IdAndEmailMatch()
+
+
+
+
 
 
 

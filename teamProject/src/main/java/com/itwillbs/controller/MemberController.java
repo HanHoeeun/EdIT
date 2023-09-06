@@ -27,6 +27,7 @@ import org.json.simple.JSONObject;
 
 import com.itwillbs.dao.MemberDAO;
 import com.itwillbs.domain.MemberDTO;
+import com.itwillbs.service.AdminService;
 import com.itwillbs.service.MemberService;
 
 public class MemberController extends HttpServlet{
@@ -186,13 +187,13 @@ public class MemberController extends HttpServlet{
 		
 		
 		
-//		회원정보 수정	--
+//		회원정보 수정	-- 비밀번호 빼고
 		if (sPath.equals("/updatePro.me")) {
 			System.out.println("뽑은 가상주소 비교 : updatePro.me");
 
 			memberService = new MemberService();
 			
-//			아이디, 비밀번호 일치하는지 확인
+
 			MemberDTO memberDTO = memberService.userCheck2(request);
 			
 			
@@ -213,6 +214,65 @@ public class MemberController extends HttpServlet{
 			}
 			
 		}
+		
+		
+		
+//		비밀번호수정 화면	
+		if (sPath.equals("/pwupdate.me")) {
+			System.out.println("뽑은 가상주소 비교 : pwupdate.me");
+			
+			HttpSession session = request.getSession();
+			String m_id = (String)session.getAttribute("m_id");
+			
+			
+			memberService = new MemberService();
+			MemberDTO memberDTO =  memberService.getMember(m_id);
+			
+			request.setAttribute("memberDTO", memberDTO);
+			
+			
+			dispatcher = request.getRequestDispatcher("member/pwupdate.jsp");
+			dispatcher.forward(request, response);
+			
+		}
+		
+		
+		
+//		비밀번호수정...
+		if (sPath.equals("/pwupdatePro.me")) {
+			System.out.println("뽑은 가상주소 비교 : pwupdatePro.me");
+			
+			memberService = new MemberService();
+			
+			
+			MemberDTO memberDTO = memberService.userCheck(request);
+			
+			
+//			일치하면 updateMember 호출
+			if (memberDTO != null) {
+				
+				memberService.updatePass(request);
+				
+//				성공하면 마이페이지 창으로 이동해서 나의 정보 확인
+				response.sendRedirect("pwupdate.me");
+				
+			} else {
+//				불일치면 경고 메시지 화면에 띄우기
+				request.setAttribute("msg", "경고");
+				dispatcher = request.getRequestDispatcher("member/msg.jsp");
+				dispatcher.forward(request, response);
+				
+			}
+			
+		}
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 //		회원탈퇴화면		--보류

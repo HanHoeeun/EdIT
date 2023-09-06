@@ -10,6 +10,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.itwillbs.dao.AdminDAO;
 import com.itwillbs.dao.MemberDAO;
 import com.itwillbs.domain.MemberDTO;
 
@@ -209,12 +210,6 @@ public class MemberService {
 
 	
 	
-	
-	
-	
-	
-	
-	
 //	회원정보 수정
 	public void updateMember(HttpServletRequest request) {
 		System.out.println("MemberService updateMember()");
@@ -249,10 +244,46 @@ public class MemberService {
 	}
 
 
+//	비밀번호 수정
+	public void updatePass(HttpServletRequest request) {
+		System.out.println("MemberService updatePass()");
+		
+		try {
+//			한글처리
+			request.setCharacterEncoding("utf-8");
+			
+			String m_id = request.getParameter("m_id");
+			String m_name = request.getParameter("m_name");
+			String m_pass = request.getParameter("m_pass");
+			String m_pass2 = request.getParameter("m_pass2");
+			String m_pass3 = request.getParameter("m_pass3");
+
+
+			
+			MemberDTO memberDTO = new MemberDTO();
+			memberDTO.setM_id(m_id);
+			memberDTO.setM_name(m_name);
+			memberDTO.setM_pass(m_pass);
+			memberDTO.setM_pass(m_pass2);
+			memberDTO.setM_pass(m_pass3);
+
+
+			memberDAO = new MemberDAO();
+			memberDAO.updatePass(memberDTO);
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+
 	
 	
 	
 	
+	
+//	회원탈퇴	
 	public void deleteMember(HttpServletRequest request) {
 		System.out.println("MemberService deleteMember()");
 
@@ -364,6 +395,8 @@ public class MemberService {
 		}
 		return memberDTO;
 	}
+
+
 
 
 

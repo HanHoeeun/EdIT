@@ -58,19 +58,27 @@ MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 	<div class="top-brands_1">
 			<h2>비밀번호 변경</h2>
 		<div class="_1container_1_1">
-			<form class="_1report_content_form" action="user_contentPro.ad" method="post">		
+			<form class="_1report_content_form" action="pwupdatePro.me" method="post">		
 			<table class="_1report_content_board">
 				<tr>
-				<td class="_1report_content_border">회원번호</td>
-				<td><input type="text" value="<%=memberDTO.getM_num() %>" name="m_num" readonly="readonly" style="border:none;"></td>
-				</tr>				
-				<tr>
 				<td class="_1report_content_border">아이디</td>
-				<td><input type="text" value="<%=memberDTO.getM_id() %>" name="m_id" style="border:none;"></td>
+				<td><input type="text" value="<%=memberDTO.getM_id() %>" name="m_id" style="border:none;" readonly="readonly"></td>
 				</tr>				
 				<tr>
 				<td class="_1report_content_border">이름</td>
 				<td><input type="text" value="<%=memberDTO.getM_name() %>" name="m_name" style="border:none;"></td>
+				</tr>	
+				<tr>						
+				<td class="_1report_content_border">현재비밀번호</td>
+				<td><input type="text" value="<%=memberDTO.getM_pass() %>" name="m_pass" style="border:none;"></td>
+				</tr>	
+				<tr>						
+				<td class="_1report_content_border">새비밀번호</td>
+				<td><input type="text" placeholder="새비밀번호" name="m_pass2" style="border:none;"></td>
+				</tr>	
+				<tr>						
+				<td class="_1report_content_border">새비밀번호확인</td>
+				<td><input type="text" placeholder="새비밀번호확인" name="m_pass3" style="border:none;"></td>
 				</tr>							
 					
 			</table>
@@ -117,51 +125,10 @@ MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 
 <script type="text/javascript" src="script/jquery-3.7.0.js"></script>	
 <script type="text/javascript">	
-    $('#changePasswordForm').submit(function(e) {
-        e.preventDefault(); // Prevent form submission for now
-
-        var currentPassword = $('#m_pass').val();
-        var newPassword = $('#m_pass1').val();
-        var confirmNewPassword = $('#m_pass').val();
-
-        // Perform your validation here
-        if (!currentPasswordIsValid(currentPassword)) {
-            alert("Current password is incorrect.");
-            return false; // Prevent form submission
-        }
-
-        if (!newPasswordIsValid(newPassword)) {
-            alert("New password is not valid.");
-            return false; // Prevent form submission
-        }
-
-        if (newPassword !== confirmNewPassword) {
-            alert("New password and confirmation do not match.");
-            return false; // Prevent form submission
-        }
-
-        // If all conditions are met, you can submit the form
-        // Uncomment the following line to submit the form:
-        // $('#changePasswordForm').off('submit').submit();
-    });
-
-    // Your validation functions
-    function currentPasswordIsValid(password) {
-        // Implement your logic to check if the current password is correct
-        // Return true if it's correct, false otherwise
-        // You may use AJAX to check the current password on the server
-        return true; // Replace with your logic
-    }
-
-    function newPasswordIsValid(newPassword) {
-        // Implement your logic to check if the new password is valid
-        // Return true if it's valid, false otherwise
-        return newPassword.length >= 8; // Replace with your logic
-    }
-});
 
 
-				
+
+
 				
 				
 </script>	

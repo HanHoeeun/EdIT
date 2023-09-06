@@ -1,3 +1,5 @@
+<%@page import="com.itwillbs.domain.ReportDTO"%>
+<%@page import="com.itwillbs.domain.WishListDTO"%>
 <%@page import="com.itwillbs.domain.MemberDTO"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.itwillbs.domain.NoticePageDTO"%>
@@ -169,7 +171,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<div class="delete-button">
 							<input type="submit" class="delete-button" value="수정">
 							</div><br>
-							<a id="password-change-link" href="#">비밀번호 변경</a>
+							<a id="password-change-link" href="pwupdqte.me">비밀번호 변경</a>
 							</td>
 						
 						</tr>
@@ -240,7 +242,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			         </ul> 
    					 </div>
 				</div>
-<!--================================== 4탭 찜 ==================================== -->				
+<!--================================== 4탭 찜 ==================================== -->		
+
+
+		
 				<div id="tab-4" class="tab-content">
 					<table class="_1qna_board">
 						<tr>
@@ -281,7 +286,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						
 					</table>
 				</div>
-<!--================================== 6탭 신고내역 ==================================== -->				
+<!--================================== 6탭 신고내역 ==================================== -->		
+<%
+ ReportDTO reportDTO = (ReportDTO)request.getAttribute("reportDTO");
+%>		
 				<div id="tab-6" class="tab-content">
 					<table class="_1qna_board">
 						<tr>
