@@ -26,7 +26,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="../css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <link href="../css/style.css" rel="stylesheet" type="text/css" media="all" />
 <link href="../css/font-awesome.css" rel="stylesheet"> 
-<link href="../css/mypage_3.css" rel="stylesheet"> 
+<link href="./css/mypage_3.css" rel="stylesheet"> 
 <!-- //font-awesome icons -->
 <!-- js -->
 <script src="../js/jquery-1.11.1.min.js"></script>
@@ -67,45 +67,49 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <!--=========================== 상단 탭 리스트============================================ -->
 				<ul class="tabs">
-					<li class="tab-link current" data-tab="tab-1" onclick="location.href='update.me'">나의정보</li>
-					<li class="tab-link" data-tab="tab-2" onclick="location.href='buylist.me'">구매내역</li>
-					<li class="tab-link" data-tab="tab-3" onclick="location.href='salelist.me'">판매내역</li>
-					<li class="tab-link" data-tab="tab-4" onclick="location.href='wishlist.me'">찜</li>
-					<li class="tab-link" data-tab="tab-5" onclick="location.href='qnalist.me'">문의내역</li>
-					<li class="tab-link" data-tab="tab-6" onclick="location.href='reportlist.me'">신고내역</li>
-					<li class="tab-link" data-tab="tab-7" onclick="location.href='delete.me'">회원탈퇴</li>
+					<li class="tab-link" data-tab="tab-1" onclick="location.href='update.me'">나의정보</li>
+					<li class="tab-link" data-tab="tab-2">구매내역</li>
+					<li class="tab-link" data-tab="tab-3">판매내역</li>
+					<li class="tab-link" data-tab="tab-4">찜</li>
+					<li class="tab-link" data-tab="tab-5">문의내역</li>
+					<li class="tab-link" data-tab="tab-6">신고내역</li>
+					<li class="tab-link current" data-tab="tab-7" onclick="location.href='delete.me'">회원탈퇴</li>
 				</ul>
 			</div>
 		
 <!--================================== 1탭 나의정보==================================== -->
+<%
+	MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
+%>
+
 			<div class="container_3_1">
 				<div id="tab-1" class="tab-content current">
 					<table class="mypage-board">
 						<tr>
 							<th class="_1qna_board_border1" colspan="2">나의정보</th>
 						</tr>
-
+<!-- 		----아이디---- -->
 						 <tr>
 							<td class="_1qna_board_border2">
-								<form action="update.me" method="post">
+								<form action="updatePro.me" method="post">
 									<div class="mypage-grids"> 
 										<div align="center">
 											<input type="text" class="show" placeholder="아이디" readonly="readonly"readonly>
-											<input type="text" value="dkdkdkdk" id="m_id" name="m_id" readonly="readonly">
+											<input type="text" value="<%=memberDTO.getM_id() %>" id="m_id" name="m_id" readonly="readonly">
 										</div>
 									</div>
 								</form>
 							</td>
 						</tr>
 						
-						
+<!-- 		----닉네임---- -->						
 						 <tr>
 							<td class="_1qna_board_border2">
-								<form action="mypage.me" method="post">
+								<form action="updatePro.me" method="post">
 									<div class="mypage-grids"> 
 										<div align="center">
 											<input type="text" class="show" placeholder="닉네임" readonly="readonly"readonly>
-											<input type="text" value="닉네임이 나타남" id="m_nick" name="m_nick">
+											<input type="text" value="<%=memberDTO.getM_nick() %>" id="m_nick" name="m_nick">
 										</div>
 									</div>
 								</form>
@@ -117,16 +121,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</td>
 						</tr>
 						
-						
+<!-- 		----비밀번호---- -->						
 						<tr>
 							<td class="_1qna_board_border2">
-								<form action="mypage.me" method="post">
+								<form action="updatePro.me" method="post">
 									<div class="mypage-grids"> 
 										<div align="center">
 											<input type="text" class="show" placeholder="비밀번호" readonly="readonly"readonly>
-											<input type="password" value=""		id="m_pass" 	name="m_pass">
-											<input type="password" value="" 		id="m_pass2" 	name="m_pass2">
-											<input type="password" value="" 	id="m_pass3" 	name="m_pass3">
+											<input type="password" placeholder="현재비밀번호" id="m_pass" 	name="m_pass">
+											<input type="password" placeholder="새비밀번호" id="m_pass2" 	name="m_pass2">
+											<input type="password" placeholder="새비밀번호확인" id="m_pass3" 	name="m_pass3">
 										</div>
 									</div>
 								</form>
@@ -141,14 +145,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						
 						
 						
-						
+<!-- 		----이메일---- -->							
 						<tr>	
 							<td class="_1qna_board_border2">
-								<form action="mypage.me" method="post">
+								<form action="updatePro.me" method="post">
 									<div class="mypage-grids"> 
 										<div align="center">
 											<input type="text" class="show" placeholder="이메일" readonly="readonly"readonly>
-											<input type="email" value="이메일"		id="m_email" 	name="m_email">
+											<input type="email" value="<%=memberDTO.getM_email()%>"		id="m_email" 	name="m_email">
 										</div>
 									</div>
 								</form>
@@ -162,14 +166,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</tr>
 						
 						
-						
+<!-- 		----전화번호---- -->							
 						<tr>	
 							<td class="_1qna_board_border2">
-								<form action="mypage.me" method="post">
+								<form action="updatePro.me" method="post">
 									<div class="mypage-grids"> 
 										<div align="center">
 											<input type="text" class="show" placeholder="전화번호" readonly="readonly"readonly>
-											<input type="tel" value="전화번호"		id="m_phone" 	name="m_phone">
+											<input type="tel" value="<%=memberDTO.getM_phone() %>"		id="m_phone" 	name="m_phone">
 										</div>
 									</div>
 								</form>
@@ -190,7 +194,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</table>
 				</div>
 <!--================================== 2탭 구매내역 ==================================== -->				
-				<div id="tab-2" class="tab-content current">
+				<div id="tab-2" class="tab-content">
 					<table class="_1qna_board">
 						<tr>
 							<th class="_1qna_board_border">번호</th>
@@ -249,7 +253,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
    					 </div>
 				</div>
 <!--================================== 4탭 찜 ==================================== -->				
-				<div id="tab-4" class="tab-content current">
+				<div id="tab-4" class="tab-content">
 					<table class="_1qna_board">
 						<tr>
 							<th class="_1qna_board_border">번호</th>
@@ -265,7 +269,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</table>
 				</div>
 <!--================================== 5탭 문의내역 ==================================== -->				
-				<div id="tab-5" class="tab-content current">
+				<div id="tab-5" class="tab-content">
 					<table class="_1qna_board">
 						<tr>
 							<th class="_1qna_board_border">번호</th>
@@ -281,7 +285,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</table>
 				</div>
 <!--================================== 6탭 신고내역 ==================================== -->				
-				<div id="tab-6" class="tab-content current">
+				<div id="tab-6" class="tab-content">
 					<table class="_1qna_board">
 						<tr>
 							<th class="_1qna_board_border">번호</th>
@@ -298,11 +302,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						
 					</table>
 				</div>
-<!--================================== 7탭 회원탈퇴 ==================================== -->			
+<!--================================== 7탭 회원탈퇴 ==================================== -->				
 <%
 	String m_id = (String)request.getAttribute("m_id");
 %>	
-				<div id="tab-7" class="tab-content current">
+				<div id="tab-7" class="tab-content">
 					<table class="_1qna_board">
 						<tr><th class="_1qna_board_border1">회원탈퇴</th></tr>
 
@@ -313,7 +317,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											<input type="text" class="show" placeholder="아이디" readonly="readonly"readonly>
 											<input type="text" value="<%=m_id %>" name="m_id"  readonly="readonly"readonly>
 											<input type="text" class="show" placeholder="비밀번호" readonly="readonly"readonly >
-											<input type="text" name="m_pass" required=" " id="m_pass"> <br>
+											<input type="password" name="m_pass" id="m_pass"> <br>
 											<div class="divdub"></div>
 										</div>	
 									</div>
@@ -334,12 +338,60 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 				
 				
+<!-- -----------------------------------------------------------------------------				 -->
+<script type="text/javascript" src="script/jquery-3.7.0.js"></script>
+<script type="text/javascript">
+
+
+$(document).ready(function() {
+    $('#changePasswordForm').submit(function(e) {
+        e.preventDefault(); // Prevent form submission for now
+
+        var currentPassword = $('#currentPassword').val();
+        var newPassword = $('#newPassword').val();
+        var confirmNewPassword = $('#confirmNewPassword').val();
+
+        // Perform your validation here
+        if (!currentPasswordIsValid(currentPassword)) {
+            alert("Current password is incorrect.");
+            return false; // Prevent form submission
+        }
+
+        if (!newPasswordIsValid(newPassword)) {
+            alert("New password is not valid.");
+            return false; // Prevent form submission
+        }
+
+        if (newPassword !== confirmNewPassword) {
+            alert("New password and confirmation do not match.");
+            return false; // Prevent form submission
+        }
+
+        // If all conditions are met, you can submit the form
+        // Uncomment the following line to submit the form:
+        // $('#changePasswordForm').off('submit').submit();
+    });
+
+    // Your validation functions
+    function currentPasswordIsValid(password) {
+        // Implement your logic to check if the current password is correct
+        // Return true if it's correct, false otherwise
+        // You may use AJAX to check the current password on the server
+        return true; // Replace with your logic
+    }
+
+    function newPasswordIsValid(newPassword) {
+        // Implement your logic to check if the new password is valid
+        // Return true if it's valid, false otherwise
+        return newPassword.length >= 8; // Replace with your logic
+    }
+});
+
+
 				
 				
 				
-				
-				
-				
+</script>				
 				
 				
 				

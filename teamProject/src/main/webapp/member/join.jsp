@@ -87,15 +87,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<td class="_1qna_board_border2">
 									<div class="mypage-grids"> 
 										<div align="center">
-											<input type="text" placeholder="아이디 (영문/숫자, 6~20자)" required=" " id="m_id" name="m_id" >
-											<br><div class="divdub"></div>
+											<input type="text" placeholder="아이디 (영문/숫자, 6~20자)" id="m_id" name="m_id" class="m_id" >
+											<br><div id="id_error_message" class="id_error_message"></div>
 										</div>
-									</div>
-								</td>
-<!-- 				-----중복버튼----							 -->
-								<td class="_1qna_board_border3" width="10">
-									<div class="up-button">
-										<input type="button" class="checkDuplicateID" value="중복확인"><br><br>
 									</div>
 								</td>
 							</tr>
@@ -107,20 +101,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<td class="_1qna_board_border2">
 									<div class="mypage-grids"> 
 										<div align="center">
-											<input type="password" placeholder="비밀번호 (문자+숫자+특수문자, 8~20자)"	id="m_pass" 	name="m_pass" required=" ">
-											<input type="password" placeholder="비밀번호확인" 						id="m_pass2" 	name="m_pass2" required=" ">
+											<input type="password" placeholder="비밀번호 (문자+숫자+특수문자, 8~20자)"	id="m_pass" 	name="m_pass">
+											<input type="password" placeholder="비밀번호확인" 						id="m_pass2" 	name="m_pass2">
 											<br><div id="result"></div>
 										</div>
 									</div>
 								</td>
 							</tr>
 							
-<!-- 				----이름입력---- -->
+<!-- 				----이름 입력---- -->
 							 <tr>
 								<td class="_1qna_board_border2">
 									<div class="mypage-grids"> 
 										<div align="center">
-											<input type="text" placeholder="이름 (최소 2자 이상)" id="m_name" name="m_name" required=" ">
+											<input type="text" placeholder="이름 (최소 2자 이상)" id="m_name" name="m_name">
+											<br><div id="name_error_message" class="name_error_message"></div>
 										</div>
 									</div>
 								</td>
@@ -130,17 +125,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<td class="_1qna_board_border2">
 									<div class="mypage-grids"> 
 										<div align="center">
-											<input type="text" placeholder="닉네임 (최소 2자 이상)" id="m_nick" name="m_nick" required=" ">
+											<input type="text" placeholder="닉네임 (최소 2자 이상)" id="m_nick" name="m_nick">
+											<br><div id="nick_error_message" class="nick_error_message"></div>
 										</div>
 									</div>
 								</td>
-<!-- 				----중복확인----	 -->
-								<td class="_1qna_board_border3" width="10">
-									<div class="up-button">
-										<input type="button" class="up-button" value="중복확인">
-									</div>
-								</td>
-							</tr>
 						
 						
 						
@@ -149,48 +138,31 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<td class="_1qna_board_border2">
 									<div class="mypage-grids"> 
 										<div align="center">
-											<input type="email" placeholder="이메일" id="m_email" name="m_email" required=" ">
+											<input type="email" placeholder="이메일" id="m_email" name="m_email">
+											<br><div id="email_error_message" class="email_error-message"></div>
 										</div>
 									</div>
 								</td>
-<!-- 				----중복확인----						 -->
-								<td class="_1qna_board_border3" width="10">
-									<div class="up-button">
-										<input type="button" class="up-button" value="중복확인">
-									</div>
-								</td>
-							</tr>
-						
-						
+
 <!-- 				----전화번호---- -->
 							<tr>	
 								<td class="_1qna_board_border2">
 									<div class="mypage-grids"> 
 										<div align="center">
-											<input type="tel" placeholder="전화번호" id="m_phone" name="m_phone" required=" ">
+											<input type="tel" placeholder="전화번호" id="m_phone" name="m_phone">
 										</div>
 									</div>
 								</td>
 							</tr>
 					</table>
 				
-				</div>
+				
 			
-			</div><br><br><br>
-			
-			
+			<br><br>
 			
 			
-			<div class="register-check-box">
-				<div class="check">
-					<label class="checkbox"><input type="checkbox" name="m_event"><i> </i>이메일</label>
-				</div>
-			</div>	<br>		
-			<div class="register-check-box">
-				<div class="check">
-					<label class="checkbox"><input type="checkbox" name="m_event"><i> </i>SMS</label>
-				</div>
-			</div><br>			
+			
+		
 <!-- 			----동의체크---- -->
 			<div class="register-check-box">
 				<div class="check">
@@ -199,9 +171,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>			
 			
 			<div>
-				<input type="submit" value="회원가입" onclick="validatePassword()">
+				<input type="submit" value="회원가입">
 			</div>
 			</form>
+			</div>
+			</div>
 		</div>
 			<div class="register-home">
 				<a href="main.me">Home</a>
@@ -215,53 +189,176 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- --------------------------->
 <script type="text/javascript" src="script/jquery-3.7.0.js"></script>
 <script type="text/javascript">
-//	비밀번호/비밀번호확인 일치
-function validatePassword() {
-	var newPassword = document.getElementById('m_pass').value;
-	var confirmPassword = document.getElementById('m_pass2').value;
-	var resultDiv = document.getElementById('result');
 
-	var passwordRegex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*?_]).{8,16}$/;
 
-	if (passwordRegex.test(newPassword)) {
-		if (newPassword === confirmPassword) {
-			resultDiv.innerHTML = '비밀번호 일치';
-			resultDiv.style.color = 'green';
-			window.location.href = 'login.me';
-		}else{
-			resultDiv.innerHTML = '비밀번호가 일치하지 않습니다.';
-			resultDiv.style.color = 'red';
-			return false;
-		}
-	}else{
-		resultDiv.innerHTML = '영문+숫자+특수문자 포함 8~20자로 입력해주세요';
-		resultDiv.style.color = 'red';
-		return false;
-	}
+$(document).ready(function() {
+        
+        
+//		아이디 조건 + 중복검사		----성공
+	$('#m_id').on('input', function() {
+		var userId = $(this).val();
+        var userIdPattern = /^[a-zA-Z0-9]{6,20}$/;
+        var id_error_message = $('#id_error_message');
+
+        if (userId === "") {
+            id_error_message.text("아이디를 입력하세요").css("color", "red");
+            $('#m_id').focus();
+            return false;
+        } else if (!userIdPattern.test(userId)) {
+            id_error_message.text("아이디는 영문/숫자 조합이며 6~20자여야 합니다").css("color", "red");
+            $('#m_id').focus();
+            return false;
+        } 
+            // AJAX 요청을 보내서 아이디 중복 여부를 확인합니다.
+		$.ajax({
+			type: 'POST', // 또는 'GET'에 따라 서버 측에서 처리 방식을 설정합니다.
+			url: 'idCheck.me', // 실제 서버 엔드포인트 URL을 지정합니다.
+			data: {'m_id':$('#m_id').val() }, // 서버에 보낼 데이터를 설정합니다.
+			success: function(result) {
+				$('.id_error_message').html(result)
+			}
+		});
+    });
+    
+    
+//	이름 조건    	----성공
+	$('#m_name').on('input', function() {
+	    var userName = $(this).val();
+	    var userNamePattern = /^[a-zA-Z0-9ㄱ-힣]{2,}$/;	    
+	    var name_error_message = $('#name_error_message');
 	
+	    if (userName === "") {
+	        name_error_message.text("이름을 입력하세요").css("color", "red");
+	        $('#m_name').focus();
+	        return false;
+	    } else if (!userNamePattern.test(userName)) {
+	        name_error_message.text("최소 2자 입력하세요").css("color", "red");
+	        $('#m_name').focus();
+	        return false;
+	    } else {
+	        // 유효한 경우 에러 메시지를 지웁니다.
+	        name_error_message.text("");
+	    }
+	});
+
+
+
+
+//	닉네임 조건 + 중복검사		----성공
+    $('#m_nick').on('input', function() {
+        var userNick = $(this).val();
+        var userNickPattern = /^[a-zA-Z0-9ㄱ-힣]{2,}$/;
+        var nick_error_message = $('#nick_error_message');
+
+        if (userNick === "") {
+            nick_error_message.text("닉네임을 입력하세요").css("color", "red");
+            $('#m_nick').focus();
+            return false;
+        } else if (!userNickPattern.test(userNick)) {
+            nick_error_message.text("최소 2자 입력하세요").css("color", "red");
+            $('#m_nick').focus();
+            return false;
+        }
+
+        $.ajax({
+            type: 'POST', // 또는 'GET'에 따라 서버 측에서 처리 방식을 설정합니다.
+            url: 'nickCheck.me', // 실제 서버 엔드포인트 URL을 지정합니다.
+            data: {'m_nick': $('#m_nick').val() }, // 서버에 보낼 데이터를 설정합니다.
+            success: function(result) {
+                $('.nick_error_message').html(result);
+            }
+        });
+    });
+  
+
+
+    
+//	이메일 조건 + 중복검사		----성공
+	$('#m_email').on('input', function() {
+	    var userEmail = $(this).val();
+	    var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/; // 이메일 형식 검사
+	    var email_error_message = $('#email_error_message');
+	
+	    if (userEmail === "") {
+	        email_error_message.text("이메일을 입력하세요").css("color", "red");
+	        $('#m_email').focus();
+	        return false;
+	    } else if (!emailPattern.test(userEmail)) {
+	        email_error_message.text("유효한 이메일 형식이 아닙니다").css("color", "red");
+	        $('#m_email').focus();
+	        return false;
+	    } else {
+	        // 유효한 경우 에러 메시지를 지웁니다.
+	        email_error_message.text("");
+	    }
+	
+	    $.ajax({
+	        type: 'POST', // 또는 'GET'에 따라 서버 측에서 처리 방식을 설정합니다.
+	        url: 'emailCheck.me', // 실제 서버 엔드포인트 URL을 지정합니다.
+	        data: {'m_email': $('#m_email').val() }, // 서버에 보낼 데이터를 설정합니다.
+	        success: function(result) {
+	            $('.email_error-message').html(result);
+	        }
+	    });
+	});
+    
+    
+    
+    
+// 	 $('#join').submit(function() {
+	
+// 			alert("회원가입 조건을 모두 충족해야 합니다.");
+// 			return false; // Prevent form submission
+// 		});
+	         
+	 
+
+
+    
+    
+})
+
+
+//	비밀번호/비밀번호확인 일치		----성공
+document.getElementById('m_pass').addEventListener('keyup', validatePassword);
+document.getElementById('m_pass2').addEventListener('keyup', validatePassword);
+
+function validatePassword() {
+    var newPassword = document.getElementById('m_pass').value;
+    var confirmPassword = document.getElementById('m_pass2').value;
+    var resultDiv = document.getElementById('result');
+
+    var passwordRegex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*?_]).{8,16}$/;
+
+    if (passwordRegex.test(newPassword)) {
+        if (newPassword === confirmPassword) {
+        	resultDiv.innerHTML = '';
+        } else {
+            resultDiv.innerHTML = '비밀번호가 일치하지 않습니다.';
+            resultDiv.style.color = 'red';
+        }
+    } else {
+        resultDiv.innerHTML = '영문+숫자+특수문자 포함 8~16자로 입력해주세요';
+        resultDiv.style.color = 'red';
+    }
 }
 
 
 
 
-//	아이디 중복체크
-$(document).ready(function (){	
-	$('.up-button-button').click(function() {
-		$.ajax ({
-			url:'idCheck.me',
-			data:{'m_id':$('.m_id').val()},
-			success:function(result){
-				$('.divdub').html(result);
-			}
-		})	// ajax
-	})	// up-button
-})	// document
+
+
+
+
+
+
+
+
+
+
+
+
 </script>
-
-
-
-
-
 
 
 <!-- 푸터 들어가는 곳! -->

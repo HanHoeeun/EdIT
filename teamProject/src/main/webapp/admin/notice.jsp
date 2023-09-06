@@ -1,3 +1,4 @@
+<%@page import="java.sql.ResultSet"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.itwillbs.domain.NoticePageDTO"%>
 <%@page import="com.itwillbs.domain.NoticeDTO"%>
@@ -49,10 +50,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--=========================== 상단 네비 ============================================ -->
 	<div class="breadcrumbs">
 		<div class="container">
-			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft"
-				data-wow-delay=".5s">
-				<li><a href="index.html"><span
-						class="glyphicon glyphicon-home" aria-hidden="true"></span>홈</a></li>
+			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>홈</a></li>
 				<li class="active">공지사항</li>
 				<li class="active">일반공지</li>
 			</ol>
@@ -67,12 +66,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <!--=========================== 상단 탭 리스트============================================ -->
 				<ul class="tabs">
-					<li class="tab-link current" data-tab="tab-1">일반공지</li>
-					<li class="tab-link" data-tab="tab-2">이벤트</li>
+					<li class="tab-link current" data-tab="tab-1" onclick="location.href='noticelist.no'">일반공지</li>
+					<li class="tab-link" data-tab="tab-2" onclick="location.href='eventlist.no'">이벤트</li>
 					<%
 					if (1 == 1) {
 					%>
-					<li class="tab-link" data-tab="tab-3">공지글 작성</li>
+					<li class="tab-link" data-tab="tab-3" onclick="location.href='noticeWrite.no'">공지글 작성</li>
 					<%
 					}
 					%>
@@ -98,7 +97,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							NoticeDTO noticeDTO = noticeList.get(i);
 						%>
 						<tr
-							onclick="location.href='content.no?a_num=<%=noticeDTO.getA_num()%>'">
+							onclick="location.href='noticeContent.no?a_num=<%=noticeDTO.getA_num()%>'">
 							<td class="_1qna_board_border"><%=noticeDTO.getA_num()%></td>
 							<td class="_1qna_board_subject"><%=noticeDTO.getA_title()%></td>
 							<td class="_1qna_board_border"><%=format.format(noticeDTO.getA_date())%></td>
@@ -107,89 +106,63 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						}
 						%>
 					</table>
+				</div>
 
-<!--================================= 1탭 일반공지 페이징 ================================= -->
-					<div class="_1qna_paging">
-						<ul>
-							<%
-							// 시작페이지 1페이지 Prev 없음
-							// 시작페이지 11,21,31 Prev가 보이게
-							if (pageDTO.getStartPage() > pageDTO.getPageBlock()) {
-							%>
-							<li
-								onclick="location.href='noticelist.no?pageNum=<%=pageDTO.getStartPage() - pageDTO.getPageBlock()%>&tab=tab-1'">Prev</li>
+				<!--================================= 1탭 일반공지 페이징 ================================= -->
+				<div class="_1qna_paging">
+					<ul>
+						<%
+						// 시작페이지 1페이지 Prev 없음
+						// 시작페이지 11,21,31 Prev가 보이게
+						if (pageDTO.getStartPage() > pageDTO.getPageBlock()) {
+						%>
+						<li
+							onclick="location.href='noticelist.no?pageNum=<%=pageDTO.getStartPage() - pageDTO.getPageBlock()%>&tab=tab-1'">Prev</li>
 
-							<%
-							}
-							for (int i = pageDTO.getStartPage(); i <= pageDTO.getEndPage(); i++) {
-							%>
-							<li
-								onclick="location.href='noticelist.no?pageNum=<%=i%>&tab=tab-1'"><%=i%></li>
-							<%
-							}
-							// 끝페이지 번호 전체페이지수 비교 => 전체페이지 수 크면 => next보임
-							if (pageDTO.getEndPage() < pageDTO.getPageCount()) {
-							%>
-							<li
-								onclick="location.href='noticelist.no?pageNum=<%=pageDTO.getStartPage() + pageDTO.getPageBlock()%>&tab=tab-1'">Next</li>
-							<%
-							}
-							%>
-						</ul>
-					</div>
+						<%
+						}
+						for (int i = pageDTO.getStartPage(); i <= pageDTO.getEndPage(); i++) {
+						%>
+						<li
+							onclick="location.href='noticelist.no?pageNum=<%=i%>&tab=tab-1'"><%=i%></li>
+						<%
+						}
+						// 끝페이지 번호 전체페이지수 비교 => 전체페이지 수 크면 => next보임
+						if (pageDTO.getEndPage() < pageDTO.getPageCount()) {
+						%>
+						<li
+							onclick="location.href='noticelist.no?pageNum=<%=pageDTO.getStartPage() + pageDTO.getPageBlock()%>&tab=tab-1'">Next</li>
+						<%
+						}
+						%>
+					</ul>
 				</div>
 			</div>
-			
-<!--======================================= 1탭 검색 ========================================= -->
-			<form action="noticelist.no" method="post"
-				id="_1admin_search_form">
-				<table class="_1admin_search">
-					<tr>
-						<td><input type="text" name="search" onkeyup="enterKey();">
-						</td>
-						<td><input type="submit" value="검색"></td>
-					</tr>
-				</table>
-			</form>
-			<script type="text/javascript">
-				function enterKey() {
-					if (window.event.keyCode == 13) { // Enter 키 코드값 13
-						document.getElementById('_1admin_search_form').submit();
+
+<!--================================== 1탭 검색 =========================================-->
+
+ 				<form action="adminMemberPage.ad" method="post"
+					id="_1admin_search_form">
+					<table class="_1admin_search">
+						<tr>
+							<td><input class="_1admin_search_search" type="search" name="search" onkeyup="enterKey();">
+							</td>
+							<td><input class="_1admin_search_btn" type="submit" value="검색"></td>
+						</tr>
+					</table>
+				</form> 
+
+				<script type="text/javascript">
+					function enterKey() {
+						if (window.event.keyCode == 13) { // Enter 키 코드값 13
+							document.getElementById('edit_search_form')
+									.submit();
+						}
 					}
-				}
-			</script>
-
-<!--====================================== 탭 jquery =================================-->
-			<script type="text/javascript">
-            $(document).ready(function(){
-                $('ul.tabs li').click(function(){
-                    var tab_id = $(this).attr('data-tab');
-
-                    $('ul.tabs li').removeClass('current');
-                    $('.tab-content').removeClass('current');
-
-                    $(this).addClass('current');
-                    $("#"+tab_id).addClass('current');
-
-                    // Add parameter to URL
-                    var url = window.location.href.split('?')[0];
-                    history.pushState(null, null, url + '?tab=' + tab_id);
-                });
-
-                // Check URL for tab parameter on page load
-                var urlParams = new URLSearchParams(window.location.search);
-                if (urlParams.has('tab')) {
-                    var tabParam = urlParams.get('tab');
-                    $('.tabs li').removeClass('current');
-                    $('.tab-content').removeClass('current');
-                    $('[data-tab="' + tabParam + '"]').addClass('current');
-                    $('#' + tabParam).addClass('current');
-                }
-            });
-            </script>
+				</script>
 		</div>
 	</div>
-	<div class="clearfix_1_1"> </div>
+
 	
 <!--================================== 푸터 ==================================== -->
 <jsp:include page="../inc/bottom.jsp"></jsp:include>
