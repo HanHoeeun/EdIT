@@ -397,7 +397,7 @@ public class NoticeController extends HttpServlet{
 			pageDTO2.setPageSize(pageSize);
 			pageDTO2.setPageNum(pageNum);
 			pageDTO2.setCurrentPage(currentPage);
-			pageDTO2.setA_notice_type("일반공지");
+			pageDTO2.setA_notice_type("이벤트");
 			// 검색어 저장
 			pageDTO2.setSearch(search);
 			
@@ -430,7 +430,7 @@ public class NoticeController extends HttpServlet{
 			
 			// request에 "eventList", eventList 저장
 			request.setAttribute("eventList", eventList);
-			request.setAttribute("pageDTO", pageDTO2);
+			request.setAttribute("pageDTO2", pageDTO2);
 			
 			// 주소변경없이 이동 admin/eventSearch.jsp
 			dispatcher 
