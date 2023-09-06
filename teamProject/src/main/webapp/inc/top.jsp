@@ -140,7 +140,7 @@ function showUnread(result){
 					
 				</ul>
 			</div>
-			<!-- <!-- 얘도 그냥 위에 처럼 리스트 내에 내장 시켜서 하이퍼링크 거는건 어떤지..? -->
+			<!-- <!-- 얘도 그냥 위에 처럼 리스트 내에 내장 시켜서 하이퍼링크 거는건 어떤지..?
 			 <div class="product_list_header">   
 					<form action="wishlist.po" method="post" class="last"> 
 						<input type="hidden" name="cmd" value="_cart">
@@ -148,7 +148,7 @@ function showUnread(result){
 						<button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-heart" aria-hidden="true"></i></button>
 					</form>  
 
-			</div>  
+			</div>   -->
 			<div class="clearfix"> </div>
 		</div>
 	</div>
@@ -164,7 +164,7 @@ function showUnread(result){
 			<div class="w3ls_logo_products_left">
 				<h1><a href="main.me">EdIT</a></h1>
 			</div>
-		<div class="w3l_search">
+		<!-- <div class="w3l_search">
 			<form action="#" method="post">
 				<input type="search" name="Search" placeholder="찾으시는 상품을 검색하세요" required="">
 				<button type="submit" class="btn btn-default search" aria-label="Left Align">
@@ -172,7 +172,7 @@ function showUnread(result){
 				</button>
 				<div class="clearfix"></div>
 			</form>
-		</div>
+		</div> -->
 			
 			<div class="clearfix"> </div>
 		</div>
