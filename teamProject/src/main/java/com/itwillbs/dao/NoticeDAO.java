@@ -14,6 +14,7 @@ import javax.sql.DataSource;
 import com.itwillbs.domain.NoticeDTO;
 import com.itwillbs.domain.NoticePageDTO;
 
+
 public class NoticeDAO {
 	Connection con = null;
 	PreparedStatement pstmt = null;
@@ -179,6 +180,61 @@ public class NoticeDAO {
 		}		
 	}//deleteNotice()
 	
+//===================================== getNoticeListSearch =============================================
+		public List<NoticeDTO> getNoticeListSearch(NoticePageDTO pageDTO) {
+			System.out.println("NoticeDAO getNoticeListSearch()");
+			List<NoticeDTO> noticeList = null;
+			try {
+				con = getConnection();
+				String sql="select * from notice1 where a_notice_type=? and a_title like ? order by a_num desc limit ?, ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, pageDTO.getA_notice_type());//일반공지 / 이벤트
+				pstmt.setString(2, "%"+pageDTO.getSearch()+"%");
+				pstmt.setInt(3, pageDTO.getStartRow()-1);//시작행-1
+				pstmt.setInt(4, pageDTO.getPageSize());//몇개
+				rs = pstmt.executeQuery();
+				
+				System.out.println(pstmt);
+				// noticeList 객체생성
+				noticeList = new ArrayList<>();
+				
+				// 배열에 저장
+				while (rs.next()) {
+					NoticeDTO noticeDTO = new NoticeDTO();
+					noticeDTO.setA_num(rs.getInt("a_num"));
+					noticeDTO.setA_title(rs.getString("a_title"));
+					noticeDTO.setA_content(rs.getString("a_content"));
+					noticeDTO.setA_date(rs.getTimestamp("a_date"));
+					noticeList.add(noticeDTO);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				dbClose();
+			}return noticeList;
+		}//getNoticeList
+
+//====================================== getNoticeCountSearch ==================================
+		public int getNoticeCountSearch(NoticePageDTO pageDTO) {
+			int count = 0;
+			try {
+				con=getConnection();
+				String sql = "select count(*) from notice1 where a_title like ?;";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setString(1, "%"+pageDTO.getSearch()+"%");//='%검색어%'
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					count = rs.getInt("count(*)");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				dbClose();
+			}
+			return count;
+		}//getNoticeCount
+		
+		
 //*******************************************************************************************	
 //********************************************************************************************	
 //==========================================================================================		
@@ -323,7 +379,59 @@ public class NoticeDAO {
 		}		
 	}//deleteEvent()	
 	
+//===================================== getEventListSearch =============================================
+	public List<NoticeDTO> getEventListSearch(NoticePageDTO pageDTO2) {
+		System.out.println("NoticeDAO getEventListSearch()");
+		List<NoticeDTO> eventList = null;
+		try {
+			con = getConnection();
+			String sql="select * from notice1 where a_notice_type=? and a_title like ? order by a_num desc limit ?, ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, pageDTO2.getA_notice_type());//일반공지 / 이벤트
+			pstmt.setString(2, "%"+pageDTO2.getSearch()+"%");
+			pstmt.setInt(3, pageDTO2.getStartRow()-1);//시작행-1
+			pstmt.setInt(4, pageDTO2.getPageSize());//몇개
+			rs = pstmt.executeQuery();
 
+			System.out.println(pstmt);
+			// noticeList 객체생성
+			eventList = new ArrayList<>();
+
+			// 배열에 저장
+			while (rs.next()) {
+				NoticeDTO noticeDTO2 = new NoticeDTO();
+				noticeDTO2.setA_num(rs.getInt("a_num"));
+				noticeDTO2.setA_title(rs.getString("a_title"));
+				noticeDTO2.setA_content(rs.getString("a_content"));
+				noticeDTO2.setA_date(rs.getTimestamp("a_date"));
+				eventList.add(noticeDTO2);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbClose();
+		}return eventList;
+	}//getEventList
+
+//====================================== getEventCountSearch ==================================
+	public int getEventCountSearch(NoticePageDTO pageDTO2) {
+		int count = 0;
+		try {
+			con=getConnection();
+			String sql = "select count(*) from notice1 where a_title like ?;";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, "%"+pageDTO2.getSearch()+"%");//='%검색어%'
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt("count(*)");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbClose();
+		}
+		return count;
+	}//getEventCount
 
 
 

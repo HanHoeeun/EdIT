@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.itwillbs.dao.NoticeDAO;
 import com.itwillbs.domain.NoticeDTO;
 import com.itwillbs.domain.NoticePageDTO;
+
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -167,7 +168,7 @@ public class NoticeService {
 				// 리턴할형없음 insertNotice(noticeDTO) 호출
 				noticeDAO.updateNotice(noticeDTO);
 			}else {
-				noticeDAO.updateEvent(noticeDTO);
+				eventDAO.updateEvent(noticeDTO);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -189,6 +190,44 @@ public class NoticeService {
 			e.printStackTrace();
 		}
 	}//deleteNotice
+
+//===================================== getNoticeListSearch ===========================================
+	public List<NoticeDTO> getNoticeListSearch(NoticePageDTO pageDTO) {
+		System.out.println("NoticeSearvice getNoticeListSearch()");
+		List<NoticeDTO> noticeList = null;
+		try {
+			// 시작하는 행부터 10개 뽑아오기
+			int startRow = (pageDTO.getCurrentPage()-1)*pageDTO.getPageSize()+1;
+			// 시작하는 행부터 끝나는 행까지 뽑아오기
+			int endRow = startRow+pageDTO.getPageSize()-1;
+			//pageDTO 저장 <= startRow, endRow
+			pageDTO.setStartRow(startRow);
+			pageDTO.setEndRow(endRow);
+
+			// NoticeDAO 객체생성
+			noticeDAO = new NoticeDAO();
+			// noticeList = getNoticeList() 메서드 호출
+			noticeList = noticeDAO.getNoticeListSearch(pageDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return noticeList;
+	}//getNoticeListSearch
+	
+//===================================== getNoticeCountSearch ===========================================		
+		public int getNoticeCountSearch(NoticePageDTO pageDTO) {
+			System.out.println("NoticeService getNoticeCountSearch()");
+			int count = 0;
+			try {
+				// NoticeDAO 객체생성
+				noticeDAO = new NoticeDAO();
+				// a_count = getNoticeCount() 호출
+				count = noticeDAO.getNoticeCountSearch(pageDTO);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}return count;
+		}//getNoticeCountSearch
+
 
 //******************************************************************************************
 //******************************************************************************************
@@ -274,7 +313,7 @@ public class NoticeService {
 				// 리턴할형없음 insertNotice(noticeDTO) 호출
 				noticeDAO.insertNotice(noticeDTO);
 			}else {
-				noticeDAO.insertEvent(noticeDTO);
+				eventDAO.insertEvent(noticeDTO);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -290,9 +329,9 @@ public class NoticeService {
 			// request 파라미터 가져오기 => int a_num 저장
 			int a_num = Integer.parseInt(request.getParameter("a_num"));
 			// NoticeDAO 객체생성
-			noticeDAO = new NoticeDAO();
+			eventDAO = new NoticeDAO();
 			// noticeDTO = getEvent(a_num) 메서드 호출
-			noticeDTO = noticeDAO.getEvent(a_num);
+			noticeDTO = eventDAO.getEvent(a_num);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -355,8 +394,44 @@ public class NoticeService {
 			e.printStackTrace();
 		}
 	}//deleteEvent
-	
-	
+
+//======================================= getEventListSearch ================================================	
+	public List<NoticeDTO> getEventListSearch(NoticePageDTO pageDTO2) {
+		System.out.println("NoticeSearvice getEventListSearch()");
+		List<NoticeDTO> eventList = null;
+		try {
+			// 시작하는 행부터 10개 뽑아오기
+			int startRow = (pageDTO2.getCurrentPage()-1)*pageDTO2.getPageSize()+1;
+			// 시작하는 행부터 끝나는 행까지 뽑아오기
+			int endRow = startRow+pageDTO2.getPageSize()-1;
+			//pageDTO 저장 <= startRow, endRow
+			pageDTO2.setStartRow(startRow);
+			pageDTO2.setEndRow(endRow);
+
+			// NoticeDAO 객체생성
+			eventDAO = new NoticeDAO();
+			// eventList = getEventList() 메서드 호출
+			eventList = eventDAO.getEventListSearch(pageDTO2);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return eventList;
+	}//getEventListSearch
+
+//===================================== getEventCountSearch ===========================================		
+	public int getEventCountSearch(NoticePageDTO pageDTO2) {
+		System.out.println("NoticeService getEventCountSearch()");
+		int count = 0;
+		try {
+			// NoticeDAO 객체생성
+			eventDAO = new NoticeDAO();
+			// a_count = getEvnetCount() 호출
+			count = eventDAO.getEventCountSearch(pageDTO2);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}return count;
+	}//getEventCountSearch	
+
 	
 	
 	

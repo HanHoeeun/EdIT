@@ -183,6 +183,69 @@ public class NoticeController extends HttpServlet{
 			response.sendRedirect("noticelist.no");
 		}//delete.no
 		
+		
+//============================================= noticelistSearch.no ================================================		
+				if(sPath.equals("/noticelistSearch.no")) {
+					System.out.println("뽑은 가상주소 비교 : /noticelistSearch.no");
+					request.setCharacterEncoding("utf-8");
+					
+					// 검색어 뽑아오기
+					String search = request.getParameter("search");
+					System.out.println("search"+search);
+					
+					//notice 페이징 (NoticePageDTO pageDTO)
+					int pageSize=10; 
+					String pageNum=request.getParameter("pageNum");
+					if(pageNum == null) {
+						pageNum = "1";
+					}
+					int currentPage = Integer.parseInt(pageNum);
+					
+					NoticePageDTO pageDTO = new NoticePageDTO();
+					pageDTO.setPageSize(pageSize);
+					pageDTO.setPageNum(pageNum);
+					pageDTO.setCurrentPage(currentPage);
+					pageDTO.setA_notice_type("일반공지");
+					// 검색어 저장
+					pageDTO.setSearch(search);
+					
+					// NoticeService 객체생성
+					noticeService = new NoticeService();
+					// List<NoticeDTO> noticeList = getNoticeList(); 메서드 호출
+					List<NoticeDTO> noticeList = noticeService.getNoticeListSearch(pageDTO);
+					
+					System.out.println(noticeList);
+					
+					// 공지사항 전체 글 개수 (NoticePageDTO)
+					int count = noticeService.getNoticeCountSearch(pageDTO);
+					System.out.println(count);
+					
+					int pageBlock = 10;
+					int startPage=(currentPage-1)/pageBlock*pageBlock+1;
+					int endPage=startPage+pageBlock-1;
+					int pageCount = count / pageSize + (count % pageSize==0?0:1);
+					if(endPage > pageCount) {
+						endPage = pageCount;
+					}
+					
+					// NoticePageDTO pageDTO 저장
+					pageDTO.setCount(count);
+					pageDTO.setPageBlock(pageBlock);
+					pageDTO.setStartPage(startPage);
+					pageDTO.setEndPage(endPage);
+					pageDTO.setPageCount(pageCount);
+					
+					
+					// request에 "noticeList", noticeList 저장
+					request.setAttribute("noticeList", noticeList);
+					request.setAttribute("pageDTO", pageDTO);
+					
+					// 주소변경없이 이동 admin/noticeSearch.jsp
+					dispatcher 
+					= request.getRequestDispatcher("admin/noticeSearch.jsp");
+					dispatcher.forward(request, response);
+				}//noticelistSearch.no
+		
 //**************************************************************************************************
 //**************************************************************************************************
 //======================================  eventlist.no ================================================		
@@ -313,5 +376,66 @@ public class NoticeController extends HttpServlet{
 			response.sendRedirect("eventlist.no");
 		}//deleteEvent.no		
 		
+//============================================= eventlistSearch.no ================================================		
+		if(sPath.equals("/eventlistSearch.no")) {
+			System.out.println("뽑은 가상주소 비교 : /eventlistSearch.no");
+			request.setCharacterEncoding("utf-8");
+			
+			// 검색어 뽑아오기
+			String search = request.getParameter("search");
+			System.out.println("search"+search);
+			
+			// event 페이징 (NoticePageDTO pageDTO2)
+			int pageSize=10; 
+			String pageNum=request.getParameter("pageNum");
+			if(pageNum == null) {
+				pageNum = "1";
+			}
+			int currentPage = Integer.parseInt(pageNum);
+			
+			NoticePageDTO pageDTO2 = new NoticePageDTO();
+			pageDTO2.setPageSize(pageSize);
+			pageDTO2.setPageNum(pageNum);
+			pageDTO2.setCurrentPage(currentPage);
+			pageDTO2.setA_notice_type("일반공지");
+			// 검색어 저장
+			pageDTO2.setSearch(search);
+			
+			// NoticeService 객체생성
+			noticeService = new NoticeService();
+			// List<NoticeDTO> noticeList = getNoticeList(); 메서드 호출
+			List<NoticeDTO> eventList = noticeService.getEventListSearch(pageDTO2);
+			
+			System.out.println(eventList);
+			
+			// 공지사항 전체 글 개수 (NoticePageDTO)
+			int count = noticeService.getNoticeCountSearch(pageDTO2);
+			System.out.println(count);
+			
+			int pageBlock = 10;
+			int startPage=(currentPage-1)/pageBlock*pageBlock+1;
+			int endPage=startPage+pageBlock-1;
+			int pageCount = count / pageSize + (count % pageSize==0?0:1);
+			if(endPage > pageCount) {
+				endPage = pageCount;
+			}
+			
+			// NoticePageDTO pageDTO2 저장
+			pageDTO2.setCount(count);
+			pageDTO2.setPageBlock(pageBlock);
+			pageDTO2.setStartPage(startPage);
+			pageDTO2.setEndPage(endPage);
+			pageDTO2.setPageCount(pageCount);
+			
+			
+			// request에 "eventList", eventList 저장
+			request.setAttribute("eventList", eventList);
+			request.setAttribute("pageDTO", pageDTO2);
+			
+			// 주소변경없이 이동 admin/eventSearch.jsp
+			dispatcher 
+			= request.getRequestDispatcher("admin/eventSearch.jsp");
+			dispatcher.forward(request, response);
+		}//eventlistSearch.no		
 	}//doProcess
 }//class

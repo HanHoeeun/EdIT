@@ -76,7 +76,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	NoticeDTO noticeDTO = (NoticeDTO) request.getAttribute("noticeDTO");
 	%>
 	<div class="top-brands_1">
-		<h2><%=noticeDTO.getA_notice_type()%>수정</h2>
+		<h2><%=noticeDTO.getA_notice_type()%> 수정</h2>
 	</div>	
 	<!--=========================== 본문 =========================================== -->
 	<%
