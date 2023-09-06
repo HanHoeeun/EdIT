@@ -1516,6 +1516,7 @@ public class ProductDAO {
 					+ "join members m on w.w_num = m.m_num "
 					+ "where p_status =? order by p_num limit ?, ?";
 			pstmt.setString(1, "거래완료");
+			
 			pstmt.setInt(2, ppageDTO.getP_startRow()-1);//시작행-1
 			pstmt.setInt(3, ppageDTO.getP_pageSize());//몇개
 			//4 실행 => 결과 저장
