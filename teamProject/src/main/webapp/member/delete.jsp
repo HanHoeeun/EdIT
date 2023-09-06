@@ -23,9 +23,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- //for-mobile-apps -->
-<link href="../css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-<link href="../css/style.css" rel="stylesheet" type="text/css" media="all" />
-<link href="../css/font-awesome.css" rel="stylesheet"> 
+<link href="./css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="./css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="./css/font-awesome.css" rel="stylesheet"> 
 <link href="./css/mypage_3.css" rel="stylesheet"> 
 <!-- //font-awesome icons -->
 <!-- js -->
@@ -34,8 +34,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href='//fonts.googleapis.com/css?family=Raleway:400,100,100italic,200,200italic,300,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic' rel='stylesheet' type='text/css'>
 <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
 <!-- start-smoth-scrolling -->
-<script type="text/javascript" src="../js/move-top.js"></script>
-<script type="text/javascript" src="../js/easing.js"></script>
+<script type="text/javascript" src="./js/move-top.js"></script>
+<script type="text/javascript" src="./js/easing.js"></script>
 <script type="text/javascript">
 	jQuery(document).ready(function($) {
 		$(".scroll").click(function(event){		
@@ -67,242 +67,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <!--=========================== 상단 탭 리스트============================================ -->
 				<ul class="tabs">
-					<li class="tab-link" data-tab="tab-1" onclick="location.href='update.me'">나의정보</li>
+					<li class="tab-link" data-tab="tab-1" onclick="location.href='mypage.me'">나의정보</li>
 					<li class="tab-link" data-tab="tab-2">구매내역</li>
 					<li class="tab-link" data-tab="tab-3">판매내역</li>
 					<li class="tab-link" data-tab="tab-4">찜</li>
-					<li class="tab-link" data-tab="tab-5">문의내역</li>
+<!-- 				<li class="tab-link" data-tab="tab-5">문의내역</li> -->
 					<li class="tab-link" data-tab="tab-6">신고내역</li>
-					<li class="tab-link current" data-tab="tab-7" onclick="location.href='delete.me'">회원탈퇴</li>
+					<li class="tab-link current" onclick="location.href='delete.me'">회원탈퇴777</li>
 				</ul>
 			</div>
 		
-<!--================================== 1탭 나의정보==================================== -->
-<%
-	MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
-%>
-
-			<div class="container_3_1">
-				<div id="tab-1" class="tab-content current">
-					<table class="mypage-board">
-						<tr>
-							<th class="_1qna_board_border1" colspan="2">나의정보</th>
-						</tr>
-<!-- 		----아이디---- -->
-						 <tr>
-							<td class="_1qna_board_border2">
-								<form action="updatePro.me" method="post">
-									<div class="mypage-grids"> 
-										<div align="center">
-											<input type="text" class="show" placeholder="아이디" readonly="readonly"readonly>
-											<input type="text" value="<%=memberDTO.getM_id() %>" id="m_id" name="m_id" readonly="readonly">
-										</div>
-									</div>
-								</form>
-							</td>
-						</tr>
-						
-<!-- 		----닉네임---- -->						
-						 <tr>
-							<td class="_1qna_board_border2">
-								<form action="updatePro.me" method="post">
-									<div class="mypage-grids"> 
-										<div align="center">
-											<input type="text" class="show" placeholder="닉네임" readonly="readonly"readonly>
-											<input type="text" value="<%=memberDTO.getM_nick() %>" id="m_nick" name="m_nick">
-										</div>
-									</div>
-								</form>
-							</td>
-							<td class="_1qna_board_border3" width="10">
-								<div class="up-button">
-									<input type="button" class="up-button" value="수정">
-								</div>
-							</td>
-						</tr>
-						
-<!-- 		----비밀번호---- -->						
-						<tr>
-							<td class="_1qna_board_border2">
-								<form action="updatePro.me" method="post">
-									<div class="mypage-grids"> 
-										<div align="center">
-											<input type="text" class="show" placeholder="비밀번호" readonly="readonly"readonly>
-											<input type="password" placeholder="현재비밀번호" id="m_pass" 	name="m_pass">
-											<input type="password" placeholder="새비밀번호" id="m_pass2" 	name="m_pass2">
-											<input type="password" placeholder="새비밀번호확인" id="m_pass3" 	name="m_pass3">
-										</div>
-									</div>
-								</form>
-							</td>
-												
-							<td class="_1qna_board_border3" width="10">
-							<div class="up-button">
-							<input type="button" class="up-button" value="수정">
-							</div>
-							</td>
-						</tr>
-						
-						
-						
-<!-- 		----이메일---- -->							
-						<tr>	
-							<td class="_1qna_board_border2">
-								<form action="updatePro.me" method="post">
-									<div class="mypage-grids"> 
-										<div align="center">
-											<input type="text" class="show" placeholder="이메일" readonly="readonly"readonly>
-											<input type="email" value="<%=memberDTO.getM_email()%>"		id="m_email" 	name="m_email">
-										</div>
-									</div>
-								</form>
-							</td>
-												
-							<td class="_1qna_board_border3" width="10">
-							<div class="up-button">
-							<input type="button" class="up-button" value="수정">
-							</div>
-							</td>
-						</tr>
-						
-						
-<!-- 		----전화번호---- -->							
-						<tr>	
-							<td class="_1qna_board_border2">
-								<form action="updatePro.me" method="post">
-									<div class="mypage-grids"> 
-										<div align="center">
-											<input type="text" class="show" placeholder="전화번호" readonly="readonly"readonly>
-											<input type="tel" value="<%=memberDTO.getM_phone() %>"		id="m_phone" 	name="m_phone">
-										</div>
-									</div>
-								</form>
-							</td>
-												
-							<td class="_1qna_board_border3" width="10">
-							<div class="up-button">
-							<input type="button" class="up-button" value="수정">
-							</div>
-							</td>
-						</tr>
-						
-
-						
-						
-						
-						
-					</table>
-				</div>
-<!--================================== 2탭 구매내역 ==================================== -->				
-				<div id="tab-2" class="tab-content">
-					<table class="_1qna_board">
-						<tr>
-							<th class="_1qna_board_border">번호</th>
-							<th class="_1qna_board_border">제목</th>
-							<th class="_1qna_board_border">작성일</th>
-						</tr>
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_subject">신규가입 회원 혜택이 빵빵! (~09/30)</td>
-							<td class="_1qna_board_border">2023.09.01</td>
-						</tr>
-						
-					</table>
-					<!--============= 2탭 이벤트 페이징 ==================== -->
-				    <div class="_1qna_paging">
-				 
-					 <ul>
-				       <li onclick="location.href='index.html'">◀</li>
-				       <li onclick="location.href='about.html'">1</li>
-			           <li onclick="location.href='login.html'">2</li>
-			           <li onclick="location.href='faq.html'">3</li>
-			           <li onclick="location.href='gourmet.html'">4</li>
-			           <li onclick="location.href='login.html'">5</li>
-			           <li onclick="location.href='products.html'">▶</li>						
-			         </ul> 
-   					 </div>
-				</div>
-<!--================================== 3탭 판매내역 ==================================== -->
-	
-				<div id="tab-3" class="tab-content">
-					<table class="_1qna_board">
-						<tr>
-							<th class="_1qna_board_border">번호</th>
-							<th class="_1qna_board_border">제목</th>
-							<th class="_1qna_board_border">작성일</th>
-						</tr>
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_subject">신규가입 회원 혜택이 빵빵! (~09/30)</td>
-							<td class="_1qna_board_border">2023.09.01</td>
-						</tr>
-						
-					</table>
-		<!--============= 3탭 이벤트 페이징 ==================== -->
-				    <div class="_1qna_paging">
-				 
-					 <ul>
-				       <li onclick="location.href='index.html'">◀</li>
-				       <li onclick="location.href='about.html'">1</li>
-			           <li onclick="location.href='login.html'">2</li>
-			           <li onclick="location.href='faq.html'">3</li>
-			           <li onclick="location.href='gourmet.html'">4</li>
-			           <li onclick="location.href='login.html'">5</li>
-			           <li onclick="location.href='products.html'">▶</li>						
-			         </ul> 
-   					 </div>
-				</div>
-<!--================================== 4탭 찜 ==================================== -->				
-				<div id="tab-4" class="tab-content">
-					<table class="_1qna_board">
-						<tr>
-							<th class="_1qna_board_border">번호</th>
-							<th class="_1qna_board_border">제목</th>
-							<th class="_1qna_board_border">작성일</th>
-						</tr>
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_subject">신규가입 회원 혜택이 빵빵! (~09/30)</td>
-							<td class="_1qna_board_border">2023.09.01</td>
-						</tr>
-						
-					</table>
-				</div>
-<!--================================== 5탭 문의내역 ==================================== -->				
-				<div id="tab-5" class="tab-content">
-					<table class="_1qna_board">
-						<tr>
-							<th class="_1qna_board_border">번호</th>
-							<th class="_1qna_board_border">제목</th>
-							<th class="_1qna_board_border">작성일</th>
-						</tr>
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_subject">신규가입 회원 혜택이 빵빵! (~09/30)</td>
-							<td class="_1qna_board_border">2023.09.01</td>
-						</tr>
-						
-					</table>
-				</div>
-<!--================================== 6탭 신고내역 ==================================== -->				
-				<div id="tab-6" class="tab-content">
-					<table class="_1qna_board">
-						<tr>
-							<th class="_1qna_board_border">번호</th>
-							<th class="_1qna_board_border">제목</th>
-							<th class="_1qna_board_border">신고일</th>
-							<th class="_1qna_board_border">처리상태</th>
-						</tr>
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_subject">신규가입 회원 혜택이 빵빵! (~09/30)</td>
-							<td class="_1qna_board_border">2023.09.01</td>
-							<td class="_1qna_board_border">2023.09.01</td>
-						</tr>
-						
-					</table>
-				</div>
-<!--================================== 7탭 회원탈퇴 ==================================== -->				
+<!--==================================회원탈퇴==================================== -->				
 <%
 	String m_id = (String)request.getAttribute("m_id");
 %>	
@@ -314,9 +89,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<form action="deletePro.me" method="post">
 									<div class="mypage-grids">  
 										<div align="center">
-											<input type="text" class="show" placeholder="아이디" readonly="readonly"readonly>
-											<input type="text" value="<%=m_id %>" name="m_id"  readonly="readonly"readonly>
-											<input type="text" class="show" placeholder="비밀번호" readonly="readonly"readonly >
+											<input type="text" class="show" placeholder="아이디" readonly="readonly">
+											<input type="text" value="<%=m_id %>" name="m_id"  readonly="readonly">
+											<input type="text" class="show" placeholder="비밀번호" readonly="readonly">
 											<input type="password" name="m_pass" id="m_pass"> <br>
 											<div class="divdub"></div>
 										</div>	
@@ -342,50 +117,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="text/javascript" src="script/jquery-3.7.0.js"></script>
 <script type="text/javascript">
 
-
-$(document).ready(function() {
-    $('#changePasswordForm').submit(function(e) {
-        e.preventDefault(); // Prevent form submission for now
-
-        var currentPassword = $('#currentPassword').val();
-        var newPassword = $('#newPassword').val();
-        var confirmNewPassword = $('#confirmNewPassword').val();
-
-        // Perform your validation here
-        if (!currentPasswordIsValid(currentPassword)) {
-            alert("Current password is incorrect.");
-            return false; // Prevent form submission
-        }
-
-        if (!newPasswordIsValid(newPassword)) {
-            alert("New password is not valid.");
-            return false; // Prevent form submission
-        }
-
-        if (newPassword !== confirmNewPassword) {
-            alert("New password and confirmation do not match.");
-            return false; // Prevent form submission
-        }
-
-        // If all conditions are met, you can submit the form
-        // Uncomment the following line to submit the form:
-        // $('#changePasswordForm').off('submit').submit();
-    });
-
-    // Your validation functions
-    function currentPasswordIsValid(password) {
-        // Implement your logic to check if the current password is correct
-        // Return true if it's correct, false otherwise
-        // You may use AJAX to check the current password on the server
-        return true; // Replace with your logic
-    }
-
-    function newPasswordIsValid(newPassword) {
-        // Implement your logic to check if the new password is valid
-        // Return true if it's valid, false otherwise
-        return newPassword.length >= 8; // Replace with your logic
-    }
-});
 
 
 				

@@ -149,7 +149,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<td class="_1qna_board_border2">
 									<div class="mypage-grids"> 
 										<div align="center">
-											<input type="tel" placeholder="전화번호" id="m_phone" name="m_phone">
+											<input type="tel" placeholder="전화번호" id="m_phone" name="m_phone" oninput="oninputPhone(this)">
 										</div>
 									</div>
 								</td>
@@ -344,8 +344,12 @@ function validatePassword() {
 }
 
 
-
-
+// 전화번호 - 자동 생성
+	function oninputPhone(target) {
+	    target.value = target.value
+	        .replace(/[^0-9]/g, '')
+	        .replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]{3,4})([0-9]{4})/g, "$1-$2-$3");
+	}
 
 
 

@@ -173,21 +173,24 @@ String orderBy = (String) request.getAttribute("orderBy");
                                         <input type="hidden" name="currency_code" value="KRW">
                                         <input type="hidden" name="return" value=" ">
                                         <input type="hidden" name="cancel_return" value=" ">
-                                       <%--  <% 
-                                        if(memberDTO != null){
-                                        
+                                       <% 
+                                  
+                                        	if(memberDTO != null){
                                         %>
                                        <input type="button" value="찜 추가하기" class="button addToWishlistButton"
-   										 data-p-num="<%= productDTO.getP_num() %>"			
-  										 data-m-num="<%= memberDTO.getM_num() %>">
+   										 data-p-num="<%=productDTO.getP_num() %>"			
+  										 data-m-num="<%=memberDTO.getM_num() %>">
   										 <%
-                                        }else {
+                                        	}
+                                       
+                                       
+                                       if(id == null) {
                                         	%>
                                         	<a href="login.me"><input type="button" value="로그인 하기" class="button">로그인 시<br> 찜 추가 가능!</button></a>
                                         	
                                         	<%
                                         }
-  										 %> --%>
+  										 %> 
 									 </fieldset>
                                 </form>
                             </div>

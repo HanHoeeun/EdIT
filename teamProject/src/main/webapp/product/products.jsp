@@ -137,8 +137,8 @@ String orderBy = (String) request.getAttribute("orderBy");
             = (List<ProductDTO>)request.getAttribute("productList");
             ProductPageDTO ppageDTO
             = (ProductPageDTO)request.getAttribute("ppageDTO");
-            List<WishListDTO> wishList
-            = (List<WishListDTO>)request.getAttribute("wishList");
+            /* List<WishListDTO> wishList
+            = (List<WishListDTO>)request.getAttribute("wishList"); */
             String id = (String)session.getAttribute("m_id");
             MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO"); 
             %>

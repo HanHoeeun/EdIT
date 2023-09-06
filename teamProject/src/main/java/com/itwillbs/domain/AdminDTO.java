@@ -13,7 +13,7 @@ public class AdminDTO {
 	private String a_file; // 파일명
 	private int a_check; // 체크 확인 여부
 	private Timestamp a_date; // 작성시간
-	private int a_cs_type; // 1 계정, 2 중고거래, 3|0 기타
+	private String a_cs_type; // 1 계정, 2 중고거래, 3|0 기타
 	private int a_notice_type; // 이벤트 공지
 
 	
@@ -62,7 +62,7 @@ public class AdminDTO {
 		return a_date;
 	}
 
-	public int getA_cs_type() {
+	public String getA_cs_type() {
 		return a_cs_type;
 	}
 
@@ -106,7 +106,7 @@ public class AdminDTO {
 		this.a_date = a_date;
 	}
 
-	public void setA_cs_type(int a_cs_type) {
+	public void setA_cs_type(String a_cs_type) {
 		this.a_cs_type = a_cs_type;
 	}
 
