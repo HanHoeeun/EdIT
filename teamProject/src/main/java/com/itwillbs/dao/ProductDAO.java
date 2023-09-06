@@ -1664,6 +1664,41 @@ public class ProductDAO {
 		return memberDTO;
 	}
 
+	public List<ProductDTO> getProductListSearch(ProductPageDTO ppageDTO) {
+		System.out.println("List<ProductDTO> getProductListSearch");
+		List<ProductDTO> productList = null;
+		try {
+			con = getConnection();
+			
+			String sql = "select * from products where p_title like ? limit ?,? ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "%" + ppageDTO.getSearch()+ "%");
+			pstmt.setInt(2, ppageDTO.getP_startRow()-1);//시작행-1
+			pstmt.setInt(3, ppageDTO.getP_pageSize());//몇개
+			
+			rs = pstmt.executeQuery();
+			
+			productList = new ArrayList<>();
+			while(rs.next()) {
+				ProductDTO productDTO = new ProductDTO();
+				productDTO.setP_num(rs.getInt("p_num"));
+				productDTO.setP_title(rs.getString("p_title"));
+				productDTO.setP_type(rs.getString("p_type"));
+				productDTO.setP_price(rs.getInt("p_price"));
+				productDTO.setP_status(rs.getString("p_status"));
+				productDTO.setP_file(rs.getString("p_file"));
+			// => 배열 한칸에 저장
+				productList.add(productDTO); 
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		return productList;
+	}
+
 	
 
 

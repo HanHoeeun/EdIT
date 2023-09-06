@@ -107,7 +107,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         
  <!-- 카테고리  -->
  <!-- 드롭다운과 상품 리스트 -->
-
+<%-- 
 <%
 String orderBy = (String) request.getAttribute("orderBy");
 %>
@@ -128,7 +128,7 @@ String orderBy = (String) request.getAttribute("orderBy");
         </div>
     </div>
 
-<div class="clearfix"> </div>
+<div class="clearfix"> </div> --%>
 
  <!-- 드롭다운  -->
  <!-- 상품 리스트 -->
@@ -173,7 +173,7 @@ String orderBy = (String) request.getAttribute("orderBy");
                                         <input type="hidden" name="currency_code" value="KRW">
                                         <input type="hidden" name="return" value=" ">
                                         <input type="hidden" name="cancel_return" value=" ">
-                                        <% 
+                                       <%--  <% 
                                         if(memberDTO != null){
                                         
                                         %>
@@ -187,7 +187,7 @@ String orderBy = (String) request.getAttribute("orderBy");
                                         	
                                         	<%
                                         }
-  										 %>
+  										 %> --%>
 									 </fieldset>
                                 </form>
                             </div>
