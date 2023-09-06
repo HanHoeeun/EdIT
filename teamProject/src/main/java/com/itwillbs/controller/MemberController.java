@@ -113,7 +113,7 @@ public class MemberController extends HttpServlet{
 				
 			} else {
 				// 아이디와 비밀번호 다르면 메세지 뜨게 수정해봤음.  "member/login.jsp" -> "member/msg.jsp" 수정
-				request.setAttribute("error", "아이디와 비밀번호가 다릅니다.");
+				request.setAttribute("msg", "아이디와 비밀번호가 다릅니다.");
 				dispatcher = request.getRequestDispatcher("member/msg.jsp");
 				dispatcher.forward(request, response);
 			}
@@ -399,17 +399,9 @@ public class MemberController extends HttpServlet{
 			printWriter.close();
 			
 		}	
-		
-		
-		
-		
-		
-		
-		
-		
-	
 
-//		진유정 - 아이디찾기 화면
+
+//		아이디찾기
 		if(sPath.equals("/findid.me")) {
 		   System.out.println("뽑은 가상주소 비교 : findid.me" );
 		   // member/findid_3.jsp 주소변경 없이 연결
@@ -417,8 +409,6 @@ public class MemberController extends HttpServlet{
 		   dispatcher.forward(request, response);
 		} // 
 		
-		
-//		8.31 오후 12시 진유정 - 아이디찾기(수정중...) -> 되긴되는데 수정 필요..? 
 		if(sPath.equals("/findidPro.me")) {
 			System.out.println("뽑은 가상주소 비교 : findidPro.me"); 
 			
@@ -430,27 +420,25 @@ public class MemberController extends HttpServlet{
 			
 			 // 이름과 이메일을 이용하여 아이디 찾기 작동
 		    String foundid = memberService.findidmember(name, email);
-
+		    
+//			9.6 - 아이디 찾기 메세지 --------------------------- 수정 완
 		    if (foundid != null) {
 		        // 아이디를 찾은 경우
-		        request.setAttribute("foundid", foundid);
-		        dispatcher = request.getRequestDispatcher("member/findid_result.jsp");
+//		        request.setAttribute("foundid", foundid);
+		        request.setAttribute("msg", name + "님의 아이디는 " + foundid + "입니다.");
+		        dispatcher = request.getRequestDispatcher("member/msg.jsp");
 		        dispatcher.forward(request, response);
 		    } else {
 		        // 아이디를 찾지 못한 경우
-		        request.setAttribute("error", "이름과 이메일이 다릅니다.");
-		        // member/findid.jsp 주소변경 없이 연결
+		        request.setAttribute("msg", "이름과 이메일이 일치하지 않습니다.");
+		        // member/msg.jsp로 주소변경 없이 연결
 		        dispatcher = request.getRequestDispatcher("member/msg.jsp");
 		        dispatcher.forward(request, response);
 		    }
 		} //
 
 		
-		
-		// 9.5 수정함
-		// 로그인화면에서  <a href="findpw.me">비밀번호 찾기</a>를 누르면 연결되는 화면임
-//		진유정 - 비밀번호찾기 화면
-		// findpw.me
+//		비밀번호찾기
 		if(sPath.equals("/findpw.me")) {
 		   System.out.println("뽑은 가상주소 비교 : findpw.me" );
 		   // member/findid_3.jsp 주소변경 없이 연결
@@ -458,25 +446,18 @@ public class MemberController extends HttpServlet{
 		   dispatcher = request.getRequestDispatcher("member/forgotPassword.jsp");
 		   dispatcher.forward(request, response);
 		} //		
-		// 9.5 수정
-		
-		
+	
 //		진 - 메일로 OTP 전송 -> 주석처리...??
 		// 비밀번호찾기 수정 -> 아이디와 이메일이 일치할 경우 , 입력한 이메일로 임시 번호(OTP) 발송
 //		if(sPath.equals("/findpwPro.me")) {
 //			System.out.println("뽑은 가상주소 비교 : findpwPro.me"); 
-//			
 //			request.setCharacterEncoding("utf-8");
-//			
 //			String id = request.getParameter("m_id");
 //			String email = request.getParameter("m_email");
-//			
 //		    MemberService memberService = new MemberService();
-//			
 //			 // 아이디와 이메일을 이용하여 비밀번호 찾기 작동
 //		     // 아이디와 비밀번호가 일치하면 해당 이메일로 OTP발송
 //		    String foundpw = memberService.findpwmember(id, email);
-//
 //		    if (foundpw != null) {
 //		        // 비밀번호를 찾은 경우 
 //		        request.setAttribute("foundpw", foundpw);
@@ -491,12 +472,9 @@ public class MemberController extends HttpServlet{
 //		        dispatcher.forward(request, response);
 //		    }
 //		} //	
-		
-		
-		// 9.5 
-		// forgotPassword.me 아이디와 이메일이 일치하면 입력한 이메일로 OTP 발송
+		 
+		// 아이디와 이메일이 일치 -> 입력한 이메일로 인증번호 발송
 		// 아이디와 비밀번호가 다르면 에러 메세지
-		
 		if (sPath.equals("/forgotPassword.me")) {
 			
 			String m_id = request.getParameter("m_id");
@@ -513,12 +491,13 @@ public class MemberController extends HttpServlet{
 	        	MemberDTO memberDTO = memberService.IdAndEmailMatch(m_id, m_email);
 	            if (memberDTO != null) {
 	            	System.out.println("일치");
+
 	                Random rand = new Random();
 	                otpvalue = rand.nextInt(1255650);
 
 	                // 이메일 전송 코드
 	                String to = m_email;// change accordingly
-					// Get the session object
+					
 					Properties props = new Properties();
 					
 					props.put("mail.smtp.host", "smtp.gmail.com");
@@ -538,52 +517,43 @@ public class MemberController extends HttpServlet{
 					});
 					// 메세지 작성
 					try {
+						
 						request.setCharacterEncoding("utf-8");
+						
+					
+						
+						
 						
 						MimeMessage message = new MimeMessage(session);
 						message.setFrom(new InternetAddress(m_email));// change accordingly
 						message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 						// 메일 제목
-						message.setSubject("EdIT의 OTP입니다.");
+						message.setSubject("EdIT 인증번호");
 						// 메일 내용
-						message.setText("귀하의 OTP는: " + otpvalue);
+						message.setText("귀하의 인증번호는 : " + otpvalue + " 입니다.");
 						// send message
 						Transport.send(message);
-						System.out.println("message sent successfully");
+						System.out.println("이메일 보내기 성공!!");
+	
 					} catch (MessagingException e) {
 						throw new RuntimeException(e);
-					}
-
-
-	                
+					} // catch
 
 	                dispatcher = request.getRequestDispatcher("member/EnterOtp.jsp");
-	                request.setAttribute("message", "귀하의 이메일로 OTP가 발송되었습니다.<br>정확한 OTP를 입력해주세요.");
+	                request.setAttribute("message", "귀하의 이메일로 인증번호가 발송되었습니다.<br>정확한 인증번호를 입력해주세요.");
 	                mySession.setAttribute("otp", otpvalue);
 	                mySession.setAttribute("email", m_email);
 	            } else {
-	                // 아이디와 이메일이 일치하지 않을 때 에러 메시지 표시
-	                dispatcher = request.getRequestDispatcher("member/ErrorPage.jsp");
-	                request.setAttribute("errorMessage", "아이디와 이메일이 일치하지 않습니다.");
-	            }
-	        } else {
-	            // 이메일이 입력되지 않았을 때 에러 메시지 표시
-	            dispatcher = request.getRequestDispatcher("member/ErrorPage.jsp");
-	            request.setAttribute("errorMessage", "이메일을 입력해주세요.");
-	        }
-
-	      
+	                // 아이디와 이메일이 일치하지 않는 경우 메세지
+	    	        request.setAttribute("msg", "아이디와 이메일이 일치하지 않습니다.");
+	    	        // member/msg.jsp로 주소변경 없이 연결
+	    	        dispatcher = request.getRequestDispatcher("member/msg.jsp");
+	    	        dispatcher.forward(request, response);
+	            } // else
+	        } // if
 	            dispatcher.forward(request, response);
-	        
-	    }
+	    } // if
 
-	
-		// 테스트 중입니다....//
-		
-		
-		
-		
-		
 		
 		// 9월 5일
 		// 이메일을 입력해서 새비밀번호받기 버튼을 누르면 -> otp가 입력된 메일로 발송 됨 -> 아이디와 이메일이 일치하면 입력한 이메일로 OTP 발송되게 수정하고싶음.
@@ -696,11 +666,11 @@ public class MemberController extends HttpServlet{
 					dispatcher = request.getRequestDispatcher("member/login.jsp");
 				} else {
 	
-				request.setAttribute("error", "업데이트에 실패했습니다.");
+				request.setAttribute("msg", "업데이트에 실패했습니다.");
 				dispatcher=request.getRequestDispatcher("member/msg.jsp"); 
 				}
 			} else { 
-				request.setAttribute("error", "일치하지 않습니다.");
+				request.setAttribute("msg", "일치하지 않습니다.");
 				   dispatcher=request.getRequestDispatcher("member/msg.jsp");
 				  
 			}

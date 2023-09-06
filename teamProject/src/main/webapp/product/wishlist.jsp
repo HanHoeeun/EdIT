@@ -98,7 +98,7 @@ String orderBy = (String) request.getAttribute("orderBy");
  List<WishListDTO> wishList = (List<WishListDTO>)request.getAttribute("wishList");
  String id = (String)session.getAttribute("m_id");
  MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO"); 
- ProductDTO	productDTO = (ProductDTO)request.getAttribute("productDTO");
+ //ProductDTO	productDTO = (ProductDTO)request.getAttribute("productDTO");
  
  %>
 	<div class="checkout">
@@ -136,7 +136,7 @@ String orderBy = (String) request.getAttribute("orderBy");
 					<tr class="rem1">
 						<td class="w_num" style="display: none;"><%= wishListDTO.getW_num() %></td>
 						<td class="invert"><%=i + 1 %></td>
-						<td class="invert-image"><a href="single.po"><img src="upload/<%= wishListDTO.getProductDTO().getP_file() %>" width="100px" height="100px" download alt=" " class="img-responsive" /></a></td>
+						<td class="invert-image"><a href="single.po?p_num=<%=wishListDTO.getProductDTO().getP_num()%>"><img src="upload/<%= wishListDTO.getProductDTO().getP_file() %>" width="100px" height="100px" download alt=" " class="img-responsive" /></a></td>
 						<td class="invert"><a href="single.po"><%=wishListDTO.getProductDTO().getP_title() %></a></td>
 						<td class = "invert"><%=wishListDTO.getProductDTO().getP_status() %></td>
 						<td class="invert"><a href="single.po"><%=wishListDTO.getProductDTO().getP_type() %></a></td>

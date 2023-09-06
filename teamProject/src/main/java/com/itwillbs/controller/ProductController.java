@@ -83,7 +83,7 @@ public class ProductController extends HttpServlet{
 			
 			// orderBy 파라미터를 받아와서 옵션 값 확인
 		    String orderBy = request.getParameter("ord");
-		    System.out.println("orderBy"+ orderBy);
+		   // System.out.println("orderBy"+ orderBy);
 		    if(orderBy != null) {
 
 		    if ("latest".equals(orderBy)) {
@@ -136,8 +136,9 @@ public class ProductController extends HttpServlet{
 			ppageDTO.setP_startPage(p_startPage);
 			ppageDTO.setP_endPage(p_endPage);
 			ppageDTO.setP_pageCount(p_pageCount);
-			System.out.println("스타트페이지 =" + p_startPage +", 페이지 블럭 = "+ p_pageBlock);
-			System.out.println("현재페이지 =" + p_currentPage);
+			//ppageDTO.setM_id(id);
+//			System.out.println("스타트페이지 =" + p_startPage +", 페이지 블럭 = "+ p_pageBlock);
+//			System.out.println("현재페이지 =" + p_currentPage);
 			
 			// request에 "productList",productList 저장
 			
@@ -699,7 +700,7 @@ public class ProductController extends HttpServlet{
 		
 		// -----------------------------------------------------------------------------
 		if (sPath.equals("/wishlist.po")) {
-			System.out.println("뽑은 가상주소 비교 : /wishlist.po");
+			System.out.println("뽑은 가상주소 비교222 : /wishlist.po");
 			
 			HttpSession session = request.getSession();
 			String id = (String)session.getAttribute("m_id");
@@ -707,10 +708,11 @@ public class ProductController extends HttpServlet{
 			MemberService memberService = new MemberService();
 			MemberDTO memberDTO =  memberService.getMember(id);
 			
-			ProductService productService = new ProductService();
-			ProductDTO productDTO = productService.getproduct(request);
+			//ProductService productService = new ProductService();
+			//ProductDTO productDTO = productService.getproduct(request);
 		
 			int p_pageSize=10;
+			System.out.println("size"+p_pageSize);
 			String p_pageNum=request.getParameter("p_pageNum");
 			if(p_pageNum == null) {
 				p_pageNum = "1";
@@ -720,23 +722,24 @@ public class ProductController extends HttpServlet{
 			ppageDTO.setP_pageSize(p_pageSize);
 			ppageDTO.setP_pageNum(p_pageNum);
 			ppageDTO.setP_currentPage(p_currentPage);
+			ppageDTO.setM_id(id);
 			productService = new ProductService();
 			List<WishListDTO> wishList=productService.getWishList(ppageDTO);
-			String orderBy = request.getParameter("ord");
-		    System.out.println("orderBy"+ orderBy);
-		    if(orderBy != null) {
-		    	if ("wishSell".equals(orderBy)) {
-			    	wishList = productService.getWishSellProducts(ppageDTO);
-			    } else if ("wishSold".equals(orderBy)) {
-			    	wishList = productService.getWishSoldProducts(ppageDTO);
-			    	
-			    } else {
-			        // 디폴트로 판매중으로 정렬
-			    	wishList = productService.getWishSellProducts(ppageDTO);
-			    }
-		    }	
+//			String orderBy = request.getParameter("ord");
+//		    System.out.println("orderBy"+ orderBy);
+//		    if(orderBy != null) {
+//		    	if ("wishSell".equals(orderBy)) {
+//			    	wishList = productService.getWishSellProducts(ppageDTO);
+//			    } else if ("wishSold".equals(orderBy)) {
+//			    	wishList = productService.getWishSoldProducts(ppageDTO);
+//			    	
+//			    } else {
+//			        // 디폴트로 판매중으로 정렬
+//			    	wishList = productService.getWishSellProducts(ppageDTO);
+//			    }
+//		    }	
 		    int p_count = productService.getProductCount();
-		    int p_pageBlock = 3;
+		    int p_pageBlock = 2;
 		    int p_startPage=(p_currentPage-1)/p_pageBlock*p_pageBlock+1;
 		    int p_endPage=p_startPage+p_pageBlock-1;
 		    int p_pageCount = p_count / p_pageSize + (p_count % p_pageSize==0?0:1);
@@ -748,12 +751,13 @@ public class ProductController extends HttpServlet{
 			ppageDTO.setP_startPage(p_startPage);
 			ppageDTO.setP_endPage(p_endPage);
 			ppageDTO.setP_pageCount(p_pageCount);
+			
 			System.out.println("스타트페이지 =" + p_startPage +", 페이지 블럭 = "+ p_pageBlock);
 			System.out.println("현재페이지 =" + p_currentPage);
 			request.setAttribute("wishList", wishList);
 			request.setAttribute("ppageDTO", ppageDTO);
-			request.setAttribute("orderBy", orderBy);
-			request.setAttribute("productDTO", productDTO);
+			//request.setAttribute("orderBy", orderBy);
+			//request.setAttribute("productDTO", productDTO);
 			request.setAttribute("memberDTO", memberDTO);
 			
 			dispatcher 
@@ -762,6 +766,69 @@ public class ProductController extends HttpServlet{
 		}//wishlist.po
 		
 
+		if (sPath.equals("/productSearch.po")) {
+			System.out.println("뽑은 가상 주소 비교 : /productSearch.po ");
+			
+			HttpSession session = request.getSession();
+			String id = (String)session.getAttribute("m_id");
+			System.out.println("m_id" + id);
+			
+			
+			MemberService memberService = new MemberService();
+			MemberDTO memberDTO =  memberService.getMember(id);
+			
+			ProductService productService = new ProductService();
+			ProductDTO productDTO = productService.getproduct(request);
+			
+			request.setCharacterEncoding("utf-8");
+			String search = request.getParameter("search");
+			// 한페이지에서 보여지는 글개수 설정
+			int p_pageSize=6;
+			// 페이지번호 
+			String p_pageNum=request.getParameter("p_pageNum");
+			// 페이지번호가 없으면 1페이지 설정
+			if(p_pageNum == null) {
+				p_pageNum = "1";
+			}
+			// 페이지 번호를 => 정수형 변경
+			int p_currentPage = Integer.parseInt(p_pageNum);
+			
+			ProductPageDTO ppageDTO = new ProductPageDTO();
+			ppageDTO.setP_pageSize(p_pageSize);
+			ppageDTO.setP_pageNum(p_pageNum);
+			ppageDTO.setP_currentPage(p_currentPage);
+			ppageDTO.setSearch(search);
+			
+			
+			productService = new ProductService();
+			List<ProductDTO> productList = productService.getProductListSearch(ppageDTO);
+			
+			int p_count = productService.getProductCount();
+			int p_pageBlock = 3;
+			int p_startPage=(p_currentPage-1)/p_pageBlock*p_pageBlock+1;
+			int p_endPage=p_startPage+p_pageBlock-1;
+			int p_pageCount = p_count / p_pageSize + (p_count % p_pageSize==0?0:1);
+			if(p_endPage > p_pageCount) {
+			p_endPage = p_pageCount;
+			}
+			
+			//pageDTO 저장
+			ppageDTO.setP_count(p_count);
+			ppageDTO.setP_pageBlock(p_pageBlock);
+			ppageDTO.setP_startPage(p_startPage);
+			ppageDTO.setP_endPage(p_endPage);
+			ppageDTO.setP_pageCount(p_pageCount);
+			
+			request.setAttribute("productList", productList);
+			request.setAttribute("ppageDTO", ppageDTO);
+			request.setAttribute("productDTO", productDTO);
+			request.setAttribute("memberDTO", memberDTO);
+			//System.out.println("m_num"+ memberDTO.getM_num());
+			
+			dispatcher
+			= request.getRequestDispatcher("product/productSearch.jsp");
+			dispatcher.forward(request, response);
+		}
 		
 		
 		

@@ -76,11 +76,12 @@
 								<hr>
 							</div>
 							<!-- Register Now -->
+<!-- 							홈, 회원가입  추가-->
 							<div class="pt-2">
 								<div class="row justify-content-center">
 									<h5>
-										계정이 없으신가요?<span><a href="#"
-											class="text-danger"> 지금 등록하세요!</a></span>
+										계정이 없으신가요?<span><a href="insert.me"
+											class="text-danger"> 회원가입하기 </a></span>
 									</h5>
 								</div>
 								<div

@@ -627,6 +627,7 @@ public class ProductService {
 		return productDTO;
 	}//getBoard
 	
+	
 	//--------------------------------------------------------------------------------------------------
 	
 	public void deleteProduct(HttpServletRequest request) {
@@ -770,34 +771,34 @@ public class ProductService {
 
 
 
-	public List<WishListDTO> getWishSellProducts(ProductPageDTO ppageDTO) {
-		System.out.println("ProductService getWishSellProducts()");
-		List<WishListDTO> sellList = null;
-		try {
-			// productDAO 객체생성
-			productDAO = new ProductDAO();
-			// DAO에서 데이터 가져오기
-			sellList=productDAO.getWishSellProducts(ppageDTO);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return sellList;
-	}
-
-
-	public List<WishListDTO> getWishSoldProducts(ProductPageDTO ppageDTO) {
-		System.out.println("ProductService getWishSoldProducts()");
-		List<WishListDTO> soldList = null;
-		try {
-			// productDAO 객체생성
-			productDAO = new ProductDAO();
-			// DAO에서 데이터 가져오기
-			soldList=productDAO.getWishSoldProducts(ppageDTO);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return soldList;
-	}
+//	public List<WishListDTO> getWishSellProducts(ProductPageDTO ppageDTO) {
+//		System.out.println("ProductService getWishSellProducts()");
+//		List<WishListDTO> sellList = null;
+//		try {
+//			// productDAO 객체생성
+//			productDAO = new ProductDAO();
+//			// DAO에서 데이터 가져오기
+//			sellList=productDAO.getWishSellProducts(ppageDTO);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return sellList;
+//	}
+//
+//
+//	public List<WishListDTO> getWishSoldProducts(ProductPageDTO ppageDTO) {
+//		System.out.println("ProductService getWishSoldProducts()");
+//		List<WishListDTO> soldList = null;
+//		try {
+//			// productDAO 객체생성
+//			productDAO = new ProductDAO();
+//			// DAO에서 데이터 가져오기
+//			soldList=productDAO.getWishSoldProducts(ppageDTO);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return soldList;
+//	}
 
 
 	public List<WishListDTO> getWishList(ProductPageDTO ppageDTO) {
@@ -871,6 +872,23 @@ public class ProductService {
 	        e.printStackTrace();
 	    }
 	    return productDTO;
+	}
+
+
+	public List<ProductDTO> getProductListSearch(ProductPageDTO ppageDTO) {
+		System.out.println("List<ProductDTO> getProductListSearch");
+		List<ProductDTO> productList = null;
+		try {
+			int p_startRow = (ppageDTO.getP_currentPage()-1)*ppageDTO.getP_pageSize()+1;
+			int p_endRow = p_startRow+ppageDTO.getP_pageSize()-1;
+			ppageDTO.setP_startRow(p_startRow);
+			ppageDTO.setP_endRow(p_endRow);
+			productDAO = new ProductDAO();
+			productList = productDAO.getProductListSearch(ppageDTO);
+		} catch (Exception e) {
+		e.printStackTrace();
+		}
+		return productList;
 	}
 
 	

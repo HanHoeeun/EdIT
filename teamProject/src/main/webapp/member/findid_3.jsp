@@ -88,7 +88,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- 					<a href="insert.me">확인</a> -->
 <!-- 					<a href="login.me">취소</a> -->
 					
-						<input type="submit"  value="확인" class="#" formaction="findPro.me">	
+						<input type="submit"  value="확인" class="#" formaction="findidPro.me">	
 						<input type="submit"  value="취소"   onclick="location.href='login.me'" class="#">
 <!-- 						</form> -->
 						

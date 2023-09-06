@@ -96,6 +96,16 @@
     <servlet-name>DeleteWishlistItemServlet</servlet-name>
     <url-pattern>*.dwi</url-pattern>
 </servlet-mapping>
+
+
+ <servlet>
+    <servlet-name>ChatController</servlet-name>
+    <servlet-class>com.itwillbs.controller.ChatController</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>ChatController</servlet-name>
+    <url-pattern>*.ch</url-pattern>
+</servlet-mapping>
  
 <!-- <servlet-mapping>
 	<servlet-name>MainController</servlet-name>

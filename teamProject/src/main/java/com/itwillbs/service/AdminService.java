@@ -37,7 +37,7 @@ public class AdminService {
 			MultipartRequest multi = new MultipartRequest(request, uploadPath, sizeLimit, "UTF-8", new DefaultFileRenamePolicy() );
 			
 //			multi 파라미터 값 가져오기
-			int a_cs_type = Integer.parseInt(multi.getParameter("faq_select"));
+			String a_cs_type = multi.getParameter("faq_select");
 			String m_id = multi.getParameter("m_id");
 			String subject = multi.getParameter("subject");
 			String content = multi.getParameter("content");
@@ -81,10 +81,11 @@ public class AdminService {
 //			3				10			=> 2*10 +1 	21 ~ 30
 //			((currentPage-1)*10)+1
 			int startRow = (pageDTO.getCurrentPage()-1)*pageDTO.getPageSize()+1;
-			int endRos = startRow + pageDTO.getPageSize() -1;
-			
+			int endRow = startRow + pageDTO.getPageSize() -1;
+			System.out.println("start Row : " + startRow);
+			System.out.println("end Row : " + endRow);
 			pageDTO.setStartRow(startRow);
-			pageDTO.setEndRow(endRos);
+			pageDTO.setEndRow(endRow);
 			
 //			AdminDAO 객체 생성
 			adminDAO = new AdminDAO();
@@ -102,6 +103,39 @@ public class AdminService {
 		try {
 			adminDAO = new AdminDAO();
 			count = adminDAO.getBoardCountSearch(pageDTO);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return count;
+	}
+	
+	public List<AdminDTO> getBoardList(AdminPageDTO pageDTO) {
+		List<AdminDTO> adminList = null;
+		try {
+			int startRow = (pageDTO.getCurrentPage()-1)*pageDTO.getPageSize()+1;
+			int endRow = startRow + pageDTO.getPageSize() -1;
+			System.out.println("start Row : " + startRow);
+			System.out.println("end Row : " + endRow);
+			pageDTO.setStartRow(startRow);
+			pageDTO.setEndRow(endRow);
+			
+//			AdminDAO 객체 생성
+			adminDAO = new AdminDAO();
+//			adminList = getBoardList() 메서드 호출
+			adminList =  adminDAO.getBoardList(pageDTO);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return adminList;
+		
+	}
+
+	public int getBoardCount(AdminPageDTO pageDTO) {
+		int count = 0;
+		try {
+			adminDAO = new AdminDAO();
+			count = adminDAO.getBoardCount(pageDTO);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}

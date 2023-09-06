@@ -107,8 +107,9 @@ input[type="submit"],#PPMiniCart .minicart-submit,.w3ls_vegetables ul li a,input
 }
 .w3l_search {
     float: right;
-    width: 25.33%;
+    width: 50%;
     margin: 0em 0 0em 0em;
+   	margin-top: 40px;
 }
 .w3l_search input[type="search"] {
     width: 83%;
@@ -143,13 +144,14 @@ button.btn.btn-default.search:hover {
 	
 }
 .agile-login {
-    float: left;
+    float: right;
     width: 40%;
-    text-align: center;
+    text-align: right;
     padding: 9px 0;
 }
 .agile-login ul li {
-    display: inline-block;
+   /*  display: inline-block; */
+   display:inline;
     padding: 0em 1em;
 }
 .agile-login ul li a {
@@ -300,10 +302,13 @@ ul.multi-column-dropdown h6 {
 }
 .navigation-agileits {
     background: #fe9126;
+
 }
 .navbar-nav > li {
-    float: left;
-    margin-left: 17px;
+    /* float: left; */
+    align-content: center;
+    float: center;
+    margin-left: 80px;
 }
 .navbar-nav > li:nth-child(1) {
     margin-left: 0px;
@@ -2751,7 +2756,7 @@ h3.agileits-icons-title {
     font-size: 34px;
 }
 .w3l_search input[type="search"] {
-    width: 81%;
+    width: 100%;
 }
 .navbar-nav > li {
     margin-left: 8px;
@@ -2826,11 +2831,11 @@ ul.phone_email li {
     width: 38%;
 }
 .w3l_search {
-    width: 27%;
+    width: 40%;
     margin: 0em 0 0em 0em;
 }
 .w3l_search input[type="search"] {
-    width: 76%;
+    width: 100%;
 }
 .navbar-default .navbar-nav > li > a {
     font-size: 14px;
@@ -3023,6 +3028,7 @@ ul.faq {
     background: none;
     border: none;
     text-align: center;
+   	align-content: center;
 }
 }
 @media (max-width: 736px){
@@ -3100,7 +3106,7 @@ ul.faq {
     width: 100%;
 }
 .w3l_search input[type="search"] {
-    width: 92%;
+    width: 100%;
 }
 .logo_products {
     padding: 1em 0;
