@@ -150,6 +150,43 @@ public class MemberDAO {
 		return memberDTO;
 	}
 
+	public MemberDTO userCheck2(MemberDTO memberDTO2) {
+MemberDTO memberDTO = null;
+		
+		try {
+			
+			con = getConnection();
+			String sql = "select * from members where m_id = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, memberDTO2.getM_id());
+
+			
+			rs = pstmt.executeQuery();
+			
+//			첫번째 행으로 데이터 있으면 memberDTO 객체생성, set 메서드 호출,rs열 데이터 저장
+			if (rs.next() == true) {
+				memberDTO = new MemberDTO();
+				// m_level 추가
+				memberDTO.setM_id(rs.getString("m_id"));
+
+
+				
+			} else {
+//				아이디, 비밀번호 불일치 -> 초기값 null -> 리턴
+				memberDTO = null;
+				
+				System.out.println("실패");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dblClose();
+		}
+		
+		return memberDTO;
+	}
 
 
 	

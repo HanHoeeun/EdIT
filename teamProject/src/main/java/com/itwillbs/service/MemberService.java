@@ -99,6 +99,33 @@ public class MemberService {
 	}
 
 	
+
+	public MemberDTO userCheck2(HttpServletRequest request) {
+		MemberDTO memberDTO = null;
+		
+		try {
+			
+//			한글처리
+			request.setCharacterEncoding("utf-8");
+			
+			
+			String m_id = request.getParameter("m_id");
+			
+			MemberDTO memberDTO2 = new MemberDTO();
+			memberDTO2.setM_id(m_id);
+			
+			memberDAO = new MemberDAO();
+			memberDTO = memberDAO.userCheck2(memberDTO2);
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return memberDTO;
+	}
+	
 	
 	
 	

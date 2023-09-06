@@ -186,14 +186,14 @@ public class MemberController extends HttpServlet{
 		
 		
 		
-//		회원정보 수정	--보류 (닉네임에 포린키 걸려있어서 닉네임은 변경 불가!)
+//		회원정보 수정	--
 		if (sPath.equals("/updatePro.me")) {
 			System.out.println("뽑은 가상주소 비교 : updatePro.me");
 
 			memberService = new MemberService();
 			
 //			아이디, 비밀번호 일치하는지 확인
-			MemberDTO memberDTO = memberService.userCheck(request);
+			MemberDTO memberDTO = memberService.userCheck2(request);
 			
 			
 //			일치하면 updateMember 호출
@@ -205,7 +205,8 @@ public class MemberController extends HttpServlet{
 				response.sendRedirect("update.me");
 				
 			} else {
-//				불일치면 경고 메시지 화면에 띄우기--------인데 걍.............
+//				불일치면 경고 메시지 화면에 띄우기
+				request.setAttribute("msg", "경고");
 				dispatcher = request.getRequestDispatcher("member/msg.jsp");
 				dispatcher.forward(request, response);
 				
