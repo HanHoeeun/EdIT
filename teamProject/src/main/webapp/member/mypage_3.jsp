@@ -101,6 +101,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</td>
 						</tr>
 						
+<!-- 		----이름---- -->
+						 <tr>
+							<td class="_1qna_board_border2">
+								<div class="mypage-grids"> 
+									<div align="center">
+										<input type="text" class="show" placeholder="이름" readonly="readonly"readonly>
+										<input type="text" value="<%=memberDTO.getM_name() %>" id="m_name" name="m_name" readonly="readonly">
+									</div>
+								</div>
+							</td>
+						</tr>
+						
 <!-- 		----닉네임---- -->						
 						 <tr>
 							<td class="_1qna_board_border2">
@@ -108,31 +120,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<div align="center">
 										<input type="text" class="show" placeholder="닉네임" readonly="readonly"readonly>
 										<input type="text" value="<%=memberDTO.getM_nick() %>" id="m_nick" name="m_nick">
+										<br><div id="nick_error_message" class="nick_error_message"></div>
 									</div>
 								</div>
 							</td>
-						</tr>
-<!-- 		----비밀번호---- -->						
-						<tr>
-							<td class="_1qna_board_border2">
-								<div class="mypage-grids"> 
-									<div align="center">
-										<input type="text" class="show" placeholder="비밀번호" readonly="readonly"readonly>
-										<input type="password" value="<%=memberDTO.getM_pass() %>" placeholder="현재비밀번호" id="m_pass" 	name="m_pass">
-										<input type="password" placeholder="새비밀번호" id="m_pass2" 	name="m_pass2">
-										<input type="password" placeholder="새비밀번호확인" id="m_pass3" 	name="m_pass3">
-									</div>
-								</div>
-							</td>	
 						</tr>
 <!-- 		----이메일---- -->							
 						<tr>	
 							<td class="_1qna_board_border2">
 								<div class="mypage-grids"> 
 									<div align="center">
-										<input type="hidden" name="m_id" value="<%=memberDTO.getM_id() %>">
 										<input type="text" class="show" placeholder="이메일" readonly="readonly"readonly>
-										<input type="email" value="<%=memberDTO.getM_email()%>"		id="m_email" 	name="m_email">
+										<input type="email" value="<%=memberDTO.getM_email()%>" id="m_email" name="m_email">
+										<br><div id="email_error_message" class="email_error-message"></div>
 									</div>
 								</div>
 							</td>
@@ -142,7 +142,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<td class="_1qna_board_border2">
 								<div class="mypage-grids"> 
 									<div align="center">
-										<input type="hidden" name="m_id" value="<%=memberDTO.getM_id() %>">
 										<input type="text" class="show" placeholder="전화번호" readonly="readonly"readonly>
 										<input type="tel" value="<%=memberDTO.getM_phone() %>" id="m_phone" name="m_phone" oninput="oninputPhone(this)">
 									</div>
@@ -151,9 +150,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</tr>
 						<tr>
 							<td class="_1qna_board_border3" width="10">
-							<div class="up-button">
-							<input type="submit" class="up-button" value="수정">
-							</div>
+							<div class="delete-button">
+							<input type="submit" class="delete-button" value="수정">
+							</div><br>
+							<a id="password-change-link" href="#">비밀번호 변경</a>
 							</td>
 						
 						</tr>
@@ -166,13 +166,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div id="tab-2" class="tab-content">
 					<table class="_1qna_board">
 						<tr>
-							<th class="_1qna_board_border">번호</th>
+							<th class="_1qna_board_border">상품번호</th>
+							<th class="_1qna_board_border">상품이미지</th>
 							<th class="_1qna_board_border">제목</th>
-							<th class="_1qna_board_border">작성일</th>
+							<th class="_1qna_board_border">가격</th>
 						</tr>
 						<tr>
 							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_subject">신규가입 회원 혜택이 빵빵! (~09/30)</td>
+							<td class="_1qna_board_border">이미지..</td>
+							<td class="_1qna_board_border">상품명...?</td>
+<!-- 							<td class="_1qna_board_subject">신규가입 회원 혜택이 빵빵! (~09/30)</td> -->
 							<td class="_1qna_board_border">2023.09.01</td>
 						</tr>
 						
@@ -226,13 +229,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<table class="_1qna_board">
 						<tr>
 							<th class="_1qna_board_border">번호</th>
-							<th class="_1qna_board_border">제목</th>
-							<th class="_1qna_board_border">작성일</th>
+							<th class="_1qna_board_border">이미지</th>
+							<th class="_1qna_board_border">이름</th>
+							<th class="_1qna_board_border">상태</th>
+							<th class="_1qna_board_border">타입</th>
+							<th class="_1qna_board_border">가격</th>
+							<th class="_1qna_board_border">삭제</th>
 						</tr>
 						<tr>
 							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_subject">신규가입 회원 혜택이 빵빵! (~09/30)</td>
-							<td class="_1qna_board_border">2023.09.01</td>
+							<td class="_1qna_board_border">1</td>
+							<td class="_1qna_board_border">1</td>
+							<td class="_1qna_board_border">1</td>
+							<td class="_1qna_board_border">1</td>
+							<td class="_1qna_board_border">1</td>
+<!-- 							<td class="_1qna_board_subject">신규가입 회원 혜택이 빵빵! (~09/30)</td> -->
+							<td class="_1qna_board_border">X</td>
 						</tr>
 						
 					</table>
@@ -317,58 +329,24 @@ function oninputPhone(target) {
         .replace(/[^0-9]/g, '')
         .replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]{3,4})([0-9]{4})/g, "$1-$2-$3");
 }
+	
 
 
+//	비밀번호 변경 링크를 클릭할 때 팝업창을 열도록 이벤트 처리
+    document.getElementById("password-change-link").addEventListener("click", function(e) {
+        e.preventDefault(); // 링크의 기본 동작(새로고침)을 막음
 
-$(document).ready(function() {
-    $('#changePasswordForm').submit(function(e) {
-        e.preventDefault(); // Prevent form submission for now
-
-        var currentPassword = $('#currentPassword').val();
-        var newPassword = $('#newPassword').val();
-        var confirmNewPassword = $('#confirmNewPassword').val();
-
-        // Perform your validation here
-        if (!currentPasswordIsValid(currentPassword)) {
-            alert("Current password is incorrect.");
-            return false; // Prevent form submission
-        }
-
-        if (!newPasswordIsValid(newPassword)) {
-            alert("New password is not valid.");
-            return false; // Prevent form submission
-        }
-
-        if (newPassword !== confirmNewPassword) {
-            alert("New password and confirmation do not match.");
-            return false; // Prevent form submission
-        }
-
-        // If all conditions are met, you can submit the form
-        // Uncomment the following line to submit the form:
-        // $('#changePasswordForm').off('submit').submit();
+        // 팝업창을 열기 위한 코드 예시
+        var popupURL = "pwupdate.jsp"; // 비밀번호 변경 페이지의 URL을 여기에 입력
+        var popupWindow = window.open(popupURL, "비밀번호_변경_팝업", "width=500,height=400");
+        
+        // 팝업창 포커스
+        popupWindow.focus();
     });
-
-    // Your validation functions
-    function currentPasswordIsValid(password) {
-        // Implement your logic to check if the current password is correct
-        // Return true if it's correct, false otherwise
-        // You may use AJAX to check the current password on the server
-        return true; // Replace with your logic
-    }
-
-    function newPasswordIsValid(newPassword) {
-        // Implement your logic to check if the new password is valid
-        // Return true if it's valid, false otherwise
-        return newPassword.length >= 8; // Replace with your logic
-    }
-});
-
-
-				
-				
-				
-</script>				
+</script>
+	
+	
+			
 				
 				
 				

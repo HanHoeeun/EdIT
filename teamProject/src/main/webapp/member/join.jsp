@@ -194,7 +194,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 $(document).ready(function() {
         
         
-//		아이디 조건 + 중복검사		----성공
+//		아이디 조건 + 중복검사		----성공 개느림, 오류가남
 	$('#m_id').on('input', function() {
 		var userId = $(this).val();
         var userIdPattern = /^[a-zA-Z0-9]{6,20}$/;
@@ -344,7 +344,7 @@ function validatePassword() {
 }
 
 
-// 전화번호 - 자동 생성
+// 전화번호 - 자동 생성 
 	function oninputPhone(target) {
 	    target.value = target.value
 	        .replace(/[^0-9]/g, '')

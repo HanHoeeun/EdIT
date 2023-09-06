@@ -202,7 +202,7 @@ public class MemberController extends HttpServlet{
 				memberService.updateMember(request);
 				
 //				성공하면 마이페이지 창으로 이동해서 나의 정보 확인
-				response.sendRedirect("update.me?tab=tab-1");
+				response.sendRedirect("update.me");
 				
 			} else {
 //				불일치면 경고 메시지 화면에 띄우기--------인데 걍.............

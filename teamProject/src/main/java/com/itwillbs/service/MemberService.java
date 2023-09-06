@@ -197,9 +197,6 @@ public class MemberService {
 			request.setCharacterEncoding("utf-8");
 			
 			String m_id = request.getParameter("m_id");
-			String m_pass1 = request.getParameter("m_pass");
-			String m_pass2 = request.getParameter("m_pass2");
-			String m_pass3 = request.getParameter("m_pass3");
 			String m_name = request.getParameter("m_name");
 			String m_nick = request.getParameter("m_nick");
 			String m_email = request.getParameter("m_email");
@@ -207,9 +204,6 @@ public class MemberService {
 			
 			MemberDTO memberDTO = new MemberDTO();
 			memberDTO.setM_id(m_id);
-			memberDTO.setM_pass(m_pass1);
-			memberDTO.setM_pass(m_pass2);
-			memberDTO.setM_pass(m_pass3);
 			memberDTO.setM_name(m_name);
 			memberDTO.setM_nick(m_nick);
 			memberDTO.setM_email(m_email);
