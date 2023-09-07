@@ -26,7 +26,9 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import com.itwillbs.dao.MemberDAO;
+import com.itwillbs.domain.AdminPageDTO;
 import com.itwillbs.domain.MemberDTO;
+import com.itwillbs.domain.ReportDTO;
 import com.itwillbs.service.AdminService;
 import com.itwillbs.service.MemberService;
 
@@ -170,6 +172,8 @@ public class MemberController extends HttpServlet{
 		if (sPath.equals("/update.me")) {
 			System.out.println("뽑은 가상주소 비교 : update.me");
 			
+			request.setCharacterEncoding("utf-8"); 
+			
 			HttpSession session = request.getSession();
 			String m_id = (String)session.getAttribute("m_id");
 			
@@ -179,10 +183,52 @@ public class MemberController extends HttpServlet{
 			
 			request.setAttribute("memberDTO", memberDTO);
 			
+			// 마이페이지에서 admin팀의 신고내역 가져오기 & 내 신고내역만 볼 수 있게
+			int pageSize =10;
+			String pageNum=request.getParameter("pageNum");
+			if(pageNum == null) {
+				pageNum = "1";
+			}
 			
+			int currentPage = Integer.parseInt(pageNum);
+			
+			AdminPageDTO pageDTO = new AdminPageDTO();
+			pageDTO.setPageSize(pageSize);
+			pageDTO.setPageNum(pageNum);
+			pageDTO.setCurrentPage(currentPage);
+			
+			pageDTO.setSearch(m_id);
+			// MemberService 객체생성
+			memberService = new MemberService();
+
+			List<ReportDTO> reportList = memberService.getReportList(pageDTO);
+			
+//			게시판 전체 글 개수 구하기
+			int count = memberService.getReportCount(pageDTO);
+			System.out.println(count);
+//			한화면에 보여줄 페이지 개수 설정
+			int pageBlock =10;
+			int startPage = (currentPage-1)/pageBlock*pageBlock+1;
+			int endPage = startPage + pageBlock -1;
+			
+			int pageCount = count%pageBlock == 0 ? count/pageBlock : count/pageBlock+1 ;
+			if(endPage > pageCount ) {
+				endPage = pageCount;
+			}
+			
+			// 페이징
+			pageDTO.setCount(count);
+			pageDTO.setPageBlock(pageBlock);	
+			pageDTO.setStartPage(startPage);
+			pageDTO.setEndPage(endPage);
+			pageDTO.setPageCount(pageCount);
+			request.setAttribute("pageDTO", pageDTO);
+			
+			// request에 "adminList",adminList 저장
+			request.setAttribute("reportList", reportList);
+			// 주소변경없이 이동
 			dispatcher = request.getRequestDispatcher("member/mypage_3.jsp");
-			dispatcher.forward(request, response);
-			
+			dispatcher.forward(request, response);	
 		}
 		
 		

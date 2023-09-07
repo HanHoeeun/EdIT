@@ -578,3 +578,9 @@ input:focus {
 .clearfix_1_1 {
 	clear:both;
 }
+
+/* 마이페이지 - 신고페이지 - pointer주기 & 색상주기 */
+tr:hover{
+	    cursor: pointer;
+	    background-color: #ececec;
+}

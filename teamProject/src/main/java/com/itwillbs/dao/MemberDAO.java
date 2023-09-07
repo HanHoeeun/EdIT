@@ -12,7 +12,9 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import com.itwillbs.domain.AdminPageDTO;
 import com.itwillbs.domain.MemberDTO;
+import com.itwillbs.domain.ReportDTO;
 
 public class MemberDAO {
 
@@ -462,14 +464,9 @@ public class MemberDAO {
 	}
 
 
-	
-	
-	
-	
-	
 
 
-	// 8.31 진 - 아이디 찾기
+	// 아이디 찾기
 	public MemberDTO findidmember(String m_name, String m_email) {
 
 		System.out.println("MemberDAO findidmember()");
@@ -499,38 +496,7 @@ public class MemberDAO {
 	} // findidmember
 
 
-	// 8.31 진 - 비밀번호 찾기 주석처리해도 되나,,??
-//	public MemberDTO findpwmember(String m_id, String m_email) {
-//		
-//		System.out.println("MemberDAO findpwmember()");
-//		MemberDTO memberDTO = null;
-//		try {
-//			// 디비 연결
-//			con = getConnection();
-//			
-//			String sql = "SELECT * FROM members WHERE m_id = ? and m_email = ?";
-//			pstmt = con.prepareStatement(sql);
-//            pstmt.setString(1, m_id);
-//            pstmt.setString(2, m_email);
-//            
-//            ResultSet rs = pstmt.executeQuery();
-//			if(rs.next()) {
-//                memberDTO = new MemberDTO();
-//                memberDTO.setM_pass(rs.getString("m_pass"));	
-//			}
-//            System.out.println(m_id + "," + m_email );
-//			System.out.println(memberDTO);
-//			
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		} finally {
-//			dblClose();
-//		}
-//		return memberDTO; // 멤버 정보 반환
-//	}
-
-
-  // 9월 5일 
+	// 아이디와 비밀번호 일치한지 아닌지확인
 	public int newPassword(MemberDTO memberDTO) {
 		int result = 0;
 		try {
@@ -542,7 +508,6 @@ public class MemberDAO {
 			
 			result = pst.executeUpdate();
 			
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -552,8 +517,6 @@ public class MemberDAO {
 		return result;
 	} // newPassword()
 
-
- // 9.5 아이디와 비밀번호 일치한지 아닌지 DB 연동
 	public MemberDTO IdAndEmailMatch(String m_id, String m_email) {
 		MemberDTO memberDTO = null;
 		try {
@@ -579,12 +542,89 @@ public class MemberDAO {
 	} // IdAndEmailMatch()
 
 
+	// 마이페이지 - 신고내역 연결(admin 참고)
+	public List<ReportDTO> getReportList(AdminPageDTO pageDTO) {
+		List<ReportDTO> reportList = null;
+		try {
+			
+			int r_m_num = this.getMemberNum(pageDTO.getSearch());
+			con = this.getConnection();
+			
+			String sql = "select * from report where r_m_num  = ? order by r_num desc limit ?, ?";
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, r_m_num);
+			pstmt.setInt(2, pageDTO.getStartRow()-1); // 시작하는 행 -1 
+			pstmt.setInt(3, pageDTO.getPageSize()); // 몇개
+			
+			rs = pstmt.executeQuery();
+			reportList = new ArrayList<>();
+			while(rs.next()) {
+//				신고번호 회원번호 제목 작성자 작성시간 확인여부
+				ReportDTO reportDTO = new ReportDTO();
+				reportDTO.setR_num(rs.getInt("r_num"));
+				reportDTO.setR_m_num(rs.getInt("r_m_num"));
+				reportDTO.setR_title(rs.getString("r_title"));
+				reportDTO.setR_date(rs.getTimestamp("r_date"));
+				reportDTO.setR_check(rs.getInt("r_check"));
+				
+				reportList.add(reportDTO);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			dblClose();
+		}
+		
+		return reportList;
+	}
 
 
-
-
-
-
+	// 마이페이지 - 신고내역 연결(admin 참고)
+	public int getReportCount(AdminPageDTO pageDTO) {
+		int count = 0;
+		try {
+			int r_m_num = this.getMemberNum(pageDTO.getSearch());
+			con = this.getConnection();
+			String sql = "select count(*) as count from report where r_m_num = ?";
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, r_m_num);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt("count");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			dblClose();
+		}
+		return count;
+	}
+	
+    // pageDTO.getSearch() = m_id 로 m_num 가져오기
+	public int getMemberNum(String m_id) {
+		int result = 0;
+		try {
+			con = this.getConnection();
+			String  sql = "select m_num from members where m_id = ?";
+			pstmt = con.prepareStatement(sql);
+		
+			pstmt.setString(1, m_id);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt("m_num");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			dblClose();
+		}
+		return result;
+}
 
 
 }	
