@@ -144,8 +144,14 @@ String orderBy = (String) request.getAttribute("orderBy");
             %>
             
               <div class="agile_top_brands_grids">
-    <% for (int i = 0; i < productList.size(); i++) {
-       ProductDTO productDTO = productList.get(i);%>
+             
+    
+    <% 
+    	for (int i = 0; i < productList.size(); i++) {
+    
+       ProductDTO productDTO = productList.get(i);
+       
+       %>
     <div class="col-md-4 top_brand_left">
         <div class="hover14 column">
             <div class="agile_top_brand_left_grid">
@@ -190,6 +196,7 @@ String orderBy = (String) request.getAttribute("orderBy");
                                         	
                                         	<%
                                         }
+  
   										 %> 
 									 </fieldset>
                                 </form>
@@ -205,7 +212,9 @@ String orderBy = (String) request.getAttribute("orderBy");
     <% 
     }
     
+    
     %>
+    
     
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="../js/jquery-1.11.1.min.js"></script>
