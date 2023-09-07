@@ -115,7 +115,7 @@ function showUnread(result){
 					<li><a href="productReg.po"><i class="fa fa-plus-circle" aria-hidden="true"> 상품등록</i></a></li>
 					<li><a href="wishlist.po"><i class="fa fa-heart" aria-hidden="true"> 찜리스트 </i></a></li>
 					<li><a href="logout.me"><i class="fa fa-heart" aria-hidden="true"> 로그아웃 </i></a></li>
-					<li><a href="single.po?p_num=5"><i class="fa fa-question-circle-o" aria-hidden="true"> 상품</i></a></li>
+					<!-- <li><a href="single.po?p_num=5"><i class="fa fa-question-circle-o" aria-hidden="true"> 상품</i></a></li> -->
 					<li><a href="#" onclick="window.open('box.ch','1:1 채팅','width=500, height=800, scrollbars=yes')"><i class="fa fa-question-circle-o" aria-hidden="true"> 채팅<span id="unread" class="label label-info" style="margin-left:2px;"></span></i></a></li>
 <% 					
 					}
