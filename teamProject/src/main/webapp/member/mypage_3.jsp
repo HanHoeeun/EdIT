@@ -53,14 +53,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	String m_id = (String)session.getAttribute("m_id");
 %>	
 
-<!-- 신고내역부분 -->
-<%
-List<ReportDTO> reportList = (List<ReportDTO>)request.getAttribute("reportList");
-AdminPageDTO pageDTO = (AdminPageDTO)request.getAttribute("pageDTO");
-SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
-%>	
-
-<!-- start-smoth-scrolling -->
 </head>
 	
 <body>
@@ -84,11 +76,9 @@ SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
 <!--=========================== 상단 탭 리스트============================================ -->
 				<ul class="tabs">
 					<li class="tab-link current" data-tab="tab-1">나의정보</li>
-					<li class="tab-link" data-tab="tab-2">구매내역</li>
 					<li class="tab-link" data-tab="tab-3">판매내역</li>
 					<li class="tab-link" data-tab="tab-4">찜</li>
-<!-- 				<li class="tab-link" data-tab="tab-5">문의내역</li> -->
-					<li class="tab-link" data-tab="tab-6">신고내역</li>
+					<li class="tab-link" onclick="location.href='m_adminpage.me'" >신고내역</li>
 					<li class="tab-link" data-tab="tab-7">회원탈퇴</li>
 				</ul>
 			</div>
@@ -195,37 +185,37 @@ SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
 			
 			
 <!--================================== 2탭 구매내역 ==================================== -->				
-				<div id="tab-2" class="tab-content">
-					<table class="_1qna_board">
-						<tr>
-							<th class="_1qna_board_border">상품번호</th>
-							<th class="_1qna_board_border">상품이미지</th>
-							<th class="_1qna_board_border">제목</th>
-							<th class="_1qna_board_border">가격</th>
-						</tr>
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_border">이미지..</td>
-							<td class="_1qna_board_border">상품명...?</td>
-<!-- 							<td class="_1qna_board_subject">신규가입 회원 혜택이 빵빵! (~09/30)</td> -->
-							<td class="_1qna_board_border">2023.09.01</td>
-						</tr>
+<!-- 				<div id="tab-2" class="tab-content"> -->
+<!-- 					<table class="_1qna_board"> -->
+<!-- 						<tr> -->
+<!-- 							<th class="_1qna_board_border">상품번호</th> -->
+<!-- 							<th class="_1qna_board_border">상품이미지</th> -->
+<!-- 							<th class="_1qna_board_border">제목</th> -->
+<!-- 							<th class="_1qna_board_border">가격</th> -->
+<!-- 						</tr> -->
+<!-- 						<tr> -->
+<!-- 							<td class="_1qna_board_border">1</td> -->
+<!-- 							<td class="_1qna_board_border">이미지..</td> -->
+<!-- 							<td class="_1qna_board_border">상품명...?</td> -->
+<!-- <!-- 							<td class="_1qna_board_subject">신규가입 회원 혜택이 빵빵! (~09/30)</td> --> -->
+<!-- 							<td class="_1qna_board_border">2023.09.01</td> -->
+<!-- 						</tr> -->
 						
-					</table>
-					<!--============= 2탭 이벤트 페이징 ==================== -->
-				    <div class="_1qna_paging">
+<!-- 					</table> -->
+<!-- 					============= 2탭 이벤트 페이징 ==================== -->
+<!-- 				    <div class="_1qna_paging"> -->
 				 
-					 <ul>
-				       <li onclick="location.href='index.html'">◀</li>
-				       <li onclick="location.href='about.html'">1</li>
-			           <li onclick="location.href='login.html'">2</li>
-			           <li onclick="location.href='faq.html'">3</li>
-			           <li onclick="location.href='gourmet.html'">4</li>
-			           <li onclick="location.href='login.html'">5</li>
-			           <li onclick="location.href='products.html'">▶</li>						
-			         </ul> 
-   					 </div>
-				</div>
+<!-- 					 <ul> -->
+<!-- 				       <li onclick="location.href='index.html'">◀</li> -->
+<!-- 				       <li onclick="location.href='about.html'">1</li> -->
+<!-- 			           <li onclick="location.href='login.html'">2</li> -->
+<!-- 			           <li onclick="location.href='faq.html'">3</li> -->
+<!-- 			           <li onclick="location.href='gourmet.html'">4</li> -->
+<!-- 			           <li onclick="location.href='login.html'">5</li> -->
+<!-- 			           <li onclick="location.href='products.html'">▶</li>						 -->
+<!-- 			         </ul>  -->
+<!--    					 </div> -->
+<!-- 				</div> -->
 <!--================================== 3탭 판매내역 ==================================== -->
 	
 				<div id="tab-3" class="tab-content">
@@ -284,68 +274,7 @@ SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
 						
 					</table>
 				</div>
-<!--================================== 5탭 문의내역 ==================================== -->				
-				<div id="tab-5" class="tab-content">
-					<table class="_1qna_board">
-						<tr>
-							<th class="_1qna_board_border">번호</th>
-							<th class="_1qna_board_border">제목</th>
-							<th class="_1qna_board_border">작성일</th>
-						</tr>
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_subject">신규가입 회원 혜택이 빵빵! (~09/30)</td>
-							<td class="_1qna_board_border">2023.09.01</td>
-						</tr>
-						
-					</table>
-				</div>
-<!--================================== 6탭 신고내역 ==================================== -->		
 
-
-<!-- 				신고내역 테이블 -->
-				<div id="tab-6" class="tab-content current">
-					<table class="_1qna_board_1">
-						<tr>
-							<th class="_1qna_board_border">신고번호</th>
-							<th class="_1qna_board_border">회원번호</th>
-							<th class="_1qna_board_subject">제목</th>
-							<th class="_1qna_board_border">작성시간</th>
-							<th>확인여부</th>
-						</tr>
-<!-- 				admin 참고 -->
-						<%for(ReportDTO reportDTO : reportList) {
-							String check = reportDTO.getR_check() == 0 ? "x" : "o";					
-						%>
-						<tr onclick="window.open('report_content.ad?r_num=<%=reportDTO.getR_num() %>','신고상세페이지','width=800, height=700, scrollbars=yes')">
-							<td class="_1qna_board_border"><%=reportDTO.getR_num() %></td>
-							<td class="_1qna_board_border"><%=reportDTO.getR_m_num() %></td>
-							<td class="_1qna_board_subject"><%=reportDTO.getR_title() %></td>
-							<td class="_1qna_board_border"><%=format.format(reportDTO.getR_date()) %></td>
-							<td><%=check %></td>
-						</tr>
-						<%} %>
-						
-					</table>
-<!-- 				페이징 -->
-				    <div class="_1qna_paging">
-        				 <ul>
-					<%
-					// 시작페이지 1페이지 Prev 없음
-					// 시작페이지 11,21,31 Prev가 보이게
-							if(pageDTO.getStartPage() > pageDTO.getPageBlock()){%>
-							<li onclick="location.href='update.me?pageNum=<%=pageDTO.getStartPage()-pageDTO.getPageBlock()%>&tab=tab-6'">Prev</li>
-						<% } 
-						for(int i= pageDTO.getStartPage(); i<=pageDTO.getEndPage(); i++){%>
-							<li onclick="location.href='update.me?pageNum=<%=i%>&tab=tab-6'"><%=i %></li>
-						<%}
-						// 끝페이지 번호 전체페이지수 비교 => 전체페이지 수 크면 => next보임
-						if(pageDTO.getEndPage() < pageDTO.getPageCount()){%>
-							<li onclick="location.href='update.me?pageNum=<%=pageDTO.getStartPage() + pageDTO.getPageBlock() %>&tab=tab-6'">Next</li>
-						<%}%>
-				    </ul>
-				</div>
-				</div>
 
 <!--==================================회원탈퇴==================================== -->				
 
