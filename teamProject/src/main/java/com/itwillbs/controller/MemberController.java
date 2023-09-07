@@ -205,6 +205,7 @@ public class MemberController extends HttpServlet{
 //				성공하면 마이페이지 창으로 이동해서 나의 정보 확인
 				response.sendRedirect("update.me");
 				
+				
 			} else {
 //				불일치면 경고 메시지 화면에 띄우기
 				request.setAttribute("msg", "비밀번호가 일치하지 않습니다");
@@ -292,7 +293,7 @@ public class MemberController extends HttpServlet{
 			
 			memberService = new MemberService();
 			
-			MemberDTO memberDTO = memberService.userCheck2(request);
+			MemberDTO memberDTO = memberService.userCheck(request);
 					
 			if (memberDTO != null) {
 				memberService.deleteMember(request);
@@ -305,6 +306,7 @@ public class MemberController extends HttpServlet{
 				
 			} else {
 //				비밀번호 불일치 -> 경고 메시지다 -------------------------------수정
+				request.setAttribute("msg", "비밀번호가 일치하지 않습니다");
 				dispatcher = request.getRequestDispatcher("member/msg.jsp");
 				dispatcher.forward(request, response);
 			}

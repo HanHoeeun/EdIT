@@ -127,22 +127,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								</div>
 							</td>
 						</tr>
-<%-- <!-- 		----비밀번호---- -->						
-						<tr>
-							<td class="_1qna_board_border2">
-								<form action="updatePro.me" method="post">
-									<div class="mypage-grids"> 
-										<div align="center">
-											<input type="text" class="show" placeholder="비밀번호" readonly="readonly"readonly>
-											<input type="password" value="<%=memberDTO.getM_pass() %>" placeholder="현재비밀번호" id="m_pass" 	name="m_pass">
-											<input type="password" placeholder="새비밀번호" id="m_pass2" 	name="m_pass2">
-											<input type="password" placeholder="새비밀번호확인" id="m_pass3" 	name="m_pass3">
-											<br><div id="result"></div>
-										</div>
-									</div>
-								</form>
-							</td>
-						</tr> --%>
 <!-- 		----이메일---- -->							
 						<tr>	
 							<td class="_1qna_board_border2">
@@ -418,30 +402,21 @@ $(document).ready(function() {
     
 })
 
-//	비밀번호/비밀번호확인 일치		----성공
-document.getElementById('m_pass2').addEventListener('keyup', validatePassword);
-document.getElementById('m_pass3').addEventListener('keyup', validatePassword);
 
-function validatePassword() {
-    var newPassword = document.getElementById('m_pass2').value;
-    var confirmPassword = document.getElementById('m_pass3').value;
-    var resultDiv = document.getElementById('result');
 
-    var passwordRegex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*?_]).{8,16}$/;
+/* 
+document.getElementById('profileForm').addEventListener('submit', function (e) {
+    e.preventDefault();
 
-    if (passwordRegex.test(newPassword)) {
-        if (newPassword === confirmPassword) {
-        	resultDiv.innerHTML = '';
-        } else {
-            resultDiv.innerHTML = '비밀번호가 일치하지 않습니다.';
-            resultDiv.style.color = 'red';
-        }
-    } else {
-        resultDiv.innerHTML = '영문+숫자+특수문자 포함 8~16자로 입력해주세요';
-        resultDiv.style.color = 'red';
-    }
-    checkFormValidity();
-};
+    // 여기에서 회원 정보를 서버로 업데이트하고, 성공 또는 실패 여부를 확인합니다.
+    // 이 부분은 서버와의 통신 및 업데이트 로직입니다.
+
+    // 만약 회원 정보 수정이 성공했다면, 다음 코드를 사용하여 수정 완료 메시지를 띄웁니다.
+    alert('회원 정보가 수정되었습니다.');
+   	location.reload();
+
+    // 필요한 경우, 다른 동작을 수행하거나 페이지를 새로고침할 수 있습니다.
+}); */
 
 
 
