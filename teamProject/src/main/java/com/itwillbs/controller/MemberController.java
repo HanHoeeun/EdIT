@@ -183,13 +183,24 @@ public class MemberController extends HttpServlet{
 			
 			request.setAttribute("memberDTO", memberDTO);
 			
+			dispatcher = request.getRequestDispatcher("member/mypage_3.jsp");
+			dispatcher.forward(request, response);	
+		}
+			
+		
+		
 			// 마이페이지에서 admin팀의 신고내역 가져오기 & 내 신고내역만 볼 수 있게
+			if(sPath.equals("/m_adminpage.me")) {
+				request.setCharacterEncoding("utf-8");
+				
+				HttpSession session = request.getSession();
+				String m_id = (String)session.getAttribute("m_id");
+		
 			int pageSize =10;
 			String pageNum=request.getParameter("pageNum");
 			if(pageNum == null) {
 				pageNum = "1";
 			}
-			
 			int currentPage = Integer.parseInt(pageNum);
 			
 			AdminPageDTO pageDTO = new AdminPageDTO();
@@ -227,7 +238,7 @@ public class MemberController extends HttpServlet{
 			// request에 "adminList",adminList 저장
 			request.setAttribute("reportList", reportList);
 			// 주소변경없이 이동
-			dispatcher = request.getRequestDispatcher("member/mypage_3.jsp");
+			dispatcher = request.getRequestDispatcher("member/m_adminpage.jsp");
 			dispatcher.forward(request, response);	
 		}
 		
@@ -251,15 +262,17 @@ public class MemberController extends HttpServlet{
 //				성공하면 마이페이지 창으로 이동해서 나의 정보 확인
 				response.sendRedirect("update.me");
 				
+				
 			} else {
 //				불일치면 경고 메시지 화면에 띄우기
-				request.setAttribute("msg", "경고");
+				request.setAttribute("msg", "비밀번호가 일치하지 않습니다");
 				dispatcher = request.getRequestDispatcher("member/msg.jsp");
 				dispatcher.forward(request, response);
 				
 			}
 			
 		}
+		
 		
 		
 		
@@ -350,6 +363,7 @@ public class MemberController extends HttpServlet{
 				
 			} else {
 //				비밀번호 불일치 -> 경고 메시지다 -------------------------------수정
+				request.setAttribute("msg", "비밀번호가 일치하지 않습니다");
 				dispatcher = request.getRequestDispatcher("member/msg.jsp");
 				dispatcher.forward(request, response);
 			}
