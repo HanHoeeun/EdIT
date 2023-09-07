@@ -203,13 +203,13 @@ ul.faq_1 {
 
 
 /*--수정버튼---*/
-.up-button{
-	margin: 1.5em 0 0;
+.update-button{
+	margin:2em 0 0;
 	text-align:center;
 }
 
-.up-button input[type="button"]{
-	padding: 8px 35px;
+.update-button input[type="submit"]{
+	padding: 8px 45px;
     background: #3399cc;
 	color:#fff;
 	font-size:1em;
@@ -217,9 +217,10 @@ ul.faq_1 {
     border: none;
 
 }
-.up-button input[type="button"]:hover{
+.update-button input[type="submit"]:hover{
 	background:#fe9126;
 }
+
 
 
 /* ----첫번째 나의 정보---- */

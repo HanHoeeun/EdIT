@@ -1,5 +1,3 @@
-<%@page import="com.itwillbs.domain.ReportDTO"%>
-<%@page import="com.itwillbs.domain.WishListDTO"%>
 <%@page import="com.itwillbs.domain.MemberDTO"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.itwillbs.domain.NoticePageDTO"%>
@@ -25,10 +23,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- //for-mobile-apps -->
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-<link href="css/font-awesome.css" rel="stylesheet"> 
-<link href="css/mypage_3.css" rel="stylesheet"> 
+<link href="../css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="../css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="../css/font-awesome.css" rel="stylesheet"> 
+<link href="./css/mypage_3.css" rel="stylesheet"> 
 <!-- //font-awesome icons -->
 <!-- js -->
 <script src="../js/jquery-1.11.1.min.js"></script>
@@ -69,7 +67,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <!--=========================== 상단 탭 리스트============================================ -->
 				<ul class="tabs">
-					<li class="tab-link current" data-tab="tab-1">나의정보</li>
+					<li class="tab-link current" data-tab="tab-1" onclick="location.href='mypage.me'">나의정보</li>
 					<li class="tab-link" data-tab="tab-2">구매내역</li>
 					<li class="tab-link" data-tab="tab-3">판매내역</li>
 					<li class="tab-link" data-tab="tab-4">찜</li>
@@ -84,8 +82,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 %>
 
-		<div class="container_3_1">
-			<form action="updatePro.me" method="post" id="profileForm">
+			<div class="container_3_1">
 				<div id="tab-1" class="tab-content current">
 					<table class="mypage-board">
 						<tr>
@@ -94,106 +91,123 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- 		----아이디---- -->
 						 <tr>
 							<td class="_1qna_board_border2">
-								<div class="mypage-grids"> 
-									<div align="center">
-										<input type="text" class="show" placeholder="아이디" readonly="readonly"readonly>
-										<input type="text" value="<%=memberDTO.getM_id() %>" id="m_id" name="m_id" readonly="readonly">
+								<form action="updatePro.me" method="post">
+									<div class="mypage-grids"> 
+										<div align="center">
+											<input type="text" class="show" placeholder="아이디" readonly="readonly"readonly>
+											<input type="text" value="<%=memberDTO.getM_id() %>" id="m_id" name="m_id" readonly="readonly">
+										</div>
 									</div>
-								</div>
-							</td>
-						</tr>
-						
-<!-- 		----이름---- -->
-						 <tr>
-							<td class="_1qna_board_border2">
-								<div class="mypage-grids"> 
-									<div align="center">
-										<input type="text" class="show" placeholder="이름" readonly="readonly"readonly>
-										<input type="text" value="<%=memberDTO.getM_name() %>" id="m_name" name="m_name" readonly="readonly">
-									</div>
-								</div>
+								</form>
 							</td>
 						</tr>
 						
 <!-- 		----닉네임---- -->						
 						 <tr>
 							<td class="_1qna_board_border2">
-								<div class="mypage-grids"> 
-									<div align="center">
-										<input type="text" class="show" placeholder="닉네임" readonly="readonly"readonly>
-										<input type="text" value="<%=memberDTO.getM_nick() %>" id="m_nick" name="m_nick">
-										<br><div id="nick_error_message" class="nick_error_message"></div>
+								<form action="updatePro.me" method="post">
+									<div class="mypage-grids"> 
+										<div align="center">
+											<input type="hidden" name="m_id" value="<%=memberDTO.getM_id() %>">
+											<input type="text" class="show" placeholder="닉네임" readonly="readonly"readonly>
+											<input type="text" value="<%=memberDTO.getM_nick() %>" id="m_nick" name="m_nick">
+										</div>
 									</div>
+								</form>
+							</td>
+							<td class="_1qna_board_border3" width="10">
+								<div class="up-button">
+									<input type="button" class="up-button" value="수정">
 								</div>
 							</td>
 						</tr>
-<%-- <!-- 		----비밀번호---- -->						
+						
+<!-- 		----비밀번호---- -->						
 						<tr>
 							<td class="_1qna_board_border2">
 								<form action="updatePro.me" method="post">
 									<div class="mypage-grids"> 
 										<div align="center">
+											<input type="hidden" name="m_id" value="<%=memberDTO.getM_id() %>">
 											<input type="text" class="show" placeholder="비밀번호" readonly="readonly"readonly>
-											<input type="password" value="<%=memberDTO.getM_pass() %>" placeholder="현재비밀번호" id="m_pass" 	name="m_pass">
+											<input type="password" placeholder="현재비밀번호" id="m_pass" 	name="m_pass">
 											<input type="password" placeholder="새비밀번호" id="m_pass2" 	name="m_pass2">
 											<input type="password" placeholder="새비밀번호확인" id="m_pass3" 	name="m_pass3">
-											<br><div id="result"></div>
 										</div>
 									</div>
 								</form>
 							</td>
-						</tr> --%>
+												
+							<td class="_1qna_board_border3" width="10">
+							<div class="up-button">
+							<input type="button" class="up-button" value="수정">
+							</div>
+							</td>
+						</tr>
+						
+						
+						
 <!-- 		----이메일---- -->							
 						<tr>	
 							<td class="_1qna_board_border2">
-								<div class="mypage-grids"> 
-									<div align="center">
-										<input type="text" class="show" placeholder="이메일" readonly="readonly"readonly>
-										<input type="email" value="<%=memberDTO.getM_email()%>" id="m_email" name="m_email">
-										<br><div id="email_error_message" class="email_error-message"></div>
+								<form action="updatePro.me" method="post">
+									<div class="mypage-grids"> 
+										<div align="center">
+											<input type="hidden" name="m_id" value="<%=memberDTO.getM_id() %>">
+											<input type="text" class="show" placeholder="이메일" readonly="readonly"readonly>
+											<input type="email" value="<%=memberDTO.getM_email()%>"		id="m_email" 	name="m_email">
+										</div>
 									</div>
-								</div>
+								</form>
+							</td>
+												
+							<td class="_1qna_board_border3" width="10">
+							<div class="up-button">
+							<input type="button" class="up-button" value="수정">
+							</div>
 							</td>
 						</tr>
+						
+						
 <!-- 		----전화번호---- -->							
 						<tr>	
 							<td class="_1qna_board_border2">
-								<div class="mypage-grids"> 
-									<div align="center">
-										<input type="text" class="show" placeholder="전화번호" readonly="readonly"readonly>
-										<input type="tel" value="<%=memberDTO.getM_phone() %>" id="m_phone" name="m_phone" oninput="oninputPhone(this)">
+								<form action="updatePro.me" method="post">
+									<div class="mypage-grids"> 
+										<div align="center">
+											<input type="hidden" name="m_id" value="<%=memberDTO.getM_id() %>">
+											<input type="text" class="show" placeholder="전화번호" readonly="readonly"readonly>
+											<input type="tel" value="<%=memberDTO.getM_phone() %>"		id="m_phone" 	name="m_phone">
+										</div>
 									</div>
-								</div>
+								</form>
 							</td>
-						</tr>
-						<tr>
+												
 							<td class="_1qna_board_border3" width="10">
-							<div class="delete-button">
-							<input type="submit" class="delete-button" value="수정">
-							</div><br>
-							<a id="password-change-link" href="pwupdqte.me">비밀번호 변경</a>
+							<div class="up-button">
+							<input type="button" class="up-button" value="수정">
+							</div>
 							</td>
-						
 						</tr>
+						
+
+						
+						
+						
+						
 					</table>
 				</div>
-			</form>
-			
-			
 <!--================================== 2탭 구매내역 ==================================== -->				
 				<div id="tab-2" class="tab-content">
 					<table class="_1qna_board">
 						<tr>
-							<th class="_1qna_board_border">상품번호</th>
-							<th class="_1qna_board_border">상품이미지</th>
+							<th class="_1qna_board_border">번호</th>
 							<th class="_1qna_board_border">제목</th>
-							<th class="_1qna_board_border">가격</th>
+							<th class="_1qna_board_border">작성일</th>
 						</tr>
 						<tr>
 							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_border">이미지..</td>
-							<td class="_1qna_board_border">상품명...?</td>
-<!-- 							<td class="_1qna_board_subject">신규가입 회원 혜택이 빵빵! (~09/30)</td> -->
+							<td class="_1qna_board_subject">신규가입 회원 혜택이 빵빵! (~09/30)</td>
 							<td class="_1qna_board_border">2023.09.01</td>
 						</tr>
 						
@@ -242,30 +256,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			         </ul> 
    					 </div>
 				</div>
-<!--================================== 4탭 찜 ==================================== -->		
-
-
-		
+<!--================================== 4탭 찜 ==================================== -->				
 				<div id="tab-4" class="tab-content">
 					<table class="_1qna_board">
 						<tr>
 							<th class="_1qna_board_border">번호</th>
-							<th class="_1qna_board_border">이미지</th>
-							<th class="_1qna_board_border">이름</th>
-							<th class="_1qna_board_border">상태</th>
-							<th class="_1qna_board_border">타입</th>
-							<th class="_1qna_board_border">가격</th>
-							<th class="_1qna_board_border">삭제</th>
+							<th class="_1qna_board_border">제목</th>
+							<th class="_1qna_board_border">작성일</th>
 						</tr>
 						<tr>
 							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_border">1</td>
-<!-- 							<td class="_1qna_board_subject">신규가입 회원 혜택이 빵빵! (~09/30)</td> -->
-							<td class="_1qna_board_border">X</td>
+							<td class="_1qna_board_subject">신규가입 회원 혜택이 빵빵! (~09/30)</td>
+							<td class="_1qna_board_border">2023.09.01</td>
 						</tr>
 						
 					</table>
@@ -286,10 +288,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						
 					</table>
 				</div>
-<!--================================== 6탭 신고내역 ==================================== -->		
-<%
- ReportDTO reportDTO = (ReportDTO)request.getAttribute("reportDTO");
-%>		
+<!--================================== 6탭 신고내역 ==================================== -->				
 				<div id="tab-6" class="tab-content">
 					<table class="_1qna_board">
 						<tr>
@@ -347,107 +346,58 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="text/javascript" src="script/jquery-3.7.0.js"></script>
 <script type="text/javascript">
 
-//전화번호 - 자동 생성
-function oninputPhone(target) {
-    target.value = target.value
-        .replace(/[^0-9]/g, '')
-        .replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]{3,4})([0-9]{4})/g, "$1-$2-$3");
-}
-	
 
 $(document).ready(function() {
-//	닉네임 조건 + 중복검사		
-    $('#m_nick').on('input', function() {
-        var userNick = $(this).val();
-        var userNickPattern = /^[a-zA-Z0-9ㄱ-힣]{2,}$/;
-        var nick_error_message = $('#nick_error_message');
+    $('#changePasswordForm').submit(function(e) {
+        e.preventDefault(); // Prevent form submission for now
 
-        if (userNick === "") {
-            nick_error_message.text("닉네임을 입력하세요").css("color", "red");
-            $('#m_nick').focus();
-            return false;
-        } else if (!userNickPattern.test(userNick)) {
-            nick_error_message.text("최소 2자 입력하세요").css("color", "red");
-            $('#m_nick').focus();
-            return false;
+        var currentPassword = $('#currentPassword').val();
+        var newPassword = $('#newPassword').val();
+        var confirmNewPassword = $('#confirmNewPassword').val();
+
+        // Perform your validation here
+        if (!currentPasswordIsValid(currentPassword)) {
+            alert("Current password is incorrect.");
+            return false; // Prevent form submission
         }
 
-        $.ajax({
-            type: 'POST', // 또는 'GET'에 따라 서버 측에서 처리 방식을 설정합니다.
-            url: 'nickCheck.me', // 실제 서버 엔드포인트 URL을 지정합니다.
-            data: {'m_nick': $('#m_nick').val() }, // 서버에 보낼 데이터를 설정합니다.
-            success: function(result) {
-                $('.nick_error_message').html(result);
-                checkFormValidity();
-            }
-        });
+        if (!newPasswordIsValid(newPassword)) {
+            alert("New password is not valid.");
+            return false; // Prevent form submission
+        }
+
+        if (newPassword !== confirmNewPassword) {
+            alert("New password and confirmation do not match.");
+            return false; // Prevent form submission
+        }
+
+        // If all conditions are met, you can submit the form
+        // Uncomment the following line to submit the form:
+        // $('#changePasswordForm').off('submit').submit();
     });
-  
 
-
-    
-//	이메일 조건 + 중복검사		----성공
-	$('#m_email').on('input', function() {
-	    var userEmail = $(this).val();
-	    var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/; // 이메일 형식 검사
-	    var email_error_message = $('#email_error_message');
-	
-	    if (userEmail === "") {
-	        email_error_message.text("이메일을 입력하세요").css("color", "red");
-	        $('#m_email').focus();
-	        return false;
-	    } else if (!emailPattern.test(userEmail)) {
-	        email_error_message.text("유효한 이메일 형식이 아닙니다").css("color", "red");
-	        $('#m_email').focus();
-	        return false;
-	    } else {
-	        // 유효한 경우 에러 메시지를 지웁니다.
-	        email_error_message.text("");
-	    }
-	
-	    $.ajax({
-	        type: 'POST', // 또는 'GET'에 따라 서버 측에서 처리 방식을 설정합니다.
-	        url: 'emailCheck.me', // 실제 서버 엔드포인트 URL을 지정합니다.
-	        data: {'m_email': $('#m_email').val() }, // 서버에 보낼 데이터를 설정합니다.
-	        success: function(result) {
-	            $('.email_error-message').html(result);
-	            checkFormValidity();
-	        }
-	    });
-	});
-    
-})
-
-//	비밀번호/비밀번호확인 일치		----성공
-document.getElementById('m_pass2').addEventListener('keyup', validatePassword);
-document.getElementById('m_pass3').addEventListener('keyup', validatePassword);
-
-function validatePassword() {
-    var newPassword = document.getElementById('m_pass2').value;
-    var confirmPassword = document.getElementById('m_pass3').value;
-    var resultDiv = document.getElementById('result');
-
-    var passwordRegex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*?_]).{8,16}$/;
-
-    if (passwordRegex.test(newPassword)) {
-        if (newPassword === confirmPassword) {
-        	resultDiv.innerHTML = '';
-        } else {
-            resultDiv.innerHTML = '비밀번호가 일치하지 않습니다.';
-            resultDiv.style.color = 'red';
-        }
-    } else {
-        resultDiv.innerHTML = '영문+숫자+특수문자 포함 8~16자로 입력해주세요';
-        resultDiv.style.color = 'red';
+    // Your validation functions
+    function currentPasswordIsValid(password) {
+        // Implement your logic to check if the current password is correct
+        // Return true if it's correct, false otherwise
+        // You may use AJAX to check the current password on the server
+        return true; // Replace with your logic
     }
-    checkFormValidity();
-};
+
+    function newPasswordIsValid(newPassword) {
+        // Implement your logic to check if the new password is valid
+        // Return true if it's valid, false otherwise
+        return newPassword.length >= 8; // Replace with your logic
+    }
+});
 
 
-
-</script>
- 
-
+				
+				
+				
+</script>				
+				
+				
 				
 				
 <!-- 			탭 jquery -->

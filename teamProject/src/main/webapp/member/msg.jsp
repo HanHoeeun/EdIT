@@ -9,11 +9,11 @@
 
 <body>
 <%
-String error =(String)request.getAttribute("error");
+String msg =(String)request.getAttribute("msg");
 %>
 	<script type="text/javascript">
-// 	아이디 비밀번호 찾기에서 메세지 띄우기
-alert("<%=error%>");
+// 	메세지 띄우고 뒤로 가기
+alert("<%=msg%>");
 
 history.back();
 </script>

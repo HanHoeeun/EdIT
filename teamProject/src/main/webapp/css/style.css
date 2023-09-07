@@ -111,8 +111,30 @@ input[type="submit"],#PPMiniCart .minicart-submit,.w3ls_vegetables ul li a,input
     margin: 0em 0 0em 0em;
    	margin-top: 40px;
 }
+/* 공지사항 검색 */
+.w3l_search_1 {
+    float: right;
+    width: 50%;
+    margin: 0em 0 0em 0em;
+   	margin-top: 40px;
+}
 .w3l_search input[type="search"] {
     width: 83%;
+    padding:10px;
+    font-size: 14px;
+    color: #999;
+    outline: none;
+    border: 1px solid #cccccc;
+    background: none;
+    -webkit-appearance: none;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+}
+
+/* 공지사항 검색 */
+.w3l_search_1 input[type="search"] {
+    width:25%;
     padding:10px;
     font-size: 14px;
     color: #999;
@@ -139,7 +161,20 @@ button.btn.btn-default.search {
     outline: none;
     border: none;
 }
+/* 공지사항 검색 */
+button.btn.btn-default.search_1 {
+    background: #fe9126;
+    padding: 11px 12px 11px;
+    float: center;
+    outline: none;
+    border: none;
+}
 button.btn.btn-default.search:hover {
+    background:#333;
+	
+}
+/* 공지사항 검색 */
+button.btn.btn-default.search_1:hover {
     background:#333;
 	
 }
@@ -167,6 +202,11 @@ button.btn.btn-default.search:hover {
     font-size: 17px;
 	color:#fff;
 }
+/* 공지사항 검색 */
+.w3l_search_1 i.fa.fa-search {
+    font-size: 17px;
+	color:#fff;
+}
 button.w3l_search {
     border: none;
     position: absolute;
@@ -185,6 +225,27 @@ button.w3l_search {
     transition: .5s all;
 }
 .btn-default:hover {
+    background-color:#000;
+    border:none;
+}
+button.w3l_search_1 {
+    border: none;
+    position: absolute;
+    top: 4px;
+    right: 11px;
+    width: 47px;
+    height: 43px;
+    outline: none;
+    box-shadow: none;
+    background:#00e58b;
+    padding: 0;
+    border-radius: inherit;
+    -webkit-appearance: none;
+    -webkit-transition: .5s all;
+    -moz-transition: .5s all;
+    transition: .5s all;
+}
+.btn-default_1:hover {
     background-color:#000;
     border:none;
 }
@@ -2756,6 +2817,9 @@ h3.agileits-icons-title {
     font-size: 34px;
 }
 .w3l_search input[type="search"] {
+    width: 100%;
+}
+.w3l_search_1 input[type="search"] {
     width: 100%;
 }
 .navbar-nav > li {

@@ -287,25 +287,6 @@ ul.faq_1 {
 
 ._1admin_search td{
 	padding : 5px;
-} 
-/* ---------------------------------- */
-._1admin_search_search {
-    width: 83%;
-    padding:10px;
-    color: #999;
-    outline: none;
-    border: 1px solid #cccccc;
-    background: none;
-}
-
-._1admin_search_btn {
-    background: #fe9126;
-    padding: 11px 12px 11px;
-    outline: none;
-    border: none;
-}
-._1admin_search_btn:hover {
-    background:#333;	
 }
 
 
