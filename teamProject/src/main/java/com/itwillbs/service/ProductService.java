@@ -870,19 +870,6 @@ public class ProductService {
 	}
 
 
-	public ProductDTO getProduct(int p_num) {
-	    ProductDTO productDTO = null;
-	    try {
-	        // ProductDAO 객체 생성
-	        productDAO = new ProductDAO();
-	        
-	        // ProductDAO의 getproduct 메서드 호출
-	        productDTO = productDAO.getproduct(p_num);
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    }
-	    return productDTO;
-	}
 
 
 	public List<ProductDTO> getProductListSearch(ProductPageDTO ppageDTO) {
