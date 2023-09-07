@@ -77,7 +77,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<ul class="tabs">
 					<li class="tab-link current" data-tab="tab-1">나의정보</li>
 					<li class="tab-link" data-tab="tab-3">판매내역</li>
-					<li class="tab-link" data-tab="tab-4">찜</li>
+					<li class="tab-link" onclick="location.href='m_wishlist.me'">찜</li>
 					<li class="tab-link" onclick="location.href='m_adminpage.me'" >신고내역</li>
 					<li class="tab-link" data-tab="tab-7">회원탈퇴</li>
 				</ul>
@@ -197,7 +197,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- 							<td class="_1qna_board_border">1</td> -->
 <!-- 							<td class="_1qna_board_border">이미지..</td> -->
 <!-- 							<td class="_1qna_board_border">상품명...?</td> -->
-<!-- <!-- 							<td class="_1qna_board_subject">신규가입 회원 혜택이 빵빵! (~09/30)</td> --> -->
+<!-- <!-- 							<td class="_1qna_board_subject">신규가입 회원 혜택이 빵빵! (~09/30)</td> -->
 <!-- 							<td class="_1qna_board_border">2023.09.01</td> -->
 <!-- 						</tr> -->
 						
@@ -250,30 +250,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 		
-				<div id="tab-4" class="tab-content">
-					<table class="_1qna_board">
-						<tr>
-							<th class="_1qna_board_border">번호</th>
-							<th class="_1qna_board_border">이미지</th>
-							<th class="_1qna_board_border">이름</th>
-							<th class="_1qna_board_border">상태</th>
-							<th class="_1qna_board_border">타입</th>
-							<th class="_1qna_board_border">가격</th>
-							<th class="_1qna_board_border">삭제</th>
-						</tr>
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_border">1</td>
+<!-- 				<div id="tab-4" class="tab-content"> -->
+<!-- 					<table class="_1qna_board"> -->
+<!-- 						<tr> -->
+<!-- 							<th class="_1qna_board_border">번호</th> -->
+<!-- 							<th class="_1qna_board_border">이미지</th> -->
+<!-- 							<th class="_1qna_board_border">이름</th> -->
+<!-- 							<th class="_1qna_board_border">상태</th> -->
+<!-- 							<th class="_1qna_board_border">타입</th> -->
+<!-- 							<th class="_1qna_board_border">가격</th> -->
+<!-- 							<th class="_1qna_board_border">삭제</th> -->
+<!-- 						</tr> -->
+<!-- 						<tr> -->
+<!-- 							<td class="_1qna_board_border">1</td> -->
+<!-- 							<td class="_1qna_board_border">1</td> -->
+<!-- 							<td class="_1qna_board_border">1</td> -->
+<!-- 							<td class="_1qna_board_border">1</td> -->
+<!-- 							<td class="_1qna_board_border">1</td> -->
+<!-- 							<td class="_1qna_board_border">1</td> -->
 <!-- 							<td class="_1qna_board_subject">신규가입 회원 혜택이 빵빵! (~09/30)</td> -->
-							<td class="_1qna_board_border">X</td>
-						</tr>
+<!-- 							<td class="_1qna_board_border">X</td> -->
+<!-- 						</tr> -->
 						
-					</table>
-				</div>
+<!-- 					</table> -->
+<!-- 				</div> -->
 
 
 <!--==================================회원탈퇴==================================== -->				
