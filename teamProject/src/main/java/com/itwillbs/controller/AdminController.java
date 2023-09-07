@@ -18,6 +18,7 @@ import com.itwillbs.domain.AdminPageDTO;
 import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.ReportDTO;
 import com.itwillbs.service.AdminService;
+import com.itwillbs.service.NoticeService;
 
 public class AdminController extends HttpServlet{
 	RequestDispatcher dispatcher = null;
@@ -515,9 +516,34 @@ public class AdminController extends HttpServlet{
 			dispatcher = request.getRequestDispatcher("admin/adminBlackPage.jsp");
 			dispatcher.forward(request, response);
 		}
-			
 		
-	}
+//====================================== 신고페이지 ==============================================================	
+		if(sPath.equals("/reportWrite.ad")) {
+			System.out.println("뽑은 가상주소 비교 : /reportWrite.ad");
+			request.setCharacterEncoding("utf-8");
+			String m_id = (String)request.getSession().getAttribute("m_id");
+			String r_m_target = request.getParameter("r_m_target");
+			
+			ReportDTO reportDTO = new ReportDTO(); // request에서 값을 받아서 DTO 로 전달 
+			reportDTO.setR_m_num_id(m_id);	//신고자 아이디
+			reportDTO.setR_m_target_id(r_m_target); // 신고 대상자 아이디 
+				
+			request.setAttribute("reportDTO", reportDTO);
+		// 주소변경없이 이동 admin/reportWrite.jsp
+			dispatcher 
+		    = request.getRequestDispatcher("admin/reportWrite.jsp");
+		dispatcher.forward(request, response);
+		}//noticeWrite.no
 
+
+		if(sPath.equals("/reportWritePro.ad")) {
+			System.out.println("뽑은 가상주소 비교 : /reportWritePro.ad");
+			adminService = new AdminService();
+			// 리턴할형없음 insertReport(request) 메서드 호출
+			adminService.insertReport(request);
+			// list.bo 주소 변경 되면서 이동
+			response.sendRedirect("adminPage.ad");
+		}//reportWritePro.no	
 	
-}
+	}//do
+}//class
