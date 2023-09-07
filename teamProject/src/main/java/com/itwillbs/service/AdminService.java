@@ -239,23 +239,44 @@ public class AdminService {
 		}
 	}
 
-	public void updateReportCheck(HttpServletRequest request) {
+	public int updateReportCheck(HttpServletRequest request) {
+		int result = 0;
 		try {
 			request.setCharacterEncoding("utf-8");
 			
 			ReportDTO reportDTO = new ReportDTO();
 			reportDTO.setR_num(Integer.parseInt(request.getParameter("r_num")));
 			
-			System.out.println(request.getParameter("r_num"));
 			adminDAO = new AdminDAO();
-			adminDAO.updateReportCheck(reportDTO);
-			
-			
+			result = adminDAO.updateReportCheck(reportDTO);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		System.out.println("유저 service count 횟수 : " + result);
+		return result;
 	}
+	
+	public int updateBlackReason(HttpServletRequest request) {
+		int result = 0;
+		try {
+			request.setCharacterEncoding("utf-8");
+			ReportDTO reportDTO = new ReportDTO();
+			reportDTO.setR_num(Integer.parseInt(request.getParameter("r_num")));
+			reportDTO.setBl_reason(request.getParameter("reason"));
+			
+			System.out.println(request.getParameter("r_num"));
+			System.out.println("블랙 사유 : " + reportDTO.getBl_reason() );
+			adminDAO = new AdminDAO();
+			result = adminDAO.updateBlackReason(reportDTO);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("유저 service count 횟수 : " + result);
+		return result;
+	}
+	
 
 	public List<MemberDTO> getMemberListSearch(AdminPageDTO pageDTO) {
 		List<MemberDTO> memberList = null;

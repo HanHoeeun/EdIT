@@ -106,6 +106,13 @@ function oninputPhone(target) {
 				<td><input type="text" value="<%=memberDTO.getM_count() %>" name="m_count" style="border:none;"></td>
 				</tr>
 				<tr>
+				<%
+				String black = memberDTO.getM_event() == null ? "" : memberDTO.getM_event();
+				%>
+				<td class="_1report_content_border">블랙사유</td>
+				<td><input type="text" value="<%=black %>" name="m_event" style="border:none;"></td>
+				</tr>
+				<tr>
 				<td class="_1report_content_border">수정 비밀번호</td>
 				<td><input type="password" name="admin_pass" style="border:none;" required="required" ></td>
 				</tr>				

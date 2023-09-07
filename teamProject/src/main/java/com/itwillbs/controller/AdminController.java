@@ -238,14 +238,26 @@ public class AdminController extends HttpServlet{
 		}
 		if(sPath.equals("/report_check.ad")) {
 			adminService = new AdminService();
-			adminService.updateReportCheck(request);
-			
+			int result = 0;
+			result = adminService.updateReportCheck(request);
+
 			response.setContentType("text/html;charset=UTF-8");
-	        PrintWriter out = response.getWriter();
-	        out.println("<script>");
-	        out.println("window.close();");
-	        out.println("</script>");
+	        response.getWriter().write(result + "");
 		}
+		
+		if(sPath.equals("/report_save.ad")) {
+			adminService = new AdminService();
+			int result = 0;
+			result = adminService.updateBlackReason(request);
+			response.setContentType("text/html;charset=UTF-8");
+			if(result == 1) {
+				response.getWriter().write("success");
+			}else {
+				response.getWriter().write("");
+			}
+		}
+		
+		
 		if(sPath.equals("/adminFAQ.ad")) {
 //			한글처리
 			request.setCharacterEncoding("utf-8");
