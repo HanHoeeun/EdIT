@@ -442,13 +442,15 @@ public class AdminDAO {
 		return m_count;
 	}
 	
-	public void updateReportCheck(ReportDTO reportDTO) {
+	public int updateReportCheck(ReportDTO reportDTO) {
+		int result = 0;
 		try {
 			String m_nick = this.getTargetId(reportDTO.getR_num());
 			int m_count = this.getMemberCountCheck(m_nick);
 //			m_count 3보다 작아야 작동 
 //			count 가 2면 +1 하고 블랙리스트 등록 m_level 			
 			if(m_count == 2){
+				result = m_count +1;
 				con = this.getConnection();
 				String sql = "update members set m_count = m_count + 1, m_level = 1 where m_nick = ?";
 				pstmt = con.prepareStatement(sql);
@@ -457,6 +459,7 @@ public class AdminDAO {
 				
 				pstmt.executeUpdate();
 			}else if(m_count < 3 ) {
+				result = m_count + 1;
 				con = this.getConnection();
 				String sql = "update members set m_count = m_count + 1 where m_nick = ?";
 				pstmt = con.prepareStatement(sql);
@@ -471,7 +474,33 @@ public class AdminDAO {
 		}finally {
 			this.dbClose();
 		}
+		System.out.println("유저 DAO count 횟수 : " + result);
+		return result;
 	}
+	public int updateBlackReason(ReportDTO reportDTO) {
+		int result = 0;
+		try {
+			String m_nick = this.getTargetId(reportDTO.getR_num());
+		
+			con = this.getConnection();
+			String sql = "update members set m_event =? where m_nick = ?";
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, reportDTO.getBl_reason());
+			pstmt.setString(2, m_nick);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			this.dbClose();
+		}
+		System.out.println("유저 DAO count 횟수 : " + result);
+		return result;
+	}
+	
+	
 	public List<MemberDTO> getMemberList(AdminPageDTO pageDTO) {
 		List<MemberDTO> memberList = null;
 		try {
