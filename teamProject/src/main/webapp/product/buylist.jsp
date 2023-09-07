@@ -107,7 +107,8 @@ MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 						%>
 										
 		<tr class="rem1">
-			<td class="invert"><%=productDTO.getP_num()%></td>
+			<td class="invert" style="display: none;"><%=productDTO.getP_num()%></td>
+			<td class="invert"><%= i +1 %></td>
 			<td class="invert-image"><a href="single.po?p_num=<%=productDTO.getP_num()%>"><img src="upload/<%=productDTO.getP_file() %>" alt=" " class="img-responsive" /></a></td>
 			<td class="invert"><%=productDTO.getP_title() %></td>
 			<td class="invert"><%=productDTO.getP_price() %></td>

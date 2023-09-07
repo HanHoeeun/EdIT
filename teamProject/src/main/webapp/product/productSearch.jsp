@@ -144,8 +144,19 @@ String orderBy = (String) request.getAttribute("orderBy");
             %>
             
               <div class="agile_top_brands_grids">
-    <% for (int i = 0; i < productList.size(); i++) {
-       ProductDTO productDTO = productList.get(i);%>
+             
+    <% if (productList.isEmpty()) { %>
+ 				
+ 				<h2 align="center"><br><br>찾으시는 상품이 없습니다.<br> 
+ 				<br>상품을 추가해보세요! </h2>
+ 				
+				<% } else { %>
+    <% 
+    	for (int i = 0; i < productList.size(); i++) {
+    
+       ProductDTO productDTO = productList.get(i);
+       
+       %>
     <div class="col-md-4 top_brand_left">
         <div class="hover14 column">
             <div class="agile_top_brand_left_grid">
@@ -190,6 +201,7 @@ String orderBy = (String) request.getAttribute("orderBy");
                                         	
                                         	<%
                                         }
+  
   										 %> 
 									 </fieldset>
                                 </form>
@@ -202,10 +214,16 @@ String orderBy = (String) request.getAttribute("orderBy");
         </div>
     </div>
     
+  										 <%
+                                        }
+  
+  										 %> 
     <% 
     }
     
+    
     %>
+    
     
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="../js/jquery-1.11.1.min.js"></script>
