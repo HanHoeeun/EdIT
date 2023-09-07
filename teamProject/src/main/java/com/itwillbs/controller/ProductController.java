@@ -689,6 +689,18 @@ public class ProductController extends HttpServlet{
 			// request에 "productList", productList를 담기
 			request.setAttribute("productList", productList);
 			
+			// -------------------------------------------------------------------------------------
+			ProductDTO productDTO2 = new ProductDTO();
+			
+			m_id = (String)session.getAttribute("m_id");
+			p_status = request.getParameter("p_status");
+			
+			productDTO2.setM_id(m_id);
+			productDTO2.setP_status(p_status);
+			
+			List<ProductDTO> productList2 = productService.getProductList3(productDTO2);
+			request.setAttribute("productList2", productList2);
+			
 			// product/buylist.jsp 주소변경 없이 이동
 			dispatcher 
 		    = request.getRequestDispatcher("product/buylist.jsp");

@@ -516,6 +516,7 @@ $(document).ready(function(){
 <div class="clearfix">
 <jsp:include page="../inc/bottom.jsp"></jsp:include>
 </div>	
+
 <!--========================= Bootstrap Core JavaScript =========================-->
 <script src="../js/bootstrap.min.js"></script>
 <!-- top-header and slider -->
