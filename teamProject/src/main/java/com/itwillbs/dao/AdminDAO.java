@@ -15,6 +15,7 @@ import javax.sql.DataSource;
 import com.itwillbs.domain.AdminDTO;
 import com.itwillbs.domain.AdminPageDTO;
 import com.itwillbs.domain.MemberDTO;
+import com.itwillbs.domain.NoticeDTO;
 import com.itwillbs.domain.ReportDTO;
 import com.itwillbs.service.AdminService;
 
@@ -821,4 +822,39 @@ public class AdminDAO {
 		return count;
 	}
 	
-}
+//============================================= 신고하기 =================================================	
+	public void insertReport(ReportDTO reportDTO) {
+		System.out.println("AdminDAO insertReport()");
+		try {
+			con=getConnection();
+			
+			// 글번호 신고자번호 신고대상자번호 제목 내용 답변 작성일 처리여부 파일
+			String sql = "insert into report values (default, ?, ?, ?, ?, null, default, null, ?)";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, reportDTO.getR_m_num());
+			pstmt.setInt(2, reportDTO.getR_m_target());
+			
+			pstmt.setString(3, reportDTO.getR_title());
+			pstmt.setString(4, reportDTO.getR_content());
+			// 파일추가
+			pstmt.setString(4, reportDTO.getR_content());
+			// 실행 
+			pstmt.setString(5, reportDTO.getR_file());
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbClose();
+		}
+	}//insertNotice()
+
+
+	
+	
+	
+	
+	
+	
+	
+}//class
+
