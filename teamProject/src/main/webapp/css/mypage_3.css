@@ -609,3 +609,7 @@ input:focus {
     text-align: center;
     margin: 0 auto;
 }
+
+.tab-content current{
+	height: 600px;
+}
