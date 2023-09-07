@@ -765,7 +765,30 @@ public class ProductService {
 	
 	
 	
-	
+public List<ProductDTO> getProductList3(ProductDTO productDTO2) {
+		
+		List<ProductDTO> productList2=null; 
+		
+		try {
+			// ProductDAO 객체생성
+			productDAO = new ProductDAO();
+			
+			// productList = getProductList 메서드 호출
+			
+			productList2 = productDAO.getProductList3(productDTO2);
+			
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		//return productList2 != null ? productList2 : new ArrayList<>();
+		
+		return productList2;
+		
+	} // getProductList2()
 	
 	
 	
