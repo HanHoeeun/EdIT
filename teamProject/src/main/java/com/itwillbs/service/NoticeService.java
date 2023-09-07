@@ -127,8 +127,9 @@ public class NoticeService {
 	}//getNotice
 
 //======================================= updateNotice =============================================	
-	public void updateNotice(HttpServletRequest request) {
+	public String updateNotice(HttpServletRequest request) {
 		System.out.println("NoticeService updateNotice()");
+		String a_notice_type = "";
 		try {
 			request.setCharacterEncoding("utf-8");
 			//업로드 파일경로(upload폴더)
@@ -142,7 +143,7 @@ public class NoticeService {
 			int a_num = Integer.parseInt(multi.getParameter("a_num"));
 			String a_title =multi.getParameter("a_title");
 			String a_content = multi.getParameter("a_content");
-			String a_notice_type = (multi.getParameter("a_notice_type"));
+			a_notice_type = (multi.getParameter("a_notice_type"));
 			//a_file, a_oldfile
 			String a_file = multi.getFilesystemName("a_file");
 			//첨부파일 없는 경우
@@ -174,7 +175,7 @@ public class NoticeService {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}return a_notice_type;
 	}//updateNotice
 
 //======================================= deleteNotice ================================================

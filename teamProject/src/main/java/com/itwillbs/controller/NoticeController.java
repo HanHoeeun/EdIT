@@ -160,14 +160,17 @@ public class NoticeController extends HttpServlet{
 //====================================== updatePro.no ===============================================		
 		if(sPath.equals("/updatePro.no")) {
 			System.out.println("뽑은 가상주소 비교 : /updatePro.no");
+			request.setCharacterEncoding("utf-8");
 			// NoticeService 객체생성
 			noticeService = new NoticeService();
+			
 			// updateNotice(request) 메서드 호출
+			String a_notice_type=noticeService.updateNotice(request);
 			noticeService.updateNotice(request);
 
 			// noticelist.no 주소 변경 되면서 이동			
-			String a_notice_type = request.getParameter("a_notice_type");
-			if(a_notice_type == "일반공지") {
+//			String a_notice_type = request.getParameter("a_notice_type");
+			if(a_notice_type.equals("일반공지")) {
 				response.sendRedirect("noticelist.no");
 			}else {
 				response.sendRedirect("eventlist.no");
