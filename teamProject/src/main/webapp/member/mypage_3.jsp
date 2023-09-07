@@ -53,6 +53,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	String m_id = (String)session.getAttribute("m_id");
 %>	
 
+<!-- 신고내역부분 -->
+<%
+List<ReportDTO> reportList = (List<ReportDTO>)request.getAttribute("reportList");
+AdminPageDTO pageDTO = (AdminPageDTO)request.getAttribute("pageDTO");
+SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
+%>	
+
 <!-- start-smoth-scrolling -->
 </head>
 	
@@ -294,15 +301,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</table>
 				</div>
 <!--================================== 6탭 신고내역 ==================================== -->		
-<%
-List<ReportDTO> reportList = (List<ReportDTO>)request.getAttribute("reportList");
-AdminPageDTO pageDTO = (AdminPageDTO)request.getAttribute("pageDTO");
-SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
-%>	
+
 
 <!-- 				신고내역 테이블 -->
 				<div id="tab-6" class="tab-content current">
-					<table class="_1qna_board">
+					<table class="_1qna_board_1">
 						<tr>
 							<th class="_1qna_board_border">신고번호</th>
 							<th class="_1qna_board_border">회원번호</th>
@@ -310,7 +313,7 @@ SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
 							<th class="_1qna_board_border">작성시간</th>
 							<th>확인여부</th>
 						</tr>
-<!-- 						admin 복붙 -->
+<!-- 				admin 참고 -->
 						<%for(ReportDTO reportDTO : reportList) {
 							String check = reportDTO.getR_check() == 0 ? "x" : "o";					
 						%>
