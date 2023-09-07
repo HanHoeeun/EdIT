@@ -1,3 +1,5 @@
+<%@page import="com.itwillbs.domain.ReportDTO"%>
+<%@page import="com.itwillbs.domain.WishListDTO"%>
 <%@page import="com.itwillbs.domain.MemberDTO"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.itwillbs.domain.NoticePageDTO"%>
@@ -23,10 +25,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- //for-mobile-apps -->
-<link href="../css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-<link href="../css/style.css" rel="stylesheet" type="text/css" media="all" />
-<link href="../css/font-awesome.css" rel="stylesheet"> 
-<link href="./css/mypage_3.css" rel="stylesheet"> 
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/font-awesome.css" rel="stylesheet"> 
+<link href="css/mypage_3.css" rel="stylesheet"> 
 <!-- //font-awesome icons -->
 <!-- js -->
 <script src="../js/jquery-1.11.1.min.js"></script>
@@ -83,7 +85,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 %>
 
 		<div class="container_3_1">
-			<form action="updatePro.me" method="post">
+			<form action="updatePro.me" method="post" id="profileForm">
 				<div id="tab-1" class="tab-content current">
 					<table class="mypage-board">
 						<tr>
@@ -125,6 +127,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								</div>
 							</td>
 						</tr>
+<%-- <!-- 		----비밀번호---- -->						
+						<tr>
+							<td class="_1qna_board_border2">
+								<form action="updatePro.me" method="post">
+									<div class="mypage-grids"> 
+										<div align="center">
+											<input type="text" class="show" placeholder="비밀번호" readonly="readonly"readonly>
+											<input type="password" value="<%=memberDTO.getM_pass() %>" placeholder="현재비밀번호" id="m_pass" 	name="m_pass">
+											<input type="password" placeholder="새비밀번호" id="m_pass2" 	name="m_pass2">
+											<input type="password" placeholder="새비밀번호확인" id="m_pass3" 	name="m_pass3">
+											<br><div id="result"></div>
+										</div>
+									</div>
+								</form>
+							</td>
+						</tr> --%>
 <!-- 		----이메일---- -->							
 						<tr>	
 							<td class="_1qna_board_border2">
@@ -153,7 +171,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<div class="delete-button">
 							<input type="submit" class="delete-button" value="수정">
 							</div><br>
-							<a id="password-change-link" href="#">비밀번호 변경</a>
+							<a id="password-change-link" href="pwupdqte.me">비밀번호 변경</a>
 							</td>
 						
 						</tr>
@@ -224,7 +242,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			         </ul> 
    					 </div>
 				</div>
-<!--================================== 4탭 찜 ==================================== -->				
+<!--================================== 4탭 찜 ==================================== -->		
+
+
+		
 				<div id="tab-4" class="tab-content">
 					<table class="_1qna_board">
 						<tr>
@@ -265,7 +286,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						
 					</table>
 				</div>
-<!--================================== 6탭 신고내역 ==================================== -->				
+<!--================================== 6탭 신고내역 ==================================== -->		
+<%
+ ReportDTO reportDTO = (ReportDTO)request.getAttribute("reportDTO");
+%>		
 				<div id="tab-6" class="tab-content">
 					<table class="_1qna_board">
 						<tr>
@@ -331,24 +355,99 @@ function oninputPhone(target) {
 }
 	
 
+$(document).ready(function() {
+//	닉네임 조건 + 중복검사		
+    $('#m_nick').on('input', function() {
+        var userNick = $(this).val();
+        var userNickPattern = /^[a-zA-Z0-9ㄱ-힣]{2,}$/;
+        var nick_error_message = $('#nick_error_message');
 
-//	비밀번호 변경 링크를 클릭할 때 팝업창을 열도록 이벤트 처리
-    document.getElementById("password-change-link").addEventListener("click", function(e) {
-        e.preventDefault(); // 링크의 기본 동작(새로고침)을 막음
+        if (userNick === "") {
+            nick_error_message.text("닉네임을 입력하세요").css("color", "red");
+            $('#m_nick').focus();
+            return false;
+        } else if (!userNickPattern.test(userNick)) {
+            nick_error_message.text("최소 2자 입력하세요").css("color", "red");
+            $('#m_nick').focus();
+            return false;
+        }
 
-        // 팝업창을 열기 위한 코드 예시
-        var popupURL = "pwupdate.jsp"; // 비밀번호 변경 페이지의 URL을 여기에 입력
-        var popupWindow = window.open(popupURL, "비밀번호_변경_팝업", "width=500,height=400");
-        
-        // 팝업창 포커스
-        popupWindow.focus();
+        $.ajax({
+            type: 'POST', // 또는 'GET'에 따라 서버 측에서 처리 방식을 설정합니다.
+            url: 'nickCheck.me', // 실제 서버 엔드포인트 URL을 지정합니다.
+            data: {'m_nick': $('#m_nick').val() }, // 서버에 보낼 데이터를 설정합니다.
+            success: function(result) {
+                $('.nick_error_message').html(result);
+                checkFormValidity();
+            }
+        });
     });
+  
+
+
+    
+//	이메일 조건 + 중복검사		----성공
+	$('#m_email').on('input', function() {
+	    var userEmail = $(this).val();
+	    var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/; // 이메일 형식 검사
+	    var email_error_message = $('#email_error_message');
+	
+	    if (userEmail === "") {
+	        email_error_message.text("이메일을 입력하세요").css("color", "red");
+	        $('#m_email').focus();
+	        return false;
+	    } else if (!emailPattern.test(userEmail)) {
+	        email_error_message.text("유효한 이메일 형식이 아닙니다").css("color", "red");
+	        $('#m_email').focus();
+	        return false;
+	    } else {
+	        // 유효한 경우 에러 메시지를 지웁니다.
+	        email_error_message.text("");
+	    }
+	
+	    $.ajax({
+	        type: 'POST', // 또는 'GET'에 따라 서버 측에서 처리 방식을 설정합니다.
+	        url: 'emailCheck.me', // 실제 서버 엔드포인트 URL을 지정합니다.
+	        data: {'m_email': $('#m_email').val() }, // 서버에 보낼 데이터를 설정합니다.
+	        success: function(result) {
+	            $('.email_error-message').html(result);
+	            checkFormValidity();
+	        }
+	    });
+	});
+    
+})
+
+//	비밀번호/비밀번호확인 일치		----성공
+document.getElementById('m_pass2').addEventListener('keyup', validatePassword);
+document.getElementById('m_pass3').addEventListener('keyup', validatePassword);
+
+function validatePassword() {
+    var newPassword = document.getElementById('m_pass2').value;
+    var confirmPassword = document.getElementById('m_pass3').value;
+    var resultDiv = document.getElementById('result');
+
+    var passwordRegex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*?_]).{8,16}$/;
+
+    if (passwordRegex.test(newPassword)) {
+        if (newPassword === confirmPassword) {
+        	resultDiv.innerHTML = '';
+        } else {
+            resultDiv.innerHTML = '비밀번호가 일치하지 않습니다.';
+            resultDiv.style.color = 'red';
+        }
+    } else {
+        resultDiv.innerHTML = '영문+숫자+특수문자 포함 8~16자로 입력해주세요';
+        resultDiv.style.color = 'red';
+    }
+    checkFormValidity();
+};
+
+
+
 </script>
-	
-	
-			
-				
-				
+ 
+
 				
 				
 <!-- 			탭 jquery -->

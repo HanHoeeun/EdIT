@@ -14,7 +14,14 @@ public class ReportDTO {
 	private String r_file;
 	private String r_answer;
 	private int r_check;  // 0 확인x 1 확인 o
+	private String bl_reason;
 
+	public String getBl_reason() {
+		return bl_reason;
+	}
+	public void setBl_reason(String bl_reason) {
+		this.bl_reason = bl_reason;
+	}
 	public String getR_m_num_id() {
 		return r_m_num_id;
 	}
