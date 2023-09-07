@@ -217,6 +217,7 @@ public class MemberController extends HttpServlet{
 		
 		
 		
+		
 //		비밀번호수정 화면	
 		if (sPath.equals("/pwupdate.me")) {
 			System.out.println("뽑은 가상주소 비교 : pwupdate.me");
@@ -291,7 +292,7 @@ public class MemberController extends HttpServlet{
 			
 			memberService = new MemberService();
 			
-			MemberDTO memberDTO = memberService.userCheck(request);
+			MemberDTO memberDTO = memberService.userCheck2(request);
 					
 			if (memberDTO != null) {
 				memberService.deleteMember(request);
