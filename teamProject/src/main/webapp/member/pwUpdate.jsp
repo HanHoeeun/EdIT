@@ -70,18 +70,20 @@ MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 				</tr>	
 				<tr>						
 				<td class="_1report_content_border">현재비밀번호</td>
-				<td><input type="text" value="<%=memberDTO.getM_pass() %>" name="m_pass" style="border:none;"></td>
+				<td><input type="password" value="<%=memberDTO.getM_pass() %>" name="m_pass" style="border:none;"></td>
 				</tr>	
 				<tr>						
 				<td class="_1report_content_border">새비밀번호</td>
-				<td><input type="text" placeholder="새비밀번호" name="m_pass2" style="border:none;"></td>
+				<td><input type="password" placeholder="새비밀번호" name="m_pass2" style="border:none;"></td>
 				</tr>	
 				<tr>						
 				<td class="_1report_content_border">새비밀번호확인</td>
-				<td><input type="text" placeholder="새비밀번호확인" name="m_pass3" style="border:none;"></td>
+				<td><input type="password" placeholder="새비밀번호확인" name="m_pass3" style="border:none;">
+				</td>
 				</tr>							
 					
 			</table>
+			<div id="result"></div>
 					<div class="_1q_query_btn">
 							<button type="submit">수정</button>
 							<button type="button" onclick="window.close()">닫기</button>
@@ -90,6 +92,14 @@ MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 		</div>
 	<div class="clearfix_1_1"> </div>
 </div>
+
+
+<script type="text/javascript" src="script/jquery-3.7.0.js"></script>
+<script type="text/javascript">
+
+
+</script>
+
 <!-- //top-brands -->
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>
