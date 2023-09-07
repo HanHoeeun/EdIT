@@ -207,7 +207,7 @@ public class MemberController extends HttpServlet{
 				
 			} else {
 //				불일치면 경고 메시지 화면에 띄우기
-				request.setAttribute("msg", "경고");
+				request.setAttribute("msg", "비밀번호가 일치하지 않습니다");
 				dispatcher = request.getRequestDispatcher("member/msg.jsp");
 				dispatcher.forward(request, response);
 				

@@ -171,7 +171,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<div class="delete-button">
 							<input type="submit" class="delete-button" value="수정">
 							</div><br>
-							<a id="password-change-link" href="pwupdqte.me">비밀번호 변경</a>
+							<a id="password-change-link" href="#" onclick="window.open('pwupdate.me?m_num=','비밀번호 변경','width=800, height=700, scrollbars=yes')">비밀번호 변경</a>
 							</td>
 						
 						</tr>
