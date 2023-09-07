@@ -54,9 +54,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<h3>정보</h3>
 					<ul class="info"> 
 						<!-- <li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="about.html">About Us</a></li> -->
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="contact.jsp">문의하기</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="noticelist.no">공지사항</a></li>
 						<!-- <li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="short-codes.jsp">Short Codes</a></li> -->
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="faq.jsp">FAQ</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="faq.ad">FAQ</a></li>
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="products.po">쇼핑하기</a></li>
 					</ul>
 				</div>
@@ -64,6 +64,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<h3>카테고리</h3>
 					<ul class="info"> 
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="main.me">홈페이지</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="products.po">상품 전체 보기</a></li>
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="laptop.po">노트북</a></li>
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="phone.po">휴대폰</a></li>
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="tablet.po">태블릿</a></li>

@@ -145,7 +145,12 @@ String orderBy = (String) request.getAttribute("orderBy");
             
               <div class="agile_top_brands_grids">
              
-    
+    <% if (productList.isEmpty()) { %>
+ 				
+ 				<h2 align="center"><br><br>찾으시는 상품이 없습니다.<br> 
+ 				<br>상품을 추가해보세요! </h2>
+ 				
+				<% } else { %>
     <% 
     	for (int i = 0; i < productList.size(); i++) {
     
@@ -209,6 +214,10 @@ String orderBy = (String) request.getAttribute("orderBy");
         </div>
     </div>
     
+  										 <%
+                                        }
+  
+  										 %> 
     <% 
     }
     
