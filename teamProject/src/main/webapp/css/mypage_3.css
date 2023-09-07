@@ -413,8 +413,6 @@ ul.faq_1 {
 /* ------------------------------------------*/
 
 
-
-
 ._1qna_board th{
 	padding: 14px 21px;
 	background: #ececec;
@@ -450,25 +448,12 @@ ul.faq_1 {
 ._1qna_board ._1qna_board_border{
 	border-right: 1px solid #ddd;
 }
- 
- 
- 
+
+
 /* ------------------------------------------*/
  
  
 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
  
 /*페이징 */
 ._1qna_paging {
@@ -577,4 +562,54 @@ input:focus {
 
 .clearfix_1_1 {
 	clear:both;
+}
+
+/* 마이페이지 - 신고페이지만 - pointer주기 & 색상주기 */
+._1qna_board_1 tr:hover{
+	    cursor: pointer;
+	    background-color: #ececec;
+}
+ ._1qna_board_1 th{
+	padding: 14px 21px;
+	background: #ececec;
+	text-align: center;
+	color: #666;
+	font-size: 12px;
+	border-top: 2px solid #333;
+	border-bottom: 2px solid #ddd;
+	cursor:auto;
+}
+._1qna_board_1 td {
+    padding: 14px 21px;
+    color: #666;
+    font-size: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+._1qna_board_1 ._1qna_board_subject {
+	text-align: left;
+	width: 45%;
+	border-right: 1px solid #ddd;
+}
+._1qna_board_1 ._1qna_board_border2{
+	font-size: 15px;
+	border-bottom: 1px solid #ffffff;
+	border-top: 1px solid #ffffff;
+}
+._1qna_board_1 ._1qna_board_border1{
+	font-size: 15px;
+	border-right: 1px solid #ddd;
+}
+._1qna_board_1 ._1qna_board_border{
+	border-right: 1px solid #ddd;
+}
+ ._1qna_board_1{
+	width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.tab-content current{
+	height: 600px;
 }

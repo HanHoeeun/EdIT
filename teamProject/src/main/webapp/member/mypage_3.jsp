@@ -1,3 +1,4 @@
+<%@page import="com.itwillbs.domain.AdminPageDTO"%>
 <%@page import="com.itwillbs.domain.ReportDTO"%>
 <%@page import="com.itwillbs.domain.WishListDTO"%>
 <%@page import="com.itwillbs.domain.MemberDTO"%>
@@ -46,7 +47,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		});
 	});
 </script>
-<!-- start-smoth-scrolling -->
+
+<!-- 회원탈퇴부분 -->
+<%
+	String m_id = (String)session.getAttribute("m_id");
+%>	
+
 </head>
 	
 <body>
@@ -70,11 +76,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--=========================== 상단 탭 리스트============================================ -->
 				<ul class="tabs">
 					<li class="tab-link current" data-tab="tab-1">나의정보</li>
-					<li class="tab-link" data-tab="tab-2">구매내역</li>
 					<li class="tab-link" data-tab="tab-3">판매내역</li>
 					<li class="tab-link" data-tab="tab-4">찜</li>
-<!-- 				<li class="tab-link" data-tab="tab-5">문의내역</li> -->
-					<li class="tab-link" data-tab="tab-6">신고내역</li>
+					<li class="tab-link" onclick="location.href='m_adminpage.me'" >신고내역</li>
 					<li class="tab-link" data-tab="tab-7">회원탈퇴</li>
 				</ul>
 			</div>
@@ -165,37 +169,37 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			
 			
 <!--================================== 2탭 구매내역 ==================================== -->				
-				<div id="tab-2" class="tab-content">
-					<table class="_1qna_board">
-						<tr>
-							<th class="_1qna_board_border">상품번호</th>
-							<th class="_1qna_board_border">상품이미지</th>
-							<th class="_1qna_board_border">제목</th>
-							<th class="_1qna_board_border">가격</th>
-						</tr>
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_border">이미지..</td>
-							<td class="_1qna_board_border">상품명...?</td>
-<!-- 							<td class="_1qna_board_subject">신규가입 회원 혜택이 빵빵! (~09/30)</td> -->
-							<td class="_1qna_board_border">2023.09.01</td>
-						</tr>
+<!-- 				<div id="tab-2" class="tab-content"> -->
+<!-- 					<table class="_1qna_board"> -->
+<!-- 						<tr> -->
+<!-- 							<th class="_1qna_board_border">상품번호</th> -->
+<!-- 							<th class="_1qna_board_border">상품이미지</th> -->
+<!-- 							<th class="_1qna_board_border">제목</th> -->
+<!-- 							<th class="_1qna_board_border">가격</th> -->
+<!-- 						</tr> -->
+<!-- 						<tr> -->
+<!-- 							<td class="_1qna_board_border">1</td> -->
+<!-- 							<td class="_1qna_board_border">이미지..</td> -->
+<!-- 							<td class="_1qna_board_border">상품명...?</td> -->
+<!-- <!-- 							<td class="_1qna_board_subject">신규가입 회원 혜택이 빵빵! (~09/30)</td> --> -->
+<!-- 							<td class="_1qna_board_border">2023.09.01</td> -->
+<!-- 						</tr> -->
 						
-					</table>
-					<!--============= 2탭 이벤트 페이징 ==================== -->
-				    <div class="_1qna_paging">
+<!-- 					</table> -->
+<!-- 					============= 2탭 이벤트 페이징 ==================== -->
+<!-- 				    <div class="_1qna_paging"> -->
 				 
-					 <ul>
-				       <li onclick="location.href='index.html'">◀</li>
-				       <li onclick="location.href='about.html'">1</li>
-			           <li onclick="location.href='login.html'">2</li>
-			           <li onclick="location.href='faq.html'">3</li>
-			           <li onclick="location.href='gourmet.html'">4</li>
-			           <li onclick="location.href='login.html'">5</li>
-			           <li onclick="location.href='products.html'">▶</li>						
-			         </ul> 
-   					 </div>
-				</div>
+<!-- 					 <ul> -->
+<!-- 				       <li onclick="location.href='index.html'">◀</li> -->
+<!-- 				       <li onclick="location.href='about.html'">1</li> -->
+<!-- 			           <li onclick="location.href='login.html'">2</li> -->
+<!-- 			           <li onclick="location.href='faq.html'">3</li> -->
+<!-- 			           <li onclick="location.href='gourmet.html'">4</li> -->
+<!-- 			           <li onclick="location.href='login.html'">5</li> -->
+<!-- 			           <li onclick="location.href='products.html'">▶</li>						 -->
+<!-- 			         </ul>  -->
+<!--    					 </div> -->
+<!-- 				</div> -->
 <!--================================== 3탭 판매내역 ==================================== -->
 	
 				<div id="tab-3" class="tab-content">
@@ -254,47 +258,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						
 					</table>
 				</div>
-<!--================================== 5탭 문의내역 ==================================== -->				
-				<div id="tab-5" class="tab-content">
-					<table class="_1qna_board">
-						<tr>
-							<th class="_1qna_board_border">번호</th>
-							<th class="_1qna_board_border">제목</th>
-							<th class="_1qna_board_border">작성일</th>
-						</tr>
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_subject">신규가입 회원 혜택이 빵빵! (~09/30)</td>
-							<td class="_1qna_board_border">2023.09.01</td>
-						</tr>
-						
-					</table>
-				</div>
-<!--================================== 6탭 신고내역 ==================================== -->		
-<%
- ReportDTO reportDTO = (ReportDTO)request.getAttribute("reportDTO");
-%>		
-				<div id="tab-6" class="tab-content">
-					<table class="_1qna_board">
-						<tr>
-							<th class="_1qna_board_border">번호</th>
-							<th class="_1qna_board_border">제목</th>
-							<th class="_1qna_board_border">신고일</th>
-							<th class="_1qna_board_border">처리상태</th>
-						</tr>
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_subject">신규가입 회원 혜택이 빵빵! (~09/30)</td>
-							<td class="_1qna_board_border">2023.09.01</td>
-							<td class="_1qna_board_border">2023.09.01</td>
-						</tr>
-						
-					</table>
-				</div>
+
+
 <!--==================================회원탈퇴==================================== -->				
-<%
-	String m_id = (String)session.getAttribute("m_id");
-%>	
+
 				<div id="tab-7" class="tab-content">
 					<table class="_1qna_board">
 						<tr><th class="_1qna_board_border1">회원탈퇴</th></tr>
@@ -323,7 +290,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 				
 				
-</div>
 </div>
 				
 				
@@ -418,12 +384,9 @@ document.getElementById('profileForm').addEventListener('submit', function (e) {
     // 필요한 경우, 다른 동작을 수행하거나 페이지를 새로고침할 수 있습니다.
 }); */
 
-
-
 </script>
  
-
-				
+		
 				
 <!-- 			탭 jquery -->
 <script type="text/javascript">
@@ -457,6 +420,7 @@ $(document).ready(function(){
 <div class="clearfix">
 <jsp:include page="../inc/bottom.jsp"></jsp:include>
 </div>	
+
 <!--========================= Bootstrap Core JavaScript =========================-->
 <script src="../js/bootstrap.min.js"></script>
 <!-- top-header and slider -->

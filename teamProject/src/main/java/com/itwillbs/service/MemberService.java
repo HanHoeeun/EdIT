@@ -12,7 +12,9 @@ import javax.servlet.http.HttpSession;
 
 import com.itwillbs.dao.AdminDAO;
 import com.itwillbs.dao.MemberDAO;
+import com.itwillbs.domain.AdminPageDTO;
 import com.itwillbs.domain.MemberDTO;
+import com.itwillbs.domain.ReportDTO;
 
 public class MemberService {
 	
@@ -333,7 +335,7 @@ public class MemberService {
 	
 
 
-	// 8.31 진 - 이름과 이메일 이용해서 아이디 찾기 구현 
+	// 아이디 찾기
 	public String findidmember(String m_name, String m_email) {
 		// 이름과 이메일을 이용하여 아이디를 찾는 로직을 구현
 		memberDAO = new MemberDAO();
@@ -349,24 +351,8 @@ public class MemberService {
 	        return null; // 아이디를 찾지 못한 경우
 	    }
 	}
-
-	// 8.31 진 - 아이디와 이메일 이용해서 비밀번호 찾기 구현 -> 주석처리...??
-//	public String findpwmember(String m_id, String m_email) {
-//		// 아이디와 이메일을 이용하여 비밀번호를 찾기 구현
-//		memberDAO = new MemberDAO();
-//		MemberDTO memberDTO = memberDAO.findpwmember(m_id, m_email);
-//		
-//		if(memberDTO != null) {
-//			return memberDTO.getM_pass(); // 비밀번호 반환(앞 몇자리만 보이게 구현..해보자..!!??)
-//		} else {
-//			return null; // 비밀번호를 찾지 못한 경우
-//		}
-//	}
-
-
-	// 9월 5일 
-	// 새 비밀번호 -> DB에 업데이트
-
+	
+	// 새 비밀번호 설정 -> DB에 업데이트
 	public int newPassword(HttpServletRequest request) {	
 		String newPassword = request.getParameter("newPassword");
 		String confirmPassword = request.getParameter("confirmPassword");
@@ -384,7 +370,6 @@ public class MemberService {
 		return result;
 	}
 
-
 	public MemberDTO IdAndEmailMatch(String m_id, String m_email) {
 		MemberDTO memberDTO = null;
 		try {
@@ -396,31 +381,49 @@ public class MemberService {
 		return memberDTO;
 	}
 
+	
+    // 마이페이지 - 신고내역 연결(admin 참고)
+	public List<ReportDTO> getReportList(AdminPageDTO pageDTO) {
+		List<ReportDTO> reportList = null;
+		try {
+//			시박하는 행부터 10개 뽑아오기
+//			페이지 번호 	한화면에 보여줄 글개수 => 			시작하는 행번호
+//			currentPage		pageSize	=>		 	startRow
+//			1				10			=> 0*10 +1	 1 ~ 10
+//			2				10			=> 1*10 +1 	11 ~ 20
+//			3				10			=> 2*10 +1 	21 ~ 30
+//			((currentPage-1)*10)+1
+			int startRow = (pageDTO.getCurrentPage()-1)*pageDTO.getPageSize()+1;
+			int endRos = startRow + pageDTO.getPageSize() -1;
+			
+			pageDTO.setStartRow(startRow);
+			pageDTO.setEndRow(endRos);
+			
+//			AdminDAO 객체 생성
+			memberDAO = new MemberDAO();
+//			adminList = getBoardList() 메서드 호출
+			reportList =  memberDAO.getReportList(pageDTO);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return reportList;
+	}
+
+	public int getReportCount(AdminPageDTO pageDTO) {
+		int count = 0;
+		try {
+			memberDAO = new MemberDAO();
+			count = memberDAO.getReportCount(pageDTO);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
 
 
 
 
-	
-	
 
-
-
-
-
-
-	
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 } // MemberService()

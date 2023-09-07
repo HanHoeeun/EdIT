@@ -668,11 +668,38 @@ public class ProductController extends HttpServlet{
 			// ProductService 객체생성
 			productService = new ProductService();
 			
+			// ProductDTO productDTO = getBoard(request) 메서드 호출
+			// ProductDTO productDTO = productService.getproduct(request);
+			
+			// request에 "boardDTO",boardDTO 담아서
+			//request.setAttribute("productDTO", productDTO);
+			
+			ProductDTO productDTO = new ProductDTO();
+			
+			String m_id = (String)session.getAttribute("m_id");
+			String p_status = "거래완료";
+			
+			productDTO.setM_id(m_id);
+			productDTO.setP_status(p_status);
+			
+			
 			// List<ProductDTO> productList  =  getProductList2();메서드호출
-			List<ProductDTO> productList = productService.getProductList2();
+			List<ProductDTO> productList = productService.getProductList2(productDTO);
 			
 			// request에 "productList", productList를 담기
 			request.setAttribute("productList", productList);
+			
+			// -------------------------------------------------------------------------------------
+			ProductDTO productDTO2 = new ProductDTO();
+			
+			m_id = (String)session.getAttribute("m_id");
+			p_status = request.getParameter("p_status");
+			
+			productDTO2.setM_id(m_id);
+			productDTO2.setP_status(p_status);
+			
+			List<ProductDTO> productList2 = productService.getProductList3(productDTO2);
+			request.setAttribute("productList2", productList2);
 			
 			// product/buylist.jsp 주소변경 없이 이동
 			dispatcher 
@@ -680,7 +707,6 @@ public class ProductController extends HttpServlet{
 			dispatcher.forward(request, response);	
 		
 		}//
-		
 		
 		
 		

@@ -97,6 +97,53 @@ MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 <script type="text/javascript" src="script/jquery-3.7.0.js"></script>
 <script type="text/javascript">
 
+/* //수정 버튼 클릭 이벤트 핸들러
+document.querySelector('.button[type="submit"]').addEventListener('click', function () {
+    // 여기에서 비밀번호 수정을 서버로 요청하고, 성공 여부를 확인합니다.
+    // isSuccess 변수에 수정 성공 여부를 할당합니다.
+    var isSuccess = requestPasswordUpdate(); // 예시 함수, 실제 구현 필요
+
+    if (isSuccess) {
+        // 수정 성공한 경우 윈도우 창을 닫습니다.
+        window.close();
+    } else {
+        // 수정 실패 시 사용자에게 알림 등을 처리할 수 있습니다.
+        alert('비밀번호 수정에 실패했습니다.');
+    }
+}); */
+
+
+$(document).ready(function() {
+	  $('.submit').on('click', function() {
+      var $rem1 = $(this).closest('.rem1');
+	   var w_num = $rem1.find('.w_num').text(); // 항목의 w_num 값을 가져옴
+
+	   // 서버로 삭제 요청을 보냄 (AJAX를 사용할 수 있음)
+	   $.ajax({
+		   url: 'deletewish.dwi', // 서버에서 삭제를 처리하는 서블릿 주소
+	   type: 'POST', // 또는 GET, 삭제 요청에 맞게 설정
+	   data: { w_num: w_num }, // 삭제할 항목의 식별자를 서버로 전달
+		   success: function(response) {
+     if (response === 'success') {
+      // 삭제가 성공하면 UI에서 항목을 제거
+      $rem1.animate('slow', function() {
+          $rem1.remove();
+      });
+     } else {
+      // 삭제 실패 시 메시지를 표시하거나 다른 조치를 취할 수 있음
+      alert(response);
+      location.reload();
+     }
+},
+error: function() {
+  alert('서버 오류: 삭제 요청을 처리할 수 없습니다.');
+}
+});
+});
+});
+
+
+
 
 </script>
 

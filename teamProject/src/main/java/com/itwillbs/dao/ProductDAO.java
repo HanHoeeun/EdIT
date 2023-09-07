@@ -275,18 +275,20 @@ public class ProductDAO {
 		}//updateReadcount()
 	
 	
-		public List<ProductDTO> getProductList2() {
+		public List<ProductDTO> getProductList2(ProductDTO productDTO) {
 			
 			List<ProductDTO> productList = null;
-			
 			try {
 				//1,2 디비연결
 				con = getConnection();
 				
 				//3sql 
-				String sql="select * from products";
+				String sql="select * from products where m_id=? and p_status=?";
 				
 				pstmt = con.prepareStatement(sql);
+				
+				pstmt.setString(1,  productDTO.getM_id());
+				pstmt.setString(2, "거래완료");
 				
 				//4실행 => 결과 저장
 				rs = pstmt.executeQuery();
@@ -294,7 +296,8 @@ public class ProductDAO {
 				productList = new ArrayList<>();
 				
 				while(rs.next()) {
-					ProductDTO productDTO = new ProductDTO();
+					productDTO = new ProductDTO();
+					productDTO.setM_id(rs.getString("m_id"));
 					productDTO.setP_num(rs.getInt("p_num"));
 					productDTO.setP_file(rs.getString("p_file"));
 					productDTO.setP_title(rs.getString("p_title"));
@@ -313,7 +316,44 @@ public class ProductDAO {
 	}//getMemberList2()
 	
 	
-	
+public List<ProductDTO> getProductList3(ProductDTO productDTO2) {
+			
+			List<ProductDTO> productList2 = null;
+			try {
+				//1,2 디비연결
+				con = getConnection();
+				
+				//3sql 
+				String sql="select * from products where m_id=?";
+				
+				pstmt = con.prepareStatement(sql);
+				
+				pstmt.setString(1,  productDTO2.getM_id());
+				
+				//4실행 => 결과 저장
+				rs = pstmt.executeQuery();
+				
+				productList2 = new ArrayList<>();
+				
+				while(rs.next()) {
+					productDTO2 = new ProductDTO();
+					productDTO2.setM_id(rs.getString("m_id"));
+					productDTO2.setP_num(rs.getInt("p_num"));
+					productDTO2.setP_file(rs.getString("p_file"));
+					productDTO2.setP_title(rs.getString("p_title"));
+					productDTO2.setP_price(rs.getInt("P_price"));
+					
+					//배열 한칸에 저장
+					productList2.add(productDTO2);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				dbClose();
+			}
+			return productList2;
+			
+	}//getMemberList2()
 	
 	
 	
