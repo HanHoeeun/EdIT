@@ -137,8 +137,8 @@ String orderBy = (String) request.getAttribute("orderBy");
             = (List<ProductDTO>)request.getAttribute("productList");
             ProductPageDTO ppageDTO
             = (ProductPageDTO)request.getAttribute("ppageDTO");
-            List<WishListDTO> wishList
-            = (List<WishListDTO>)request.getAttribute("wishList");
+            /* List<WishListDTO> wishList
+            = (List<WishListDTO>)request.getAttribute("wishList"); */
             String id = (String)session.getAttribute("m_id");
             MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO"); 
             %>
@@ -173,22 +173,37 @@ String orderBy = (String) request.getAttribute("orderBy");
                                         <input type="hidden" name="currency_code" value="KRW">
                                         <input type="hidden" name="return" value=" ">
                                         <input type="hidden" name="cancel_return" value=" ">
+                                        <% 
+                                        if(memberDTO != null){
+                                        
+                                        %>
                                        <input type="button" value="찜 추가하기" class="button addToWishlistButton"
    										 data-p-num="<%= productDTO.getP_num() %>"			
   										 data-m-num="<%= memberDTO.getM_num() %>">
+  										 <%
+                                        }else {
+                                        	%>
+                                        	<a href="login.me"><input type="button" value="로그인 하기" class="button">로그인 시<br> 찜 추가 가능!</button></a>
+                                        	
+                                        	<%
+                                        }
+  										 %>
 									 </fieldset>
                                 </form>
                             </div>
                         </div> 
                     </figure>
+                    
                 </div>
             </div>
         </div>
     </div>
+    
     <% 
     }
     
     %>
+    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="../js/jquery-1.11.1.min.js"></script>
 <script>
@@ -227,10 +242,25 @@ $(document).ready(function() {
     
 });
 </script>
-
-
 <div class="clearfix"> </div>
 </div>
+
+<!-- 검 색 창  -->
+<div class="w3l_search">
+			<form action="productSearch.po" method="get" id = "productSearch">
+				<input type="search" name="search" placeholder="찾으시는 상품을 검색하세요" required="" onkeyup="enterkey();">
+				<button type="submit" class="btn btn-default search" aria-label="Left Align">
+					<i class="fa fa-search" aria-hidden="true"> </i>
+				</button>
+				<div class="clearfix"></div>
+			</form>
+		</div>
+
+<!-- 검 색 창  -->
+<div class="clearfix"> </div>
+</div>
+
+
 <!-- 페이징 코드 5개씩 나눠서 페이징 -->
 <nav class="numbering">
    <ul class="pagination paging">
@@ -272,13 +302,12 @@ $(document).ready(function() {
          </div>
          <div class="clearfix"> </div>
       </div>
-      </div>
-      
-      
+    
   
 <!--- products --->
 <!-- 푸터 들어가는 곳! -->
 <div class="clearfix">
+</div>
 <jsp:include page="../inc/bottom.jsp"></jsp:include>
 </div>
 <!-- 푸터 들어가는 곳! -->

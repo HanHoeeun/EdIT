@@ -107,11 +107,34 @@ input[type="submit"],#PPMiniCart .minicart-submit,.w3ls_vegetables ul li a,input
 }
 .w3l_search {
     float: right;
-    width: 25.33%;
+    width: 50%;
     margin: 0em 0 0em 0em;
+   	margin-top: 40px;
+}
+/* 공지사항 검색 */
+.w3l_search_1 {
+    float: right;
+    width: 50%;
+    margin: 0em 0 0em 0em;
+   	margin-top: 40px;
 }
 .w3l_search input[type="search"] {
     width: 83%;
+    padding:10px;
+    font-size: 14px;
+    color: #999;
+    outline: none;
+    border: 1px solid #cccccc;
+    background: none;
+    -webkit-appearance: none;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+}
+
+/* 공지사항 검색 */
+.w3l_search_1 input[type="search"] {
+    width:25%;
     padding:10px;
     font-size: 14px;
     color: #999;
@@ -138,18 +161,32 @@ button.btn.btn-default.search {
     outline: none;
     border: none;
 }
+/* 공지사항 검색 */
+button.btn.btn-default.search_1 {
+    background: #fe9126;
+    padding: 11px 12px 11px;
+    float: center;
+    outline: none;
+    border: none;
+}
 button.btn.btn-default.search:hover {
     background:#333;
 	
 }
+/* 공지사항 검색 */
+button.btn.btn-default.search_1:hover {
+    background:#333;
+	
+}
 .agile-login {
-    float: left;
+    float: right;
     width: 40%;
-    text-align: center;
+    text-align: right;
     padding: 9px 0;
 }
 .agile-login ul li {
-    display: inline-block;
+   /*  display: inline-block; */
+   display:inline;
     padding: 0em 1em;
 }
 .agile-login ul li a {
@@ -162,6 +199,11 @@ button.btn.btn-default.search:hover {
 	margin-top:0px;
 }
 .w3l_search i.fa.fa-search {
+    font-size: 17px;
+	color:#fff;
+}
+/* 공지사항 검색 */
+.w3l_search_1 i.fa.fa-search {
     font-size: 17px;
 	color:#fff;
 }
@@ -183,6 +225,27 @@ button.w3l_search {
     transition: .5s all;
 }
 .btn-default:hover {
+    background-color:#000;
+    border:none;
+}
+button.w3l_search_1 {
+    border: none;
+    position: absolute;
+    top: 4px;
+    right: 11px;
+    width: 47px;
+    height: 43px;
+    outline: none;
+    box-shadow: none;
+    background:#00e58b;
+    padding: 0;
+    border-radius: inherit;
+    -webkit-appearance: none;
+    -webkit-transition: .5s all;
+    -moz-transition: .5s all;
+    transition: .5s all;
+}
+.btn-default_1:hover {
     background-color:#000;
     border:none;
 }
@@ -300,10 +363,13 @@ ul.multi-column-dropdown h6 {
 }
 .navigation-agileits {
     background: #fe9126;
+
 }
 .navbar-nav > li {
-    float: left;
-    margin-left: 17px;
+    /* float: left; */
+    align-content: center;
+    float: center;
+    margin-left: 80px;
 }
 .navbar-nav > li:nth-child(1) {
     margin-left: 0px;
@@ -2751,7 +2817,10 @@ h3.agileits-icons-title {
     font-size: 34px;
 }
 .w3l_search input[type="search"] {
-    width: 81%;
+    width: 100%;
+}
+.w3l_search_1 input[type="search"] {
+    width: 100%;
 }
 .navbar-nav > li {
     margin-left: 8px;
@@ -2826,11 +2895,11 @@ ul.phone_email li {
     width: 38%;
 }
 .w3l_search {
-    width: 27%;
+    width: 40%;
     margin: 0em 0 0em 0em;
 }
 .w3l_search input[type="search"] {
-    width: 76%;
+    width: 100%;
 }
 .navbar-default .navbar-nav > li > a {
     font-size: 14px;
@@ -3023,6 +3092,7 @@ ul.faq {
     background: none;
     border: none;
     text-align: center;
+   	align-content: center;
 }
 }
 @media (max-width: 736px){
@@ -3100,7 +3170,7 @@ ul.faq {
     width: 100%;
 }
 .w3l_search input[type="search"] {
-    width: 92%;
+    width: 100%;
 }
 .logo_products {
     padding: 1em 0;
@@ -3674,4 +3744,35 @@ td.invert-image a img {
 .w3agile_description p {
     font-size: 13px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

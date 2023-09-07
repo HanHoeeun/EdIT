@@ -76,6 +76,7 @@ SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
 <!-- 				상단 탭 리스트 -->
 				<ul class="tabs">
 					<li class="tab-link current" onclick="location.href='adminPage.ad'" >신고내역</li>
+					<li class="tab-link" onclick="location.href='adminFAQ.ad'" >문의내역</li>
 					<li class="tab-link" onclick="location.href='adminMemberPage.ad'">회원관리</li>
 					<li class="tab-link" onclick="location.href='adminBlackPage.ad'">블랙리스트</li>
 					
@@ -124,91 +125,11 @@ SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
 						<%}%>
 				    </ul>
    					 </div>
-			
-			<!-- script for tabs -->
-				</div>
-<!-- 				2번째 탭 -->
-				<div id="tab-2" class="tab-content">
-					<table class="_1qna_board">
-						<tr>
-							<th class="_1qna_board_border">회원번호</th>
-							<th class="_1qna_board_border">아이디</th>
-							<th class="_1qna_board_border">닉네임</th>
-							<th class="_1qna_board_border">이름</th>
-							<th>신고횟수</th>
-						</tr>
-						<tr onclick="window.open('user_content.ad','신고상세페이지','width=800, height=700, scrollbars=yes')">
-							<td class="_1qna_board_border">002</td>
-							<td class="_1qna_board_border">kkm</td>
-							<td class="_1qna_board_border">kkm</td>
-							<td class="_1qna_board_border">권광민</td>
-							<td>2</td>
-						</tr>
-					</table>
-<!-- 					검색테이블  -->
-					<form action="index.html" method="get" id="_1admin_search_form">
-						<table class="_1admin_search">
-						<tr>
-							<td>
-								<select>
-									<option value="">회원번호</option>
-									<option value="">아이디</option>
-									<option value="">닉네임</option>
-									<option value="">신고횟수</option>
-								</select>
-							</td>
-							<td>
-								<input type="text" onkeyup="enterKey();"> 
-							</td>
-							<td>
-								<input type="submit" value="검색">
-							</td>
-						</tr>
-						</table>
-					</form>
-					<script type="text/javascript">
-						function enterKey(){
-							if(window.event.keyCode == 13){ // Enter 키 코드값 13
-								document.getElementById('_1admin_search_form').submit();
-							}
-						}
-					</script>
-<!-- 				신고내역 페이징 -->
-				    <div class="_1qna_paging">
-        				<ul>
-				           <li onclick="location.href='index.html'">prev</li>
-				           <li onclick="location.href='about.html'">1</li>
-				           <li onclick="location.href='login.html'">2</li>
-				           <li onclick="location.href='faq.html'">3</li>
-				           <li onclick="location.href='gourmet.html'">4</li>
-				           <li onclick="location.href='login.html'">5</li>
-				           <li onclick="location.href='products.html'">next</li>
-						</ul>
-   					 </div>
-   					 </div>
-   					 
-				<div id="tab-3" class="tab-content">
-<!-- 				3탭 게시판 테이블  -->
-					<table class="_1qna_board">
-						<tr>
-							<th class="_1qna_board_border">아이디</th>
-							<th class="_1qna_board_border">이름</th>
-							<th class="_1qna_board_border">이메일</th>
-							<th class="_1qna_board_border">전화번호</th>
-						</tr>
-						<tr onclick="location.href='user_content_1.jsp'">
-							<td class="_1qna_board_border">002</td>
-							<td class="_1qna_board_border">kkm</td>
-							<td class="_1qna_board_border">kkm</td>
-							<td class="_1qna_board_border">권광민</td>
-						</tr>
-					</table>
 				</div>
 			</div>
-			
 		</div>
-			<div class="clearfix_1_1"> </div>
 	</div>
+			<div class="clearfix_1_1"> </div>
 <!-- //top-brands -->
 <!-- //footer -->
 <jsp:include page="../inc/bottom.jsp"></jsp:include>

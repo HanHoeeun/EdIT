@@ -150,23 +150,61 @@ public class MemberDAO {
 		return memberDTO;
 	}
 
+	public MemberDTO userCheck2(MemberDTO memberDTO2) {
+		MemberDTO memberDTO = null;
+		
+		try {
+			
+			con = getConnection();
+			String sql = "select * from members where m_id = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, memberDTO2.getM_id());
+
+			
+			rs = pstmt.executeQuery();
+			
+//			첫번째 행으로 데이터 있으면 memberDTO 객체생성, set 메서드 호출,rs열 데이터 저장
+			if (rs.next() == true) {
+				memberDTO = new MemberDTO();
+				// m_level 추가
+				memberDTO.setM_id(rs.getString("m_id"));
+
+
+				
+			} else {
+//				아이디, 비밀번호 불일치 -> 초기값 null -> 리턴
+				memberDTO = null;
+				
+				System.out.println("실패");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dblClose();
+		}
+		
+		return memberDTO;
+	}
 
 
 	
 //	
-	public MemberDTO getMember(String id) {
+	public MemberDTO getMember(String m_id) {
 		System.out.println("MemberDAO getMember()");
 		
 		MemberDTO memberDTO = null;
 		
 		try {
 			
+			
 			con = getConnection();
 			
 			String sql = "select * from members where m_id = ?";
 			
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, id);
+			pstmt.setString(1, m_id);
 			
 			rs = pstmt.executeQuery();
 			
@@ -195,6 +233,98 @@ public class MemberDAO {
 
 
 	
+	
+	public MemberDTO getIdCheck(String m_id) {
+		System.out.println("MemberDAO getNickCheck()");
+		
+		MemberDTO memberDTO = null;
+		
+		try {
+			
+			con = getConnection();
+			String sql = "select * from members where m_id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, m_id);
+			
+			rs = pstmt.executeQuery();
+			
+			if (rs.next() == true) {
+				memberDTO = new MemberDTO();
+				memberDTO.setM_id(rs.getString("m_id"));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dblClose();
+		}
+		return memberDTO;
+	}
+	
+	
+	
+// 	닉네임 중복확인	
+	public MemberDTO getNickCheck(String m_nick) {
+		System.out.println("MemberDAO getNickCheck()");
+		
+		MemberDTO memberDTO = null;
+		
+		try {
+			
+			con = getConnection();
+			String sql = "select * from members where m_nick = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, m_nick);
+			
+			rs = pstmt.executeQuery();
+			
+			if (rs.next() == true) {
+				memberDTO = new MemberDTO();
+				memberDTO.setM_nick(rs.getString("m_nick"));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dblClose();
+		}
+		return memberDTO;
+	}
+
+	
+	
+	
+//	이메일 중복확인	
+	public MemberDTO getEmailCheck(String m_email) {
+		System.out.println("MemberDAO getEmailCheck()");
+		
+		MemberDTO memberDTO = null;
+		
+		try {
+			
+			con = getConnection();
+			String sql = "select * from members where m_email = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, m_email);
+			
+			rs = pstmt.executeQuery();
+			
+			if (rs.next() == true) {
+				memberDTO = new MemberDTO();
+				memberDTO.setM_nick(rs.getString("m_email"));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dblClose();
+		}
+		
+		return memberDTO;
+	}
+
+
+	
 
 //	회원정보 변경
 	public void updateMember(MemberDTO memberDTO) {
@@ -204,13 +334,14 @@ public class MemberDAO {
 			
 			con = getConnection();
 			
-			String sql = "update members set m_pass = ?, m_email = ?, m_phone = ? where m_id = ?";
+			String sql = "update members set m_name = ?, m_nick = ?, m_email = ?, m_phone = ? where m_id = ?";
 			
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, memberDTO.getM_pass());
-			pstmt.setString(2, memberDTO.getM_email());
-			pstmt.setString(3, memberDTO.getM_phone());
-			pstmt.setString(4, memberDTO.getM_id());
+			pstmt.setString(1, memberDTO.getM_name());
+			pstmt.setString(2, memberDTO.getM_nick());
+			pstmt.setString(3, memberDTO.getM_email());
+			pstmt.setString(4, memberDTO.getM_phone());
+			pstmt.setString(5, memberDTO.getM_id());
 			
 			pstmt.executeUpdate();
 			
@@ -224,8 +355,36 @@ public class MemberDAO {
 
 	
 	
+//	비밀번호수정
+	public void updatePass(MemberDTO memberDTO) {
+		System.out.println("MemberDAO updatePass()");
 
-//	회원삭제
+		try {
+			
+			con = getConnection();
+			
+			String sql = "update members set m_pass = ? where m_id = ?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, memberDTO.getM_pass());
+			pstmt.setString(2, memberDTO.getM_id());
+			
+			pstmt.executeUpdate();
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dblClose();
+		}
+		
+	}
+	
+	
+	
+	
+
+//	회원탈퇴 -----> 글쓴거 찜한거 있으면 탈퇴 불가^^ 글쓴거랑 찜한것도 다 들고 삭제한 다음 탈퇴가넝~
 	public void deleteMember(MemberDTO memberDTO) {
 		System.out.println("MemberDAO deleteMember()");
 		
@@ -308,18 +467,6 @@ public class MemberDAO {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 
 	// 8.31 진 - 아이디 찾기
@@ -340,7 +487,6 @@ public class MemberDAO {
             if (rs.next()) {
                 memberDTO = new MemberDTO();
                 memberDTO.setM_id(rs.getString("m_id"));
-                // 다른 필드도 필요한 경우에 가져와서 설정
             }
             System.out.println(m_name + "," + m_email );
 			System.out.println(memberDTO);
@@ -350,16 +496,67 @@ public class MemberDAO {
 			dblClose();
 		}
 		return memberDTO; // 멤버 정보 반환
-	}
+	} // findidmember
 
 
-	// 8.31 진 - 비밀번호 찾기
-	public MemberDTO findpwmember(String m_id, String m_email) {
-		
-		System.out.println("MemberDAO findpwmember()");
+	// 8.31 진 - 비밀번호 찾기 주석처리해도 되나,,??
+//	public MemberDTO findpwmember(String m_id, String m_email) {
+//		
+//		System.out.println("MemberDAO findpwmember()");
+//		MemberDTO memberDTO = null;
+//		try {
+//			// 디비 연결
+//			con = getConnection();
+//			
+//			String sql = "SELECT * FROM members WHERE m_id = ? and m_email = ?";
+//			pstmt = con.prepareStatement(sql);
+//            pstmt.setString(1, m_id);
+//            pstmt.setString(2, m_email);
+//            
+//            ResultSet rs = pstmt.executeQuery();
+//			if(rs.next()) {
+//                memberDTO = new MemberDTO();
+//                memberDTO.setM_pass(rs.getString("m_pass"));	
+//			}
+//            System.out.println(m_id + "," + m_email );
+//			System.out.println(memberDTO);
+//			
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			dblClose();
+//		}
+//		return memberDTO; // 멤버 정보 반환
+//	}
+
+
+  // 9월 5일 
+	public int newPassword(MemberDTO memberDTO) {
+		int result = 0;
+		try {
+			con = getConnection();
+			
+			PreparedStatement pst = con.prepareStatement("update members set m_pass = ? where m_email = ? ");
+			pst.setString(1, memberDTO.getM_pass());
+			pst.setString(2, memberDTO.getM_email());
+			
+			result = pst.executeUpdate();
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dblClose();
+		}
+
+		return result;
+	} // newPassword()
+
+
+ // 9.5 아이디와 비밀번호 일치한지 아닌지 DB 연동
+	public MemberDTO IdAndEmailMatch(String m_id, String m_email) {
 		MemberDTO memberDTO = null;
 		try {
-			// 디비 연결
 			con = getConnection();
 			
 			String sql = "SELECT * FROM members WHERE m_id = ? and m_email = ?";
@@ -372,19 +569,25 @@ public class MemberDAO {
                 memberDTO = new MemberDTO();
                 memberDTO.setM_pass(rs.getString("m_pass"));	
 			}
-            System.out.println(m_id + "," + m_email );
-			System.out.println(memberDTO);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			dblClose();
 		}
-		return memberDTO; // 멤버 정보 반환
-	}
+		return memberDTO;
+	} // IdAndEmailMatch()
 
 
-}	// insertMember()
+
+
+
+
+
+
+
+
+}	
 
 	
 	

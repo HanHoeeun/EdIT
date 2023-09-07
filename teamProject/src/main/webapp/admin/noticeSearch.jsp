@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>공지사항 일반공지</title>
+<title>공지사항 일반공지 검색</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -61,11 +61,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 <!--=========================== 본문 헤더 ========================================= -->
 	<div class="top-brands_1">
-		<h2>공지사항</h2>
+		<h2>공지사항 검색</h2>
 		<div class="container_1_1">
 			<div class="container_2_1">
 
-				<!--=========================== 상단 탭 리스트============================================ -->
+<!--=========================== 상단 탭 리스트============================================ -->
 				<ul class="tabs">
 					<li class="tab-link current" data-tab="tab-1"
 						onclick="location.href='noticelist.no'">일반공지</li>
@@ -110,9 +110,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						}
 						%>
 					</table>
-
-<!--====================================== 1탭 일반공지 검색 ==================================-->
-					<div class="w3l_search_1"> 
+				</div>
+				
+<!--================================== 검색 ==================================================== -->
+				<div class="w3l_search_1">
 					<form action="noticelistSearch.no" method="get" id="productSearch">
 						<input type="search" name="search" placeholder="" required=""
 							onkeyup="enterkey();">
@@ -132,57 +133,34 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						}
 					}
 				</script>
-				</div>
-				
-<!--======================================= 검색 ==========================================================-->
-				<!-- <div class="w3l_search_1">
-					<form action="eventlistSearch.no" method="get" id="productSearch">
-						<input type="search" name="search" placeholder="" required=""
-							onkeyup="enterkey();">
-						<button type="submit" class="btn btn-default search_1"
-							aria-label="Left Align">
-							<i class="fa fa-search" aria-hidden="true"> </i>
-						</button>
-						<div class="clearfix"></div>
-					</form>
-				</div>
-
-				<script type="text/javascript">
-					function enterKey() {
-						if (window.event.keyCode == 13) { // Enter 키 코드값 13
-							document.getElementById('productSearch')
-									.submit();
-						}
-					}
-				</script> -->
 
 <!--================================= 1탭 일반공지 페이징 ================================= -->
-				<div class="_1qna_paging">
-					<ul>
-						<%
+			<div class="_1qna_paging">
+				<ul>
+					<%
 						// 시작페이지 1페이지 Prev 없음
 						// 시작페이지 11,21,31 Prev가 보이게
 						if (pageDTO.getStartPage() > pageDTO.getPageBlock()) {
 						%>
-						<li
-							onclick="location.href='noticelist.no?pageNum=<%=pageDTO.getStartPage() - pageDTO.getPageBlock()%>&tab=tab-1'">Prev</li>
+					<li
+						onclick="location.href='noticelistSerch.no?pageNum=<%=pageDTO.getStartPage() - pageDTO.getPageBlock()%>&tab=tab-1=<%=pageDTO.getSearch()%>'">Prev</li>
 
-						<%
+					<%
 						}
 						for (int i = pageDTO.getStartPage(); i <= pageDTO.getEndPage(); i++) {
 						%>
-						<li
-							onclick="location.href='noticelist.no?pageNum=<%=i%>&tab=tab-1'"><%=i%></li>
-						<%
+					<li
+						onclick="location.href='noticelistSerch.no?pageNum=<%=i%>&tab=tab-1=<%=pageDTO.getSearch()%>'"><%=i%></li>
+					<%
 						}
 						// 끝페이지 번호 전체페이지수 비교 => 전체페이지 수 크면 => next보임
 						if (pageDTO.getEndPage() < pageDTO.getPageCount()) {
 						%>
-						<li
-							onclick="location.href='noticelist.no?pageNum=<%=pageDTO.getStartPage() + pageDTO.getPageBlock()%>&tab=tab-1'">Next</li>
-						<%
-						}
-						%>
+					<li
+						onclick="location.href='noticelistSerch.no?pageNum=<%=pageDTO.getStartPage() + pageDTO.getPageBlock()%>&tab=tab-1=<%=pageDTO.getSearch()%>'">Next</li>
+					<%
+					}
+					%>
 					</ul>
 				</div>
 			</div>

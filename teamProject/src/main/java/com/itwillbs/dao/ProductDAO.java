@@ -1464,20 +1464,24 @@ public class ProductDAO {
 	public List<WishListDTO> getWishList(ProductPageDTO ppageDTO) {
 		System.out.println("ProductDAO getWishList()");
 		List<WishListDTO> wishList = new ArrayList<>();
-		int size = wishList.size();
+		//int size = wishList.size();
 		try {
 			con = getConnection();
 			String sql = "SELECT w.w_num, m.m_nick, p.p_file, p.p_title, p.p_status, p.p_type, p.p_price "
 					+ "from wishlists w "
 					+ "JOIN products p ON w.w_p_num = p.p_num "
 					+ "JOIN members m ON w.w_m_num = m.m_num "
-					+ "ORDER BY w.w_num DESC limit ?, ?";
+					+ "where m.m_id = ? "
+					+ " limit ?, ? ";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, ppageDTO.getP_startRow()-1);//시작행-1
-			pstmt.setInt(2, ppageDTO.getP_pageSize());//몇개
+			pstmt.setString(1, ppageDTO.getM_id());
+			System.out.println("m_id = "+ppageDTO.getM_id());
+			pstmt.setInt(2, ppageDTO.getP_startRow()-1);//시작행-1
+			pstmt.setInt(3, ppageDTO.getP_pageSize());//몇개
 			rs = pstmt.executeQuery();
-			wishList = new ArrayList<>();
-			size = wishList.size();
+			System.out.println("결과 =" + pstmt);
+			//wishList = new ArrayList<>();
+			//size = wishList.size();
 			while(rs.next()) {
 				WishListDTO wishListDTO = new WishListDTO();
 	            ProductDTO productDTO = new ProductDTO();
@@ -1505,102 +1509,103 @@ public class ProductDAO {
 		return wishList;
 	}
 
-	public List<WishListDTO> getWishSoldProducts(ProductPageDTO ppageDTO) {
-		System.out.println("ProductDAO getWishSoldProducts()");
-		List<WishListDTO> wishlist = new ArrayList<>(); 
-		int size = wishlist.size();
-		try {
-			//1,2 단계 디비 연결 
-			con = getConnection();
-			//3 sql  => mysql 제공 => limit 시작행-1, 몇개
-//			String sql="select * from board order by num desc";
-			String sql="select  w.w_num, m.m_nick, p.p_file, p.p_title, p.p_status, p.p_type, p.p_price "
-					+ "from  wishlists w join products p on w.w_p_num = p.p_num "
-					+ "join members m on w.w_num = m.m_num "
-					+ "where p_status =? order by p_num limit ?, ?";
-			pstmt.setString(1, "거래완료");
-			pstmt.setInt(2, ppageDTO.getP_startRow()-1);//시작행-1
-			pstmt.setInt(3, ppageDTO.getP_pageSize());//몇개
-			//4 실행 => 결과 저장
-			rs = pstmt.executeQuery();
-			// boardList 객체생성
-			wishlist = new ArrayList<>();
-			size = wishlist.size();
-			//5 결과 행접근 => BoardDTO객체생성 => set호출(열접근저장)
-			while(rs.next()) {
-				WishListDTO wishListDTO = new WishListDTO();
-	            ProductDTO productDTO = new ProductDTO();
-	            MemberDTO memberDTO = new MemberDTO();
-
-	            wishListDTO.setW_num(rs.getInt("w_num"));
-	            memberDTO.setM_nick(rs.getString("m_nick"));
-	            productDTO.setP_file(rs.getString("p_file"));
-	            productDTO.setP_title(rs.getString("p_title"));
-	            productDTO.setP_status(rs.getString("p_status"));
-	            productDTO.setP_type(rs.getString("p_type"));
-	            productDTO.setP_price(rs.getInt("p_price"));
-
-	            wishListDTO.setMemberDTO(memberDTO);
-	            wishListDTO.setProductDTO(productDTO);
-
-	            wishlist.add(wishListDTO);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			dbClose();
-		}
-		return wishlist;
-	}
-
-	public List<WishListDTO> getWishSellProducts(ProductPageDTO ppageDTO) {
-		System.out.println("ProductDAO getWishSellProducts()");
-		List<WishListDTO> wishlist = new ArrayList<>(); 
-		int size = wishlist.size();
-		try {
-			//1,2 단계 디비 연결 
-			con = getConnection();
-			//3 sql  => mysql 제공 => limit 시작행-1, 몇개
-//			String sql="select * from board order by num desc";
-			String sql="select  w.w_num, m.m_nick, p.p_file, p.p_title, p.p_status, p.p_type, p.p_price "
-					+ "from wishlists w join products p on w.w_p_num = p.p_num "
-					+ "join members m on w.w_num = m.m_num" 
-					+ "where p_status =? order by p_num limit ?, ?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, "거래중");
-			pstmt.setInt(2, ppageDTO.getP_startRow()-1);//시작행-1
-			pstmt.setInt(3, ppageDTO.getP_pageSize());//몇개
-			//4 실행 => 결과 저장
-			rs = pstmt.executeQuery();
-			// boardList 객체생성
-			wishlist = new ArrayList<>();
-			size = wishlist.size();
-			//5 결과 행접근 => BoardDTO객체생성 => set호출(열접근저장)
-			while(rs.next()) {
-				WishListDTO wishListDTO = new WishListDTO();
-	            ProductDTO productDTO = new ProductDTO();
-	            MemberDTO memberDTO = new MemberDTO();
-
-	            wishListDTO.setW_num(rs.getInt("w_num"));
-	            memberDTO.setM_nick(rs.getString("m_nick"));
-	            productDTO.setP_file(rs.getString("p_file"));
-	            productDTO.setP_title(rs.getString("p_title"));
-	            productDTO.setP_status(rs.getString("p_status"));
-	            productDTO.setP_type(rs.getString("p_type"));
-	            productDTO.setP_price(rs.getInt("p_price"));
-
-	            wishListDTO.setMemberDTO(memberDTO);
-	            wishListDTO.setProductDTO(productDTO);
-
-	            wishlist.add(wishListDTO);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			dbClose();
-		}
-		return wishlist;
-	}
+//	public List<WishListDTO> getWishSoldProducts(ProductPageDTO ppageDTO) {
+//		System.out.println("ProductDAO getWishSoldProducts()");
+//		List<WishListDTO> wishlist = new ArrayList<>(); 
+//		int size = wishlist.size();
+//		try {
+//			//1,2 단계 디비 연결 
+//			con = getConnection();
+//			//3 sql  => mysql 제공 => limit 시작행-1, 몇개
+////			String sql="select * from board order by num desc";
+//			String sql="select  w.w_num, m.m_nick, p.p_file, p.p_title, p.p_status, p.p_type, p.p_price "
+//					+ "from  wishlists w join products p on w.w_p_num = p.p_num "
+//					+ "join members m on w.w_num = m.m_num "
+//					+ "where p_status =? order by p_num limit ?, ?";
+//			pstmt.setString(1, "거래완료");
+//			
+//			pstmt.setInt(2, ppageDTO.getP_startRow()-1);//시작행-1
+//			pstmt.setInt(3, ppageDTO.getP_pageSize());//몇개
+//			//4 실행 => 결과 저장
+//			rs = pstmt.executeQuery();
+//			// boardList 객체생성
+//			wishlist = new ArrayList<>();
+//			size = wishlist.size();
+//			//5 결과 행접근 => BoardDTO객체생성 => set호출(열접근저장)
+//			while(rs.next()) {
+//				WishListDTO wishListDTO = new WishListDTO();
+//	            ProductDTO productDTO = new ProductDTO();
+//	            MemberDTO memberDTO = new MemberDTO();
+//
+//	            wishListDTO.setW_num(rs.getInt("w_num"));
+//	            memberDTO.setM_nick(rs.getString("m_nick"));
+//	            productDTO.setP_file(rs.getString("p_file"));
+//	            productDTO.setP_title(rs.getString("p_title"));
+//	            productDTO.setP_status(rs.getString("p_status"));
+//	            productDTO.setP_type(rs.getString("p_type"));
+//	            productDTO.setP_price(rs.getInt("p_price"));
+//
+//	            wishListDTO.setMemberDTO(memberDTO);
+//	            wishListDTO.setProductDTO(productDTO);
+//
+//	            wishlist.add(wishListDTO);
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			dbClose();
+//		}
+//		return wishlist;
+//	}
+//
+//	public List<WishListDTO> getWishSellProducts(ProductPageDTO ppageDTO) {
+//		System.out.println("ProductDAO getWishSellProducts()");
+//		List<WishListDTO> wishlist = new ArrayList<>(); 
+//		int size = wishlist.size();
+//		try {
+//			//1,2 단계 디비 연결 
+//			con = getConnection();
+//			//3 sql  => mysql 제공 => limit 시작행-1, 몇개
+////			String sql="select * from board order by num desc";
+//			String sql="select  w.w_num, m.m_nick, p.p_file, p.p_title, p.p_status, p.p_type, p.p_price "
+//					+ "from wishlists w join products p on w.w_p_num = p.p_num "
+//					+ "join members m on w.w_num = m.m_num" 
+//					+ "where p_status =? order by p_num limit ?, ?";
+//			pstmt = con.prepareStatement(sql);
+//			pstmt.setString(1, "거래중");
+//			pstmt.setInt(2, ppageDTO.getP_startRow()-1);//시작행-1
+//			pstmt.setInt(3, ppageDTO.getP_pageSize());//몇개
+//			//4 실행 => 결과 저장
+//			rs = pstmt.executeQuery();
+//			// boardList 객체생성
+//			wishlist = new ArrayList<>();
+//			size = wishlist.size();
+//			//5 결과 행접근 => BoardDTO객체생성 => set호출(열접근저장)
+//			while(rs.next()) {
+//				WishListDTO wishListDTO = new WishListDTO();
+//	            ProductDTO productDTO = new ProductDTO();
+//	            MemberDTO memberDTO = new MemberDTO();
+//
+//	            wishListDTO.setW_num(rs.getInt("w_num"));
+//	            memberDTO.setM_nick(rs.getString("m_nick"));
+//	            productDTO.setP_file(rs.getString("p_file"));
+//	            productDTO.setP_title(rs.getString("p_title"));
+//	            productDTO.setP_status(rs.getString("p_status"));
+//	            productDTO.setP_type(rs.getString("p_type"));
+//	            productDTO.setP_price(rs.getInt("p_price"));
+//
+//	            wishListDTO.setMemberDTO(memberDTO);
+//	            wishListDTO.setProductDTO(productDTO);
+//
+//	            wishlist.add(wishListDTO);
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			dbClose();
+//		}
+//		return wishlist;
+//	}
 
 	public MemberDTO getmember(int m_num) {
 		MemberDTO memberDTO = null;
@@ -1664,6 +1669,41 @@ public class ProductDAO {
 			dbClose();
 		}
 		return memberDTO;
+	}
+
+	public List<ProductDTO> getProductListSearch(ProductPageDTO ppageDTO) {
+		System.out.println("List<ProductDTO> getProductListSearch");
+		List<ProductDTO> productList = null;
+		try {
+			con = getConnection();
+			
+			String sql = "select * from products where p_title like ? limit ?,? ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "%" + ppageDTO.getSearch()+ "%");
+			pstmt.setInt(2, ppageDTO.getP_startRow()-1);//시작행-1
+			pstmt.setInt(3, ppageDTO.getP_pageSize());//몇개
+			
+			rs = pstmt.executeQuery();
+			
+			productList = new ArrayList<>();
+			while(rs.next()) {
+				ProductDTO productDTO = new ProductDTO();
+				productDTO.setP_num(rs.getInt("p_num"));
+				productDTO.setP_title(rs.getString("p_title"));
+				productDTO.setP_type(rs.getString("p_type"));
+				productDTO.setP_price(rs.getInt("p_price"));
+				productDTO.setP_status(rs.getString("p_status"));
+				productDTO.setP_file(rs.getString("p_file"));
+			// => 배열 한칸에 저장
+				productList.add(productDTO); 
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		return productList;
 	}
 
 	

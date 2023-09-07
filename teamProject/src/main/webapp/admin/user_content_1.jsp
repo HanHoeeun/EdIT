@@ -111,7 +111,7 @@ function oninputPhone(target) {
 				%>
 				<td class="_1report_content_border">블랙사유</td>
 				<td><input type="text" value="<%=black %>" name="m_event" style="border:none;"></td>
-				</tr>					
+				</tr>
 				<tr>
 				<td class="_1report_content_border">수정 비밀번호</td>
 				<td><input type="password" name="admin_pass" style="border:none;" required="required" ></td>

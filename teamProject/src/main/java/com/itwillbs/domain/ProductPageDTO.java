@@ -14,9 +14,24 @@ public class ProductPageDTO {
 	private int p_pageCount;
 	
 	private String m_id;
+	private String search;
+	private String p_title;
 	
 	
 	
+	
+	public String getP_title() {
+		return p_title;
+	}
+	public void setP_title(String p_title) {
+		this.p_title = p_title;
+	}
+	public String getSearch() {
+		return search;
+	}
+	public void setSearch(String search) {
+		this.search = search;
+	}
 	public String getM_id() {
 		return m_id;
 	}
@@ -83,6 +98,7 @@ public class ProductPageDTO {
 	public void setP_pageCount(int p_pageCount) {
 		this.p_pageCount = p_pageCount;
 	}
+	
 	
 	
 }

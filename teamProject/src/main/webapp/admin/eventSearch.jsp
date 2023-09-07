@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>공지사항 글작성</title>
+<title>공지사항 이벤트 검색</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -60,86 +60,116 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--=========================== 상단 네비 ============================================ -->
 	<div class="breadcrumbs">
 		<div class="container">
-			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft"
-				data-wow-delay=".5s">
-				<li><a href="index.html"><span
-						class="glyphicon glyphicon-home" aria-hidden="true"></span>홈</a></li>
+			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>홈</a></li>
 				<li class="active">공지사항</li>
-				<li class="active">공지글 작성</li>
+				<li class="active">이벤트</li>
 			</ol>
 		</div>
 	</div>
 <!--=========================== 본문 헤더 ========================================= -->
 	<div class="top-brands_1">
-		<h2>공지사항</h2>
+		<h2>공지사항 검색</h2>
 		<div class="container_1_1">
 			<div class="container_2_1">
+			
 <!--=========================== 상단 탭 리스트============================================ -->
 			<ul class="tabs">
 					<li class="tab-link" data-tab="tab-1" onclick="location.href='noticelist.no'">일반공지</li>
-					<li class="tab-link" data-tab="tab-2" onclick="location.href='eventlist.no'">이벤트</li>
+					<li class="tab-link current" data-tab="tab-2" onclick="location.href='eventlist.no'">이벤트</li>
 					<%
 					if (1 == 1) {
 					%>
-					<li class="tab-link current" data-tab="tab-3" onclick="location.href='noticeWrite.no'">공지글 작성</li>
+					<li class="tab-link" data-tab="tab-3" onclick="location.href='noticeWrite.no'">공지글 작성</li>
 					<%
 					}
 					%>
 				</ul>
 			</div>
 
-<!--=========================================== 3탭 공지글 작성 ==================================================== -->
+<!--=========================================== 2탭 이벤트 테이블 ==================================================== -->
+			<%
+			List<NoticeDTO> eventList = (List<NoticeDTO>) request.getAttribute("eventList");
+			NoticePageDTO pageDTO2 = (NoticePageDTO) request.getAttribute("pageDTO2");
+			%>
 			<div class="container_3_1">
-				<div id="tab-3" class="tab-content current">
-
-					<form action="noticeWritePro.no" method="post"
-						enctype="multipart/form-data">
-						<table class="_1q_query_tab">
-							<tr>
-								<td class="_1q_query_tab_1"><select
-									class="_1q_query_tab_sel" name="a_notice_type"
-									style="border: none;">
-										<option value="일반공지">일반공지</option>
-										<option value="이벤트">이벤트</option>
-								</select></td>
-								<td>
-									<div class="_1q_query_tab_3">
-										<label for="imgfile"><img src="images/picture.png"
-											width="25px" height="25px">첨부파일</label>
-									</div> <input type="file" name="a_file" id="imgfile" accept="image/*">
-								</td>
-							</tr>
-						</table>
-						<div>
-							<br>
-						</div>
-
-						<table class="_1q_query_tab">
-							<tr>
-								<td class="_1q_query_tab_4" colspan="3"><input type="text"
-									name="a_title" placeholder="제목을 작성 해주세요" style="border: none;" required="required"></td>
-							</tr>
-						</table>
-						<div>
-							<br>
-						</div>
-						<table class="_1q_query_tab">
-							<tr>
-								<td class="_1q_query_tab_5" colspan="3"><textarea
-										name="a_content" style="border: none;" cols="110" rows="20"
-										class="noresize" placeholder="내용을 작성 해주세요" required="required"></textarea></td>
-							</tr>
-						</table>
-						<div class="_1q_query_btn">
-							<button type="submit">작성</button>
-							<button type="reset">취소</button>
-						</div>
-					</form>
-
+				<div id="tab-2" class="tab-content current">
+					<table class="_1qna_board">
+						<tr>
+							<th class="_1qna_board_border">번호</th>
+							<th class="_1qna_board_border">제목</th>
+							<th class="_1qna_board_border">작성일</th>
+						</tr>
+						<%
+					SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
+					for (int i = 0; i < eventList.size(); i++) {
+						NoticeDTO noticeDTO = eventList.get(i);
+					%>
+						<tr
+							onclick="location.href='eventContent.no?a_num=<%=noticeDTO.getA_num()%>'">
+							<td class="_1qna_board_border"><%=noticeDTO.getA_num()%></td>
+							<td class="_1qna_board_subject"><%=noticeDTO.getA_title()%></td>
+							<td class="_1qna_board_border"><%=format.format(noticeDTO.getA_date())%></td>
+						</tr>
+						<%
+					}
+					%>
+					</table>
 				</div>
 
+<!--====================================== 2탭 이벤트 검색 ==================================-->
+				<div class="w3l_search_1">
+					<form action="eventlistSearch.no" method="get" id="productSearch">
+						<input type="search" name="search" placeholder="" required=""
+							onkeyup="enterkey();">
+						<button type="submit" class="btn btn-default search_1"
+							aria-label="Left Align">
+							<i class="fa fa-search" aria-hidden="true"> </i>
+						</button>
+						<div class="clearfix"></div>
+					</form>
+				</div>
+
+				<script type="text/javascript">
+					function enterKey() {
+						if (window.event.keyCode == 13) { // Enter 키 코드값 13
+							document.getElementById('productSearch').submit();
+						}
+					}
+				</script>
 			</div>
 
+<!--==================================== 2탭 이벤트 페이징 ==================================== -->
+				<div class="_1qna_paging">
+					<ul>
+						<%
+						// 시작페이지 1페이지 Prev 없음
+						// 시작페이지 11,21,31 Prev가 보이게
+						if (pageDTO2.getStartPage() > pageDTO2.getPageBlock()) {
+						%>
+						<li
+							onclick="location.href='eventlistSearch.no?pageNum=<%=pageDTO2.getStartPage() - pageDTO2.getPageBlock()%>&tab=tab-2=<%=pageDTO2.getSearch()%>'">Prev</li>
+
+						<%
+						}
+						for (int i = pageDTO2.getStartPage(); i <= pageDTO2.getEndPage(); i++) {
+						%>
+						<li
+							onclick="location.href='eventlistSearch.no?pageNum=<%=i%>&tab=tab-2=<%=pageDTO2.getSearch()%>'"><%=i%></li>
+						<%
+						}
+						// 끝페이지 번호 전체페이지수 비교 => 전체페이지 수 크면 => next보임
+						if (pageDTO2.getEndPage() < pageDTO2.getPageCount()) {
+						%>
+						<li
+							onclick="location.href='eventlistSearch.no?pageNum=<%=pageDTO2.getStartPage() + pageDTO2.getPageBlock()%>&tab=tab-2=<%=pageDTO2.getSearch()%>'">Next</li>
+						<%
+						}
+						%>
+					</ul>
+				</div>
+			</div>
+			
 <!--====================================== 탭 jquery =================================-->
 			<script type="text/javascript">
             $(document).ready(function(){

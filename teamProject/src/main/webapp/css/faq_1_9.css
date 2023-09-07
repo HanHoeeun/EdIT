@@ -63,7 +63,7 @@ ul.tabs li{
 
 ul.tabs li.current{
 	border-radius: 20px;
-	background-color:rgba(254,145,38,0.7);
+	background-color:FE9126;
 	color: #222;
 }
 
@@ -223,7 +223,7 @@ ul.faq_1 {
 
 ._1qna_board th{
 	padding: 14px 21px;
-	background: #ececec;
+	background: #F7F7F9;
 	text-align: center;
 	color: #666;
 	font-size: 12px;
@@ -275,7 +275,8 @@ ul.faq_1 {
     background: #333;
 }
 
-#_1admin_search_form {
+/*========================================= 검색 ==============================================  */
+ #_1admin_search_form {
 	padding-top: 20px;
 	margin: 0 auto;
 	width: 60%;
@@ -287,8 +288,9 @@ ul.faq_1 {
 ._1admin_search td{
 	padding : 5px;
 }
- 
- 
+
+
+ /*======================================================================================  */
 ._1report_content_form {
 	width:60%;
    	margin: 20px auto;

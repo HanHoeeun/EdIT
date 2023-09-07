@@ -1,91 +1,121 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
-<meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'>
-<title>Snippet - BBBootstrap</title>
-<link
-	href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css'
-	rel='stylesheet'>
-<link href='' rel='stylesheet'>
-<script type='text/javascript'
-	src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-<style>
-body {
-	background-position: center;
-	background-color: #eee;
-	background-repeat: no-repeat;
-	background-size: cover;
-	color: #505050;
-	font-family: "Rubik", Helvetica, Arial, sans-serif;
-	font-size: 14px;
-	font-weight: normal;
-	line-height: 1.5;
-	text-transform: none
-}
-
-.forgot {
-	background-color: #fff;
-	padding: 12px;
-	border: 1px solid #dfdfdf
-}
-
-.padding-bottom-3x {
-	padding-bottom: 72px !important
-}
-
-.card-footer {
-	background-color: #fff
-}
-
-.btn {
-	font-size: 13px
-}
-
-.form-control:focus {
-	color: #495057;
-	background-color: #fff;
-	border-color: #76b7e9;
-	outline: 0;
-	box-shadow: 0 0 0 0px #28a745
-}
-</style>
+<meta charset="UTF-8">
+<title>member/findpw.jsp</title>
+<link href= "./css/login.css" rel= "stylesheet" type="text/css">
+<link href= "./css/style.css" rel= "stylesheet" type="text/css">
 </head>
-<body oncontextmenu='return false' class='snippet-body'>
-	<div class="container padding-bottom-3x mb-2 mt-5">
-		<div class="row justify-content-center">
-			<div class="col-lg-8 col-md-10">
-				<div class="forgot">
-					<h2>비밀번호를 잊으셨나요?</h2>
-					<p>간단한 3단계로 비밀번호를 변경하세요. 이는 귀하의 비밀번호를 보호하는 데 도움이 될 것입니다!</p>
-					<ol class="list-unstyled">
-						<li><span class="text-primary text-medium">1. </span>아래에 이메일 주소를 입력하세요.</li>
-						<li><span class="text-primary text-medium">2. </span>시스템은 이메일로 OTP(일회용 비밀번호)를 보내드립니다.</li>
-						<li><span class="text-primary text-medium">3. </span>다음 페이지에서 OTP를 입력하세요.</li>
-					</ol>
-				</div>
-				<form class="card mt-4" action="forgotPassword" method="POST">
-					<div class="card-body">
-						<div class="form-group">
-							<label for="email-for-pass">이메일 주소를 입력하세요.</label> <input
-								class="form-control" type="text" name="email" id="email-for-pass" required=""><small
-								class="form-text text-muted">등록된 이메일 주소를 입력하세요. 그러면 이 주소로 OTP를 이메일로 보내드리겠습니다.</small>
-						</div>
+<body>
+<!--
+author: W3layouts
+author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>   
+<html>
+<head>
+<title>findpw.jsp</title>
+<!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Super Market Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //for-mobile-apps -->
+<link href="../css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="../css/style.css" rel="stylesheet" type="text/css" media="all" />
+<!-- font-awesome icons -->
+<link href="../css/font-awesome.css" rel="stylesheet"> 
+<!-- //font-awesome icons -->
+<!-- js -->
+<script src="js/jquery-1.11.1.min.js"></script>
+<!-- //js -->
+<link href='//fonts.googleapis.com/css?family=Raleway:400,100,100italic,200,200italic,300,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+<!-- start-smoth-scrolling -->
+<script type="text/javascript" src="js/move-top.js"></script>
+<script type="text/javascript" src="js/easing.js"></script>
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$(".scroll").click(function(event){		
+			event.preventDefault();
+			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+		});
+	});
+</script>
+<!-- start-smoth-scrolling -->
+</head>
+	
+<body>
+<!-- header -->
+		<jsp:include page="/inc/top.jsp"></jsp:include>
+<!-- header -->
+
+<!-- breadcrumbs -->
+	<div class="breadcrumbs">
+		<div class="container">
+			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>홈</a></li>
+				<li class="active">비밀번호찾기</li>
+			</ol>
+		</div>
+	</div>
+<!-- //breadcrumbs -->
+
+
+<!-- ================================ 비밀번호찾기 ================================ -->
+	<div class="login">
+		<div class="container">
+		<div style="text-align : center;">
+     		<img src="./images/find_5_1.png"><br><br><br>
+		</div>
+			<h2>비밀번호찾기</h2><br><br>
+				<p>회원가입 시 등록하신 아이디, 이메일 주소를 입력해 주세요.</p>
+				<p>해당 이메일로 OTP(일회용 비밀번호)를 보내드립니다.</p>
+		
+			<div class="login-form-grids animated wow slideInUp" data-wow-delay=".5s">
+			
+				<form action = "forgotPassword.me"  method = "post">
+
+					<input type="text"  placeholder ="아이디"  required=" "  id = "m_id" name = "m_id" >
+					<input type="email"  placeholder ="이메일"  required=" "  id = "m_email" name = "m_email" >
+					
+					<div class="_5center">
+<!-- 					새 비밀번호 받기 누르면 -> 멤버컨트롤단에 forgotPassword.me가 작동 -->
+						<input type="submit"  value="새 비밀번호 받기"  class="#">	
+						<input type="submit"  value="취소"  onclick="location.href='login.me'" class="#">	
+					<hr style="width:100%;height:1px;border:none;background-color:#999;">
 					</div>
-					<div class="card-footer">
-						<button class="btn btn-success" type="submit">새 비밀번호 받기</button>
-						<button class="btn btn-danger" type="submit">로그인으로 돌아가기</button>
-					</div>
+					</form>
+					
+<!-- 홈/아이디 찾기/회원가입 -->					
+					<div class="_5forgot">
+						<a href="main.me">홈</a>
+						|   
+						<a href="findid.me">아이디 찾기</a>
+						|   
+						<a href="insert.me">회원가입</a>
+					</div>	
+<!-- // 홈/아이디 찾기/회원가입 -->	
+							
 				</form>
 			</div>
 		</div>
 	</div>
-	<script type='text/javascript'
-		src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js'></script>
-	<script type='text/javascript' src=''></script>
-	<script type='text/javascript' src=''></script>
-	<script type='text/Javascript'></script>
+<!-- ================================ // 비밀번호찾기 ================================ -->
+
+<!-- 푸터 들어가는 곳! -->
+<div class="clearfix">
+<jsp:include page="../inc/bottom.jsp"></jsp:include>
+</div>
+<!-- // 푸터 들어가는 곳! -->
+
+</body>
+</html>
 </body>
 </html>

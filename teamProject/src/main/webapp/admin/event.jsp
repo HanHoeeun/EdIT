@@ -26,6 +26,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- font-awesome icons -->
 <link href="css/font-awesome.css" rel="stylesheet">
 <link href="css/faq_1_9.css" rel="stylesheet">
+<link href="css/faq_1.css" rel="stylesheet"> 
 <!-- //font-awesome icons -->
 <!-- js -->
 <script src="js/jquery-1.11.1.min.js"></script>
@@ -59,10 +60,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--=========================== 상단 네비 ============================================ -->
 	<div class="breadcrumbs">
 		<div class="container">
-			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft"
-				data-wow-delay=".5s">
-				<li><a href="index.html"><span
-						class="glyphicon glyphicon-home" aria-hidden="true"></span>홈</a></li>
+			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>홈</a></li>
 				<li class="active">공지사항</li>
 				<li class="active">이벤트</li>
 			</ol>
@@ -73,49 +72,74 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<h2>공지사항</h2>
 		<div class="container_1_1">
 			<div class="container_2_1">
+			
 <!--=========================== 상단 탭 리스트============================================ -->
-				<ul class="tabs">
-					<li class="tab-link" data-tab="tab-1">일반공지</li>
-					<li class="tab-link current" data-tab="tab-2">이벤트</li>
+			<ul class="tabs">
+					<li class="tab-link" data-tab="tab-1" onclick="location.href='noticelist.no'">일반공지</li>
+					<li class="tab-link current" data-tab="tab-2" onclick="location.href='eventlist.no'">이벤트</li>
 					<%
 					if (1 == 1) {
 					%>
-					<li class="tab-link" data-tab="tab-3">공지글 작성</li>
+					<li class="tab-link" data-tab="tab-3" onclick="location.href='noticeWrite.no'">공지글 작성</li>
 					<%
 					}
 					%>
 				</ul>
 			</div>
 
-<!--=========================================== 2탭 이벤트 ==================================================== -->
+<!--=========================================== 2탭 이벤트 테이블 ==================================================== -->
 			<%
 			List<NoticeDTO> eventList = (List<NoticeDTO>) request.getAttribute("eventList");
 			NoticePageDTO pageDTO2 = (NoticePageDTO) request.getAttribute("pageDTO2");
 			%>
-			<div id="tab-2" class="tab-content">
-				<table class="_1qna_board">
-					<tr>
-						<th class="_1qna_board_border">번호</th>
-						<th class="_1qna_board_border">제목</th>
-						<th class="_1qna_board_border">작성일</th>
-					</tr>
-					<%
+			<div class="container_3_1">
+				<div id="tab-2" class="tab-content current">
+					<table class="_1qna_board">
+						<tr>
+							<th class="_1qna_board_border">번호</th>
+							<th class="_1qna_board_border">제목</th>
+							<th class="_1qna_board_border">작성일</th>
+						</tr>
+						<%
 					SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
 					for (int i = 0; i < eventList.size(); i++) {
-						NoticeDTO eventDTO = eventList.get(i);
+						NoticeDTO noticeDTO = eventList.get(i);
 					%>
-					<tr
-						onclick="location.href='content.no?a_num=<%=eventDTO.getA_num()%>'">
-						<td class="_1qna_board_border"><%=eventDTO.getA_num()%></td>
-						<td class="_1qna_board_subject"><%=eventDTO.getA_title()%></td>
-						<td class="_1qna_board_border"><%=format.format(eventDTO.getA_date())%></td>
-					</tr>
-					<%
+						<tr
+							onclick="location.href='eventContent.no?a_num=<%=noticeDTO.getA_num()%>'">
+							<td class="_1qna_board_border"><%=noticeDTO.getA_num()%></td>
+							<td class="_1qna_board_subject"><%=noticeDTO.getA_title()%></td>
+							<td class="_1qna_board_border"><%=format.format(noticeDTO.getA_date())%></td>
+						</tr>
+						<%
 					}
 					%>
-				</table>
-				
-<!--==================================== 2탭 이벤트 페이징 ==================================== -->
+					</table>
+				</div>
+
+<!--====================================== 2탭 이벤트 검색 ==================================-->
+				<div class="w3l_search_1">
+					<form action="eventlistSearch.no" method="get" id="productSearch">
+						<input type="search" name="search" placeholder="" required=""
+							onkeyup="enterkey();">
+						<button type="submit" class="btn btn-default search_1"
+							aria-label="Left Align">
+							<i class="fa fa-search" aria-hidden="true"> </i>
+						</button>
+						<div class="clearfix"></div>
+					</form>
+				</div>
+
+				<script type="text/javascript">
+					function enterKey() {
+						if (window.event.keyCode == 13) { // Enter 키 코드값 13
+							document.getElementById('productSearch').submit();
+						}
+					}
+				</script>
+			</div>
+
+			<!--==================================== 2탭 이벤트 페이징 ==================================== -->
 				<div class="_1qna_paging">
 					<ul>
 						<%

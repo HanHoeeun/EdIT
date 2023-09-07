@@ -8,7 +8,9 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import com.itwillbs.dao.AdminDAO;
 import com.itwillbs.dao.MemberDAO;
 import com.itwillbs.domain.MemberDTO;
 
@@ -98,6 +100,33 @@ public class MemberService {
 	}
 
 	
+
+	public MemberDTO userCheck2(HttpServletRequest request) {
+		MemberDTO memberDTO = null;
+		
+		try {
+			
+//			한글처리
+			request.setCharacterEncoding("utf-8");
+			
+			
+			String m_id = request.getParameter("m_id");
+			
+			MemberDTO memberDTO2 = new MemberDTO();
+			memberDTO2.setM_id(m_id);
+			
+			memberDAO = new MemberDAO();
+			memberDTO = memberDAO.userCheck2(memberDTO2);
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return memberDTO;
+	}
+	
 	
 	
 	
@@ -123,6 +152,63 @@ public class MemberService {
 	
 	
 	
+	public MemberDTO getIdCheck(String m_id) {
+		System.out.println("MemberService getIdCheck()");
+		
+		MemberDTO memberDTO = null;
+		
+		try {
+			
+			memberDAO = new MemberDAO();
+			memberDTO = memberDAO.getIdCheck(m_id);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return memberDTO;
+	}
+
+	
+	
+	
+//	닉네임 중복체크
+	public MemberDTO getNickCheck(String m_nick) {
+		System.out.println("MemberService getNickCheck()");
+		
+		MemberDTO memberDTO = null;
+		
+		try {
+			
+			memberDAO = new MemberDAO();
+			memberDTO = memberDAO.getNickCheck(m_nick);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return memberDTO;	
+	}
+	
+	
+	
+//	이메일 중복확인
+	public MemberDTO getEmailCheck(String m_email) {
+		System.out.println("MemberService getEmailCheck()");
+		
+		MemberDTO memberDTO = null;
+		
+		try {
+			
+			memberDAO = new MemberDAO();
+			memberDTO = memberDAO.getEmailCheck(m_email);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return memberDTO;
+	}
+
+	
 	
 //	회원정보 수정
 	public void updateMember(HttpServletRequest request) {
@@ -133,9 +219,6 @@ public class MemberService {
 			request.setCharacterEncoding("utf-8");
 			
 			String m_id = request.getParameter("m_id");
-			String m_pass1 = request.getParameter("m_pass");
-			String m_pass2 = request.getParameter("m_pass2");
-			String m_pass3 = request.getParameter("m_pass3");
 			String m_name = request.getParameter("m_name");
 			String m_nick = request.getParameter("m_nick");
 			String m_email = request.getParameter("m_email");
@@ -143,9 +226,6 @@ public class MemberService {
 			
 			MemberDTO memberDTO = new MemberDTO();
 			memberDTO.setM_id(m_id);
-			memberDTO.setM_pass(m_pass1);
-			memberDTO.setM_pass(m_pass2);
-			memberDTO.setM_pass(m_pass3);
 			memberDTO.setM_name(m_name);
 			memberDTO.setM_nick(m_nick);
 			memberDTO.setM_email(m_email);
@@ -164,16 +244,51 @@ public class MemberService {
 	}
 
 
+//	비밀번호 수정
+	public void updatePass(HttpServletRequest request) {
+		System.out.println("MemberService updatePass()");
+		
+		try {
+//			한글처리
+			request.setCharacterEncoding("utf-8");
+			
+			String m_id = request.getParameter("m_id");
+			String m_name = request.getParameter("m_name");
+			String m_pass = request.getParameter("m_pass");
+			String m_pass2 = request.getParameter("m_pass2");
+			String m_pass3 = request.getParameter("m_pass3");
+
+
+			
+			MemberDTO memberDTO = new MemberDTO();
+			memberDTO.setM_id(m_id);
+			memberDTO.setM_name(m_name);
+			memberDTO.setM_pass(m_pass);
+			memberDTO.setM_pass(m_pass2);
+			memberDTO.setM_pass(m_pass3);
+
+
+			memberDAO = new MemberDAO();
+			memberDAO.updatePass(memberDTO);
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+
 	
 	
 	
 	
+	
+//	회원탈퇴	
 	public void deleteMember(HttpServletRequest request) {
 		System.out.println("MemberService deleteMember()");
 
 		
 		try {
-			
 			String m_id = request.getParameter("m_id");
 			String m_pass = request.getParameter("m_pass");
 	
@@ -235,18 +350,61 @@ public class MemberService {
 	    }
 	}
 
-	// 8.31 진 - 아이디와 이메일 이용해서 비밀번호 찾기 구현 
-	public String findpwmember(String m_id, String m_email) {
-		// 아이디와 이메일을 이용하여 비밀번호를 찾기 구현
-		memberDAO = new MemberDAO();
-		MemberDTO memberDTO = memberDAO.findpwmember(m_id, m_email);
+	// 8.31 진 - 아이디와 이메일 이용해서 비밀번호 찾기 구현 -> 주석처리...??
+//	public String findpwmember(String m_id, String m_email) {
+//		// 아이디와 이메일을 이용하여 비밀번호를 찾기 구현
+//		memberDAO = new MemberDAO();
+//		MemberDTO memberDTO = memberDAO.findpwmember(m_id, m_email);
+//		
+//		if(memberDTO != null) {
+//			return memberDTO.getM_pass(); // 비밀번호 반환(앞 몇자리만 보이게 구현..해보자..!!??)
+//		} else {
+//			return null; // 비밀번호를 찾지 못한 경우
+//		}
+//	}
+
+
+	// 9월 5일 
+	// 새 비밀번호 -> DB에 업데이트
+
+	public int newPassword(HttpServletRequest request) {	
+		String newPassword = request.getParameter("newPassword");
+		String confirmPassword = request.getParameter("confirmPassword");
 		
-		if(memberDTO != null) {
-			return memberDTO.getM_pass(); // 비밀번호 반환(앞 몇자리만 보이게 구현..해보자..!!??)
-		} else {
-			return null; // 비밀번호를 찾지 못한 경우
-		}
+		HttpSession mySession = request.getSession();
+		String email = (String)mySession.getAttribute("email");
+		
+		MemberDTO memberDTO = new MemberDTO();
+		memberDTO.setM_email(email);
+		memberDTO.setM_pass(newPassword);
+		
+		memberDAO = new MemberDAO();
+		int result = memberDAO.newPassword(memberDTO);
+		
+		return result;
 	}
+
+
+	public MemberDTO IdAndEmailMatch(String m_id, String m_email) {
+		MemberDTO memberDTO = null;
+		try {
+			memberDAO = new MemberDAO();
+			 memberDTO = memberDAO.IdAndEmailMatch(m_id, m_email);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return memberDTO;
+	}
+
+
+
+
+
+	
+	
+
+
+
 
 
 

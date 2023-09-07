@@ -141,7 +141,7 @@ function kakaoLogout() {
 				
 <!-- 아이디/비밀번호 찾기/회원가입 -->					
 					<div class="_5forgot">
-						<a href="findid.me">아이디</a>
+						<a href="findid.me">아이디 찾기</a>
 						|
 						<a href="findpw.me">비밀번호 찾기</a>
 						|

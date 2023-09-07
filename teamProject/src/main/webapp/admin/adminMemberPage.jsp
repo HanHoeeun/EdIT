@@ -75,6 +75,7 @@ AdminPageDTO pageDTO = (AdminPageDTO)request.getAttribute("pageDTO");
 <!-- 				상단 탭 리스트 -->
 				<ul class="tabs">
 					<li class="tab-link" onclick="location.href='adminPage.ad'" >신고내역</li>
+					<li class="tab-link" onclick="location.href='adminFAQ.ad'" >문의내역</li>
 					<li class="tab-link  current" onclick="location.href='adminMemberPage.ad'">회원관리</li>
 					<li class="tab-link" onclick="location.href='adminBlackPage.ad'">블랙리스트</li>
 					
@@ -105,14 +106,14 @@ AdminPageDTO pageDTO = (AdminPageDTO)request.getAttribute("pageDTO");
         				 <ul>
 					<%	
 						if(pageDTO.getStartPage() > pageDTO.getPageBlock()){%>
-							<li onclick="location.href='adminMeberPage.ad?pageNum=<%=pageDTO.getStartPage()-pageDTO.getPageBlock()%>&search=<%=pageDTO.getSearch()%>'">Prev</li>
+							<li onclick="location.href='adminMemberPage.ad?pageNum=<%=pageDTO.getStartPage()-pageDTO.getPageBlock()%>&search=<%=pageDTO.getSearch()%>'">Prev</li>
 							
 						<% } 
 						for(int i= pageDTO.getStartPage(); i<=pageDTO.getEndPage(); i++){%>
-							<li onclick="location.href='adminMeberPage.ad?pageNum=<%=i%>&search=<%=pageDTO.getSearch()%>'"><%=i %></li>
+							<li onclick="location.href='adminMemberPage.ad?pageNum=<%=i%>&search=<%=pageDTO.getSearch()%>'"><%=i %></li>
 						<%}
 						if(pageDTO.getEndPage() < pageDTO.getPageCount()){%>
-							<li onclick="location.href='adminMeberPage.ad?pageNum=<%=pageDTO.getStartPage() + pageDTO.getPageBlock() %>&search=<%=pageDTO.getSearch()%>'">Next</li>
+							<li onclick="location.href='adminMemberPage.ad?pageNum=<%=pageDTO.getStartPage() + pageDTO.getPageBlock() %>&search=<%=pageDTO.getSearch()%>'">Next</li>
 						<%}%>
 				    </ul>
    					 </div>	
