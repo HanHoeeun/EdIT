@@ -613,6 +613,7 @@ public class ProductService {
 			
 			// request 파라미터 가져오기 => int num 저장
 			String m_id = request.getParameter("m_id");
+			String p_status = request.getParameter("p_status");
 			int p_num = Integer.parseInt(request.getParameter("p_num"));
 			
 			// BoardDAO 객체생성
@@ -734,19 +735,28 @@ public class ProductService {
 		}
 	}//updateReadcount()
 	
-	public List<ProductDTO> getProductList2() {
+	
+	
+	public List<ProductDTO> getProductList2(ProductDTO productDTO) {
 		
 		List<ProductDTO> productList=null; 
+		
 		try {
 			// ProductDAO 객체생성
 			productDAO = new ProductDAO();
 			
 			// productList = getProductList 메서드 호출
-			productList = productDAO.getProductList2();
+			
+			productList = productDAO.getProductList2(productDTO);
+			
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		
+		//return productList2 != null ? productList2 : new ArrayList<>();
 		
 		return productList;
 		
@@ -857,25 +867,6 @@ public class ProductService {
 		}
 		return memberDTO;
 	}
-
-
-	public ProductDTO getProduct(int p_num) {
-	    ProductDTO productDTO = null;
-	    try {
-	        // ProductDAO 객체 생성
-	        productDAO = new ProductDAO();
-	        
-	        // ProductDAO의 getproduct 메서드 호출
-	        productDTO = productDAO.getproduct(p_num);
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    }
-	    return productDTO;
-	}
-
-	
-
-	
 
 
 	

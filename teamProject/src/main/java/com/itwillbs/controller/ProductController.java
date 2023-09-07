@@ -667,8 +667,23 @@ public class ProductController extends HttpServlet{
 			// ProductService 객체생성
 			productService = new ProductService();
 			
+			// ProductDTO productDTO = getBoard(request) 메서드 호출
+			// ProductDTO productDTO = productService.getproduct(request);
+			
+			// request에 "boardDTO",boardDTO 담아서
+			//request.setAttribute("productDTO", productDTO);
+			
+			ProductDTO productDTO = new ProductDTO();
+			
+			String m_id = (String)session.getAttribute("m_id");
+			String p_status = "거래완료";
+			
+			productDTO.setM_id(m_id);
+			productDTO.setP_status(p_status);
+			
+			
 			// List<ProductDTO> productList  =  getProductList2();메서드호출
-			List<ProductDTO> productList = productService.getProductList2();
+			List<ProductDTO> productList = productService.getProductList2(productDTO);
 			
 			// request에 "productList", productList를 담기
 			request.setAttribute("productList", productList);
@@ -679,20 +694,6 @@ public class ProductController extends HttpServlet{
 			dispatcher.forward(request, response);	
 		
 		}//
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 		
 		

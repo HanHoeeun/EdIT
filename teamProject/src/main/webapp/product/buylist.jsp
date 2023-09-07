@@ -97,12 +97,14 @@ MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 				
 					
 <%				
-		if(id != null){
+		//if(id != null){
+		//if (productList2 != null) {
+		if (productList != null && id != null){
 					for(int i=0;i<productList.size();i++){
 						productDTO =productList.get(i);
-							 if (id.equals(productDTO.getM_id()) && "거래완료".equals(productDTO.getP_status())) {
-							
-							%>
+							if (id.equals(productDTO.getM_id())){
+							//if ("거래완료".equals(productDTO.getP_status()) && id.equals(productDTO.getM_id())) {
+						%>
 										
 		<tr class="rem1">
 			<td class="invert"><%=productDTO.getP_num()%></td>
@@ -113,13 +115,25 @@ MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 					
 <%
 							 }
-					}
+					 }
 			}
-
 %>
 					
 					
 				</table>
+				
+
+			
+		<!-- 쇼핑계속하기 버튼 -->
+		<div class="checkout-left">	
+			<div class="checkout-right-basket">
+				<a href="products.po"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>쇼핑 계속하기</a>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+		<!-- // 쇼핑계속하기 버튼 -->				
+			
+				
 			</div>
 		</div>
 	</div>
