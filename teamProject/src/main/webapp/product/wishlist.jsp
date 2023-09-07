@@ -128,6 +128,9 @@ String orderBy = (String) request.getAttribute("orderBy");
     					<div class="rem" style="display: flex; justify-content: center; align-items: center;">
        					<div class="close1"></div>
    					    </div> -->
+				<% if (wishList.isEmpty()) { %>
+ 				<tr><td>마음에 드는 상품을 찜해보세요</td></tr>
+				<% } else { %>
 					
 				 <% for (int i = 0; i < wishList.size(); i++) {
 					 WishListDTO wishListDTO = wishList.get(i);
@@ -148,7 +151,9 @@ String orderBy = (String) request.getAttribute("orderBy");
    					    <%
    					    }
    					    %>    
-   					    
+   					    <%
+   					    }
+   					    %> 
    					    
    					 	
    					<script>

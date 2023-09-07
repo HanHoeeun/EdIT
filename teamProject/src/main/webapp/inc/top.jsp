@@ -109,7 +109,7 @@ function showUnread(result){
 					<li><a href="login.me"><i class="fa fa-user" aria-hidden="true"> 로그인</i></a></li>
 <%					
 					} else { %>
-					
+					<li><a><i class="fa fa-thumbs-up" aria-hidden="true"><%=id %>님 반갑습니다!</i><a></a></li>
 					<li><a href="update.me"><i class="fa fa-user" aria-hidden="true"> 마이 페이지</i></a></li>
 					<li><a href="adminPage.ad"><i class="fa fa-user" aria-hidden="true"> 관리자 페이지</i></a></li>
 					<li><a href="mypage.me"><i class="fa fa-user" aria-hidden="true"> 마이 페이지</i></a></li>
