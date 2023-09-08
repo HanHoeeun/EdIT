@@ -1642,7 +1642,7 @@ public class ProductDAO {
 		//int size = wishList.size();
 		try {
 			con = getConnection();
-			String sql = "SELECT w.w_num, m.m_nick, p.p_file, p.p_title, p.p_status, p.p_type, p.p_price"
+			String sql = "SELECT w.w_num, w.w_p_num, m.m_nick, p.p_file, p.p_title, p.p_status, p.p_type, p.p_price"
 					+ "from wishlists w "
 					+ "JOIN products p ON w.w_p_num = p.p_num "
 					+ "JOIN members m ON w.w_m_num = m.m_num "

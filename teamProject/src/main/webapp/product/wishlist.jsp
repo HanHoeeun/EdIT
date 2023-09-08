@@ -142,9 +142,9 @@ String orderBy = (String) request.getAttribute("orderBy");
 						<td class="w_num" style="display: none;"><%= wishListDTO.getW_num() %></td>
 						<td class="invert"><%=i + 1 %></td>
 						<td class="invert-image"><a href="single.po?p_num=<%=wishListDTO.getW_p_num()%>"><img src="upload/<%= wishListDTO.getProductDTO().getP_file() %>" width="100px" height="100px" download alt=" " class="img-responsive" /></a></td>
-						<td class="invert"><a href="single.po?p_num=<%=wishListDTO.getW_p_num() %>"><%=wishListDTO.getProductDTO().getP_title() %></a></td>
+						<td class="invert"><a href="single.po?p_num=<%=wishListDTO.getW_p_num()%>"><%=wishListDTO.getProductDTO().getP_title() %></a></td>
 						<td class = "invert"><%=wishListDTO.getProductDTO().getP_status() %></td>
-						<td class="invert"><a href="single.po?p_num=<%=wishListDTO.getW_p_num() %>"><%=wishListDTO.getProductDTO().getP_type() %></a></td>
+						<td class="invert"><a href="single.po?p_num=<%=wishListDTO.getW_p_num()%>"><%=wishListDTO.getProductDTO().getP_type() %></a></td>
 						<td class="invert"><%=wishListDTO.getProductDTO().getP_price() %>원</td>
 						<td class="invert" align="center">
     					<div class="rem" style="display: flex; justify-content: center; align-items: center;">
