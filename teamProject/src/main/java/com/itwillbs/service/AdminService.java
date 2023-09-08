@@ -177,10 +177,10 @@ public class AdminService {
 //			3				10			=> 2*10 +1 	21 ~ 30
 //			((currentPage-1)*10)+1
 			int startRow = (pageDTO.getCurrentPage()-1)*pageDTO.getPageSize()+1;
-			int endRos = startRow + pageDTO.getPageSize() -1;
+			int endRow = startRow + pageDTO.getPageSize() -1;
 			
 			pageDTO.setStartRow(startRow);
-			pageDTO.setEndRow(endRos);
+			pageDTO.setEndRow(endRow);
 			
 //			AdminDAO 객체 생성
 			adminDAO = new AdminDAO();
@@ -286,10 +286,13 @@ public class AdminService {
 		List<MemberDTO> memberList = null;
 		try {
 			int startRow = (pageDTO.getCurrentPage()-1)*pageDTO.getPageSize()+1;
-			int endRos = startRow + pageDTO.getPageSize() -1;
+			int endRow = startRow + pageDTO.getPageSize() -1;
 			
 			pageDTO.setStartRow(startRow);
-			pageDTO.setEndRow(endRos);
+			pageDTO.setEndRow(endRow);
+			
+			System.out.println("start Row : " + startRow);
+			System.out.println("end Row : " + endRow);
 			
 //			AdminDAO 객체 생성
 			adminDAO = new AdminDAO();
@@ -393,10 +396,10 @@ public class AdminService {
 		List<MemberDTO> memberList = null;
 		try {
 			int startRow = (pageDTO.getCurrentPage()-1)*pageDTO.getPageSize()+1;
-			int endRos = startRow + pageDTO.getPageSize() -1;
+			int endRow = startRow + pageDTO.getPageSize() -1;
 			
 			pageDTO.setStartRow(startRow);
-			pageDTO.setEndRow(endRos);
+			pageDTO.setEndRow(endRow);
 			
 //			AdminDAO 객체 생성
 			adminDAO = new AdminDAO();

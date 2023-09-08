@@ -264,14 +264,13 @@ public class AdminController extends HttpServlet{
 			request.setCharacterEncoding("utf-8");
 //			request 검색어 뽑아오기
 //			String search = request.getParameter("search");
-			HttpSession session = request.getSession();
 			
 //			문의 분류
 			String select = request.getParameter("select");
 			if(select == null) {
 				select = "전체";
 			}
-			
+			System.out.println("select 값 : " + select);
 //			한페이지에서 보여지는 글개수 설정
 			int pageSize =10;
 //			페이지 번호
@@ -298,7 +297,7 @@ public class AdminController extends HttpServlet{
 			
 //			게시판 전체 글 개수 구하기
 			int count = adminService.getBoardCount(pageDTO);
-			System.out.println(count);
+			System.out.println("페이지에 보여줄 게시물 수 "+count);
 //			한화면에 보여줄 페이지 개수 설정
 			int pageBlock =10;
 //			시작하는 페이지 번호
