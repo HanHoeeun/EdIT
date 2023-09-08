@@ -6,6 +6,19 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%
+int m_level = 0;
+if (session.getAttribute("m_level") == null) {
+    // 사용자의 m_level이 null이면 윈도우 창을 열지 않음
+%>
+    <script>
+        alert("로그인이 필요합니다.");
+        window.close();
+    </script>
+<%
+} else {
+    // 사용자의 m_level이 null이 아닌 경우 윈도우 창 열기
+%>
 <title>신고 페이지</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -58,26 +71,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="report">
 		<div class="container">
 			<h2>신고하기</h2>
-			<form class="report-form-grids" action="" method="post">
+			<form class="report-form-grids" action="reportWritePro.ad" method="post" enctype="multipart/form-data">
 
 				<p>신고대상자 아이디</p>
-				<input class="readonly" type="text" value="<%=reportDTO.getR_m_target_id()%>" readonly="readonly"><br>
+				<input class="readonly" type="text" name="r_m_target" value="<%=reportDTO.getR_m_target_id()%>" readonly="readonly"><br>
 				
 				<p>신고자 아이디</p>
-				<input class="readonly" type="text" value="<%=reportDTO.getR_m_num_id()%>" readonly="readonly"><br>
+				<input class="readonly" type="text" name="m_id" value="<%=reportDTO.getR_m_num_id()%>" readonly="readonly"><br>
 					
 				<p>제목</p>
-				<input class="title" type="text" placeholder="제목을 입력하세요" required=" "><br>
+				<input class="title" type="text" name="r_title" placeholder="제목을 입력하세요" required=" "><br>
 					
 				<p>첨부파일</p>
-				<div action="insertPro.jsp" method="post"
-					enctype="multipart/form-data">
-					<input type="file" name="imgfile" accept="image/*">
+				<div>
+					<input type="file" name="r_file" accept="image/*">
 				</div>
 				<br>
 				
 				<p>신고내용</p>
-				<textarea name="textarea" placeholder="내용을 입력하세요" required=" "></textarea>
+				<textarea name="r_content" placeholder="내용을 입력하세요" required=" "></textarea>
 				<br>
 				<br>
 				
@@ -93,50 +105,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!--================================== 푸터 ==================================== -->
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script type="text/javascript">
-<%-- function report_check() {
-    var r_num = '<%=reportDTO.getR_num()%>';
-    
-    $.ajax({
-        type: 'post',
-        url: 'report_check.ad',
-        data: {
-            r_num: r_num
-        },
-        success: function(result) {
-            if (result == 3) {
-            	
-                // 이유 입력을 위한 입력 필드 표시
-                $("#reportReasonInput").show();
-                
-                // 사용자에게 신고 이유를 입력하도록 안내
-                var reason = prompt("정지 이유를 입력하세요:");
-                
-                // 입력한 이유를 서버로 전송
-                if (reason != null) {
-                    $.ajax({
-                        type: 'post',
-                        url: 'report_save.ad',
-                        data: {
-                            r_num: r_num,
-                            reason: reason
-                        },
-                        success: function(response) {
-                            if (response == 'success') {
-                                alert("블랙리스트 등록이 정상적으로 처리되었습니다.");
-                                window.close();
-                            } else {
-                                alert("신고 처리 중 오류가 발생했습니다.");
-                            }
-                        }
-                    });
-                }
-            } else {
-            	window.opener.location.reload();
-                window.close();
-            }
-        }
-    });
-} --%>
+<%}%>
 
 </script>
 	<!-- Bootstrap Core JavaScript -->

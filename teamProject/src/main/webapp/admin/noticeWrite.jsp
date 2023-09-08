@@ -8,6 +8,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%
+int m_level = 0;
+if(session.getAttribute("m_level") != null){
+	m_level = (int)session.getAttribute("m_level");
+	if(m_level != 2 ){
+		response.sendRedirect("main.me");
+		return;
+	}
+}
+%>
 <title>공지사항 글작성</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -99,7 +109,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<td class="_1q_query_tab_1"><select
 									class="_1q_query_tab_sel" name="a_notice_type"
 									style="border: none;">
-										<option value="일반공지">일반공지</option>
+										<option value="공지">공지</option>
 										<option value="이벤트">이벤트</option>
 								</select></td>
 								<td>

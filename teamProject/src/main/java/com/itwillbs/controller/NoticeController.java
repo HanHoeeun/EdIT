@@ -10,7 +10,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import javax.servlet.http.HttpSession;
 
 import com.itwillbs.domain.NoticeDTO;
 import com.itwillbs.domain.NoticePageDTO;
@@ -44,6 +44,10 @@ public class NoticeController extends HttpServlet{
 		if(sPath.equals("/noticelist.no")) {
 			System.out.println("뽑은 가상주소 비교 : /noticelist.no");
 			
+//			HttpSession session = request.getSession();
+//			String m_level = session.getAttribute("m_level")
+			
+			
 			//notice 페이징 (NoticePageDTO pageDTO)
 			int pageSize=10; 
 			String pageNum=request.getParameter("pageNum");
@@ -56,7 +60,7 @@ public class NoticeController extends HttpServlet{
 			pageDTO.setPageSize(pageSize);
 			pageDTO.setPageNum(pageNum);
 			pageDTO.setCurrentPage(currentPage);
-			pageDTO.setA_notice_type("일반공지");
+			pageDTO.setA_notice_type("공지");
 			
 			// NoticeService 객체생성
 			noticeService = new NoticeService();
@@ -112,7 +116,7 @@ public class NoticeController extends HttpServlet{
 			// noticelist.no 주소 변경 되면서 이동			
 //			String a_notice_type = request.getParameter("a_notice_type");
 			System.out.println(a_notice_type);
-			if(a_notice_type.equals("일반공지")) {
+			if(a_notice_type.equals("공지")) {
 				
 				response.sendRedirect("noticelist.no");
 			}else {
@@ -170,7 +174,7 @@ public class NoticeController extends HttpServlet{
 
 			// noticelist.no 주소 변경 되면서 이동			
 //			String a_notice_type = request.getParameter("a_notice_type");
-			if(a_notice_type.equals("일반공지")) {
+			if(a_notice_type.equals("공지")) {
 				response.sendRedirect("noticelist.no");
 			}else {
 				response.sendRedirect("eventlist.no");
@@ -210,7 +214,7 @@ public class NoticeController extends HttpServlet{
 					pageDTO.setPageSize(pageSize);
 					pageDTO.setPageNum(pageNum);
 					pageDTO.setCurrentPage(currentPage);
-					pageDTO.setA_notice_type("일반공지");
+					pageDTO.setA_notice_type("공지");
 					// 검색어 저장
 					pageDTO.setSearch(search);
 					

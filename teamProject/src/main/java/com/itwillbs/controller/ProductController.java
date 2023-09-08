@@ -664,9 +664,84 @@ public class ProductController extends HttpServlet{
 			MemberService memberService = new MemberService();
 			MemberDTO memberDTO =  memberService.getMember(id);
 			request.setAttribute("memberDTO", memberDTO);
+			//------------------------------------------------------------
 			
-			// ProductService 객체생성
+			// 한페이지에서 보여지는 글개수 설정
+			int p_pageSize=5;
+			
+			// 페이지번호 
+			String p_pageNum=request.getParameter("p_pageNum");
+			
+			// 페이지번호가 없으면 1페이지 설정
+			if(p_pageNum == null) {
+				p_pageNum = "1";
+			}
+			
+			// 페이지 번호를 => 정수형 변경
+			int p_currentPage = Integer.parseInt(p_pageNum);
+			
+			ProductPageDTO productPageDTO = new ProductPageDTO();
+			
+			productPageDTO.setP_pageSize(p_pageSize);
+			productPageDTO.setP_pageNum(p_pageNum);
+			productPageDTO.setP_currentPage(p_currentPage );
+			productPageDTO.setM_id(id);
+			
+			
+			// BoardService 객체생성
 			productService = new ProductService();
+			
+			// List<BoardDTO> boardList = getBoardList(); 메서드 호출
+			List<ProductDTO> productList = productService.getPList(productPageDTO);
+			
+			// 게시판 전체 글 개수 구하기 
+			int p_count = productService.getPCount(productPageDTO);
+			
+			// 한화면에 보여줄 페이지개수 설정
+			int p_pageBlock = 2;
+			
+			// 시작하는 페이지번호
+			// currentPage  pageBlock  => startPage
+			//   1~10(0~9)      10     =>  (0~9)/10*10+1=>0*10+1=> 0+1=> 1 
+			//   11~20(10~19)   10     =>  (10~19)/10*10+1=>1*10+1=>10+1=>11
+			//   21~30(20~29)   10     =>  (20~29)/10*10+1=>2*10+1=>20+1=>21
+			int p_startPage=(p_currentPage-1)/p_pageBlock*p_pageBlock+1;
+			
+			// 끝나는페이지번호
+			//  startPage   pageBlock => endPage
+			//     1            10    =>   10
+			//     11           10    =>   20
+			//     21           10    =>   30
+			int p_endPage=p_startPage+p_pageBlock-1;
+			
+			// 계산한값 endPage 10 => 전체페이지 2
+			// 전체페이지 구하기
+			// 글개수 50  한화면에 보여줄글개수 10 => 페이지수 5 + 0
+			// 글개수 57  한화면에 보여줄글개수 10 => 페이지수 5 + 1
+			int p_pageCount = p_count / p_pageSize + (p_count % p_pageSize==0?0:1);
+			if(p_endPage > p_pageCount) {
+				p_endPage = p_pageCount;
+			}
+			
+			//pageDTO 저장
+			productPageDTO.setP_count(p_count);
+			productPageDTO.setP_pageBlock(p_pageBlock);
+			productPageDTO.setP_startPage(p_startPage);
+			productPageDTO.setP_endPage(p_endPage);
+			productPageDTO.setP_pageCount(p_pageCount);
+			
+			// request에 "boardList",boardList 저장
+			request.setAttribute("productList", productList);
+			request.setAttribute("productPageDTO", productPageDTO);
+			
+			dispatcher 
+			= request.getRequestDispatcher("product/buylist.jsp");
+			dispatcher.forward(request, response);	
+			
+			
+			// ---------------------------------------------------------------------------------------
+			// ProductService 객체생성
+//			productService = new ProductService();
 			
 			// ProductDTO productDTO = getBoard(request) 메서드 호출
 			// ProductDTO productDTO = productService.getproduct(request);
@@ -674,41 +749,149 @@ public class ProductController extends HttpServlet{
 			// request에 "boardDTO",boardDTO 담아서
 			//request.setAttribute("productDTO", productDTO);
 			
-			ProductDTO productDTO = new ProductDTO();
+//			ProductDTO productDTO = new ProductDTO();
 			
-			String m_id = (String)session.getAttribute("m_id");
-			String p_status = "거래완료";
+//			String m_id = (String)session.getAttribute("m_id");
+//			String p_status = "거래완료";
 			
-			productDTO.setM_id(m_id);
-			productDTO.setP_status(p_status);
+//			productDTO.setM_id(m_id);
+//			productDTO.setP_status(p_status);
 			
 			
 			// List<ProductDTO> productList  =  getProductList2();메서드호출
-			List<ProductDTO> productList = productService.getProductList2(productDTO);
+//			List<ProductDTO> productList = productService.getProductList2(productDTO);
 			
 			// request에 "productList", productList를 담기
-			request.setAttribute("productList", productList);
+//			request.setAttribute("productList", productList);
 			
 			// -------------------------------------------------------------------------------------
-			ProductDTO productDTO2 = new ProductDTO();
+//			ProductDTO productDTO = new ProductDTO();
+//			
+//			String m_id = (String)session.getAttribute("m_id");
+//			String p_status = request.getParameter("p_status");
+//			
+//			productDTO.setM_id(m_id);
+//			productDTO.setP_status(p_status);
+//			
+//			//List<ProductDTO> 
+//			List<ProductDTO> productList2 = productService.getProductList3(productDTO);
+//			request.setAttribute("productList2", productList2);
 			
-			m_id = (String)session.getAttribute("m_id");
-			p_status = request.getParameter("p_status");
 			
-			productDTO2.setM_id(m_id);
-			productDTO2.setP_status(p_status);
-			
-			List<ProductDTO> productList2 = productService.getProductList3(productDTO2);
-			request.setAttribute("productList2", productList2);
-			
+			// ---------------------------------------------------------------------------------------
 			// product/buylist.jsp 주소변경 없이 이동
-			dispatcher 
-		    = request.getRequestDispatcher("product/buylist.jsp");
-			dispatcher.forward(request, response);	
-		
 		}//
 		
 		
+		if(sPath.equals("/buylist2.po")) {
+			
+			HttpSession session = request.getSession();
+			String id = (String)session.getAttribute("m_id");
+			
+			MemberService memberService = new MemberService();
+			MemberDTO memberDTO =  memberService.getMember(id);
+			request.setAttribute("memberDTO", memberDTO);
+			
+			// 한페이지에서 보여지는 글개수 설정
+			int p_pageSize=10;
+			
+			// 페이지번호 
+			String p_pageNum=request.getParameter("p_pageNum");
+			
+			// 페이지번호가 없으면 1페이지 설정
+			if(p_pageNum == null) {
+				p_pageNum = "1";
+			}
+			
+			// 페이지 번호를 => 정수형 변경
+			int p_currentPage = Integer.parseInt(p_pageNum);
+			
+			ProductPageDTO productPageDTO = new ProductPageDTO();
+			
+			productPageDTO.setP_pageSize(p_pageSize);
+			productPageDTO.setP_pageNum(p_pageNum);
+			productPageDTO.setP_currentPage(p_currentPage );
+			productPageDTO.setM_id(id);
+			
+			
+			// BoardService 객체생성
+			productService = new ProductService();
+			
+			// List<BoardDTO> boardList = getBoardList(); 메서드 호출
+			List<ProductDTO> productList2 = productService.getPList2(productPageDTO);
+			
+			// 게시판 전체 글 개수 구하기 
+			int p_count = productService.getPCount(productPageDTO);
+			
+			// 한화면에 보여줄 페이지개수 설정
+			int p_pageBlock = 2;
+			
+			// 시작하는 페이지번호
+			// currentPage  pageBlock  => startPage
+			//   1~10(0~9)      10     =>  (0~9)/10*10+1=>0*10+1=> 0+1=> 1 
+			//   11~20(10~19)   10     =>  (10~19)/10*10+1=>1*10+1=>10+1=>11
+			//   21~30(20~29)   10     =>  (20~29)/10*10+1=>2*10+1=>20+1=>21
+			int p_startPage=(p_currentPage-1)/p_pageBlock*p_pageBlock+1;
+			
+			// 끝나는페이지번호
+			//  startPage   pageBlock => endPage
+			//     1            10    =>   10
+			//     11           10    =>   20
+			//     21           10    =>   30
+			int p_endPage=p_startPage+p_pageBlock-1;
+			
+			// 계산한값 endPage 10 => 전체페이지 2
+			// 전체페이지 구하기
+			// 글개수 50  한화면에 보여줄글개수 10 => 페이지수 5 + 0
+			// 글개수 57  한화면에 보여줄글개수 10 => 페이지수 5 + 1
+			int p_pageCount = p_count / p_pageSize + (p_count % p_pageSize==0?0:1);
+			if(p_endPage > p_pageCount) {
+				p_endPage = p_pageCount;
+			}
+			
+			//pageDTO 저장
+			productPageDTO.setP_count(p_count);
+			productPageDTO.setP_pageBlock(p_pageBlock);
+			productPageDTO.setP_startPage(p_startPage);
+			productPageDTO.setP_endPage(p_endPage);
+			productPageDTO.setP_pageCount(p_pageCount);
+			
+			// request에 "boardList",boardList 저장
+			request.setAttribute("productList2", productList2);
+			request.setAttribute("productPageDTO", productPageDTO);
+
+			dispatcher 
+			= request.getRequestDispatcher("product/buylist2.jsp");
+			dispatcher.forward(request, response);	
+			
+			
+//			// ProductService 객체생성
+//			productService = new ProductService();
+//			
+//			// ProductDTO productDTO = getBoard(request) 메서드 호출
+//			// ProductDTO productDTO = productService.getproduct(request);
+//			
+//			// request에 "boardDTO",boardDTO 담아서
+//			//request.setAttribute("productDTO", productDTO);
+//			
+//			ProductDTO productDTO = new ProductDTO();
+//			
+//			String m_id = (String)session.getAttribute("m_id");
+//			String p_status = "거래완료";
+//			
+//			productDTO.setM_id(m_id);
+//			productDTO.setP_status(p_status);
+//			
+//			
+//			// List<ProductDTO> productList  =  getProductList2();메서드호출
+//			List<ProductDTO> productList = productService.getProductList2(productDTO);
+//			
+//			// request에 "productList", productList를 담기
+//			request.setAttribute("productList", productList);
+			
+			
+			
+		} // 
 		
 		
 		

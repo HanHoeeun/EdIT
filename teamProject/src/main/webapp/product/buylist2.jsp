@@ -80,23 +80,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!--=========================== 상단 탭 리스트============================================ -->
 	<div class="container_2_1">
 		<ul class="tabs">
-					<li class="tab-link current" data-tab="tab-1" onclick="location.href='buylist.po'">전체판매목록</li>
-					<li class="tab-link" data-tab="tab-2" onclick="location.href='buylist2.po'">판매완료목록</li>
+					<li class="tab-link" data-tab="tab-1" onclick="location.href='buylist.po'">전체판매목록</li>
+					<li class="tab-link current" data-tab="tab-2" onclick="location.href='buylist2.po'">판매완료목록</li>
 		</ul>
 	</div>
 	
-	<!--================================== 1탭 나의정보==================================== -->
+	<!--================================== 2탭 나의정보==================================== -->
 	
 <%
 String id = (String)session.getAttribute("m_id");
 ProductDTO productDTO = (ProductDTO)request.getAttribute("productDTO");
 MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
-List<ProductDTO> productList = (List<ProductDTO>)request.getAttribute("productList");
+List<ProductDTO> productList2 = (List<ProductDTO>)request.getAttribute("productList2");
 %>
 
 	<div class="container_3_1">
 
-		<div id="tab-1" class="tab-content current">
+		<div id="tab-2" class="tab-content current">
 		
 			<table class="_1qna_board">
 						<tr>
@@ -108,9 +108,9 @@ List<ProductDTO> productList = (List<ProductDTO>)request.getAttribute("productLi
 						
 						
 <%				
-	if (productList != null && id != null){
-				for(int i=0;i<productList.size();i++){
-					productDTO =productList.get(i);
+	if (productList2 != null && id != null){
+				for(int i=0;i<productList2.size();i++){
+					productDTO =productList2.get(i);
 						if (id.equals(productDTO.getM_id())){
 %>	
 
@@ -142,7 +142,7 @@ if(productPageDTO.getP_startPage() > productPageDTO.getP_pageBlock()){
 %>
          
          <li>
-            <a href="buylist.po?p_pageNum=<%=productPageDTO.getP_startPage()-productPageDTO.getP_pageBlock()%>&orderBy=${orderBy}" aria-label="Previous">
+            <a href="buylist2.po?p_pageNum=<%=productPageDTO.getP_startPage()-productPageDTO.getP_pageBlock()%>" aria-label="Previous">
                <span aria-hidden="true">&laquo;</span>
             </a>
          </li>
@@ -155,7 +155,7 @@ for(int i=productPageDTO.getP_startPage(); i<=productPageDTO.getP_endPage(); i++
 %>
 
          <li class="<%= (isCurrentPage || isPcurrentPage) ? "active" : "" %>">
-            <a href="buylist.po?p_pageNum=<%= i %>&orderBy=${orderBy}" class="<%= (isCurrentPage) ? "" : "" %> <%= (isPcurrentPage) ? "custom-class" : "" %>">
+            <a href="buylist2.po?p_pageNum=<%= i %>" class="<%= (isCurrentPage) ? "" : "" %> <%= (isPcurrentPage) ? "custom-class" : "" %>">
             <%= (isPcurrentPage) ? i : i %></a>
          </li>
 <%
@@ -164,7 +164,7 @@ for(int i=productPageDTO.getP_startPage(); i<=productPageDTO.getP_endPage(); i++
 if(productPageDTO.getP_endPage() < productPageDTO.getP_pageCount()){
 %>
          <li>
-            <a href="buylist.po?p_pageNum=<%=productPageDTO.getP_startPage()+productPageDTO.getP_pageBlock()%>&orderBy=${orderBy}" >
+            <a href="buylist2.po?p_pageNum=<%=productPageDTO.getP_startPage()+productPageDTO.getP_pageBlock()%><%=productDTO.getP_num()%>" >
                <span aria-hidden="true">&raquo;</span>
             </a>
          </li>
@@ -173,18 +173,17 @@ if(productPageDTO.getP_endPage() < productPageDTO.getP_pageCount()){
 %>
  
    </ul>
-</nav>
-		
-		
-<!--================================== 1탭 ==================================== -->	
+</nav>	
+	<!--================================== 2탭 나의정보==================================== -->
 				
 		</div> <!-- class=container_3_1 -->
 	</div> <!-- class="container_1_1 -->
 </div>  <!--  class=top-brands_1 -->
 
-	
+			
 			
 <!-- // 판매목록 -->
+
 
 
 <script type="text/javascript">
@@ -215,10 +214,18 @@ $(document).ready(function(){
 </script>
 
 
-<!--================================== 푸터 ==================================== -->
+
+
+
+
+
+<!-- 푸터 들어가는 곳! -->
+<div class="clearfix">
 <jsp:include page="../inc/bottom.jsp"></jsp:include>
-	
-<!--========================= Bootstrap Core JavaScript =========================-->
+</div>
+<!-- 푸터 들어가는 곳! -->
+
+
 <script src="../js/bootstrap.min.js"></script>
 <!-- top-header and slider -->
 <!-- here stars scrolling icon -->

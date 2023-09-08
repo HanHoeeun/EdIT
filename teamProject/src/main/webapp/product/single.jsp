@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.itwillbs.domain.MemberDTO"%>
 <%@page import="com.itwillbs.domain.ProductDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -74,6 +75,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 String id = (String)session.getAttribute("m_id");
 ProductDTO productDTO = (ProductDTO)request.getAttribute("productDTO");
 MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
+SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
 %>
 
 
@@ -86,7 +88,7 @@ MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 				<!-- 사진 -->
 				<div class="col-md-4 agileinfo_single_left">
 						<a href="upload/<%=productDTO.getP_file() %>" download>
-				        <%=productDTO.getP_file() %></a>
+				       </a>
 				        <img src="upload/<%=productDTO.getP_file() %>" 
 				         width="200" height="200">
 <!-- 					<img id="example" src="../images/si1.jpg" alt=" " class="img-responsive"> -->
@@ -102,7 +104,7 @@ MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 					
 					<!-- 조회수 -->
 					<div style="float: right;">
-					<img src="../images/readcountimg.png" width="20" height=20" alt="조회수"><i> : <%=productDTO.getP_readcount() %></i>
+					<img src="images/readcountimg.png" width="20" height=20" alt="조회수"><i> : <%=productDTO.getP_readcount() %></i>
 					</div>
 					<!-- 조회수 -->
 				
@@ -122,7 +124,7 @@ MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 					<div class="w3agile_description">
 						<p>판매닉네임 : <%=productDTO.getM_nick() %></p>
 						<p>상품상태 : <%=productDTO.getP_status() %></p>
-						<p>등록날짜 : <%=productDTO.getP_date() %></p>
+						<p>등록날짜 : <%=format.format(productDTO.getP_date()) %></p>
 					</div>
 					<!-- 판매ID,상품상태,등록날짜 -->
 					
