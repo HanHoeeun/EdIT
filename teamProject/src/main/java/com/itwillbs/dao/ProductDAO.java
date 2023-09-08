@@ -1642,7 +1642,7 @@ public class ProductDAO {
 		//int size = wishList.size();
 		try {
 			con = getConnection();
-			String sql = "SELECT w.w_num, m.m_nick, p.p_file, p.p_title, p.p_status, p.p_type, p.p_price, p.p_num "
+			String sql = "SELECT w.w_num, m.m_nick, p.p_file, p.p_title, p.p_status, p.p_type, p.p_price"
 					+ "from wishlists w "
 					+ "JOIN products p ON w.w_p_num = p.p_num "
 					+ "JOIN members m ON w.w_m_num = m.m_num "
@@ -1663,13 +1663,13 @@ public class ProductDAO {
 	            MemberDTO memberDTO = new MemberDTO();
 
 	            wishListDTO.setW_num(rs.getInt("w_num"));
+	            wishListDTO.setW_p_num(rs.getInt("w_p_num"));
 	            memberDTO.setM_nick(rs.getString("m_nick"));
 	            productDTO.setP_file(rs.getString("p_file"));
 	            productDTO.setP_title(rs.getString("p_title"));
 	            productDTO.setP_status(rs.getString("p_status"));
 	            productDTO.setP_type(rs.getString("p_type"));
 	            productDTO.setP_price(rs.getInt("p_price"));
-	            productDTO.setP_num(rs.getInt("p_num"));
 
 	            wishListDTO.setMemberDTO(memberDTO);
 	            wishListDTO.setProductDTO(productDTO);
