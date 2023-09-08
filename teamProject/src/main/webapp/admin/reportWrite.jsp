@@ -58,26 +58,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="report">
 		<div class="container">
 			<h2>신고하기</h2>
-			<form class="report-form-grids" action="" method="post">
+			<form class="report-form-grids" action="reportWritePro.ad" method="post" enctype="multipart/form-data">
 
 				<p>신고대상자 아이디</p>
-				<input class="readonly" type="text" value="<%=reportDTO.getR_m_target_id()%>" readonly="readonly"><br>
+				<input class="readonly" type="text" name="r_m_target" value="<%=reportDTO.getR_m_target_id()%>" readonly="readonly"><br>
 				
 				<p>신고자 아이디</p>
-				<input class="readonly" type="text" value="<%=reportDTO.getR_m_num_id()%>" readonly="readonly"><br>
+				<input class="readonly" type="text" name="m_id" value="<%=reportDTO.getR_m_num_id()%>" readonly="readonly"><br>
 					
 				<p>제목</p>
-				<input class="title" type="text" placeholder="제목을 입력하세요" required=" "><br>
+				<input class="title" type="text" name="r_title" placeholder="제목을 입력하세요" required=" "><br>
 					
 				<p>첨부파일</p>
-				<div action="insertPro.jsp" method="post"
-					enctype="multipart/form-data">
-					<input type="file" name="imgfile" accept="image/*">
+				<div>
+					<input type="file" name="r_file" accept="image/*">
 				</div>
 				<br>
 				
 				<p>신고내용</p>
-				<textarea name="textarea" placeholder="내용을 입력하세요" required=" "></textarea>
+				<textarea name="r_content" placeholder="내용을 입력하세요" required=" "></textarea>
 				<br>
 				<br>
 				

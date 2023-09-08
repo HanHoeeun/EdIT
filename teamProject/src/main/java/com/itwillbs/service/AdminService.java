@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 import javax.servlet.http.HttpServletRequest;
 
 import com.itwillbs.dao.AdminDAO;
-
+import com.itwillbs.dao.MemberDAO;
 import com.itwillbs.dao.NoticeDAO;
 import com.itwillbs.domain.AdminDTO;
 import com.itwillbs.domain.AdminPageDTO;
@@ -22,6 +22,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 public class AdminService {
 	AdminDAO adminDAO = null;
+	MemberDAO memberDAO = null;
 	
 	public void faqBoardInsert(HttpServletRequest request) {
 		try {
@@ -468,6 +469,14 @@ public class AdminService {
 				String m_id = (multi.getParameter("m_id"));
 				String r_m_target = (multi.getParameter("r_m_target"));
 				
+				memberDAO = new MemberDAO();
+				MemberDTO memberDTO = memberDAO.getMember(m_id);
+				int m_num = memberDTO.getM_num();
+				
+				MemberDTO memberDTO2 = memberDAO.getMember(r_m_target);
+				int m_target = memberDTO2.getM_num();
+				
+				
 				// r_date 변수저장
 				Timestamp r_date = new Timestamp(System.currentTimeMillis());
 
@@ -479,6 +488,9 @@ public class AdminService {
 				reportDTO.setR_title(r_title);
 				reportDTO.setR_content(r_content);
 				reportDTO.setR_date(r_date);
+				
+				reportDTO.setR_m_target(m_target);
+				reportDTO.setR_m_num(m_num);
 				// 첨부파일
 				reportDTO.setR_file(r_file);
 				

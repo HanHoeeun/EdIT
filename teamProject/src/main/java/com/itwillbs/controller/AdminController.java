@@ -538,11 +538,15 @@ public class AdminController extends HttpServlet{
 
 		if(sPath.equals("/reportWritePro.ad")) {
 			System.out.println("뽑은 가상주소 비교 : /reportWritePro.ad");
+			request.setCharacterEncoding("utf-8");
+			// AdminService 객체생성
 			adminService = new AdminService();
 			// 리턴할형없음 insertReport(request) 메서드 호출
 			adminService.insertReport(request);
-			// list.bo 주소 변경 되면서 이동
-			response.sendRedirect("adminPage.ad");
+			PrintWriter out = response.getWriter();
+	        out.println("<script>");
+	        out.println("window.close()");
+	        out.println("</script>");
 		}//reportWritePro.no	
 	
 	}//do
