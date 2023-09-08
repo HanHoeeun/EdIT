@@ -80,7 +80,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<li class="tab-link" data-tab="tab-3">판매내역</li>
 					<li class="tab-link" onclick="location.href='m_wishlist.me'">찜</li>
 					<li class="tab-link" onclick="location.href='m_adminpage.me'" >신고내역</li>
-					<li class="tab-link" data-tab="tab-7">회원탈퇴</li>
+					<li class="tab-link" data-tab="tab-2">회원탈퇴</li>
 				</ul>
 			</div>
 		
@@ -263,7 +263,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <!--==================================회원탈퇴==================================== -->				
 
-				<div id="tab-7" class="tab-content">
+				<div id="tab-2" class="tab-content">
 					<table class="_1qna_board">
 						<tr><th class="_1qna_board_border1">회원탈퇴</th></tr>
 
