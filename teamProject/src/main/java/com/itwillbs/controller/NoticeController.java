@@ -10,7 +10,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import javax.servlet.http.HttpSession;
 
 import com.itwillbs.domain.NoticeDTO;
 import com.itwillbs.domain.NoticePageDTO;
@@ -43,6 +43,10 @@ public class NoticeController extends HttpServlet{
 //============================================= noticelist.no ================================================		
 		if(sPath.equals("/noticelist.no")) {
 			System.out.println("뽑은 가상주소 비교 : /noticelist.no");
+			
+//			HttpSession session = request.getSession();
+//			String m_level = session.getAttribute("m_level")
+			
 			
 			//notice 페이징 (NoticePageDTO pageDTO)
 			int pageSize=10; 
