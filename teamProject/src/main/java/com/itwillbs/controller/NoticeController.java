@@ -60,7 +60,7 @@ public class NoticeController extends HttpServlet{
 			pageDTO.setPageSize(pageSize);
 			pageDTO.setPageNum(pageNum);
 			pageDTO.setCurrentPage(currentPage);
-			pageDTO.setA_notice_type("일반공지");
+			pageDTO.setA_notice_type("공지");
 			
 			// NoticeService 객체생성
 			noticeService = new NoticeService();
@@ -116,7 +116,7 @@ public class NoticeController extends HttpServlet{
 			// noticelist.no 주소 변경 되면서 이동			
 //			String a_notice_type = request.getParameter("a_notice_type");
 			System.out.println(a_notice_type);
-			if(a_notice_type.equals("일반공지")) {
+			if(a_notice_type.equals("공지")) {
 				
 				response.sendRedirect("noticelist.no");
 			}else {
@@ -174,7 +174,7 @@ public class NoticeController extends HttpServlet{
 
 			// noticelist.no 주소 변경 되면서 이동			
 //			String a_notice_type = request.getParameter("a_notice_type");
-			if(a_notice_type.equals("일반공지")) {
+			if(a_notice_type.equals("공지")) {
 				response.sendRedirect("noticelist.no");
 			}else {
 				response.sendRedirect("eventlist.no");
@@ -214,7 +214,7 @@ public class NoticeController extends HttpServlet{
 					pageDTO.setPageSize(pageSize);
 					pageDTO.setPageNum(pageNum);
 					pageDTO.setCurrentPage(currentPage);
-					pageDTO.setA_notice_type("일반공지");
+					pageDTO.setA_notice_type("공지");
 					// 검색어 저장
 					pageDTO.setSearch(search);
 					

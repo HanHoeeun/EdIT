@@ -104,12 +104,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<th class="_1qna_board_border">작성일</th>
 						</tr>
 						<%
+						int num = pageDTO.getCount()-((pageDTO.getCurrentPage()-1)*10);
+						
 						SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
 						for (int i = 0; i < noticeList.size(); i++) {
 							NoticeDTO noticeDTO = noticeList.get(i);
 						%>
 						<tr
-							onclick="location.href='noticeContent.no?a_num=<%=noticeDTO.getA_num()%>'">
+							onclick="location.href='noticeContent.no?a_num=<%=num++%>'">
 							<td class="_1qna_board_border"><%=noticeDTO.getA_num()%></td>
 							<td class="_1qna_board_subject"><%=noticeDTO.getA_title()%></td>
 							<td class="_1qna_board_border"><%=format.format(noticeDTO.getA_date())%></td>

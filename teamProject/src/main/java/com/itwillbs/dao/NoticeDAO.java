@@ -94,8 +94,8 @@ public class NoticeDAO {
 			con=getConnection();
 			String sql="";
 			// 글번호 유저번호 닉네임 제목 내용 답변 파일 처리여부 작성일 cs유형 공지유형
-			if(noticeDTO.getA_notice_type().equals("일반공지")){
-				sql = "insert into admin values (default, ?, ?, ?, ?, null, ?, null, default, null, '일반공지')";
+			if(noticeDTO.getA_notice_type().equals("공지")){
+				sql = "insert into admin values (default, ?, ?, ?, ?, null, ?, null, default, null, '공지')";
 			}else {
 				sql = "insert into admin values (default, ?, ?, ?, ?, null, ?, null, default, null, '이벤트')";
 			}
@@ -298,8 +298,8 @@ public class NoticeDAO {
 			con=getConnection();
 			String sql="";
 			// 글번호 유저번호 닉네임 제목 내용 답변 파일 처리여부 작성일 cs유형 공지유형
-			if(noticeDTO.getA_notice_type().equals("일반공지")){
-				sql = "insert into admin values (default, ?, ?, ?, ?, null, ?, null, default, null, '일반공지')";
+			if(noticeDTO.getA_notice_type().equals("공지")){
+				sql = "insert into admin values (default, ?, ?, ?, ?, null, ?, null, default, null, '공지')";
 			}else {
 				sql = "insert into admin values (default, ?, ?, ?, ?, null, ?, null, default, null, '이벤트')";
 			}

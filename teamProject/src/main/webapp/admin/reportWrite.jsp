@@ -6,6 +6,19 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%
+int m_level = 0;
+if (session.getAttribute("m_level") == null) {
+    // 사용자의 m_level이 null이면 윈도우 창을 열지 않음
+%>
+    <script>
+        alert("로그인이 필요합니다.");
+        window.close();
+    </script>
+<%
+} else {
+    // 사용자의 m_level이 null이 아닌 경우 윈도우 창 열기
+%>
 <title>신고 페이지</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -92,50 +105,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!--================================== 푸터 ==================================== -->
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script type="text/javascript">
-<%-- function report_check() {
-    var r_num = '<%=reportDTO.getR_num()%>';
-    
-    $.ajax({
-        type: 'post',
-        url: 'report_check.ad',
-        data: {
-            r_num: r_num
-        },
-        success: function(result) {
-            if (result == 3) {
-            	
-                // 이유 입력을 위한 입력 필드 표시
-                $("#reportReasonInput").show();
-                
-                // 사용자에게 신고 이유를 입력하도록 안내
-                var reason = prompt("정지 이유를 입력하세요:");
-                
-                // 입력한 이유를 서버로 전송
-                if (reason != null) {
-                    $.ajax({
-                        type: 'post',
-                        url: 'report_save.ad',
-                        data: {
-                            r_num: r_num,
-                            reason: reason
-                        },
-                        success: function(response) {
-                            if (response == 'success') {
-                                alert("블랙리스트 등록이 정상적으로 처리되었습니다.");
-                                window.close();
-                            } else {
-                                alert("신고 처리 중 오류가 발생했습니다.");
-                            }
-                        }
-                    });
-                }
-            } else {
-            	window.opener.location.reload();
-                window.close();
-            }
-        }
-    });
-} --%>
+<%}%>
 
 </script>
 	<!-- Bootstrap Core JavaScript -->
