@@ -77,17 +77,17 @@ SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
 
 <!--=========================== 상단 탭 리스트============================================ -->
 				<ul class="tabs">
-					<li class="tab-link " data-tab="tab-1">나의정보</li>
-					<li class="tab-link" data-tab="tab-3">판매내역</li>
-					<li class="tab-link" data-tab="tab-4">찜</li>
+					<li class="tab-link " onclick="location.href='update.me'">나의정보</li>
+					<li class="tab-link" onclick="location.href='buylist.me'">판매내역</li>
+					<li class="tab-link" onclick="location.href='m_wishlist.me'">찜</li>
 					<li class="tab-link current" onclick="location.href='m_adminpage.me'">신고내역</li>
-					<li class="tab-link" data-tab="tab-7">회원탈퇴</li>
+					<li class="tab-link" onclick="location.href='deletePro.me'">회원탈퇴</li>
 				</ul>
 			</div>
 		
 
 <!--================================== 6탭 신고내역 ==================================== -->		
-
+	<div class="container_3_1">
 <!-- 				신고내역 테이블 -->
 				<div id="tab-6" class="tab-content current">
 					<table class="_1qna_board_1">
@@ -131,7 +131,7 @@ SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
 				    </ul>
 				</div>
 				</div>
-
+</div>
 
 				
 				

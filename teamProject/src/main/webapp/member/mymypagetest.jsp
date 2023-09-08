@@ -1,3 +1,7 @@
+<%@page import="com.itwillbs.domain.ProductPageDTO"%>
+<%@page import="com.itwillbs.domain.AdminPageDTO"%>
+<%@page import="com.itwillbs.domain.ReportDTO"%>
+<%@page import="com.itwillbs.domain.WishListDTO"%>
 <%@page import="com.itwillbs.domain.MemberDTO"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.itwillbs.domain.NoticePageDTO"%>
@@ -23,10 +27,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- //for-mobile-apps -->
-<link href="../css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-<link href="../css/style.css" rel="stylesheet" type="text/css" media="all" />
-<link href="../css/font-awesome.css" rel="stylesheet"> 
-<link href="./css/mypage_3.css" rel="stylesheet"> 
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/font-awesome.css" rel="stylesheet"> 
+<link href="css/mypage_3.css" rel="stylesheet"> 
 <!-- //font-awesome icons -->
 <!-- js -->
 <script src="../js/jquery-1.11.1.min.js"></script>
@@ -44,7 +48,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		});
 	});
 </script>
-<!-- start-smoth-scrolling -->
+
+<!-- 찜리스트 부분 -->
+ <%
+ List<WishListDTO> wishList = (List<WishListDTO>)request.getAttribute("wishList");
+ String id = (String)session.getAttribute("m_id");
+ MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO"); 
+ 
+ ProductPageDTO ppageDTO = (ProductPageDTO)request.getAttribute("ppageDTO");
+ 
+ %>
+
 </head>
 	
 <body>
@@ -67,339 +81,109 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <!--=========================== 상단 탭 리스트============================================ -->
 				<ul class="tabs">
-					<li class="tab-link current" data-tab="tab-1" onclick="location.href='mypage.me'">나의정보</li>
-					<li class="tab-link" data-tab="tab-2">구매내역</li>
+					<li class="tab-link" data-tab="tab-1">나의정보</li>
 					<li class="tab-link" data-tab="tab-3">판매내역</li>
-					<li class="tab-link" data-tab="tab-4">찜</li>
-<!-- 				<li class="tab-link" data-tab="tab-5">문의내역</li> -->
-					<li class="tab-link" data-tab="tab-6">신고내역</li>
+					<li class="tab-link current" onclick="location.href='m_wishlist.me'">찜</li> 
+					<li class="tab-link" onclick="location.href='m_adminpage.me'" >신고내역</li>
 					<li class="tab-link" data-tab="tab-7">회원탈퇴</li>
 				</ul>
 			</div>
 		
-<!--================================== 1탭 나의정보==================================== -->
-<%
-	MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
-%>
+<!--================================== 4탭 찜 ==================================== -->		
 
-			<div class="container_3_1">
-				<div id="tab-1" class="tab-content current">
-					<table class="mypage-board">
-						<tr>
-							<th class="_1qna_board_border1" colspan="2">나의정보</th>
-						</tr>
-<!-- 		----아이디---- -->
-						 <tr>
-							<td class="_1qna_board_border2">
-								<form action="updatePro.me" method="post">
-									<div class="mypage-grids"> 
-										<div align="center">
-											<input type="text" class="show" placeholder="아이디" readonly="readonly"readonly>
-											<input type="text" value="<%=memberDTO.getM_id() %>" id="m_id" name="m_id" readonly="readonly">
-										</div>
-									</div>
-								</form>
-							</td>
-						</tr>
-						
-<!-- 		----닉네임---- -->						
-						 <tr>
-							<td class="_1qna_board_border2">
-								<form action="updatePro.me" method="post">
-									<div class="mypage-grids"> 
-										<div align="center">
-											<input type="hidden" name="m_id" value="<%=memberDTO.getM_id() %>">
-											<input type="text" class="show" placeholder="닉네임" readonly="readonly"readonly>
-											<input type="text" value="<%=memberDTO.getM_nick() %>" id="m_nick" name="m_nick">
-										</div>
-									</div>
-								</form>
-							</td>
-							<td class="_1qna_board_border3" width="10">
-								<div class="up-button">
-									<input type="button" class="up-button" value="수정">
-								</div>
-							</td>
-						</tr>
-						
-<!-- 		----비밀번호---- -->						
-						<tr>
-							<td class="_1qna_board_border2">
-								<form action="updatePro.me" method="post">
-									<div class="mypage-grids"> 
-										<div align="center">
-											<input type="hidden" name="m_id" value="<%=memberDTO.getM_id() %>">
-											<input type="text" class="show" placeholder="비밀번호" readonly="readonly"readonly>
-											<input type="password" placeholder="현재비밀번호" id="m_pass" 	name="m_pass">
-											<input type="password" placeholder="새비밀번호" id="m_pass2" 	name="m_pass2">
-											<input type="password" placeholder="새비밀번호확인" id="m_pass3" 	name="m_pass3">
-										</div>
-									</div>
-								</form>
-							</td>
-												
-							<td class="_1qna_board_border3" width="10">
-							<div class="up-button">
-							<input type="button" class="up-button" value="수정">
-							</div>
-							</td>
-						</tr>
-						
-						
-						
-<!-- 		----이메일---- -->							
-						<tr>	
-							<td class="_1qna_board_border2">
-								<form action="updatePro.me" method="post">
-									<div class="mypage-grids"> 
-										<div align="center">
-											<input type="hidden" name="m_id" value="<%=memberDTO.getM_id() %>">
-											<input type="text" class="show" placeholder="이메일" readonly="readonly"readonly>
-											<input type="email" value="<%=memberDTO.getM_email()%>"		id="m_email" 	name="m_email">
-										</div>
-									</div>
-								</form>
-							</td>
-												
-							<td class="_1qna_board_border3" width="10">
-							<div class="up-button">
-							<input type="button" class="up-button" value="수정">
-							</div>
-							</td>
-						</tr>
-						
-						
-<!-- 		----전화번호---- -->							
-						<tr>	
-							<td class="_1qna_board_border2">
-								<form action="updatePro.me" method="post">
-									<div class="mypage-grids"> 
-										<div align="center">
-											<input type="hidden" name="m_id" value="<%=memberDTO.getM_id() %>">
-											<input type="text" class="show" placeholder="전화번호" readonly="readonly"readonly>
-											<input type="tel" value="<%=memberDTO.getM_phone() %>"		id="m_phone" 	name="m_phone">
-										</div>
-									</div>
-								</form>
-							</td>
-												
-							<td class="_1qna_board_border3" width="10">
-							<div class="up-button">
-							<input type="button" class="up-button" value="수정">
-							</div>
-							</td>
-						</tr>
-						
-
-						
-						
-						
-						
-					</table>
-				</div>
-<!--================================== 2탭 구매내역 ==================================== -->				
-				<div id="tab-2" class="tab-content">
-					<table class="_1qna_board">
-						<tr>
-							<th class="_1qna_board_border">번호</th>
-							<th class="_1qna_board_border">제목</th>
-							<th class="_1qna_board_border">작성일</th>
-						</tr>
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_subject">신규가입 회원 혜택이 빵빵! (~09/30)</td>
-							<td class="_1qna_board_border">2023.09.01</td>
-						</tr>
-						
-					</table>
-					<!--============= 2탭 이벤트 페이징 ==================== -->
-				    <div class="_1qna_paging">
-				 
-					 <ul>
-				       <li onclick="location.href='index.html'">◀</li>
-				       <li onclick="location.href='about.html'">1</li>
-			           <li onclick="location.href='login.html'">2</li>
-			           <li onclick="location.href='faq.html'">3</li>
-			           <li onclick="location.href='gourmet.html'">4</li>
-			           <li onclick="location.href='login.html'">5</li>
-			           <li onclick="location.href='products.html'">▶</li>						
-			         </ul> 
-   					 </div>
-				</div>
-<!--================================== 3탭 판매내역 ==================================== -->
-	
-				<div id="tab-3" class="tab-content">
-					<table class="_1qna_board">
-						<tr>
-							<th class="_1qna_board_border">번호</th>
-							<th class="_1qna_board_border">제목</th>
-							<th class="_1qna_board_border">작성일</th>
-						</tr>
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_subject">신규가입 회원 혜택이 빵빵! (~09/30)</td>
-							<td class="_1qna_board_border">2023.09.01</td>
-						</tr>
-						
-					</table>
-		<!--============= 3탭 이벤트 페이징 ==================== -->
-				    <div class="_1qna_paging">
-				 
-					 <ul>
-				       <li onclick="location.href='index.html'">◀</li>
-				       <li onclick="location.href='about.html'">1</li>
-			           <li onclick="location.href='login.html'">2</li>
-			           <li onclick="location.href='faq.html'">3</li>
-			           <li onclick="location.href='gourmet.html'">4</li>
-			           <li onclick="location.href='login.html'">5</li>
-			           <li onclick="location.href='products.html'">▶</li>						
-			         </ul> 
-   					 </div>
-				</div>
-<!--================================== 4탭 찜 ==================================== -->				
 				<div id="tab-4" class="tab-content">
 					<table class="_1qna_board">
 						<tr>
-							<th class="_1qna_board_border">번호</th>
-							<th class="_1qna_board_border">제목</th>
-							<th class="_1qna_board_border">작성일</th>
+							<th class="_1qna_board_border">찜 번호</th>
+							<th class="_1qna_board_border">상품 이미지</th>
+							<th class="_1qna_board_border">상품 이름</th>
+							<th class="_1qna_board_border">상품 상태</th>
+							<th class="_1qna_board_border">상품 타입</th>
+							<th class="_1qna_board_border">가격</th>
+							<th class="_1qna_board_border">삭제</th>
 						</tr>
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_subject">신규가입 회원 혜택이 빵빵! (~09/30)</td>
-							<td class="_1qna_board_border">2023.09.01</td>
-						</tr>
-						
-					</table>
-				</div>
-<!--================================== 5탭 문의내역 ==================================== -->				
-				<div id="tab-5" class="tab-content">
-					<table class="_1qna_board">
-						<tr>
-							<th class="_1qna_board_border">번호</th>
-							<th class="_1qna_board_border">제목</th>
-							<th class="_1qna_board_border">작성일</th>
-						</tr>
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_subject">신규가입 회원 혜택이 빵빵! (~09/30)</td>
-							<td class="_1qna_board_border">2023.09.01</td>
-						</tr>
-						
-					</table>
-				</div>
-<!--================================== 6탭 신고내역 ==================================== -->				
-				<div id="tab-6" class="tab-content">
-					<table class="_1qna_board">
-						<tr>
-							<th class="_1qna_board_border">번호</th>
-							<th class="_1qna_board_border">제목</th>
-							<th class="_1qna_board_border">신고일</th>
-							<th class="_1qna_board_border">처리상태</th>
-						</tr>
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_subject">신규가입 회원 혜택이 빵빵! (~09/30)</td>
-							<td class="_1qna_board_border">2023.09.01</td>
-							<td class="_1qna_board_border">2023.09.01</td>
-						</tr>
-						
-					</table>
-				</div>
-<!--==================================회원탈퇴==================================== -->				
-<%
-	String m_id = (String)session.getAttribute("m_id");
-%>	
-				<div id="tab-7" class="tab-content">
-					<table class="_1qna_board">
-						<tr><th class="_1qna_board_border1">회원탈퇴</th></tr>
+<!-- 						product 참고  -->
+						<% if (wishList.isEmpty()) { %>
+ 				<tr>
+ 				<td colspan="7"> 마음에 드는 상품을 추가해보세요! </td>
+ 				</tr>
+				<% } else { %>
+					
+				 <% for (int i = 0; i < wishList.size(); i++) {
+					 WishListDTO wishListDTO = wishList.get(i);
+						%>
+								<tr class="rem1">
+						<td class="w_num" style="display: none;"><%= wishListDTO.getW_num() %></td>
+						<td class="_1qna_board_border"><%=i + 1 %></td>
+						<td class="_1qna_board_border"><a href="single.po?p_num=<%=wishListDTO.getProductDTO().getP_num()%>"><img src="upload/<%= wishListDTO.getProductDTO().getP_file() %>" width="100px" height="100px" download alt=" " class="img-responsive" /></a></td>
+						<td class="_1qna_board_border"><a href="single.po?p_num=<%=wishListDTO.getProductDTO().getP_num()%>"><%=wishListDTO.getProductDTO().getP_title() %></a></td>
+						<td class = "_1qna_board_border"><%=wishListDTO.getProductDTO().getP_status() %></td>
+						<td class="_1qna_board_border"><a href="single.po?p_num=<%=wishListDTO.getProductDTO().getP_num()%>"><%=wishListDTO.getProductDTO().getP_type() %></a></td>
+						<td class="_1qna_board_border"><%=wishListDTO.getProductDTO().getP_price() %>원</td>
+						<td class="_1qna_board_border" align="center">
+    					<div class="rem" style="display: flex; justify-content: center; align-items: center;">
+       					<div class="close1"></div>
+   					    </div>
+   					    <%
+   					    }
+   					    %>    
+   					    <%
+   					    }
+   					    %> 
+						 					<script>
+    				$(document).ready(function() {
+      				  $('.close1').on('click', function() {
+     			       var $rem1 = $(this).closest('.rem1');
+         			   var w_num = $rem1.find('.w_num').text(); // 항목의 w_num 값을 가져옴
 
-						 <tr ><td class="_1qna_board_border2">
-								<form action="deletePro.me" method="post">
-									<div class="mypage-grids">  
-										<div align="center">
-											<input type="text" class="show" placeholder="아이디" readonly="readonly">
-											<input type="text" value="<%=m_id %>" name="m_id"  readonly="readonly">
-											<input type="text" class="show" placeholder="비밀번호" readonly="readonly">
-											<input type="password" name="m_pass" id="m_pass"> <br>
-											<div class="divdub"></div>
-										</div>	
-									</div>
-								
-								
-								
-								<div class="delete-button">
-									<input type="submit" class="del-button" value="탈퇴하기">
-								</div>
-											
-								</form>
-							</td></tr>
+         			   // 서버로 삭제 요청을 보냄 (AJAX를 사용할 수 있음)
+         			   $.ajax({
+           			   url: 'deletewish.dwi', // 서버에서 삭제를 처리하는 서블릿 주소
+             		   type: 'POST', // 또는 GET, 삭제 요청에 맞게 설정
+                	   data: { w_num: w_num }, // 삭제할 항목의 식별자를 서버로 전달
+               		   success: function(response) {
+                       if (response === 'success') {
+                        // 삭제가 성공하면 UI에서 항목을 제거
+                        $rem1.animate('slow', function() {
+                            $rem1.remove();
+                        });
+                       } else {
+                        // 삭제 실패 시 메시지를 표시하거나 다른 조치를 취할 수 있음
+                        alert(response);
+                        location.reload();
+                       }
+                },
+                error: function() {
+                    alert('서버 오류: 삭제 요청을 처리할 수 없습니다.');
+                }
+            });
+        });
+    });
+</script>
+						
+						
+<!-- 						<tr> -->
+<!-- 							<td class="_1qna_board_border">1</td> -->
+<!-- 							<td class="_1qna_board_border">1</td> -->
+<!-- 							<td class="_1qna_board_border">1</td> -->
+<!-- 							<td class="_1qna_board_border">1</td> -->
+<!-- 							<td class="_1qna_board_border">1</td> -->
+<!-- 							<td class="_1qna_board_border">1</td> -->
+<!-- 							<td class="_1qna_board_subject">신규가입 회원 혜택이 빵빵! (~09/30)</td> -->
+<!-- 							<td class="_1qna_board_border">X</td> -->
+<!-- 						</tr> -->
+						
 					</table>
 				</div>
+
+
 				
-				
-</div>
-</div>
-				
+
 				
 <!-- -----------------------------------------------------------------------------				 -->
 <script type="text/javascript" src="script/jquery-3.7.0.js"></script>
-<script type="text/javascript">
 
 
-$(document).ready(function() {
-    $('#changePasswordForm').submit(function(e) {
-        e.preventDefault(); // Prevent form submission for now
-
-        var currentPassword = $('#currentPassword').val();
-        var newPassword = $('#newPassword').val();
-        var confirmNewPassword = $('#confirmNewPassword').val();
-
-        // Perform your validation here
-        if (!currentPasswordIsValid(currentPassword)) {
-            alert("Current password is incorrect.");
-            return false; // Prevent form submission
-        }
-
-        if (!newPasswordIsValid(newPassword)) {
-            alert("New password is not valid.");
-            return false; // Prevent form submission
-        }
-
-        if (newPassword !== confirmNewPassword) {
-            alert("New password and confirmation do not match.");
-            return false; // Prevent form submission
-        }
-
-        // If all conditions are met, you can submit the form
-        // Uncomment the following line to submit the form:
-        // $('#changePasswordForm').off('submit').submit();
-    });
-
-    // Your validation functions
-    function currentPasswordIsValid(password) {
-        // Implement your logic to check if the current password is correct
-        // Return true if it's correct, false otherwise
-        // You may use AJAX to check the current password on the server
-        return true; // Replace with your logic
-    }
-
-    function newPasswordIsValid(newPassword) {
-        // Implement your logic to check if the new password is valid
-        // Return true if it's valid, false otherwise
-        return newPassword.length >= 8; // Replace with your logic
-    }
-});
-
-
-				
-				
-				
-</script>				
-				
-				
-				
-				
 <!-- 			탭 jquery -->
 <script type="text/javascript">
 $(document).ready(function(){
@@ -432,6 +216,7 @@ $(document).ready(function(){
 <div class="clearfix">
 <jsp:include page="../inc/bottom.jsp"></jsp:include>
 </div>	
+
 <!--========================= Bootstrap Core JavaScript =========================-->
 <script src="../js/bootstrap.min.js"></script>
 <!-- top-header and slider -->

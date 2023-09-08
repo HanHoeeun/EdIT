@@ -14,7 +14,10 @@ import javax.sql.DataSource;
 
 import com.itwillbs.domain.AdminPageDTO;
 import com.itwillbs.domain.MemberDTO;
+import com.itwillbs.domain.ProductDTO;
+import com.itwillbs.domain.ProductPageDTO;
 import com.itwillbs.domain.ReportDTO;
+import com.itwillbs.domain.WishListDTO;
 
 public class MemberDAO {
 
@@ -38,7 +41,7 @@ public class MemberDAO {
 
 	
 //	예외 상관없이 마무리 작업 => con, pstmt, rs 기억 장소 해제
-	public void dblClose() {
+	public void dbClose() {
 		if (pstmt != null) { 	try { 	pstmt.close(); } catch (SQLException e) { e.printStackTrace();	} }
 		if (con != null) { try { con.close(); } catch (SQLException e) { e.printStackTrace();	} }
 		if (rs != null) { try { rs.close(); } catch (SQLException e) { e.printStackTrace();	} }
@@ -68,7 +71,7 @@ public class MemberDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			dblClose();
+			dbClose();
 		}
 		
 		return num;
@@ -103,7 +106,7 @@ public class MemberDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			dblClose();
+			dbClose();
 		}
 	}
 
@@ -146,7 +149,7 @@ public class MemberDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			dblClose();
+			dbClose();
 		}
 		
 		return memberDTO;
@@ -184,7 +187,7 @@ public class MemberDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			dblClose();
+			dbClose();
 		}
 		
 		return memberDTO;
@@ -227,7 +230,7 @@ public class MemberDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			dblClose();
+			dbClose();
 		}
 		
 		return memberDTO;
@@ -258,7 +261,7 @@ public class MemberDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			dblClose();
+			dbClose();
 		}
 		return memberDTO;
 	}
@@ -288,7 +291,7 @@ public class MemberDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			dblClose();
+			dbClose();
 		}
 		return memberDTO;
 	}
@@ -319,7 +322,7 @@ public class MemberDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			dblClose();
+			dbClose();
 		}
 		
 		return memberDTO;
@@ -351,10 +354,11 @@ public class MemberDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			dblClose();
+			dbClose();
 		}
 	}
 
+	
 	
 	
 //	비밀번호수정
@@ -377,7 +381,7 @@ public class MemberDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			dblClose();
+			dbClose();
 		}
 		
 	}
@@ -405,7 +409,7 @@ public class MemberDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			dblClose();
+			dbClose();
 		}
 		
 	}
@@ -457,7 +461,7 @@ public class MemberDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			dblClose();
+			dbClose();
 		}
 		
 		return memberList;
@@ -490,7 +494,7 @@ public class MemberDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			dblClose();
+			dbClose();
 		}
 		return memberDTO; // 멤버 정보 반환
 	} // findidmember
@@ -511,7 +515,7 @@ public class MemberDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			dblClose();
+			dbClose();
 		}
 
 		return result;
@@ -536,7 +540,7 @@ public class MemberDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			dblClose();
+			dbClose();
 		}
 		return memberDTO;
 	} // IdAndEmailMatch()
@@ -574,7 +578,7 @@ public class MemberDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			dblClose();
+			dbClose();
 		}
 		
 		return reportList;
@@ -599,7 +603,7 @@ public class MemberDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			dblClose();
+			dbClose();
 		}
 		return count;
 	}
@@ -621,12 +625,126 @@ public class MemberDAO {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			dblClose();
+			dbClose();
 		}
 		return result;
 }
 
 
+
+	public int getProductCount() {
+		int p_count = 0;
+		try {
+			//1,2 디비연결
+			con=getConnection();
+			//3 sql select count(*) from products
+			String sql = "select count(*) from products;";
+			pstmt=con.prepareStatement(sql);
+			//4 실행 => 결과저장
+			rs = pstmt.executeQuery();
+			//5 결과 행접근 => 열접근 => count변수 저장
+			if(rs.next()) {
+				p_count = rs.getInt("count(*)");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbClose();
+		}
+		return p_count;
+	}
+
+
+
+	public List<WishListDTO> getWishList(ProductPageDTO ppageDTO) {
+		System.out.println("ProductDAO getWishList()");
+		List<WishListDTO> wishList = new ArrayList<>();
+		//int size = wishList.size();
+		try {
+			con = getConnection();
+			String sql = "SELECT w.w_num, m.m_nick, p.p_file, p.p_title, p.p_status, p.p_type, p.p_price "
+					+ "from wishlists w "
+					+ "JOIN products p ON w.w_p_num = p.p_num "
+					+ "JOIN members m ON w.w_m_num = m.m_num "
+					+ "where m.m_id = ? "
+					+ " limit ?, ? ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, ppageDTO.getM_id());
+			System.out.println("m_id = "+ppageDTO.getM_id());
+			pstmt.setInt(2, ppageDTO.getP_startRow()-1);//시작행-1
+			pstmt.setInt(3, ppageDTO.getP_pageSize());//몇개
+			rs = pstmt.executeQuery();
+			System.out.println("결과 =" + pstmt);
+			//wishList = new ArrayList<>();
+			//size = wishList.size();
+			while(rs.next()) {
+				WishListDTO wishListDTO = new WishListDTO();
+	            ProductDTO productDTO = new ProductDTO();
+	            MemberDTO memberDTO = new MemberDTO();
+
+	            wishListDTO.setW_num(rs.getInt("w_num"));
+	            memberDTO.setM_nick(rs.getString("m_nick"));
+	            productDTO.setP_file(rs.getString("p_file"));
+	            productDTO.setP_title(rs.getString("p_title"));
+	            productDTO.setP_status(rs.getString("p_status"));
+	            productDTO.setP_type(rs.getString("p_type"));
+	            productDTO.setP_price(rs.getInt("p_price"));
+
+	            wishListDTO.setMemberDTO(memberDTO);
+	            wishListDTO.setProductDTO(productDTO);
+
+	            wishList.add(wishListDTO);
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		return wishList;
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }	
 
 	

@@ -77,7 +77,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<ul class="tabs">
 					<li class="tab-link current" data-tab="tab-1">나의정보</li>
 					<li class="tab-link" data-tab="tab-3">판매내역</li>
-					<li class="tab-link" data-tab="tab-4">찜</li>
+					<li class="tab-link" onclick="location.href='m_wishlist.me'">찜</li>
 					<li class="tab-link" onclick="location.href='m_adminpage.me'" >신고내역</li>
 					<li class="tab-link" data-tab="tab-7">회원탈퇴</li>
 				</ul>
@@ -131,22 +131,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								</div>
 							</td>
 						</tr>
-<%-- <!-- 		----비밀번호---- -->						
-						<tr>
-							<td class="_1qna_board_border2">
-								<form action="updatePro.me" method="post">
-									<div class="mypage-grids"> 
-										<div align="center">
-											<input type="text" class="show" placeholder="비밀번호" readonly="readonly"readonly>
-											<input type="password" value="<%=memberDTO.getM_pass() %>" placeholder="현재비밀번호" id="m_pass" 	name="m_pass">
-											<input type="password" placeholder="새비밀번호" id="m_pass2" 	name="m_pass2">
-											<input type="password" placeholder="새비밀번호확인" id="m_pass3" 	name="m_pass3">
-											<br><div id="result"></div>
-										</div>
-									</div>
-								</form>
-							</td>
-						</tr> --%>
 <!-- 		----이메일---- -->							
 						<tr>	
 							<td class="_1qna_board_border2">
@@ -175,7 +159,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<div class="delete-button">
 							<input type="submit" class="delete-button" value="수정">
 							</div><br>
-							<a id="password-change-link" href="pwupdqte.me">비밀번호 변경</a>
+							<a id="password-change-link" href="#" onclick="window.open('pwupdate.me?m_num=','비밀번호 변경','width=800, height=700, scrollbars=yes')">비밀번호 변경</a>
 							</td>
 						
 						</tr>
@@ -197,7 +181,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- 							<td class="_1qna_board_border">1</td> -->
 <!-- 							<td class="_1qna_board_border">이미지..</td> -->
 <!-- 							<td class="_1qna_board_border">상품명...?</td> -->
-<!-- <!-- 							<td class="_1qna_board_subject">신규가입 회원 혜택이 빵빵! (~09/30)</td> --> -->
+<!-- <!-- 							<td class="_1qna_board_subject">신규가입 회원 혜택이 빵빵! (~09/30)</td> -->
 <!-- 							<td class="_1qna_board_border">2023.09.01</td> -->
 <!-- 						</tr> -->
 						
@@ -250,30 +234,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 		
-				<div id="tab-4" class="tab-content">
-					<table class="_1qna_board">
-						<tr>
-							<th class="_1qna_board_border">번호</th>
-							<th class="_1qna_board_border">이미지</th>
-							<th class="_1qna_board_border">이름</th>
-							<th class="_1qna_board_border">상태</th>
-							<th class="_1qna_board_border">타입</th>
-							<th class="_1qna_board_border">가격</th>
-							<th class="_1qna_board_border">삭제</th>
-						</tr>
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_border">1</td>
+<!-- 				<div id="tab-4" class="tab-content"> -->
+<!-- 					<table class="_1qna_board"> -->
+<!-- 						<tr> -->
+<!-- 							<th class="_1qna_board_border">번호</th> -->
+<!-- 							<th class="_1qna_board_border">이미지</th> -->
+<!-- 							<th class="_1qna_board_border">이름</th> -->
+<!-- 							<th class="_1qna_board_border">상태</th> -->
+<!-- 							<th class="_1qna_board_border">타입</th> -->
+<!-- 							<th class="_1qna_board_border">가격</th> -->
+<!-- 							<th class="_1qna_board_border">삭제</th> -->
+<!-- 						</tr> -->
+<!-- 						<tr> -->
+<!-- 							<td class="_1qna_board_border">1</td> -->
+<!-- 							<td class="_1qna_board_border">1</td> -->
+<!-- 							<td class="_1qna_board_border">1</td> -->
+<!-- 							<td class="_1qna_board_border">1</td> -->
+<!-- 							<td class="_1qna_board_border">1</td> -->
+<!-- 							<td class="_1qna_board_border">1</td> -->
 <!-- 							<td class="_1qna_board_subject">신규가입 회원 혜택이 빵빵! (~09/30)</td> -->
-							<td class="_1qna_board_border">X</td>
-						</tr>
+<!-- 							<td class="_1qna_board_border">X</td> -->
+<!-- 						</tr> -->
 						
-					</table>
-				</div>
+<!-- 					</table> -->
+<!-- 				</div> -->
 
 
 <!--==================================회원탈퇴==================================== -->				
@@ -384,30 +368,21 @@ $(document).ready(function() {
     
 })
 
-//	비밀번호/비밀번호확인 일치		----성공
-document.getElementById('m_pass2').addEventListener('keyup', validatePassword);
-document.getElementById('m_pass3').addEventListener('keyup', validatePassword);
 
-function validatePassword() {
-    var newPassword = document.getElementById('m_pass2').value;
-    var confirmPassword = document.getElementById('m_pass3').value;
-    var resultDiv = document.getElementById('result');
 
-    var passwordRegex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*?_]).{8,16}$/;
+/* 
+document.getElementById('profileForm').addEventListener('submit', function (e) {
+    e.preventDefault();
 
-    if (passwordRegex.test(newPassword)) {
-        if (newPassword === confirmPassword) {
-        	resultDiv.innerHTML = '';
-        } else {
-            resultDiv.innerHTML = '비밀번호가 일치하지 않습니다.';
-            resultDiv.style.color = 'red';
-        }
-    } else {
-        resultDiv.innerHTML = '영문+숫자+특수문자 포함 8~16자로 입력해주세요';
-        resultDiv.style.color = 'red';
-    }
-    checkFormValidity();
-};
+    // 여기에서 회원 정보를 서버로 업데이트하고, 성공 또는 실패 여부를 확인합니다.
+    // 이 부분은 서버와의 통신 및 업데이트 로직입니다.
+
+    // 만약 회원 정보 수정이 성공했다면, 다음 코드를 사용하여 수정 완료 메시지를 띄웁니다.
+    alert('회원 정보가 수정되었습니다.');
+   	location.reload();
+
+    // 필요한 경우, 다른 동작을 수행하거나 페이지를 새로고침할 수 있습니다.
+}); */
 
 </script>
  
