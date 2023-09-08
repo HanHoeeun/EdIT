@@ -47,9 +47,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		});
 	});
 </script>
-<!-- start-smoth-scrolling -->
-</head>
-	
+</head>	
 <body>
 <!-- 신고내역부분 -->
 <%
@@ -81,15 +79,15 @@ SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
 					<li class="tab-link" onclick="location.href='buylist.me'">판매내역</li>
 					<li class="tab-link" onclick="location.href='m_wishlist.me'">찜</li>
 					<li class="tab-link current" onclick="location.href='m_adminpage.me'">신고내역</li>
-					<li class="tab-link" onclick="location.href='deletePro.me'">회원탈퇴</li>
+					<li class="tab-link" data-tab="tab-7">회원탈퇴</li> 
+<!-- 					<li class="tab-link" onclick="location.href='deletePro.me'">회원탈퇴</li> -->
 				</ul>
 			</div>
 		
 
 <!--================================== 6탭 신고내역 ==================================== -->		
 	<div class="container_3_1">
-<!-- 				신고내역 테이블 -->
-				<div id="tab-6" class="tab-content current">
+				<div id="tab-6" class="tab-content current">  
 					<table class="_1qna_board_1">
 						<tr>
 							<th class="_1qna_board_border">신고번호</th>
@@ -119,14 +117,14 @@ SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
 					// 시작페이지 1페이지 Prev 없음
 					// 시작페이지 11,21,31 Prev가 보이게
 							if(pageDTO.getStartPage() > pageDTO.getPageBlock()){%>
-							<li onclick="location.href='update.me?pageNum=<%=pageDTO.getStartPage()-pageDTO.getPageBlock()%>&tab=tab-6'">Prev</li>
+							<li onclick="location.href='m_adminpage.me?pageNum=<%=pageDTO.getStartPage()-pageDTO.getPageBlock()%>&tab=tab-6'">Prev</li>
 						<% } 
 						for(int i= pageDTO.getStartPage(); i<=pageDTO.getEndPage(); i++){%>
-							<li onclick="location.href='update.me?pageNum=<%=i%>&tab=tab-6'"><%=i %></li>
+							<li onclick="location.href='m_adminpage.me?pageNum=<%=i%>&tab=tab-6'"><%=i %></li>
 						<%}
 						// 끝페이지 번호 전체페이지수 비교 => 전체페이지 수 크면 => next보임
 						if(pageDTO.getEndPage() < pageDTO.getPageCount()){%>
-							<li onclick="location.href='update.me?pageNum=<%=pageDTO.getStartPage() + pageDTO.getPageBlock() %>&tab=tab-6'">Next</li>
+							<li onclick="location.href=''m_adminpage.me?pageNum=<%=pageDTO.getStartPage() + pageDTO.getPageBlock() %>&tab=tab-6'">Next</li>
 						<%}%>
 				    </ul>
 				</div>

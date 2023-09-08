@@ -31,6 +31,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 <link href="css/font-awesome.css" rel="stylesheet"> 
 <link href="css/mypage_3.css" rel="stylesheet"> 
+<link href="css/faq_1.css" rel="stylesheet"> 
 <!-- //font-awesome icons -->
 <!-- js -->
 <script src="../js/jquery-1.11.1.min.js"></script>
@@ -48,7 +49,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		});
 	});
 </script>
-
+</head>
+<body>
 <!-- 찜리스트 부분 -->
  <%
  List<WishListDTO> wishList = (List<WishListDTO>)request.getAttribute("wishList");
@@ -56,12 +58,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
  MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO"); 
  
  ProductPageDTO ppageDTO = (ProductPageDTO)request.getAttribute("ppageDTO");
- 
  %>
 
-</head>
-	
-<body>
 <!--================================== 헤더 ==================================== -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
 	
@@ -81,17 +79,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <!--=========================== 상단 탭 리스트============================================ -->
 				<ul class="tabs">
-					<li class="tab-link" data-tab="tab-1">나의정보</li>
-					<li class="tab-link" data-tab="tab-3">판매내역</li>
+					<li class="tab-link " onclick="location.href='update.me'">나의정보</li>
+					<li class="tab-link" onclick="location.href='buylist.me'">판매내역</li>
 					<li class="tab-link current" onclick="location.href='m_wishlist.me'">찜</li> 
 					<li class="tab-link" onclick="location.href='m_adminpage.me'" >신고내역</li>
 					<li class="tab-link" data-tab="tab-7">회원탈퇴</li>
+<!-- 					<li class="tab-link" onclick="location.href='deletePro.me'">회원탈퇴</li> -->
 				</ul>
 			</div>
 		
 <!--================================== 4탭 찜 ==================================== -->		
 	<div class="container_3_1">
-				<div id="tab-4" class="tab-content">
+<!-- 	class = "tab-content" 일때는 화면에 찜 테이블이 안 보였음 / current를 입력하니 보임!!!! -->
+				<div id="tab-4" class="tab-content current">
 					<table class="_1qna_board">
 						<tr>
 							<th class="_1qna_board_border">찜 번호</th>
@@ -112,7 +112,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				 <% for (int i = 0; i < wishList.size(); i++) {
 					 WishListDTO wishListDTO = wishList.get(i);
 						%>
-								<tr class="rem1">
+						<tr class="rem1">
 						<td class="w_num" style="display: none;"><%= wishListDTO.getW_num() %></td>
 						<td class="_1qna_board_border"><%=i + 1 %></td>
 						<td class="_1qna_board_border"><a href="single.po?p_num=<%=wishListDTO.getProductDTO().getP_num()%>"><img src="upload/<%= wishListDTO.getProductDTO().getP_file() %>" width="100px" height="100px" download alt=" " class="img-responsive" /></a></td>
@@ -124,37 +124,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     					<div class="rem" style="display: flex; justify-content: center; align-items: center;">
        					<div class="close1"></div>
    					    </div>
-   					    <%
-   					    }
-   					    %>    
-   					    <%
-   					    }
-   					    %> 
-   					    
    					    </td>
-						 				
-						
-						
-<!-- 						<tr> -->
-<!-- 							<td class="_1qna_board_border">1</td> -->
-<!-- 							<td class="_1qna_board_border">1</td> -->
-<!-- 							<td class="_1qna_board_border">1</td> -->
-<!-- 							<td class="_1qna_board_border">1</td> -->
-<!-- 							<td class="_1qna_board_border">1</td> -->
-<!-- 							<td class="_1qna_board_border">1</td> -->
-<!-- 							<td class="_1qna_board_subject">신규가입 회원 혜택이 빵빵! (~09/30)</td> -->
-<!-- 							<td class="_1qna_board_border">X</td> -->
-<!-- 						</tr> -->
-						
-					</table>
-				</div>
-</div>
-
-				
-
-				
-<!-- -----------------------------------------------------------------------------				 -->
-<script type="text/javascript" src="script/jquery-3.7.0.js"></script>
+   					    </tr>
+   					    <% } %>    
+   					    <% } %> 
+  
+  				 	
 	<script>
     				$(document).ready(function() {
       				  $('.close1').on('click', function() {
@@ -185,6 +160,51 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         });
     });
 </script>
+
+</td>
+<tr>
+</table>
+<div class="clearfix_1_1"> </div>
+</div>
+</div>
+<!-- 페이징 -->
+<div class="_1qna_paging">
+   <ul>
+      <%
+      if(ppageDTO.getP_startPage() > ppageDTO.getP_pageBlock()){
+         %>
+         <li>
+            <a href="m_wishlist.me?p_pageNum=<%=ppageDTO.getP_startPage()-ppageDTO.getP_pageBlock()%>&orderBy=${orderBy}" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            </a>
+         </li>
+         <%
+      }
+      for(int i=ppageDTO.getP_startPage(); i<=ppageDTO.getP_endPage(); i++){
+         boolean isCurrentPage = (i == ppageDTO.getP_currentPage());
+         boolean isPcurrentPage = (i == ppageDTO.getP_currentPage());
+         %>
+         <li class="<%= (isCurrentPage || isPcurrentPage) ? "active" : "" %>">
+            <a href="m_wishlist.me?p_pageNum=<%= i %>&orderBy=${orderBy}" class="<%= (isCurrentPage) ? "" : "" %> <%= (isPcurrentPage) ? "custom-class" : "" %>">
+            <%= (isPcurrentPage) ? i : i %></a>
+         </li>
+         <%
+      }
+
+      if(ppageDTO.getP_endPage() < ppageDTO.getP_pageCount()){
+         %>
+         <li>
+            <a href="m_wishlist.me?p_pageNum=<%=ppageDTO.getP_startPage()+ppageDTO.getP_pageBlock()%>&orderBy=${orderBy}" >
+               <span aria-hidden="true">&raquo;</span>
+            </a>
+         </li>
+         <%
+      }
+      %> 
+   </ul>
+</div>
+
+<!-- // 페이징 -->
 
 <!-- 			탭 jquery -->
 <script type="text/javascript">
