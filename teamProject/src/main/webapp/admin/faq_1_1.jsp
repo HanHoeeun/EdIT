@@ -13,7 +13,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
-<title>Super Market an Ecommerce Online Shopping Category Flat Bootstrap Responsive Website Template | Faq :: w3layouts</title>
+<title>고객센터</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -241,15 +241,15 @@ SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
 					// 시작페이지 1페이지 Prev 없음
 					// 시작페이지 11,21,31 Prev가 보이게
 						if(pageDTO.getStartPage() > pageDTO.getPageBlock()){%>
-							<li onclick="location.href='faq.ad?pageNum=<%=pageDTO.getStartPage()-pageDTO.getPageBlock()%>&search=<%=id%>&tab=tab-3'">Prev</li>
+							<li onclick="location.href='faq.ad?pageNum=<%=pageDTO.getStartPage()-pageDTO.getPageBlock()%>&tab=tab-3'">Prev</li>
 							
 						<% } 
 						for(int i= pageDTO.getStartPage(); i<=pageDTO.getEndPage(); i++){%>
-							<li onclick="location.href='faq.ad?pageNum=<%=i%>&search=<%=id%>&tab=tab-3'"><%=i %></li>
+							<li onclick="location.href='faq.ad?pageNum=<%=i%>&tab=tab-3'"><%=i %></li>
 						<%}
 						// 끝페이지 번호 전체페이지수 비교 => 전체페이지 수 크면 => next보임
 						if(pageDTO.getEndPage() < pageDTO.getPageCount()){%>
-							<li onclick="location.href='faq.ad?pageNum=<%=pageDTO.getStartPage() + pageDTO.getPageBlock() %>&search=<%=id%>&tab=tab-3'">Next</li>
+							<li onclick="location.href='faq.ad?pageNum=<%=pageDTO.getStartPage() + pageDTO.getPageBlock() %>&tab=tab-3'">Next</li>
 						<%}%>
 				    </ul>
 					</div>
@@ -283,69 +283,22 @@ SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
 	                $('#' + tabParam).addClass('current');
 	            }
 	        });
-// 				$('ul.tabs li').click(function(){
-// 					var tab_id = $(this).attr('data-tab');
-
-// 					$('ul.tabs li').removeClass('current');
-// 					$('.tab-content').removeClass('current');
-
-// 					$(this).addClass('current');
-// 					$("#"+tab_id).addClass('current');
-// 				})
 
 			
 			</script>
 			</div>
 		</div>
 			<div class="clearfix_1_1"> </div>
-<!-- //top-brands -->
 <!-- //footer -->
 <jsp:include page="../inc/bottom.jsp"></jsp:include>
 <!-- //footer -->	
-<!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>
-<!-- top-header and slider -->
-<!-- here stars scrolling icon -->
 	<script type="text/javascript">
 		$(document).ready(function() {
-			/*
-				var defaults = {
-				containerID: 'toTop', // fading element id
-				containerHoverID: 'toTopHover', // fading element hover id
-				scrollSpeed: 1200,
-				easingType: 'linear' 
-				};
-			*/
 								
 			$().UItoTop({ easingType: 'easeOutQuart' });
 								
 			});
 	</script>
-<!-- //here ends scrolling icon -->
-<script src="js/minicart.min.js"></script>
-<script>
-	// Mini Cart
-	paypal.minicart.render({
-		action: '#'
-	});
-
-	if (~window.location.search.indexOf('reset=true')) {
-		paypal.minicart.reset();
-	}
-</script>
-<!-- main slider-banner -->
-<script src="js/skdslider.min.js"></script>
-<link href="css/skdslider.css" rel="stylesheet">
-<script type="text/javascript">
-		jQuery(document).ready(function(){
-			jQuery('#demo1').skdslider({'delay':5000, 'animationSpeed': 2000,'showNextPrev':true,'showPlayButton':true,'autoSlide':true,'animationType':'fading'});
-						
-			jQuery('#responsive').change(function(){
-			  $('#responsive_wrapper').width(jQuery(this).val());
-			});
-			
-		});
-</script>	
-<!-- //main slider-banner --> 
 </body>
 </html>

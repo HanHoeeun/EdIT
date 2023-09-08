@@ -116,11 +116,8 @@ function showUnread(result){
 					<li><a href="wishlist.po"><i class="fa fa-heart" aria-hidden="true"> 찜리스트 </i></a></li>
 					<!-- <li><a href="single.po?p_num=5"><i class="fa fa-question-circle-o" aria-hidden="true"> 상품</i></a></li> -->
 					<li><a href="#" onclick="window.open('box.ch','1:1 채팅','width=500, height=800, scrollbars=yes')"><i class="fa fa-question-circle-o" aria-hidden="true"> 채팅<span id="unread" class="label label-info" style="margin-left:2px;"></span></i></a></li>
-					<% if ("admin1".equals(id)) { %>
 					<li><a href="adminPage.ad"><i class="fa fa-user" aria-hidden="true"> 관리자 페이지</i></a></li>
-  				    <% } %><% 					
-					} 
-					%>
+					<%} %>
 <!-- 	---------------혹시 몰라 복사 해놓고 주석처리 -------- -->
 					
 <%-- 					<%if(1==2){ %> --%>
