@@ -765,35 +765,138 @@ public class ProductService {
 	
 	
 	
-public List<ProductDTO> getProductList3(ProductDTO productDTO2) {
-		
-		List<ProductDTO> productList2=null; 
-		
-		try {
-			// ProductDAO 객체생성
-			productDAO = new ProductDAO();
-			
-			// productList = getProductList 메서드 호출
-			
-			productList2 = productDAO.getProductList3(productDTO2);
-			
-			
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		
-		//return productList2 != null ? productList2 : new ArrayList<>();
-		
-		return productList2;
-		
-	} // getProductList2()
+//public List<ProductDTO> getProductList3(ProductDTO productDTO) {
+//		
+//		List<ProductDTO> productList2=null; 
+//		
+//		try {
+//			// ProductDAO 객체생성
+//			productDAO = new ProductDAO();
+//			
+//			// productList = getProductList 메서드 호출
+//			
+//			productList2 = productDAO.getProductList3(productDTO);
+//			
+//			
+//			
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		
+//		
+//		//return productList2 != null ? productList2 : new ArrayList<>();
+//		
+//		return productList2;
+//		
+//	} // getProductList2()
 	
 	
+		public List<ProductDTO> getPList(ProductPageDTO productPageDTO) {
+			
+			List<ProductDTO> productList = null;
+			try {
+				// 시작하는 행부터 10개 뽑아오기
+		//		페이지번호     한화면에 보여줄 글개수 => 시작하는 행번호
+		//		currentPage         pageSize    => startRow
+		//		    1                 10        => (1-1)*10+1=>0*10+1=> 0+1=>1        ~ 10
+		//		    2                 10        => (2-1)*10+1=>1*10+1=>10+1=>11       ~ 20
+		//	        3                 10        => (3-1)*10+1=>2*10+1=>20+1=>21       ~ 30			
+				
+				
+				int p_startRow = (productPageDTO.getP_currentPage()-1)*productPageDTO.getP_pageSize()+1;
+				// 시작하는 행부터 끝나는 행까지 뽑아오기
+		//		startRow  pageSize => endRow
+		//		    1         10   =>   1+10-1 =>10
+		//		    11        10   =>   11+10-1 =>20
+		//	        21        10   =>   21+10-1 =>30
+				    		
+				int p_endRow = p_startRow+productPageDTO.getP_pageSize()-1;
+				
+				//pageDTO 저장 <= startRow, MendRow
+				productPageDTO.setP_startRow(p_startRow);
+				productPageDTO.setP_endRow(p_endRow);
+				
+				// BoardDAO 객체생성
+				productDAO = new ProductDAO();
+				
+				// boardList = getBoardList() 메서드 호출
+				productList = productDAO.getPList(productPageDTO);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return productList;
+		}//getBoardList()
+		
+		
+		public List<ProductDTO> getPList2(ProductPageDTO productPageDTO) {
+			
+			List<ProductDTO> productList2 = null;
+			try {
+				// 시작하는 행부터 10개 뽑아오기
+				//		페이지번호     한화면에 보여줄 글개수 => 시작하는 행번호
+				//		currentPage         pageSize    => startRow
+				//		    1                 10        => (1-1)*10+1=>0*10+1=> 0+1=>1        ~ 10
+				//		    2                 10        => (2-1)*10+1=>1*10+1=>10+1=>11       ~ 20
+				//	        3                 10        => (3-1)*10+1=>2*10+1=>20+1=>21       ~ 30			
+				
+				
+				int p_startRow = (productPageDTO.getP_currentPage()-1)*productPageDTO.getP_pageSize()+1;
+				// 시작하는 행부터 끝나는 행까지 뽑아오기
+				//		startRow  pageSize => endRow
+				//		    1         10   =>   1+10-1 =>10
+				//		    11        10   =>   11+10-1 =>20
+				//	        21        10   =>   21+10-1 =>30
+				
+				int p_endRow = p_startRow+productPageDTO.getP_pageSize()-1;
+				
+				//pageDTO 저장 <= startRow, MendRow
+				productPageDTO.setP_startRow(p_startRow);
+				productPageDTO.setP_endRow(p_endRow);
+				
+				// BoardDAO 객체생성
+				productDAO = new ProductDAO();
+				
+				// boardList = getBoardList() 메서드 호출
+				productList2 = productDAO.getPList2(productPageDTO);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return productList2;
+		}//getBoardList()
+			
 	
-	
-	
+		public int getPCount(ProductPageDTO productPageDTO) {
+			
+			int p_count=0;
+			
+			try {
+				// BoardDAO 객체생성
+				productDAO = new ProductDAO();
+				
+				// count = getBoardCount() 호출
+				p_count = productDAO.getPCount(productPageDTO);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return p_count;
+			
+		}//getBoardCount
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
 	
 	

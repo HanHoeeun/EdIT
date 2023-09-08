@@ -79,9 +79,10 @@ SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
 <!--=========================== 본문 헤더 =========================================== -->	
 	<div class="top-brands_1">
 		<h2>마이페이지</h2>
+		
+<!--=========================== 상단 탭 리스트============================================ -->
 			<div class="container_2_1">
 
-<!--=========================== 상단 탭 리스트============================================ -->
 				<ul class="tabs">
 					<li class="tab-link current" data-tab="tab-1">나의정보</li>
 					<li class="tab-link" data-tab="tab-2">구매내역</li>
@@ -378,7 +379,7 @@ SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
 				
 				
 </div>
-				
+</div>				
 				
 <!-- -----------------------------------------------------------------------------				 -->
 <script type="text/javascript" src="script/jquery-3.7.0.js"></script>
