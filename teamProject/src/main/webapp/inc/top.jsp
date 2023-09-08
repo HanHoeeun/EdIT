@@ -127,8 +127,8 @@ function getUnread(){
 					<%
 					} else {
 					%>
-					<li><i class="fa fa-thumbs-up" aria-hidden="true"><%=id%>님
-							반갑습니다!</i></li>
+					<li><a><i class="fa fa-thumbs-up" aria-hidden="true"><%=id%>님
+							반갑습니다!</i></a></li>
 					<li><a href="update.me"><i class="fa fa-user"
 							aria-hidden="true"> 마이 페이지</i></a></li>
 					<li><a href="logout.me"><i class="fa fa-heart"
