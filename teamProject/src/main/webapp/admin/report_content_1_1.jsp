@@ -122,11 +122,8 @@ function report_check() {
         }
     });
 }
-
 </script>
-<!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>
-<!-- here stars scrolling icon -->
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$().UItoTop({ easingType: 'easeOutQuart' });
