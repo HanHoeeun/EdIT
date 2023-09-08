@@ -9,6 +9,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%
+int m_level = 0;
+if(session.getAttribute("m_level") != null){
+	m_level = (int)session.getAttribute("m_level");
+}
+
+%>
 <title>공지사항 일반공지</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -65,28 +72,29 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="container_1_1">
 			<div class="container_2_1">
 
-				<!--=========================== 상단 탭 리스트============================================ -->
+<!--=========================== 상단 탭 리스트============================================ -->
+				<%
+				List<NoticeDTO> noticeList = (List<NoticeDTO>) request.getAttribute("noticeList");
+				NoticePageDTO pageDTO = (NoticePageDTO) request.getAttribute("pageDTO");
+				%>
 				<ul class="tabs">
 					<li class="tab-link current" data-tab="tab-1"
 						onclick="location.href='noticelist.no'">일반공지</li>
 					<li class="tab-link" data-tab="tab-2"
 						onclick="location.href='eventlist.no'">이벤트</li>
 					<%
-					if (1 == 1) {
+					//세션값이 있으면
+					if(m_level == 2){
 					%>
 					<li class="tab-link" data-tab="tab-3"
 						onclick="location.href='noticeWrite.no'">공지글 작성</li>
 					<%
-					}
+						}
 					%>
 				</ul>
 			</div>
 
 <!--================================== 1탭 일반공지==================================== -->
-			<%
-			List<NoticeDTO> noticeList = (List<NoticeDTO>) request.getAttribute("noticeList");
-			NoticePageDTO pageDTO = (NoticePageDTO) request.getAttribute("pageDTO");
-			%>
 			<div class="container_3_1">
 				<div id="tab-1" class="tab-content current">
 					<table class="_1qna_board">
@@ -209,6 +217,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			*/
 								
 			$().UItoTop({ easingType: 'easeOutQuart' });
+			
 								
 			});
 	</script>

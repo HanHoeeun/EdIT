@@ -8,6 +8,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%
+int m_level = 0;
+if(session.getAttribute("m_level") != null){
+	m_level = (int)session.getAttribute("m_level");
+	if(m_level != 2 ){
+		response.sendRedirect("main.me");
+		return;
+	}
+}
+%>
 <title>공지사항 글작성</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">

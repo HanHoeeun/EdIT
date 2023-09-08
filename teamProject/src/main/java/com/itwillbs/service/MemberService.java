@@ -12,9 +12,12 @@ import javax.servlet.http.HttpSession;
 
 import com.itwillbs.dao.AdminDAO;
 import com.itwillbs.dao.MemberDAO;
+import com.itwillbs.dao.ProductDAO;
 import com.itwillbs.domain.AdminPageDTO;
 import com.itwillbs.domain.MemberDTO;
+import com.itwillbs.domain.ProductPageDTO;
 import com.itwillbs.domain.ReportDTO;
+import com.itwillbs.domain.WishListDTO;
 
 public class MemberService {
 	
@@ -415,6 +418,42 @@ public class MemberService {
 			memberDAO = new MemberDAO();
 			count = memberDAO.getReportCount(pageDTO);
 		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
+
+
+	public List<WishListDTO> getWishList(ProductPageDTO ppageDTO) {
+		System.out.println("memberservice getWishList()");
+		List<WishListDTO> wishList = null;
+		try {
+			int p_startRow = (ppageDTO.getP_currentPage()-1)*ppageDTO.getP_pageSize()+1;
+			int p_endRow = p_startRow+ppageDTO.getP_pageSize()-1;
+			//pageDTO 저장 <= startRow, endRow
+			ppageDTO.setP_startRow(p_startRow);
+			ppageDTO.setP_endRow(p_endRow);
+			// BoardDAO 객체생성
+			memberDAO = new MemberDAO();
+			// boardList = getBoardList() 메서드 호출
+			wishList = memberDAO.getWishList(ppageDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return wishList;
+		}
+		
+
+
+	public int getProductCount() {
+		System.out.println("memberservice getProductCount()");
+		int count=0;
+		try {
+			// productDAO 객체생성
+			memberDAO = new MemberDAO();
+			// count = getBoardCount() 호출
+			count = memberDAO.getProductCount();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return count;

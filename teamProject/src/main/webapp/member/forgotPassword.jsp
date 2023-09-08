@@ -80,18 +80,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		
 			<div class="login-form-grids animated wow slideInUp" data-wow-delay=".5s">
 			
-				<form action = "forgotPassword.me"  method = "post">
-
+				<form action = "login.me"  method = "post">
+				
 					<input type="text"  placeholder ="아이디"  required=" "  id = "m_id" name = "m_id" >
 					<input type="email"  placeholder ="이메일"  required=" "  id = "m_email" name = "m_email" >
 					
 					<div class="_5center">
 <!-- 					새 비밀번호 받기 누르면 -> 멤버컨트롤단에 forgotPassword.me가 작동 -->
-						<input type="submit"  value="새 비밀번호 받기"  class="#">	
+						<input type="submit"  value="새 비밀번호 받기"  class="#" formaction="forgotPassword.me">	
 						<input type="submit"  value="취소"  onclick="location.href='login.me'" class="#">	
+						
 					<hr style="width:100%;height:1px;border:none;background-color:#999;">
-					</div>
-					</form>
+					</div>	
 					
 <!-- 홈/아이디 찾기/회원가입 -->					
 					<div class="_5forgot">
@@ -101,8 +101,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						|   
 						<a href="insert.me">회원가입</a>
 					</div>	
-<!-- // 홈/아이디 찾기/회원가입 -->	
-							
+
 				</form>
 			</div>
 		</div>

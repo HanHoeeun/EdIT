@@ -8,6 +8,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%
+int m_level = 0;
+if(session.getAttribute("m_level") != null){
+	m_level = (int)session.getAttribute("m_level");
+}
+
+%>
 <title>공지사항 이벤트</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -78,11 +85,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<li class="tab-link" data-tab="tab-1" onclick="location.href='noticelist.no'">일반공지</li>
 					<li class="tab-link current" data-tab="tab-2" onclick="location.href='eventlist.no'">이벤트</li>
 					<%
-					if (1 == 1) {
+					//세션값이 있으면
+					if(m_level == 2){
 					%>
-					<li class="tab-link" data-tab="tab-3" onclick="location.href='noticeWrite.no'">공지글 작성</li>
+					<li class="tab-link" data-tab="tab-3"
+						onclick="location.href='noticeWrite.no'">공지글 작성</li>
 					<%
-					}
+						}
 					%>
 				</ul>
 			</div>

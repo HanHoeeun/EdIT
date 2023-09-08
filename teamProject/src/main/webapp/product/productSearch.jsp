@@ -104,31 +104,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </ul>
             </div>
         </div>
-        
+ 
  <!-- 카테고리  -->
  <!-- 드롭다운과 상품 리스트 -->
-<%-- 
-<%
+ <%
 String orderBy = (String) request.getAttribute("orderBy");
 %>
  <div class="col-md-8 products-right">
             <div class="products-right-grid">
                 <div class="products-right-grids">
                     <div class="sorting">
-                        <select id="country" onchange="change_country(this.value)" class="frm-field required sect">
+                        <%-- <select id="country" onchange="change_country(this.value)" class="frm-field required sect">
                     <option value="latest" <% if (orderBy != null && orderBy.equals("latest")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>최신순</option>
                     <option value="popular" <% if (orderBy != null && orderBy.equals("popular")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>인기순</option> 
                     <option value="highPrice" <% if (orderBy != null && orderBy.equals("highPrice")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>가격 높은 순</option>               
                     <option value="lowPrice" <% if (orderBy != null && orderBy.equals("lowPrice")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>가격 낮은 순</option>                        
                		<option value="sell" <% if (orderBy != null && orderBy.equals("sell")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>판매중</option>                        
                     <option value="sold" <% if (orderBy != null && orderBy.equals("sold")){%>selected<%}%>><i class="fa fa-arrow-right" aria-hidden="true"></i>판매완료</option>
-                </select>
+                </select> --%>
             </div>
            
         </div>
     </div>
 
-<div class="clearfix"> </div> --%>
+<div class="clearfix"> </div>  
 
  <!-- 드롭다운  -->
  <!-- 상품 리스트 -->
@@ -143,23 +142,18 @@ String orderBy = (String) request.getAttribute("orderBy");
             MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO"); 
             %>
             
-              <div class="agile_top_brands_grids">
-             
+              <div class="search_agile_top_brands_grids">
     <% if (productList.isEmpty()) { %>
- 				
  				<h2 align="center"><br><br>찾으시는 상품이 없습니다.<br> 
- 				<br>상품을 추가해보세요! </h2>
- 				
+ 				<br>상품을 추가해보세요! </h2>	
 				<% } else { %>
     <% 
     	for (int i = 0; i < productList.size(); i++) {
-    
        ProductDTO productDTO = productList.get(i);
-       
        %>
-    <div class="col-md-4 top_brand_left">
+    <div class="search_col-md-4 search_top_brand_left">
         <div class="hover14 column">
-            <div class="agile_top_brand_left_grid">
+            <div class="search_agile_top_brand_left_grid">
                 <!-- <div class="agile_top_brand_left_grid_pos">
                     You can customize this part
                 </div> -->
@@ -167,7 +161,7 @@ String orderBy = (String) request.getAttribute("orderBy");
                     <figure>
                          <div class="snipcart-item block">
                             <div class="snipcart-thumb">
-                                <a href="single.po?p_num=<%=productDTO.getP_num()%>"><img title=" " alt=" " src="upload/<%=productDTO.getP_file() %>"  width="150px" height="150px" download></a>
+                                <a href="single.po?p_num=<%=productDTO.getP_num()%>"><img title=" " alt=" " src="upload/<%=productDTO.getP_file() %>"  width="150" height="150" download></a>
                                 <p><%=productDTO.getP_title() %></p>
                                 <h4><%= productDTO.getP_price() %>원</h4>
                                 <h4><%= productDTO.getP_status() %></h4>
@@ -289,7 +283,7 @@ $(document).ready(function() {
       if(ppageDTO.getP_startPage() > ppageDTO.getP_pageBlock()){
          %>
          <li>
-            <a href="laptop.po?p_pageNum=<%=ppageDTO.getP_startPage()-ppageDTO.getP_pageBlock()%>&orderBy=${orderBy}" aria-label="Previous">
+            <a href="productSearch.po?p_pageNum=<%=ppageDTO.getP_startPage()-ppageDTO.getP_pageBlock()%>&orderBy=${orderBy}" aria-label="Previous">
                <span aria-hidden="true">&laquo;</span>
             </a>
          </li>
@@ -301,7 +295,7 @@ $(document).ready(function() {
          boolean isPcurrentPage = (i == ppageDTO.getP_currentPage());
          %>
          <li class="<%= (isCurrentPage || isPcurrentPage) ? "active" : "" %>">
-            <a href="laptop.po?p_pageNum=<%= i %>&orderBy=${orderBy}" class="<%= (isCurrentPage) ? "" : "" %> <%= (isPcurrentPage) ? "custom-class" : "" %>">
+            <a href="productSearch.po?p_pageNum=<%= i %>&orderBy=${orderBy}" class="<%= (isCurrentPage) ? "" : "" %> <%= (isPcurrentPage) ? "custom-class" : "" %>">
             <%= (isPcurrentPage) ? i : i %></a>
          </li>
          <%
@@ -310,7 +304,7 @@ $(document).ready(function() {
       if(ppageDTO.getP_endPage() < ppageDTO.getP_pageCount()){
          %>
          <li>
-            <a href="laptop.po?p_pageNum=<%=ppageDTO.getP_startPage()+ppageDTO.getP_pageBlock()%>&orderBy=${orderBy}" >
+            <a href="productSearch.po?p_pageNum=<%=ppageDTO.getP_startPage()+ppageDTO.getP_pageBlock()%>&orderBy=${orderBy}" >
                <span aria-hidden="true">&raquo;</span>
             </a>
          </li>

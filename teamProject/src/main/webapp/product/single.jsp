@@ -169,7 +169,7 @@ SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
 					
 					<!-- 채팅, 신고하기, 상품목록 버튼 -->
 					<a href="#" onclick="window.open('chat.ch?ch_toID=<%= productDTO.getM_id()%>','1:1 채팅','width=500, height=800, scrollbars=yes')" ><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>1:1 채팅</a>
-					<a href=""><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>신고하기</a>
+					<a href="#" onclick="window.open('reportWrite.ad?r_m_target=<%= productDTO.getM_id()%>','신고하기','width=500, height=800, scrollbars=yes')"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>신고하기</a>
 					<a href=products.po"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>상품목록</a>
 					
 					</div>
