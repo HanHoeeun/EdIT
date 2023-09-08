@@ -80,8 +80,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!--=========================== 상단 탭 리스트============================================ -->
 	<div class="container_2_1">
 		<ul class="tabs">
+					<li class="tab-link " onclick="location.href='update.me'">나의정보</li>
 					<li class="tab-link" data-tab="tab-1" onclick="location.href='buylist.po'">전체판매목록</li>
 					<li class="tab-link current" data-tab="tab-2" onclick="location.href='buylist2.po'">판매완료목록</li>
+					<li class="tab-link" onclick="location.href='m_wishlist.me'">찜</li>
+					<li class="tab-link" onclick="location.href='m_adminpage.me'" >신고내역</li>
+					<li class="tab-link" data-tab="tab-7">회원탈퇴</li>
 		</ul>
 	</div>
 	
@@ -130,22 +134,21 @@ List<ProductDTO> productList2 = (List<ProductDTO>)request.getAttribute("productL
 						
 			</table>
 		
-		</div>
 		
 		
-		<!-- 페이징 코드 5개씩 나눠서 페이징 -->
-<nav class="numbering">
-   <ul class="pagination paging">
+		
+<!-- 페이징 코드 5개씩 나눠서 페이징 -->
+<div class="_1qna_paging">
+   <ul>
 <%
 ProductPageDTO productPageDTO = (ProductPageDTO)request.getAttribute("productPageDTO");
 if(productPageDTO.getP_startPage() > productPageDTO.getP_pageBlock()){
 %>
-         
-         <li>
-            <a href="buylist2.po?p_pageNum=<%=productPageDTO.getP_startPage()-productPageDTO.getP_pageBlock()%>" aria-label="Previous">
-               <span aria-hidden="true">&laquo;</span>
-            </a>
-         </li>
+      <li onclick="changePage(<%=productPageDTO.getP_startPage()-productPageDTO.getP_pageBlock()%>)">
+         <span aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+         </span>
+      </li>
 <%
 }
 
@@ -153,27 +156,34 @@ for(int i=productPageDTO.getP_startPage(); i<=productPageDTO.getP_endPage(); i++
   boolean isCurrentPage = (i == productPageDTO.getP_currentPage());
    boolean isPcurrentPage = (i == productPageDTO.getP_currentPage());
 %>
-
-         <li class="<%= (isCurrentPage || isPcurrentPage) ? "active" : "" %>">
-            <a href="buylist2.po?p_pageNum=<%= i %>" class="<%= (isCurrentPage) ? "" : "" %> <%= (isPcurrentPage) ? "custom-class" : "" %>">
-            <%= (isPcurrentPage) ? i : i %></a>
-         </li>
+      <li class="<%= (isCurrentPage || isPcurrentPage) ? "active" : "" %>" onclick="changePage(<%= i %>)">
+         <span class="<%= (isCurrentPage) ? "" : "" %> <%= (isPcurrentPage) ? "custom-class" : "" %>">
+            <%= (isPcurrentPage) ? i : i %>
+         </span>
+      </li>
 <%
 }
 
 if(productPageDTO.getP_endPage() < productPageDTO.getP_pageCount()){
 %>
-         <li>
-            <a href="buylist2.po?p_pageNum=<%=productPageDTO.getP_startPage()+productPageDTO.getP_pageBlock()%><%=productDTO.getP_num()%>" >
-               <span aria-hidden="true">&raquo;</span>
-            </a>
-         </li>
+      <li onclick="changePage(<%=productPageDTO.getP_startPage()+productPageDTO.getP_pageBlock()%>)">
+         <span>
+            <span aria-hidden="true">&raquo;</span>
+         </span>
+      </li>
 <%
 }
 %>
- 
    </ul>
-</nav>	
+</div> <!-- 텝 -->
+</div> <!-- 페이징 -->
+
+<script>
+   function changePage(pageNum) {
+      // 페이지 번호에 해당하는 URL로 이동
+      window.location.href = "buylist2.po?p_pageNum=" + pageNum;
+   }
+</script>
 	<!--================================== 2탭 나의정보==================================== -->
 				
 		</div> <!-- class=container_3_1 -->

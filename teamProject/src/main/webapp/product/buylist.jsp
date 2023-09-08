@@ -80,8 +80,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!--=========================== 상단 탭 리스트============================================ -->
 	<div class="container_2_1">
 		<ul class="tabs">
+					<li class="tab-link " onclick="location.href='update.me'">나의정보</li>
 					<li class="tab-link current" data-tab="tab-1" onclick="location.href='buylist.po'">전체판매목록</li>
 					<li class="tab-link" data-tab="tab-2" onclick="location.href='buylist2.po'">판매완료목록</li>
+					<li class="tab-link" onclick="location.href='m_wishlist.me'">찜</li>
+					<li class="tab-link" onclick="location.href='m_adminpage.me'" >신고내역</li>
+					<li class="tab-link" data-tab="tab-7">회원탈퇴</li>
 		</ul>
 	</div>
 	
@@ -130,51 +134,58 @@ List<ProductDTO> productList = (List<ProductDTO>)request.getAttribute("productLi
 						
 			</table>
 		
-		</div>
-		
-		
-		<!-- 페이징 코드 5개씩 나눠서 페이징 -->
-<nav class="numbering">
-   <ul class="pagination paging">
-<%
-ProductPageDTO productPageDTO = (ProductPageDTO)request.getAttribute("productPageDTO");
-if(productPageDTO.getP_startPage() > productPageDTO.getP_pageBlock()){
-%>
-         
-         <li>
-            <a href="buylist.po?p_pageNum=<%=productPageDTO.getP_startPage()-productPageDTO.getP_pageBlock()%>&orderBy=${orderBy}" aria-label="Previous">
-               <span aria-hidden="true">&laquo;</span>
-            </a>
-         </li>
-<%
-}
+	<!-- 페이징 코드 5개씩 나눠서 페이징 -->
+<div class="_1qna_paging">
+   <ul>
+      <%
+      ProductPageDTO productPageDTO = (ProductPageDTO)request.getAttribute("productPageDTO");
+      String orderBy = request.getParameter("orderBy");
+      if(productPageDTO.getP_startPage() > productPageDTO.getP_pageBlock()){
+      %>
+      <li onclick="changePage(<%=productPageDTO.getP_startPage()-productPageDTO.getP_pageBlock()%>, '<%=orderBy%>')">
+         <span aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+         </span>
+      </li>
+      <%
+      }
 
-for(int i=productPageDTO.getP_startPage(); i<=productPageDTO.getP_endPage(); i++){
-  boolean isCurrentPage = (i == productPageDTO.getP_currentPage());
-   boolean isPcurrentPage = (i == productPageDTO.getP_currentPage());
-%>
+      for(int i=productPageDTO.getP_startPage(); i<=productPageDTO.getP_endPage(); i++){
+         boolean isCurrentPage = (i == productPageDTO.getP_currentPage());
+         boolean isPcurrentPage = (i == productPageDTO.getP_currentPage());
+      %>
+      <li class="<%= (isCurrentPage || isPcurrentPage) ? "active" : "" %>" onclick="changePage(<%= i %>, '<%=orderBy%>')">
+         <span class="<%= (isCurrentPage) ? "" : "" %> <%= (isPcurrentPage) ? "custom-class" : "" %>">
+            <%= (isPcurrentPage) ? i : i %>
+         </span>
+      </li>
+      <%
+      }
 
-         <li class="<%= (isCurrentPage || isPcurrentPage) ? "active" : "" %>">
-            <a href="buylist.po?p_pageNum=<%= i %>&orderBy=${orderBy}" class="<%= (isCurrentPage) ? "" : "" %> <%= (isPcurrentPage) ? "custom-class" : "" %>">
-            <%= (isPcurrentPage) ? i : i %></a>
-         </li>
-<%
-}
-
-if(productPageDTO.getP_endPage() < productPageDTO.getP_pageCount()){
-%>
-         <li>
-            <a href="buylist.po?p_pageNum=<%=productPageDTO.getP_startPage()+productPageDTO.getP_pageBlock()%>&orderBy=${orderBy}" >
-               <span aria-hidden="true">&raquo;</span>
-            </a>
-         </li>
-<%
-}
-%>
- 
+      if(productPageDTO.getP_endPage() < productPageDTO.getP_pageCount()){
+      %>
+      <li onclick="changePage(<%=productPageDTO.getP_startPage()+productPageDTO.getP_pageBlock()%>, '<%=orderBy%>')">
+         <span>
+            <span aria-hidden="true">&raquo;</span>
+         </span>
+      </li>
+      <%
+      }
+      %>
    </ul>
-</nav>
+</div> <!-- class="_1qna_paging" -->
+</div> <!-- class="tab-content current" -->
+
+<script>
+   function changePage(pageNum, orderBy) {
+      // 페이지 번호와 orderBy 파라미터를 사용하여 URL을 생성
+      var url = "buylist.po?p_pageNum=" + pageNum + "&orderBy=" + orderBy;
+      // 페이지 이동
+      window.location.href = url;
+   }
+</script>	
 		
+	
 		
 <!--================================== 1탭 ==================================== -->	
 				
