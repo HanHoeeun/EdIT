@@ -261,7 +261,7 @@ public class MemberController extends HttpServlet{
 				//ProductService productService = new ProductService();
 				//ProductDTO productDTO = productService.getproduct(request);
 			
-				int p_pageSize=10;
+				int p_pageSize=4;
 				System.out.println("size"+p_pageSize);
 				String p_pageNum=request.getParameter("p_pageNum");
 				if(p_pageNum == null) {
