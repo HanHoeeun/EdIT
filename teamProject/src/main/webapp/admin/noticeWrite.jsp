@@ -109,7 +109,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<td class="_1q_query_tab_1"><select
 									class="_1q_query_tab_sel" name="a_notice_type"
 									style="border: none;">
-										<option value="일반공지">일반공지</option>
+										<option value="공지">공지</option>
 										<option value="이벤트">이벤트</option>
 								</select></td>
 								<td>

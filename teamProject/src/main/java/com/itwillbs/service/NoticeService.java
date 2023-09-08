@@ -96,7 +96,7 @@ public class NoticeService {
 			noticeDTO.setA_file(a_file);
 
 			// 글 유형에 따라 일반공지, 이벤트로 넘어가게
-			if(a_notice_type=="일반공지"){
+			if(a_notice_type=="공지"){
 				// 리턴할형없음 insertNotice(noticeDTO) 호출
 				noticeDAO.insertNotice(noticeDTO);
 			}else {
@@ -167,7 +167,7 @@ public class NoticeService {
 			noticeDAO.updateNotice(noticeDTO);		
 			
 			// 글 유형에 따라 일반공지, 이벤트로 넘어가게
-			if(a_notice_type=="일반공지"){
+			if(a_notice_type=="공지"){
 				// 리턴할형없음 insertNotice(noticeDTO) 호출
 				noticeDAO.updateNotice(noticeDTO);
 			}else {
@@ -312,7 +312,7 @@ public class NoticeService {
 			noticeDTO.setA_file(a_file);
 			
 			// 글 유형에 따라 일반공지, 이벤트로 넘어가게
-			if(a_notice_type=="일반공지"){
+			if(a_notice_type=="공지"){
 				// 리턴할형없음 insertNotice(noticeDTO) 호출
 				noticeDAO.insertNotice(noticeDTO);
 			}else {
