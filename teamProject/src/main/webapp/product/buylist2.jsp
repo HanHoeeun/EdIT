@@ -3,7 +3,7 @@
 <%@page import="com.itwillbs.domain.MemberDTO"%>
 <%@page import="com.itwillbs.domain.ProductDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,37 +11,46 @@
 <title>Insert title here</title>
 </head>
 <body>
-<!--  찜리스트 
+	<!--  찜리스트 
 author: W3layouts
 author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
-<!DOCTYPE html>
+	<!DOCTYPE html>
 <html>
 <head>
-<title>Super Market an Ecommerce Online Shopping Category Flat Bootstrap Responsive Website Template | Checkout :: w3layouts</title>
+<title>Super Market an Ecommerce Online Shopping Category Flat
+	Bootstrap Responsive Website Template | Checkout :: w3layouts</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Super Market Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+<meta name="keywords"
+	content="Super Market Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
-		function hideURLbar(){ window.scrollTo(0,1); } </script>
+<script type="application/x-javascript">
+	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } 
+</script>
 <!-- //for-mobile-apps -->
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css"
+	media="all" />
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-<link href="css/mypage_3.css" rel="stylesheet"> 
+<link href="css/mypage_3.css" rel="stylesheet">
 <!-- font-awesome icons -->
-<link href="css/font-awesome.css" rel="stylesheet"> 
-<link href="css/faq_1_9.css" rel="stylesheet">  
-<link href="css/faq_1.css" rel="stylesheet"> 
+<link href="css/font-awesome.css" rel="stylesheet">
+<link href="css/faq_1_9.css" rel="stylesheet">
+<link href="css/faq_1.css" rel="stylesheet">
 <!-- //font-awesome icons -->
 <!-- js -->
 <script src="js/jquery-1.11.1.min.js"></script>
 <!-- //js -->
-<link href='//fonts.googleapis.com/css?family=Raleway:400,100,100italic,200,200italic,300,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic' rel='stylesheet' type='text/css'>
-<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+<link
+	href='//fonts.googleapis.com/css?family=Raleway:400,100,100italic,200,200italic,300,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic'
+	rel='stylesheet' type='text/css'>
+<link
+	href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic'
+	rel='stylesheet' type='text/css'>
 <!-- start-smoth-scrolling -->
 <script type="text/javascript" src="js/move-top.js"></script>
 <script type="text/javascript" src="js/easing.js"></script>
@@ -55,148 +64,169 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 <!-- start-smoth-scrolling -->
 </head>
-	
+
 <body>
 
-<!-- 헤더 들어가는 곳! -->
-<jsp:include page="../inc/top.jsp"></jsp:include>
-<!-- 헤더 들어가는 곳! -->
+	<!-- 헤더 들어가는 곳! -->
+	<jsp:include page="../inc/top.jsp"></jsp:include>
+	<!-- 헤더 들어가는 곳! -->
 
-<!-- breadcrumbs -->
+	<!-- breadcrumbs -->
 	<div class="breadcrumbs">
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1">
-				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>홈</a></li>
+				<li><a href="index.html"><span
+						class="glyphicon glyphicon-home" aria-hidden="true"></span>홈</a></li>
 				<li class="active">마이페이지</li>
 			</ol>
 		</div>
 	</div>
-<!-- //breadcrumbs -->
+	<!-- //breadcrumbs -->
 
 
-<div class="top-brands_1">
-	<div class="container_1_1">
+	<div class="top-brands_1">
+			<h2>마이페이지</h2>
+		<div class="container_1_1">
 
-	<!--=========================== 상단 탭 리스트============================================ -->
-	<div class="container_2_1">
-		<ul class="tabs">
+			<!--=========================== 상단 탭 리스트============================================ -->
+			<div class="container_2_1">
+				<ul class="tabs">
 					<li class="tab-link " onclick="location.href='update.me'">나의정보</li>
-					<li class="tab-link" data-tab="tab-1" onclick="location.href='buylist.po'">전체판매목록</li>
-					<li class="tab-link current" data-tab="tab-2" onclick="location.href='buylist2.po'">판매완료목록</li>
+					<li class="tab-link" data-tab="tab-1"
+						onclick="location.href='buylist.po'">전체판매목록</li>
+					<li class="tab-link current" data-tab="tab-2"
+						onclick="location.href='buylist2.po'">판매완료목록</li>
 					<li class="tab-link" onclick="location.href='m_wishlist.me'">찜</li>
-					<li class="tab-link" onclick="location.href='m_adminpage.me'" >신고내역</li>
+					<li class="tab-link" onclick="location.href='m_adminpage.me'">신고내역</li>
 					<li class="tab-link" data-tab="tab-7">회원탈퇴</li>
-		</ul>
-	</div>
-	
-	<!--================================== 2탭 나의정보==================================== -->
-	
-<%
-String id = (String)session.getAttribute("m_id");
-ProductDTO productDTO = (ProductDTO)request.getAttribute("productDTO");
-MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
-List<ProductDTO> productList2 = (List<ProductDTO>)request.getAttribute("productList2");
-%>
+				</ul>
+			</div>
 
-	<div class="container_3_1">
+			<!--================================== 2탭 나의정보==================================== -->
 
-		<div id="tab-2" class="tab-content current">
-		
-			<table class="_1qna_board">
+			<%
+			String id = (String) session.getAttribute("m_id");
+			ProductDTO productDTO = (ProductDTO) request.getAttribute("productDTO");
+			MemberDTO memberDTO = (MemberDTO) request.getAttribute("memberDTO");
+			List<ProductDTO> productList2 = (List<ProductDTO>) request.getAttribute("productList2");
+			%>
+
+			<div class="container_3_1">
+
+				<div id="tab-2" class="tab-content current">
+
+					<table class="_1qna_board">
 						<tr>
-							<th class="_1qna_board_border">상품번호</th>
-<!-- 							<th class="_1qna_board_border">상품이미지</th> -->
+							<th class="_1qna_board_border">상품번호/카테고리</th>
+							<!-- 							<th class="_1qna_board_border">상품이미지</th> -->
 							<th class="_1qna_board_border">제목</th>
 							<th class="_1qna_board_border">가격</th>
 						</tr>
-						
-						
-<%				
-	if (productList2 != null && id != null){
-				for(int i=0;i<productList2.size();i++){
-					productDTO =productList2.get(i);
-						if (id.equals(productDTO.getM_id())){
-%>	
 
-			<tr>
-<%-- 				<td class="_1qna_board_border" style="display: none;"><%=productDTO.getP_num()%></td> --%>
-				<td class="_1qna_board_border"><%=productDTO.getP_num()%></td>
-<%-- 				<td class="_1qna_board_border"><a href="single.po?p_num=<%=productDTO.getP_num()%>"><img src="upload/<%=productDTO.getP_file() %>" alt=" " class="img-responsive" /></a></td> --%>
-				<td class="_1qna_board_subject"><a href="single.po?p_num=<%=productDTO.getP_num()%>"><%=productDTO.getP_title() %></td>
-				<td class="_1qna_board_border"><%=productDTO.getP_price() %>원</td>
-			</tr>
-					
-<%
-		}
-	}
-}
-%>				
-						
-			</table>
-		
-		
-		
-		
-<!-- 페이징 코드 5개씩 나눠서 페이징 -->
-<div class="_1qna_paging">
-   <ul>
-<%
-ProductPageDTO productPageDTO = (ProductPageDTO)request.getAttribute("productPageDTO");
-if(productPageDTO.getP_startPage() > productPageDTO.getP_pageBlock()){
-%>
-      <li onclick="changePage(<%=productPageDTO.getP_startPage()-productPageDTO.getP_pageBlock()%>)">
-         <span aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-         </span>
-      </li>
-<%
-}
+						<%
+						if (productList2 != null && id != null) {
+							if (productList2.isEmpty()) {
+						%>
+						<tr>
+							<td colspan="7">판매완료된 상품이 없어용..ㅠ.ㅠ</td>
+						</tr>
+						<%
+						} else {
+						%>
 
-for(int i=productPageDTO.getP_startPage(); i<=productPageDTO.getP_endPage(); i++){
-  boolean isCurrentPage = (i == productPageDTO.getP_currentPage());
-   boolean isPcurrentPage = (i == productPageDTO.getP_currentPage());
-%>
-      <li class="<%= (isCurrentPage || isPcurrentPage) ? "active" : "" %>" onclick="changePage(<%= i %>)">
-         <span class="<%= (isCurrentPage) ? "" : "" %> <%= (isPcurrentPage) ? "custom-class" : "" %>">
-            <%= (isPcurrentPage) ? i : i %>
-         </span>
-      </li>
-<%
-}
+						<%
+						for (int i = 0; i < productList2.size(); i++) {
+							productDTO = productList2.get(i);
+							if (id.equals(productDTO.getM_id())) {
+						%>
 
-if(productPageDTO.getP_endPage() < productPageDTO.getP_pageCount()){
-%>
-      <li onclick="changePage(<%=productPageDTO.getP_startPage()+productPageDTO.getP_pageBlock()%>)">
-         <span>
-            <span aria-hidden="true">&raquo;</span>
-         </span>
-      </li>
-<%
-}
-%>
-   </ul>
-</div> <!-- 텝 -->
-</div> <!-- 페이징 -->
+						<tr>
+							<%-- 				<td class="_1qna_board_border" style="display: none;"><%=productDTO.getP_num()%></td> --%>
+							<td class="_1qna_board_border"><%=productDTO.getP_num()%>/<%=productDTO.getP_type()%></td>
+							<%-- 				<td class="_1qna_board_border"><a href="single.po?p_num=<%=productDTO.getP_num()%>"><img src="upload/<%=productDTO.getP_file() %>" alt=" " class="img-responsive" /></a></td> --%>
+							<td class="_1qna_board_subject"><a
+								href="single.po?p_num=<%=productDTO.getP_num()%>"><%=productDTO.getP_title()%></td>
+							<td class="_1qna_board_border"><%=productDTO.getP_price()%>원</td>
+						</tr>
 
-<script>
+						<%
+						}
+						}
+						}
+						}
+						%>
+
+					</table>
+
+
+
+
+					<!-- 페이징 코드 5개씩 나눠서 페이징 -->
+					<div class="_1qna_paging">
+						<ul>
+							<%
+							ProductPageDTO productPageDTO = (ProductPageDTO) request.getAttribute("productPageDTO");
+							if (productPageDTO.getP_startPage() > productPageDTO.getP_pageBlock()) {
+							%>
+							<li
+								onclick="changePage(<%=productPageDTO.getP_startPage() - productPageDTO.getP_pageBlock()%>)">
+								<span aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+							</span>
+							</li>
+							<%
+							}
+
+							for (int i = productPageDTO.getP_startPage(); i <= productPageDTO.getP_endPage(); i++) {
+							boolean isCurrentPage = (i == productPageDTO.getP_currentPage());
+							boolean isPcurrentPage = (i == productPageDTO.getP_currentPage());
+							%>
+							<li
+								class="<%=(isCurrentPage || isPcurrentPage) ? "active" : ""%>"
+								onclick="changePage(<%=i%>)"><span
+								class="<%=(isCurrentPage) ? "" : ""%> <%=(isPcurrentPage) ? "custom-class" : ""%>">
+									<%=(isPcurrentPage) ? i : i%>
+							</span></li>
+							<%
+							}
+
+							if (productPageDTO.getP_endPage() < productPageDTO.getP_pageCount()) {
+							%>
+							<li
+								onclick="changePage(<%=productPageDTO.getP_startPage() + productPageDTO.getP_pageBlock()%>)">
+								<span> <span aria-hidden="true">&raquo;</span>
+							</span>
+							</li>
+							<%
+							}
+							%>
+						</ul>
+					</div>
+					<!-- 텝 -->
+				</div>
+				<!-- 페이징 -->
+
+				<script>
    function changePage(pageNum) {
       // 페이지 번호에 해당하는 URL로 이동
       window.location.href = "buylist2.po?p_pageNum=" + pageNum;
    }
 </script>
-	<!--================================== 2탭 나의정보==================================== -->
-				
-		</div> <!-- class=container_3_1 -->
-	</div> <!-- class="container_1_1 -->
-</div>  <!--  class=top-brands_1 -->
+				<!--================================== 2탭 나의정보==================================== -->
 
-			
-			
-<!-- // 판매목록 -->
-
+			</div>
+			<!-- class=container_3_1 -->
+		</div>
+		<!-- class="container_1_1 -->
+	</div>
+	<!--  class=top-brands_1 -->
 
 
-<script type="text/javascript">
+
+	<!-- // 판매목록 -->
+
+
+
+	<script type="text/javascript">
 
 <!-- 			탭 jquery -->
 $(document).ready(function(){
@@ -229,16 +259,16 @@ $(document).ready(function(){
 
 
 
-<!-- 푸터 들어가는 곳! -->
-<div class="clearfix">
-<jsp:include page="../inc/bottom.jsp"></jsp:include>
-</div>
-<!-- 푸터 들어가는 곳! -->
+	<!-- 푸터 들어가는 곳! -->
+	<div class="clearfix">
+		<jsp:include page="../inc/bottom.jsp"></jsp:include>
+	</div>
+	<!-- 푸터 들어가는 곳! -->
 
 
-<script src="../js/bootstrap.min.js"></script>
-<!-- top-header and slider -->
-<!-- here stars scrolling icon -->
+	<script src="../js/bootstrap.min.js"></script>
+	<!-- top-header and slider -->
+	<!-- here stars scrolling icon -->
 	<script type="text/javascript">
 		$(document).ready(function() {
 			/*
@@ -254,9 +284,9 @@ $(document).ready(function(){
 								
 			});
 	</script>
-<!-- //here ends scrolling icon -->
-<script src="../js/minicart.min.js"></script>
-<script>
+	<!-- //here ends scrolling icon -->
+	<script src="../js/minicart.min.js"></script>
+	<script>
 	// Mini Cart
 	paypal.minicart.render({
 		action: '#'
@@ -266,10 +296,10 @@ $(document).ready(function(){
 		paypal.minicart.reset();
 	}
 </script>
-<!-- main slider-banner -->
-<script src="../js/skdslider.min.js"></script>
-<link href="../css/skdslider.css" rel="stylesheet">
-<script type="text/javascript">
+	<!-- main slider-banner -->
+	<script src="../js/skdslider.min.js"></script>
+	<link href="../css/skdslider.css" rel="stylesheet">
+	<script type="text/javascript">
 		jQuery(document).ready(function(){
 			jQuery('#demo1').skdslider({'delay':5000, 'animationSpeed': 2000,'showNextPrev':true,'showPlayButton':true,'autoSlide':true,'animationType':'fading'});
 						
@@ -278,8 +308,8 @@ $(document).ready(function(){
 			});
 			
 		});
-</script>	
-<!-- //main slider-banner --> 
+</script>
+	<!-- //main slider-banner -->
 </body>
 </html>
 </body>
