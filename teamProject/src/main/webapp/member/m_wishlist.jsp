@@ -80,7 +80,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--=========================== 상단 탭 리스트============================================ -->
 				<ul class="tabs">
 					<li class="tab-link " onclick="location.href='update.me'">나의정보</li>
-					<li class="tab-link" onclick="location.href='buylist.me'">판매내역</li>
+					<li class="tab-link" onclick="location.href='buylist.po'">전체판매목록</li>
+					<li class="tab-link" onclick="location.href='buylist2.po'">판매완료목록</li>
 					<li class="tab-link current" onclick="location.href='m_wishlist.me'">찜</li> 
 					<li class="tab-link" onclick="location.href='m_adminpage.me'" >신고내역</li>
 <!-- 					<li class="tab-link" data-tab="tab-7">회원탈퇴</li> -->
@@ -113,11 +114,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					 WishListDTO wishListDTO = wishList.get(i);
 						%>
 						<tr class="rem1">
-						<td class="w_num" style="display: none;"><%= wishListDTO.getW_num() %></td>
+						<td class="w_num" style="display: none;"><%= wishListDTO.getW_p_num() %></td>
 						<td class="_1qna_board_border"><%=i + 1 %></td>
 						<td class="_1qna_board_border"><a href="single.po?p_num=<%=wishListDTO.getW_p_num()%>"><img src="upload/<%= wishListDTO.getProductDTO().getP_file() %>" width="100px" height="100px" download alt=" " class="img-responsive" /></a></td>
 						<td class="_1qna_board_border"><a href="single.po?p_num=<%=wishListDTO.getW_p_num()%>"><%=wishListDTO.getProductDTO().getP_title() %></a></td>
-						<td class = "_1qna_board_border"><%=wishListDTO.getProductDTO().getP_status() %></td>
+						<td class="_1qna_board_border"><%=wishListDTO.getProductDTO().getP_status() %></td>
 						<td class="_1qna_board_border"><a href="single.po?p_num=<%=wishListDTO.getW_p_num()%>"><%=wishListDTO.getProductDTO().getP_type() %></a></td>
 						<td class="_1qna_board_border"><%=wishListDTO.getProductDTO().getP_price() %>원</td>
 						<td class="_1qna_board_border" align="center">
@@ -168,10 +169,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         %>
     </ul>
 </div>
+<!-- // 페이징 -->
 </div>
 </div>
 
-<!-- // 페이징 -->
+
 
 	<script>
     				$(document).ready(function() {
@@ -187,7 +189,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                		   success: function(response) {
                        if (response === 'success') {
                         // 삭제가 성공하면 UI에서 항목을 제거
-                        $rem1.animate('slow', function() {
+                        $rem1.fadeOut('slow', function() {
                             $rem1.remove();
                         });
                        } else {
