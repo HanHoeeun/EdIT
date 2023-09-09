@@ -413,6 +413,7 @@ public class ProductDAO {
 				productDTO.setP_num(rs.getInt("p_num"));
 				productDTO.setP_file(rs.getString("p_file"));
 				productDTO.setP_title(rs.getString("p_title"));
+				productDTO.setP_type(rs.getString("p_type"));
 				productDTO.setP_price(rs.getInt("P_price"));
 
 				// => 배열 한칸에 저장
