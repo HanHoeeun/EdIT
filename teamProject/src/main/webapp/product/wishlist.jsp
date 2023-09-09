@@ -172,7 +172,7 @@ String orderBy = (String) request.getAttribute("orderBy");
                		   success: function(response) {
                        if (response === 'success') {
                         // 삭제가 성공하면 UI에서 항목을 제거
-                        $rem1.animate('slow', function() {
+                        $rem1.fadeOut('slow', function() {
                             $rem1.remove();
                         });
                        } else {
