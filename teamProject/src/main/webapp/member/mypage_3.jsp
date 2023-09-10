@@ -49,9 +49,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 
 <!-- 회원탈퇴부분 -->
-<%
-	String m_id = (String)session.getAttribute("m_id");
-%>	
+
 
 </head>
 	
@@ -79,7 +77,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<li class="tab-link" data-tab="tab-3">판매내역</li>
 					<li class="tab-link" onclick="location.href='m_wishlist.me'">찜</li>
 					<li class="tab-link" onclick="location.href='m_adminpage.me'" >신고내역</li>
-					<li class="tab-link" data-tab="tab-7">회원탈퇴</li>
+<!-- 					<li class="tab-link" data-tab="tab-7">회원탈퇴</li> -->
 				</ul>
 			</div>
 		
@@ -159,7 +157,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<div class="delete-button">
 							<input type="submit" class="delete-button" value="수정">
 							</div><br>
-							<a id="password-change-link" href="#" onclick="window.open('pwupdate.me?m_num=','비밀번호 변경','width=800, height=700, scrollbars=yes')">비밀번호 변경</a>
+							<a id="password-change-link" href="#" onclick="window.open('pwupdate.me?m_num=','비밀번호 변경','width=800, height=700, scrollbars=yes')" style="font-size: 15px">비밀번호 변경</a><br>
+							<a id="password-change-link" href="#" onclick="window.open('delete.me?m_num=','회원탈퇴','width=800, height=700, scrollbars=yes')" style="font-size: 12px">회원탈퇴</a>
 							</td>
 						
 						</tr>
@@ -167,101 +166,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 			</form>
 			
-			
-<!--================================== 2탭 구매내역 ==================================== -->				
-<!-- 				<div id="tab-2" class="tab-content"> -->
-<!-- 					<table class="_1qna_board"> -->
-<!-- 						<tr> -->
-<!-- 							<th class="_1qna_board_border">상품번호</th> -->
-<!-- 							<th class="_1qna_board_border">상품이미지</th> -->
-<!-- 							<th class="_1qna_board_border">제목</th> -->
-<!-- 							<th class="_1qna_board_border">가격</th> -->
-<!-- 						</tr> -->
-<!-- 						<tr> -->
-<!-- 							<td class="_1qna_board_border">1</td> -->
-<!-- 							<td class="_1qna_board_border">이미지..</td> -->
-<!-- 							<td class="_1qna_board_border">상품명...?</td> -->
-<!-- <!-- 							<td class="_1qna_board_subject">신규가입 회원 혜택이 빵빵! (~09/30)</td> -->
-<!-- 							<td class="_1qna_board_border">2023.09.01</td> -->
-<!-- 						</tr> -->
-						
-<!-- 					</table> -->
-<!-- 					============= 2탭 이벤트 페이징 ==================== -->
-<!-- 				    <div class="_1qna_paging"> -->
-				 
-<!-- 					 <ul> -->
-<!-- 				       <li onclick="location.href='index.html'">◀</li> -->
-<!-- 				       <li onclick="location.href='about.html'">1</li> -->
-<!-- 			           <li onclick="location.href='login.html'">2</li> -->
-<!-- 			           <li onclick="location.href='faq.html'">3</li> -->
-<!-- 			           <li onclick="location.href='gourmet.html'">4</li> -->
-<!-- 			           <li onclick="location.href='login.html'">5</li> -->
-<!-- 			           <li onclick="location.href='products.html'">▶</li>						 -->
-<!-- 			         </ul>  -->
-<!--    					 </div> -->
-<!-- 				</div> -->
-<!--================================== 3탭 판매내역 ==================================== -->
-	
-				<div id="tab-3" class="tab-content">
-					<table class="_1qna_board">
-						<tr>
-							<th class="_1qna_board_border">번호</th>
-							<th class="_1qna_board_border">제목</th>
-							<th class="_1qna_board_border">작성일</th>
-						</tr>
-						<tr>
-							<td class="_1qna_board_border">1</td>
-							<td class="_1qna_board_subject">신규가입 회원 혜택이 빵빵! (~09/30)</td>
-							<td class="_1qna_board_border">2023.09.01</td>
-						</tr>
-						
-					</table>
-		<!--============= 3탭 이벤트 페이징 ==================== -->
-				    <div class="_1qna_paging">
-				 
-					 <ul>
-				       <li onclick="location.href='index.html'">◀</li>
-				       <li onclick="location.href='about.html'">1</li>
-			           <li onclick="location.href='login.html'">2</li>
-			           <li onclick="location.href='faq.html'">3</li>
-			           <li onclick="location.href='gourmet.html'">4</li>
-			           <li onclick="location.href='login.html'">5</li>
-			           <li onclick="location.href='products.html'">▶</li>						
-			         </ul> 
-   					 </div>
-				</div>
-<!--================================== 4탭 찜 ==================================== -->		
-
-
-		
-<!-- 				<div id="tab-4" class="tab-content"> -->
-<!-- 					<table class="_1qna_board"> -->
-<!-- 						<tr> -->
-<!-- 							<th class="_1qna_board_border">번호</th> -->
-<!-- 							<th class="_1qna_board_border">이미지</th> -->
-<!-- 							<th class="_1qna_board_border">이름</th> -->
-<!-- 							<th class="_1qna_board_border">상태</th> -->
-<!-- 							<th class="_1qna_board_border">타입</th> -->
-<!-- 							<th class="_1qna_board_border">가격</th> -->
-<!-- 							<th class="_1qna_board_border">삭제</th> -->
-<!-- 						</tr> -->
-<!-- 						<tr> -->
-<!-- 							<td class="_1qna_board_border">1</td> -->
-<!-- 							<td class="_1qna_board_border">1</td> -->
-<!-- 							<td class="_1qna_board_border">1</td> -->
-<!-- 							<td class="_1qna_board_border">1</td> -->
-<!-- 							<td class="_1qna_board_border">1</td> -->
-<!-- 							<td class="_1qna_board_border">1</td> -->
-<!-- 							<td class="_1qna_board_subject">신규가입 회원 혜택이 빵빵! (~09/30)</td> -->
-<!-- 							<td class="_1qna_board_border">X</td> -->
-<!-- 						</tr> -->
-						
-<!-- 					</table> -->
-<!-- 				</div> -->
-
 
 <!--==================================회원탈퇴==================================== -->				
-
+<%-- 
 				<div id="tab-7" class="tab-content">
 					<table class="_1qna_board">
 						<tr><th class="_1qna_board_border1">회원탈퇴</th></tr>
@@ -287,7 +194,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								</form>
 							</td></tr>
 					</table>
-				</div>
+				</div> --%>
 				
 				
 </div>
@@ -370,19 +277,7 @@ $(document).ready(function() {
 
 
 
-/* 
-document.getElementById('profileForm').addEventListener('submit', function (e) {
-    e.preventDefault();
 
-    // 여기에서 회원 정보를 서버로 업데이트하고, 성공 또는 실패 여부를 확인합니다.
-    // 이 부분은 서버와의 통신 및 업데이트 로직입니다.
-
-    // 만약 회원 정보 수정이 성공했다면, 다음 코드를 사용하여 수정 완료 메시지를 띄웁니다.
-    alert('회원 정보가 수정되었습니다.');
-   	location.reload();
-
-    // 필요한 경우, 다른 동작을 수행하거나 페이지를 새로고침할 수 있습니다.
-}); */
 
 </script>
  

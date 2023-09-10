@@ -1,7 +1,8 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.logging.SimpleFormatter"%>
 <%@page import="com.itwillbs.domain.MemberDTO"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!--
 author: W3layouts
 author URL: http://w3layouts.com
@@ -11,7 +12,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
-
 <title>Super Market an Ecommerce Online Shopping Category Flat Bootstrap Responsive Website Template | Faq :: w3layouts</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -47,43 +47,33 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 	
 <body>
-<%
-MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
-%>
 
-<!-- header -->
-	<!-- //breadcrumbs -->
-	<!-- top-brands -->
+
+<%
+	String m_id = (String)session.getAttribute("m_id");
+%>		
+	
 	
 	<div class="top-brands_1">
-			<h2>비밀번호 변경</h2>
+			<h2>회원탈퇴</h2>
 		<div class="_1container_1_1">
-			<form class="_1report_content_form" action="pwupdatePro.me" method="post">		
+			<form class="_1report_content_form" action="deletePro.me" method="post">		
 			<table class="_1report_content_board">
 				<tr>
 				<td class="_1report_content_border">아이디</td>
-				<td><input type="text" value="<%=memberDTO.getM_id() %>" name="m_id" id="m_id" style="border:none;" readonly="readonly"></td>
-				</tr>					
-				<tr>						
-				<td class="_1report_content_border">현재비밀번호</td>
-				<td><input type="password" placeholder="현재비밀번호" name="m_pass" id="m_pass" style="border:none;"></td>
+				<td ><input type="text" value="<%=m_id %>" name="m_id" style="border:none;" readonly="readonly"></td>
 				</tr>	
 				<tr>						
-				<td class="_1report_content_border">새비밀번호</td>
-				<td><input type="password" placeholder="새비밀번호" name="m_pass2" id="m_pass2" style="border:none;"></td>
+				<td class="_1report_content_border">비밀번호</td>
+				<td><input type="password" name="m_pass" style="border:none;"></td>
 				</tr>	
-				<tr>						
-				<td class="_1report_content_border">새비밀번호확인</td>
-				<td><input type="password" placeholder="새비밀번호확인" name="m_pass3" id="m_pass3" style="border:none;"></td>
-				</tr>
-				<tr>						
-				<td colspan="2"><div id="result"></div></td>
-				</tr>
-											
+
+						
+					
 			</table>
-			
-					<div class="_1q_query_btn">
-							<button type="submit" class="dup" style="font-size: 14px" onclick="showSuccessMessage()">수정</button>
+			<div id="result"></div>
+					<div class="_1q_query_btn" >
+							<button type="submit" style="font-size: 14px" >탈퇴<br></button>
 							<button type="button" onclick="window.close()" style="font-size: 14px">닫기</button>
 					</div>
 			</form>
@@ -94,50 +84,51 @@ MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 
 <script type="text/javascript" src="script/jquery-3.7.0.js"></script>
 <script type="text/javascript">
-// function showSuccessMessage() {
-//     // 성공 메시지를 표시합니다.
-//     alert("비밀번호 수정이 성공적으로 완료되었습니다.");
-    
-//     // 현재 창을 닫고 메인 창을 새로고침합니다.
-//     window.close();
-//     // 메인 창을 새로고침하고 "update.me" 페이지로 이동합니다.
-//     window.opener.location.href = "update.me";
-// }
 
+/* //수정 버튼 클릭 이벤트 핸들러
+document.querySelector('.button[type="submit"]').addEventListener('click', function () {
+    // 여기에서 비밀번호 수정을 서버로 요청하고, 성공 여부를 확인합니다.
+    // isSuccess 변수에 수정 성공 여부를 할당합니다.
+    var isSuccess = requestPasswordUpdate(); // 예시 함수, 실제 구현 필요
 
-
-
-
-// 일단 주석처리 알림창 완료되면 풀어놓기
-/* document.getElementById('m_pass2').addEventListener('keyup', validatePassword);
-document.getElementById('m_pass3').addEventListener('keyup', validatePassword);
-
-function validatePassword() {
-    var newPassword = document.getElementById('m_pass2').value;
-    var confirmPassword = document.getElementById('m_pass3').value;
-    var resultDiv = document.getElementById('result');
-
-    var passwordRegex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*?_]).{8,16}$/;
-
-    if (passwordRegex.test(newPassword)) {
-        if (newPassword === confirmPassword) {
-        	resultDiv.innerHTML = '';
-        } else {
-            resultDiv.innerHTML = '비밀번호가 일치하지 않습니다.';
-            resultDiv.style.color = 'red';
-        }
+    if (isSuccess) {
+        // 수정 성공한 경우 윈도우 창을 닫습니다.
+        window.close();
     } else {
-        resultDiv.innerHTML = '영문+숫자+특수문자 포함 8~16자로 입력해주세요';
-        resultDiv.style.color = 'red';
+        // 수정 실패 시 사용자에게 알림 등을 처리할 수 있습니다.
+        alert('비밀번호 수정에 실패했습니다.');
     }
-} */
+}); */
 
 
+$(document).ready(function() {
+	  $('.submit').on('click', function() {
+      var $rem1 = $(this).closest('.rem1');
+	   var w_num = $rem1.find('.w_num').text(); // 항목의 w_num 값을 가져옴
 
-
-
-
-
+	   // 서버로 삭제 요청을 보냄 (AJAX를 사용할 수 있음)
+	   $.ajax({
+		   url: 'deletewish.dwi', // 서버에서 삭제를 처리하는 서블릿 주소
+	   type: 'POST', // 또는 GET, 삭제 요청에 맞게 설정
+	   data: { w_num: w_num }, // 삭제할 항목의 식별자를 서버로 전달
+		   success: function(response) {
+     if (response === 'success') {
+      // 삭제가 성공하면 UI에서 항목을 제거
+      $rem1.animate('slow', function() {
+          $rem1.remove();
+      });
+     } else {
+      // 삭제 실패 시 메시지를 표시하거나 다른 조치를 취할 수 있음
+      alert(response);
+      location.reload();
+     }
+},
+error: function() {
+  alert('서버 오류: 삭제 요청을 처리할 수 없습니다.');
+}
+});
+});
+});
 
 
 

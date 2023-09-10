@@ -35,6 +35,9 @@ import com.itwillbs.service.AdminService;
 import com.itwillbs.service.MemberService;
 import com.itwillbs.service.ProductService;
 
+
+
+
 public class MemberController extends HttpServlet{
 	
 	private static final long serialVersionUID = 1L;
@@ -78,13 +81,20 @@ public class MemberController extends HttpServlet{
 		}
 		
 		
-//		회원가입		--보류
+//		회원가입
 		if (sPath.equals("/insertPro.me")) {
 			System.out.println("뽑은 가상주소 비교 : insertPro.me");
 
 			memberService = new MemberService();
 			memberService.insertMember(request);
 			
+			
+//	        response.setContentType("text/html; charset=UTF-8");
+//	        PrintWriter out = response.getWriter();
+//	        out.println("<script>alert('회원가입을 축하합니다'); </script>");
+//	        out.flush();
+//	        로그인화면으로 이동
+//	        out.println("<script>window.location.href='login.me'; </script>");
 			response.sendRedirect("login.me");
 			
 		}
@@ -150,26 +160,7 @@ public class MemberController extends HttpServlet{
 		}
 		
 		
-		
-//		회원정보확인		--보류
-//		if (sPath.equals("/mypage.me")) {
-//			System.out.println("뽑은 가상주소 비교 : mypage.me");
-//		
-//			HttpSession session = request.getSession();
-//			String m_id = (String)session.getAttribute("m_id");
-//			
-//
-//			memberService = new MemberService();
-//			MemberDTO memberDTO =  memberService.getMember(m_id);
-//			
-//			request.setAttribute("memberDTO", memberDTO);
-//			
-//			
-//			dispatcher = request.getRequestDispatcher("member/mypage_3.jsp");
-//			dispatcher.forward(request, response);
-//			
-//		}
-		
+	
 		
 		
 //		회원정보수정 화면	
@@ -394,19 +385,27 @@ public class MemberController extends HttpServlet{
 
 			MemberDTO memberDTO = memberService.userCheck2(request);
 			
-			
 //			일치하면 updateMember 호출
 			if (memberDTO != null) {
 				
 				memberService.updateMember(request);
 				
+//				회원정보 수정완료되면 메시지 띄우고 창닫고 수정페이지(마이페이지)로 화면
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('회원정보가 수정되었습니다');</script>");
+			    out.flush();
+
+			    out.println("<script>setTimeout(function() { window.location.href = 'update.me'; });</script>");
+			    out.flush();
+
 //				성공하면 마이페이지 창으로 이동해서 나의 정보 확인
-				response.sendRedirect("update.me");
+//				response.sendRedirect("update.me");
 				
 				
 			} else {
 //				불일치면 경고 메시지 화면에 띄우기
-				request.setAttribute("msg", "비밀번호가 일치하지 않습니다");
+				request.setAttribute("msg", "경고");
 				dispatcher = request.getRequestDispatcher("member/msg.jsp");
 				dispatcher.forward(request, response);
 				
@@ -417,7 +416,7 @@ public class MemberController extends HttpServlet{
 		
 		
 		
-//		비밀번호수정 화면	
+//		비밀번호수정 화면	---- 새창띄우기
 		if (sPath.equals("/pwupdate.me")) {
 			System.out.println("뽑은 가상주소 비교 : pwupdate.me");
 			
@@ -438,54 +437,54 @@ public class MemberController extends HttpServlet{
 		
 		
 		
-//		비밀번호수정...
+//		비밀번호수정
 		if (sPath.equals("/pwupdatePro.me")) {
-			System.out.println("뽑은 가상주소 비교 : pwupdatePro.me");
+		    System.out.println("뽑은 가상주소 비교 : pwupdatePro.me");
+
+		    memberService = new MemberService();
+
+		    MemberDTO memberDTO = memberService.userCheck(request);
+
+
+		    String result="";
+		    if (memberDTO != null) {
+		        memberService.updatePass(request);
+//		        charset=euc-kr
+		        response.setContentType("text/html; charset=UTF-8");
+		        PrintWriter out = response.getWriter();
+		        out.println("<script>alert('비밀번호가 수정되었습니다'); window.close(); </script>");
+		        out.flush();
+
+
+		    } else {
+		        // 불일치면 경고 메시지 화면에 띄우기
+		    	request.setAttribute("msg", "현재비밀번호가 다릅니다");
+		    	dispatcher = request.getRequestDispatcher("member/msg.jsp");
+		    	dispatcher.forward(request, response);
+		    }
+		}
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+//		회원탈퇴화면 -----새창띄우기
+		if (sPath.equals("/delete.me")) {
+			System.out.println("뽑은 가상주소 비교 : delete.me");
 			
-			memberService = new MemberService();
-			
-			
-			MemberDTO memberDTO = memberService.userCheck(request);
-			
-			
-//			일치하면 updateMember 호출
-			if (memberDTO != null) {
-				
-				memberService.updatePass(request);
-				
-//				성공하면 마이페이지 창으로 이동해서 나의 정보 확인
-				response.sendRedirect("pwupdate.me");
-				
-			} else {
-//				불일치면 경고 메시지 화면에 띄우기
-				request.setAttribute("msg", "경고");
-				dispatcher = request.getRequestDispatcher("member/msg.jsp");
-				dispatcher.forward(request, response);
-				
-			}
+			dispatcher = request.getRequestDispatcher("member/delete.jsp");
+			dispatcher.forward(request, response);
 			
 		}
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-//		회원탈퇴화면		--보류
-//		if (sPath.equals("/delete.me")) {
-//			System.out.println("뽑은 가상주소 비교 : delete.me");
-//			
-//			dispatcher = request.getRequestDispatcher("member/delete.jsp");
-//			dispatcher.forward(request, response);
-//			
-//		}
-		
-		
-//		회원탈퇴하기		--보류
+//		회원탈퇴하기
 		if (sPath.equals("/deletePro.me")) {
 			System.out.println("뽑은 가상주소 비교 : deletePro.me");
 			
@@ -496,14 +495,20 @@ public class MemberController extends HttpServlet{
 			if (memberDTO != null) {
 				memberService.deleteMember(request);
 				
+			    response.setContentType("text/html; charset=UTF-8");
+		        PrintWriter out = response.getWriter();
+		        out.println("<script>alert('탈퇴되었습니다'); window.close(); window.opener.location.href='main.me'; </script>");
+		        out.flush();
+				
 				HttpSession session = request.getSession();
 				session.invalidate();
 				
 				
-				response.sendRedirect("main.me");
+				
+//				response.sendRedirect("main.me");
 				
 			} else {
-//				비밀번호 불일치 -> 경고 메시지다 -------------------------------수정
+//				비밀번호 불일치
 				request.setAttribute("msg", "비밀번호가 일치하지 않습니다");
 				dispatcher = request.getRequestDispatcher("member/msg.jsp");
 				dispatcher.forward(request, response);
@@ -856,6 +861,12 @@ public class MemberController extends HttpServlet{
 		
 		
 	
+		
+		
+		
+		
+		
+		
 		
 		
 	}	// doProcess()

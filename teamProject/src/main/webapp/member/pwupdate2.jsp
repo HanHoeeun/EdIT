@@ -1,7 +1,8 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.logging.SimpleFormatter"%>
 <%@page import="com.itwillbs.domain.MemberDTO"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!--
 author: W3layouts
 author URL: http://w3layouts.com
@@ -11,7 +12,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
-
 <title>Super Market an Ecommerce Online Shopping Category Flat Bootstrap Responsive Website Template | Faq :: w3layouts</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -63,27 +63,18 @@ MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 				<tr>
 				<td class="_1report_content_border">아이디</td>
 				<td><input type="text" value="<%=memberDTO.getM_id() %>" name="m_id" id="m_id" style="border:none;" readonly="readonly"></td>
-				</tr>					
+				</tr>				
+
 				<tr>						
-				<td class="_1report_content_border">현재비밀번호</td>
-				<td><input type="password" placeholder="현재비밀번호" name="m_pass" id="m_pass" style="border:none;"></td>
+				<td class="_1report_content_border">비밀번호</td>
+				<td><input type="password"  name="m_pass" id="m_pass" style="border:none;"></td>
 				</tr>	
-				<tr>						
-				<td class="_1report_content_border">새비밀번호</td>
-				<td><input type="password" placeholder="새비밀번호" name="m_pass2" id="m_pass2" style="border:none;"></td>
-				</tr>	
-				<tr>						
-				<td class="_1report_content_border">새비밀번호확인</td>
-				<td><input type="password" placeholder="새비밀번호확인" name="m_pass3" id="m_pass3" style="border:none;"></td>
-				</tr>
-				<tr>						
-				<td colspan="2"><div id="result"></div></td>
-				</tr>
-											
+						
+					
 			</table>
-			
+			<div id="result"></div>
 					<div class="_1q_query_btn">
-							<button type="submit" class="dup" style="font-size: 14px" onclick="showSuccessMessage()">수정</button>
+							<button type="submit" class="dup" style="font-size: 14px">확인</button>
 							<button type="button" onclick="window.close()" style="font-size: 14px">닫기</button>
 					</div>
 			</form>
@@ -94,49 +85,6 @@ MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 
 <script type="text/javascript" src="script/jquery-3.7.0.js"></script>
 <script type="text/javascript">
-// function showSuccessMessage() {
-//     // 성공 메시지를 표시합니다.
-//     alert("비밀번호 수정이 성공적으로 완료되었습니다.");
-    
-//     // 현재 창을 닫고 메인 창을 새로고침합니다.
-//     window.close();
-//     // 메인 창을 새로고침하고 "update.me" 페이지로 이동합니다.
-//     window.opener.location.href = "update.me";
-// }
-
-
-
-
-
-// 일단 주석처리 알림창 완료되면 풀어놓기
-/* document.getElementById('m_pass2').addEventListener('keyup', validatePassword);
-document.getElementById('m_pass3').addEventListener('keyup', validatePassword);
-
-function validatePassword() {
-    var newPassword = document.getElementById('m_pass2').value;
-    var confirmPassword = document.getElementById('m_pass3').value;
-    var resultDiv = document.getElementById('result');
-
-    var passwordRegex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*?_]).{8,16}$/;
-
-    if (passwordRegex.test(newPassword)) {
-        if (newPassword === confirmPassword) {
-        	resultDiv.innerHTML = '';
-        } else {
-            resultDiv.innerHTML = '비밀번호가 일치하지 않습니다.';
-            resultDiv.style.color = 'red';
-        }
-    } else {
-        resultDiv.innerHTML = '영문+숫자+특수문자 포함 8~16자로 입력해주세요';
-        resultDiv.style.color = 'red';
-    }
-} */
-
-
-
-
-
-
 
 
 
