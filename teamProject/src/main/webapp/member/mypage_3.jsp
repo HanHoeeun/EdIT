@@ -69,12 +69,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--=========================== 본문 헤더 =========================================== -->	
 	<div class="top-brands_1">
 		<h2>마이페이지</h2>
+		
+<!--=========================== 상단 탭 리스트============================================ -->
 			<div class="container_2_1">
 
-<!--=========================== 상단 탭 리스트============================================ -->
 				<ul class="tabs">
 					<li class="tab-link current" data-tab="tab-1">나의정보</li>
-					<li class="tab-link" data-tab="tab-3">판매내역</li>
+					<li class="tab-link" onclick="location.href='buylist.po'">전체판매목록</li>
+					<li class="tab-link" onclick="location.href='buylist2.po'">판매완료목록</li>
 					<li class="tab-link" onclick="location.href='m_wishlist.me'">찜</li>
 					<li class="tab-link" onclick="location.href='m_adminpage.me'" >신고내역</li>
 <!-- 					<li class="tab-link" data-tab="tab-7">회원탈퇴</li> -->
@@ -170,6 +172,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--==================================회원탈퇴==================================== -->				
 <%-- 
 				<div id="tab-7" class="tab-content">
+=======
+
+				<div id="tab-2" class="tab-content">
+>>>>>>> branch 'master' of https://github.com/HanHoeeun/EdIT.git
 					<table class="_1qna_board">
 						<tr><th class="_1qna_board_border1">회원탈퇴</th></tr>
 
@@ -198,7 +204,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				
 				
 </div>
-				
+</div>				
 				
 <!-- -----------------------------------------------------------------------------				 -->
 <script type="text/javascript" src="script/jquery-3.7.0.js"></script>

@@ -80,11 +80,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--=========================== 상단 탭 리스트============================================ -->
 				<ul class="tabs">
 					<li class="tab-link " onclick="location.href='update.me'">나의정보</li>
-					<li class="tab-link" onclick="location.href='buylist.me'">판매내역</li>
+					<li class="tab-link" onclick="location.href='buylist.po'">전체판매목록</li>
+					<li class="tab-link" onclick="location.href='buylist2.po'">판매완료목록</li>
 					<li class="tab-link current" onclick="location.href='m_wishlist.me'">찜</li> 
 					<li class="tab-link" onclick="location.href='m_adminpage.me'" >신고내역</li>
-					<li class="tab-link" data-tab="tab-7">회원탈퇴</li>
-<!-- 					<li class="tab-link" onclick="location.href='deletePro.me'">회원탈퇴</li> -->
+<!-- 					<li class="tab-link" data-tab="tab-7">회원탈퇴</li> -->
+					<li class="tab-link" onclick="location.href='update.me?tab=tab-2'">회원탈퇴</li> 
 				</ul>
 			</div>
 		
@@ -113,12 +114,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					 WishListDTO wishListDTO = wishList.get(i);
 						%>
 						<tr class="rem1">
-						<td class="w_num" style="display: none;"><%= wishListDTO.getW_num() %></td>
+						<td class="w_num" style="display: none;"><%= wishListDTO.getW_p_num() %></td>
 						<td class="_1qna_board_border"><%=i + 1 %></td>
-						<td class="_1qna_board_border"><a href="single.po?p_num=<%=wishListDTO.getProductDTO().getP_num()%>"><img src="upload/<%= wishListDTO.getProductDTO().getP_file() %>" width="100px" height="100px" download alt=" " class="img-responsive" /></a></td>
-						<td class="_1qna_board_border"><a href="single.po?p_num=<%=wishListDTO.getProductDTO().getP_num()%>"><%=wishListDTO.getProductDTO().getP_title() %></a></td>
-						<td class = "_1qna_board_border"><%=wishListDTO.getProductDTO().getP_status() %></td>
-						<td class="_1qna_board_border"><a href="single.po?p_num=<%=wishListDTO.getProductDTO().getP_num()%>"><%=wishListDTO.getProductDTO().getP_type() %></a></td>
+						<td class="_1qna_board_border"><a href="single.po?p_num=<%=wishListDTO.getW_p_num()%>"><img src="upload/<%= wishListDTO.getProductDTO().getP_file() %>" width="100px" height="100px" download alt=" " class="img-responsive" /></a></td>
+						<td class="_1qna_board_border"><a href="single.po?p_num=<%=wishListDTO.getW_p_num()%>"><%=wishListDTO.getProductDTO().getP_title() %></a></td>
+						<td class="_1qna_board_border"><%=wishListDTO.getProductDTO().getP_status() %></td>
+						<td class="_1qna_board_border"><a href="single.po?p_num=<%=wishListDTO.getW_p_num()%>"><%=wishListDTO.getProductDTO().getP_type() %></a></td>
 						<td class="_1qna_board_border"><%=wishListDTO.getProductDTO().getP_price() %>원</td>
 						<td class="_1qna_board_border" align="center">
     					<div class="rem" style="display: flex; justify-content: center; align-items: center;">
@@ -130,6 +131,50 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
    					    <% } %> 
   
   				 	
+
+
+</table>
+<!-- <div class="clearfix_1_1"> </div> -->
+
+
+<!-- 페이징 -->
+<div class="_1qna_paging">
+    <ul>
+        <%
+        // 시작 페이지에서 이전 페이지로 이동하는 링크를 표시
+        if (ppageDTO.getP_startPage() > ppageDTO.getP_pageBlock()) {
+        %>
+        <li onclick="location.href='m_wishlist.me?p_pageNum=<%= ppageDTO.getP_startPage() - ppageDTO.getP_pageBlock() %>&orderBy=${orderBy}'">Prev</li>
+        <%
+        }
+        
+        // 페이지 번호 링크를 표시
+        for (int i = ppageDTO.getP_startPage(); i <= ppageDTO.getP_endPage(); i++) {
+            boolean isCurrentPage = (i == ppageDTO.getP_currentPage());
+            boolean isPcurrentPage = (i == ppageDTO.getP_currentPage());
+        %>
+        <li class="<%= (isCurrentPage || isPcurrentPage) ? "active" : "" %>"
+            onclick="location.href='m_wishlist.me?p_pageNum=<%= i %>&orderBy=${orderBy}'">
+            <%= (isPcurrentPage) ? i : i %>
+        </li>
+        <%
+        }
+        
+        // 끝 페이지에서 다음 페이지로 이동하는 링크를 표시
+        if (ppageDTO.getP_endPage() < ppageDTO.getP_pageCount()) {
+        %>
+        <li onclick="location.href='m_wishlist.me?p_pageNum=<%= ppageDTO.getP_startPage() + ppageDTO.getP_pageBlock() %>&orderBy=${orderBy}'">Next</li>
+        <%
+        }
+        %>
+    </ul>
+</div>
+<!-- // 페이징 -->
+</div>
+</div>
+
+
+
 	<script>
     				$(document).ready(function() {
       				  $('.close1').on('click', function() {
@@ -144,7 +189,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                		   success: function(response) {
                        if (response === 'success') {
                         // 삭제가 성공하면 UI에서 항목을 제거
-                        $rem1.animate('slow', function() {
+                        $rem1.fadeOut('slow', function() {
                             $rem1.remove();
                         });
                        } else {
@@ -160,51 +205,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         });
     });
 </script>
-
-</td>
-<tr>
-</table>
-<div class="clearfix_1_1"> </div>
-</div>
-</div>
-<!-- 페이징 -->
-<div class="_1qna_paging">
-   <ul>
-      <%
-      if(ppageDTO.getP_startPage() > ppageDTO.getP_pageBlock()){
-         %>
-         <li>
-            <a href="m_wishlist.me?p_pageNum=<%=ppageDTO.getP_startPage()-ppageDTO.getP_pageBlock()%>&orderBy=${orderBy}" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-            </a>
-         </li>
-         <%
-      }
-      for(int i=ppageDTO.getP_startPage(); i<=ppageDTO.getP_endPage(); i++){
-         boolean isCurrentPage = (i == ppageDTO.getP_currentPage());
-         boolean isPcurrentPage = (i == ppageDTO.getP_currentPage());
-         %>
-         <li class="<%= (isCurrentPage || isPcurrentPage) ? "active" : "" %>">
-            <a href="m_wishlist.me?p_pageNum=<%= i %>&orderBy=${orderBy}" class="<%= (isCurrentPage) ? "" : "" %> <%= (isPcurrentPage) ? "custom-class" : "" %>">
-            <%= (isPcurrentPage) ? i : i %></a>
-         </li>
-         <%
-      }
-
-      if(ppageDTO.getP_endPage() < ppageDTO.getP_pageCount()){
-         %>
-         <li>
-            <a href="m_wishlist.me?p_pageNum=<%=ppageDTO.getP_startPage()+ppageDTO.getP_pageBlock()%>&orderBy=${orderBy}" >
-               <span aria-hidden="true">&raquo;</span>
-            </a>
-         </li>
-         <%
-      }
-      %> 
-   </ul>
-</div>
-
-<!-- // 페이징 -->
 
 <!-- 			탭 jquery -->
 <script type="text/javascript">

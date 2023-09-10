@@ -8,6 +8,7 @@ public class NoticePageDTO {
 	private int endRow;
 	
 	private int count;
+	private int notice_count;
 	private int pageBlock;
 	private int startPage;
 	private int endPage;
@@ -26,8 +27,18 @@ public class NoticePageDTO {
 	}
 
 	//alt shift s => r
+	
+	
 	public int getPageSize() {
 		return pageSize;
+	}
+
+	public int getNoticeCount() {
+		return notice_count;
+	}
+
+	public void setNoticeCount(int noticeCount) {
+		this.notice_count = noticeCount;
 	}
 
 	public void setPageSize(int pageSize) {

@@ -41,7 +41,7 @@ public class DeleteWishlistItemServlet extends HttpServlet {
             conn = ds.getConnection();
 
             // SQL 쿼리를 작성하여 찜 정보를 삭제
-            String sql = "DELETE FROM wishlists WHERE w_num = ?";
+            String sql = "DELETE FROM wishlists WHERE w_p_num = ?";
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, w_num);
 

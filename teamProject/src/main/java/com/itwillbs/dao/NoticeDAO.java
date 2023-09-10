@@ -42,7 +42,7 @@ public class NoticeDAO {
 		List<NoticeDTO> noticeList = null;
 		try {
 			con = getConnection();
-			String sql="select * from notice1 where a_notice_type=? order by a_num desc limit ?, ?";
+			String sql="select * from admin where a_notice_type=? order by a_num desc limit ?, ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, pageDTO.getA_notice_type());//일반공지 / 이벤트
 			pstmt.setInt(2, pageDTO.getStartRow()-1);//시작행-1
@@ -73,7 +73,7 @@ public class NoticeDAO {
 		int count = 0;
 		try {
 			con=getConnection();
-			String sql = "select count(*) from notice1;";
+			String sql = "select count(*) from admin;";
 			pstmt=con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
@@ -93,17 +93,19 @@ public class NoticeDAO {
 		try {
 			con=getConnection();
 			String sql="";
-			// 글번호 내용 시간 분류 파일명 제목
-			if(noticeDTO.getA_notice_type().equals("일반공지")){
-				sql = "insert into notice1 values (default, ?, default,'일반공지', ?, ?)";
+			// 글번호 유저번호 닉네임 제목 내용 답변 파일 처리여부 작성일 cs유형 공지유형
+			if(noticeDTO.getA_notice_type().equals("공지")){
+				sql = "insert into admin values (default, ?, ?, ?, ?, null, ?, null, default, null, '공지')";
 			}else {
-				sql = "insert into notice1 values (default, ?, default,'이벤트', ?, ?)";
+				sql = "insert into admin values (default, ?, ?, ?, ?, null, ?, null, default, null, '이벤트')";
 			}
 			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, noticeDTO.getA_content());
-			// 파일추가
-			pstmt.setString(2, noticeDTO.getA_file());
+			pstmt.setInt(1, noticeDTO.getA_m_num());
+			pstmt.setString(2, noticeDTO.getA_m_nick());
 			pstmt.setString(3, noticeDTO.getA_title());
+			pstmt.setString(4, noticeDTO.getA_content());
+			// 파일추가
+			pstmt.setString(5, noticeDTO.getA_file());		
 			// 실행 
 			pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -118,7 +120,7 @@ public class NoticeDAO {
 		NoticeDTO noticeDTO = null;
 		try {
 			con = getConnection();
-			String sql="select * from notice1 where a_num = ?";
+			String sql="select * from admin where a_num = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, a_num);
 			//4 실행 => 결과 저장
@@ -148,7 +150,7 @@ public class NoticeDAO {
 	public void updateNotice(NoticeDTO noticeDTO) {
 		try {
 			con = getConnection();
-			String sql="update notice1 set a_notice_type=?, a_title=?, a_content=?, a_file=? where a_num=?";
+			String sql="update admin set a_notice_type=?, a_title=?, a_content=?, a_file=? where a_num=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, noticeDTO.getA_notice_type());
 			pstmt.setString(2, noticeDTO.getA_title());
@@ -168,7 +170,7 @@ public class NoticeDAO {
 	public void deleteNotice(int a_num) {
 		try {
 			con = getConnection();
-			String sql = "delete from notice1 where a_num=?";
+			String sql = "delete from admin where a_num=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1,a_num);
 			// 4단계
@@ -186,7 +188,7 @@ public class NoticeDAO {
 			List<NoticeDTO> noticeList = null;
 			try {
 				con = getConnection();
-				String sql="select * from notice1 where a_notice_type=? and a_title like ? order by a_num desc limit ?, ?";
+				String sql="select * from admin where a_notice_type=? and a_title like ? order by a_num desc limit ?, ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, pageDTO.getA_notice_type());//일반공지 / 이벤트
 				pstmt.setString(2, "%"+pageDTO.getSearch()+"%");
@@ -219,7 +221,7 @@ public class NoticeDAO {
 			int count = 0;
 			try {
 				con=getConnection();
-				String sql = "select count(*) from notice1 where a_title like ?;";
+				String sql = "select count(*) from admin where a_title like ?;";
 				pstmt=con.prepareStatement(sql);
 				pstmt.setString(1, "%"+pageDTO.getSearch()+"%");//='%검색어%'
 				rs = pstmt.executeQuery();
@@ -244,7 +246,7 @@ public class NoticeDAO {
 		List<NoticeDTO> eventList = null;
 		try {
 			con = getConnection();
-			String sql="select * from notice1 where a_notice_type=? order by a_num desc limit ?, ?";
+			String sql="select * from admin where a_notice_type=? order by a_num desc limit ?, ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, pageDTO2.getA_notice_type());//일반공지 / 이벤트
 			pstmt.setInt(2, pageDTO2.getStartRow()-1);//시작행-1
@@ -275,7 +277,7 @@ public class NoticeDAO {
 		int count = 0;
 		try {
 			con=getConnection();
-			String sql = "select count(*) from notice1;";
+			String sql = "select count(*) from admin;";
 			pstmt=con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
@@ -295,17 +297,19 @@ public class NoticeDAO {
 		try {
 			con=getConnection();
 			String sql="";
-			// 글번호 내용 시간 분류 파일명 제목
-			if(noticeDTO.getA_notice_type().equals("일반공지")) {
-				sql = "insert into notice1 values (default, ?, default,'일반공지', ?, ?)";
+			// 글번호 유저번호 닉네임 제목 내용 답변 파일 처리여부 작성일 cs유형 공지유형
+			if(noticeDTO.getA_notice_type().equals("공지")){
+				sql = "insert into admin values (default, ?, ?, ?, ?, null, ?, null, default, null, '공지')";
 			}else {
-				sql = "insert into notice1 values (default, ?, default,'이벤트', ?, ?)";
+				sql = "insert into admin values (default, ?, ?, ?, ?, null, ?, null, default, null, '이벤트')";
 			}
 			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, noticeDTO.getA_content());
-			// 파일추가
-			pstmt.setString(2, noticeDTO.getA_file());
+			pstmt.setInt(1, noticeDTO.getA_m_num());
+			pstmt.setString(2, noticeDTO.getA_m_nick());
 			pstmt.setString(3, noticeDTO.getA_title());
+			pstmt.setString(4, noticeDTO.getA_content());
+			// 파일추가
+			pstmt.setString(5, noticeDTO.getA_file());	
 			// 실행 
 			pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -320,7 +324,7 @@ public class NoticeDAO {
 		NoticeDTO noticeDTO = null;
 		try {
 			con = getConnection();
-			String sql="select * from notice1 where a_num = ?";
+			String sql="select * from admin where a_num = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, a_num);
 			//4 실행 => 결과 저장
@@ -348,7 +352,7 @@ public class NoticeDAO {
 	public void updateEvent(NoticeDTO noticeDTO) {
 		try {
 			con = getConnection();
-			String sql="update notice1 set a_title=?, a_content=?, a_file=? where a_num=?";
+			String sql="update admin set a_title=?, a_content=?, a_file=? where a_num=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, noticeDTO.getA_title());
 			pstmt.setString(2, noticeDTO.getA_content());
@@ -367,7 +371,7 @@ public class NoticeDAO {
 	public void deleteEvent(int a_num) {
 		try {
 			con = getConnection();
-			String sql = "delete from notice1 where a_num=?";
+			String sql = "delete from admin where a_num=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1,a_num);
 			// 4단계
@@ -385,7 +389,7 @@ public class NoticeDAO {
 		List<NoticeDTO> eventList = null;
 		try {
 			con = getConnection();
-			String sql="select * from notice1 where a_notice_type=? and a_title like ? order by a_num desc limit ?, ?";
+			String sql="select * from admin where a_notice_type=? and a_title like ? order by a_num desc limit ?, ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, pageDTO2.getA_notice_type());//일반공지 / 이벤트
 			pstmt.setString(2, "%"+pageDTO2.getSearch()+"%");
@@ -418,7 +422,7 @@ public class NoticeDAO {
 		int count = 0;
 		try {
 			con=getConnection();
-			String sql = "select count(*) from notice1 where a_title like ?;";
+			String sql = "select count(*) from admin where a_title like ?;";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, "%"+pageDTO2.getSearch()+"%");//='%검색어%'
 			rs = pstmt.executeQuery();

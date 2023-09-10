@@ -85,16 +85,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 	<div class="top-brands_1">
-	<h2>마이페이지</h2>
+			<h2>마이페이지</h2>
 		<div class="container_1_1">
 
 			<!--=========================== 상단 탭 리스트============================================ -->
 			<div class="container_2_1">
 				<ul class="tabs">
 					<li class="tab-link " onclick="location.href='update.me'">나의정보</li>
-					<li class="tab-link current" data-tab="tab-1"
+					<li class="tab-link" data-tab="tab-1"
 						onclick="location.href='buylist.po'">전체판매목록</li>
-					<li class="tab-link" data-tab="tab-2"
+					<li class="tab-link current" data-tab="tab-2"
 						onclick="location.href='buylist2.po'">판매완료목록</li>
 					<li class="tab-link" onclick="location.href='m_wishlist.me'">찜</li>
 					<li class="tab-link" onclick="location.href='m_adminpage.me'">신고내역</li>
@@ -102,18 +102,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</ul>
 			</div>
 
-			<!--================================== 1탭 나의정보==================================== -->
+			<!--================================== 2탭 나의정보==================================== -->
 
 			<%
 			String id = (String) session.getAttribute("m_id");
 			ProductDTO productDTO = (ProductDTO) request.getAttribute("productDTO");
 			MemberDTO memberDTO = (MemberDTO) request.getAttribute("memberDTO");
-			List<ProductDTO> productList = (List<ProductDTO>) request.getAttribute("productList");
+			List<ProductDTO> productList2 = (List<ProductDTO>) request.getAttribute("productList2");
 			%>
 
 			<div class="container_3_1">
 
-				<div id="tab-1" class="tab-content current">
+				<div id="tab-2" class="tab-content current">
 
 					<table class="_1qna_board">
 						<tr>
@@ -124,19 +124,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</tr>
 
 						<%
-						if (productList != null && id != null) {
-							if (productList.isEmpty()) {
+						if (productList2 != null && id != null) {
+							if (productList2.isEmpty()) {
 						%>
 						<tr>
-							<td colspan="7">상품등록 후 행복한 거래하세요♥</td>
+							<td colspan="7">판매완료된 상품이 없어용..ㅠ.ㅠ</td>
 						</tr>
 						<%
 						} else {
 						%>
 
 						<%
-						for (int i = 0; i < productList.size(); i++) {
-							productDTO = productList.get(i);
+						for (int i = 0; i < productList2.size(); i++) {
+							productDTO = productList2.get(i);
 							if (id.equals(productDTO.getM_id())) {
 						%>
 
@@ -158,16 +158,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 					</table>
 
+
+
+
 					<!-- 페이징 코드 5개씩 나눠서 페이징 -->
 					<div class="_1qna_paging">
 						<ul>
 							<%
 							ProductPageDTO productPageDTO = (ProductPageDTO) request.getAttribute("productPageDTO");
-							String orderBy = request.getParameter("orderBy");
 							if (productPageDTO.getP_startPage() > productPageDTO.getP_pageBlock()) {
 							%>
 							<li
-								onclick="changePage(<%=productPageDTO.getP_startPage() - productPageDTO.getP_pageBlock()%>, '<%=orderBy%>')">
+								onclick="changePage(<%=productPageDTO.getP_startPage() - productPageDTO.getP_pageBlock()%>)">
 								<span aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 							</span>
 							</li>
@@ -180,7 +182,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							%>
 							<li
 								class="<%=(isCurrentPage || isPcurrentPage) ? "active" : ""%>"
-								onclick="changePage(<%=i%>, '<%=orderBy%>')"><span
+								onclick="changePage(<%=i%>)"><span
 								class="<%=(isCurrentPage) ? "" : ""%> <%=(isPcurrentPage) ? "custom-class" : ""%>">
 									<%=(isPcurrentPage) ? i : i%>
 							</span></li>
@@ -190,7 +192,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							if (productPageDTO.getP_endPage() < productPageDTO.getP_pageCount()) {
 							%>
 							<li
-								onclick="changePage(<%=productPageDTO.getP_startPage() + productPageDTO.getP_pageBlock()%>, '<%=orderBy%>')">
+								onclick="changePage(<%=productPageDTO.getP_startPage() + productPageDTO.getP_pageBlock()%>)">
 								<span> <span aria-hidden="true">&raquo;</span>
 							</span>
 							</li>
@@ -199,22 +201,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							%>
 						</ul>
 					</div>
-					<!-- class="_1qna_paging" -->
+					<!-- 텝 -->
 				</div>
-				<!-- class="tab-content current" -->
+				<!-- 페이징 -->
 
 				<script>
-   function changePage(pageNum, orderBy) {
-      // 페이지 번호와 orderBy 파라미터를 사용하여 URL을 생성
-      var url = "buylist.po?p_pageNum=" + pageNum + "&orderBy=" + orderBy;
-      // 페이지 이동
-      window.location.href = url;
+   function changePage(pageNum) {
+      // 페이지 번호에 해당하는 URL로 이동
+      window.location.href = "buylist2.po?p_pageNum=" + pageNum;
    }
 </script>
-
-
-
-				<!--================================== 1탭 ==================================== -->
+				<!--================================== 2탭 나의정보==================================== -->
 
 			</div>
 			<!-- class=container_3_1 -->
@@ -226,6 +223,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 	<!-- // 판매목록 -->
+
 
 
 	<script type="text/javascript">
@@ -256,10 +254,18 @@ $(document).ready(function(){
 </script>
 
 
-	<!--================================== 푸터 ==================================== -->
-	<jsp:include page="../inc/bottom.jsp"></jsp:include>
 
-	<!--========================= Bootstrap Core JavaScript =========================-->
+
+
+
+
+	<!-- 푸터 들어가는 곳! -->
+	<div class="clearfix">
+		<jsp:include page="../inc/bottom.jsp"></jsp:include>
+	</div>
+	<!-- 푸터 들어가는 곳! -->
+
+
 	<script src="../js/bootstrap.min.js"></script>
 	<!-- top-header and slider -->
 	<!-- here stars scrolling icon -->
