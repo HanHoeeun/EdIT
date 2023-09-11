@@ -4,15 +4,21 @@
 <%@page import="com.itwillbs.domain.AdminPageDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!--
-author: W3layouts
-author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+
 <!DOCTYPE html>
 <html>
 <head>
+<%
+String m_id = (String) session.getAttribute("m_id");
+List<AdminDTO> adminList = null;
+AdminPageDTO pageDTO = null;
+	if(m_id != null){
+		adminList = (List<AdminDTO>) request.getAttribute("adminList");
+		pageDTO = (AdminPageDTO) request.getAttribute("pageDTO");
+	}
+
+SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
+%>
 <title>고객센터</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,8 +27,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	content="Super Market Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <script type="application/x-javascript">
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } 
+
 </script>
 <!-- //for-mobile-apps -->
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css"
@@ -56,21 +64,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		});
 	});
 </script>
-<!-- start-smoth-scrolling -->
 </head>
 
 <body>
-	<%
-	String id = (String) session.getAttribute("m_id");
-	List<AdminDTO> adminList = (List<AdminDTO>) request.getAttribute("adminList");
-	AdminPageDTO pageDTO = (AdminPageDTO) request.getAttribute("pageDTO");
-	SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
-	%>
 
 	<!-- header -->
 	<jsp:include page="../inc/top.jsp"></jsp:include>
-	<!-- //navigation -->
-	<!-- breadcrumbs -->
+	<!-- header -->
 	<div class="breadcrumbs">
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft"
@@ -81,8 +81,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</ol>
 		</div>
 	</div>
-	<!-- //breadcrumbs -->
-	<!-- top-brands -->
 
 	<div class="top-brands_1">
 		<h2>고객센터</h2>
@@ -92,7 +90,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<ul class="tabs">
 					<li class="tab-link current" data-tab="tab-1">자주묻는 질문</li>
 					<%
-					if (id != null) {
+					if (m_id != null) {
 					%>
 					<li class="tab-link" data-tab="tab-2">문의 하기</li>
 					<li class="tab-link" data-tab="tab-3">내 문의 내역</li>
@@ -104,118 +102,69 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="container_3_1">
 				<div id="tab-1" class="tab-content current">
 					<ul class="faq_1">
-						<li class="item1"><a href="#" title="click here">Lorem
-								ipsum dolor sit amet, consectetur adipiscing elit. Donec tempor
-								vehicula ipsum nec ?</a>
+						<li class="item01"><a href="#" title="click here">1. 고객센터 문의는 어떻게 하나요?</a>
 							<ul>
-								<li class="subitem1"><p>Lorem ipsum dolor sit amet,
-										consectetuer adipiscing elit, sed diam nonummy nibh euismod
-										tincidunt ut laoreet dolore. At vero eos et accusamus et iusto
-										odio dignissimos ducimus qui blanditiis praesentium voluptatum
-										deleniti atque corrupti quos dolores et quas molestias
-										excepturi sint occaecati cupiditate non provident.</p></li>
+								<li class="subitem1"><p>로그인 후에 고객센터 문의가 가능합니다.</p></li>
 							</ul></li>
-						<li class="item2"><a href="#" title="click here">The
-								standard Lorem Ipsum passage Etiam faucibus viverra libero vel
-								efficitur. Ut semper nisl ut laoreet ultrices ?</a>
+						<li class="item02"><a href="#" title="click here">2. 물건 등록은
+								어떻게 하나요?</a>
 							<ul>
-								<li class="subitem1"><p>Tincidunt ut laoreet dolore At
-										vero eos et Lorem ipsum dolor sit amet, consectetuer
-										adipiscing elit, sed diam nonummy nibh euismod consectetuer
-										adipiscing elit, sed diam nonummy nibh euismod accusamus et
-										iusto odio dignissimos ducimus qui blanditiis praesentium
-										voluptatum deleniti atque corrupti quos dolores et quas
-										molestias excepturi sint occaecati cupiditate non provident.</p></li>
+								<li class="subitem1"><p>회원 가입 후, 물건을
+										등록할 수 있는 기능을 제공합니다. 로그인 후에 등록 절차를 따라서 물건을 등록할 수 있습니다.</p></li>
 							</ul></li>
-						<li class="item3"><a href="#" title="click here">Consectetuer
-								adipiscing elit Etiam faucibus viverra libero vel efficitur. Ut
-								semper nisl ut laoreet ultrices?</a>
+						<li class="item03"><a href="#" title="click here">3. 물건을 팔려면
+								어떤 정보를 제공해야 하나요?</a>
 							<ul>
-								<li class="subitem1"><p>Dincidunt ut laoreet dolore At
-										vero eos et Lorem ipsum dolor sit amet, consectetuer
-										adipiscing elit, sed diam nonummy nibh euismod consectetuer
-										adipiscing elit, sed diam nonummy nibh euismod accusamus et
-										iusto odio dignissimos ducimus qui blanditiis praesentium
-										voluptatum deleniti atque corrupti quos dolores et quas
-										molestias excepturi sint occaecati cupiditate non provident.</p></li>
+								<li class="subitem1"><p>판매하려는 물건의 사진, 제목, 가격, 설명 등 필요한
+										정보를 입력해야 합니다. 물건의 상태와 가격은 정확하게 기재하는 것이 중요합니다.</p></li>
 							</ul></li>
-						<li class="item4"><a href="#" title="click here">Sed diam
-								nonummy nibh euismod Etiam faucibus viverra libero vel
-								efficitur. Ut semper nisl ut laoreet ultrices?</a>
+						<li class="item04"><a href="#" title="click here">4. 물건 가격을
+								어떻게 정해야 하나요?</a>
 							<ul>
-								<li class="subitem1"><p>At vero eos et Lorem ipsum
-										dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
-										nibh euismod consectetuer adipiscing elit, sed diam nonummy
-										nibh euismod accusamus et iusto odio dignissimos ducimus qui
-										blanditiis praesentium voluptatum deleniti atque corrupti quos
-										dolores et quas molestias excepturi sint occaecati cupiditate
-										non provident.</p></li>
+								<li class="subitem1"><p>시장 가격 조사를 통해 유사한 물건의 가격을 확인하고,
+										물건의 상태, 브랜드, 모델 등을 고려하여 합리적인 가격을 설정하세요.</p></li>
 							</ul></li>
-						<li class="item5"><a href="#" title="click here">Euismod
-								tincidunt laoreet Etiam faucibus viverra libero vel efficitur ?</a>
+						<li class="item05"><a href="#" title="click here">5. 거래 방법은
+								어떤 것이 있나요?</a>
 							<ul>
-								<li class="subitem1"><p>At vero eos et Lorem ipsum
-										dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
-										nibh euismod consectetuer adipiscing elit, sed diam nonummy
-										nibh euismod accusamus et iusto odio dignissimos ducimus qui
-										blanditiis praesentium voluptatum deleniti atque corrupti quos
-										dolores et quas molestias excepturi sint occaecati cupiditate
-										non provident.</p></li>
+								<li class="subitem1"><p>직거래와 택배거래 두 가지 주요
+										방법을 사용합니다. 어떤 방법을 사용할지 판매자와 구매자가 합의해야 합니다.</p></li>
 							</ul></li>
-						<li class="item6"><a href="#" title="click here">Voluptas
-								sit aspernatur aut Ut semper nisl ut laoreet ultrices ?</a>
+						<li class="item06"><a href="#" title="click here">6. 안전한 거래를
+								위해 어떤 주의사항이 있나요?</a>
 							<ul>
-								<li class="subitem1"><p>At vero eos et Lorem ipsum
-										dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
-										nibh euismod consectetuer adipiscing elit, sed diam nonummy
-										nibh euismod accusamus et iusto odio dignissimos ducimus qui
-										blanditiis praesentium voluptatum deleniti atque corrupti quos
-										dolores et quas molestias excepturi sint occaecati cupiditate
-										non provident.</p></li>
+								<li class="subitem1"><p>안전한 거래를 위해 공공장소에서 직거래를 하거나, 항상
+										신뢰할 수 있는 결제 방법을 사용하세요. 또한 사기나 사기꾼을 피하기 위한 주의사항을 알고 있어야 합니다.</p></li>
 							</ul></li>
-						<li class="item7"><a href="#" title="click here">Donec ut
-								quam ligula feugiat Ut semper nisl ut laoreet ultrices ?</a>
+						<li class="item07"><a href="#" title="click here">7. 가격을 깍을 수
+								있나요?</a>
 							<ul>
-								<li class="subitem1"><p>At vero eos et Lorem ipsum
-										dolor sit amet, consectetuer adipiscing elit, sed diam nonummy
-										nibh euismod consectetuer adipiscing elit, sed diam nonummy
-										nibh euismod accusamus et iusto odio dignissimos ducimus qui
-										blanditiis praesentium voluptatum deleniti atque corrupti quos
-										dolores et quas molestias excepturi sint occaecati cupiditate
-										non provident.</p></li>
+								<li class="subitem1"><p>판매자와 구매자 간의 협상이 가능합니다. 가격을 깍으려면
+										상대방과 합리적인 가격에 대해 협상해야 합니다.</p></li>
 							</ul></li>
-						<li class="item8"><a href="#" title="click here">The
-								standard Lorem Ipsum Ut semper nisl ut laoreet ultrices passage
-								?</a>
+						<li class="item08"><a href="#" title="click here">8. 상품의 상태를
+								어떻게 확인하나요?</a>
 							<ul>
-								<li class="subitem1"><p>Lorem ipsum dolor sit amet At
-										vero eos et Lorem ipsum dolor sit amet, consectetuer
-										adipiscing elit, sed diam nonummy nibh euismod consectetuer
-										adipiscing elit, sed diam nonummy nibh euismod accusamus et
-										iusto odio dignissimos ducimus qui blanditiis praesentium
-										voluptatum deleniti atque corrupti quos dolores et quas
-										molestias excepturi sint occaecati cupiditate non provident.</p></li>
+								<li class="subitem1"><p>사진을 통해 상품의 상태를 확인할 수 있고, 직거래인
+										경우에는 직접 상태를 확인할 수 있습니다.</p></li>
 							</ul></li>
-						<li class="item9"><a href="#" title="click here">Consectetuer
-								adipiscing Ut semper nisl ut laoreet ultrices elit ?</a>
+						<li class="item09"><a href="#" title="click here">9. 신고 기능을
+								어떻게 사용하나요?</a>
 							<ul>
-								<li class="subitem1"><p>Lorem ipsum dolor sit amet At
-										vero eos et Lorem ipsum dolor sit amet, consectetuer
-										adipiscing elit, sed diam nonummy nibh euismod consectetuer
-										adipiscing elit, sed diam nonummy nibh euismod accusamus et
-										iusto odio dignissimos ducimus qui blanditiis praesentium
-										voluptatum deleniti atque corrupti quos dolores et quas
-										molestias excepturi sint occaecati cupiditate non provident.</p></li>
+								<li class="subitem1"><p>부적절한 게시물이나 사용자를 신고하려면 중고거래
+										사이트에서 제공하는 신고 기능을 사용하세요.</p></li>
 							</ul></li>
-						<li class="item10"><a href="#" title="click here">Sed
-								diam nonummy Ut semper nisl ut laoreet ultrices nibh euismod ?</a>
+						<li class="item10"><a href="#" title="click here">10. 판매자나 구매자 사기를 당한 경우 어떻게 대처해야 하나요?</a>
 							<ul>
-								<li class="subitem1"><p>Consectetuer adipiscing elit,
-										sed diam nonummy nibh euismod consectetuer adipiscing elit,
-										sed diam nonummy nibh euismod accusamus et iusto odio
-										dignissimos ducimus qui blanditiis praesentium voluptatum
-										deleniti atque corrupti quos dolores et quas molestias
-										excepturi sint occaecati cupiditate non provident.</p></li>
+								<li class="subitem1"><p>사기를 당한 경우 즉시 플랫폼의 고객센터나 신고 기능을 통해 도움을 요청하세요.</p></li>
+							</ul></li>
+						<li class="item11"><a href="#" title="click here">11. 물건 판매 시 수수료가 부과되나요?</a>
+							<ul>
+								<li class="subitem1"><p>저희 Edit은 판매자 구매자에게 수수료를 부과하지 않습니다.</p></li>
+							</ul></li>
+						<li class="item11"><a href="#" title="click here">12. 물건 등록에 필요한 최소 사진 수는 어떻게 되나요?</a>
+							<ul>
+								<li class="subitem1"><p>현재 최소, 최대 1장의 사진을 등록 가능합니다. 추후 여러장의 사진을 등록할 수 있도록 업데이트 예정입니다.</p></li>
 							</ul></li>
 					</ul>
 					<!-- script for tabs -->
@@ -246,11 +195,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<!-- script for tabs -->
 				</div>
 				<%
-				if (id != null) {
+				if (m_id != null) {
 				%>
 				<div id="tab-2" class="tab-content">
 					<!-- 				2탭 문의글 작성 -->
-					<form action="adminPro.ad" method="post"
+					<form action="faqWritePro.ad" method="post"
 						enctype="multipart/form-data">
 						<table class="_1q_query_tab">
 							<tr>
@@ -263,7 +212,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										<option value="기타">기타</option>
 								</select></td>
 								<td class="_1q_query_tab_2"><input type="text" name="m_id"
-									value="<%=id%>" style="border: none;" readonly="readonly"></td>
+									value="<%=m_id%>" style="border: none;" readonly="readonly"></td>
 								<td>
 									<div class="_1q_query_tab_3">
 										<label for="imgfile" id="fileLabel"><img
@@ -330,7 +279,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							String a_check = adminDTO.getA_check() == 0 ? "x" : "o";
 						%>
 						<tr
-							onclick="window.open('registered.ad?a_num=<%=adminDTO.getA_num()%>','문의상세페이지','width=800, height=700, scrollbars=yes')">
+							onclick="window.open('faqContent.ad?a_num=<%=adminDTO.getA_num()%>','문의상세페이지','width=800, height=700, scrollbars=yes')">
 							<td class="_1qna_board_border"><%=adminDTO.getA_num()%></td>
 							<td class="_1qna_board_subject"><%=adminDTO.getA_title()%></td>
 							<td class="_1qna_board_border"><%=adminDTO.getA_m_nick()%></td>

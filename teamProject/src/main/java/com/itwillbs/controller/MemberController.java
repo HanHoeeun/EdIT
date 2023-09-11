@@ -279,8 +279,9 @@ public class MemberController extends HttpServlet{
 //				    	wishList = productService.getWishSellProducts(ppageDTO);
 //				    }
 //			    }	
+				// 게시판 전체 글 개수 구하기
 			    int p_count = productService.getProductCount();
-			    int p_pageBlock = 2;
+			    int p_pageBlock =  5;
 			    int p_startPage=(p_currentPage-1)/p_pageBlock*p_pageBlock+1;
 			    int p_endPage=p_startPage+p_pageBlock-1;
 			    int p_pageCount = p_count / p_pageSize + (p_count % p_pageSize==0?0:1);

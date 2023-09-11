@@ -15,7 +15,6 @@ import javax.sql.DataSource;
 import com.itwillbs.domain.AdminDTO;
 import com.itwillbs.domain.AdminPageDTO;
 import com.itwillbs.domain.MemberDTO;
-import com.itwillbs.domain.NoticeDTO;
 import com.itwillbs.domain.ReportDTO;
 import com.itwillbs.service.AdminService;
 
@@ -40,11 +39,14 @@ public class AdminDAO {
 		if(con != null) {try {con.close();} catch (SQLException e) {	}}
 	}
 	
+//	세션에서 받은 m_id를 기준으로 members 테이블의 회원 정보를 받는 메서드
 	public MemberDTO getMemberInfo(MemberDTO member) {
 		MemberDTO memberDTO = null;
 		try {
 			con = this.getConnection();
-			String sql = "select m_num, m_nick from members where m_id = ?";
+			String sql = "SELECT m_num, m_nick "
+					+ 	 "FROM members "
+					+ 	 "WHERE m_id = ?";
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setString(1, member.getM_id());
@@ -64,8 +66,8 @@ public class AdminDAO {
 		return memberDTO;
 	}
 	
-	
-	public void insertBoard(AdminDTO adminDTO) {
+//	admin 테이블에 값을 넣는다 (고객센터 문의글 삽입)
+	public void FAQBoardInsert(AdminDTO adminDTO) {
 		try {
 //			아이디로 회원번호 닉네임 얻어오기 
 			MemberDTO memberDTO = new MemberDTO();
@@ -79,7 +81,8 @@ public class AdminDAO {
 			
 			
 //			1게시글번호 (2회원번호 3닉네임 4제목 5내용) 6답변 (7파일명) 8확인용 9작성시간 10문의타입 11공지타입
-				sql = "insert into admin values (default,?,?,?,?,null,?,default,default,?,null)";
+				sql = "INSERT INTO admin "
+					+ "VALUES (DEFAULT ,? ,? ,? ,? , NULL, ?, DEFAULT, DEFAULT, ?, NULL)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, memberDTO.getM_num());
 			pstmt.setString(2, memberDTO.getM_nick());
@@ -96,7 +99,9 @@ public class AdminDAO {
 			this.dbClose();
 		}
 	}
-	public List<AdminDTO> getBoardListSearch(AdminPageDTO pageDTO) {
+//	내 문의내역 리스트 출력 
+//	search = m_num 으로 자기 자신의 문의내역 리스트만 호출
+	public List<AdminDTO> getFAQBoardList(AdminPageDTO pageDTO) {
 		List<AdminDTO> adminList = null;
 		try {
 			MemberDTO memberDTO = new MemberDTO();
@@ -106,7 +111,11 @@ public class AdminDAO {
 
 			con = this.getConnection();
 			
-			String sql = "select * from admin where a_m_nick = ? order by a_num desc limit ?, ?";
+			String sql = "SELECT * "
+					+ 	 "FROM admin "
+					+ 	 "WHERE a_m_nick = ? "
+					+ 	 "ORDER BY a_num DESC "
+					+ 	 "LIMIT ?, ?";
 			pstmt = con.prepareStatement(sql);
 			
 			//지금 아이디 
@@ -138,7 +147,8 @@ public class AdminDAO {
 		return adminList;
 		
 	}
-	public int getBoardCountSearch(AdminPageDTO pageDTO) {
+//	내문의 내역 글 수 확인 => 페이징 처리를 위해서 
+	public int getFAQBoardCount(AdminPageDTO pageDTO) {
 		int count = 0;
 		
 		try {
@@ -148,14 +158,16 @@ public class AdminDAO {
 			memberDTO = this.getMemberInfo(memberDTO);
 			
 			con = this.getConnection();
-			String sql = "select count(*) as count from admin where a_m_nick = ? ";
+			String sql = "SELECT COUNT(*) AS COUNT "
+					+ 	 "FROM admin "
+					+ 	 "WHERE a_m_nick = ? ";
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setString(1, memberDTO.getM_nick());
 			
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				count = rs.getInt("count");
+				count = rs.getInt("COUNT");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -165,21 +177,31 @@ public class AdminDAO {
 		return count;
 	}
 	
-	public List<AdminDTO> getBoardList(AdminPageDTO pageDTO) {
+//	관리자 페이지에서 모든 문의 내역 확인 
+	public List<AdminDTO> getAdminFAQBoardList(AdminPageDTO pageDTO) {
 		List<AdminDTO> adminList = null;
 		try {
 			con = this.getConnection();
 			
 			String sql;
-			System.out.println("adminDAO : pageDTO.getSearch()" + pageDTO.getSearch());
+
 			if(pageDTO.getSearch() == "전체" || pageDTO.getSearch().equals("전체")) {
-				sql ="select * from admin order by a_num desc limit ?, ?";
+//				기본은 전체 검색
+				sql = "SELECT * "
+					+ "FROM admin "
+					+ "ORDER BY a_num DESC "
+					+ "LIMIT ?, ?";
 				pstmt = con.prepareStatement(sql);
 				
 				pstmt.setInt(1, pageDTO.getStartRow()-1); // 시작하는 행 -1 
 				pstmt.setInt(2, pageDTO.getPageSize()); // 몇개
 			}else {
-				sql ="select * from admin where a_cs_type = ? order by a_num desc limit ?, ?";
+//				문의 타입에 따라 검색 
+				sql = "SELECT * "
+					+ "FROM admin "
+					+ "WHERE a_cs_type = ? "
+					+ "ORDER BY a_num DESC "
+					+ "LIMIT ?, ?";
 				pstmt = con.prepareStatement(sql);
 				
 				pstmt.setString(1, pageDTO.getSearch());
@@ -211,17 +233,25 @@ public class AdminDAO {
 		return adminList;
 		
 	}
-	public int getBoardCount(AdminPageDTO pageDTO) {
+//	관리자 페이지 문의 내역 페이징 처리를 위한 글 갯수 구하는 메서드 
+	public int getAdminFAQBoardCount(AdminPageDTO pageDTO) {
 		int count = 0;
 		
 		try {
 			con = this.getConnection();
+			
 			String sql;
+			
 			if(pageDTO.getSearch() == "전체" || pageDTO.getSearch().equals("전체")) {
-				sql = "select count(*) as count from admin";
+//				기본은 전체 
+				sql = "SELECT COUNT(*) AS COUNT "
+					+ "FROM admin";
 				pstmt = con.prepareStatement(sql);
 			}else {
-				sql = "select count(*) as count from admin where a_cs_type = ?";
+//				문의 타입에 따라서 검색
+				sql = "SELECT COUNT(*) AS COUNT "
+					+ "FROM admin "
+					+ "WHERE a_cs_type = ?";
 				pstmt = con.prepareStatement(sql);
 				
 				pstmt.setString(1, pageDTO.getSearch());
@@ -230,7 +260,7 @@ public class AdminDAO {
 			
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				count = rs.getInt("count");
+				count = rs.getInt("COUNT");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -239,12 +269,20 @@ public class AdminDAO {
 		}
 		return count;
 	}
-	public AdminDTO getBoardContent(int a_num) {
+	
+//	문의 내역 내용 확인
+//	admin 테이블의 기본키로 검색
+	public AdminDTO getFAQBoardContent(int a_num) {
 		AdminDTO adminDTO = null;
 		try {
 			con = this.getConnection();
 			
-			String sql = "select * from admin where a_num = ?";
+			String sql = "SELECT a.a_num AS a_num, a.a_m_nick AS a_m_nick, a.a_title AS a_title, "
+					+ 	 "a.a_file AS a_file, a.a_content AS a_content, a.a_answer AS a_answer, "
+					+ 	 "m.m_id AS m_id "
+					+ 	 "FROM admin a JOIN members m "
+					+ 	 "ON a.a_m_nick = m.m_nick "
+					+	 "WHERE a.a_num = ? ";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1,a_num);
 			rs = pstmt.executeQuery();
@@ -256,6 +294,7 @@ public class AdminDAO {
 				adminDTO.setA_file(rs.getString("a_file"));
 				adminDTO.setA_content(rs.getString("a_content"));
 				adminDTO.setA_answer(rs.getString("a_answer"));
+				adminDTO.setA_m_id(rs.getString("m_id"));
 			}
 			
 		} catch (Exception e) {
@@ -267,10 +306,15 @@ public class AdminDAO {
 		return adminDTO;
 	}
 	
-	public void updateFaqAnswer(AdminDTO adminDTO) {
+//	문의 내역 답변 작성 
+	public void updateFAQAnswer(AdminDTO adminDTO) {
 		try {
 			con = this.getConnection();
-			String sql = "update admin set a_answer = ?, a_check = 1 where a_num = ?";
+			
+			String sql = "UPDATE admin "
+					+ 	 "SET a_answer = ?, a_check = 1 "
+					+ 	 "WHERE a_num = ?";
+			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, adminDTO.getA_answer());
 			pstmt.setInt(2, adminDTO.getA_num());
@@ -283,12 +327,16 @@ public class AdminDAO {
 		}
 	}
 	
-	public List<ReportDTO> getReportList(AdminPageDTO pageDTO) {
+//	관리자 페이지 신고 게시판 리스트 
+	public List<ReportDTO> getAdminReportList(AdminPageDTO pageDTO) {
 		List<ReportDTO> reportList = null;
 		try {
 			con = this.getConnection();
 			
-			String sql = "select * from report order by r_num desc limit ?, ?";
+			String sql = "SELECT * "
+					+ 	 "FROM report "
+					+ 	 "ORDER BY r_num DESC "
+					+ 	 "LIMIT ?, ?";
 			pstmt = con.prepareStatement(sql);
 			
 			
@@ -317,18 +365,20 @@ public class AdminDAO {
 		
 		return reportList;
 	}
-	public int getReportCount(AdminPageDTO pageDTO) {
+//	관리자 페이지 신고 게시판 페이징 처리용 count 
+	public int getAdminReportCount(AdminPageDTO pageDTO) {
 		int count = 0;
 		
 		try {
 			con = this.getConnection();
-			String sql = "select count(*) as count from report";
+			String sql = "SELECT COUNT(*) AS COUNT "
+					+ 	 "FROM report";
 			pstmt = con.prepareStatement(sql);
 			
 			
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				count = rs.getInt("count");
+				count = rs.getInt("COUNT");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -344,10 +394,10 @@ public class AdminDAO {
 		try {
 			con = this.getConnection();
 //			신고자 대상자 아이디
-			String sql = "select m.m_nick nick "
-					+ "from report r join members m "
-					+ "on r.r_m_target = m.m_num "
-					+ "where r_num = ?";
+			String sql = "SELECT m.m_nick nick "
+					+ 	 "FROM report r JOIN members m "
+					+	 "ON r.r_m_target = m.m_num "
+					+ 	 "WHERE r_num = ?";
 
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, r_num);
@@ -359,21 +409,22 @@ public class AdminDAO {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			this.dbClose();
+//			this.dbClose();
 		}
 		return target_id;
 	}
 	
+//	신고테이블 기본키 신고 번호로 신고 상세내용 호출 
 	public ReportDTO getReportContent(int r_num) {
 		ReportDTO reportDTO = new ReportDTO();
 		try {
 			con = this.getConnection();
 			
 //			신고 아이디 및 신고정보 
-			String sql = "select *  "
-					+ "from report r join members m "
-					+ "on r.r_m_num =  m.m_num "
-					+ "where r.r_num = ?";
+			String sql = "SELECT *  "
+					+ 	 "FROM report r JOIN members m "
+					+ 	 "ON r.r_m_num =  m.m_num "
+					+ 	 "WHERE r.r_num = ?";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, r_num);
@@ -381,15 +432,17 @@ public class AdminDAO {
 			ResultSet rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				String target_id = this.getTargetId(r_num);
+//				신고번호로 신고 대상자 아이디 구하는 부분 
+				String target_nick = this.getTargetId(r_num);
 				
-				reportDTO.setR_m_target_id(target_id);
+				reportDTO.setR_m_target_nick(target_nick);
 				reportDTO.setR_num(rs.getInt("r_num"));
-				reportDTO.setR_m_num_id(rs.getString("m_nick"));
+				reportDTO.setR_m_num_nick(rs.getString("m_nick"));
 				reportDTO.setR_title(rs.getString("r_title"));
 				reportDTO.setR_file(rs.getString("r_file"));
 				reportDTO.setR_content(rs.getString("r_content"));
 				reportDTO.setR_answer(rs.getString("r_answer"));
+				reportDTO.setR_m_num_id(rs.getString("m_id"));
 				
 			}
 		} catch (Exception e) {
@@ -400,19 +453,21 @@ public class AdminDAO {
 		
 		return reportDTO;
 	}
+	
+//	신고게시판 신고 답변 등록 
 	public void updateReportAnswer(ReportDTO reportDTO) {
 		try {
 			con = this.getConnection();
 			
-			String sql = "update report set r_answer = ?, r_check = 1 where r_num = ?";
+			String sql = "UPDATE report "
+					+ 	 "SET r_answer = ?, r_check = 1 "
+					+ 	 "WHERE r_num = ?";
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setString(1, reportDTO.getR_answer());
 			pstmt.setInt(2, reportDTO.getR_num());
 			
 			pstmt.executeUpdate();
-			
-			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -421,12 +476,14 @@ public class AdminDAO {
 		}
 	}
 	
-//	닉네임으로 m_count 반환 
+//	닉네임으로 회원정보 테이블의 신고 횟수 구하는 부분
 	public int getMemberCountCheck(String m_nick) {
 		int m_count = 0;
 		try {
 			con = this.getConnection();
-			String sql = "select m_count from members where m_nick = ?";;
+			String sql = "SELECT m_count "
+					+ 	 "FROM members "
+					+ 	 "WHERE m_nick = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, m_nick);
 			
@@ -434,27 +491,37 @@ public class AdminDAO {
 			if(rs.next()) {
 				m_count = rs.getInt("m_count");
 			}
-			
-			
 		}catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-//			this.dbClose();
+//			this.dbClose(); 
+//			여기서 finally 에서 dbClose를 안하는 이유는
+//			여기서 rs ,con, pstmt를 close 해버리면 
+//			호출한 위치에서의 rs, con, pstmt도 close 돼서 오류발생
 		}
 		return m_count;
 	}
 	
+//	신고를 적용하는 부분
+//	신고를 적용하면 신고횟수 m_count +1 되고 
+//	m_count가 3이 되면 m_level 도 +1 이 된다 
+//	m_level = 0 일반회원, 1 블랙리스트, 2 관리자 
 	public int updateReportCheck(ReportDTO reportDTO) {
 		int result = 0;
 		try {
+//			신고 번호로 m_nick을 얻어온다
 			String m_nick = this.getTargetId(reportDTO.getR_num());
+//			m_nick으로 신고 횟수 반환 서브쿼리를 사용해도 된다 
 			int m_count = this.getMemberCountCheck(m_nick);
+			
 //			m_count 3보다 작아야 작동 
 //			count 가 2면 +1 하고 블랙리스트 등록 m_level 			
 			if(m_count == 2){
 				result = m_count +1;
 				con = this.getConnection();
-				String sql = "update members set m_count = m_count + 1, m_level = 1 where m_nick = ?";
+				String sql = "UPDATE members "
+						+ 	 "SET m_count = m_count + 1, m_level = 1 "
+						+ 	 "WHERE m_nick = ?";
 				pstmt = con.prepareStatement(sql);
 				
 				pstmt.setString(1, m_nick);
@@ -463,7 +530,9 @@ public class AdminDAO {
 			}else if(m_count < 3 ) {
 				result = m_count + 1;
 				con = this.getConnection();
-				String sql = "update members set m_count = m_count + 1 where m_nick = ?";
+				String sql = "UPDATE members "
+						+ 	 "SET m_count = m_count + 1 "
+						+ 	 "WHERE m_nick = ?";
 				pstmt = con.prepareStatement(sql);
 				
 				pstmt.setString(1, m_nick);
@@ -476,16 +545,19 @@ public class AdminDAO {
 		}finally {
 			this.dbClose();
 		}
-		System.out.println("유저 DAO count 횟수 : " + result);
 		return result;
 	}
+	
+//	신고 적용시 신고횟수가 3이 반환이 되면 정지 사유를 입력 할 수 있다.
 	public int updateBlackReason(ReportDTO reportDTO) {
 		int result = 0;
 		try {
 			String m_nick = this.getTargetId(reportDTO.getR_num());
 		
 			con = this.getConnection();
-			String sql = "update members set m_event =? where m_nick = ?";
+			String sql = "UPDATE members "
+					+ 	 "SET m_event = ? "
+					+ 	 "WHERE m_nick = ?";
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setString(1, reportDTO.getBl_reason());
@@ -498,11 +570,10 @@ public class AdminDAO {
 		}finally {
 			this.dbClose();
 		}
-		System.out.println("유저 DAO count 횟수 : " + result);
 		return result;
 	}
 	
-	
+//	관리자 페이지에서 회원 정보 리스트를 호출 
 	public List<MemberDTO> getMemberList(AdminPageDTO pageDTO) {
 		List<MemberDTO> memberList = null;
 		try {
@@ -510,38 +581,59 @@ public class AdminDAO {
 			
 			String sql;
 			
-			System.out.println("adminDAO pageDTO.getSearch() : "+pageDTO.getSearch());
+//			검색이 있는 경우 다시 검색 분류별로 리스트 호출 
 			if(pageDTO.getSearch() != null) {
+//				getParameter로 null 값이 넘어오는데 그게 문자열로 오기 때문에 막아준다 
 				if(pageDTO.getSearch() == "null" || pageDTO.getSearch().equals("null")) {
-					sql = "select * from members order by m_num desc limit ?, ?";
+					sql = "SELECT * "
+						+ "FROM members "
+						+ "ORDER BY m_num DESC "
+						+ "LIMIT ?, ?";
 					
 					pstmt = con.prepareStatement(sql);
 					pstmt.setInt(1, pageDTO.getStartRow()-1); // 시작하는 행 -1 
 					pstmt.setInt(2, pageDTO.getPageSize()); // 몇개
-				}
-				else if(pageDTO.getSearch_type() == 1) {
-					sql = "select * from members where m_num = ? order by m_num desc limit ?, ? ";
+				}else if(pageDTO.getSearch_type() == 1) {
+//					회원 번호로 검색 
+					sql = "SELECt * "
+						+ "FROM members "
+						+ "WHERE m_num = ? ORDER BY m_num DESC"
+						+ "LIMIT ?, ? ";
 					pstmt = con.prepareStatement(sql);
 					
 					pstmt.setInt(1, Integer.parseInt(pageDTO.getSearch()));
 					pstmt.setInt(2, pageDTO.getStartRow()-1); // 시작하는 행 -1 
 					pstmt.setInt(3, pageDTO.getPageSize()); // 몇개
 				}else if(pageDTO.getSearch_type() == 2) {
-					sql = "select * from members where m_id = ? order by m_num desc limit ?, ? ";
+//					회원 아이디로 검색
+					sql = "SELECT * "
+						+ "FROM members "
+						+ "WHERE m_id = ? ORDER BY m_num DESC "
+						+ "LIMIT ?, ? ";
 					pstmt = con.prepareStatement(sql);
 					
 					pstmt.setString(1, pageDTO.getSearch());
 					pstmt.setInt(2, pageDTO.getStartRow()-1); // 시작하는 행 -1 
 					pstmt.setInt(3, pageDTO.getPageSize()); // 몇개
 				}else if(pageDTO.getSearch_type() == 3) {
-					sql = "select * from members where m_nick = ? order by m_num desc limit ?, ? ";
+//					회원 닉네임으로 검색
+					sql = "SELECT * "
+						+ "FROM members "
+						+ "WHERE m_nick = ? "
+						+ "ORDER BY m_num DESC "
+						+ "LIMIT ?, ? ";
 					pstmt = con.prepareStatement(sql);
 					
 					pstmt.setString(1, pageDTO.getSearch());
 					pstmt.setInt(2, pageDTO.getStartRow()-1); // 시작하는 행 -1 
 					pstmt.setInt(3, pageDTO.getPageSize()); // 몇개
 				}else if(pageDTO.getSearch_type() == 4) {
-					sql = "select * from members where m_count = ? order by m_num desc limit ?, ? ";
+//					신고 횟수 검색 
+					sql = "SELECT * "
+						+ "FROM members "
+						+ "WHERE m_count = ? "
+						+ "ORDER BY m_num DESC "
+						+ "LIMIT ?, ? ";
 					pstmt = con.prepareStatement(sql);
 					
 					pstmt.setInt(1, Integer.parseInt(pageDTO.getSearch()));
@@ -550,7 +642,11 @@ public class AdminDAO {
 				}
 				
 			}else{
-				sql = "select * from members order by m_num desc limit ?, ?";
+//				검색이 없을 경구 모든 회원 정보 출력 
+				sql = "SELECT * "
+					+ "FROM members "
+					+ "ORDER BY m_num DESC "
+					+ "LIMIT ?, ?";
 				
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, pageDTO.getStartRow()-1); // 시작하는 행 -1 
@@ -579,13 +675,76 @@ public class AdminDAO {
 		
 		return memberList;
 	}
+//	회원 정보 페이징 처리를 위한 count 호출 
+	public int getMemberCountSearch(AdminPageDTO pageDTO) {
+		int count = 0;
+		
+		try {
+			con = this.getConnection();
+			String sql;
+			if(pageDTO.getSearch() != null) {
+				if(pageDTO.getSearch() == "null" || pageDTO.getSearch().equals("null")) {
+					sql = "SELECT COUNT(*) AS COUNT "
+						+ "FROM members";
+					pstmt = con.prepareStatement(sql);
+					
+				}else if(pageDTO.getSearch_type() == 1) {
+					sql = "SELECT COUNT(*) AS COUNT "
+						+ "FROM members "
+						+ "WHERE m_num = ?";
+					pstmt = con.prepareStatement(sql);
+					
+					pstmt.setInt(1, Integer.parseInt(pageDTO.getSearch()));
+				}else if(pageDTO.getSearch_type() == 2) {
+					sql = "SELECT COUNT(*) AS COUNT "
+						+ "FROM members "
+						+ "WHERE m_id = ?";
+					pstmt = con.prepareStatement(sql);
+					
+					pstmt.setString(1, pageDTO.getSearch());
+				}else if(pageDTO.getSearch_type() == 3) {
+					sql = "SELECT COUNT(*) AS COUNT "
+						+ "FROM members "
+						+ "WHERE m_nick = ?";
+					pstmt = con.prepareStatement(sql);
+					
+					pstmt.setString(1, pageDTO.getSearch());
+				}else if(pageDTO.getSearch_type() == 4) {
+					sql = "SELECT COUNT(*) AS COUNT "
+						+ "FROM members "
+						+ "WHERE m_count = ?";
+					pstmt = con.prepareStatement(sql);
+					
+					pstmt.setInt(1, Integer.parseInt(pageDTO.getSearch()));
+				}
+			}else {
+				sql = "SELECT COUNT(*) AS COUNT "
+					+ "FROM members";
+				pstmt = con.prepareStatement(sql);
+			}
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt("COUNT");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbClose();
+		}
+		return count;
+	}
+	
+//	회원 정보 상세 내용 
 	public MemberDTO getMemberContent(int num) {
 		MemberDTO memberDTO = new MemberDTO();
 		try {
 			con = this.getConnection();
 			
 //			신고 아이디 및 신고정보 
-			String sql = "select * from members where m_num = ?";
+			String sql = "SELECT * "
+					+ 	 "FROM members "
+					+ 	 "WHERE m_num = ?";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num);
@@ -612,14 +771,16 @@ public class AdminDAO {
 		return memberDTO;
 		
 	}
+	
+//	관리자 페이지에서 회원 정보 수정 
 	public void updateUserContent(MemberDTO memberDTO) {
 		try {
 			con = this.getConnection();
 			
 //			신고 아이디 및 신고정보 
-			String sql = "update members "  
-					+ "set m_id = ?, m_name = ?, m_nick = ?, m_phone = ?, m_email = ?, m_event = ?, m_level = ?, m_count = ? " 
-					+ "where m_num = ?";
+			String sql = "UPDATE members "  
+					+ 	 "SET m_id = ?, m_name = ?, m_nick = ?, m_phone = ?, m_email = ?, m_event = ?, m_level = ?, m_count = ? " 
+					+ 	 "WHERE m_num = ?";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, memberDTO.getM_id());
@@ -641,54 +802,8 @@ public class AdminDAO {
 			this.dbClose();
 		}
 	}
-	public int getMemberCountSearch(AdminPageDTO pageDTO) {
-		int count = 0;
-		
-		try {
-			con = this.getConnection();
-			String sql;
-			if(pageDTO.getSearch() != null) {
-				if(pageDTO.getSearch() == "null" || pageDTO.getSearch().equals("null")) {
-					sql = "select count(*) as count from members";
-					pstmt = con.prepareStatement(sql);
-					
-				}else if(pageDTO.getSearch_type() == 1) {
-					sql = "select count(*) as count from members where m_num = ?";
-					pstmt = con.prepareStatement(sql);
-					
-					pstmt.setInt(1, Integer.parseInt(pageDTO.getSearch()));
-				}else if(pageDTO.getSearch_type() == 2) {
-					sql = "select count(*) as count from members where m_id = ?";
-					pstmt = con.prepareStatement(sql);
-					
-					pstmt.setString(1, pageDTO.getSearch());
-				}else if(pageDTO.getSearch_type() == 3) {
-					sql = "select count(*) as count from members where m_nick = ?";
-					pstmt = con.prepareStatement(sql);
-					
-					pstmt.setString(1, pageDTO.getSearch());
-				}else if(pageDTO.getSearch_type() == 4) {
-					sql = "select count(*) as count from members where m_count = ?";
-					pstmt = con.prepareStatement(sql);
-					
-					pstmt.setInt(1, Integer.parseInt(pageDTO.getSearch()));
-				}
-			}else {
-				sql = "select count(*) as count from members";
-				pstmt = con.prepareStatement(sql);
-			}
-			
-			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				count = rs.getInt("count");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			dbClose();
-		}
-		return count;
-	}
+	
+//	관리자 페이지 블랙리스트 호출 
 	public List<MemberDTO> getBlackList(AdminPageDTO pageDTO) {
 		List<MemberDTO> blackList = new ArrayList<>();
 		try {
@@ -697,36 +812,51 @@ public class AdminDAO {
 			String sql;
 //			아이디 이름 이메일 
 			if(pageDTO.getSearch() != null) {
-				if(pageDTO.getSearch_type() == 1) {
-					sql = "select * from members where m_id = ? and m_count = 3 limit ?, ? ";
+				if(pageDTO.getSearch() == "null" || pageDTO.getSearch().equals("null")) {
+					sql = "SELECT * "
+						+ "FROM members "
+						+ "WHERE m_count = 3 "
+						+ "LIMIT ?, ?";
+						pstmt = con.prepareStatement(sql);
+						
+						pstmt.setInt(1, pageDTO.getStartRow()-1); // 시작하는 행 -1 
+						pstmt.setInt(2, pageDTO.getPageSize()); // 몇개
+				}else if(pageDTO.getSearch_type() == 1) {
+					sql = "SELECT * "
+						+ "FROM members "
+						+ "WHERE m_id = ? AND m_count = 3 "
+						+ "LIMIT ?, ? ";
 					pstmt = con.prepareStatement(sql);
 					
 					pstmt.setString(1, pageDTO.getSearch());
 					pstmt.setInt(2, pageDTO.getStartRow()-1); // 시작하는 행 -1 
 					pstmt.setInt(3, pageDTO.getPageSize()); // 몇개
 				}else if(pageDTO.getSearch_type() == 2) {
-					sql = "select * from members where m_name = ? and m_count = 3 limit ?, ? ";
+					sql = "SELECT * "
+						+ "FROM members "
+						+ "WHERE m_name = ? AND m_count = 3 "
+						+ "LIMIT ?, ? ";
 					pstmt = con.prepareStatement(sql);
 					
 					pstmt.setString(1, pageDTO.getSearch());
 					pstmt.setInt(2, pageDTO.getStartRow()-1); // 시작하는 행 -1 
 					pstmt.setInt(3, pageDTO.getPageSize()); // 몇개
 				}else if(pageDTO.getSearch_type() == 3) {
-					sql = "select * from members where m_email = ? and m_count = 3 limit ?, ? ";
+					sql = "SELECT * "
+						+ "FROM members "
+						+ "WHERE m_email = ? AND m_count = 3 "
+						+ "LIMIT ?, ? ";
 					pstmt = con.prepareStatement(sql);
 					
 					pstmt.setString(1, pageDTO.getSearch());
 					pstmt.setInt(2, pageDTO.getStartRow()-1); // 시작하는 행 -1 
 					pstmt.setInt(3, pageDTO.getPageSize()); // 몇개
-				}else {
-					sql = "select * from members where m_count = 3 limit ?, ?";
-					pstmt = con.prepareStatement(sql);
-					
-					pstmt.setInt(1, pageDTO.getStartRow()-1); // 시작하는 행 -1 
-					pstmt.setInt(2, pageDTO.getPageSize()); // 몇개
 				}
 			}else {
-				sql = "select * from members where m_count = 3 limit ?, ?";
+				sql = "SELECT * "
+					+ "FROM members "
+					+ "WHERE m_count = 3 "
+					+ "LIMIT ?, ?";
 				pstmt = con.prepareStatement(sql);
 				
 				pstmt.setInt(1, pageDTO.getStartRow()-1); // 시작하는 행 -1 
@@ -761,6 +891,7 @@ public class AdminDAO {
 		
 		return blackList;
 	}
+//	블랙리스트 페이징 처리
 	public int getBlackCountSearch(AdminPageDTO pageDTO) {
 		int count = 0;
 		
@@ -771,32 +902,42 @@ public class AdminDAO {
 //			아이디 이름 이메일 
 			if(pageDTO.getSearch() != null) {
 				if(pageDTO.getSearch() == "null" || pageDTO.getSearch().equals("null")) {
-					sql = "select count(*) as count from members where m_count = 3";
+					sql = "SELECT COUNT(*) as COUNT "
+						+ "FROM members "
+						+ "WHERE m_count = 3";
 					pstmt = con.prepareStatement(sql);
 				}else if(pageDTO.getSearch_type() == 1) {
-					sql = "select count(*) as count from members where m_id = ? and m_count = 3";
+					sql = "SELECT COUNT(*) as COUNT "
+						+ "FROM members "
+						+ "WHERE m_id = ? AND m_count = 3";
 					pstmt = con.prepareStatement(sql);
 					
 					pstmt.setString(1, pageDTO.getSearch());
 				}else if(pageDTO.getSearch_type() == 2) {
-					sql = "select count(*) as count from members where m_name = ? and m_count = 3";
+					sql = "SELECT COUNT(*) as COUNT "
+						+ "FROM members "
+						+ "WHERE m_name = ? AND m_count = 3";
 					pstmt = con.prepareStatement(sql);
 					
 					pstmt.setString(1, pageDTO.getSearch());
 				}else if(pageDTO.getSearch_type() == 3) {
-					sql = "select count(*) as count from members where m_email = ? and m_count = 3";
+					sql = "SELECT COUNT(*) as COUNT "
+						+ "FROM members "
+						+ "WHERE m_email = ? AND m_count = 3";
 					pstmt = con.prepareStatement(sql);
 					
 					pstmt.setString(1, pageDTO.getSearch());
 				}
 			}else {
-				sql = "select count(*) as count from members where m_count = 3";
+				sql = "SELECT COUNT(*) as COUNT "
+					+ "FROM members "
+					+ "WHERE m_count = 3";
 				pstmt = con.prepareStatement(sql);
 			}
 			
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				count = rs.getInt("count");
+				count = rs.getInt("COUNT");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -814,7 +955,8 @@ public class AdminDAO {
 			con=getConnection();
 			
 			// 글번호 신고자번호 신고대상자번호 제목 내용 답변 작성일 처리여부 파일
-			String sql = "insert into report values (default, ?, ?, ?, ?, null, default, null, ?)";
+			String sql = "INSERT INTO report "
+					+	 "VALUES (DEFAULT, ?, ?, ?, ?, NULL, DEFAULT, NULL, ?)";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, reportDTO.getR_m_num());//신고자번호
 			pstmt.setInt(2, reportDTO.getR_m_target());//신고대상자번호

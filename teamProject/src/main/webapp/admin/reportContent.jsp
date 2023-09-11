@@ -4,6 +4,26 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%
+	ReportDTO reportDTO = (ReportDTO)request.getAttribute("reportDTO");
+	
+// 	자기 자신 또는 관리자만 신고 상세페이지 접근을 해야한다. 
+	String m_id = (String)session.getAttribute("m_id");
+	int m_level = 0;
+    if (session.getAttribute("m_level") != null) {
+        m_level = (int)session.getAttribute("m_level");
+        // 관리자가 아니고 글쓴이도 아닌 경우
+        if (m_level != 2 && !m_id.equals(reportDTO.getR_m_num_id())) {
+%>
+            <script>
+                window.close();
+            </script>
+<%
+        }
+    }
+%>
+
+
 <title>신고페이지</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,16 +56,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	});
 </script>
 </head>
-<%
-ReportDTO reportDTO = (ReportDTO)request.getAttribute("reportDTO");
-
-%>
 
 <!--============================== 바디 ============================================-->
 <div class="report">
 	<div class="container">
 			<h2>신고 상세페이지</h2>
-			<form class="report-form-grids_1_1" action="report_answer.ad" method="post" >		
+			<form class="report-form-grids_1_1" action="reportAnswer.ad" method="post" >		
 				<input type="hidden" value="<%=reportDTO.getR_num() %>" name="r_num">
 				<p>신고자 아이디</p>
 				<input class="readonly" type="text" name="r_m_num_id" value="<%=reportDTO.getR_m_num_id() %>" readonly="readonly"><br>
@@ -53,20 +69,30 @@ ReportDTO reportDTO = (ReportDTO)request.getAttribute("reportDTO");
 				<input class="readonly" type="text" name="r_m_target_id" value="<%=reportDTO.getR_m_target_id() %>" readonly="readonly"><br>
 				<p>제목</p>
 				<input class="title" type="text" name="r_title" value="<%=reportDTO.getR_title() %>" readonly="readonly" ><br>
+				<%if(reportDTO.getR_file() != null) {%>
 				<p>첨부파일</p>
 				<div>
-					<img src="adminUpload/<%=reportDTO.getR_file() %>" width="200px" height="200px" onclick="window.open('adminUpload/<%=reportDTO.getR_file() %>','이미지','width=500, height=700, scrollbars=yes')">
+					<img src="upload/<%=reportDTO.getR_file() %>" width="200px" height="200px" onclick="window.open('upload/<%=reportDTO.getR_file() %>','이미지','width=500, height=700, scrollbars=yes')">
 				</div><br>
+				<%} %>
 				<p>신고내용</p>
 				<textarea name="r_content" readonly="readonly"><%=reportDTO.getR_content() %></textarea><br>
-				<p>답변내용</p>
 				<%
 				String answer = reportDTO.getR_answer() == null ? "" : reportDTO.getR_answer();
-				%>
+
+				if(m_level == 2){%>
+				<p>답변내용</p>
+				<textarea name="r_answer" readonly="readonly"><%=answer %></textarea><br>
+				<%}else{ %>
+				<p>답변내용</p>
 				<textarea name="r_answer"><%=answer %></textarea><br>
+				<%} %>
+				
 				<div class="reportbtn">
+					<%if(m_level == 2){%>
 					<input type="submit" value="답변등록">
 					<button type="button" id="reportbtn_btn_1" onclick="report_check();">신고적용</button>
+					<%} %>
 					<button type="button" id="reportbtn_btn_1" onclick="window.close()">닫기</button>
 				</div>
 			</form>
@@ -83,7 +109,7 @@ function report_check() {
     
     $.ajax({
         type: 'post',
-        url: 'report_check.ad',
+        url: 'reportCheck.ad',
         data: {
             r_num: r_num
         },
@@ -100,7 +126,7 @@ function report_check() {
                 if (reason != null) {
                     $.ajax({
                         type: 'post',
-                        url: 'report_save.ad',
+                        url: 'updateBlackReason.ad',
                         data: {
                             r_num: r_num,
                             reason: reason

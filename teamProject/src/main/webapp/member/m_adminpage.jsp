@@ -65,6 +65,7 @@ SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
 				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>홈</a></li>
 				<li class="active">마이페이지</li>
+				<li class="active">신고내역</li>
 			</ol>
 		</div>
 	</div>
@@ -99,7 +100,7 @@ SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
 						<%for(ReportDTO reportDTO : reportList) {
 							String check = reportDTO.getR_check() == 0 ? "x" : "o";					
 						%>
-						<tr onclick="window.open('report_content.ad?r_num=<%=reportDTO.getR_num() %>','신고상세페이지','width=800, height=700, scrollbars=yes')">
+						<tr onclick="window.open('reportContent.ad?r_num=<%=reportDTO.getR_num() %>','신고상세페이지','width=800, height=700, scrollbars=yes')">
 							<td class="_1qna_board_border"><%=reportDTO.getR_num() %></td>
 							<td class="_1qna_board_border"><%=reportDTO.getR_m_num() %></td>
 							<td class="_1qna_board_subject"><%=reportDTO.getR_title() %></td>

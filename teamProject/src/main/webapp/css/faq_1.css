@@ -79,7 +79,7 @@ ul.tabs li.current{
 	display: inherit;
 }
 .container_3_1 #tab-1, .container_3_1 #tab-2, .container_3_1 #tab-3{
-	margin: 0 auto;
+	margin: auto auto;
 	width:60%;
 	height:500px;
 /*	background-color: pink;*/
@@ -88,10 +88,11 @@ ul.tabs li.current{
 
 .faq_1 {
 	width: 800px;
-	list-style-type: decimal;
-	text-align: left;
-	margin-top: auto;
+	text-align: center;
+	margin-top: 50px;
 	margin-bottom: auto;
+	list-style: none;
+	
 }
 ul.faq_1 {
     padding: 0 1em;
@@ -100,9 +101,11 @@ ul.faq_1 {
 }
 .faq_1 li {
     margin-top: 1em;
+    list-style: none;
 }
 .faq_1 > li > a {
-    line-height: 23px;
+    line-height: 30px;
+    font-size:20px;
 }
 
 /*2번째 탭*/
@@ -314,11 +317,37 @@ ul.faq_1 {
     border-bottom: 1px solid #ddd;
     text-align: center;
 }
+
 ._1report_content_board ._1report_content_border {
 	width:40%;
 	border-right: 1px solid #ddd;
 	background-color: #f7f7f9;
 	
+}
+
+._2report_content_board {
+	width:100%;
+	margin: 0 auto;
+	margin-bottom: 10px;
+	border-top:2px solid black;
+}
+
+._2report_content_board td{
+	padding: 14px 21px;
+    color: #666;
+    font-size: 16px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+._2report_content_board ._1report_content_border {
+	width:40%;
+	border-right: 1px solid #ddd;
+	background-color: #f7f7f9;
+	
+}
+
+._2report_content_board .report-form-grids-background{
+	background-color: #fff;
 }
 
 

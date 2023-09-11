@@ -4,6 +4,25 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%
+	AdminDTO adminDTO = (AdminDTO)request.getAttribute("adminDTO");
+	//	자기 자신 또는 관리자만 신고 상세페이지 접근을 해야한다. 
+	String m_id = (String)session.getAttribute("m_id");
+	int m_level = 0;
+	if (session.getAttribute("m_level") != null) {
+	    m_level = (int)session.getAttribute("m_level");
+	    // 관리자가 아니고 글쓴이도 아닌 경우
+	    if (m_level != 2 && !m_id.equals(adminDTO.getA_m_id())) {
+	%>
+	        <script>
+	            window.close();
+	        </script>
+	<%
+	    }
+	}
+%>
+
+
 <title>문의페이지</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -37,26 +56,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 </head>
 	
-<%
-String id = (String)session.getAttribute("m_id");
-int m_level = (int)session.getAttribute("m_level");
-AdminDTO adminDTO = (AdminDTO)request.getAttribute("adminDTO");
-
-%>
 <!--============================== 바디 ============================================-->
 <div class="report">
 	<div class="container">
 			<h2>1 : 1 문의</h2>
-			<form action="registeredPro.ad" method="post" class="report-form-grids_1_1">
+			<form action="faqAnswer.ad" method="post" class="report-form-grids_1_1">
 			<input type="hidden" value="<%=adminDTO.getA_num()%>" name="a_num">
-			<p>아이디</p>
+			<p>작성자</p>
 			<input class="readonly" type="text" value="<%=adminDTO.getA_m_nick() %>" readonly="readonly"><br>
 			<p>제목</p>
 			<input class="title" type="text" value="<%=adminDTO.getA_title() %>" readonly="readonly"><br>
+			<%if(adminDTO.getA_file() != null){ %>
 			<p>첨부파일</p>
 			<div>
-				<img src="adminUpload/<%=adminDTO.getA_file() %>" width="200px" height="200px" onclick="window.open('adminUpload/<%=adminDTO.getA_file() %>','이미지','width=500, height=700, scrollbars=yes')">
+				<img src="upload/<%=adminDTO.getA_file() %>" width="200px" height="200px" onclick="window.open('upload/<%=adminDTO.getA_file() %>','이미지','width=500, height=700, scrollbars=yes')">
 			</div><br>
+			<%} %>
 			<p>문의내용</p>
 			<textarea name="textarea" readonly="readonly"><%=adminDTO.getA_content() %></textarea><br>
 			
@@ -74,7 +89,7 @@ AdminDTO adminDTO = (AdminDTO)request.getAttribute("adminDTO");
 			<%if(m_level == 2){ %>
 			<input type="submit" value="답변등록">
 			<%} %>
-			<button type="button" id="reportbtn_btn_1" onclick="window.close()">확인</button>
+			<button type="button" id="reportbtn_btn_1" onclick="window.close()">닫기</button>
 			</div>
 			</form>
 	</div>

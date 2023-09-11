@@ -4,15 +4,23 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!--
-author: W3layouts
-author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <!DOCTYPE html>
 <html>
 <head>
+<%
+//	관리자만 관리자 문의 게시판 접근 가능 
+	int m_level = 0;
+	if (session.getAttribute("m_level") != null) {
+		m_level = (int) session.getAttribute("m_level");
+		if (m_level != 2) {
+			response.sendRedirect("main.me");
+			return ;
+		}
+	}
+	List<ReportDTO> reportList = (List<ReportDTO>) request.getAttribute("reportList");
+	AdminPageDTO pageDTO = (AdminPageDTO) request.getAttribute("pageDTO");
+	SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
+	%>
 <title>신고내역 관리자</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -58,15 +66,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 
 <body>
-	<%
-	List<ReportDTO> reportList = (List<ReportDTO>) request.getAttribute("reportList");
-	AdminPageDTO pageDTO = (AdminPageDTO) request.getAttribute("pageDTO");
-	SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
-	%>
 	<!-- header -->
 	<jsp:include page="../inc/top.jsp"></jsp:include>
-	<!-- //header -->
-	<!-- breadcrumbs -->
+	<!-- header -->
 	<div class="breadcrumbs">
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft"
@@ -77,9 +79,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</ol>
 		</div>
 	</div>
-	<!-- //breadcrumbs -->
-	<!-- top-brands -->
 
+	<!-- top-brands -->
 	<div class="top-brands">
 		<h2>관리자 페이지</h2>
 		<div class="container_1_1">
@@ -109,7 +110,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							String check = reportDTO.getR_check() == 0 ? "x" : "o";
 						%>
 						<tr
-							onclick="window.open('report_content.ad?r_num=<%=reportDTO.getR_num()%>','신고상세페이지','width=800, height=700, scrollbars=yes')">
+							onclick="window.open('reportContent.ad?r_num=<%=reportDTO.getR_num()%>','신고상세페이지','width=800, height=700, scrollbars=yes')">
 							<td class="_1qna_board_border"><%=reportDTO.getR_num()%></td>
 							<td class="_1qna_board_border"><%=reportDTO.getR_m_num()%></td>
 							<td class="_1qna_board_subject"><%=reportDTO.getR_title()%></td>
@@ -154,23 +155,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 	<div class="clearfix_1_1"></div>
-	<!-- //top-brands -->
-	<!-- //footer -->
+	<!-- footer -->
 	<jsp:include page="../inc/bottom.jsp"></jsp:include>
-	<!-- Bootstrap Core JavaScript -->
+	<!-- footer -->
 	<script src="js/bootstrap.min.js"></script>
-	<!-- top-header and slider -->
-	<!-- here stars scrolling icon -->
 	<script type="text/javascript">
 		$(document).ready(function() {
-			/*
-				var defaults = {
-				containerID: 'toTop', // fading element id
-				containerHoverID: 'toTopHover', // fading element hover id
-				scrollSpeed: 1200,
-				easingType: 'linear' 
-				};
-			 */
 
 			$().UItoTop({
 				easingType : 'easeOutQuart'
@@ -178,38 +168,5 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 		});
 	</script>
-	<!-- //here ends scrolling icon -->
-	<script src="js/minicart.min.js"></script>
-	<script>
-		// Mini Cart
-		paypal.minicart.render({
-			action : '#'
-		});
-
-		if (~window.location.search.indexOf('reset=true')) {
-			paypal.minicart.reset();
-		}
-	</script>
-	<!-- main slider-banner -->
-	<script src="js/skdslider.min.js"></script>
-	<link href="css/skdslider.css" rel="stylesheet">
-	<script type="text/javascript">
-		jQuery(document).ready(function() {
-			jQuery('#demo1').skdslider({
-				'delay' : 5000,
-				'animationSpeed' : 2000,
-				'showNextPrev' : true,
-				'showPlayButton' : true,
-				'autoSlide' : true,
-				'animationType' : 'fading'
-			});
-
-			jQuery('#responsive').change(function() {
-				$('#responsive_wrapper').width(jQuery(this).val());
-			});
-
-		});
-	</script>
-	<!-- //main slider-banner -->
 </body>
 </html>

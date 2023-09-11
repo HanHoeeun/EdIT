@@ -34,16 +34,18 @@ public class ChatDAO {
 		if(con != null) {try {con.close();} catch (SQLException e) {	}}
 	}
 	
+//	마지막 메시지(기본은 0) 채팅 내역 호출 
 	public ArrayList<ChatDTO> getChatListByID(String ch_fromID, String ch_toID, String ch_num){
 		ArrayList<ChatDTO> chatList = null;
 		try {
 			con = this.getConnection();
-//			내가 보낸 사람이던 받는 사람이던 간에 챗리스트를 가져온다 / 챗아이디 ? 클떄 / 시간순으로 정렬
-			String sql ="select * "
-					+ "from chat "
-					+ "where ((ch_fromID =? and ch_toID =?) "
-					+ "or (ch_fromID =? and ch_toID =?)) "
-					+ "and ch_num > ? order by ch_date";
+//			내가 보낸 사람이던 받는 사람이던 간에 챗리스트를 가져온다 / 챗아이디 마지막챗아이디보다(기본은 0) 클떄 / 시간순으로 정렬
+			String sql ="SELECT * "
+					+ 	"FROM chat "
+					+	"WHERE ((ch_fromID =? AND ch_toID =?) "
+					+ 	"OR (ch_fromID =? AND ch_toID =?)) "
+					+ 	"AND ch_num > ? "
+					+ 	"ORDER BY ch_date";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, ch_fromID);
 			pstmt.setString(2, ch_toID);
@@ -78,18 +80,19 @@ public class ChatDAO {
 		}
 		return  chatList;
 	}
-//	최근 대화내용중 몇개만 뽑아서 출력하는거 82번
+//	최근 대화내용중 몇개만 뽑아서 출력하는거 82번 // 현재는 안쓰고 위에 getChatListByID 사용
 	public ArrayList<ChatDTO> getChatListByRecent(String ch_fromID, String ch_toID, int number){
 		ArrayList<ChatDTO> chatList = null;
 		try {
 			con = this.getConnection();
 
-			String sql ="select * "
-					+ "from chat "
-					+ "where ((ch_fromID =? and ch_toID =?) or (ch_fromID =? and ch_toID =?)) "
-					+ "and ch_num > (select max(ch_num) - ? "
-					+ "from chat where (ch_fromID = ? and ch_toID = ?) or (ch_fromID = ? and ch_toID = ? ) "
-					+ "order by ch_date";
+			String sql ="SELECT * "
+					+ 	"FROM chat "
+					+ 	"WHERE ((ch_fromID =? AND ch_toID =?) OR (ch_fromID =? AND ch_toID =?)) "
+					+ 	"AND ch_num > (SELECT MAX(ch_num) - ? "
+					+ 	"			   FROM chat "
+					+   "			   WHERE (ch_fromID = ? AND ch_toID = ?) OR (ch_fromID = ? AND ch_toID = ?)) "
+					+ 	"ORDER BY ch_date";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, ch_fromID);
 			pstmt.setString(2, ch_toID);
@@ -132,7 +135,8 @@ public class ChatDAO {
 		try {
 			con = this.getConnection();
 
-			String sql ="insert into chat values (default, ?, ?, ?, now(), 0)";
+			String sql = "INSERT INTO chat "
+					+ 	 "VALUES (DEFAULT, ?, ?, ?, NOW(), 0)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, ch_fromID);
 			pstmt.setString(2, ch_toID);
@@ -146,10 +150,14 @@ public class ChatDAO {
 		}
 		return  -1;
 	}
+	
+//	채팅방에 들어가면 읽음 표시 처리
 	public int readChat(String ch_fromID, String ch_toID) {
 		try {
 			con = this.getConnection();
-			String sql = "update chat set ch_read = 1 where (ch_fromID = ? and ch_toID = ?)";
+			String sql = "UPDATE chat "
+					+ 	 "SET ch_read = 1 "
+					+ 	 "WHERE (ch_fromID = ? AND ch_toID = ?)";
 			pstmt = con.prepareStatement(sql);
 //			바꿔서 넣는 이유는 상대방이 읽었음을 표시하기 위해서 
 			pstmt.setString(1, ch_toID);
@@ -169,14 +177,16 @@ public class ChatDAO {
 	public int getAllUnreadChat(String m_id) {
 		try {
 			con = this.getConnection();
-			String sql = "select count(ch_num) from chat where ch_toID =? and ch_read = 0";
+			String sql = "SELECT COUNT(ch_num) AS COUNT "
+					+ 	 "FROM chat "
+					+ 	 "WHERE ch_toID =? AND ch_read = 0";
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setString(1, m_id);
 			
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
-				return rs.getInt("count(ch_num)");
+				return rs.getInt("COUNT");
 			}else {
 				return 0; // 받은 메시지가 없다
 			}
@@ -188,18 +198,20 @@ public class ChatDAO {
 		}
 		return -1;
 	}
+	
+//	채팅방 리스트 호출 
 	public ArrayList<ChatDTO> getBox(String m_id){
 		ArrayList<ChatDTO> chatList = null;
 		try {
 			con = this.getConnection();
 
 //			내가 보냈거나 받은 메시지중 최근걸 호출
-			String sql ="select * " +
-					"from chat " +
-					"where ch_num in (select max(ch_num) " +
-									 "from chat " +
-					                 "where ch_toID = ? or ch_fromID = ? " +
-					                 "group by ch_fromID, ch_toID)";
+			String sql = "SELECT * " 
+				+		 "FROM chat " 
+				+		 "WHERE ch_num IN (SELECT MAX(ch_num) " 
+				+		 "				   FROM chat " 
+				+	     "				   WHERE ch_toID = ? OR ch_fromID = ? " 
+				+	     "				   GROUP BY ch_fromID, ch_toID)";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, m_id);
@@ -254,7 +266,9 @@ public class ChatDAO {
 	public int getUnreadChat(String ch_fromID, String ch_toID) {
 		try {
 			con = this.getConnection();
-			String sql = "select count(ch_num) from chat where ch_fromID =? and  ch_toID = ? and ch_read = 0";
+			String sql = "SELECT COUNT(ch_num) AS COUNT "
+					+    "FROM chat "
+					+    "WHERE ch_fromID =? AND ch_toID = ? AND ch_read = 0";
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setString(1, ch_fromID);
@@ -262,7 +276,7 @@ public class ChatDAO {
 			
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
-				return rs.getInt("count(ch_num)");
+				return rs.getInt("COUNT");
 			}else {
 				return 0; // 받은 메시지가 없다
 			}
@@ -277,7 +291,8 @@ public class ChatDAO {
 	public int chatDelete(String m_id, String ch_toID) {
 		try {
 			con = this.getConnection();
-			String sql = "delete from chat where ( ch_fromID = ? and ch_toID = ?) or (ch_fromID = ? and ch_toID = ?)";
+			String sql = "DELETE FROM chat "
+					+ 	 "WHERE (ch_fromID = ? AND ch_toID = ?) OR (ch_fromID = ? AND ch_toID = ?)";
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setString(1, m_id);
