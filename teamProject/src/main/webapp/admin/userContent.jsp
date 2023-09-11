@@ -39,6 +39,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- font-awesome icons -->
 <link href="css/font-awesome.css" rel="stylesheet">
 <link href="css/faq_1.css" rel="stylesheet">
+<link href="css/style_1_1.css" rel="stylesheet" type="text/css" media="all" />
 <!-- //font-awesome icons -->
 <!-- js -->
 <script src="js/jquery-1.11.1.min.js"></script>
@@ -75,79 +76,94 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</script>
 	<!-- header -->
 
-	<div class="top-brands_1">
+	<div class="report">
+		<div class="container">
 		<h2>회원정보 상세페이지</h2>
-		<div class="_1container_1_1">
-			<form class="_1report_content_form" action="updateUserContent.ad"
+			<form class="report-form-grids_1_1" action="updateUserContent.ad"
 				method="post">
-				<table class="_1report_content_board">
+				<table class="_2report_content_board">
 					<tr>
 						<td class="_1report_content_border">회원번호</td>
-						<td><input type="text" value="<%=memberDTO.getM_num()%>"
-							name="m_num" readonly="readonly" style="border: none;"></td>
+						<td class="report-form-grids-background">
+							<input type="text" value="<%=memberDTO.getM_num()%>"
+								name="m_num" readonly="readonly" style="border: none;"></td>
 					</tr>
 					<tr>
 						<td class="_1report_content_border">아이디</td>
-						<td><input type="text" value="<%=memberDTO.getM_id()%>"
-							name="m_id" style="border: none;"></td>
+						<td class="report-form-grids-background">
+							<input type="text" value="<%=memberDTO.getM_id()%>"
+								name="m_id" style="border: none;"></td>
 					</tr>
 					<tr>
 						<td class="_1report_content_border">이름</td>
-						<td><input type="text" value="<%=memberDTO.getM_name()%>"
-							name="m_name" style="border: none;"></td>
+						<td class="report-form-grids-background">
+							<input type="text" value="<%=memberDTO.getM_name()%>"
+								name="m_name" style="border: none;"></td>
 					</tr>
 					<tr>
 						<td class="_1report_content_border">닉네임</td>
-						<td><input type="text" value="<%=memberDTO.getM_nick()%>"
-							name="m_nick" style="border: none;"></td>
+						<td class="report-form-grids-background">
+							<input type="text" value="<%=memberDTO.getM_nick()%>"
+								name="m_nick" style="border: none;"></td>
 					</tr>
 					<tr>
 						<td class="_1report_content_border">전화번호</td>
-						<td><input type="text" value="<%=memberDTO.getM_phone()%>"
-							oninput="oninputPhone(this)" name="m_phone" style="border: none;"></td>
+						<td class="report-form-grids-background">
+							<input type="text" value="<%=memberDTO.getM_phone()%>"
+								oninput="oninputPhone(this)" name="m_phone" style="border: none;"></td>
 					</tr>
 					<tr>
 						<td class="_1report_content_border">이메일</td>
-						<td><input type="text" value="<%=memberDTO.getM_email()%>"
-							name="m_email" style="border: none;"></td>
+						<td class="report-form-grids-background">
+							<input type="text" value="<%=memberDTO.getM_email()%>"
+								name="m_email" style="border: none;"></td>
 					</tr>
 					<tr>
 						<%
 						SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 						%>
 						<td class="_1report_content_border">가입날짜</td>
-						<td><input type="text"
-							value="<%=format.format(memberDTO.getM_date())%>" name="m_date"
-							readonly="readonly" style="border: none;"></td>
+						<td class="report-form-grids-background">
+							<input type="text"
+								value="<%=format.format(memberDTO.getM_date())%>" name="m_date"
+								readonly="readonly" style="border: none;"></td>
 					</tr>
 					<tr>
 						<td class="_1report_content_border">회원레벨</td>
-						<td><input type="text" value="<%=memberDTO.getM_level()%>"
-							name="m_level" style="border: none;"></td>
+						<td class="report-form-grids-background">
+							<input type="text" value="<%=memberDTO.getM_level()%>"
+								name="m_level" style="border: none;"></td>
 					</tr>
 					<tr>
 						<td class="_1report_content_border">회원벌점</td>
-						<td><input type="text" value="<%=memberDTO.getM_count()%>"
-							name="m_count" style="border: none;"></td>
+						<td class="report-form-grids-background">
+							<input type="text" value="<%=memberDTO.getM_count()%>"
+								name="m_count" style="border: none;"></td>
 					</tr>
 					<tr>
 						<%
 						String black = memberDTO.getM_event() == null ? "" : memberDTO.getM_event();
 						%>
 						<td class="_1report_content_border">블랙사유</td>
-						<td><input type="text" value="<%=black%>" name="m_event"
-							style="border: none;"></td>
+						<td class="report-form-grids-background">
+							<input type="text" value="<%=black%>" name="m_event"
+								style="border: none;"></td>
 					</tr>
 					<tr>
 						<td class="_1report_content_border">수정 비밀번호</td>
-						<td><input type="password" name="admin_pass"
-							style="border: none;" required="required"></td>
+						<td class="report-form-grids-background">
+							<input type="password" name="admin_pass"
+								style="border: none;" required="required"></td>
 					</tr>
 
 				</table>
-				<div class="_1q_query_btn">
-					<button type="submit">수정</button>
-					<button type="button" onclick="window.close()">닫기</button>
+<!-- 				<div class="_1q_query_btn"> -->
+<!-- 					<button type="submit" >수정</button> -->
+<!-- 					<button type="button" onclick="window.close()">닫기</button> -->
+<!-- 				</div> -->
+				<div class="reportbtn">
+					<button type="submit" id="reportbtn_btn_1" >수정</button>
+					<button type="button" id="reportbtn_btn_1" onclick="window.close()">닫기</button>
 				</div>
 			</form>
 		</div>
