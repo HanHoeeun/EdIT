@@ -433,15 +433,16 @@ public class AdminDAO {
 			
 			if(rs.next()) {
 //				신고번호로 신고 대상자 아이디 구하는 부분 
-				String target_id = this.getTargetId(r_num);
+				String target_nick = this.getTargetId(r_num);
 				
-				reportDTO.setR_m_target_id(target_id);
+				reportDTO.setR_m_target_nick(target_nick);
 				reportDTO.setR_num(rs.getInt("r_num"));
-				reportDTO.setR_m_num_id(rs.getString("m_nick"));
+				reportDTO.setR_m_num_nick(rs.getString("m_nick"));
 				reportDTO.setR_title(rs.getString("r_title"));
 				reportDTO.setR_file(rs.getString("r_file"));
 				reportDTO.setR_content(rs.getString("r_content"));
 				reportDTO.setR_answer(rs.getString("r_answer"));
+				reportDTO.setR_m_num_id(rs.getString("m_id"));
 				
 			}
 		} catch (Exception e) {
