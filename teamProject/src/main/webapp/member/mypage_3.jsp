@@ -79,7 +79,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<li class="tab-link" onclick="location.href='buylist2.po'">판매완료목록</li>
 					<li class="tab-link" onclick="location.href='m_wishlist.me'">찜</li>
 					<li class="tab-link" onclick="location.href='m_adminpage.me'" >신고내역</li>
-<!-- 					<li class="tab-link" data-tab="tab-7">회원탈퇴</li> -->
 				</ul>
 			</div>
 		
@@ -138,7 +137,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<div align="center">
 										<input type="text" class="show" placeholder="이메일" readonly="readonly"readonly>
 										<input type="email" value="<%=memberDTO.getM_email()%>" id="m_email" name="m_email">
-										<br><div id="email_error_message" class="email_error-message"></div>
+										<br><div id="email_error_message" class="email_error_message"></div>
 									</div>
 								</div>
 							</td>
@@ -150,6 +149,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<div align="center">
 										<input type="text" class="show" placeholder="전화번호" readonly="readonly"readonly>
 										<input type="tel" value="<%=memberDTO.getM_phone() %>" id="m_phone" name="m_phone" oninput="oninputPhone(this)">
+										<br><div id="phone_error_message" class="phone_error_message"></div>
 									</div>
 								</div>
 							</td>
@@ -166,44 +166,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</tr>
 					</table>
 				</div>
-			</form>
-			
-
-<!--==================================회원탈퇴==================================== -->				
-<%-- 
-				<div id="tab-7" class="tab-content">
-=======
-
-				<div id="tab-2" class="tab-content">
->>>>>>> branch 'master' of https://github.com/HanHoeeun/EdIT.git
-					<table class="_1qna_board">
-						<tr><th class="_1qna_board_border1">회원탈퇴</th></tr>
-
-						 <tr ><td class="_1qna_board_border2">
-								<form action="deletePro.me" method="post">
-									<div class="mypage-grids">  
-										<div align="center">
-											<input type="text" class="show" placeholder="아이디" readonly="readonly">
-											<input type="text" value="<%=m_id %>" name="m_id"  readonly="readonly">
-											<input type="text" class="show" placeholder="비밀번호" readonly="readonly">
-											<input type="password" name="m_pass" id="m_pass"> <br>
-											<div class="divdub"></div>
-										</div>	
-									</div>
-								
-								
-								
-								<div class="delete-button">
-									<input type="submit" class="del-button" value="탈퇴하기">
-								</div>
-											
-								</form>
-							</td></tr>
-					</table>
-				</div> --%>
-				
-				
-</div>
+			</form>		
+	</div>
 </div>				
 				
 <!-- -----------------------------------------------------------------------------				 -->
@@ -273,11 +237,54 @@ $(document).ready(function() {
 	        url: 'emailCheck.me', // 실제 서버 엔드포인트 URL을 지정합니다.
 	        data: {'m_email': $('#m_email').val() }, // 서버에 보낼 데이터를 설정합니다.
 	        success: function(result) {
-	            $('.email_error-message').html(result);
+	            $('.email_error_message').html(result);
 	            checkFormValidity();
 	        }
 	    });
 	});
+    
+    
+//	전화번호 중복체크
+    $('#m_phone').on('input', function() {
+        var userPhone = $(this).val(); // 입력된 전화번호
+        var phone_error_message = $('#phone_error_message');
+
+        if (userPhone === "") {
+            phone_error_message.text("전화번호를 입력하세요").css("color", "red");
+            $('#m_phone').focus();
+            return false;
+        } else if (!isValidPhoneNumber(userPhone)) {
+            phone_error_message.text("유효한 전화번호 형식이 아닙니다").css("color", "red");
+            $('#m_phone').focus();
+            return false;
+        } else {
+            // 유효한 경우 에러 메시지를 지웁니다.
+            phone_error_message.text("");
+        }
+
+        $.ajax({
+            type: 'POST', // 또는 'GET'에 따라 서버 측에서 처리 방식을 설정합니다.
+            url: 'phoneCheck.me', // 실제 서버 엔드포인트 URL을 지정합니다.
+            data: {'m_phone': $('#m_phone').val() }, // 서버에 보낼 데이터를 설정합니다.
+            success: function(result) {
+                $('.phone_error_message').html(result);
+                checkFormValidity();
+            }
+        });
+
+        // 전화번호 유효성 검사 함수 (숫자 10자 또는 11자인지 확인)
+        function isValidPhoneNumber(phoneNumber) {
+            return /^[0-9-]{10,13}$/.test(phoneNumber); // 하이픈(-) 포함 형식으로 수정
+        }
+    });
+    
+    
+
+    
+    
+    
+    
+    
     
 })
 

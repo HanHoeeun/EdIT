@@ -57,14 +57,15 @@ public class MemberDAO {
 		try {
 			
 			con = getConnection();
-			String sql = "select max(m_num) from members";
+			
+			String sql = "SELECT MAX(m_num) FROM members";
 			
 			pstmt = con.prepareStatement(sql);
 			
 			rs = pstmt.executeQuery();
 			
 			if (rs.next() == true) {
-				num = rs.getInt("max(m_num)");
+				num = rs.getInt("MAX(m_num)");
 			}
 				
 			
@@ -86,8 +87,8 @@ public class MemberDAO {
 			
 			con = getConnection();
 			
-			String sql = "insert into members(m_num, m_id, m_pass, m_name, m_nick, m_phone, m_email, m_date, m_event) "
-					+ "values(?,?,?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO members(m_num, m_id, m_pass, m_name, m_nick, m_phone, m_email, m_date, m_event) "
+					+ "VALUES(?,?,?,?,?,?,?,?,?)";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, memberDTO.getM_num());
@@ -121,7 +122,7 @@ public class MemberDAO {
 		try {
 			
 			con = getConnection();
-			String sql = "select * from members where m_id = ? and m_pass = ?";
+			String sql = "SELECT * FROM members WHERE m_id = ? and m_pass = ?";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, memberDTO2.getM_id());
@@ -161,7 +162,7 @@ public class MemberDAO {
 		try {
 			
 			con = getConnection();
-			String sql = "select * from members where m_id = ?";
+			String sql = "SELECT * FROM members WHERE m_id = ?";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, memberDTO2.getM_id());
@@ -206,7 +207,7 @@ public class MemberDAO {
 			
 			con = getConnection();
 			
-			String sql = "select * from members where m_id = ?";
+			String sql = "SELECT * FROM members WHERE m_id = ?";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, m_id);
@@ -247,7 +248,7 @@ public class MemberDAO {
 		try {
 			
 			con = getConnection();
-			String sql = "select * from members where m_id = ?";
+			String sql = "SELECT * FROM members WHERE m_id = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, m_id);
 			
@@ -277,7 +278,7 @@ public class MemberDAO {
 		try {
 			
 			con = getConnection();
-			String sql = "select * from members where m_nick = ?";
+			String sql = "SELECT * FROM members WHERE m_nick = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, m_nick);
 			
@@ -308,7 +309,7 @@ public class MemberDAO {
 		try {
 			
 			con = getConnection();
-			String sql = "select * from members where m_email = ?";
+			String sql = "SELECT * FROM members WHERE m_email = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, m_email);
 			
@@ -316,7 +317,7 @@ public class MemberDAO {
 			
 			if (rs.next() == true) {
 				memberDTO = new MemberDTO();
-				memberDTO.setM_nick(rs.getString("m_email"));
+				memberDTO.setM_email(rs.getString("m_email"));
 			}
 			
 		} catch (Exception e) {
@@ -329,6 +330,38 @@ public class MemberDAO {
 	}
 
 
+//	전화번호 중복확인
+	public MemberDTO getPhoneCheck(String m_phone) {
+		System.out.println("MemberDAO getEmailCheck()");
+		
+		MemberDTO memberDTO = null;
+		
+		try {
+			
+			con = getConnection();
+			String sql = "SELECT * FROM members WHERE m_phone = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, m_phone);
+			
+			rs = pstmt.executeQuery();
+			
+			if (rs.next() == true) {
+				memberDTO = new MemberDTO();
+				memberDTO.setM_phone(rs.getString("m_phone"));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		return memberDTO;
+	
+	}
+	
+	
+	
+	
 	
 
 //	회원정보 변경
@@ -339,7 +372,7 @@ public class MemberDAO {
 			
 			con = getConnection();
 			
-			String sql = "update members set m_name = ?, m_nick = ?, m_email = ?, m_phone = ? where m_id = ?";
+			String sql = "UPDATE members SET m_name = ?, m_nick = ?, m_email = ?, m_phone = ? WHERE m_id = ?";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, memberDTO.getM_name());
@@ -369,7 +402,7 @@ public class MemberDAO {
 			
 			con = getConnection();
 			
-			String sql = "update members set m_pass = ? where m_id = ?";
+			String sql = "UPDATE members SET m_pass = ? WHERE m_id = ?";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, memberDTO.getM_pass());
@@ -398,7 +431,7 @@ public class MemberDAO {
 
 			con = getConnection();
 			
-			String sql = "delete from members where m_id = ?";
+			String sql = "DELETE FROM members WHERE m_id = ?";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, memberDTO.getM_id());
@@ -433,7 +466,7 @@ public class MemberDAO {
 			
 			con = getConnection();
 			
-			String sql = "select * from members";
+			String sql = "SELECT * FROM members";
 			
 			pstmt = con.prepareStatement(sql);
 			
@@ -506,7 +539,7 @@ public class MemberDAO {
 		try {
 			con = getConnection();
 			
-			PreparedStatement pst = con.prepareStatement("update members set m_pass = ? where m_email = ? ");
+			PreparedStatement pst = con.prepareStatement("UPDATE members SET m_pass = ? WHERE m_email = ? ");
 			pst.setString(1, memberDTO.getM_pass());
 			pst.setString(2, memberDTO.getM_email());
 			
@@ -554,7 +587,7 @@ public class MemberDAO {
 			int r_m_num = this.getMemberNum(pageDTO.getSearch());
 			con = this.getConnection();
 			
-			String sql = "select * from report where r_m_num  = ? order by r_num desc limit ?, ?";
+			String sql = "SELECT * FROM report WHERE r_m_num  = ? ORDER BY r_num DESC LIMIT ?, ?";
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setInt(1, r_m_num);
@@ -591,14 +624,14 @@ public class MemberDAO {
 		try {
 			int r_m_num = this.getMemberNum(pageDTO.getSearch());
 			con = this.getConnection();
-			String sql = "select count(*) as count from report where r_m_num = ?";
+			String sql = "SELECT COUNT(*) AS COUNT FROM report WHERE r_m_num = ?";
 			pstmt = con.prepareStatement(sql);
 			
 			pstmt.setInt(1, r_m_num);
 			
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				count = rs.getInt("count");
+				count = rs.getInt("COUNT");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -613,7 +646,7 @@ public class MemberDAO {
 		int result = 0;
 		try {
 			con = this.getConnection();
-			String  sql = "select m_num from members where m_id = ?";
+			String  sql = "SELECT m_num FROM members WHERE m_id = ?";
 			pstmt = con.prepareStatement(sql);
 		
 			pstmt.setString(1, m_id);
@@ -638,13 +671,13 @@ public class MemberDAO {
 			//1,2 디비연결
 			con=getConnection();
 			//3 sql select count(*) from products
-			String sql = "select count(*) from products;";
+			String sql = "SELECT COUNT(*) FROM products;";
 			pstmt=con.prepareStatement(sql);
 			//4 실행 => 결과저장
 			rs = pstmt.executeQuery();
 			//5 결과 행접근 => 열접근 => count변수 저장
 			if(rs.next()) {
-				p_count = rs.getInt("count(*)");
+				p_count = rs.getInt("COUNT(*)");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -663,11 +696,11 @@ public class MemberDAO {
 		try {
 			con = getConnection();
 			String sql = "SELECT w.w_num, m.m_nick, p.p_file, p.p_title, p.p_status, p.p_type, p.p_price "
-					+ "from wishlists w "
+					+ "FROM wishlists w "
 					+ "JOIN products p ON w.w_p_num = p.p_num "
 					+ "JOIN members m ON w.w_m_num = m.m_num "
-					+ "where m.m_id = ? "
-					+ " limit ?, ? ";
+					+ "WHERE m.m_id = ? "
+					+ " LIMIT ?, ? ";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, ppageDTO.getM_id());
 			System.out.println("m_id = "+ppageDTO.getM_id());
@@ -704,52 +737,11 @@ public class MemberDAO {
 		return wishList;
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-}	
+
+
 
 	
 	
 	
-	
-
+}
 
