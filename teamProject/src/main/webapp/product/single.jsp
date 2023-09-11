@@ -72,7 +72,7 @@ ProductDTO productDTO = (ProductDTO) request.getAttribute("productDTO");
 <script type="text/javascript">
         function confirmDelete() {
             // confirm 함수를 사용하여 사용자에게 메시지를 표시합니다.
-            var result = confirm("정말 삭제하끄야??");
+            var result = confirm("정말 삭제하시겠습니까?");
             
             // 사용자가 확인을 눌렀을 때만 폼을 제출합니다.
 	            if (result === true) {
@@ -89,7 +89,7 @@ ProductDTO productDTO = (ProductDTO) request.getAttribute("productDTO");
 <script type="text/javascript">
         function confirmComplete() {
             // confirm 함수를 사용하여 사용자에게 메시지를 표시합니다.
-            var result = confirm("정말 판매확정하끄야??");
+            var result = confirm("정말 판매 확정 하시겠습니까?");
             
             // 사용자가 확인을 눌렀을 때만 폼을 제출합니다.
            if (result === true) {
@@ -106,7 +106,7 @@ ProductDTO productDTO = (ProductDTO) request.getAttribute("productDTO");
 <script type="text/javascript">
         function confirmUpdate() {
             // confirm 함수를 사용하여 사용자에게 메시지를 표시합니다.
-            var result = confirm("정말 수정하끄야??");
+            var result = confirm("정말 수정하시겠습니까?");
             
             // 사용자가 확인을 눌렀을 때만 폼을 제출합니다.
            if (result === true) {
@@ -219,15 +219,27 @@ ProductDTO productDTO = (ProductDTO) request.getAttribute("productDTO");
 					</div>
 					<!-- // 상품설명 -->
 
+					
 					<!-- 위시리스트 추가 -->
 					<div class="snipcart-item block">
 						<div class="snipcart-details agileinfo_single_right_details">
 							<table>
 								<form action="#" method="post">
 								<fieldset>
+								  <% 
+                                        if(memberDTO != null){
+                                        %>
 									<input type="button" value="찜 추가하기" class="button addToWishlistButton"
    										 data-p-num="<%= productDTO.getP_num() %>"			
   										 data-m-num="<%= memberDTO.getM_num() %>">
+  										  <%
+                                        }else {
+                                        	%>
+                                        	<!-- <a href="login.me"><input type="button" value="로그인 하기" class="button"></button></a> -->
+                                        	
+                                        	<%
+                                        }
+  										 %>
 								</fieldset>
 								</form>
 							</table>
@@ -238,10 +250,32 @@ ProductDTO productDTO = (ProductDTO) request.getAttribute("productDTO");
 					<!--  로그인했을떄 아이디 일치시 수정,삭제,구매확정버튼 나오게하긔 -->
 					<div class="checkout-right-basket">
 
-						<%
-						if (id != null) {
-							if (id.equals(productDTO.getM_id())) {
-						%>
+					<%
+					if(id == null){
+					%>
+					<!-- 항상보이게상품목록 버튼 -->
+						<a href="products.po?p_num=<%=productDTO.getP_num()%>"><span
+							class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>상품목록</a>
+
+					</div>
+					<!-- // 항상보이게상품목록 버튼 -->
+					<%
+					} else {
+					%>
+					<a href="#"
+							onclick="window.open('chat.ch?ch_toID=<%=productDTO.getM_id()%>','1:1 채팅','width=500, height=800, scrollbars=yes')"><span
+							class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>1:1
+							채팅</a> <a href="#"
+							onclick="window.open('reportWrite.ad?r_m_target=<%=productDTO.getM_id()%>','신고하기','width=500, height=800, scrollbars=yes')"><span
+							class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>신고하기</a>	<!-- 항상보이게상품목록 버튼 -->
+						<a href="products.po?p_num=<%=productDTO.getP_num()%>"><span
+							class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>상품목록</a>
+
+					</div>
+					<!-- // 항상보이게상품목록 버튼 -->
+					<%
+					 if(id.equals(productDTO.getM_id())){
+					%>
 						<a href="#" onclick="confirmUpdate()"><span
 							class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>상품수정</a>
 						<a href="#" onclick="confirmDelete()"><span
@@ -251,29 +285,9 @@ ProductDTO productDTO = (ProductDTO) request.getAttribute("productDTO");
 						<br> <br> <br>
 						<!-- // 로그인했을떄 아이디 일치시 수정,삭제,구매확정버튼 나오게하긔 -->
 						<!-- 상품등록자는 1:1채팅 신고하기 버튼 안보이게 하기 -->
-						<%
-						} else {
-						%>
-						<a href="#"
-							onclick="window.open('chat.ch?ch_toID=<%=productDTO.getM_id()%>','1:1 채팅','width=500, height=800, scrollbars=yes')"><span
-							class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>1:1
-							채팅</a> <a href="#"
-							onclick="window.open('reportWrite.ad?r_m_target=<%=productDTO.getM_id()%>','신고하기','width=500, height=800, scrollbars=yes')"><span
-							class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>신고하기</a>
-						<%
-						}
-						}
-						%>
-						<!-- // 상품등록자는 1:1채팅 신고하기 버튼 안보이게 하기 -->
-						<!-- 항상보이게상품목록 버튼 -->
-						<a href="products.po?p_num=<%=productDTO.getP_num()%>"><span
-							class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>상품목록</a>
-
-					</div>
-					<!-- // 항상보이게상품목록 버튼 -->
-
-
-
+					<%
+					}}
+					%>
 
 				</div>
 				<div class="clearfix"></div>
