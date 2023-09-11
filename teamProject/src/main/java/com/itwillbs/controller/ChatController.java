@@ -32,10 +32,12 @@ public class ChatController extends HttpServlet{
 		System.out.println("뽑아온 가상 주소 : " + sPath);
 		
 		
+//		채팅방 호출 
 		if(sPath.equals("/box.ch")) {
 			dispatcher = request.getRequestDispatcher("chat/box.jsp");
 			dispatcher.forward(request, response);
 		}
+//		채팅방에서 안읽은 모든 메시지 수 알림
 		if(sPath.equals("/chatUnread.ch")) {
 			chatService = new ChatService();
 			
@@ -46,6 +48,7 @@ public class ChatController extends HttpServlet{
 			response.getWriter().write(result);
 		}
 		
+//		채팅방 리스트 호출 + 채팅방별 안읽은 메시지 알림 
 		if(sPath.equals("/chatBox.ch")) {
 			chatService = new ChatService();
 			
@@ -57,6 +60,7 @@ public class ChatController extends HttpServlet{
 			
 		}
 		
+//		채팅 
 		if(sPath.equals("/chat.ch")) {
 			dispatcher = request.getRequestDispatcher("chat/chat.jsp");
 			dispatcher.forward(request, response);
@@ -72,7 +76,7 @@ public class ChatController extends HttpServlet{
 			response.getWriter().write(result);
 			
 		}
-		
+//		채팅 메시지 보내기
 		if(sPath.equals("/chatSubmit.ch")) {
 			chatService = new ChatService();
 			
@@ -85,7 +89,7 @@ public class ChatController extends HttpServlet{
 			response.getWriter().write(result);
 		}
 		
-		
+//		채팅 삭제 
 		if(sPath.equals("/chatDelete.ch")) {
 			
 			request.setCharacterEncoding("utf-8");

@@ -314,11 +314,37 @@ ul.faq_1 {
     border-bottom: 1px solid #ddd;
     text-align: center;
 }
+
 ._1report_content_board ._1report_content_border {
 	width:40%;
 	border-right: 1px solid #ddd;
 	background-color: #f7f7f9;
 	
+}
+
+._2report_content_board {
+	width:100%;
+	margin: 0 auto;
+	margin-bottom: 10px;
+	border-top:2px solid black;
+}
+
+._2report_content_board td{
+	padding: 14px 21px;
+    color: #666;
+    font-size: 16px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+._2report_content_board ._1report_content_border {
+	width:40%;
+	border-right: 1px solid #ddd;
+	background-color: #f7f7f9;
+	
+}
+
+._2report_content_board .report-form-grids-background{
+	background-color: #fff;
 }
 
 
