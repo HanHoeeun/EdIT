@@ -102,10 +102,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
         <div class="item">
           <img class="center-slide " src="images/editedit_7.png" alt="Third slide"></a>
-          
-        </div>
-      </div>
-    
+    </div>
     </div>
     <div class="clearfix"></div> 
     <!-- /.carousel -->	
