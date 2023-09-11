@@ -6084,7 +6084,7 @@ button.close {
   position: relative;
   width: 100%;
   overflow: hidden;
-  height: 100vh; /* 조정: 슬라이드 컨테이너의 높이를 전체 뷰포트 높이로 설정 */
+  height: 80vh; /* 조정: 슬라이드 컨테이너의 높이를 전체 뷰포트 높이로 설정 */
   perspective: 1000px; /* 3D 효과의 깊이 설정 */
 }
 .carousel-inner > .item {

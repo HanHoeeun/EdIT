@@ -80,9 +80,6 @@ SimpleDateFormat format =new SimpleDateFormat("yyyy.MM.dd");
 					<li class="tab-link" onclick="location.href='buylist2.po'">판매완료목록</li>
 					<li class="tab-link" onclick="location.href='m_wishlist.me'">찜</li>
 					<li class="tab-link current" onclick="location.href='m_adminpage.me'">신고내역</li>
-					<li class="tab-link " onclick="location.href='update.me?tab=tab-7'">회원탈퇴</li>
-<!-- 					<li class="tab-link" data-tab="tab-7">회원탈퇴</li>  -->
-<!-- 					<li class="tab-link" onclick="location.href='deletePro.me'">회원탈퇴</li> -->
 				</ul>
 			</div>
 		
