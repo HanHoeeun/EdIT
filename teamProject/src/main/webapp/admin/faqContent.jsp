@@ -87,7 +87,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<%if(m_level == 2){ %>
 			<input type="submit" value="답변등록">
 			<%} %>
-			<button type="button" id="reportbtn_btn_1" onclick="window.close()">확인</button>
+			<button type="button" id="reportbtn_btn_1" onclick="window.close()">닫기</button>
 			</div>
 			</form>
 	</div>

@@ -75,14 +75,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div><br>
 				<p>신고내용</p>
 				<textarea name="r_content" readonly="readonly"><%=reportDTO.getR_content() %></textarea><br>
-				<p>답변내용</p>
 				<%
 				String answer = reportDTO.getR_answer() == null ? "" : reportDTO.getR_answer();
-				%>
+
+				if(m_level == 2){%>
+				<p>답변내용</p>
+				<textarea name="r_answer" readonly="readonly"><%=answer %></textarea><br>
+				<%}else{ %>
+				<p>답변내용</p>
 				<textarea name="r_answer"><%=answer %></textarea><br>
+				<%} %>
+				
 				<div class="reportbtn">
+					<%if(m_level == 2){%>
 					<input type="submit" value="답변등록">
 					<button type="button" id="reportbtn_btn_1" onclick="report_check();">신고적용</button>
+					<%} %>
 					<button type="button" id="reportbtn_btn_1" onclick="window.close()">닫기</button>
 				</div>
 			</form>
