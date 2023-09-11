@@ -155,7 +155,14 @@ public class MemberController extends HttpServlet{
 			HttpSession session = request.getSession();
 			session.invalidate();
 			
-			response.sendRedirect("main.me");
+			// 로그아웃하면 메세지 띄우고 메인화면으로 돌아가기
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('로그아웃 되었습니다.');</script>");
+		    out.flush();
+
+		    out.println("<script>setTimeout(function() { window.location.href = 'main.me'; });</script>");
+		    out.flush();
 			
 		}
 		
@@ -304,67 +311,7 @@ public class MemberController extends HttpServlet{
 				
 				dispatcher 
 			    = request.getRequestDispatcher("member/m_wishlist.jsp");
-			dispatcher.forward(request, response);
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-//				HttpSession session = request.getSession();
-//				String id = (String)session.getAttribute("m_id");
-//				
-//				MemberService memberService = new MemberService();
-//				MemberDTO memberDTO =  memberService.getMember(id);
-//				
-//				int p_pageSize=10;
-//				System.out.println("size"+p_pageSize);
-//				String p_pageNum=request.getParameter("p_pageNum");
-//				if(p_pageNum == null) {
-//					p_pageNum = "1";
-//				}
-//				int p_currentPage = Integer.parseInt(p_pageNum);
-//				ProductPageDTO ppageDTO = new ProductPageDTO();
-//				ppageDTO.setP_pageSize(p_pageSize);
-//				ppageDTO.setP_pageNum(p_pageNum);
-//				ppageDTO.setP_currentPage(p_currentPage);
-//				ppageDTO.setM_id(id);
-//				
-//				List<WishListDTO> wishList=memberService.getWishList(ppageDTO);
-//
-//			    int p_count = memberService.getProductCount();
-//			    int p_pageBlock = 2;
-//			    int p_startPage=(p_currentPage-1)/p_pageBlock*p_pageBlock+1;
-//			    int p_endPage=p_startPage+p_pageBlock-1;
-//			    int p_pageCount = p_count / p_pageSize + (p_count % p_pageSize==0?0:1);
-//				if(p_endPage > p_pageCount) {
-//					p_endPage = p_pageCount;
-//				}
-//				ppageDTO.setP_count(p_count);
-//				ppageDTO.setP_pageBlock(p_pageBlock);
-//				ppageDTO.setP_startPage(p_startPage);
-//				ppageDTO.setP_endPage(p_endPage);
-//				ppageDTO.setP_pageCount(p_pageCount);
-//				
-//				System.out.println("스타트페이지 =" + p_startPage +", 페이지 블럭 = "+ p_pageBlock);
-//				System.out.println("현재페이지 =" + p_currentPage);
-//				request.setAttribute("wishList", wishList);
-//				request.setAttribute("ppageDTO", ppageDTO);
-//				request.setAttribute("memberDTO", memberDTO);
-//				System.out.println("wishlist출력"+wishList );
-//				
-//				dispatcher 
-//			    = request.getRequestDispatcher("member/m_wishlist.jsp");
-//			dispatcher.forward(request, response);
+			dispatcher.forward(request, response);		
 			}//
 			
 			
@@ -731,12 +678,7 @@ public class MemberController extends HttpServlet{
 	        	MemberDTO memberDTO = memberService.IdAndEmailMatch(m_id, m_email);
 	            if (memberDTO != null) {
 	            	System.out.println("일치");
-	            	
-	            	// 메세지를 뿌려서 시간을 벌고 싶었으나 이 또 한 속도가 너무 너무 느림
-//	                request.setAttribute("msg", "메일전송"); 
-//	    	        dispatcher = request.getRequestDispatcher("member/msg.jsp");
-//	    	        dispatcher.forward(request, response);
-
+	    
 	                Random rand = new Random();
 	                otpvalue = rand.nextInt(1255650);
 
