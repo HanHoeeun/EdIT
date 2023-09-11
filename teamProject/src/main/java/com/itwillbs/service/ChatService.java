@@ -12,6 +12,7 @@ import com.itwillbs.domain.ChatDTO;
 public class ChatService {
 	ChatDAO chatDAO = null;
 	
+//	안읽은 모든 메시지 호출 
 	public String getChatUnread(HttpServletRequest request) {
 		String result = "";
 		try {
@@ -30,6 +31,7 @@ public class ChatService {
 		return result;
 	}
 	
+//	채팅리스트 호출 + 채팅방별 안읽은 메시지 호출  1
 	public String getChatBox(HttpServletRequest request) {
 		String result = "";
 		try {
@@ -53,6 +55,8 @@ public class ChatService {
 		}
 		return result;
 	}
+	
+//	채팅방 리스트 + 채팅방별 안읽은 메시지 수 2
 	public String getBox(String m_id) {
 		StringBuffer result = new StringBuffer("");
 		result.append("{\"result\":[");
@@ -62,6 +66,7 @@ public class ChatService {
 		if(chatList.size() == 0) {
 			return "";
 		}
+//		채팅 리스트를 json 형태로 만들고 String 형을 만들어 저장 후 반환
 		for(int i=chatList.size()-1; i >= 0; i--) {
 			String unread ="";
 			if(m_id.equals(chatList.get(i).getCh_toID())) {
@@ -84,6 +89,7 @@ public class ChatService {
 		return result.toString();
 	}
 	
+//	채팅방에 들어가서 이전 채팅 내역을 보여주는 역할 1
 	public String getChatList(HttpServletRequest request) {
 		String result = "";
 		try {
@@ -109,6 +115,8 @@ public class ChatService {
 		return result;
 	}
 	
+//	아이디별 채팅 리스트 전송 
+//	채팅방에 들어가서 이전 채팅 내역을 보여주는 역할 2
 	public String getID(String ch_fromID, String ch_toID, String ch_num) {
 		StringBuffer result = new StringBuffer("");
 		result.append("{\"result\":[");
@@ -135,6 +143,8 @@ public class ChatService {
 		return result.toString();
 	}
 
+	
+//	메시지 전송
 	public String getChatSubmit(HttpServletRequest request) {
 		String result ="";
 		try {
