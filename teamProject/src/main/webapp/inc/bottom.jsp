@@ -73,9 +73,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="col-md-3 w3_footer_grid">
 					<h3>프로필</h3>
 					<ul class="info"> 
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="wishlist.po">찜리스트</a></li>
+						<% 
+						String id = (String)session.getAttribute("m_id");
+						if(id == null){
+						%>
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="login.me">로그인</a></li>
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="insert.me">회원가입</a></li>
+						<%
+						} else{
+							%>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="logout.me">로그아웃</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="update.me">마이페이지</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="wishlist.po">찜리스트</a></li>
+							<%
+						}
+						%>
 					</ul>
 				</div>
 				<div class="clearfix"> </div>

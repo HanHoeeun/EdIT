@@ -115,7 +115,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						%>
 						<tr class="rem1">
 						<td class="w_num" style="display: none;"><%= wishListDTO.getW_p_num() %></td>
-						<td class="_1qna_board_border"><%=i + 1 %></td>
+						<td class="_1qna_board_border_1"></td>
 						<td class="_1qna_board_border"><a href="single.po?p_num=<%=wishListDTO.getW_p_num()%>"><img src="upload/<%= wishListDTO.getProductDTO().getP_file() %>" width="100px" height="100px" download alt=" " class="img-responsive" /></a></td>
 						<td class="_1qna_board_border"><a href="single.po?p_num=<%=wishListDTO.getW_p_num()%>"><%=wishListDTO.getProductDTO().getP_title() %></a></td>
 						<td class="_1qna_board_border"><%=wishListDTO.getProductDTO().getP_status() %></td>
@@ -170,6 +170,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </ul>
 </div>
 <!-- // 페이징 -->
+<script>
+  $(document).ready(function() {
+    updateWishListNumbers();
+
+    // 페이지 번호가 변경될 때 찜 번호 업데이트
+    $('.pagination a').on('click', function() {
+      setTimeout(updateWishListNumbers, 100);
+    });
+
+    function updateWishListNumbers() {
+      var currentPage = parseInt('<%= ppageDTO.getP_currentPage() %>');
+      var itemsPerPage = <%= ppageDTO.getP_pageSize() %>;
+      var startNum = (currentPage - 1) * itemsPerPage + 1;
+
+      $('.rem1').each(function(index) {
+        $(this).find('._1qna_board_border_1').text(startNum + index);
+      });
+    }
+  });
+</script>
+         <div class="clearfix"> </div>
 </div>
 </div>
 
@@ -206,6 +227,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     });
 </script>
 
+         <div class="clearfix"> </div>
+         
+                  <div class="clearfix"> </div>
+
 <!-- 			탭 jquery -->
 <script type="text/javascript">
 $(document).ready(function(){
@@ -232,7 +257,9 @@ $(document).ready(function(){
 });
 </script>
 
-
+         <div class="clearfix"> </div>
+                  <div class="clearfix"> </div>
+                  </div>
 <div class="clearfix_1_1"> </div>
 <!--================================== 푸터 ==================================== -->
 <div class="clearfix">
