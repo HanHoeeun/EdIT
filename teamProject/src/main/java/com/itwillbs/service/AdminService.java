@@ -1,6 +1,5 @@
 package com.itwillbs.service;
 
-import java.io.UnsupportedEncodingException;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -10,12 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.itwillbs.dao.AdminDAO;
 import com.itwillbs.dao.MemberDAO;
-import com.itwillbs.dao.NoticeDAO;
 import com.itwillbs.domain.AdminDTO;
 import com.itwillbs.domain.AdminPageDTO;
 
 import com.itwillbs.domain.MemberDTO;
-import com.itwillbs.domain.NoticeDTO;
 import com.itwillbs.domain.ReportDTO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -24,13 +21,52 @@ public class AdminService {
 	AdminDAO adminDAO = null;
 	MemberDAO memberDAO = null;
 	
-	public void faqBoardInsert(HttpServletRequest request) {
+//	faq 문의글 리스트 호출 
+	public List<AdminDTO> getFAQBoardList(AdminPageDTO pageDTO) {
+		List<AdminDTO> adminList = null;
+		try {
+//			시박하는 행부터 10개 뽑아오기
+//			페이지 번호 	한화면에 보여줄 글개수 => 			시작하는 행번호
+//			currentPage		pageSize	=>		 	startRow
+//			1				10			=> 0*10 +1	 1 ~ 10
+//			2				10			=> 1*10 +1 	11 ~ 20
+//			3				10			=> 2*10 +1 	21 ~ 30
+//			((currentPage-1)*10)+1
+			int startRow = (pageDTO.getCurrentPage()-1)*pageDTO.getPageSize()+1;
+			int endRow = startRow + pageDTO.getPageSize() -1;
+			System.out.println("start Row : " + startRow);
+			System.out.println("end Row : " + endRow);
+			pageDTO.setStartRow(startRow);
+			pageDTO.setEndRow(endRow);
+			
+//			AdminDAO 객체 생성
+			adminDAO = new AdminDAO();
+//			adminList = getBoardList() 메서드 호출
+			adminList =  adminDAO.getFAQBoardList(pageDTO);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return adminList;
+		
+	}
+//  faq 문의 게시판 페이징 처리
+	public int getFAQBoardCount(AdminPageDTO pageDTO) {
+		int count = 0;
+		try {
+			adminDAO = new AdminDAO();
+			count = adminDAO.getFAQBoardCount(pageDTO);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return count;
+	}
+	
+//	faq 게시판 문의글 작성 
+	public void FAQBoardInsert(HttpServletRequest request) {
 		try {
 
 			//파일이 저장될 경로명
-//			String directory = "/usr/local/tomcat/img/"; 
-//			String directory = "C:\\Users\\kkm\\Desktop\\workspace_jsp\\FunWeb\\src\\main\\webapp\\upload";
-//			물리적인 경로 
 			String uploadPath = request.getRealPath("/adminUpload");
 			
 //			이클립스에 실행하면 이클립스 가상 경로 
@@ -48,8 +84,6 @@ public class AdminService {
 			String content = multi.getParameter("content");
 			adminDAO = new AdminDAO();
 			
-			
-			
 //			첨부파일 이름 가져오기 <input type="file" name="file" > name = file 매개변수 
 			String file = multi.getFilesystemName("imgfile");
 			
@@ -66,56 +100,37 @@ public class AdminService {
 				adminDTO.setA_file(file);
 			}
 			
-
-			
-			adminDAO.insertBoard(adminDTO);
+			adminDAO.FAQBoardInsert(adminDTO);
 			
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-
-	public List<AdminDTO> getBoardListSearch(AdminPageDTO pageDTO) {
-		List<AdminDTO> adminList = null;
-		try {
-//			시박하는 행부터 10개 뽑아오기
-//			페이지 번호 	한화면에 보여줄 글개수 => 			시작하는 행번호
-//			currentPage		pageSize	=>		 	startRow
-//			1				10			=> 0*10 +1	 1 ~ 10
-//			2				10			=> 1*10 +1 	11 ~ 20
-//			3				10			=> 2*10 +1 	21 ~ 30
-//			((currentPage-1)*10)+1
-			int startRow = (pageDTO.getCurrentPage()-1)*pageDTO.getPageSize()+1;
-			int endRow = startRow + pageDTO.getPageSize() -1;
-			System.out.println("start Row : " + startRow);
-			System.out.println("end Row : " + endRow);
-			pageDTO.setStartRow(startRow);
-			pageDTO.setEndRow(endRow);
-			
-//			AdminDAO 객체 생성
-			adminDAO = new AdminDAO();
-//			adminList = getBoardList() 메서드 호출
-			adminList =  adminDAO.getBoardListSearch(pageDTO);
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-		return adminList;
-		
-	}
-
-	public int getBoardCountSearch(AdminPageDTO pageDTO) {
-		int count = 0;
-		try {
-			adminDAO = new AdminDAO();
-			count = adminDAO.getBoardCountSearch(pageDTO);
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return count;
 	}
 	
-	public List<AdminDTO> getBoardList(AdminPageDTO pageDTO) {
+//	faq 게시판 문의글 답변 등록  
+	public void updateFAQAnswer(HttpServletRequest request) {
+		try {
+			request.setCharacterEncoding("utf-8");
+			
+			AdminDTO adminDTO = new AdminDTO();
+			
+			int a_num = Integer.parseInt(request.getParameter("a_num"));
+			adminDTO.setA_num(a_num);
+			adminDTO.setA_answer(request.getParameter("a_answer1"));
+			
+			
+			adminDAO = new AdminDAO();
+			adminDAO.updateFAQAnswer(adminDTO);
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+//	관리자 페이지 문의내용 전체 확인
+	public List<AdminDTO> getAdminFAQBoardList(AdminPageDTO pageDTO) {
 		List<AdminDTO> adminList = null;
 		try {
 			int startRow = (pageDTO.getCurrentPage()-1)*pageDTO.getPageSize()+1;
@@ -128,7 +143,7 @@ public class AdminService {
 //			AdminDAO 객체 생성
 			adminDAO = new AdminDAO();
 //			adminList = getBoardList() 메서드 호출
-			adminList =  adminDAO.getBoardList(pageDTO);
+			adminList =  adminDAO.getAdminFAQBoardList(pageDTO);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -136,19 +151,19 @@ public class AdminService {
 		
 	}
 
-	public int getBoardCount(AdminPageDTO pageDTO) {
+	public int getAdminFAQBoardCount(AdminPageDTO pageDTO) {
 		int count = 0;
 		try {
 			adminDAO = new AdminDAO();
-			count = adminDAO.getBoardCount(pageDTO);
+			count = adminDAO.getAdminFAQBoardCount(pageDTO);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		return count;
 	}
-
-	public AdminDTO getBoardContent(HttpServletRequest request) {
+// 문의 상세페이지 가져오기
+	public AdminDTO getFAQBoardContent(HttpServletRequest request) {
 		AdminDTO adminDTO = null;
 		
 		try {
@@ -159,7 +174,7 @@ public class AdminService {
 			adminDAO = new AdminDAO();
 			adminDTO = new AdminDTO();
 			
-			adminDTO = adminDAO.getBoardContent(a_num);
+			adminDTO = adminDAO.getFAQBoardContent(a_num);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -167,16 +182,10 @@ public class AdminService {
 		return adminDTO;
 	}
 
-	public List<ReportDTO> getReportList(AdminPageDTO pageDTO) {
+//	관리자 페이지 신고내역 리스트 
+	public List<ReportDTO> getAdminReportList(AdminPageDTO pageDTO) {
 		List<ReportDTO> reportList = null;
 		try {
-//			시박하는 행부터 10개 뽑아오기
-//			페이지 번호 	한화면에 보여줄 글개수 => 			시작하는 행번호
-//			currentPage		pageSize	=>		 	startRow
-//			1				10			=> 0*10 +1	 1 ~ 10
-//			2				10			=> 1*10 +1 	11 ~ 20
-//			3				10			=> 2*10 +1 	21 ~ 30
-//			((currentPage-1)*10)+1
 			int startRow = (pageDTO.getCurrentPage()-1)*pageDTO.getPageSize()+1;
 			int endRow = startRow + pageDTO.getPageSize() -1;
 			
@@ -186,18 +195,19 @@ public class AdminService {
 //			AdminDAO 객체 생성
 			adminDAO = new AdminDAO();
 //			adminList = getBoardList() 메서드 호출
-			reportList =  adminDAO.getReportList(pageDTO);
+			reportList =  adminDAO.getAdminReportList(pageDTO);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
 		return reportList;
 	}
-
-	public int getReportCount(AdminPageDTO pageDTO) {
+	
+//	관리자 페이지 신고 게시판 페이징 처리용 count
+	public int getAdminReportCount(AdminPageDTO pageDTO) {
 		int count = 0;
 		try {
 			adminDAO = new AdminDAO();
-			count = adminDAO.getReportCount(pageDTO);
+			count = adminDAO.getAdminReportCount(pageDTO);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -205,6 +215,7 @@ public class AdminService {
 		return count;
 	}
 
+//	신고 상세 페이지
 	public ReportDTO getReportContent(HttpServletRequest request) {
 		ReportDTO reportDTO = null;
 		
@@ -224,6 +235,7 @@ public class AdminService {
 		return reportDTO;
 	}
 
+//	신고 상세페이지 답변 등록 
 	public void updateReportAnswer(HttpServletRequest request) {
 		try {
 			request.setCharacterEncoding("utf-8");
@@ -244,6 +256,7 @@ public class AdminService {
 		}
 	}
 
+//	신고 상세 페이지에서 신고 적용 시키기 m_count +1 
 	public int updateReportCheck(HttpServletRequest request) {
 		int result = 0;
 		try {
@@ -262,6 +275,7 @@ public class AdminService {
 		return result;
 	}
 	
+//	블랙리스트 등록 및 사유 입력 
 	public int updateBlackReason(HttpServletRequest request) {
 		int result = 0;
 		try {
@@ -282,7 +296,7 @@ public class AdminService {
 		return result;
 	}
 	
-
+//	관리자 페이지 회원정보 리스트 
 	public List<MemberDTO> getMemberListSearch(AdminPageDTO pageDTO) {
 		List<MemberDTO> memberList = null;
 		try {
@@ -305,7 +319,8 @@ public class AdminService {
 		return memberList;
 		
 	}
-
+	
+//	회원정보 상세 페이지
 	public MemberDTO getMemberContent(HttpServletRequest request) {
 		MemberDTO memberDTO = null;
 		try {
@@ -327,6 +342,7 @@ public class AdminService {
 		return memberDTO;
 	}
 
+//	전화번호 정규화
 	public String formatPhoneNumber(String m_phone) {
 		 // 전화번호에서 숫자만 추출
         String digitsOnly = m_phone.replaceAll("[^0-9]", "");
@@ -350,6 +366,7 @@ public class AdminService {
         }
     }
 
+//	회원정보 수정 
 	public void updateUserContent(HttpServletRequest request) {
 		try {
 			request.setCharacterEncoding("utf-8");
@@ -381,6 +398,7 @@ public class AdminService {
 		}
 	}
 
+//	회원정보 페이징 처리용 
 	public int getMemberCountSearch(AdminPageDTO pageDTO) {
 		int count = 0;
 		try {
@@ -424,26 +442,7 @@ public class AdminService {
 		return count;
 	}
 
-	public void updateFaqAnswer(HttpServletRequest request) {
-		try {
-			request.setCharacterEncoding("utf-8");
-			
-			AdminDTO adminDTO = new AdminDTO();
-			
-			int a_num = Integer.parseInt(request.getParameter("a_num"));
-			adminDTO.setA_num(a_num);
-			adminDTO.setA_answer(request.getParameter("a_answer1"));
-			
-			
-			adminDAO = new AdminDAO();
-			adminDAO.updateFaqAnswer(adminDTO);
-			
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		
-	}
+	
 	
 //========================================== 신고하기 =================================================
 	public void insertReport(HttpServletRequest request) {

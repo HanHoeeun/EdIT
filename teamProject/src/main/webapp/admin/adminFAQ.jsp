@@ -7,6 +7,20 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%
+//	관리자만 관리자 문의 게시판 접근 가능  
+	int m_level = 0;
+	if (session.getAttribute("m_level") != null) {
+		m_level = (int) session.getAttribute("m_level");
+		if (m_level != 2) {
+			response.sendRedirect("main.me");
+			return ;
+		}
+	}
+	List<AdminDTO> adminList = (List<AdminDTO>) request.getAttribute("adminList");
+	AdminPageDTO pageDTO = (AdminPageDTO) request.getAttribute("pageDTO");
+	SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
+	%>
 <title>문의내역 관리자</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -50,11 +64,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 </head>
 <body>
-	<%
-	List<AdminDTO> adminList = (List<AdminDTO>) request.getAttribute("adminList");
-	AdminPageDTO pageDTO = (AdminPageDTO) request.getAttribute("pageDTO");
-	SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
-	%>
+	
 	<!-- header -->
 	<jsp:include page="../inc/top.jsp"></jsp:include>
 	<!-- //header -->
@@ -106,7 +116,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							String a_check = adminDTO.getA_check() == 0 ? "x" : "o";
 						%>
 						<tr
-							onclick="window.open('registered.ad?a_num=<%=adminDTO.getA_num()%>','문의상세페이지','width=800, height=700, scrollbars=yes')">
+							onclick="window.open('faqContent.ad?a_num=<%=adminDTO.getA_num()%>','문의상세페이지','width=800, height=700, scrollbars=yes')">
 							<td class="_1qna_board_border"><%=adminDTO.getA_cs_type()%></td>
 							<td class="_1qna_board_border"><%=adminDTO.getA_num()%></td>
 							<td class="_1qna_board_subject"><%=adminDTO.getA_title()%></td>
@@ -153,7 +163,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="clearfix_1_1"></div>
 	</div>
 
-	<!-- //top-brands -->
 	<!-- //footer -->
 	<jsp:include page="../inc/bottom.jsp"></jsp:include>
 	<script src="js/bootstrap.min.js"></script>

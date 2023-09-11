@@ -4,15 +4,17 @@
 <%@page import="com.itwillbs.domain.AdminPageDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!--
-author: W3layouts
-author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+
 <!DOCTYPE html>
 <html>
 <head>
+<%
+	String id = (String) session.getAttribute("m_id");
+	
+	List<AdminDTO> adminList = (List<AdminDTO>) request.getAttribute("adminList");
+	AdminPageDTO pageDTO = (AdminPageDTO) request.getAttribute("pageDTO");
+	SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
+%>
 <title>고객센터</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -56,21 +58,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		});
 	});
 </script>
-<!-- start-smoth-scrolling -->
 </head>
 
 <body>
-	<%
-	String id = (String) session.getAttribute("m_id");
-	List<AdminDTO> adminList = (List<AdminDTO>) request.getAttribute("adminList");
-	AdminPageDTO pageDTO = (AdminPageDTO) request.getAttribute("pageDTO");
-	SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
-	%>
 
 	<!-- header -->
 	<jsp:include page="../inc/top.jsp"></jsp:include>
-	<!-- //navigation -->
-	<!-- breadcrumbs -->
+	<!-- header -->
 	<div class="breadcrumbs">
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft"
@@ -81,8 +75,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</ol>
 		</div>
 	</div>
-	<!-- //breadcrumbs -->
-	<!-- top-brands -->
 
 	<div class="top-brands_1">
 		<h2>고객센터</h2>
@@ -250,7 +242,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				%>
 				<div id="tab-2" class="tab-content">
 					<!-- 				2탭 문의글 작성 -->
-					<form action="adminPro.ad" method="post"
+					<form action="faqWritePro.ad" method="post"
 						enctype="multipart/form-data">
 						<table class="_1q_query_tab">
 							<tr>
@@ -330,7 +322,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							String a_check = adminDTO.getA_check() == 0 ? "x" : "o";
 						%>
 						<tr
-							onclick="window.open('registered.ad?a_num=<%=adminDTO.getA_num()%>','문의상세페이지','width=800, height=700, scrollbars=yes')">
+							onclick="window.open('faqContent.ad?a_num=<%=adminDTO.getA_num()%>','문의상세페이지','width=800, height=700, scrollbars=yes')">
 							<td class="_1qna_board_border"><%=adminDTO.getA_num()%></td>
 							<td class="_1qna_board_subject"><%=adminDTO.getA_title()%></td>
 							<td class="_1qna_board_border"><%=adminDTO.getA_m_nick()%></td>

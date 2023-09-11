@@ -4,15 +4,22 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!--
-author: W3layouts
-author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <!DOCTYPE html>
 <html>
 <head>
+<%
+//	관리자만 관리자 블랙리스트 게시판 접근 가능 
+	int m_level = 0;
+	if (session.getAttribute("m_level") != null) {
+		m_level = (int) session.getAttribute("m_level");
+		if (m_level != 2) {
+			response.sendRedirect("main.me");
+			return ;
+		}
+	}
+	List<MemberDTO> blackList = (List<MemberDTO>) request.getAttribute("blackList");
+	AdminPageDTO pageDTO = (AdminPageDTO) request.getAttribute("pageDTO");
+%>
 <title>블랙리스트 관리자</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -54,18 +61,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		});
 	});
 </script>
-<!-- start-smoth-scrolling -->
 </head>
-
 <body>
-	<%
-	List<MemberDTO> blackList = (List<MemberDTO>) request.getAttribute("blackList");
-	AdminPageDTO pageDTO = (AdminPageDTO) request.getAttribute("pageDTO");
-	%>
+	
 	<!-- header -->
 	<jsp:include page="../inc/top.jsp"></jsp:include>
-	<!-- //header -->
-	<!-- breadcrumbs -->
+	<!-- header -->
 	<div class="breadcrumbs">
 		<div class="container">
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft"
@@ -76,7 +77,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</ol>
 		</div>
 	</div>
-	<!-- //breadcrumbs -->
 	<!-- top-brands -->
 
 	<div class="top-brands">
@@ -107,7 +107,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						for (MemberDTO memberDTO : blackList) {
 						%>
 						<tr
-							onclick="window.open('user_content.ad?m_num=<%=memberDTO.getM_num()%>','회원정보 상세','width=800, height=700, scrollbars=yes')">
+							onclick="window.open('userContent.ad?m_num=<%=memberDTO.getM_num()%>','회원정보 상세','width=800, height=700, scrollbars=yes')">
 							<td class="_1qna_board_border"><%=memberDTO.getM_id()%></td>
 							<td class="_1qna_board_border"><%=memberDTO.getM_name()%></td>
 							<td class="_1qna_board_border"><%=memberDTO.getM_email()%></td>
