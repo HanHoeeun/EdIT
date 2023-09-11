@@ -281,7 +281,7 @@ ProductDTO productDTO = (ProductDTO) request.getAttribute("productDTO");
 							class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>상품목록</a>
 
 					</div>
-					<!-- // 항상보이게상품목록 버튼 -->
+					<!-- //  항상보이게상품목록 버튼 -->
 
 				</div>
 				<div class="clearfix"></div>
