@@ -276,7 +276,7 @@ button.w3view-cart:focus{
     width: 33.33%;
 }
 .w3ls_logo_products_left h1 a{
-	font-size: 40px;
+	font-size: 60px;
     color: #fe9126;
     text-decoration: none;
     text-transform: uppercase;
@@ -468,7 +468,10 @@ ul.multi-column-dropdown h6 {
 	line-height:1.5em;
 	text-transform:capitalize;
 	font-size:14px;
-	text-align: center;
+	text-align: center; 
+	white-space: nowrap; /* 줄 바꿈을 방지합니다. */
+    overflow: hidden; /* 내용이 넘칠 경우 숨깁니다. */
+    text-overflow: ellipsis; /* 넘칠 경우 ...으로 표시합니다. */
 }
 .agile_top_brand_left_grid1 h4,.agileinfo_single_right_snipcart h4{
 	font-weight:600;
@@ -2887,7 +2890,7 @@ h3.w3_agile_header, h2.w3_agile_header {
 }
 @media (max-width: 991px){
 .w3l_offers p {
-    font-size: 14px;
+    font-size: 36px;
 }
 .w3l_offers {
     width: 52%;
