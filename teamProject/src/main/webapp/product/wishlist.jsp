@@ -140,7 +140,7 @@ String orderBy = (String) request.getAttribute("orderBy");
 
 					<tr class="rem1">
 						<td class="w_num" style="display: none;"><%= wishListDTO.getW_p_num() %></td>
-						<td class="invert"><%=i + 1 %></td>
+						<td class="invert_1"></td>
 						<td class="invert-image"><a href="single.po?p_num=<%=wishListDTO.getW_p_num()%>"><img src="upload/<%= wishListDTO.getProductDTO().getP_file() %>" width="100px" height="100px" download alt=" " class="img-responsive" /></a></td>
 						<td class="invert"><a href="single.po?p_num=<%=wishListDTO.getW_p_num() %>"><%=wishListDTO.getProductDTO().getP_title() %></a></td>
 						<td class = "invert"><%=wishListDTO.getProductDTO().getP_status() %></td>
@@ -187,18 +187,8 @@ String orderBy = (String) request.getAttribute("orderBy");
             });
         });
     });
-</script>
+					</script>
 
-   				
-						<!-- <script>
-        				/* $(document).ready(function(c) {
-            			$('.close1').on('click', function(c){
-               		 	$('.rem1').fadeOut('slow', function(c){
-                    	$('.rem1').remove();
-            	    			});
-            				});	  
-        				}); 
-    					</script> -->
 						</td>
 					</tr>
 			
@@ -229,7 +219,7 @@ String orderBy = (String) request.getAttribute("orderBy");
          boolean isPcurrentPage = (i == ppageDTO.getP_currentPage());
          %>
          <li class="<%= (isCurrentPage || isPcurrentPage) ? "active" : "" %>">
-            <a href="wishlist.po?p_pageNum=<%= i %>&orderBy=${orderBy}" class="<%= (isCurrentPage) ? "" : "" %> <%= (isPcurrentPage) ? "custom-class" : "" %>">
+            <a href="wishlist.po?p_pageNum=<%= i %>&orderBy=${orderBy}" class="<%= (isCurrentPage) ? "" : "" %> <%= (isPcurrentPage) ? "custom-class" : "" %> id = "nextPageButton">
             <%= (isPcurrentPage) ? i : i %></a>
          </li>
          <%
@@ -247,6 +237,26 @@ String orderBy = (String) request.getAttribute("orderBy");
       %> 
    </ul>
 </nav>
+<script>
+  $(document).ready(function() {
+    updateWishListNumbers();
+
+    // 페이지 번호가 변경될 때 찜 번호 업데이트
+    $('.pagination a').on('click', function() {
+      setTimeout(updateWishListNumbers, 100);
+    });
+
+    function updateWishListNumbers() {
+      var currentPage = parseInt('<%= ppageDTO.getP_currentPage() %>');
+      var itemsPerPage = <%= ppageDTO.getP_pageSize() %>;
+      var startNum = (currentPage - 1) * itemsPerPage + 1;
+
+      $('.rem1').each(function(index) {
+        $(this).find('.invert_1').text(startNum + index);
+      });
+    }
+  });
+</script>
 
          </div>
          <div class="clearfix"> </div>
