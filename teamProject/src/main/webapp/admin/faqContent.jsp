@@ -66,10 +66,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<input class="readonly" type="text" value="<%=adminDTO.getA_m_nick() %>" readonly="readonly"><br>
 			<p>제목</p>
 			<input class="title" type="text" value="<%=adminDTO.getA_title() %>" readonly="readonly"><br>
+			<%if(adminDTO.getA_file() != null){ %>
 			<p>첨부파일</p>
 			<div>
-				<img src="adminUpload/<%=adminDTO.getA_file() %>" width="200px" height="200px" onclick="window.open('adminUpload/<%=adminDTO.getA_file() %>','이미지','width=500, height=700, scrollbars=yes')">
+				<img src="upload/<%=adminDTO.getA_file() %>" width="200px" height="200px" onclick="window.open('upload/<%=adminDTO.getA_file() %>','이미지','width=500, height=700, scrollbars=yes')">
 			</div><br>
+			<%} %>
 			<p>문의내용</p>
 			<textarea name="textarea" readonly="readonly"><%=adminDTO.getA_content() %></textarea><br>
 			

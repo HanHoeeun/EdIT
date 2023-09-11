@@ -94,19 +94,6 @@ MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 
 <script type="text/javascript" src="script/jquery-3.7.0.js"></script>
 <script type="text/javascript">
-// function showSuccessMessage() {
-//     // 성공 메시지를 표시합니다.
-//     alert("비밀번호 수정이 성공적으로 완료되었습니다.");
-    
-//     // 현재 창을 닫고 메인 창을 새로고침합니다.
-//     window.close();
-//     // 메인 창을 새로고침하고 "update.me" 페이지로 이동합니다.
-//     window.opener.location.href = "update.me";
-// }
-
-
-
-
 
 // 일단 주석처리 알림창 완료되면 풀어놓기
 /* document.getElementById('m_pass2').addEventListener('keyup', validatePassword);

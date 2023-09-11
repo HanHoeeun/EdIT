@@ -69,10 +69,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<input class="readonly" type="text" name="r_m_target_id" value="<%=reportDTO.getR_m_target_id() %>" readonly="readonly"><br>
 				<p>제목</p>
 				<input class="title" type="text" name="r_title" value="<%=reportDTO.getR_title() %>" readonly="readonly" ><br>
+				<%if(reportDTO.getR_file() != null) {%>
 				<p>첨부파일</p>
 				<div>
-					<img src="adminUpload/<%=reportDTO.getR_file() %>" width="200px" height="200px" onclick="window.open('adminUpload/<%=reportDTO.getR_file() %>','이미지','width=500, height=700, scrollbars=yes')">
+					<img src="upload/<%=reportDTO.getR_file() %>" width="200px" height="200px" onclick="window.open('upload/<%=reportDTO.getR_file() %>','이미지','width=500, height=700, scrollbars=yes')">
 				</div><br>
+				<%} %>
 				<p>신고내용</p>
 				<textarea name="r_content" readonly="readonly"><%=reportDTO.getR_content() %></textarea><br>
 				<%

@@ -269,7 +269,7 @@ ProductDTO productDTO = (ProductDTO) request.getAttribute("productDTO");
 							onclick="window.open('chat.ch?ch_toID=<%=productDTO.getM_id()%>','1:1 채팅','width=500, height=800, scrollbars=yes')"><span
 							class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>1:1
 							채팅</a> <a href="#"
-							onclick="window.open('reportWrite.ad?r_m_target=<%=productDTO.getM_id()%>','신고하기','width=500, height=800, scrollbars=yes')"><span
+							onclick="window.open('reportWrite.ad?r_m_target=<%=productDTO.getM_id()%>','신고하기','width=800, height=700, scrollbars=yes')"><span
 							class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>신고하기</a>
 						<%
 						}
@@ -335,7 +335,5 @@ $(document).ready(function() {
 	<!-- 푸터 들어가는 곳! -->
 
 
-</body>
-</html>
 </body>
 </html>

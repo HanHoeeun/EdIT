@@ -67,7 +67,7 @@ public class AdminService {
 		try {
 
 			//파일이 저장될 경로명
-			String uploadPath = request.getRealPath("/adminUpload");
+			String uploadPath = request.getRealPath("/upload");
 			
 //			이클립스에 실행하면 이클립스 가상 경로 
 			System.out.println(uploadPath);

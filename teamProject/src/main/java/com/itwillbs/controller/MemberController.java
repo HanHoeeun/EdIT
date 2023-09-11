@@ -529,7 +529,7 @@ public class MemberController extends HttpServlet{
 			System.out.println("받은 아이디 : " + m_id);
 			
 			memberService = new MemberService();
-			memberService.getIdCheck(m_id);
+			memberService.getMember(m_id);
 			
 			MemberDTO memberDTO = memberService.getIdCheck(m_id);
 			
@@ -562,7 +562,7 @@ public class MemberController extends HttpServlet{
 			System.out.println("받은 아이디 : " + m_nick);
 			
 			memberService = new MemberService();
-			memberService.getNickCheck(m_nick);
+			memberService.getMember(m_nick);
 			
 			MemberDTO memberDTO = memberService.getNickCheck(m_nick);
 			
@@ -594,7 +594,7 @@ public class MemberController extends HttpServlet{
 			System.out.println("받은 아이디 : " + m_email);
 			
 			memberService = new MemberService();
-			memberService.getEmailCheck(m_email);
+			memberService.getMember(m_email);
 			
 			MemberDTO memberDTO = memberService.getEmailCheck(m_email);
 			
@@ -616,6 +616,44 @@ public class MemberController extends HttpServlet{
 		}	
 
 
+//		전화번호 중복체크
+		if (sPath.equals("/phoneCheck.me")) {
+			System.out.println("뽑은 가상주소 비교 : phoneCheck.me");
+			
+			String m_phone = request.getParameter("m_phone");
+			System.out.println("받은 아이디 : " + m_phone);
+			
+			memberService = new MemberService();
+			memberService.getMember(m_phone);
+			
+			MemberDTO memberDTO = memberService.getPhoneCheck(m_phone);
+			
+			String result = "";
+			if (memberDTO != null) {
+				System.out.println("전화번호 중복");
+				result = "중복된 전화번호입니다";
+			} else {
+				System.out.println("전화번호 사용가능!");
+				result = "<span style='color: green;'>사용가능한 전화번호입니다</span>";
+			}
+			
+//			이동하지 않고 결과를 웹 화면에 출력
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter printWriter = response.getWriter();
+			printWriter.print(result);
+			printWriter.close();
+			
+			
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
 //		아이디찾기
 		if(sPath.equals("/findid.me")) {
 		   System.out.println("뽑은 가상주소 비교 : findid.me" );
