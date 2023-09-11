@@ -74,14 +74,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div style="text-align : center;">
      		<img src="./images/find_5_1.png"><br><br><br>
 		</div>
-			<h2>아이디찾기</h2>
+			<h2>아이디찾기</h2><br>
 				<p>회원가입시 등록하신 이름과 이메일을 입력해 주세요.</p>
 		
 			<div class="login-form-grids animated wow slideInUp" data-wow-delay=".5s">
 			
 				<form action = "login.me"  method = "post">			
 
-					<input type="text" placeholder="이름"  required=" "  id = "m_name"  name = "m_name" >  
+					<input type="text" placeholder="이름"  required=" "  id = "m_name"  name = "m_name" >  <br>
 					<input type="email" placeholder="이메일"  required=" "   id = "m_email" name = "m_email" >
 					
 					<div class="_5center">

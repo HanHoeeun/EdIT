@@ -63,6 +63,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
 				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>홈</a></li>
 				<li class="active">마이페이지</li>
+				<li class="active">나의정보</li>
 			</ol>
 		</div>
 	</div>
@@ -79,7 +80,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<li class="tab-link" onclick="location.href='buylist2.po'">판매완료목록</li>
 					<li class="tab-link" onclick="location.href='m_wishlist.me'">찜</li>
 					<li class="tab-link" onclick="location.href='m_adminpage.me'" >신고내역</li>
-<!-- 					<li class="tab-link" data-tab="tab-7">회원탈퇴</li> -->
 				</ul>
 			</div>
 		
