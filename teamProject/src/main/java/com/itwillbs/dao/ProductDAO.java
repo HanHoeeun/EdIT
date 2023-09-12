@@ -8,6 +8,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import com.itwillbs.domain.AdminPageDTO;
 import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.ProductDTO;
 import com.itwillbs.domain.ProductPageDTO;
@@ -1618,6 +1619,52 @@ public class ProductDAO {
 			System.out.println("m_id = " + ppageDTO.getM_id());
 			pstmt.setInt(2, ppageDTO.getP_startRow() - 1);// 시작행-1
 			pstmt.setInt(3, ppageDTO.getP_pageSize());// 몇개
+			rs = pstmt.executeQuery();
+			System.out.println("결과 =" + pstmt);
+			// wishList = new ArrayList<>();
+			// size = wishList.size();
+			while (rs.next()) {
+				WishListDTO wishListDTO = new WishListDTO();
+				ProductDTO productDTO = new ProductDTO();
+				MemberDTO memberDTO = new MemberDTO();
+
+				wishListDTO.setW_num(rs.getInt("w_num"));
+				wishListDTO.setW_p_num(rs.getInt("w_p_num"));
+				memberDTO.setM_nick(rs.getString("m_nick"));
+				productDTO.setP_file(rs.getString("p_file"));
+				productDTO.setP_title(rs.getString("p_title"));
+				productDTO.setP_status(rs.getString("p_status"));
+				productDTO.setP_type(rs.getString("p_type"));
+				productDTO.setP_price(rs.getInt("p_price"));
+
+				wishListDTO.setMemberDTO(memberDTO);
+				wishListDTO.setProductDTO(productDTO);
+
+				wishList.add(wishListDTO);
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		return wishList;
+	}
+	
+	public List<WishListDTO> getWishList(AdminPageDTO pageDTO) {
+		System.out.println("ProductDAO getWishList()");
+		List<WishListDTO> wishList = new ArrayList<>();
+		// int size = wishList.size();
+		try {
+			con = getConnection();
+			String sql = "SELECT w.w_num, w.w_p_num, m.m_nick, p.p_file, p.p_title, p.p_status, p.p_type, p.p_price "
+					+ "from wishlists w " + "JOIN products p ON w.w_p_num = p.p_num "
+					+ "JOIN members m ON w.w_m_num = m.m_num " + "where m.m_id = ? " + "limit ?, ? ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, pageDTO.getM_id());
+			System.out.println("m_id = " + pageDTO.getM_id());
+			pstmt.setInt(2, pageDTO.getStartRow() - 1);// 시작행-1
+			pstmt.setInt(3, pageDTO.getPageSize());// 몇개
 			rs = pstmt.executeQuery();
 			System.out.println("결과 =" + pstmt);
 			// wishList = new ArrayList<>();

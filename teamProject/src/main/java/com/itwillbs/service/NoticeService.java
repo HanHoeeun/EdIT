@@ -54,10 +54,11 @@ public class NoticeService {
 	}//getNoticeCount
 
 //===================================== insertNotice =======================================	
-	public String insertNotice(HttpServletRequest request) {
+	public String insertNotice(HttpServletRequest request, String m_id) {
 		System.out.println("NoticeService insertNotice()");
 		String a_notice_type = "";
 		try {
+			
 			// request 한글처리
 			request.setCharacterEncoding("utf-8");
 			// 업로드 폴더 경로=> 물리적 경로
@@ -77,6 +78,7 @@ public class NoticeService {
 			//첨부파일이름 가져오기
 			String a_file = multi.getFilesystemName("a_file");
 			
+			
 			// request 파라미터 값 가져오기
 			a_notice_type = (multi.getParameter("a_notice_type"));
 			System.out.println("a_notice_type"+a_notice_type);
@@ -87,6 +89,7 @@ public class NoticeService {
 			noticeDAO = new NoticeDAO();
 			// NoticeDTO 객체생성
 			NoticeDTO noticeDTO = new NoticeDTO();
+			noticeDTO.setA_m_id(m_id);
 			// set메서드 호출 파라미터값 저장
 			noticeDTO.setA_notice_type(a_notice_type);
 			noticeDTO.setA_title(a_title);
@@ -96,8 +99,9 @@ public class NoticeService {
 			noticeDTO.setA_file(a_file);
 
 			// 글 유형에 따라 일반공지, 이벤트로 넘어가게
-			if(a_notice_type=="공지"){
+			if(a_notice_type=="공지" || a_notice_type.equals("공지")){
 				// 리턴할형없음 insertNotice(noticeDTO) 호출
+				System.out.println("----------------------------------------------------------");
 				noticeDAO.insertNotice(noticeDTO);
 			}else {
 				noticeDAO.insertEvent(noticeDTO);
