@@ -101,7 +101,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<div class="mypage-grids"> 
 									<div align="center">
 										<input type="text" class="show" placeholder="아이디" readonly="readonly"readonly>
-										<input type="text" value="<%=memberDTO.getM_id() %>" id="m_id" name="m_id" readonly="readonly">
+										<input type="text" value="<%=memberDTO.getM_id() %>" id="m_id" name="m_id" readonly="readonly" style="background-color: #F5F5F5">
 									</div>
 								</div>
 							</td>
@@ -113,7 +113,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<div class="mypage-grids"> 
 									<div align="center">
 										<input type="text" class="show" placeholder="이름" readonly="readonly"readonly>
-										<input type="text" value="<%=memberDTO.getM_name() %>" id="m_name" name="m_name" readonly="readonly">
+										<input type="text" value="<%=memberDTO.getM_name() %>" id="m_name" name="m_name" readonly="readonly" style="background-color: #F5F5F5">
 									</div>
 								</div>
 							</td>
@@ -125,8 +125,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<div class="mypage-grids"> 
 									<div align="center">
 										<input type="text" class="show" placeholder="닉네임" readonly="readonly"readonly>
-										<input type="text" value="<%=memberDTO.getM_nick() %>" id="m_nick" name="m_nick" 
-										required="" onfocus="clearValue('m_nick')" onblur="restoreValue('m_nick')">
+										<input type="text" placeholder="<%=memberDTO.getM_nick() %>" id="m_nick" name="m_nick" required="" >
+
 										<br><div id="nick_error_message" class="nick_error_message"></div>
 									</div>
 								</div>
@@ -138,8 +138,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<div class="mypage-grids"> 
 									<div align="center">
 										<input type="text" class="show" placeholder="이메일" readonly="readonly"readonly>
-										<input type="email" value="<%=memberDTO.getM_email()%>" id="m_email" name="m_email" 
-										required="" onfocus="clearValue('m_email')" onblur="restoreValue('m_email')">
+										<input type="email" placeholder="<%=memberDTO.getM_email()%>" id="m_email" name="m_email" required="" >
 										<br><div id="email_error_message" class="email_error_message"></div>
 									</div>
 								</div>
@@ -151,8 +150,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<div class="mypage-grids"> 
 									<div align="center">
 										<input type="text" class="show" placeholder="전화번호" readonly="readonly"readonly>
-										<input type="tel" value="<%=memberDTO.getM_phone() %>" id="m_phone" name="m_phone" oninput="oninputPhone(this)" 
-										required="" onfocus="clearValue('m_phone')" onblur="restoreValue('m_phone')">
+										<input type="tel" placeholder="<%=memberDTO.getM_phone() %>" id="m_phone" name="m_phone" 
+												oninput="oninputPhone(this)" required="" > 
 										<br><div id="phone_error_message" class="phone_error_message"></div>
 									</div>
 								</div>
@@ -285,22 +284,6 @@ $(document).ready(function() {
     
 })
 
-    var previousValues = {}; // 이전 값을 저장할 객체
-
-        // 포커스가 주어질 때 입력 값을 지우는 함수
-        function clearValue(fieldId) {
-            var inputField = document.getElementById(fieldId);
-            previousValues[fieldId] = inputField.value; // 이전 값을 저장
-            inputField.value = ""; // 입력 값을 지움
-        }
-
-        // 포커스 아웃될 때 이전 값으로 복원하는 함수
-        function restoreValue(fieldId) {
-            var inputField = document.getElementById(fieldId);
-            if (inputField.value === "") {
-                inputField.value = previousValues[fieldId]; // 이전 값을 복원
-            }
-        }
 
 
 </script>
