@@ -850,13 +850,8 @@ public class ProductService {
 //			    1                 10        => (1-1)*10+1=>0*10+1=> 0+1=>1        ~ 10
 //			    2                 10        => (2-1)*10+1=>1*10+1=>10+1=>11       ~ 20
 //		        3                 10        => (3-1)*10+1=>2*10+1=>20+1=>21       ~ 30			
-			int p_startRow = (ppageDTO.getP_currentPage() - 1) * ppageDTO.getP_pageSize() + 1;
-			// 시작하는 행부터 끝나는 행까지 뽑아오기
-//			startRow  pageSize => endRow
-//			    1         10   =>   1+10-1 =>10
-//			    11        10   =>   11+10-1 =>20
-//		        21        10   =>   21+10-1 =>30
-			int p_endRow = p_startRow + ppageDTO.getP_pageSize() - 1;
+			int p_startRow = (ppageDTO.getP_currentPage()-1) * ppageDTO.getP_pageSize()+1;
+			int p_endRow = p_startRow + ppageDTO.getP_pageSize()-1;
 			// pageDTO 저장 <= startRow, endRow
 			ppageDTO.setP_startRow(p_startRow);
 			ppageDTO.setP_endRow(p_endRow);

@@ -78,6 +78,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<li><a href="index.html"><span
 						class="glyphicon glyphicon-home" aria-hidden="true"></span>홈</a></li>
 				<li class="active">마이페이지</li>
+				<li class="active">전체판매목록</li>
 			</ol>
 		</div>
 	</div>

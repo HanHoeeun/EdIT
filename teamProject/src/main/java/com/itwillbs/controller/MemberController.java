@@ -266,6 +266,7 @@ public class MemberController extends HttpServlet{
 					p_pageNum = "1";
 				}
 				int p_currentPage = Integer.parseInt(p_pageNum);
+				
 				ProductPageDTO ppageDTO = new ProductPageDTO();
 				ppageDTO.setP_pageSize(p_pageSize);
 				ppageDTO.setP_pageNum(p_pageNum);
@@ -273,33 +274,23 @@ public class MemberController extends HttpServlet{
 				ppageDTO.setM_id(id);
 				productService = new ProductService();
 				List<WishListDTO> wishList=productService.getWishList(ppageDTO);
-//				String orderBy = request.getParameter("ord");
-//			    System.out.println("orderBy"+ orderBy);
-//			    if(orderBy != null) {
-//			    	if ("wishSell".equals(orderBy)) {
-//				    	wishList = productService.getWishSellProducts(ppageDTO);
-//				    } else if ("wishSold".equals(orderBy)) {
-//				    	wishList = productService.getWishSoldProducts(ppageDTO);
-//				    	
-//				    } else {
-//				        // 디폴트로 판매중으로 정렬
-//				    	wishList = productService.getWishSellProducts(ppageDTO);
-//				    }
-//			    }	
-				// 게시판 전체 글 개수 구하기
+
+//				게시판 전체 글 개수 구하기
 			    int p_count = productService.getProductCount();
-			    int p_pageBlock =  5;
+			    System.out.println(p_count);
+//				한화면에 보여줄 페이지 개수 설정
+			    int p_pageBlock =  10;
 			    int p_startPage=(p_currentPage-1)/p_pageBlock*p_pageBlock+1;
 			    int p_endPage=p_startPage+p_pageBlock-1;
-			    int p_pageCount = p_count / p_pageSize + (p_count % p_pageSize==0?0:1);
-				if(p_endPage > p_pageCount) {
-					p_endPage = p_pageCount;
+			    int pageCount = p_count%p_pageBlock == 0 ? p_count/p_pageBlock : p_count/p_pageBlock+1 ;
+				if(p_endPage > pageCount ) {
+					p_endPage = pageCount;
 				}
 				ppageDTO.setP_count(p_count);
 				ppageDTO.setP_pageBlock(p_pageBlock);
 				ppageDTO.setP_startPage(p_startPage);
 				ppageDTO.setP_endPage(p_endPage);
-				ppageDTO.setP_pageCount(p_pageCount);
+				ppageDTO.setP_pageCount(pageCount);
 				
 				System.out.println("스타트페이지 =" + p_startPage +", 페이지 블럭 = "+ p_pageBlock);
 				System.out.println("현재페이지 =" + p_currentPage);
