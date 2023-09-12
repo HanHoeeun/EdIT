@@ -82,20 +82,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<form action="insertPro.me" method="post" id="join">
 					
 						<table class="mypage-board">
-<!-- 				----아이디입력---- -->
-							 <tr>
+
+<!-- 				----아이디----							 -->
+							<tr>
 								<td class="_1qna_board_border2">
 									<div class="mypage-grids"> 
 										<div align="center">
-											<input type="text" placeholder="아이디 (영문/숫자, 6~20자)" id="m_id" name="m_id" class="m_id" required="">
+											<input type="text" placeholder="아이디 (영문/숫자, 6~20자)" id="m_id" name="m_id" required="">
 											<br><div id="id_error_message" class="id_error_message"></div>
 										</div>
 									</div>
 								</td>
 							</tr>
-						
-						
-					
 <!-- 				----비밀번호----							 -->
 							<tr>
 								<td class="_1qna_board_border2">
@@ -108,7 +106,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									</div>
 								</td>
 							</tr>
-							
+
 <!-- 				----이름 입력---- -->
 							 <tr>
 								<td class="_1qna_board_border2">
@@ -157,12 +155,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</tr>
 					</table>
 				
-				
-			
-			<br><br>
-			
-			
-			
 		
 <!-- 			----동의체크---- -->
 			<div class="register-check-box">
@@ -171,19 +163,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<input type="checkbox" id="agreecheck" name="checkbox"><i></i>
 					EdIT의 <span>이용약관 동의</span>하기
 					
-					<a id="password-change-link" href="#" onclick="window.open('agree.me?m_num=','전체약관보기','width=800, height=600, scrollbars=yes')" 
+					<a id="password-change-link" href="#" onclick="window.open('agree.me?m_num=','전체약관보기','width=800, height=700, scrollbars=yes')" 
 					style="font-size: 10px; text-align: right;" >[전체약관보기]</a>
 					</label>
-					
 				</div>
-				
-	
-				
-				
 			</div>			
 			
 			<div>
-				<input type="submit" onclick="register() value="회원가입">
+				<input type="submit" value="회원가입">
 			</div>
 			</form>
 			</div>

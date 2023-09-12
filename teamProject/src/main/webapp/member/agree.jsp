@@ -54,7 +54,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="_1container_1_1">
 			<table class="_1report_content_board">
 				<tr>
-				<td class="_1report_content_border" colspan="2">제1조 (목적)</td>
+				<td class="_1report_content_border" colspan="2" style="border-right: none;">제1조 (목적)</td>
 				</tr>	
 				<tr>
 				<td colspan="2" style="text-align: left;">
@@ -213,6 +213,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</td>
 				</tr>	
 		
+				<br>
 				<tr>
 				</tr>	
 				<tr>
