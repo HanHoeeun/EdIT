@@ -996,7 +996,7 @@ public class ProductController extends HttpServlet {
 			productService = new ProductService();
 			List<ProductDTO> productList = productService.getProductListSearch(ppageDTO);
 
-			int p_count = productService.getProductCount();
+			int p_count = productService.getsearchpCount(ppageDTO);
 			int p_pageBlock = 3;
 			int p_startPage = (p_currentPage - 1) / p_pageBlock * p_pageBlock + 1;
 			int p_endPage = p_startPage + p_pageBlock - 1;
