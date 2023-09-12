@@ -167,8 +167,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- 			----동의체크---- -->
 			<div class="register-check-box">
 				<div class="check">
-					<label class="checkbox"><input type="checkbox" id="agreecheck" name="checkbox"><i> </i>EdIT의 <span>이용약관 동의</span>하기</label>
+					<label class="checkbox">
+					<input type="checkbox" id="agreecheck" name="checkbox"><i></i>
+					EdIT의 <span>이용약관 동의</span>하기
+					
+					<a id="password-change-link" href="#" onclick="window.open('agree.me?m_num=','전체약관보기','width=800, height=600, scrollbars=yes')" 
+					style="font-size: 10px; text-align: right;" >[전체약관보기]</a>
+					</label>
+					
 				</div>
+				
+	
+				
+				
 			</div>			
 			
 			<div>

@@ -99,6 +99,19 @@ public class MemberController extends HttpServlet{
 			
 		}
 		
+//		전체약관동의 보기
+		if (sPath.equals("/agree.me")) {
+			System.out.println("뽑은 가상주소 비교 : agree.me");
+			
+			dispatcher = request.getRequestDispatcher("member/agree.jsp");
+			dispatcher.forward(request, response);
+			
+			
+		}
+		
+		
+		
+		
 		
 //		로그인 화면		--성공
 		if (sPath.equals("/login.me")) {
