@@ -99,7 +99,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<td class="_1qna_board_border2">
 									<div class="mypage-grids"> 
 										<div align="center">
-											<input type="password" placeholder="비밀번호 (문자+숫자+특수문자, 8~20자)"	id="m_pass" 	name="m_pass" required="">
+											<input type="password" placeholder="비밀번호 (문자+숫자+특수문자, 8~16자)"	id="m_pass" 	name="m_pass" required="">
 											<input type="password" placeholder="비밀번호확인" 						id="m_pass2" 	name="m_pass2" required="">
 											<br><div id="result"></div>
 										</div>
