@@ -32,7 +32,7 @@
 							<h3>
 								<i class="fa fa-lock fa-4x"></i>
 							</h3>
-							<h2 class="text-center">OTP 입력</h2>
+							<h2 class="text-center">인증번호 입력</h2>
 									<%
 		  			if(request.getAttribute("message")!=null)
 		  			{
@@ -51,7 +51,7 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-envelope color-blue"></i></span> <input
-												id="opt" name="otp" placeholder="OTP 입력"
+												id="opt" name="otp" placeholder="인증번호 입력"
 												class="form-control" type="text" required="required">
 										</div>
 									</div>
