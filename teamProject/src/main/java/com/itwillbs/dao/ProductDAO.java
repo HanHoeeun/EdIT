@@ -1888,6 +1888,33 @@ public class ProductDAO {
 		return p_count;
 	}
 
+	public int getwishCount(ProductPageDTO ppageDTO) {
+		int p_count = 0;
+		try {
+			// 1,2 디비연결
+					con = getConnection();
+
+					// 3 sql select count(*) from board
+					String sql = "select count(*) from wishlists join members on w_m_num = m_num where m_id=?";
+
+					pstmt = con.prepareStatement(sql);
+
+					pstmt.setString(1, ppageDTO.getM_id());// 시작행-1
+					// 4 실행 => 결과저장
+					rs = pstmt.executeQuery();
+
+					// 5 결과 행접근 => 열접근 => count변수 저장
+					if (rs.next()) {
+						p_count = rs.getInt("count(*)");
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+					dbClose();
+				}
+				return p_count;
+	}
+
 // -------------------------------------------------------------------------------------------------------------------	
 // -------------------------------------------------------------------------------------------------------------------	
 // -------------------------------------------------------------------------------------------------------------------	

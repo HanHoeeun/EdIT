@@ -935,7 +935,7 @@ public class ProductController extends HttpServlet {
 //			    	wishList = productService.getWishSellProducts(ppageDTO);
 //			    }
 //		    }	
-			int p_count = productService.getProductCount();
+			int p_count = productService.getwishCount(ppageDTO);
 			int p_pageBlock = 2;
 			int p_startPage = (p_currentPage - 1) / p_pageBlock * p_pageBlock + 1;
 			int p_endPage = p_startPage + p_pageBlock - 1;

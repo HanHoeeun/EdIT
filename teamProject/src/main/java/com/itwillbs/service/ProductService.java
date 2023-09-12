@@ -947,6 +947,20 @@ public class ProductService {
 		return count;
 	}
 
+	public int getwishCount(ProductPageDTO ppageDTO) {
+		System.out.println("ProductService getwishCount()");
+		int count = 0;
+		try {
+			// productDAO 객체생성
+			productDAO = new ProductDAO();
+			// count = getBoardCount() 호출
+			count = productDAO.getwishCount(ppageDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
+
 	// -----------------------------------------------------------------------------------------------
 	// -----------------------------------------------------------------------------------------------
 	// -----------------------------------------------------------------------------------------------
