@@ -139,7 +139,9 @@ public class ProductController extends HttpServlet {
 			ppageDTO.setP_endPage(p_endPage);
 			ppageDTO.setP_pageCount(p_pageCount);
 			// ppageDTO.setM_id(id);
-//			System.out.println("스타트페이지 =" + p_startPage +", 페이지 블럭 = "+ p_pageBlock);
+			System.out.println("스타트페이지 =" + p_startPage +", 페이지 블럭 = "+ p_pageBlock);
+			System.out.println("엔드페이지 =" + p_endPage +", 페이지 카운트 = "+ p_pageCount);
+			System.out.println("p_count = " + p_count);
 //			System.out.println("현재페이지 =" + p_currentPage);
 
 			// request에 "productList",productList 저장
@@ -229,7 +231,7 @@ public class ProductController extends HttpServlet {
 				}
 			}
 			// 게시판 전체 글 개수 구하기
-			int p_count = productService.getProductCount();
+			int p_count = productService.getlaptopCount(ppageDTO);
 			// 한화면에 보여줄 페이지개수 설정
 			int p_pageBlock = 3;
 			// 시작하는 페이지번호
@@ -259,6 +261,7 @@ public class ProductController extends HttpServlet {
 			ppageDTO.setP_endPage(p_endPage);
 			ppageDTO.setP_pageCount(p_pageCount);
 			System.out.println(" laptop 스타트페이지 =" + p_startPage + ", 페이지 블럭 = " + p_pageBlock);
+			System.out.println("엔드페이지 =" + p_endPage +", 페이지 카운트 = "+ p_pageCount);
 			// request에 "laptopList",laptopList 저장
 			request.setAttribute("laptopList", laptopList);
 			request.setAttribute("ppageDTO", ppageDTO);
@@ -345,7 +348,7 @@ public class ProductController extends HttpServlet {
 				}
 			}
 			// 게시판 전체 글 개수 구하기
-			int p_count = productService.getProductCount();
+			int p_count = productService.getphoneCount(ppageDTO);
 			// 한화면에 보여줄 페이지개수 설정
 			int p_pageBlock = 3;
 			// 시작하는 페이지번호
@@ -375,6 +378,7 @@ public class ProductController extends HttpServlet {
 			ppageDTO.setP_endPage(p_endPage);
 			ppageDTO.setP_pageCount(p_pageCount);
 			System.out.println("phone 스타트페이지 =" + p_startPage + ", 페이지 블럭 = " + p_pageBlock);
+			System.out.println("엔드페이지 =" + p_endPage +", 페이지 카운트 = "+ p_pageCount);
 			// request에 "phoneList",phoneList 저장
 			request.setAttribute("phoneList", phoneList);
 			request.setAttribute("ppageDTO", ppageDTO);
@@ -460,7 +464,7 @@ public class ProductController extends HttpServlet {
 				}
 			}
 			// 게시판 전체 글 개수 구하기
-			int p_count = productService.getProductCount();
+			int p_count = productService.gettabletCount(ppageDTO);
 			// 한화면에 보여줄 페이지개수 설정
 			int p_pageBlock = 3;
 			// 시작하는 페이지번호
@@ -490,6 +494,7 @@ public class ProductController extends HttpServlet {
 			ppageDTO.setP_endPage(p_endPage);
 			ppageDTO.setP_pageCount(p_pageCount);
 			System.out.println("tablet 스타트페이지 =" + p_startPage + ", 페이지 블럭 = " + p_pageBlock);
+			System.out.println("엔드페이지 =" + p_endPage +", 페이지 카운트 = "+ p_pageCount);
 			// request에 "phoneList",phoneList 저장
 			request.setAttribute("tabletList", tabletList);
 			request.setAttribute("ppageDTO", ppageDTO);
@@ -930,7 +935,7 @@ public class ProductController extends HttpServlet {
 //			    	wishList = productService.getWishSellProducts(ppageDTO);
 //			    }
 //		    }	
-			int p_count = productService.getProductCount();
+			int p_count = productService.getwishCount(ppageDTO);
 			int p_pageBlock = 2;
 			int p_startPage = (p_currentPage - 1) / p_pageBlock * p_pageBlock + 1;
 			int p_endPage = p_startPage + p_pageBlock - 1;
