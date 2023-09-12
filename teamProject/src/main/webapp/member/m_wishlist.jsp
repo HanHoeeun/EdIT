@@ -143,7 +143,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         // 시작 페이지에서 이전 페이지로 이동하는 링크를 표시
         if (ppageDTO.getP_startPage() > ppageDTO.getP_pageBlock()) {
         %>
-        <li onclick="location.href='m_wishlist.me?p_pageNum=<%= ppageDTO.getP_startPage() - ppageDTO.getP_pageBlock() %>&orderBy=${orderBy}'">Prev</li>
+        <li onclick="location.href='m_wishlist.me?p_pageNum=<%= ppageDTO.getP_startPage() - ppageDTO.getP_pageBlock() %>&tab=tab-4'">Prev</li>
         <%
         }
         
@@ -153,7 +153,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             boolean isPcurrentPage = (i == ppageDTO.getP_currentPage());
         %>
         <li class="<%= (isCurrentPage || isPcurrentPage) ? "active" : "" %>"
-            onclick="location.href='m_wishlist.me?p_pageNum=<%= i %>&orderBy=${orderBy}'">
+            onclick="location.href='m_wishlist.me?p_pageNum=<%= i %>&tab=tab-4'">
             <%= (isPcurrentPage) ? i : i %>
         </li>
         <%
@@ -162,7 +162,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         // 끝 페이지에서 다음 페이지로 이동하는 링크를 표시
         if (ppageDTO.getP_endPage() < ppageDTO.getP_pageCount()) {
         %>
-        <li onclick="location.href='m_wishlist.me?p_pageNum=<%= ppageDTO.getP_startPage() + ppageDTO.getP_pageBlock() %>&orderBy=${orderBy}'">Next</li>
+        <li onclick="location.href='m_wishlist.me?p_pageNum=<%= ppageDTO.getP_startPage() + ppageDTO.getP_pageBlock() %>&tab=tab-4'">Next</li>
         <%
         }
         %>

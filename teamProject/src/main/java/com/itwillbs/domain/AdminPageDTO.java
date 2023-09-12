@@ -12,7 +12,14 @@ public class AdminPageDTO {
 	private int endPage;	//끝나는 페이지
 	private int pageBlock;  //페이지 크기
 	private int pageCount;	//페이지 갯수
+	private String m_id;
 	
+	public String getM_id() {
+		return m_id;
+	}
+	public void setM_id(String m_id) {
+		this.m_id = m_id;
+	}
 	private String search; //검색어 저장
 	private int search_type; // 회원 검색 타입 0 전체 1 회원번호 2 아이디 3 닉네임 4 신고횟수
 	
