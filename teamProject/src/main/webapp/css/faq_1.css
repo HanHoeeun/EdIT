@@ -87,8 +87,8 @@ ul.tabs li.current{
 }
 
 .faq_1 {
-	width: 800px;
-	text-align: center;
+	width: 650px;
+	text-align: left;
 	margin-top: 50px;
 	margin-bottom: auto;
 	list-style: none;
@@ -97,6 +97,7 @@ ul.tabs li.current{
 ul.faq_1 {
     padding: 0 1em;
    	margin: 0 auto;
+   	margin-left: 20%;
     margin-top: 2em;
 }
 .faq_1 li {

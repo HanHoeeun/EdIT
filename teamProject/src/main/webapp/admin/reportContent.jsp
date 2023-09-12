@@ -82,10 +82,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 				if(m_level == 2){%>
 				<p>답변내용</p>
-				<textarea name="r_answer" readonly="readonly"><%=answer %></textarea><br>
+				<textarea name="r_answer"><%=answer %></textarea><br>
 				<%}else{ %>
 				<p>답변내용</p>
-				<textarea name="r_answer"><%=answer %></textarea><br>
+				<textarea name="r_answer" readonly="readonly"><%=answer %></textarea><br>
 				<%} %>
 				
 				<div class="reportbtn">
