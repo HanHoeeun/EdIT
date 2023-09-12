@@ -234,4 +234,13 @@ height:40px;
 }
 
 #boxTable tr:hpver{
-	cursor: pointer}
+	cursor: pointer
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+    margin-left: 20%;
+    margin-right: 2%;
+  }
+}

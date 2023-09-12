@@ -10,20 +10,11 @@ String m_id = null;
 if (session.getAttribute("m_id") != null) {
 	m_id = (String) session.getAttribute("m_id");
 }
+int m_level = 0;
+if (session.getAttribute("m_level") != null) {
+	m_level = (int) session.getAttribute("m_level");
+}
 %>
-</head>
-<body>
-
-	<!--
-author: W3layouts
-author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
-	<!DOCTYPE html>
-<html>
-<head>
-<title>top</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -125,7 +116,7 @@ function getUnread(){
 					<li><a href="login.me"><i class="fa fa-user"
 							aria-hidden="true"> 로그인</i></a></li>
 					<%
-					} else {
+					} else if(m_level < 2) {
 					%>
 					<li><a><i class="fa fa-thumbs-up" aria-hidden="true"><%=id%>님
 							반갑습니다!</i></a></li>
@@ -137,47 +128,29 @@ function getUnread(){
 							aria-hidden="true"> 상품등록</i></a></li>
 					<li><a href="wishlist.po"><i class="fa fa-heart"
 							aria-hidden="true"> 찜리스트 </i></a></li>
-					<!-- <li><a href="single.po?p_num=5"><i class="fa fa-question-circle-o" aria-hidden="true"> 상품</i></a></li> -->
 					<li><a href="#"
 						onclick="window.open('box.ch','1:1 채팅','width=500, height=800, scrollbars=yes')"><i
 							class="fa fa-comments-o" aria-hidden="true"> 채팅<span
 								id="unread" class="label label-info" style="margin-left: 2px;"></span></i></a></li>
-					<%-- <% if ("admin1".equals(id)) { %> --%>
+					<%}else if(m_level == 2){ %>
+					<li><a href="logout.me"><i class="fa fa-heart"
+							aria-hidden="true"> 로그아웃 </i></a></li>
+					<li><a href="productReg.po"><i class="fa fa-plus-circle"
+							aria-hidden="true"> 상품등록</i></a></li>
+					<li><a href="wishlist.po"><i class="fa fa-heart"
+							aria-hidden="true"> 찜리스트 </i></a></li>
+					<li><a href="#"
+						onclick="window.open('box.ch','1:1 채팅','width=500, height=800, scrollbars=yes')"><i
+							class="fa fa-comments-o" aria-hidden="true"> 채팅<span
+								id="unread" class="label label-info" style="margin-left: 2px;"></span></i></a></li>
 					<li><a href="adminPage.ad"><i class="fa fa-user"
 							aria-hidden="true"> 관리자 페이지</i></a></li>
 					<%
 					}
 					%>
-					<!-- 	---------------혹시 몰라 복사 해놓고 주석처리 -------- -->
-
-					<%-- 					<%if(1==2){ %> --%>
-					<!-- 					<li><a href="adminPage.ad"><i class="fa fa-user" aria-hidden="true"> 마이 페이지</i></a></li> -->
-					<!-- 					<li><a href="../product/productReg.jsp"><i class="fa fa-plus-circle" aria-hidden="true"> 상품등록</i></a></li> -->
-
-					<%-- 					<%} %> --%>
-					<%-- 					<%if(1==1){ %> --%>
-					<!-- 					<li><a href="adminPage.ad"><i class="fa fa-user" aria-hidden="true"> 관리자 페이지</i></a></li> -->
-					<%-- 					<%} %> --%>
-					<!-- 					<li><a href="faq.ad"><i class="fa fa-question-circle-o" aria-hidden="true"> 문의하기</i></a></li> -->
-
-					<!-- <li><a href="../product/wishlist.jsp"><i class="fa fa-heart" aria-hidden="true"> 찜리스트 </i></a></li> -->
-
-					<!-- 	---------------혹시 몰라 복사 해놓고 주석처리 -------- -->
-
-
-
 				</ul>
 			</div>
-			<!-- <!-- 얘도 그냥 위에 처럼 리스트 내에 내장 시켜서 하이퍼링크 거는건 어떤지..?
-			 <div class="product_list_header">   
-					<form action="wishlist.po" method="post" class="last"> 
-						<input type="hidden" name="cmd" value="_cart">
-						<input type="hidden" name="display" value="1">
-						<button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-heart" aria-hidden="true"></i></button>
-					</form>  
-
-			</div>   -->
-			<div class="clearfix"></div>
+<!-- 			<div class="clearfix"></div> -->
 		</div>
 	</div>
 
