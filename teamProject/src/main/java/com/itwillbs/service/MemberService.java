@@ -214,6 +214,26 @@ public class MemberService {
 	}
 
 	
+//	전화번호 중복확인
+	public MemberDTO getPhoneCheck(String m_phone) {
+		System.out.println("MemberService getPhoneCheck()");
+		MemberDTO memberDTO = null;
+		try {
+			
+			memberDAO = new MemberDAO();
+			memberDTO = memberDAO.getPhoneCheck(m_phone);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return memberDTO;
+	}
+	
+	
+	
+	
 	
 //	회원정보 수정
 	public void updateMember(HttpServletRequest request) {
@@ -458,6 +478,9 @@ public class MemberService {
 		}
 		return count;
 	}
+
+
+
 
 
 
