@@ -243,6 +243,7 @@ ul.faq_1 {
     font-size: 12px;
     border-bottom: 1px solid #ddd;
     text-align: center;
+    border-right: 1px solid #ddd;
 }
 ._1qna_board ._1qna_board_subject {
 	text-align: left;
