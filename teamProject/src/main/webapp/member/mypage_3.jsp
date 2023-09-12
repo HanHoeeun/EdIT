@@ -112,7 +112,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<td class="_1qna_board_border2">
 								<div class="mypage-grids"> 
 									<div align="center">
-										<input type="text" class="show" placeholder="이름" readonly="readonly"readonly>
+										<input type="text" class="show" placeholder="이름" readonly="readonly">
 										<input type="text" value="<%=memberDTO.getM_name() %>" id="m_name" name="m_name" readonly="readonly" style="background-color: #F5F5F5">
 									</div>
 								</div>
@@ -124,8 +124,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<td class="_1qna_board_border2">
 								<div class="mypage-grids"> 
 									<div align="center">
-										<input type="text" class="show" placeholder="닉네임" readonly="readonly"readonly>
-										<input type="text" placeholder="<%=memberDTO.getM_nick() %>" id="m_nick" name="m_nick" required="" >
+										<input type="text" class="show" placeholder="닉네임" readonly="readonly">
+										 <input type="text" value="<%=memberDTO.getM_nick() %>" id="m_nick" name="m_nick" required="" onclick="clearValue('m_nick')">
 
 										<br><div id="nick_error_message" class="nick_error_message"></div>
 									</div>
@@ -137,8 +137,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<td class="_1qna_board_border2">
 								<div class="mypage-grids"> 
 									<div align="center">
-										<input type="text" class="show" placeholder="이메일" readonly="readonly"readonly>
-										<input type="email" placeholder="<%=memberDTO.getM_email()%>" id="m_email" name="m_email" required="" >
+										<input type="text" class="show" placeholder="이메일" readonly="readonly">
+										 <input type="email" value="<%=memberDTO.getM_email()%>" id="m_email" name="m_email" required="" onclick="clearValue('m_email')">
 										<br><div id="email_error_message" class="email_error_message"></div>
 									</div>
 								</div>
@@ -149,9 +149,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<td class="_1qna_board_border2">
 								<div class="mypage-grids"> 
 									<div align="center">
-										<input type="text" class="show" placeholder="전화번호" readonly="readonly"readonly>
-										<input type="tel" placeholder="<%=memberDTO.getM_phone() %>" id="m_phone" name="m_phone" 
-												oninput="oninputPhone(this)" required="" > 
+										<input type="text" class="show" placeholder="전화번호" readonly="readonly">
+										<input type="tel" value="<%=memberDTO.getM_phone() %>" id="m_phone" name="m_phone" oninput="oninputPhone(this)" required="" onclick="clearValue('m_phone')"> 
 										<br><div id="phone_error_message" class="phone_error_message"></div>
 									</div>
 								</div>
@@ -284,7 +283,10 @@ $(document).ready(function() {
     
 })
 
-
+ function clearValue(fieldId) {
+    var inputField = document.getElementById(fieldId);
+    inputField.value = ""; // 값을 지움
+}
 
 </script>
  
