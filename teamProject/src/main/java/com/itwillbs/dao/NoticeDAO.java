@@ -87,10 +87,38 @@ public class NoticeDAO {
 		return count;
 	}//getNoticeCount
 	
+//	m_id 로 m_num 값 받아오기
+	public int getMemberNum(String m_id) {
+		int m_num=0;
+		try {
+			con = this.getConnection();
+			String sql = "SELECT m_num "
+					+ 	 "FROM members "
+					+ 	 "where m_id = ?  ";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, m_id);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				m_num = rs.getInt("m_num");
+			}
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return m_num;
+	}
+	
+	
 //=================================== insertNotice ========================================
 	public void insertNotice(NoticeDTO noticeDTO) {
 		System.out.println("NoticeDAO insertNotice()");
 		try {
+			
+			int m_num = this.getMemberNum(noticeDTO.getA_m_id());
 			con=getConnection();
 			String sql="";
 			// 글번호 유저번호 닉네임 제목 내용 답변 파일 처리여부 작성일 cs유형 공지유형
@@ -99,8 +127,10 @@ public class NoticeDAO {
 			}else {
 				sql = "insert into admin values (default, ?, ?, ?, ?, null, ?, null, default, null, '이벤트')";
 			}
+			
+			System.out.println("m_num : "+m_num);
 			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(1, noticeDTO.getA_m_num());
+			pstmt.setInt(1, m_num);
 			pstmt.setString(2, noticeDTO.getA_m_nick());
 			pstmt.setString(3, noticeDTO.getA_title());
 			pstmt.setString(4, noticeDTO.getA_content());
@@ -295,6 +325,8 @@ public class NoticeDAO {
 	public void insertEvent(NoticeDTO noticeDTO) {
 		System.out.println("NoticeDAO insertEvent()");
 		try {
+			
+			int m_num = this.getMemberNum(noticeDTO.getA_m_id());
 			con=getConnection();
 			String sql="";
 			// 글번호 유저번호 닉네임 제목 내용 답변 파일 처리여부 작성일 cs유형 공지유형
@@ -304,7 +336,7 @@ public class NoticeDAO {
 				sql = "insert into admin values (default, ?, ?, ?, ?, null, ?, null, default, null, '이벤트')";
 			}
 			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(1, noticeDTO.getA_m_num());
+			pstmt.setInt(1, m_num);
 			pstmt.setString(2, noticeDTO.getA_m_nick());
 			pstmt.setString(3, noticeDTO.getA_title());
 			pstmt.setString(4, noticeDTO.getA_content());

@@ -140,7 +140,7 @@ function getUnread(){
 					<!-- <li><a href="single.po?p_num=5"><i class="fa fa-question-circle-o" aria-hidden="true"> 상품</i></a></li> -->
 					<li><a href="#"
 						onclick="window.open('box.ch','1:1 채팅','width=500, height=800, scrollbars=yes')"><i
-							class="fa fa-question-circle-o" aria-hidden="true"> 채팅<span
+							class="fa fa-comments-o" aria-hidden="true"> 채팅<span
 								id="unread" class="label label-info" style="margin-left: 2px;"></span></i></a></li>
 					<%-- <% if ("admin1".equals(id)) { %> --%>
 					<li><a href="adminPage.ad"><i class="fa fa-user"
