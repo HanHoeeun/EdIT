@@ -87,7 +87,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<td class="_1qna_board_border2">
 									<div class="mypage-grids"> 
 										<div align="center">
-											<input type="text" placeholder="아이디 (영문/숫자, 6~20자)" id="m_id" name="m_id" class="m_id" >
+											<input type="text" placeholder="아이디 (영문/숫자, 6~20자)" id="m_id" name="m_id" class="m_id" required="">
 											<br><div id="id_error_message" class="id_error_message"></div>
 										</div>
 									</div>
@@ -101,8 +101,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<td class="_1qna_board_border2">
 									<div class="mypage-grids"> 
 										<div align="center">
-											<input type="password" placeholder="비밀번호 (문자+숫자+특수문자, 8~20자)"	id="m_pass" 	name="m_pass">
-											<input type="password" placeholder="비밀번호확인" 						id="m_pass2" 	name="m_pass2">
+											<input type="password" placeholder="비밀번호 (문자+숫자+특수문자, 8~20자)"	id="m_pass" 	name="m_pass" required="">
+											<input type="password" placeholder="비밀번호확인" 						id="m_pass2" 	name="m_pass2" required="">
 											<br><div id="result"></div>
 										</div>
 									</div>
@@ -114,7 +114,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<td class="_1qna_board_border2">
 									<div class="mypage-grids"> 
 										<div align="center">
-											<input type="text" placeholder="이름 (최소 2자 이상)" id="m_name" name="m_name">
+											<input type="text" placeholder="이름 (최소 2자 이상)" id="m_name" name="m_name" required="">
 											<br><div id="name_error_message" class="name_error_message"></div>
 										</div>
 									</div>
@@ -125,12 +125,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<td class="_1qna_board_border2">
 									<div class="mypage-grids"> 
 										<div align="center">
-											<input type="text" placeholder="닉네임 (최소 2자 이상)" id="m_nick" name="m_nick">
+											<input type="text" placeholder="닉네임 (최소 2자 이상)" id="m_nick" name="m_nick" required="" >
 											<br><div id="nick_error_message" class="nick_error_message"></div>
 										</div>
 									</div>
 								</td>
-						
+							</tr>
 						
 						
 <!-- 				----이메일---- -->
@@ -138,7 +138,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<td class="_1qna_board_border2">
 									<div class="mypage-grids"> 
 										<div align="center">
-											<input type="email" placeholder="이메일" id="m_email" name="m_email">
+											<input type="email" placeholder="이메일" id="m_email" name="m_email" required="">
 											<br><div id="email_error_message" class="email_error_message"></div>
 										</div>
 									</div>
@@ -149,7 +149,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<td class="_1qna_board_border2">
 									<div class="mypage-grids"> 
 										<div align="center">
-											<input type="tel" placeholder="전화번호" id="m_phone" name="m_phone" oninput="oninputPhone(this)">
+											<input type="tel" placeholder="전화번호" id="m_phone" name="m_phone" oninput="oninputPhone(this)" required="">
 											<br><div id="phone_error_message" class="phone_error_message"></div>
 										</div>
 									</div>
@@ -167,12 +167,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- 			----동의체크---- -->
 			<div class="register-check-box">
 				<div class="check">
-					<label class="checkbox"><input type="checkbox" name="checkbox"><i> </i>EdIT의 <span>이용약관 동의</span>하기</label>
+					<label class="checkbox"><input type="checkbox" id="agreecheck" name="checkbox"><i> </i>EdIT의 <span>이용약관 동의</span>하기</label>
 				</div>
 			</div>			
 			
 			<div>
-				<input type="submit" value="회원가입">
+				<input type="submit" onclick="register() value="회원가입">
 			</div>
 			</form>
 			</div>
@@ -388,22 +388,12 @@ $(document).ready(function() {
 
 
 
-
 // 전화번호 - 자동 생성 
 	function oninputPhone(target) {
 	    target.value = target.value
 	        .replace(/[^0-9]/g, '')
 	        .replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]{3,4})([0-9]{4})/g, "$1-$2-$3");
 	}
-
-
-
-
-
-
-
-
-
 
 
 
