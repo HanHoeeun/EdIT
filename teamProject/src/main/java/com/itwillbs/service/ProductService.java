@@ -905,6 +905,62 @@ public class ProductService {
 		return productList;
 	}
 
+	public int getlaptopCount(ProductPageDTO ppageDTO) {
+		System.out.println("ProductService getlaptopCount()");
+		int count = 0;
+		try {
+			// productDAO 객체생성
+			productDAO = new ProductDAO();
+			// count = getBoardCount() 호출
+			count = productDAO.getlaptopCount(ppageDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
+
+	public int getphoneCount(ProductPageDTO ppageDTO) {
+		System.out.println("ProductService getphoneCount()");
+		int count = 0;
+		try {
+			// productDAO 객체생성
+			productDAO = new ProductDAO();
+			// count = getBoardCount() 호출
+			count = productDAO.getphoneCount(ppageDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
+
+	public int gettabletCount(ProductPageDTO ppageDTO) {
+		System.out.println("ProductService gettabletCount()");
+		int count = 0;
+		try {
+			// productDAO 객체생성
+			productDAO = new ProductDAO();
+			// count = getBoardCount() 호출
+			count = productDAO.gettabletCount(ppageDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
+
+	public int getwishCount(ProductPageDTO ppageDTO) {
+		System.out.println("ProductService getwishCount()");
+		int count = 0;
+		try {
+			// productDAO 객체생성
+			productDAO = new ProductDAO();
+			// count = getBoardCount() 호출
+			count = productDAO.getwishCount(ppageDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
+
 	// -----------------------------------------------------------------------------------------------
 	// -----------------------------------------------------------------------------------------------
 	// -----------------------------------------------------------------------------------------------

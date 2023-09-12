@@ -193,9 +193,7 @@ String orderBy = (String) request.getAttribute("orderBy");
 					</tr>
 			
 				</table>
-			</div>
-			<div class="clearfix"> </div>
-			</div>
+			
 			</div>
 			<!-- 페이지 목록 -->
 <!-- 페이징 코드 5개씩 나눠서 페이징 -->
@@ -207,7 +205,7 @@ String orderBy = (String) request.getAttribute("orderBy");
       if(ppageDTO.getP_startPage() > ppageDTO.getP_pageBlock()){
          %>
          <li>
-            <a href="wishlist.po?p_pageNum=<%=ppageDTO.getP_startPage()-ppageDTO.getP_pageBlock()%>&orderBy=${orderBy}" aria-label="Previous">
+            <a href="wishlist.po?p_pageNum=<%=ppageDTO.getP_startPage()-ppageDTO.getP_pageBlock()%>" aria-label="Previous">
                <span aria-hidden="true">&laquo;</span>
             </a>
          </li>
@@ -219,7 +217,7 @@ String orderBy = (String) request.getAttribute("orderBy");
          boolean isPcurrentPage = (i == ppageDTO.getP_currentPage());
          %>
          <li class="<%= (isCurrentPage || isPcurrentPage) ? "active" : "" %>">
-            <a href="wishlist.po?p_pageNum=<%= i %>&orderBy=${orderBy}" class="<%= (isCurrentPage) ? "" : "" %> <%= (isPcurrentPage) ? "custom-class" : "" %> id = "nextPageButton">
+            <a href="wishlist.po?p_pageNum=<%= i %>" class="<%= (isCurrentPage) ? "" : "" %> <%= (isPcurrentPage) ? "custom-class" : "" %> id = "nextPageButton">
             <%= (isPcurrentPage) ? i : i %></a>
          </li>
          <%
@@ -228,7 +226,7 @@ String orderBy = (String) request.getAttribute("orderBy");
       if(ppageDTO.getP_endPage() < ppageDTO.getP_pageCount()){
          %>
          <li>
-            <a href="wishlist.po?p_pageNum=<%=ppageDTO.getP_startPage()+ppageDTO.getP_pageBlock()%>&orderBy=${orderBy}" >
+            <a href="wishlist.po?p_pageNum=<%=ppageDTO.getP_startPage()+ppageDTO.getP_pageBlock()%>" >
                <span aria-hidden="true">&raquo;</span>
             </a>
          </li>
@@ -237,6 +235,7 @@ String orderBy = (String) request.getAttribute("orderBy");
       %> 
    </ul>
 </nav>
+
 <script>
   $(document).ready(function() {
     updateWishListNumbers();
@@ -258,11 +257,7 @@ String orderBy = (String) request.getAttribute("orderBy");
   });
 </script>
 
-         </div>
-         <div class="clearfix"> </div>
-      </div>
-      </div>
-
+     
 			<!-- // 페이지 목록 -->	
 			
 			<!-- 쇼핑계속하기 버튼 -->
@@ -270,15 +265,16 @@ String orderBy = (String) request.getAttribute("orderBy");
 				<div class="checkout-right-basket">
 					<a href="products.po"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>쇼핑 계속하기</a>
 				</div>
-				<div class="clearfix"> </div>
+			</div>
+			</div>
 			</div>
 			<!-- // 쇼핑계속하기 버튼 -->
 			
-		</div>
-	</div>
+
 <!-- 찜리스트 -->
 
 <!-- 푸터 들어가는 곳! -->
+>
 <div class="clearfix">
 <jsp:include page="../inc/bottom.jsp"></jsp:include>
 </div>
