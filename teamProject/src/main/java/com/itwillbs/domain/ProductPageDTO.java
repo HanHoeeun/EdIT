@@ -16,10 +16,23 @@ public class ProductPageDTO {
 	private String m_id;
 	private String search;
 	private String p_title;
+	private String p_status;
+	private int w_m_num;
 	
 	
 	
-	
+	public int getW_m_num() {
+		return w_m_num;
+	}
+	public void setW_m_num(int w_m_num) {
+		this.w_m_num = w_m_num;
+	}
+	public String getP_status() {
+		return p_status;
+	}
+	public void setP_status(String p_status) {
+		this.p_status = p_status;
+	}
 	public String getP_title() {
 		return p_title;
 	}

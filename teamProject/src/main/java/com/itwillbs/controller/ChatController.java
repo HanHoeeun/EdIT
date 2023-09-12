@@ -94,14 +94,21 @@ public class ChatController extends HttpServlet{
 			
 			request.setCharacterEncoding("utf-8");
 			response.setContentType("text/html; charset=utf-8");
-			String userID =request.getParameter("userID");
-			String toID =request.getParameter("toID");
+			String userID =request.getParameter("m_id");
+			String toID =request.getParameter("ch_toID");
+			System.out.println("------------------------------------------------------");
+			System.out.println(userID);
+			System.out.println(toID);
+			
 			
 			if(userID == null || userID.equals("") || toID == null || toID.equals("") ) {
 				response.getWriter().write("0");
 			}else {
 				userID = URLDecoder.decode(userID, "utf-8");
 				toID = URLDecoder.decode(toID, "utf-8");
+				
+				System.out.println(userID);
+				System.out.println(toID);
 				
 				response.getWriter().write(new ChatDAO().chatDelete(userID, toID) + "");
 			}

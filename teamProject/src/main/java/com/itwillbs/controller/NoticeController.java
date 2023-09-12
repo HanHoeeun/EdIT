@@ -111,7 +111,10 @@ public class NoticeController extends HttpServlet{
 			// NoticeService 객체생성
 			noticeService = new NoticeService();
 			// 리턴할형없음 insertNotice(request) 메서드 호출
-			String a_notice_type=noticeService.insertNotice(request);
+			
+			String m_id = (String)request.getSession().getAttribute("m_id");
+			
+			String a_notice_type=noticeService.insertNotice(request,m_id);
 			
 			// noticelist.no 주소 변경 되면서 이동			
 //			String a_notice_type = request.getParameter("a_notice_type");
