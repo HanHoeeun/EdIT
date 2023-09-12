@@ -10,8 +10,16 @@ public class NoticeDTO {
 	private String a_content; //내용
 	private Timestamp a_date; //작성일
 	private String a_notice_type; //1유형 2일반공지 3이벤트 
+	private String a_m_id;
 	
-	
+	public String getA_m_id() {
+		return a_m_id;
+	}
+
+	public void setA_m_id(String a_m_id) {
+		this.a_m_id = a_m_id;
+	}
+
 	@Override
 	public String toString() {
 		return "NoticeDTO [a_num=" + a_num + ", a_m_num=" + a_m_num + ", a_m_nick=" + a_m_nick + ", a_title=" + a_title
