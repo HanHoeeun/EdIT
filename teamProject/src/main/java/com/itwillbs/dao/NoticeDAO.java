@@ -107,6 +107,8 @@ public class NoticeDAO {
 			
 		}catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			dbClose();
 		}
 		
 		return m_num;

@@ -172,7 +172,7 @@ public class AdminDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			dbClose();
+			this.dbClose();
 		}
 		return count;
 	}
@@ -265,7 +265,7 @@ public class AdminDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			dbClose();
+			this.dbClose();
 		}
 		return count;
 	}
@@ -360,7 +360,7 @@ public class AdminDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			dbClose();
+			this.dbClose();
 		}
 		
 		return reportList;
@@ -383,7 +383,7 @@ public class AdminDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			dbClose();
+			this.dbClose();
 		}
 		return count;
 	}
@@ -409,7 +409,7 @@ public class AdminDAO {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-//			this.dbClose();
+			this.dbClose();
 		}
 		return target_id;
 	}
@@ -418,6 +418,7 @@ public class AdminDAO {
 	public ReportDTO getReportContent(int r_num) {
 		ReportDTO reportDTO = new ReportDTO();
 		try {
+			String target_nick = this.getTargetId(r_num);
 			con = this.getConnection();
 			
 //			신고 아이디 및 신고정보 
@@ -433,7 +434,7 @@ public class AdminDAO {
 			
 			if(rs.next()) {
 //				신고번호로 신고 대상자 아이디 구하는 부분 
-				String target_nick = this.getTargetId(r_num);
+				
 				
 				reportDTO.setR_m_target_nick(target_nick);
 				reportDTO.setR_num(rs.getInt("r_num"));
@@ -494,10 +495,7 @@ public class AdminDAO {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-//			this.dbClose(); 
-//			여기서 finally 에서 dbClose를 안하는 이유는
-//			여기서 rs ,con, pstmt를 close 해버리면 
-//			호출한 위치에서의 rs, con, pstmt도 close 돼서 오류발생
+			this.dbClose(); 
 		}
 		return m_count;
 	}
@@ -732,7 +730,7 @@ public class AdminDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			dbClose();
+			this.dbClose();
 		}
 		return count;
 	}
