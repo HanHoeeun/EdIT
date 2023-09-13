@@ -157,12 +157,14 @@ ProductDTO productDTO = (ProductDTO) request.getAttribute("productDTO");
 
 				<!-- 사진 -->
 				<div class="col-md-4 agileinfo_single_left">
-					<a href="upload/<%=productDTO.getP_file()%>" download> </a> <img
-						src="upload/<%=productDTO.getP_file()%>" width="200" height="200">
+<%-- 				<a href="upload/<%=productDTO.getP_file()%>" download> </a>  --%>
+					<img src="upload/<%=productDTO.getP_file()%>" width="300" height="300" style="margin : 0 auto; display:flex;"
+					onclick="window.open('upload/<%=productDTO.getP_file() %>','이미지','width=500, height=700, scrollbars=yes')">
 					<!-- 					<img id="example" src="../images/si1.jpg" alt=" " class="img-responsive"> -->
 
 				</div>
 				<!-- // 사진 -->
+				
 
 				<div class="col-md-8 agileinfo_single_right">
 
@@ -327,6 +329,9 @@ $(document).ready(function() {
     
 });
 </script>
+
+
+
 
 	<!-- 푸터 들어가는 곳! -->
 	<div class="clearfix">

@@ -663,7 +663,7 @@ public class ProductController extends HttpServlet {
 
 			productService.updateProduct2(request);
 
-			response.sendRedirect("buylist.po");
+			response.sendRedirect("buylist2.po");
 
 		} //
 

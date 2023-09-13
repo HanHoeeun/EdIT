@@ -59,11 +59,11 @@
 									</div>
 								</div>
 							
-								<!-- Log in Button -->
 								<div class="form-group row justify-content-center">
 									<div class="col-3 px-3 mt-3">
 										<input type="submit" value="재설정"
-											class="btn btn-block btn-info">
+											class="btn btn-block btn-info" 
+											style="background-color:#3399cc; border-radius: 0; border: 1px solid #3399cc;">
 									</div>
 								</div>
 							</form>
@@ -79,9 +79,8 @@
 <!-- 							홈, 회원가입  추가-->
 							<div class="pt-2">
 								<div class="row justify-content-center">
-									<h5>
-										계정이 없으신가요?<span><a href="insert.me"
-											class="text-danger"> 회원가입하기 </a></span>
+									<h5 style="font-size: 17px;" >
+										계정이 없으신가요?<span><a href="insert.me" style="color: #fe9126;">회원가입하기 </a></span>
 									</h5>
 								</div>
 								<div
@@ -90,7 +89,7 @@
 										
 									</div>
 								</div>
-							</div>
+							</div>	
 						</div>
 					</div>
 				</div>

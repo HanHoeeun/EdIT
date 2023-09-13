@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>공지사항 일반공지 검색</title>
+<title>공지사항 공지 검색</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -45,6 +45,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 	
 <body>
+<%
+int m_level = 0;
+if(session.getAttribute("m_level") != null){
+	m_level = (int)session.getAttribute("m_level");
+}
+
+%>
 <!--================================== 헤더 ==================================== -->
 	<jsp:include page="../inc/top.jsp"></jsp:include>
 
@@ -54,7 +61,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
 				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>홈</a></li>
 				<li class="active">공지사항</li>
-				<li class="active">일반공지</li>
+				<li class="active">공지</li>
 			</ol>
 		</div>
 	</div>
@@ -68,11 +75,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--=========================== 상단 탭 리스트============================================ -->
 				<ul class="tabs">
 					<li class="tab-link current" data-tab="tab-1"
-						onclick="location.href='noticelist.no'">일반공지</li>
+						onclick="location.href='noticelist.no'">공지</li>
 					<li class="tab-link" data-tab="tab-2"
 						onclick="location.href='eventlist.no'">이벤트</li>
 					<%
-					if (1 == 1) {
+					//세션값이 있으면
+					if(m_level == 2){
 					%>
 					<li class="tab-link" data-tab="tab-3"
 						onclick="location.href='noticeWrite.no'">공지글 작성</li>

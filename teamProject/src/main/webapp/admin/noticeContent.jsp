@@ -57,6 +57,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     
 </head>
 <body>
+<%
+int m_level = 0;
+if(session.getAttribute("m_level") != null){
+	m_level = (int)session.getAttribute("m_level");
+	if(m_level != 2 ){
+		response.sendRedirect("main.me");
+		return;
+	}
+}
+%>
 	<!--================================== 헤더 ==================================== -->
 	<jsp:include page="../inc/top.jsp"></jsp:include>
 
@@ -115,8 +125,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		
 <!--=========================== 버튼 =========================================== -->
 		<%
-			// 로그인, 글쓴이 일치
-			if (1==1){ %>
+					//세션값이 있으면
+					if(m_level == 2){
+					%>
 		<hr>
 		<input type="button" value="수정" class="modify-button"
 			onclick="location.href='update.no?a_num=<%=noticeDTO.getA_num()%>'">

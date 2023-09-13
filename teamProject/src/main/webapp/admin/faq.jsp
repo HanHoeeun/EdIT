@@ -43,7 +43,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="css/faq_1.css" rel="stylesheet">
 <!-- //font-awesome icons -->
 <!-- js -->
-<script src="../js/jquery-1.11.1.min.js"></script>
+<script src="js/jquery-1.11.1.min.js"></script>
 <!-- //js -->
 <link
 	href='//fonts.googleapis.com/css?family=Raleway:400,100,100italic,200,200italic,300,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic'
@@ -76,8 +76,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft"
 				data-wow-delay=".5s">
 				<li><a href="index.html"><span
-						class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-				<li class="active">FAQ</li>
+						class="glyphicon glyphicon-home" aria-hidden="true"></span>홈</a></li>
+				<li class="active">고객센터</li>
 			</ol>
 		</div>
 	</div>
@@ -88,7 +88,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="container_2_1">
 				<!-- 				상단 탭 리스트 -->
 				<ul class="tabs">
-					<li class="tab-link current" data-tab="tab-1">자주묻는 질문</li>
+					<li class="tab-link current" data-tab="tab-1">자주 묻는 질문</li>
 					<%
 					if (m_id != null) {
 					%>
@@ -136,7 +136,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<li class="subitem1"><p>안전한 거래를 위해 공공장소에서 직거래를 하거나, 항상
 										신뢰할 수 있는 결제 방법을 사용하세요. 또한 사기나 사기꾼을 피하기 위한 주의사항을 알고 있어야 합니다.</p></li>
 							</ul></li>
-						<li class="item07"><a href="#" title="click here">7. 가격을 깍을 수
+						<li class="item07"><a href="#" title="click here">7. 가격을 깎을 수
 								있나요?</a>
 							<ul>
 								<li class="subitem1"><p>판매자와 구매자 간의 협상이 가능합니다. 가격을 깍으려면
