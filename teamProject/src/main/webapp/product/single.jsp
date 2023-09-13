@@ -157,29 +157,14 @@ ProductDTO productDTO = (ProductDTO) request.getAttribute("productDTO");
 
 				<!-- 사진 -->
 				<div class="col-md-4 agileinfo_single_left">
-				<a href="javascript:void(0);" onclick="showImage('upload/<%=productDTO.getP_file()%>')">
-<%-- 					<a href="upload/<%=productDTO.getP_file()%>" download> </a>  --%>
-					<img src="upload/<%=productDTO.getP_file()%>" width="300" height="300" style="margin : 0 auto; display:flex;">
+<%-- 				<a href="upload/<%=productDTO.getP_file()%>" download> </a>  --%>
+					<img src="upload/<%=productDTO.getP_file()%>" width="300" height="300" style="margin : 0 auto; display:flex;"
+					onclick="window.open('upload/<%=productDTO.getP_file() %>','이미지','width=500, height=700, scrollbars=yes')">
 					<!-- 					<img id="example" src="../images/si1.jpg" alt=" " class="img-responsive"> -->
 
 				</div>
 				<!-- // 사진 -->
 				
-				<!-- 사진팝업창 -->
-				<script>
-			    var popup;
-			
-			    // 이미지 표시 함수
-			    function showImage(imageUrl) {
-			        // 팝업 창을 엽니다.
-			        popup = window.open('', 'Image Popup', 'width=400,height=400');
-			        // 이미지를 표시합니다.
-			        popup.document.write('<img src="' + imageUrl + '" width="100%" height="100%">');
-			        // 팝업 창을 포커스합니다.
-			        popup.focus();
-			    }
-				</script>
-				<!-- // 사진팝업창 -->
 
 				<div class="col-md-8 agileinfo_single_right">
 
@@ -344,6 +329,9 @@ $(document).ready(function() {
     
 });
 </script>
+
+
+
 
 	<!-- 푸터 들어가는 곳! -->
 	<div class="clearfix">

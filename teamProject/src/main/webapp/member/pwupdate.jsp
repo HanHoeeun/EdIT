@@ -96,7 +96,7 @@ MemberDTO memberDTO = (MemberDTO)request.getAttribute("memberDTO");
 <script type="text/javascript">
 
 // 일단 주석처리 알림창 완료되면 풀어놓기
-/* document.getElementById('m_pass2').addEventListener('keyup', validatePassword);
+document.getElementById('m_pass2').addEventListener('keyup', validatePassword);
 document.getElementById('m_pass3').addEventListener('keyup', validatePassword);
 
 function validatePassword() {
@@ -117,7 +117,7 @@ function validatePassword() {
         resultDiv.innerHTML = '영문+숫자+특수문자 포함 8~16자로 입력해주세요';
         resultDiv.style.color = 'red';
     }
-} */
+}
 
 
 
