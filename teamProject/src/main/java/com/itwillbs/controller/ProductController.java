@@ -559,7 +559,7 @@ public class ProductController extends HttpServlet {
 			productService.insertProduct(request);
 
 			// 로그인 이동 => 주소변경하면서 이동
-			response.sendRedirect("buylist.po");
+			response.sendRedirect("products.po");
 
 		} // if
 

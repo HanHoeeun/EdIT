@@ -121,7 +121,7 @@ input[type="submit"],#PPMiniCart .minicart-submit,.w3ls_vegetables ul li a,input
 /* 공지사항 검색 */
 .w3l_search_1 {
     float: right;
-    width: 20%;
+    width: 30%;
     margin: 0em 0 0em 0em;
    	margin-top: 40px;
 }
@@ -141,7 +141,7 @@ input[type="submit"],#PPMiniCart .minicart-submit,.w3ls_vegetables ul li a,input
 
 /* 공지사항 검색 */
 .w3l_search_1 input[type="search"] {
-    width:25%;
+    width:80%;
     padding:10px;
     font-size: 14px;
     color: #999;
@@ -3487,7 +3487,7 @@ h3.w3_agile_header, h2.w3_agile_header {
 	align-content : center;
 	
 }
-
+}
 @media (max-width: 384px){
 #PPMiniCart form {
 	width: 300px !important;
@@ -3776,35 +3776,4 @@ td.invert-image a img {
 .w3agile_description p {
     font-size: 13px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

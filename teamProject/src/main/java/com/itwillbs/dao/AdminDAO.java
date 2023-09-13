@@ -59,6 +59,8 @@ public class AdminDAO {
 			}
 		}catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			this.dbClose();
 		}
 		
 		
