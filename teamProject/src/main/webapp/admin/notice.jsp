@@ -16,7 +16,7 @@ if(session.getAttribute("m_level") != null){
 }
 
 %>
-<title>공지사항 일반공지</title>
+<title>공지사항 공지</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -61,7 +61,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
 				<li><a href="index.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>홈</a></li>
 				<li class="active">공지사항</li>
-				<li class="active">일반공지</li>
+				<li class="active">공지</li>
 			</ol>
 		</div>
 	</div>
@@ -79,7 +79,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				%>
 				<ul class="tabs">
 					<li class="tab-link current" data-tab="tab-1"
-						onclick="location.href='noticelist.no'">일반공지</li>
+						onclick="location.href='noticelist.no'">공지</li>
 					<li class="tab-link" data-tab="tab-2"
 						onclick="location.href='eventlist.no'">이벤트</li>
 					<%
