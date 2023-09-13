@@ -137,6 +137,7 @@ public class MemberDAO {
 				memberDTO.setM_id(rs.getString("m_id"));
 				memberDTO.setM_pass(rs.getString("m_pass"));
 				memberDTO.setM_level(rs.getInt("m_level"));
+				memberDTO.setM_count(rs.getInt("m_count"));
 
 				System.out.println("로그인 성공!");
 				
