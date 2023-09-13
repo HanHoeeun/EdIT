@@ -64,9 +64,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<form class="report-form-grids_1_1" action="reportAnswer.ad" method="post" >		
 				<input type="hidden" value="<%=reportDTO.getR_num() %>" name="r_num">
 				<p>신고자 아이디</p>
-				<input class="readonly" type="text" name="r_m_num_id" value="<%=reportDTO.getR_m_num_id() %>" readonly="readonly"><br>
+				<input class="readonly" type="text" name="r_m_num_id" value="<%=reportDTO.getR_m_num_nick() %>" readonly="readonly"><br>
 				<p>신고대상자 아이디</p>
-				<input class="readonly" type="text" name="r_m_target_id" value="<%=reportDTO.getR_m_target_id() %>" readonly="readonly"><br>
+				<input class="readonly" type="text" name="r_m_target_id" value="<%=reportDTO.getR_m_target_nick() %>" readonly="readonly"><br>
 				<p>제목</p>
 				<input class="title" type="text" name="r_title" value="<%=reportDTO.getR_title() %>" readonly="readonly" ><br>
 				<%if(reportDTO.getR_file() != null) {%>
