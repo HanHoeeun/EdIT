@@ -1250,6 +1250,9 @@ a.w3_agile_vimeo:hover{
     width: 100%;
 }
 
+.mypage-grids input[type="text"]{
+	margin: auto;
+}
 .mypage-grids input[type="password"]{
 	margin: 0 0 0;
 }

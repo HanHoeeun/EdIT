@@ -278,6 +278,7 @@ ul.faq_1 {
 	margin: 0 0 0;
 }
 
+
 .mypage-grids input[name="submit1"]{
 	outline: none;
     border: none;
@@ -299,6 +300,8 @@ ul.faq_1 {
     display: block;
     width: 60%;
 }
+
+
 
 
 .mypage-grids input[type="password"]{
@@ -347,7 +350,6 @@ ul.faq_1 {
 	border-right: 1px solid #ddd;
 }
  
-
 
 
 

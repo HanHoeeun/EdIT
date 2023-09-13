@@ -961,6 +961,20 @@ public class ProductService {
 		return count;
 	}
 
+	public int getsearchpCount(ProductPageDTO ppageDTO) {
+		System.out.println("ProductService getsearchpCount()");
+		int count = 0;
+		try {
+			// productDAO 객체생성
+			productDAO = new ProductDAO();
+			// count = getBoardCount() 호출
+			count = productDAO.getsearchpCount(ppageDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
+
 	// -----------------------------------------------------------------------------------------------
 	// -----------------------------------------------------------------------------------------------
 	// -----------------------------------------------------------------------------------------------
