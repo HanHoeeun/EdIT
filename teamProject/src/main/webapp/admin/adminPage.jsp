@@ -74,8 +74,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft"
 				data-wow-delay=".5s">
 				<li><a href="index.html"><span
-						class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-				<li class="active">AdminPage</li>
+						class="glyphicon glyphicon-home" aria-hidden="true"></span>홈</a></li>
+				<li class="active">관리자 페이지</li>
 			</ol>
 		</div>
 	</div>

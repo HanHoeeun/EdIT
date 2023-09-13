@@ -202,14 +202,13 @@ function showUnread(result){
 						<!-- 태블릿 -->
 						<li class="dropdown"><a href="tablet.po">태블릿</a></li>
 						<!-- // 태블릿 -->
-						
+
 						<!-- 휴대폰 -->
 						<li class="dropdown"><a href="phone.po">휴대폰</a></li>
 						<!-- // 휴대폰 -->
 
 						<!-- //Mega Menu -->
 						<li><a href="noticelist.no">공지사항</a></li>
-						
 						<li><a href="faq.ad">고객센터</a></li>
 					</ul>
 				</div>

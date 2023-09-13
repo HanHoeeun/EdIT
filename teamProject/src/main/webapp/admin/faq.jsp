@@ -43,7 +43,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="css/faq_1.css" rel="stylesheet">
 <!-- //font-awesome icons -->
 <!-- js -->
-<script src="../js/jquery-1.11.1.min.js"></script>
+<script src="js/jquery-1.11.1.min.js"></script>
 <!-- //js -->
 <link
 	href='//fonts.googleapis.com/css?family=Raleway:400,100,100italic,200,200italic,300,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic'
@@ -76,8 +76,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft"
 				data-wow-delay=".5s">
 				<li><a href="index.html"><span
-						class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-				<li class="active">FAQ</li>
+						class="glyphicon glyphicon-home" aria-hidden="true"></span>홈</a></li>
+				<li class="active">고객센터</li>
 			</ol>
 		</div>
 	</div>
@@ -88,7 +88,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="container_2_1">
 				<!-- 				상단 탭 리스트 -->
 				<ul class="tabs">
-					<li class="tab-link current" data-tab="tab-1">자주묻는 질문</li>
+					<li class="tab-link current" data-tab="tab-1">자주 묻는 질문</li>
 					<%
 					if (m_id != null) {
 					%>
