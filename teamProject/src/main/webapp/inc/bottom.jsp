@@ -77,7 +77,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<!-- <li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="about.html">About Us</a></li> -->
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="faq.ad">자주 묻는 질문</a></li>
 						<!-- <li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="short-codes.jsp">Short Codes</a></li> -->
+						<% 
+						String id = (String)session.getAttribute("m_id");
+						if(id != null){
+						%>
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="faq.ad?tab=tab-2">1 : 1 문의</a></li>
+						<%} %>
 					</ul>
 				</div>
 				
