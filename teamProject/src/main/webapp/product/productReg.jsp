@@ -132,7 +132,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 					<br> <b>★상품이미지 첨부</b> <br> <input type="file"
 						name="p_file" id="p_file" maxlength="4000"
-						style="padding: 10px 10px 10px 10px;">
+						style="padding: 10px 10px 10px 10px;" accept="image/*">
 
 					<!-- 등록하기 버튼 -->
 					<input type="submit" value="등록하기">
