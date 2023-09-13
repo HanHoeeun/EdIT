@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,41 +7,46 @@
 <title>main.jsp</title>
 <%
 String m_id = null;
-if (session.getAttribute("m_id") != null) {
-	m_id = (String) session.getAttribute("m_id");
+if(session.getAttribute("m_id")!=null){
+m_id = (String)session.getAttribute("m_id");
 }
 int m_level = 0;
 if (session.getAttribute("m_level") != null) {
 	m_level = (int) session.getAttribute("m_level");
 }
 %>
+</head>
+<body>    
+
+<!--
+author: W3layouts
+author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>   
+<html>
+<head>
+<title>top</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords"
-	content="Super Market Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+<meta name="keywords" content="Super Market Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-<script type="application/x-javascript">
-	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
-		function hideURLbar(){ window.scrollTo(0,1); } 
-</script>
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- //for-mobile-apps -->
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css"
-	media="all" />
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 <!-- font-awesome icons -->
-<link href="css/font-awesome.css" rel="stylesheet">
-<link href="css/custom_1.css" rel="stylesheet">
+<link href="css/font-awesome.css" rel="stylesheet"> 
+<link href="css/custom_1.css" rel="stylesheet"> 
 <!-- //font-awesome icons -->
 <!-- js -->
 <script src="js/jquery-1.11.1.min.js"></script>
 <!-- //js -->
-<link
-	href='//fonts.googleapis.com/css?family=Raleway:400,100,100italic,200,200italic,300,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic'
-	rel='stylesheet' type='text/css'>
-<link
-	href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic'
-	rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Raleway:400,100,100italic,200,200italic,300,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
 <!-- start-smoth-scrolling -->
 <script type="text/javascript" src="js/move-top.js"></script>
 <script type="text/javascript" src="js/easing.js"></script>
@@ -54,16 +59,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	});
 </script>
 <%
-if (m_id != null) {
-%>
-<script type="text/javascript">
+	if(m_id != null){%>
+	<script type="text/javascript">
 		$(document).ready(function(){
 			getInfiniteUnread();
 		});
 	</script>
-<%
-}
-%>
+<%	}%>
 <script type="text/javascript">
 
 function getUnread(){
@@ -72,24 +74,24 @@ function getUnread(){
 		url: 'chatUnread.ch',
 		data:{
 			m_id : encodeURIComponent('<%=m_id%>')
-			},
-			success : function(result) {
-				if (result >= 1) {
-					showUnread(result);
-				} else {
-					showUnread('');
-				}
+		},
+		success: function(result){
+			if(result >= 1){
+				showUnread(result);
+			}else{
+				showUnread('');
 			}
-		});
-	}
-	function getInfiniteUnread() {
-		setInterval(function() {
-			getUnread();
-		}, 4000);
-	}
-	function showUnread(result) {
-		$('#unread').html(result);
-	}
+		}
+	});
+}
+function getInfiniteUnread(){
+	setInterval(function(){
+		getUnread();
+	}, 4000);
+}
+function showUnread(result){
+	$('#unread').html(result);
+}
 </script>
 <!-- start-smoth-scrolling -->
 
@@ -116,10 +118,10 @@ function getUnread(){
 					<li><a href="login.me"><i class="fa fa-user"
 							aria-hidden="true"> 로그인</i></a></li>
 					<%
-					} else if(m_level < 2) {
+					} else if (m_level < 2) {
 					%>
 					<li><a><i class="fa fa-thumbs-up" aria-hidden="true"><%=id%>님
-							반갑습니다!</i></a></li>
+						</i></a></li>
 					<li><a href="update.me"><i class="fa fa-user"
 							aria-hidden="true"> 마이 페이지</i></a></li>
 					<li><a href="logout.me"><i class="fa fa-heart"
@@ -132,7 +134,9 @@ function getUnread(){
 						onclick="window.open('box.ch','1:1 채팅','width=500, height=800, scrollbars=yes')"><i
 							class="fa fa-comments-o" aria-hidden="true"> 채팅<span
 								id="unread" class="label label-info" style="margin-left: 2px;"></span></i></a></li>
-					<%}else if(m_level == 2){ %>
+					<%
+					} else if (m_level == 2) {
+					%>
 					<li><a href="logout.me"><i class="fa fa-heart"
 							aria-hidden="true"> 로그아웃 </i></a></li>
 					<li><a href="productReg.po"><i class="fa fa-plus-circle"
@@ -150,7 +154,7 @@ function getUnread(){
 					%>
 				</ul>
 			</div>
-<!-- 			<div class="clearfix"></div> -->
+			<!-- 			<div class="clearfix"></div> -->
 		</div>
 	</div>
 
@@ -163,19 +167,10 @@ function getUnread(){
 				</ul> -->
 			</div>
 			<div class="w3ls_logo_products_left">
-				<h1>
-					<a href="main.me">EdIT</a>
-				</h1>
+<!-- 				<h1> -->
+					<a href="main.me"><img src="images/logo2.png" height="100px"></a>
+<!-- 				</h1> -->
 			</div>
-			<!-- <div class="w3l_search">
-			<form action="#" method="post">
-				<input type="search" name="Search" placeholder="찾으시는 상품을 검색하세요" required="">
-				<button type="submit" class="btn btn-default search" aria-label="Left Align">
-					<i class="fa fa-search" aria-hidden="true"> </i>
-				</button>
-				<div class="clearfix"></div>
-			</form>
-		</div> -->
 
 			<div class="clearfix"></div>
 		</div>

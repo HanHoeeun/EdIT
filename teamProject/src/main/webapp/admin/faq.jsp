@@ -136,7 +136,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<li class="subitem1"><p>안전한 거래를 위해 공공장소에서 직거래를 하거나, 항상
 										신뢰할 수 있는 결제 방법을 사용하세요. 또한 사기나 사기꾼을 피하기 위한 주의사항을 알고 있어야 합니다.</p></li>
 							</ul></li>
-						<li class="item07"><a href="#" title="click here">7. 가격을 깍을 수
+						<li class="item07"><a href="#" title="click here">7. 가격을 깎을 수
 								있나요?</a>
 							<ul>
 								<li class="subitem1"><p>판매자와 구매자 간의 협상이 가능합니다. 가격을 깍으려면

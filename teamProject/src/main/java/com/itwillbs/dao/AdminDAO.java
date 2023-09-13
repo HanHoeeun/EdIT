@@ -597,7 +597,8 @@ public class AdminDAO {
 //					회원 번호로 검색 
 					sql = "SELECt * "
 						+ "FROM members "
-						+ "WHERE m_num = ? ORDER BY m_num DESC"
+						+ "WHERE m_num = ? "
+						+ "ORDER BY m_num DESC"
 						+ "LIMIT ?, ? ";
 					pstmt = con.prepareStatement(sql);
 					
@@ -608,7 +609,8 @@ public class AdminDAO {
 //					회원 아이디로 검색
 					sql = "SELECT * "
 						+ "FROM members "
-						+ "WHERE m_id = ? ORDER BY m_num DESC "
+						+ "WHERE m_id = ? "
+						+ "ORDER BY m_num DESC "
 						+ "LIMIT ?, ? ";
 					pstmt = con.prepareStatement(sql);
 					
@@ -816,6 +818,7 @@ public class AdminDAO {
 					sql = "SELECT * "
 						+ "FROM members "
 						+ "WHERE m_count = 3 "
+						+ "ORDER BY m_num DESC "
 						+ "LIMIT ?, ?";
 						pstmt = con.prepareStatement(sql);
 						
@@ -825,6 +828,7 @@ public class AdminDAO {
 					sql = "SELECT * "
 						+ "FROM members "
 						+ "WHERE m_id = ? AND m_count = 3 "
+						+ "ORDER BY m_num DESC "
 						+ "LIMIT ?, ? ";
 					pstmt = con.prepareStatement(sql);
 					
@@ -835,6 +839,7 @@ public class AdminDAO {
 					sql = "SELECT * "
 						+ "FROM members "
 						+ "WHERE m_name = ? AND m_count = 3 "
+						+ "ORDER BY m_num DESC "
 						+ "LIMIT ?, ? ";
 					pstmt = con.prepareStatement(sql);
 					
@@ -845,6 +850,7 @@ public class AdminDAO {
 					sql = "SELECT * "
 						+ "FROM members "
 						+ "WHERE m_email = ? AND m_count = 3 "
+						+ "ORDER BY m_num DESC "
 						+ "LIMIT ?, ? ";
 					pstmt = con.prepareStatement(sql);
 					
@@ -856,6 +862,7 @@ public class AdminDAO {
 				sql = "SELECT * "
 					+ "FROM members "
 					+ "WHERE m_count = 3 "
+					+ "ORDER BY m_num DESC "
 					+ "LIMIT ?, ?";
 				pstmt = con.prepareStatement(sql);
 				
@@ -904,26 +911,30 @@ public class AdminDAO {
 				if(pageDTO.getSearch() == "null" || pageDTO.getSearch().equals("null")) {
 					sql = "SELECT COUNT(*) as COUNT "
 						+ "FROM members "
-						+ "WHERE m_count = 3";
+						+ "WHERE m_count = 3 "
+						+ "ORDER BY m_num DESC ";
 					pstmt = con.prepareStatement(sql);
 				}else if(pageDTO.getSearch_type() == 1) {
 					sql = "SELECT COUNT(*) as COUNT "
 						+ "FROM members "
-						+ "WHERE m_id = ? AND m_count = 3";
+						+ "WHERE m_id = ? AND m_count = 3 "
+						+ "ORDER BY m_num DESC ";
 					pstmt = con.prepareStatement(sql);
 					
 					pstmt.setString(1, pageDTO.getSearch());
 				}else if(pageDTO.getSearch_type() == 2) {
 					sql = "SELECT COUNT(*) as COUNT "
 						+ "FROM members "
-						+ "WHERE m_name = ? AND m_count = 3";
+						+ "WHERE m_name = ? AND m_count = 3 "
+						+ "ORDER BY m_num DESC ";
 					pstmt = con.prepareStatement(sql);
 					
 					pstmt.setString(1, pageDTO.getSearch());
 				}else if(pageDTO.getSearch_type() == 3) {
 					sql = "SELECT COUNT(*) as COUNT "
 						+ "FROM members "
-						+ "WHERE m_email = ? AND m_count = 3";
+						+ "WHERE m_email = ? AND m_count = 3 "
+						+ "ORDER BY m_num DESC ";
 					pstmt = con.prepareStatement(sql);
 					
 					pstmt.setString(1, pageDTO.getSearch());
@@ -931,7 +942,8 @@ public class AdminDAO {
 			}else {
 				sql = "SELECT COUNT(*) as COUNT "
 					+ "FROM members "
-					+ "WHERE m_count = 3";
+					+ "WHERE m_count = 3 "
+					+ "ORDER BY m_num DESC ";                                                                                                            
 				pstmt = con.prepareStatement(sql);
 			}
 			
