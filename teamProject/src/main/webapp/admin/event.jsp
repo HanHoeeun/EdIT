@@ -82,7 +82,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			
 <!--=========================== 상단 탭 리스트============================================ -->
 			<ul class="tabs">
-					<li class="tab-link" data-tab="tab-1" onclick="location.href='noticelist.no'">일반공지</li>
+					<li class="tab-link" data-tab="tab-1" onclick="location.href='noticelist.no'">공지</li>
 					<li class="tab-link current" data-tab="tab-2" onclick="location.href='eventlist.no'">이벤트</li>
 					<%
 					//세션값이 있으면
