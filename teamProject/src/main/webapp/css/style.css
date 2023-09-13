@@ -121,12 +121,12 @@ input[type="submit"],#PPMiniCart .minicart-submit,.w3ls_vegetables ul li a,input
 /* 공지사항 검색 */
 .w3l_search_1 {
     float: right;
-    width: 50%;
+    width: 20%;
     margin: 0em 0 0em 0em;
    	margin-top: 40px;
 }
 .w3l_search input[type="search"] {
-    width: 83%;
+    width:20%;
     padding:10px;
     font-size: 14px;
     color: #999;

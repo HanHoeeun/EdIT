@@ -124,7 +124,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					}
 					%>
 					</table>
-				</div>
+				
 
 <!--====================================== 2탭 이벤트 검색 ==================================-->
 				<div class="w3l_search_1">

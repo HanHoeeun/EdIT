@@ -197,23 +197,24 @@ function getUnread(){
 				</div>
 				<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="main.me" class="act">Home</a></li>
+						<li class="active"><a href="main.me" class="act">홈</a></li>
 						<!-- Mega Menu -->
-						<li class="dropdown"><a href="products.po">전체 상품 보기</a></li>
+						<li class="dropdown"><a href="products.po">전체 상품</a></li>
 						<!-- 노트북 -->
 						<li class="dropdown"><a href="laptop.po">노트북</a></li>
 						<!-- // 노트북 -->
 
+						<!-- 태블릿 -->
+						<li class="dropdown"><a href="tablet.po">태블릿</a></li>
+						<!-- // 태블릿 -->
+						
 						<!-- 휴대폰 -->
 						<li class="dropdown"><a href="phone.po">휴대폰</a></li>
 						<!-- // 휴대폰 -->
 
-						<!-- 태블릿 -->
-						<li class="dropdown"><a href="tablet.po">태블릿</a></li>
-						<!-- // 태블릿 -->
-
 						<!-- //Mega Menu -->
 						<li><a href="noticelist.no">공지사항</a></li>
+						
 						<li><a href="faq.ad">고객센터</a></li>
 					</ul>
 				</div>

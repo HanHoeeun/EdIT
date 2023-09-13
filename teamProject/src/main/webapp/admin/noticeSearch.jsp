@@ -45,6 +45,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 	
 <body>
+<%
+int m_level = 0;
+if(session.getAttribute("m_level") != null){
+	m_level = (int)session.getAttribute("m_level");
+}
+
+%>
 <!--================================== 헤더 ==================================== -->
 	<jsp:include page="../inc/top.jsp"></jsp:include>
 
@@ -72,7 +79,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<li class="tab-link" data-tab="tab-2"
 						onclick="location.href='eventlist.no'">이벤트</li>
 					<%
-					if (1 == 1) {
+					//세션값이 있으면
+					if(m_level == 2){
 					%>
 					<li class="tab-link" data-tab="tab-3"
 						onclick="location.href='noticeWrite.no'">공지글 작성</li>
