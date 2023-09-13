@@ -135,13 +135,18 @@ public class MemberController extends HttpServlet{
 			
 			if (memberDTO != null) {
 				// m_level 추가
-				HttpSession session = request.getSession();
-				session.setAttribute("m_id", memberDTO.getM_id());
-				session.setAttribute("m_level", memberDTO.getM_level());
-				
-				response.sendRedirect("main.me");
-				
-			} else {
+				if(memberDTO.getM_level() == 1 || memberDTO.getM_count() == 3){
+					request.setAttribute("msg", "정지된 회원 입니다..");
+					dispatcher = request.getRequestDispatcher("member/msg.jsp");
+					dispatcher.forward(request, response);
+				}else {
+					HttpSession session = request.getSession();
+					session.setAttribute("m_id", memberDTO.getM_id());
+					session.setAttribute("m_level", memberDTO.getM_level());
+					
+					response.sendRedirect("main.me");
+				}
+			} else{
 				// 아이디와 비밀번호 다르면 메세지 뜨게 수정해봤음.  "member/login.jsp" -> "member/msg.jsp" 수정
 				request.setAttribute("msg", "아이디와 비밀번호가 다릅니다.");
 				dispatcher = request.getRequestDispatcher("member/msg.jsp");
