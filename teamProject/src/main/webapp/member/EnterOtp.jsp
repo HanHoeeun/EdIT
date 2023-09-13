@@ -30,18 +30,17 @@
 					<div class="panel-body">
 						<div class="text-center">
 							<h3>
-								<i class="fa fa-lock fa-4x"></i>
+								<i class="fa fa-lock fa-4x" style="color: #fe9126;"></i>
 							</h3>
-							<h2 class="text-center">OTP 입력</h2>
+							<h2 class="text-center">인증번호 입력</h2>
 									<%
 		  			if(request.getAttribute("message")!=null)
 		  			{
-		  				// ForgotPassword.java 75번줄에 보면 request.setAttribute("message","메세지 넣으면 됨!")있음!
-		  				out.print("<p class='text-danger ml-1'>"+request.getAttribute("message")+"</p>");
+		  				// ForgotPassword.java파일에서 request.setAttribute("message","메세지 넣으면 됨!")있음!
+		  				out.print("<p class='text-danger ml-1' style='color:#82868b;'>"+request.getAttribute("message")+"</p>");
 		  			}
 		  
 		  %>
-	
 							<div class="panel-body">
 
 								<form id="register-form" action="ValidateOtp.me" role="form" autocomplete="off"
@@ -51,16 +50,17 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-envelope color-blue"></i></span> <input
-												id="opt" name="otp" placeholder="OTP 입력"
+												id="opt" name="otp" placeholder="인증번호 입력"
 												class="form-control" type="text" required="required">
 										</div>
 									</div>
 									<div class="form-group">
 										<input name="recover-submit"
 											class="btn btn-lg btn-primary btn-block"
-											value="비밀번호 재설정" type="submit">
-									</div>
-
+											value="비밀번호 재설정" type="submit"
+											style=border-radius:inherit;>
+									</div>					
+								
 									<input type="hidden" class="hide" name="token" id="token"
 										value="">
 								</form>
