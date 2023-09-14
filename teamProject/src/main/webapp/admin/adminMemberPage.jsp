@@ -66,7 +66,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 	
-	<div class="top-brands">
+	<div class="top-brands_1">
 		<h2>관리자 페이지</h2>
 		<div class="container_1_1">
 			<div class="container_2_1">

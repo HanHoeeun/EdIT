@@ -59,6 +59,8 @@ public class AdminDAO {
 			}
 		}catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			this.dbClose();
 		}
 		
 		
@@ -593,10 +595,10 @@ public class AdminDAO {
 					pstmt.setInt(2, pageDTO.getPageSize()); // 몇개
 				}else if(pageDTO.getSearch_type() == 1) {
 //					회원 번호로 검색 
-					sql = "SELECt * "
+					sql = "SELECT * "
 						+ "FROM members "
 						+ "WHERE m_num = ? "
-						+ "ORDER BY m_num DESC"
+						+ "ORDER BY m_num DESC "
 						+ "LIMIT ?, ? ";
 					pstmt = con.prepareStatement(sql);
 					

@@ -276,7 +276,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</tr>
 						<%
 						for (AdminDTO adminDTO : adminList) {
-							String a_check = adminDTO.getA_check() == 0 ? "x" : "o";
+							String a_check = adminDTO.getA_check() == 0 ? "미답변" : "답변완료";
 						%>
 						<tr
 							onclick="window.open('faqContent.ad?a_num=<%=adminDTO.getA_num()%>','문의상세페이지','width=800, height=700, scrollbars=yes')">
