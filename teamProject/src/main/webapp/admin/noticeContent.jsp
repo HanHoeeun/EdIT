@@ -108,7 +108,7 @@ if(session.getAttribute("m_level") != null){
 
 <!--============================ 첨부파일==================================  -->
 		<hr>
-		<div class="attachment-section">
+ 		<div class="attachment-section">
 			<% /* 첨부파일이 없으면 본문에 안보이게 */
     String attachmentFile = noticeDTO.getA_file();
     if (attachmentFile != null && !attachmentFile.isEmpty()) {
@@ -117,8 +117,17 @@ if(session.getAttribute("m_level") != null){
 				첨부 파일 <a href="upload/<%= attachmentFile %>" download> <%= attachmentFile %>
 				</a> <br> <img src="upload/<%= attachmentFile %>">
 			</p>
-			<%} %>
-		</div>
+			<% } else { %>
+    <p>
+        첨부 파일 <a href="upload/<%= attachmentFile %>" download> <%= attachmentFile %>
+        </a> <br> <img src="upload/<%= attachmentFile %>">
+    </p>
+    <% } %>
+</div>
+		 
+		 
+		
+
 		
 <!--=========================== 내용 =========================================== -->
 		<p><%=noticeDTO.getA_content()%></p>

@@ -165,17 +165,20 @@ public class NoticeService {
 			noticeDTO.setA_content(a_content);
 			// 파일
 			noticeDTO.setA_file(a_file);
+			
+			System.out.println(noticeDTO+"updateNotice");
 			// NoticeDAO 객체생성
 			noticeDAO = new NoticeDAO();
 			// updateNotice(noticeDTO) 메서드호출
-			noticeDAO.updateNotice(noticeDTO);		
-			
+//			noticeDAO.updateNotice(noticeDTO);		
 			// 글 유형에 따라 일반공지, 이벤트로 넘어가게
-			if(a_notice_type=="공지"){
+			if(a_notice_type.equals("공지")){
 				// 리턴할형없음 insertNotice(noticeDTO) 호출
+				System.out.println("공지수정");
 				noticeDAO.updateNotice(noticeDTO);
 			}else {
-				eventDAO.updateEvent(noticeDTO);
+				System.out.println("이벤트수정");
+				noticeDAO.updateEvent(noticeDTO);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -119,7 +119,7 @@ public class NoticeController extends HttpServlet{
 			// noticelist.no 주소 변경 되면서 이동			
 //			String a_notice_type = request.getParameter("a_notice_type");
 			System.out.println(a_notice_type);
-			if(a_notice_type.equals("공지")) {
+			if(a_notice_type.equals("일반공지")) {
 				
 				response.sendRedirect("noticelist.no");
 			}else {
@@ -158,6 +158,7 @@ public class NoticeController extends HttpServlet{
 			NoticeDTO noticeDTO = noticeService.getNotice(request);
 			// request에 "noticeDTO",noticeDTO 담아서
 			request.setAttribute("noticeDTO", noticeDTO);
+			System.out.println(noticeDTO);
 			// admin/noticeUpdate.jsp 주소변경없이 이동
 			dispatcher 
 			= request.getRequestDispatcher("admin/noticeUpdate.jsp");
@@ -173,7 +174,7 @@ public class NoticeController extends HttpServlet{
 			
 			// updateNotice(request) 메서드 호출
 			String a_notice_type=noticeService.updateNotice(request);
-			noticeService.updateNotice(request);
+//			noticeService.updateNotice(request);
 
 			// noticelist.no 주소 변경 되면서 이동			
 //			String a_notice_type = request.getParameter("a_notice_type");
@@ -310,25 +311,25 @@ public class NoticeController extends HttpServlet{
 			dispatcher.forward(request, response);
 		}//eventlist.no
 
-//=========================================== eventWrite.no ============================================		
-		if(sPath.equals("/eventWrite.no")) {
-			System.out.println("뽑은 가상주소 비교 : /eventWrite.no");
-			// 주소변경없이 이동 admin/noticeWrite.jsp
-			dispatcher 
-			= request.getRequestDispatcher("admin/noticeWrite.jsp");
-			dispatcher.forward(request, response);
-		}//eventWrite.no
-
-//============================================ eventWritePro.no ==========================================		
-		if(sPath.equals("/eventWritePro.no")) {
-			System.out.println("뽑은 가상주소 비교 : /eventWritePro.no");
-			// NoticeService 객체생성
-			noticeService = new NoticeService();
-			// 리턴할형없음 insertNotice(request) 메서드 호출
-			noticeService.insertEvent(request);
-			// noticelist.no 주소 변경 되면서 이동
-			response.sendRedirect("eventlist.no");
-		}//eventWritePro.no	
+////=========================================== eventWrite.no ============================================		
+//		if(sPath.equals("/eventWrite.no")) {
+//			System.out.println("뽑은 가상주소 비교 : /eventWrite.no");
+//			// 주소변경없이 이동 admin/noticeWrite.jsp
+//			dispatcher 
+//			= request.getRequestDispatcher("admin/noticeWrite.jsp");
+//			dispatcher.forward(request, response);
+//		}//eventWrite.no
+//
+////============================================ eventWritePro.no ==========================================		
+//		if(sPath.equals("/eventWritePro.no")) {
+//			System.out.println("뽑은 가상주소 비교 : /eventWritePro.no");
+//			// NoticeService 객체생성
+//			noticeService = new NoticeService();
+//			// 리턴할형없음 insertNotice(request) 메서드 호출
+//			noticeService.insertEvent(request);
+//			// noticelist.no 주소 변경 되면서 이동
+//			response.sendRedirect("eventlist.no");
+//		}//eventWritePro.no	
 		
 //================================= eventContent.no ==================================================		
 		if(sPath.equals("/eventContent.no")) {

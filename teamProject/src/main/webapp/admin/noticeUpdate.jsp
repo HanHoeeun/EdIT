@@ -87,10 +87,12 @@ String a_m_num = (String)session.getAttribute("a_m_num");
 		<input type="hidden" name="a_num" value="<%=noticeDTO.getA_num()%>">
 			<table class="_1q_query_tab">
 				<tr>
-					<td class="_1q_query_tab_1"><select class="_1q_query_tab_sel"
+					<td class="_1q_query_tab_1">
+					<select class="_1q_query_tab_sel"
 						name="a_notice_type" style="border: none;">
-							<option value="일반공지">일반공지</option>
-							<option value="이벤트">이벤트</option>
+						
+							<option value="공지" <%if(noticeDTO.getA_notice_type().equals("공지")) {%> selected <%}%>>공지</option>
+							<option value="이벤트" <%if(noticeDTO.getA_notice_type().equals("이벤트")) {%> selected <%}%>>이벤트</option>
 					</select></td>
 					<td>
 						<div class="_1q_query_tab_3">
@@ -131,27 +133,6 @@ String a_m_num = (String)session.getAttribute("a_m_num");
 <div id="page_control"></div>
 
 
-		<%-- 	<%
-		NoticeDTO noticeDTO = (NoticeDTO) request.getAttribute("noticeDTO");
-		%>
-		<div class="container_notice" action="updatePro.no" method="post" enctype="multipart/form-data">
-		<input type="hidden" name="a_num" value="<%=noticeDTO.getA_num()%>">
-		
-        <h1><%=noticeDTO.getA_title()%></h1>
-        <p class="author"><%=noticeDTO.getA_date()%></p>
-        <hr>
-        <div class="attachment-section">
-        <p for="imgfile"><img src="images/picture.png" width="25px" height="25px">첨부 파일</a></p><br>
-        <input type="file" name="imgfile" id="imgfile" accept="image/*"><br>
-   		 </div>
-        <p><%=noticeDTO.getA_content()%></p>
-        
-       <!--  <img src="your-image-url.jpg" alt="공지사항 이미지" style="max-width: 100%;"><br> -->
-        <hr>
-			<input type="submit" value="수정" class="modify-button" onclick="location.href='content.no?a_num=<%=noticeDTO.getA_num()%>'">
-			<input type="button" value="취소" class="delete-button" onclick="location.href='content.no?a_num=<%=noticeDTO.getA_num()%>'">
-		</div>
-     --%>
 
 		<!--================================== 푸터 ==================================== -->
 		<div class="clearfix">

@@ -39,6 +39,7 @@ public class NoticeDAO {
 //===================================== getNoticeList =============================================
 	public List<NoticeDTO> getNoticeList(NoticePageDTO pageDTO) {
 		System.out.println("NoticeDAO getNoticeList()");
+		System.out.println(pageDTO);
 		List<NoticeDTO> noticeList = null;
 		try {
 			con = getConnection();
@@ -59,6 +60,7 @@ public class NoticeDAO {
 				noticeDTO.setA_title(rs.getString("a_title"));
 				noticeDTO.setA_content(rs.getString("a_content"));
 				noticeDTO.setA_date(rs.getTimestamp("a_date"));
+				noticeDTO.setA_notice_type(rs.getString("a_notice_type"));
 				noticeList.add(noticeDTO);
 			}
 		} catch (Exception e) {
@@ -181,6 +183,7 @@ public class NoticeDAO {
 //======================================= updateNotice =========================================
 	public void updateNotice(NoticeDTO noticeDTO) {
 		try {
+			System.out.println("공지 업데이트");
 			con = getConnection();
 			String sql="update admin set a_notice_type=?, a_title=?, a_content=?, a_file=? where a_num=?";
 			pstmt=con.prepareStatement(sql);
@@ -191,6 +194,8 @@ public class NoticeDAO {
 			pstmt.setInt(5, noticeDTO.getA_num());
 			//4 실행
 			pstmt.executeUpdate();
+			System.out.println(pstmt);
+			System.out.println("공지업데이트완료");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -384,6 +389,7 @@ public class NoticeDAO {
 	
 //======================================= updateEvent =========================================
 	public void updateEvent(NoticeDTO noticeDTO) {
+		System.out.println("업데이트이벤트"+noticeDTO);
 		try {
 			con = getConnection();
 			String sql="update admin set a_title=?, a_content=?, a_file=? where a_num=?";
